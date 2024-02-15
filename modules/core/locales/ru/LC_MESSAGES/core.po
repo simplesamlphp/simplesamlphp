@@ -1,28 +1,6 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: core\n"
-
-msgid "Retry login"
-msgstr "Повторить попытку входа"
-
-msgid "Too short interval between single sign on events."
-msgstr "Очень короткий промежуток времени между единым входом в событиях."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Мы обнаружили, что прошло только несколько секунд с момента последней аутентификации с этим поставщиком услуг, и, следовательно, предположили, что существует проблема с этим поставщиком услуг."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Если вы разработчик внедряющий Технологию единого вход (SSO), у вас есть проблемы с метаданными конфигурации. Убедитесь, что метаданные настроены правильно на Провайдере подлинности и Поставщике услуг."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Если, перейдя по ссылке на сайт, вы увидели эту ошибку, вы должны сообщить об этом владелецу этого сайта."
-
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Скорее всего, это проблема конфигурации поставщика услуг или провайдера подлинности."
-
-msgid "Welcome"
-msgstr "Добро пожаловать"
 
 msgid "Close the web browser, and try again."
 msgstr "Закрыть веб браузер и попробовать снова."
@@ -33,35 +11,35 @@ msgstr "Возможно, в браузере отключены Cookies."
 msgid "Go back to the previous page and try again."
 msgstr "Вернуться к предыдущей странице и попробовать снова."
 
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Открыт браузер с сохраненными закладками от предыдущей сессии."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Варианты решения проблемы:"
-
-msgid "This error may be caused by:"
-msgstr "Эта ошибка может быть вызвана:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Используйте клавиши \"Вперед\" \"Назад\" в броузере."
-
-msgid "Missing cookie"
-msgstr "Отсутствует cookie-файл"
-
-msgid "Retry"
-msgstr "Повторить"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Видимо, вы отключили поддержку cookies в вашем браузере. Пожалуйста, проверьте настройки вашего браузера и повторите попытку."
-
-msgid "If this problem persists, you can report it to the system administrators."
-msgstr "Если проблема остается, сообщить об этом администратору."
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "Метаданные Shibboleth 1.3 Провайдера подлинности (IdP) (генерируются автоматически)"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "Метаданные Shibboleth 1.3 Поставщика Услуг (SP) (генерируются автоматически)"
 
-msgid "We were unable to locate the state information for the current request."
-msgstr "Не удалось определить информацию о состоянии для данного запроса."
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "Если проблема остается, сообщить об этом администратору."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Если вы разработчик внедряющий Технологию единого вход (SSO), у вас есть проблемы с метаданными конфигурации. Убедитесь, что метаданные настроены правильно на Провайдере подлинности и Поставщике услуг."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Если, перейдя по ссылке на сайт, вы увидели эту ошибку, вы должны сообщить об этом владелецу этого сайта."
+
+msgid "Missing cookie"
+msgstr "Отсутствует cookie-файл"
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Открыт браузер с сохраненными закладками от предыдущей сессии."
+
+msgid "Report this error"
+msgstr "Сообщить о данной ошибке"
+
+msgid "Retry"
+msgstr "Повторить"
+
+msgid "Retry login"
+msgstr "Повторить попытку входа"
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Пример Shibboleth 1.3 SP - тестовый вход в систему через ваш Shib IdP"
@@ -69,8 +47,29 @@ msgstr "Пример Shibboleth 1.3 SP - тестовый вход в систе
 msgid "State information lost"
 msgstr "Информация о состоянии утеряна"
 
-msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
-msgstr "Метаданные Shibboleth 1.3 Провайдера подлинности (IdP) (генерируются автоматически)"
+msgid "Suggestions for resolving this problem:"
+msgstr "Варианты решения проблемы:"
 
-msgid "Report this error"
-msgstr "Сообщить о данной ошибке"
+msgid "This error may be caused by:"
+msgstr "Эта ошибка может быть вызвана:"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Скорее всего, это проблема конфигурации поставщика услуг или провайдера подлинности."
+
+msgid "Too short interval between single sign on events."
+msgstr "Очень короткий промежуток времени между единым входом в событиях."
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Используйте клавиши \"Вперед\" \"Назад\" в броузере."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Мы обнаружили, что прошло только несколько секунд с момента последней аутентификации с этим поставщиком услуг, и, следовательно, предположили, что существует проблема с этим поставщиком услуг."
+
+msgid "We were unable to locate the state information for the current request."
+msgstr "Не удалось определить информацию о состоянии для данного запроса."
+
+msgid "Welcome"
+msgstr "Добро пожаловать"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Видимо, вы отключили поддержку cookies в вашем браузере. Пожалуйста, проверьте настройки вашего браузера и повторите попытку."

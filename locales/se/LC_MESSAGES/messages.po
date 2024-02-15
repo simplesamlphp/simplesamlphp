@@ -1,31 +1,39 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: messages\n"
 
-msgid "E-mail address:"
-msgstr "Elektrovnnalaš poastačijuhus"
+msgid "Affiliation"
+msgstr "Du doaibma organisašuvnnas"
 
-msgid "Person's principal name at home organization"
-msgstr "Feide-namma"
-
-msgid "Mobile"
-msgstr "Mátketelefovdna"
-
-msgid "Incorrect username or password."
-msgstr "Boastu geavahusnamma, beassansátni dehe organisašuvdna."
-
-msgid "Mail"
-msgstr "Elektrovnnalaš poastačijuhus"
-
-msgid "Given name"
-msgstr "Ovdanamma"
+msgid "Affiliation at home organization"
+msgstr "Rolla diehto organisašuvnnas, dehe dihto domenas."
 
 msgid "Common name"
 msgstr "Olles namma"
 
+msgid "E-mail address:"
+msgstr "Elektrovnnalaš poastačijuhus"
+
+msgid "Entitlement regarding the service"
+msgstr "URI mii čilge dihto vuoigatvuođa dihto ressurssaide"
+
+msgid "Given name"
+msgstr "Ovdanamma"
+
 msgid "Identity number assigned by public authorities"
 msgstr "Riegadannummir"
+
+msgid "Incorrect username or password."
+msgstr "Boastu geavahusnamma, beassansátni dehe organisašuvdna."
+
+msgid "Login"
+msgstr "Mana sis"
+
+msgid "Mail"
+msgstr "Elektrovnnalaš poastačijuhus"
+
+msgid "Mobile"
+msgstr "Mátketelefovdna"
 
 msgid "Organization"
 msgstr "Organisašuvdna"
@@ -33,11 +41,8 @@ msgstr "Organisašuvdna"
 msgid "Password"
 msgstr "Beassansátni"
 
-msgid "Username"
-msgstr "Geavahusnamma"
-
-msgid "Affiliation"
-msgstr "Du doaibma organisašuvnnas"
+msgid "Person's principal name at home organization"
+msgstr "Feide-namma"
 
 msgid "Preferred language"
 msgstr "Vuosttašválljejuvvon giella dehe giellahápmi"
@@ -48,11 +53,5 @@ msgstr "Goargu"
 msgid "User ID"
 msgstr "Namahus"
 
-msgid "Login"
-msgstr "Mana sis"
-
-msgid "Entitlement regarding the service"
-msgstr "URI mii čilge dihto vuoigatvuođa dihto ressurssaide"
-
-msgid "Affiliation at home organization"
-msgstr "Rolla diehto organisašuvnnas, dehe dihto domenas."
+msgid "Username"
+msgstr "Geavahusnamma"

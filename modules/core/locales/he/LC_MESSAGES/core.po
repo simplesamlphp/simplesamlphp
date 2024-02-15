@@ -1,28 +1,6 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: core\n"
-
-msgid "Retry login"
-msgstr "נסה שוב להתחבר"
-
-msgid "Too short interval between single sign on events."
-msgstr "פרק זמן קצר מידי בין ארועי כניסה יחידה."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "גילינו שעברו רק מספר שניות מאז שהיזדהת בפעם האחרונה עם ספק השרות הזה, ולכן אנחנו מניחים שישנה בעייה עם ס\"הש."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "אם אתה מפתח שפורש פיתרון התחברות יחידה, יש לך בעייה עם הגדרות המטא-מידע. בדוק שהמטא-מידע מוגדר נכון בספקי הזהות והשרות."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "אם אתה משתמש שקיבל שגיאה זו לאחר לחיצה על קישור באתר, כדי שתדווח על השגיאה לבעלי האתר."
-
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "זו, ככל הנראה, בעייה בהגדרות של ספק הזהות או ספק השירות."
-
-msgid "Welcome"
-msgstr "ברוך-הבא"
 
 msgid "Close the web browser, and try again."
 msgstr "סגור את הדפדפן, ונסה שוב."
@@ -33,35 +11,35 @@ msgstr "תמיכה בעוגיות מבוטלת בדפדפן"
 msgid "Go back to the previous page and try again."
 msgstr "חזור לדף הקודם ונסה שוב."
 
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "פתיחת הדפדפן עם לשוניות שנשמרו משימוש הקודם."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "הצעות לפתרון הבעייה הנוכחית:"
-
-msgid "This error may be caused by:"
-msgstr "יכול להיות שהשגיאה נגרמה על-ידי:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "שימוש בכפתורי הבא והקודם בדפדפן."
-
-msgid "Missing cookie"
-msgstr "חסרה עוגייה"
-
-msgid "Retry"
-msgstr "נסה שנית"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "נראה שכיבית את העוגיות בדפדפן שלךץ אנא בדוק את ההגדרות בדפדפן שלך, ונסה שנית. "
-
-msgid "If this problem persists, you can report it to the system administrators."
-msgstr "אם הבעייה ממשיכה, אתה יכול לדווח עליה למנהל המערכת."
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "מטא-הנתונים של ספק השזהויות מסוג Shibboleth 1.3 המאורח (נוצר אוטומטית)"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "מטא-הנתונים של ספק השירותים מסוג Shibboleth 1.3 המאורח (נוצר אוטומטית)"
 
-msgid "We were unable to locate the state information for the current request."
-msgstr "לא הצלחנו לאתר את מידע המצב לבקשה הנוכחית."
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "אם הבעייה ממשיכה, אתה יכול לדווח עליה למנהל המערכת."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "אם אתה מפתח שפורש פיתרון התחברות יחידה, יש לך בעייה עם הגדרות המטא-מידע. בדוק שהמטא-מידע מוגדר נכון בספקי הזהות והשרות."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "אם אתה משתמש שקיבל שגיאה זו לאחר לחיצה על קישור באתר, כדי שתדווח על השגיאה לבעלי האתר."
+
+msgid "Missing cookie"
+msgstr "חסרה עוגייה"
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "פתיחת הדפדפן עם לשוניות שנשמרו משימוש הקודם."
+
+msgid "Report this error"
+msgstr "דווח על השגיאה הנוכחית"
+
+msgid "Retry"
+msgstr "נסה שנית"
+
+msgid "Retry login"
+msgstr "נסה שוב להתחבר"
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "דוגמא לס\"ש מסוג Shibboleth 1.3 - בוחן כניסה למערכת דרך ס\"ז מסוג - Shibboleth"
@@ -69,8 +47,29 @@ msgstr "דוגמא לס\"ש מסוג Shibboleth 1.3 - בוחן כניסה למע
 msgid "State information lost"
 msgstr "מידע המצב אבד"
 
-msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
-msgstr "מטא-הנתונים של ספק השזהויות מסוג Shibboleth 1.3 המאורח (נוצר אוטומטית)"
+msgid "Suggestions for resolving this problem:"
+msgstr "הצעות לפתרון הבעייה הנוכחית:"
 
-msgid "Report this error"
-msgstr "דווח על השגיאה הנוכחית"
+msgid "This error may be caused by:"
+msgstr "יכול להיות שהשגיאה נגרמה על-ידי:"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "זו, ככל הנראה, בעייה בהגדרות של ספק הזהות או ספק השירות."
+
+msgid "Too short interval between single sign on events."
+msgstr "פרק זמן קצר מידי בין ארועי כניסה יחידה."
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "שימוש בכפתורי הבא והקודם בדפדפן."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "גילינו שעברו רק מספר שניות מאז שהיזדהת בפעם האחרונה עם ספק השרות הזה, ולכן אנחנו מניחים שישנה בעייה עם ס\"הש."
+
+msgid "We were unable to locate the state information for the current request."
+msgstr "לא הצלחנו לאתר את מידע המצב לבקשה הנוכחית."
+
+msgid "Welcome"
+msgstr "ברוך-הבא"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "נראה שכיבית את העוגיות בדפדפן שלךץ אנא בדוק את ההגדרות בדפדפן שלך, ונסה שנית. "

@@ -1,10 +1,27 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "Metadados do fornecedor de identidade (IdP) Shibboleth 1.3 local (gerado automaticamente)"
+
+msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
+msgstr "Metadados do fornecedor de serviço (SP) Shibboleth 1.3 local (gerado automaticamente)"
+
+msgid "Missing cookie"
+msgstr "Cookie não encontrado"
+
+msgid "Retry"
+msgstr "Tentar de novo"
+
 msgid "Retry login"
 msgstr "Tentar de novo"
+
+msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
+msgstr "Exemplo de um SP Shibboleth 1.3 - Para testes de login pelo seu IdP Shib"
+
+msgid "SimpleSAMLphp Advanced Features"
+msgstr "Funcionalidades avançadas do SimpleSAMLphp"
 
 msgid "Too short interval between single sign on events."
 msgstr "Intervalo entre eventos de single sign on demasiado curto."
@@ -15,23 +32,5 @@ msgstr "Foi detectada uma repetição de autenticação neste serviço em poucos
 msgid "Welcome"
 msgstr "Bem vindo"
 
-msgid "Missing cookie"
-msgstr "Cookie não encontrado"
-
-msgid "Retry"
-msgstr "Tentar de novo"
-
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "Provavelmente desligou o suporte de cookies no seu browser. Por favor verifique se tem o suporte de cookies ligado e tente de novo."
-
-msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
-msgstr "Metadados do fornecedor de serviço (SP) Shibboleth 1.3 local (gerado automaticamente)"
-
-msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
-msgstr "Exemplo de um SP Shibboleth 1.3 - Para testes de login pelo seu IdP Shib"
-
-msgid "SimpleSAMLphp Advanced Features"
-msgstr "Funcionalidades avançadas do SimpleSAMLphp"
-
-msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
-msgstr "Metadados do fornecedor de identidade (IdP) Shibboleth 1.3 local (gerado automaticamente)"

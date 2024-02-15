@@ -1,16 +1,50 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: messages\n"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
-msgid "No SAML response provided"
-msgstr "Nobenega odgovora za SAML ni na voljo"
+msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
+msgstr "Storitev zahteva, da se prijavite. To pomeni, da je potreben vnos uporabniškega imena in gesla v spodnji polji."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:71
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
-msgid "No SAML message provided"
-msgstr "SAML sporočilo ni na voljo"
+msgid "Affiliation"
+msgstr "Vloga uporabnika"
+
+msgid "Affiliation at home organization"
+msgstr "Vloga v organizaciji"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:196
+msgid "An error occurred when trying to create the SAML request."
+msgstr "Pri ustvarjanju SAML zahteve je prišlo do napake."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:218
+msgid "An error occurred when trying to process the Logout Request."
+msgstr "Pri obdelavi zahteve za odjavo je prišlo do napake."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:257
+msgid "An unhandled exception was thrown."
+msgstr "Zagnana je bila nedefinirana izjema."
+
+msgid "As you are in debug mode, you get to see the content of the message you are sending:"
+msgstr "Ste v debug načinu, lahko si ogledate vsebino sporočila, ki ga pošiljate"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
+msgid "Authentication aborted"
+msgstr "Avtentikacija prekinjena"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:191
+msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
+msgstr "Napaka v avtentikacijskem viru: %AUTHSOURCE%. Opis napake: %REASON%"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:203
+msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
+msgstr "Avtentikacija je spodletela: vaš spletni brskalnik je posredoval neveljavno digitalno potrdilo ali pa ga ni moč prebrati!"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:258
+msgid "Authentication failed: the certificate your browser sent is unknown"
+msgstr "Avtentikacija je spodletela: vaš spletni brskalnik je posredoval nepoznano digitalno potrdilo"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
+msgid "Authentication failed: your browser did not send any certificate"
+msgstr "Avtentikacija je spodletela: vaš spletni brskalnik ni posredoval digitalnega potrdila!"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:72
 msgid "Authentication source error"
@@ -20,50 +54,283 @@ msgstr "Napaka v avtentikacijskem viru"
 msgid "Bad request received"
 msgstr "Napaka v prejetem zahtevku."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:77
+msgid "Bad request to discovery service"
+msgstr "Zahteva, ki je bila poslana \"Discovery service-u\" je napačna."
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "CAS napaka"
+
+msgid "Certificates"
+msgstr "Digitalna potrdila"
+
+msgid "Change your home organization"
+msgstr "Izberite vašo domačo organizacijo."
+
+msgid "Choose home organization"
+msgstr "Izberite domačo organizacijo."
+
+msgid "Choose your home organization"
+msgstr "Izberite vašo domačo organizacijo"
+
+msgid "Common name"
+msgstr "Ime in priimek"
+
+msgid "Completed"
+msgstr "Dokončano"
+
+msgid "Configuration check"
+msgstr "Preverjanje konfiguracije"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:75
 msgid "Configuration error"
 msgstr "Napaka v nastavitvah"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:76
-msgid "Error creating request"
-msgstr "Napaka pri ustvarjanju zahteve"
+msgid "Contact information:"
+msgstr "Kontakt"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:77
-msgid "Bad request to discovery service"
-msgstr "Zahteva, ki je bila poslana \"Discovery service-u\" je napačna."
+msgid "Converted metadata"
+msgstr "Pretvorjeni metapodatki"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Odgovora za odjavo ni bilo mogoče ustvariti"
+
+msgid "Date of birth"
+msgstr "Datum rojstva"
+
+msgid "Debug information"
+msgstr "Pomoč pri odpravljanju napak (debug)"
+
+msgid "Display name"
+msgstr "Prikazno ime"
+
+msgid "Distinguished name (DN) of person's home organization"
+msgstr "Ime domače organizacije (DN)"
+
+msgid "Distinguished name (DN) of person's primary Organizational Unit"
+msgstr "Ime (DN) oddelka v domači organizaciji"
+
+msgid "Distinguished name (DN) of the person's home organizational unit"
+msgstr "Ime oddelka domače organizacije (DN)"
+
+msgid "Do you want to logout from all the services above?"
+msgstr "Ali se želite odjaviti z vseh naštetih storitev?"
+
+msgid "Domain component (DC)"
+msgstr "Domenska komponenta (DC)"
+
+msgid "Download the X509 certificates as PEM-encoded files."
+msgstr "Prenesi X509 digitalno potrdilo v PEM datoteki."
+
+msgid "E-mail address:"
+msgstr "Elektronski naslov:"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:260
+msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
+msgstr "Uporabnika s tem uporabniškim imenom ni bilo mogoče najti ali pa je vpisano geslo napačno. Preverite svoje uporabniško ime in poskusite znova."
+
+msgid "Enter your username and password"
+msgstr "Vnesite svoje uporabniško ime in geslo"
+
+msgid "Entitlement regarding the service"
+msgstr "Upravičenost do storitve"
+
+msgid "Error"
+msgstr "Napaka"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:76
+msgid "Error creating request"
+msgstr "Napaka pri ustvarjanju zahteve"
+
+msgid "Error in this metadata entry"
+msgstr "Napaka pri vnosu metapodatkov"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
+msgid "Error loading metadata"
+msgstr "Napaka pri nalaganju metapodatkov"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
+msgid "Error processing request from Service Provider"
+msgstr "Napaka pri obdelavi zahteve SP"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
+msgid "Error processing response from Identity Provider"
+msgstr "Pri obdelavi odgovora IdP-ja je prišlo do napake"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:82
+msgid "Error processing the Logout Request"
+msgstr "Napaka pri obdelavi zahteve za odjavo"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
+msgid "Error received from Identity Provider"
+msgstr "Napaka na IdP"
+
+msgid "Error report sent"
+msgstr "Poročilo o napaki je bilo poslano"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
+msgid "Error when communicating with the CAS server."
+msgstr "Napaka pri komunikaciji s CAS strežnikom."
+
+msgid "Explain what you did when this error occurred..."
+msgstr "Opišite, kako je prišlo do napake..."
+
+msgid "Fax number"
+msgstr "Fax"
+
+msgid "Given name"
+msgstr "Ime"
+
+msgid "Go back to SimpleSAMLphp installation page"
+msgstr "Nazaj na namestitveno stran SimpleSAMLphp"
+
+msgid "Go back to the file list"
+msgstr "Vrnite se na seznam datotek"
+
+msgid "Help desk homepage"
+msgstr "Spletna stran tehnične podpore uporabnikom."
+
+msgid "Help! I don't remember my password."
+msgstr "Na pomoč! Pozabil sem svoje geslo."
+
+msgid "Here is the metadata that SimpleSAMLphp has generated for you. You may send this metadata document to trusted partners to setup a trusted federation."
+msgstr "Tu so metapodatki, ki jih je generiral SimpleSAMLphp. Dokument lahko pošljete zaupanja vrednim partnerjem, s katerimi boste ustvarili federacijo."
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Živjo! To je statusna stran SimpleSAMLphp, ki omogoča pregled nad trajanjem vaše trenutne seje in atributi, ki so povezani z njo."
+
+msgid "Home organization domain name"
+msgstr "ID domače organizacije"
+
+msgid "Home postal address"
+msgstr "Domači naslov"
+
+msgid "Home telephone"
+msgstr "Domača telefonska številka"
+
+msgid "How to get help"
+msgstr "Kje lahko najdem pomoč?"
+
+msgid "Identity assurance profile"
+msgstr "Stopnja zanesljivosti"
+
+msgid "Identity number assigned by public authorities"
+msgstr "Matična številka"
+
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "Če boste prijavili to napako, priložite tudi ID seje, preko katere bo lažje najti vaše zapise v dnevniških datotekah, ki so na voljo skrbniku sistema."
+
+msgid "In SAML 2.0 Metadata XML format:"
+msgstr "V SAML 2.0 Metapodatkovni XML format:"
+
+msgid "In SimpleSAMLphp flat file format - use this if you are using a SimpleSAMLphp entity on the other side:"
+msgstr "V SimpleSAMLphp \"flat file\" formatu - ta format uporabite, če uporabljate SimpleSAMLphp entiteto na drugi strani:"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
+msgid "Incorrect username or password"
+msgstr "Napačno uporabniško ime ali geslo"
+
+msgid "Incorrect username or password."
+msgstr "Napačno uporabniško ime ali geslo!"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
 msgstr "Napačen certifikat"
 
+msgid "JPEG Photo"
+msgstr "JPEG Slika"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:80
 msgid "LDAP Error"
 msgstr "Napaka LDAP-a"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:206
+msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
+msgstr "LDAP je zbirka uporabnikov. Ko se želite prijaviti, je potrebno prijavo preveriti v LDAPu. Pri trenutnem preverjanju je prišlo do napake."
+
+msgid "Labeled URI"
+msgstr "Označen URI"
+
+msgid "Legal name"
+msgstr "Uradno ime"
+
+msgid "Local identity number"
+msgstr "Vpisna številka"
+
+msgid "Locality"
+msgstr "Kraj"
+
+msgid "Logged out"
+msgstr "Odjavljen"
+
+msgid "Logging out of the following services:"
+msgstr "Odjava iz naslednjih storitev:"
+
+msgid "Logging out..."
+msgstr "Odjavljanje..."
+
+msgid "Login"
+msgstr "Prijava"
+
+msgid "Login at"
+msgstr "Prijavi se pri"
+
+msgid "Logout"
+msgstr "Odjava"
+
+msgid "Logout failed"
+msgstr "Odjava je spodletela."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:81
 msgid "Logout information lost"
 msgstr "Odjavni (Logout) parametri niso na voljo."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:82
-msgid "Error processing the Logout Request"
-msgstr "Napaka pri obdelavi zahteve za odjavo"
+msgid "Mail"
+msgstr "Elektronski naslov"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
-msgid "Error loading metadata"
-msgstr "Napaka pri nalaganju metapodatkov"
+msgid "Manager"
+msgstr "Menedžer"
+
+msgid "Message"
+msgstr "Sporočilo"
+
+msgid "Metadata"
+msgstr "Metapodatki"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:85
 msgid "Metadata not found"
 msgstr "Metapodatkov ni bilo moč najti"
+
+msgid "Metadata overview"
+msgstr "Pregled metapodatkov"
+
+msgid "Mobile"
+msgstr "Mobilni telefon"
+
+msgid "Next"
+msgstr "Naprej"
+
+msgid "Nickname"
+msgstr "Vzdevek"
+
+msgid "No"
+msgstr "Ne"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:88
+msgid "No RelayState"
+msgstr "RelayState parameter ne obstaja"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:71
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
+msgid "No SAML message provided"
+msgstr "SAML sporočilo ni na voljo"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
+msgid "No SAML response provided"
+msgstr "Nobenega odgovora za SAML ni na voljo"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:86
 msgid "No access"
@@ -73,123 +340,226 @@ msgstr "Ni dostopa"
 msgid "No certificate"
 msgstr "Ni digitalnega potrdila"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:88
-msgid "No RelayState"
-msgstr "RelayState parameter ne obstaja"
+msgid "No errors found."
+msgstr "Ni napak"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
-msgid "State information lost"
-msgstr "Podatki o stanju so izgubljeni"
+msgid "No, cancel"
+msgstr "Ne"
+
+msgid "No, only %SP%"
+msgstr "Ne, odjavi me samo z naslednjega %SP%"
+
+msgid "Notices"
+msgstr "Obvestila"
+
+msgid "On hold"
+msgstr "V teku"
+
+msgid "One or more of the services you are logged into <i>do not support logout</i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Ena ali več storitev, v katere ste prijavljeni, <i>ne omogoča odjave</i>. Odjavo iz teh storitev izvedete tako, da <i>zaprete spletni brskalnik</i>."
+
+msgid "Optional fields"
+msgstr "Neobvezna polja"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Če želite, vnesite elektronski naslov, na katerem boste dosegljivi v primeru dodatnih vprašanj za skrbnika sistema :"
+
+msgid "Options missing from config file"
+msgstr "V konfiguracijski datoteki manjkajo nastavitve"
+
+msgid "Organization"
+msgstr "Organizacija"
+
+msgid "Organization name"
+msgstr "Ime organizacije"
+
+msgid "Organization's legal name"
+msgstr "Naziv organizacije"
+
+msgid "Organizational homepage"
+msgstr "Spletna stran organizacije"
+
+msgid "Organizational number"
+msgstr "Organizacijska številka"
+
+msgid "Organizational unit"
+msgstr "Oddelek"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:90
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:91
 msgid "Page not found"
 msgstr "Strani ni bilo mogoče najti."
 
+msgid "Parse"
+msgstr "Sintaktična analiza (parse)"
+
+msgid "Password"
+msgstr "Geslo"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
 msgid "Password not set"
 msgstr "Geslo ni nastavljeno"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
-msgid "Error processing response from Identity Provider"
-msgstr "Pri obdelavi odgovora IdP-ja je prišlo do napake"
+msgid "Persistent pseudonymous ID"
+msgstr "Trajni anonimni ID"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
-msgid "Error processing request from Service Provider"
-msgstr "Napaka pri obdelavi zahteve SP"
+msgid "Person's principal name at home organization"
+msgstr "ID uporabnika na domači organizaciji"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
-msgid "Error received from Identity Provider"
-msgstr "Napaka na IdP"
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Izberite IdP, na katerem se boste avtenticirali:"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
-msgid "Unhandled exception"
-msgstr "Nedefinirana izjema."
+msgid "Post office box"
+msgstr "Poštni predal"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:100
-msgid "Unknown certificate"
-msgstr "Nepoznano digitalno potrdilo"
+msgid "Postal address"
+msgstr "Poštni naslov"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
-msgid "Authentication aborted"
-msgstr "Avtentikacija prekinjena"
+msgid "Postal code"
+msgstr "Poštna številka"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
-msgid "Incorrect username or password"
-msgstr "Napačno uporabniško ime ali geslo"
+msgid "Preferred language"
+msgstr "Želen jezik"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
-msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
-msgstr "Dostopili ste do \"Assertion Consumer Service\" vmesnika, ampak niste zagotovili \"SAML Authentication Responsa\"."
+msgid "Primary affiliation"
+msgstr "Primarna vloga"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:191
-msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
-msgstr "Napaka v avtentikacijskem viru: %AUTHSOURCE%. Opis napake: %REASON%"
+msgid "Private information elements"
+msgstr "Zasebni informacijski elementi"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:193
-msgid "There is an error in the request to this page. The reason was: %REASON%"
-msgstr "Prišlo je do napake pri prejetem zahtevku. Razlog: %REASON%"
+msgid "Remember"
+msgstr "Zapomni si privolitev."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
-msgid "Error when communicating with the CAS server."
-msgstr "Napaka pri komunikaciji s CAS strežnikom."
+msgid "Remember my choice"
+msgstr "Shrani kot privzeto izbiro"
+
+msgid "Report errors"
+msgstr "Prijavi napake"
+
+msgid "Required fields"
+msgstr "Zahtevana polja"
+
+msgid "Return to service"
+msgstr "Vrni se nazaj na storitev."
+
+msgid "SAML 2.0 Identity Provider (Hosted)"
+msgstr "SAML 2.0 IdP (Lokalni)"
+
+msgid "SAML 2.0 Identity Provider (Remote)"
+msgstr "SAML 2.0 IdP (Oddaljeni)"
+
+msgid "SAML 2.0 SP Demo Example"
+msgstr "SAML 2.0 SP Demo primer"
+
+msgid "SAML 2.0 SP Metadata"
+msgstr "SAML 2.0 SP Metapodatki"
+
+msgid "SAML 2.0 Service Provider (Hosted)"
+msgstr "SAML 2.0 SP (Lokalni)"
+
+msgid "Select"
+msgstr "Izberite"
+
+msgid "Select configuration file to check:"
+msgstr "Izberite konfiguracijsko datoteko, ki jo želite preveriti"
+
+msgid "Select your identity provider"
+msgstr "Izberite IdP domače organizacije"
+
+msgid "Send e-mail to help desk"
+msgstr "Pošlji sporočilo tehnični podpori."
+
+msgid "Send error report"
+msgstr "Pošlji poročilo o napaki"
+
+msgid "Sending message"
+msgstr "Pošiljanje sporočila"
+
+msgid "Service Provider"
+msgstr "Ponudnik storitev"
+
+msgid "Session size: %SIZE%"
+msgstr "Velikost seje: %SIZE% bajtov"
+
+msgid "Shib 1.3 IdP Metadata"
+msgstr "Shib 1.3 IdP Metapodatki"
+
+msgid "Shib 1.3 Identity Provider (Hosted)"
+msgstr "Shib 1.3 SP (Lokalni)"
+
+msgid "Shib 1.3 Identity Provider (Remote)"
+msgstr "Shib 1.3 SP (Oddaljeni)"
+
+msgid "Shib 1.3 SP Metadata"
+msgstr "Shib 1.3 SP Metapodatki"
+
+msgid "Shib 1.3 Service Provider (Hosted)"
+msgstr "Shib 1.3 SP (Lokalni)"
+
+msgid "Shib 1.3 Service Provider (Remote)"
+msgstr "Shib 1.3 SP (Oddaljeni)"
+
+msgid "Shibboleth demo"
+msgstr "Shibboleth demo primer"
+
+msgid "SimpleSAMLphp Diagnostics"
+msgstr "SimpleSAMLphp diagnostika"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:195
 msgid "SimpleSAMLphp appears to be misconfigured."
 msgstr "Nastavitve SimpleSAMLphp so napačne ali se med seboj izključujejo."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:196
-msgid "An error occurred when trying to create the SAML request."
-msgstr "Pri ustvarjanju SAML zahteve je prišlo do napake."
+msgid "SimpleSAMLphp error"
+msgstr "SimpleSAMLphp napaka"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:197
-msgid "The parameters sent to the discovery service were not according to specifications."
-msgstr "Parametri, ki so bili poslani \"Discovery service-u\", ne ustrezajo specifikaciji."
+msgid "Some error occurred"
+msgstr "Prišlo je do napake!"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:200
-msgid "When this identity provider tried to create an authentication response, an error occurred."
-msgstr "Ko je IdP želel ustvariti odgovor o prijavi, je prišlo do napake."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:203
-msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
-msgstr "Avtentikacija je spodletela: vaš spletni brskalnik je posredoval neveljavno digitalno potrdilo ali pa ga ni moč prebrati!"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:206
-msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
-msgstr "LDAP je zbirka uporabnikov. Ko se želite prijaviti, je potrebno prijavo preveriti v LDAPu. Pri trenutnem preverjanju je prišlo do napake."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:209
-msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
-msgstr "Odjavni (Logout) parametri niso na voljo. Vrnite se na storitev, ki ste jo pravkar uporabljali in se ponovno poskusite odjaviti. Napaka je posledica poteka veljavnosti seje."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:218
-msgid "An error occurred when trying to process the Logout Request."
-msgstr "Pri obdelavi zahteve za odjavo je prišlo do napake."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:222
-msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
-msgstr "V konfiguraciji SimpleSAMLphp-ja je napaka. Če ste skrbnik te storitve, preverite, da je konfiguracija metapodatkov pravilna."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
-#, php-format
-msgid "Unable to locate metadata for %ENTITYID%"
-msgstr "Metapodatkov za %ENTITYID% ni bilo moč najti"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:227
-msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
-msgstr "Ta končna točka ni omogočena. Preverite možnost omogočanja storitve v konfiguraciji SimpleSAMLphp-ja."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
-msgid "Authentication failed: your browser did not send any certificate"
-msgstr "Avtentikacija je spodletela: vaš spletni brskalnik ni posredoval digitalnega potrdila!"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:231
-msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
-msgstr "Pobudnik te zahteve ni posredoval RelayState parametra."
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
+msgid "State information lost"
+msgstr "Podatki o stanju so izgubljeni"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:234
 msgid "State information lost, and no way to restart the request"
 msgstr "Podatki o stanju so izgubljeni, zato zahteve ni mogoče obnoviti/ponovno zagnati."
+
+msgid "Street"
+msgstr "Ulica"
+
+msgid "Submit message"
+msgstr "Pošlji sporočilo"
+
+msgid "Superfluous options in config file"
+msgstr "Odvečne nastavitve v konfiguracijski datoteki"
+
+msgid "Surname"
+msgstr "Priimek"
+
+msgid "Telephone number"
+msgstr "Telefonska številka"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
+msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
+msgstr "Odziv IdP vsebuje napako (\"SAML-Response\" ni uspel)! "
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:259
+msgid "The authentication was aborted by the user"
+msgstr "Avtentikacija prekinjena na zahtevo uporabnika"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "Podatki o odpravljanju napak bodo zanimali skrbnika/helpdesk:"
+
+msgid "The error report has been sent to the administrators."
+msgstr "Poročilo o napaki je bilo poslano skrbnikom sistema."
+
+msgid "The following fields was not recognized"
+msgstr "Nepoznana polja"
+
+msgid "The following optional fields was not found"
+msgstr "Naslednjih neobveznih polj ni bilo mogoče najti"
+
+msgid "The following required fields was not found"
+msgstr "Naslednjih zahtevanih polj ni bilo mogoče najti"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:235
 msgid "The given page was not found. The URL was: %URL%"
@@ -199,99 +569,148 @@ msgstr "Strani ni bilo mogoče najti. Naveden URL strani je bil: %URL%"
 msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
 msgstr "Strani ni bilo mogoče najti. Razlog: %REASON%. Naveden URL strani je bil: %URL%"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:209
+msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
+msgstr "Odjavni (Logout) parametri niso na voljo. Vrnite se na storitev, ki ste jo pravkar uporabljali in se ponovno poskusite odjaviti. Napaka je posledica poteka veljavnosti seje."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:231
+msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
+msgstr "Pobudnik te zahteve ni posredoval RelayState parametra."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:197
+msgid "The parameters sent to the discovery service were not according to specifications."
+msgstr "Parametri, ki so bili poslani \"Discovery service-u\", ne ustrezajo specifikaciji."
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "V nastavitvah je geslo skrbnika (auth.adminpassword) še vedno nastavljeno na začetno vrednost. Spremenite ga!"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:241
-msgid "You did not present a valid certificate."
-msgstr "Posredovan certifikat je neveljaven"
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:193
+msgid "There is an error in the request to this page. The reason was: %REASON%"
+msgstr "Prišlo je do napake pri prejetem zahtevku. Razlog: %REASON%"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
-msgid "We did not accept the response sent from the Identity Provider."
-msgstr "Odgovor, poslan od IdP-ja, ni bil sprejet."
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:222
+msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
+msgstr "V konfiguraciji SimpleSAMLphp-ja je napaka. Če ste skrbnik te storitve, preverite, da je konfiguracija metapodatkov pravilna."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:243
 msgid "This Identity Provider received an Authentication Request from a Service Provider, but an error occurred when trying to process the request."
 msgstr "IdP je prejel avtenticirano zahtevo SP-ja, vendar je prišlo do napake pri obdelavi te zahteve."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
-msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
-msgstr "Odziv IdP vsebuje napako (\"SAML-Response\" ni uspel)! "
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:227
+msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
+msgstr "Ta končna točka ni omogočena. Preverite možnost omogočanja storitve v konfiguraciji SimpleSAMLphp-ja."
+
+msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
+msgstr "Ta napaka je verjetno posledica nepravilne konfiguracije SimpleSAMLphp-ja. Obrnite se na skrbnika in mu posredujte to napako."
+
+msgid "Title"
+msgstr "Naziv"
+
+msgid "To look at the details for an SAML entity, click on the SAML entity header."
+msgstr "Za pregled podrobnosti SAML entitete, kliknite na glavo te entitete"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
+#, php-format
+msgid "Unable to locate metadata for %ENTITYID%"
+msgstr "Metapodatkov za %ENTITYID% ni bilo moč najti"
+
+msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Odjava z ene ali več storitev ni uspela. Odjavo dokončajte tako, da <i>zaprete spletni brskalnik</i>."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
+msgid "Unhandled exception"
+msgstr "Nedefinirana izjema."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:100
+msgid "Unknown certificate"
+msgstr "Nepoznano digitalno potrdilo"
+
+msgid "User ID"
+msgstr "Uporabniško ime"
+
+msgid "User's password hash"
+msgstr "Uporabnikovo zgoščeno geslo"
+
+msgid "Username"
+msgstr "Uporabniško ime"
+
+msgid "WS-Fed SP Demo Example"
+msgstr "WS-Fed SP demo primer"
+
+msgid "WS-Federation Identity Provider (Remote)"
+msgstr "WS-Federation Idp (Oddaljni)"
+
+msgid "WS-Federation Service Provider (Hosted)"
+msgstr "WS-Fedration SP (Lokalni)"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
+msgid "We did not accept the response sent from the Identity Provider."
+msgstr "Odgovor, poslan od IdP-ja, ni bil sprejet."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:200
+msgid "When this identity provider tried to create an authentication response, an error occurred."
+msgstr "Ko je IdP želel ustvariti odgovor o prijavi, je prišlo do napake."
+
+msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
+msgstr "Žal se brez uporabniškega imena in gesla ne morete prijaviti in uporabljati storitev."
+
+msgid "XML metadata"
+msgstr "XML metapodatki"
+
+msgid "Yes, all services"
+msgstr "Da, odjavi me z vseh storitev"
+
+msgid "Yes, continue"
+msgstr "Da, nadaljuj"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
+msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
+msgstr "Dostopili ste do \"Assertion Consumer Service\" vmesnika, ampak niste zagotovili \"SAML Authentication Responsa\"."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Dostopili ste do SingleLogoutService vmesnika, ampak niste zagotovili SAML LogoutRequest ali LogoutResponse."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:257
-msgid "An unhandled exception was thrown."
-msgstr "Zagnana je bila nedefinirana izjema."
+msgid "You are about to send a message. Hit the submit message button to continue."
+msgstr "Sporočilo boste poslali s klikom na gumb za pošiljanje."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:258
-msgid "Authentication failed: the certificate your browser sent is unknown"
-msgstr "Avtentikacija je spodletela: vaš spletni brskalnik je posredoval nepoznano digitalno potrdilo"
+msgid "You are about to send a message. Hit the submit message link to continue."
+msgstr "Sporočilo boste poslali s klikom na gumb za pošiljanje."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:259
-msgid "The authentication was aborted by the user"
-msgstr "Avtentikacija prekinjena na zahtevo uporabnika"
+msgid "You are also logged in on these services:"
+msgstr "Prijavljeni ste v naslednje storitve:"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:260
-msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
-msgstr "Uporabnika s tem uporabniškim imenom ni bilo mogoče najti ali pa je vpisano geslo napačno. Preverite svoje uporabniško ime in poskusite znova."
+msgid "You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>."
+msgstr "Dostopate do predprodukcijskega sistema, ki je namenjen izključno preizkušanju. V primeru da ste pristali na tej strani med postopkom prijave v produkcijsko storitev, je storitev verjetno napačno nastavljena."
 
-msgid "Debug information"
-msgstr "Pomoč pri odpravljanju napak (debug)"
+msgid "You are now successfully logged out from %SP%."
+msgstr "Uspešno ste se odjavili s ponudnika storitev: %SP%"
 
-msgid "E-mail address:"
-msgstr "Elektronski naslov:"
+msgid "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
+msgstr "XML metapodatki se nahajajo na <a href=\"%METAURL%\">tem naslovu</a>:"
 
-msgid "Explain what you did when this error occurred..."
-msgstr "Opišite, kako je prišlo do napake..."
+msgid "You can turn off debug mode in the global SimpleSAMLphp configuration file <tt>config/config.php</tt>."
+msgstr "Debug način lahko izklopite v globalni SimpleSAMLphp konfiguracijski datoteki <tt>config/config.php</tt>."
 
-msgid "How to get help"
-msgstr "Kje lahko najdem pomoč?"
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:241
+msgid "You did not present a valid certificate."
+msgstr "Posredovan certifikat je neveljaven"
 
-msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "Če boste prijavili to napako, priložite tudi ID seje, preko katere bo lažje najti vaše zapise v dnevniških datotekah, ki so na voljo skrbniku sistema."
+msgid "You have been logged out."
+msgstr "Odjava je bila uspešna. Hvala, ker uporabljate to storitev."
 
-msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "Če želite, vnesite elektronski naslov, na katerem boste dosegljivi v primeru dodatnih vprašanj za skrbnika sistema :"
+msgid "You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong you may choose another one."
+msgstr "Izbrali ste <b>%HOMEORG%</b> kot vašo domačo organizacijo. V primeru da je izbor napačen, izberite drugo."
 
-msgid "Report errors"
-msgstr "Prijavi napake"
+msgid "You have previously chosen to authenticate at"
+msgstr "Predhodnje ste se prijavljali že pri"
 
-msgid "Send error report"
-msgstr "Pošlji poročilo o napaki"
+msgid "You have successfully logged out from all services listed above."
+msgstr "Uspešno ste se odjavili z vseh naštetih storitev."
 
-msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "Podatki o odpravljanju napak bodo zanimali skrbnika/helpdesk:"
-
-msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
-msgstr "Ta napaka je verjetno posledica nepravilne konfiguracije SimpleSAMLphp-ja. Obrnite se na skrbnika in mu posredujte to napako."
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Izberite IdP, na katerem se boste avtenticirali:"
-
-msgid "Remember my choice"
-msgstr "Shrani kot privzeto izbiro"
-
-msgid "Select"
-msgstr "Izberite"
-
-msgid "Select your identity provider"
-msgstr "Izberite IdP domače organizacije"
-
-msgid "Sending message"
-msgstr "Pošiljanje sporočila"
-
-msgid "Yes, continue"
-msgstr "Da, nadaljuj"
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Živjo! To je statusna stran SimpleSAMLphp, ki omogoča pregled nad trajanjem vaše trenutne seje in atributi, ki so povezani z njo."
-
-msgid "Logout"
-msgstr "Odjava"
+msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
+msgstr "Prišlo je do napake, poskusite znova."
 
 msgid "Your attributes"
 msgstr "Vaši atributi"
@@ -301,423 +720,3 @@ msgstr "Vaša trenutna seja je veljavna še %remaining% sekund."
 
 msgid "[Preferred choice]"
 msgstr "Prioritetna izbira"
-
-msgid "Person's principal name at home organization"
-msgstr "ID uporabnika na domači organizaciji"
-
-msgid "Superfluous options in config file"
-msgstr "Odvečne nastavitve v konfiguracijski datoteki"
-
-msgid "Mobile"
-msgstr "Mobilni telefon"
-
-msgid "Shib 1.3 Service Provider (Hosted)"
-msgstr "Shib 1.3 SP (Lokalni)"
-
-msgid "Display name"
-msgstr "Prikazno ime"
-
-msgid "SAML 2.0 SP Metadata"
-msgstr "SAML 2.0 SP Metapodatki"
-
-msgid "Notices"
-msgstr "Obvestila"
-
-msgid "Home telephone"
-msgstr "Domača telefonska številka"
-
-msgid "Service Provider"
-msgstr "Ponudnik storitev"
-
-msgid "Incorrect username or password."
-msgstr "Napačno uporabniško ime ali geslo!"
-
-msgid "Submit message"
-msgstr "Pošlji sporočilo"
-
-msgid "Locality"
-msgstr "Kraj"
-
-msgid "The following required fields was not found"
-msgstr "Naslednjih zahtevanih polj ni bilo mogoče najti"
-
-msgid "Download the X509 certificates as PEM-encoded files."
-msgstr "Prenesi X509 digitalno potrdilo v PEM datoteki."
-
-msgid "Organizational number"
-msgstr "Organizacijska številka"
-
-msgid "Post office box"
-msgstr "Poštni predal"
-
-msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
-msgstr "Storitev zahteva, da se prijavite. To pomeni, da je potreben vnos uporabniškega imena in gesla v spodnji polji."
-
-msgid "Error"
-msgstr "Napaka"
-
-msgid "Next"
-msgstr "Naprej"
-
-msgid "Distinguished name (DN) of the person's home organizational unit"
-msgstr "Ime oddelka domače organizacije (DN)"
-
-msgid "Converted metadata"
-msgstr "Pretvorjeni metapodatki"
-
-msgid "Mail"
-msgstr "Elektronski naslov"
-
-msgid "No, cancel"
-msgstr "Ne"
-
-msgid "You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong you may choose another one."
-msgstr "Izbrali ste <b>%HOMEORG%</b> kot vašo domačo organizacijo. V primeru da je izbor napačen, izberite drugo."
-
-msgid "Distinguished name (DN) of person's primary Organizational Unit"
-msgstr "Ime (DN) oddelka v domači organizaciji"
-
-msgid "To look at the details for an SAML entity, click on the SAML entity header."
-msgstr "Za pregled podrobnosti SAML entitete, kliknite na glavo te entitete"
-
-msgid "Enter your username and password"
-msgstr "Vnesite svoje uporabniško ime in geslo"
-
-msgid "Login at"
-msgstr "Prijavi se pri"
-
-msgid "No"
-msgstr "Ne"
-
-msgid "Home postal address"
-msgstr "Domači naslov"
-
-msgid "WS-Fed SP Demo Example"
-msgstr "WS-Fed SP demo primer"
-
-msgid "SAML 2.0 Identity Provider (Remote)"
-msgstr "SAML 2.0 IdP (Oddaljeni)"
-
-msgid "Do you want to logout from all the services above?"
-msgstr "Ali se želite odjaviti z vseh naštetih storitev?"
-
-msgid "Given name"
-msgstr "Ime"
-
-msgid "Identity assurance profile"
-msgstr "Stopnja zanesljivosti"
-
-msgid "SAML 2.0 SP Demo Example"
-msgstr "SAML 2.0 SP Demo primer"
-
-msgid "Organization name"
-msgstr "Ime organizacije"
-
-msgid "You are about to send a message. Hit the submit message button to continue."
-msgstr "Sporočilo boste poslali s klikom na gumb za pošiljanje."
-
-msgid "Home organization domain name"
-msgstr "ID domače organizacije"
-
-msgid "Go back to the file list"
-msgstr "Vrnite se na seznam datotek"
-
-msgid "Error report sent"
-msgstr "Poročilo o napaki je bilo poslano"
-
-msgid "Common name"
-msgstr "Ime in priimek"
-
-msgid "Logout failed"
-msgstr "Odjava je spodletela."
-
-msgid "Identity number assigned by public authorities"
-msgstr "Matična številka"
-
-msgid "WS-Federation Identity Provider (Remote)"
-msgstr "WS-Federation Idp (Oddaljni)"
-
-msgid "Some error occurred"
-msgstr "Prišlo je do napake!"
-
-msgid "Organization"
-msgstr "Organizacija"
-
-msgid "Choose home organization"
-msgstr "Izberite domačo organizacijo."
-
-msgid "Persistent pseudonymous ID"
-msgstr "Trajni anonimni ID"
-
-msgid "No errors found."
-msgstr "Ni napak"
-
-msgid "SAML 2.0 Service Provider (Hosted)"
-msgstr "SAML 2.0 SP (Lokalni)"
-
-msgid "Required fields"
-msgstr "Zahtevana polja"
-
-msgid "Domain component (DC)"
-msgstr "Domenska komponenta (DC)"
-
-msgid "Shib 1.3 Service Provider (Remote)"
-msgstr "Shib 1.3 SP (Oddaljeni)"
-
-msgid "Password"
-msgstr "Geslo"
-
-msgid "Nickname"
-msgstr "Vzdevek"
-
-msgid "The error report has been sent to the administrators."
-msgstr "Poročilo o napaki je bilo poslano skrbnikom sistema."
-
-msgid "Date of birth"
-msgstr "Datum rojstva"
-
-msgid "Private information elements"
-msgstr "Zasebni informacijski elementi"
-
-msgid "You are also logged in on these services:"
-msgstr "Prijavljeni ste v naslednje storitve:"
-
-msgid "SimpleSAMLphp Diagnostics"
-msgstr "SimpleSAMLphp diagnostika"
-
-msgid "No, only %SP%"
-msgstr "Ne, odjavi me samo z naslednjega %SP%"
-
-msgid "Username"
-msgstr "Uporabniško ime"
-
-msgid "Go back to SimpleSAMLphp installation page"
-msgstr "Nazaj na namestitveno stran SimpleSAMLphp"
-
-msgid "You have successfully logged out from all services listed above."
-msgstr "Uspešno ste se odjavili z vseh naštetih storitev."
-
-msgid "You are now successfully logged out from %SP%."
-msgstr "Uspešno ste se odjavili s ponudnika storitev: %SP%"
-
-msgid "Affiliation"
-msgstr "Vloga uporabnika"
-
-msgid "You have been logged out."
-msgstr "Odjava je bila uspešna. Hvala, ker uporabljate to storitev."
-
-msgid "Return to service"
-msgstr "Vrni se nazaj na storitev."
-
-msgid "WS-Federation Service Provider (Hosted)"
-msgstr "WS-Fedration SP (Lokalni)"
-
-msgid "Preferred language"
-msgstr "Želen jezik"
-
-msgid "Surname"
-msgstr "Priimek"
-
-msgid "The following fields was not recognized"
-msgstr "Nepoznana polja"
-
-msgid "User ID"
-msgstr "Uporabniško ime"
-
-msgid "JPEG Photo"
-msgstr "JPEG Slika"
-
-msgid "Postal address"
-msgstr "Poštni naslov"
-
-msgid "In SAML 2.0 Metadata XML format:"
-msgstr "V SAML 2.0 Metapodatkovni XML format:"
-
-msgid "Logging out of the following services:"
-msgstr "Odjava iz naslednjih storitev:"
-
-msgid "Labeled URI"
-msgstr "Označen URI"
-
-msgid "Shib 1.3 Identity Provider (Hosted)"
-msgstr "Shib 1.3 SP (Lokalni)"
-
-msgid "Metadata"
-msgstr "Metapodatki"
-
-msgid "Login"
-msgstr "Prijava"
-
-msgid "Yes, all services"
-msgstr "Da, odjavi me z vseh storitev"
-
-msgid "Logged out"
-msgstr "Odjavljen"
-
-msgid "Postal code"
-msgstr "Poštna številka"
-
-msgid "Logging out..."
-msgstr "Odjavljanje..."
-
-msgid "SAML 2.0 Identity Provider (Hosted)"
-msgstr "SAML 2.0 IdP (Lokalni)"
-
-msgid "Primary affiliation"
-msgstr "Primarna vloga"
-
-msgid "XML metadata"
-msgstr "XML metapodatki"
-
-msgid "Telephone number"
-msgstr "Telefonska številka"
-
-msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-msgstr "Odjava z ene ali več storitev ni uspela. Odjavo dokončajte tako, da <i>zaprete spletni brskalnik</i>."
-
-msgid "Entitlement regarding the service"
-msgstr "Upravičenost do storitve"
-
-msgid "Shib 1.3 SP Metadata"
-msgstr "Shib 1.3 SP Metapodatki"
-
-msgid "As you are in debug mode, you get to see the content of the message you are sending:"
-msgstr "Ste v debug načinu, lahko si ogledate vsebino sporočila, ki ga pošiljate"
-
-msgid "Certificates"
-msgstr "Digitalna potrdila"
-
-msgid "Remember"
-msgstr "Zapomni si privolitev."
-
-msgid "Distinguished name (DN) of person's home organization"
-msgstr "Ime domače organizacije (DN)"
-
-msgid "You are about to send a message. Hit the submit message link to continue."
-msgstr "Sporočilo boste poslali s klikom na gumb za pošiljanje."
-
-msgid "Organizational unit"
-msgstr "Oddelek"
-
-msgid "Local identity number"
-msgstr "Vpisna številka"
-
-msgid "Shib 1.3 IdP Metadata"
-msgstr "Shib 1.3 IdP Metapodatki"
-
-msgid "Change your home organization"
-msgstr "Izberite vašo domačo organizacijo."
-
-msgid "User's password hash"
-msgstr "Uporabnikovo zgoščeno geslo"
-
-msgid "In SimpleSAMLphp flat file format - use this if you are using a SimpleSAMLphp entity on the other side:"
-msgstr "V SimpleSAMLphp \"flat file\" formatu - ta format uporabite, če uporabljate SimpleSAMLphp entiteto na drugi strani:"
-
-msgid "Completed"
-msgstr "Dokončano"
-
-msgid "Select configuration file to check:"
-msgstr "Izberite konfiguracijsko datoteko, ki jo želite preveriti"
-
-msgid "On hold"
-msgstr "V teku"
-
-msgid "Help! I don't remember my password."
-msgstr "Na pomoč! Pozabil sem svoje geslo."
-
-msgid "You can turn off debug mode in the global SimpleSAMLphp configuration file <tt>config/config.php</tt>."
-msgstr "Debug način lahko izklopite v globalni SimpleSAMLphp konfiguracijski datoteki <tt>config/config.php</tt>."
-
-msgid "SimpleSAMLphp error"
-msgstr "SimpleSAMLphp napaka"
-
-msgid "One or more of the services you are logged into <i>do not support logout</i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-msgstr "Ena ali več storitev, v katere ste prijavljeni, <i>ne omogoča odjave</i>. Odjavo iz teh storitev izvedete tako, da <i>zaprete spletni brskalnik</i>."
-
-msgid "Organization's legal name"
-msgstr "Naziv organizacije"
-
-msgid "Options missing from config file"
-msgstr "V konfiguracijski datoteki manjkajo nastavitve"
-
-msgid "The following optional fields was not found"
-msgstr "Naslednjih neobveznih polj ni bilo mogoče najti"
-
-msgid "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
-msgstr "XML metapodatki se nahajajo na <a href=\"%METAURL%\">tem naslovu</a>:"
-
-msgid "Street"
-msgstr "Ulica"
-
-msgid "Message"
-msgstr "Sporočilo"
-
-msgid "Contact information:"
-msgstr "Kontakt"
-
-msgid "Legal name"
-msgstr "Uradno ime"
-
-msgid "Optional fields"
-msgstr "Neobvezna polja"
-
-msgid "You have previously chosen to authenticate at"
-msgstr "Predhodnje ste se prijavljali že pri"
-
-msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
-msgstr "Prišlo je do napake, poskusite znova."
-
-msgid "Fax number"
-msgstr "Fax"
-
-msgid "Shibboleth demo"
-msgstr "Shibboleth demo primer"
-
-msgid "Error in this metadata entry"
-msgstr "Napaka pri vnosu metapodatkov"
-
-msgid "Session size: %SIZE%"
-msgstr "Velikost seje: %SIZE% bajtov"
-
-msgid "Parse"
-msgstr "Sintaktična analiza (parse)"
-
-msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
-msgstr "Žal se brez uporabniškega imena in gesla ne morete prijaviti in uporabljati storitev."
-
-msgid "Choose your home organization"
-msgstr "Izberite vašo domačo organizacijo"
-
-msgid "Send e-mail to help desk"
-msgstr "Pošlji sporočilo tehnični podpori."
-
-msgid "Metadata overview"
-msgstr "Pregled metapodatkov"
-
-msgid "Title"
-msgstr "Naziv"
-
-msgid "Manager"
-msgstr "Menedžer"
-
-msgid "Affiliation at home organization"
-msgstr "Vloga v organizaciji"
-
-msgid "Help desk homepage"
-msgstr "Spletna stran tehnične podpore uporabnikom."
-
-msgid "Configuration check"
-msgstr "Preverjanje konfiguracije"
-
-msgid "Shib 1.3 Identity Provider (Remote)"
-msgstr "Shib 1.3 SP (Oddaljeni)"
-
-msgid "Here is the metadata that SimpleSAMLphp has generated for you. You may send this metadata document to trusted partners to setup a trusted federation."
-msgstr "Tu so metapodatki, ki jih je generiral SimpleSAMLphp. Dokument lahko pošljete zaupanja vrednim partnerjem, s katerimi boste ustvarili federacijo."
-
-msgid "Organizational homepage"
-msgstr "Spletna stran organizacije"
-
-msgid "You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>."
-msgstr "Dostopate do predprodukcijskega sistema, ki je namenjen izključno preizkušanju. V primeru da ste pristali na tej strani med postopkom prijave v produkcijsko storitev, je storitev verjetno napačno nastavljena."

@@ -1,91 +1,154 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: admin\n"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:411
+msgid "<strong>The configuration uses the default secret salt</strong>. Make sure to modify the <code>secretsalt</code> option in the SimpleSAMLphp configuration in production environments. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-install\">Read more about the maintenance of SimpleSAMLphp</a>."
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:401
+msgid "<strong>You are not using HTTPS</strong> to protect communications with your users. HTTP works fine for testing purposes, but in a production environment you should use HTTPS. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance\">Read more about the maintenance of SimpleSAMLphp</a>."
+msgstr "<strong>Der benotzt ken HTTPS</strong> - verschlësselt Kommunikatioun mat dem Benotzer. SimpleSAMLphp funktionéiert einwandfräi mat HTTP fir Testzwéecker mais an engem produktiven Emfeld sollt et besser mat HTTPS lafen. [ <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance\">Liest méi iwert Maintenance vun SimpleSAMLphp</a> ]"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:165
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:166
+msgid "ADFS IdP metadata"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:163
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:164
+msgid "ADFS SP metadata"
+msgstr ""
+
+msgid "An error occurred"
+msgstr ""
+
+msgid "Authentication data"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Certificates"
+msgstr ""
+
+msgid "Checking your PHP installation"
+msgstr "PHP Installatioun kontrolléiren"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
 msgid "Configuration"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
-msgid "Test"
+msgid "Content of jpegPhoto attribute"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
-msgid "Federation"
+msgid "Converted metadata"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:153
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:106
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:146
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:473
-msgid "Log out"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:130
-msgid "Diagnostics on hostname, port and protocol"
-msgstr "Diognose vum Hostname, Port an Protokoll"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:134
-msgid "Information on your PHP installation"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:200
-#, php-format
-msgid "PHP %minimum% or newer is needed. You are running: %current%"
+msgid "Copy to clipboard"
 msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:217
 msgid "Date/Time Extension"
 msgstr ""
 
+msgid "Deprecated"
+msgstr "Deprecated"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:130
+msgid "Diagnostics on hostname, port and protocol"
+msgstr "Diognose vum Hostname, Port an Protokoll"
+
+msgid "EntityID"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
+msgid "Federation"
+msgstr ""
+
+msgid "Format"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:223
 msgid "Hashing function"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:229
-msgid "ZLib"
+msgid ""
+"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
+"     it lasts until it times out and all the attributes that are attached to your session."
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:235
-msgid "OpenSSL"
+msgid "Hosted IdP metadata present"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:241
-msgid "XML DOM"
+msgid "Hosted entities"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:247
-msgid "Regular expression support"
+msgid "In SAML 2.0 Metadata XML format:"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:134
+msgid "Information on your PHP installation"
 msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:259
 msgid "JSON support"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:265
-msgid "Standard PHP library (SPL)"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:303
+msgid "LDAP extension"
 msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:302
+msgid "LDAP extension (required if an LDAP backend is used)"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:106
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:146
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:473
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:153
+msgid "Log out"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+msgid "Look up metadata for entity:"
+msgstr ""
+
+msgid "Matching key-pair for signing assertions"
+msgstr ""
+
+msgid "Matching key-pair for signing assertions (rollover key)"
+msgstr ""
+
+msgid "Matching key-pair for signing metadata"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:333
+msgid "Memcache or Memcached extension"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:330
+msgid "Memcache or Memcached extension (required if the memcache backend is used)"
+msgstr ""
+
+msgid "Metadata"
+msgstr "Meta Données"
+
+msgid "Metadata parser"
+msgstr "Metadata parser"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:271
 msgid "Multibyte String extension"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:277
-msgid "cURL (might be required by some modules)"
+msgid "No file selected."
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:280
-msgid "cURL (required if automatic version checks are used, also by some modules)"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:288
-msgid "Session extension (required if PHP sessions are used)"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:289
-msgid "Session extension"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:235
+msgid "OpenSSL"
 msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:295
@@ -96,28 +159,75 @@ msgstr ""
 msgid "PDO extension"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:302
-msgid "LDAP extension (required if an LDAP backend is used)"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:200
+#, php-format
+msgid "PHP %minimum% or newer is needed. You are running: %current%"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:303
-msgid "LDAP extension"
+msgid "Parse"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:322
-msgid "predis/predis (required if the redis data store is used)"
+msgid "Radius extension"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:323
-msgid "predis/predis library"
+msgid "Radius extension (required if a radius backend is used)"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:330
-msgid "Memcache or Memcached extension (required if the memcache backend is used)"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:247
+msgid "Regular expression support"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:333
-msgid "Memcache or Memcached extension"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:161
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
+msgid "SAML 2.0 IdP metadata"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:159
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:160
+msgid "SAML 2.0 SP metadata"
+msgstr ""
+
+msgid "SAML Metadata"
+msgstr ""
+
+msgid "SAML Subject"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:289
+msgid "Session extension"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:288
+msgid "Session extension (required if PHP sessions are used)"
+msgstr ""
+
+msgid "SimpleSAMLphp Metadata"
+msgstr ""
+
+msgid "SimpleSAMLphp Show Metadata"
+msgstr ""
+
+msgid "SimpleSAMLphp installation page"
+msgstr ""
+
+msgid "SimpleSAMLphp is installed in:"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:265
+msgid "Standard PHP library (SPL)"
+msgstr ""
+
+msgid "Technical information"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
+msgid "Test"
+msgstr ""
+
+msgid "Test Authentication Sources"
 msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:355
@@ -128,77 +238,8 @@ msgstr ""
 msgid "The auth.adminpassword configuration option must be set"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:401
-msgid "<strong>You are not using HTTPS</strong> to protect communications with your users. HTTP works fine for testing purposes, but in a production environment you should use HTTPS. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance\">Read more about the maintenance of SimpleSAMLphp</a>."
-msgstr "<strong>Der benotzt ken HTTPS</strong> - verschlësselt Kommunikatioun mat dem Benotzer. SimpleSAMLphp funktionéiert einwandfräi mat HTTP fir Testzwéecker mais an engem produktiven Emfeld sollt et besser mat HTTPS lafen. [ <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance\">Liest méi iwert Maintenance vun SimpleSAMLphp</a> ]"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:411
-msgid "<strong>The configuration uses the default secret salt</strong>. Make sure to modify the <code>secretsalt</code> option in the SimpleSAMLphp configuration in production environments. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-install\">Read more about the maintenance of SimpleSAMLphp</a>."
-msgstr ""
-
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:426
 msgid "The cURL PHP extension is missing. Cannot check for SimpleSAMLphp updates."
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:451
-msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:154
-msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "XML zu SimpleSAMLphp Meta Données Emwandler"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:159
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:160
-msgid "SAML 2.0 SP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:161
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
-msgid "SAML 2.0 IdP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:163
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:164
-msgid "ADFS SP metadata"
-msgstr ""
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:165
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:166
-msgid "ADFS IdP metadata"
-msgstr ""
-
-msgid "Certificates"
-msgstr ""
-
-msgid "Copy to clipboard"
-msgstr ""
-
-msgid "Deprecated"
-msgstr "Deprecated"
-
-msgid "EntityID"
-msgstr ""
-
-msgid "Hosted entities"
-msgstr ""
-
-msgid "In SAML 2.0 Metadata XML format:"
-msgstr ""
-
-msgid "Look up metadata for entity:"
-msgstr ""
-
-msgid "SAML Metadata"
-msgstr ""
-
-msgid "Search"
-msgstr ""
-
-msgid "SimpleSAMLphp Metadata"
-msgstr ""
-
-msgid "SimpleSAMLphp installation page"
 msgstr ""
 
 msgid "Tools"
@@ -213,7 +254,43 @@ msgstr ""
 msgid "Use this if you are using a SimpleSAMLphp entity on the other side:"
 msgstr ""
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:241
+msgid "XML DOM"
+msgstr ""
+
+msgid "XML metadata"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:154
+msgid "XML to SimpleSAMLphp metadata converter"
+msgstr "XML zu SimpleSAMLphp Meta Données Emwandler"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:451
+msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
+msgstr ""
+
+msgid "You are running version <kbd>%version%</kbd>."
+msgstr ""
+
 msgid "You can get the metadata XML on a dedicated URL:"
+msgstr ""
+
+msgid "Your attributes"
+msgstr ""
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:229
+msgid "ZLib"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:277
+msgid "cURL (might be required by some modules)"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:280
+msgid "cURL (required if automatic version checks are used, also by some modules)"
 msgstr ""
 
 msgid "expired"
@@ -225,100 +302,22 @@ msgstr ""
 msgid "new"
 msgstr ""
 
-msgid "SimpleSAMLphp is installed in:"
-msgstr ""
-
-msgid "You are running version <kbd>%version%</kbd>."
+msgid "not set"
 msgstr ""
 
 msgid "optional"
 msgstr ""
 
-msgid "required"
-msgstr ""
-
-msgid "Test Authentication Sources"
-msgstr ""
-
-msgid "An error occurred"
-msgstr ""
-
-msgid "Converted metadata"
-msgstr ""
-
-msgid "Metadata parser"
-msgstr "Metadata parser"
-
-msgid "No file selected."
-msgstr ""
-
-msgid "Parse"
-msgstr ""
-
-msgid "XML metadata"
-msgstr ""
-
 msgid "or select a file:"
 msgstr ""
 
-msgid "Back"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:322
+msgid "predis/predis (required if the redis data store is used)"
 msgstr ""
 
-msgid "Metadata"
-msgstr "Meta Données"
-
-msgid "SimpleSAMLphp Show Metadata"
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:323
+msgid "predis/predis library"
 msgstr ""
 
-msgid "Authentication data"
-msgstr ""
-
-msgid "Content of jpegPhoto attribute"
-msgstr ""
-
-msgid "Format"
-msgstr ""
-
-msgid ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
-"     it lasts until it times out and all the attributes that are attached to your session."
-msgstr ""
-
-msgid "Logout"
-msgstr ""
-
-msgid "SAML Subject"
-msgstr ""
-
-msgid "Technical information"
-msgstr ""
-
-msgid "Your attributes"
-msgstr ""
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr ""
-
-msgid "not set"
-msgstr ""
-
-msgid "Checking your PHP installation"
-msgstr "PHP Installatioun kontrolléiren"
-
-msgid "Radius extension (required if a radius backend is used)"
-msgstr ""
-
-msgid "Radius extension"
-msgstr ""
-
-msgid "Hosted IdP metadata present"
-msgstr ""
-
-msgid "Matching key-pair for signing assertions"
-msgstr ""
-
-msgid "Matching key-pair for signing assertions (rollover key)"
-msgstr ""
-
-msgid "Matching key-pair for signing metadata"
+msgid "required"
 msgstr ""

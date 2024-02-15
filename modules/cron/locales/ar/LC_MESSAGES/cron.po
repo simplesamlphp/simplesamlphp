@@ -1,4 +1,3 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: cron\n"
@@ -9,20 +8,20 @@ msgstr " اضغط ليبدأ كرون بالعمل"
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "  كرون هو وسيلة تشغيل متكرر علي يونيكس"
 
-msgid "Cron result page"
-msgstr "صفحة نتيجة كرون"
-
-msgid "Here is a suggestion for a crontab file:"
-msgstr "اقتراح لملف كرونتاب"
-
-msgid "Run cron:"
-msgstr "أبدا "
-
 msgid "Cron ran at"
 msgstr "كرون عمل علي"
 
 msgid "Cron report"
 msgstr "تقرير كرون"
 
+msgid "Cron result page"
+msgstr "صفحة نتيجة كرون"
+
 msgid "Here are the result for the cron job execution:"
 msgstr "نتائج بحث كرون"
+
+msgid "Here is a suggestion for a crontab file:"
+msgstr "اقتراح لملف كرونتاب"
+
+msgid "Run cron:"
+msgstr "أبدا "
