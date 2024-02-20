@@ -21,14 +21,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          # super-linter needs the full git history to get the
+          # list of files that changed across commits
           fetch-depth: 0
 
       - name: Lint Code Base
-        uses: github/super-linter/slim@v6
+        uses: super-linter/super-linter/slim@v6
         env:
+          # To report GitHub Actions status checks
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LINTER_RULES_PATH: 'tools/linters'
           LOG_LEVEL: NOTICE
           VALIDATE_ALL_CODEBASE: true
-          LINTER_RULES_PATH: 'tools/linters'
           VALIDATE_CSS: true
           VALIDATE_JAVASCRIPT_ES: true
           VALIDATE_JSON: true
