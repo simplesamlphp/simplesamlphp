@@ -127,6 +127,7 @@
         "translations:update:binary": "php bin/translations translations:update:binary",
         "translations:update:translatable": "php bin/translations translations:update:translatable",
         "post-install-cmd": [
+            "@composer update",
             "php bin/translations translations:update:binary"
         ],
         "post-update-cmd": [
