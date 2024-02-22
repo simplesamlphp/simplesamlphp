@@ -4,9 +4,7 @@
 declare(strict_types=1);
 
 $baseDir = dirname(__FILE__, 2);
-
 require_once $baseDir . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . '_autoload.php';
-//require_once \SimpleSAML\Utils\Config::getConfigDir() . DIRECTORY_SEPARATOR . 'config.php';
 
 // This is the config dir of the SimpleSAMLphp installation
 $configDir = (new \SimpleSAML\Utils\Config())->getConfigDir();
