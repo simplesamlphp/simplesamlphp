@@ -8,6 +8,10 @@ metadata. The configuration is a list of attributes that should be allowed. In c
 release some specific values, make the name of the attribute the key of the array, and its value an array with all the
 different values allowed for it.
 
+You may need to send special bilateral, or local attributes to a set of SPs that are not specified in SP's metadata. 
+In this case you can list the SPs then add the name of the attributes to send these SPs, or you can list the attributes and then specify the SPs to send them.
+Find the examples below.
+
 Examples
 --------
 
@@ -123,5 +127,24 @@ values ever reach the service providers. Bear in mind that this configuration ca
             'faculty',
             'employee',
             'affiliate',
+        ],
+    ],
+
+Send attributes to an SP that are not specified in the SPs metadata.
+
+    'authproc' => [
+        50 => 'core:AttributeLimit',
+        'allowedAttributes' => [],
+        'bilateralSPs' => [
+            'entityid1' => [
+                'mail',
+                'local-mail'
+            ],
+        ],
+        'bilateralAttributes' => [
+            'localFooId' => [
+                'entityid1',
+                'entityid2'
+            ],
         ],
     ],
