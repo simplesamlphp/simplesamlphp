@@ -13,6 +13,7 @@ namespace SimpleSAML\Locale;
 use Exception;
 use Gettext\Generator\ArrayGenerator;
 use Gettext\Loader\MoLoader;
+use Gettext\Loader\PoLoader;
 use Gettext\{Translations, Translator, TranslatorFunctions};
 use SimpleSAML\{Configuration, Logger};
 use Symfony\Component\HttpFoundation\File\File;
@@ -240,12 +241,21 @@ class Localization
                 $arrayGenerator->generateArray($translations)
             );
         } else {
-            Logger::debug(sprintf(
-                "%s - Localization file '%s' not found or not readable in '%s', falling back to default",
-                $_SERVER['PHP_SELF'],
-                $file->getfileName(),
-                $langPath,
-            ));
+            $file = new File($langPath . $domain . '.po', false);
+            if ($file->getRealPath() !== false && $file->isReadable()) {
+                $translations = (new PoLoader())->loadFile($file->getRealPath());
+                $arrayGenerator = new ArrayGenerator();
+                $this->translator->addTranslations(
+                    $arrayGenerator->generateArray($translations)
+                );
+            } else {
+                Logger::debug(sprintf(
+                    "%s - Localization file '%s' not found or not readable in '%s', falling back to default",
+                    $_SERVER['PHP_SELF'],
+                    $file->getfileName(),
+                    $langPath,
+                ));
+            }
         }
     }
 
