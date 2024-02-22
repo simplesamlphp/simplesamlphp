@@ -9,6 +9,8 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+* Fix static call for non-static method in bin/importPdoMetadata.php (#1969)
+
 ## Version 2.1.3
 
 Released 2024-02-12
