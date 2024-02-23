@@ -50,14 +50,6 @@ If the SimpleSAMLphp code relies on other repositories on the [simplesamlphp](ht
 they are brought in using composer as shown for example for the [saml2 library](https://github.com/simplesamlphp/simplesamlphp/blob/435ce92874a789101495504cd6c4da600fb01334/composer.json#L73).
 
 
-## Documentation
-
-The core of the simplesamlphp.org website is taken from
-[simplesamlphp.github.io](https://github.com/simplesamlphp/simplesamlphp.github.io).
-The [docs subdirectory](https://simplesamlphp.org/docs/) is built from
-the [docs
-subdirectory](https://github.com/simplesamlphp/simplesamlphp/tree/master/docs)
-of the main repository on github.
 
 ## Following a simple login
 
@@ -80,6 +72,14 @@ modules/sqlauth/src/Auth/Source/SQL.php and the `SQL::login` method.
 This `login` method either returns the user attributes on success or
 throws an exception on login failure.
 
+## Documentation
+
+The core of the simplesamlphp.org website is taken from
+[simplesamlphp.github.io](https://github.com/simplesamlphp/simplesamlphp.github.io).
+The [docs subdirectory](https://simplesamlphp.org/docs/) is built from
+the [docs
+subdirectory](https://github.com/simplesamlphp/simplesamlphp/tree/master/docs)
+of the main repository on github.
 
 ### Documentation updates
 
