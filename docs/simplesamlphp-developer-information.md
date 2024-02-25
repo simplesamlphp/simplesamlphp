@@ -116,7 +116,7 @@ branches in the same way that code updates work.
 ### Documentation linting
 
 The CI system has some linting for markdown files in place. This uses
-`github-action-markdown-cli@v3` to perform the work which itself uses
+`github-action-markdown-cli` to perform the work which itself uses
 `markdownlint-cli`. You can install the latter with npm install and
 then setup the rc file from github-action-markdown-cli from
 <https://github.com/nosborn/github-action-markdown-cli/blob/master/.markdownlintrc>
