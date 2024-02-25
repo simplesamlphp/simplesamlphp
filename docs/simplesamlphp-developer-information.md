@@ -46,6 +46,15 @@ full build that are not in the slim build.
 If the SimpleSAMLphp code relies on other repositories on the [simplesamlphp](https://github.com/simplesamlphp) site then
 they are brought in using composer as shown for example for the [saml2 library](https://github.com/simplesamlphp/simplesamlphp/blob/435ce92874a789101495504cd6c4da600fb01334/composer.json#L73).
 
+## Code checks
+
+The github actions perform some linting and checks on the php code.
+The linting is done with super-linter and the php checks with phpcs.
+You can run the phpcs checks locally by executing `phpcs` in the root
+of the git repository. If you would like your simpler issues to be
+solved for you execute `phpcbf` which will update the code to remedy
+as many issues as it can.
+
 ## Following a simple login
 
 The `SimpleSAML\Auth\Simple` class takes the authentication_source
