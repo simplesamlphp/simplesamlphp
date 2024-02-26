@@ -298,6 +298,19 @@ class AttributeLimitTest extends TestCase
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
         $this->assertCount(3, $attributes);
+
+        // Both name and value regexps on the same item
+        $config = [
+            '/^eduPerson/' => [
+                'nameIsRegex'=>true,
+                'regex'=>true,
+                '/@example.org$/'
+            ],
+        ];
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey('eduPersonTargetedID', $attributes);
+        $this->assertCount(1, $attributes);
     }
 
 
