@@ -31,6 +31,12 @@ class AttributeLimit extends Auth\ProcessingFilter
     private array $allowedAttributes = [];
 
     /**
+     * List of regular expressions for attributes which this filter will allow through.
+     * @var array
+     */
+    private array $allowedAttributeRegex = [];
+
+    /**
      * Whether the 'attributes' option in the metadata takes precedence.
      *
      * @var bool
@@ -48,7 +54,6 @@ class AttributeLimit extends Auth\ProcessingFilter
     public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-
         foreach ($config as $index => $value) {
             if ($index === 'default') {
                 $this->isDefault = (bool) $value;
@@ -62,8 +67,12 @@ class AttributeLimit extends Auth\ProcessingFilter
                 if (!is_array($value)) {
                     throw new Error\Exception('AttributeLimit: Values for ' .
                         var_export($index, true) . ' must be specified in an array.');
+                } elseif (is_array($value) && array_key_exists('nameIsRegex', $value) && (true === (bool) $value['nameIsRegex'])) {
+                    $this->allowedAttributeRegex[$index] = $value;
+                    unset($this->allowedAttributeRegex[$index]['nameIsRegex']);
+                } else {
+                    $this->allowedAttributes[$index] = $value;
                 }
-                $this->allowedAttributes[$index] = $value;
             }
         }
     }
@@ -90,6 +99,26 @@ class AttributeLimit extends Auth\ProcessingFilter
 
 
     /**
+     * Get list of regular expressions of attribute names allowed from the SP/IdP config.
+     *
+     * @param array &$state  The current request.
+     * @return array|null  Array with attribute names, or NULL if no limit is placed.
+     */
+    private static function getSPIdPAllowedRegex(array &$state): ?array
+    {
+        if (array_key_exists('Destination', $state) && array_key_exists('attributesRegex', $state['Destination'])) {
+            // SP Config
+            return $state['Destination']['attributesRegex'];
+        }
+        if (array_key_exists('Source', $state) && array_key_exists('attributesRegex', $state['Source'])) {
+            // IdP Config
+            return $state['Source']['attributesRegex'];
+        }
+        return null;
+    }
+
+
+    /**
      * Apply filter to remove attributes.
      *
      * Removes all attributes which aren't one of the allowed attributes.
@@ -103,14 +132,19 @@ class AttributeLimit extends Auth\ProcessingFilter
 
         if ($this->isDefault) {
             $allowedAttributes = self::getSPIdPAllowed($state);
-            if ($allowedAttributes === null) {
+            $allowedAttributeRegex = self::getSPIdPAllowedRegex($state);
+            if (($allowedAttributes === null) && ($allowedAttributeRegex === null)) {
                 $allowedAttributes = $this->allowedAttributes;
+                $allowedAttributeRegex = $this->allowedAttributeRegex;
             }
-        } elseif (!empty($this->allowedAttributes)) {
+
+        } elseif (!(empty($this->allowedAttributes) && empty($this->allowedAttributeRegex))) {
             $allowedAttributes = $this->allowedAttributes;
+            $allowedAttributeRegex = $this->allowedAttributeRegex;
         } else {
             $allowedAttributes = self::getSPIdPAllowed($state);
-            if ($allowedAttributes === null) {
+            $allowedAttributeRegex = self::getSPIdPAllowedRegex($state);
+            if (($allowedAttributes === null) && ($allowedAttributeRegex === null)) {
                 // No limit on attributes
                 return;
             }
@@ -131,7 +165,18 @@ class AttributeLimit extends Auth\ProcessingFilter
                     if (!empty($attributes[$name])) {
                         continue;
                     }
+                } elseif (($regexpMatch = self::matchAnyRegex($name, $allowedAttributeRegex)) !== NULL) {
+                    if (($allowedAttributeRegex[$regexpMatch] === NULL) || empty($allowedAttributeRegex[$regexpMatch])) {
+                        // This happens if nameIsRegex was the only key set in the config (which we remove during processing)
+                        continue;
+                    }
+
+                    $attributes[$name] = $this->filterAttributeValues($attributes[$name], $allowedAttributeRegex[$regexpMatch]);
+                    if (!empty($attributes[$name])) {
+                        continue;
+                    }
                 }
+
                 unset($attributes[$name]);
             }
         }
@@ -178,5 +223,26 @@ class AttributeLimit extends Auth\ProcessingFilter
         unset($allowedConfigValues['regex']);
 
         return array_intersect($values, $allowedConfigValues);
+    }
+
+
+    /**
+     * Check if a string matches any of the regular expressions in the array of regexps
+     *
+     * @param string $needle The string we're searching on
+     * @param array|null  Array with regular expressions to test against. NULL is equivalent to an empty array.
+     * @return string|null  Regular expression that matched, or NULL if no match.
+     */
+    private static function matchAnyRegex(string $needle, ?array $regexps=NULL): string|NULL
+    {
+        if ($regexps !== null) {
+            foreach ($regexps as $x => $y) {
+                $regexp = is_int($x) ? $y : $x;
+                if (preg_match($regexp, $needle)) {
+                    return $regexp;
+                }
+            }
+        }
+        return NULL;
     }
 }
