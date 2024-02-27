@@ -71,6 +71,8 @@ class AttributeLimit extends Auth\ProcessingFilter
                 unset($this->allowedAttributeRegex[$index]['nameIsRegex']);
             } else {
                 $this->allowedAttributes[$index] = $value;
+                // In case user sets nameIsRegex=false
+                unset($this->allowedAttributes[$index]['nameIsRegex']);
             }
         }
     }
@@ -159,13 +161,18 @@ class AttributeLimit extends Auth\ProcessingFilter
                         throw new Error\Exception('AttributeLimit: Values for ' .
                             var_export($name, true) . ' must be specified in an array.');
                     }
+
+                    if (empty($allowedAttributes[$name])) {
+                        // This happens if 'nameIsRegex'=>false was the only key set in the config (which we remove during processing)
+                        continue;
+                    }
                     $attributes[$name] = $this->filterAttributeValues($attributes[$name], $allowedAttributes[$name]);
                     if (!empty($attributes[$name])) {
                         continue;
                     }
                 } elseif (($regexpMatch = self::matchAnyRegex($name, $allowedAttributeRegex)) !== NULL) {
-                    if (($allowedAttributeRegex[$regexpMatch] === NULL) || empty($allowedAttributeRegex[$regexpMatch])) {
-                        // This happens if nameIsRegex was the only key set in the config (which we remove during processing)
+                    if (empty($allowedAttributeRegex[$regexpMatch])) {
+                        // This happens if 'nameIsRegex'=>true was the only key set in the config (which we remove during processing)
                         continue;
                     }
 

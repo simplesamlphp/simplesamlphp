@@ -311,6 +311,15 @@ class AttributeLimitTest extends TestCase
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey('eduPersonTargetedID', $attributes);
         $this->assertCount(1, $attributes);
+
+        $config = [
+            'eduPersonTargetedID' => ['nameIsRegex'=>false]
+        ];
+        $result = self::processFilter($config, self::$request);
+        // var_dump($config, self::$request, $result);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey('eduPersonTargetedID', $attributes);
+        $this->assertCount(1, $attributes);
     }
 
 
