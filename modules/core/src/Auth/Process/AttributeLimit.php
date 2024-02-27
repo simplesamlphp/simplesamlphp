@@ -162,20 +162,11 @@ class AttributeLimit extends Auth\ProcessingFilter
                             var_export($name, true) . ' must be specified in an array.');
                     }
 
-                    if (empty($allowedAttributes[$name])) {
-                        // This happens if 'nameIsRegex'=>false was the only key set in the config (which we remove during processing)
-                        continue;
-                    }
                     $attributes[$name] = $this->filterAttributeValues($attributes[$name], $allowedAttributes[$name]);
                     if (!empty($attributes[$name])) {
                         continue;
                     }
                 } elseif (($regexpMatch = self::matchAnyRegex($name, $allowedAttributeRegex)) !== NULL) {
-                    if (empty($allowedAttributeRegex[$regexpMatch])) {
-                        // This happens if 'nameIsRegex'=>true was the only key set in the config (which we remove during processing)
-                        continue;
-                    }
-
                     $attributes[$name] = $this->filterAttributeValues($attributes[$name], $allowedAttributeRegex[$regexpMatch]);
                     if (!empty($attributes[$name])) {
                         continue;
@@ -194,8 +185,12 @@ class AttributeLimit extends Auth\ProcessingFilter
      * @param array $allowedConfigValues The allowed values, and possibly configuration options.
      * @return array The filtered values
      */
-    private function filterAttributeValues(array $values, array $allowedConfigValues): array
+    private function filterAttributeValues(array $values, ?array $allowedConfigValues): array
     {
+        if (($allowedConfigValues === null) || empty($allowedConfigValues)) {
+            return $values;
+        }
+
         if (array_key_exists('regex', $allowedConfigValues) && $allowedConfigValues['regex'] === true) {
             $matchedValues = [];
             foreach ($allowedConfigValues as $option => $pattern) {
