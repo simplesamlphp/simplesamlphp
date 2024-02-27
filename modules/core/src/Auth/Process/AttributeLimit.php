@@ -136,6 +136,14 @@ class AttributeLimit extends Auth\ProcessingFilter
             if (($allowedAttributes === null) && ($allowedAttributeRegex === null)) {
                 $allowedAttributes = $this->allowedAttributes !== null ? $this->allowedAttributes : [];
                 $allowedAttributeRegex = $this->allowedAttributeRegex != null ? $this->allowedAttributeRegex : [];
+                if (empty($allowedAttributes) && empty($allowedAttributeRegex)) {
+                    // No limit on attributes
+                    return;
+                }
+            } elseif ($allowedAttributes === null) {
+                $allowedAttributes = [];
+            } elseif ($allowedAttributeRegex === null) {
+                $allowedAttributeRegex = [];
             }
 
         } elseif (!(empty($this->allowedAttributes) && empty($this->allowedAttributeRegex))) {
