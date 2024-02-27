@@ -256,7 +256,7 @@ class AttributeLimitTest extends TestCase
     public function testMatchAttributeRegex(): void
     {
         $config = [
-            '/^eduPersonTargetedID$/' => ['nameIsRegex'=>true]
+            '/^eduPersonTargetedID$/' => ['nameIsRegex' => true]
         ];
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
@@ -264,7 +264,7 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(1, $attributes);
 
         $config = [
-            '/^eduPerson/' => ['nameIsRegex'=>true]
+            '/^eduPerson/' => ['nameIsRegex' => true]
         ];
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
@@ -273,7 +273,7 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(2, $attributes);
 
         $config = [
-            '/.*nomatch.*/' => ['nameIsRegex'=>true]
+            '/.*nomatch.*/' => ['nameIsRegex' => true]
         ];
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
@@ -281,7 +281,7 @@ class AttributeLimitTest extends TestCase
 
         // Test combination of plain and regexp matches
         $config = [
-            '/^eduPersonTargetedID$/' => ['nameIsRegex'=>true],
+            '/^eduPersonTargetedID$/' => ['nameIsRegex' => true],
             'cn'
         ];
         $result = self::processFilter($config, self::$request);
@@ -291,7 +291,7 @@ class AttributeLimitTest extends TestCase
         // Test case where both a plain and regexp match one of the attributes that
         // they're not double counted
         $config = [
-            '/^eduPerson/' => ['nameIsRegex'=>true],
+            '/^eduPerson/' => ['nameIsRegex' => true],
             'cn',
             'eduPersonTargetedID'
         ];
@@ -302,8 +302,8 @@ class AttributeLimitTest extends TestCase
         // Both name and value regexps on the same item
         $config = [
             '/^eduPerson/' => [
-                'nameIsRegex'=>true,
-                'regex'=>true,
+                'nameIsRegex' => true,
+                'regex' => true,
                 '/@example.org$/'
             ],
         ];
@@ -313,7 +313,7 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(1, $attributes);
 
         $config = [
-            'eduPersonTargetedID' => ['nameIsRegex'=>false]
+            'eduPersonTargetedID' => ['nameIsRegex' => false]
         ];
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];

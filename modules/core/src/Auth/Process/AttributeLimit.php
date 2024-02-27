@@ -82,7 +82,7 @@ class AttributeLimit extends Auth\ProcessingFilter
      * Get list of allowed from the SP/IdP config.
      *
      * @param array &$state  The current request.
-     * @return array|null  Array with attribute names, or NULL if no limit is placed.
+     * @return array|null  Array with attribute names, or null if no limit is placed.
      */
     private static function getSPIdPAllowed(array &$state): ?array
     {
@@ -102,7 +102,7 @@ class AttributeLimit extends Auth\ProcessingFilter
      * Get list of regular expressions of attribute names allowed from the SP/IdP config.
      *
      * @param array &$state  The current request.
-     * @return array|null  Array with attribute names, or NULL if no limit is placed.
+     * @return array|null  Array with attribute names, or null if no limit is placed.
      */
     private static function getSPIdPAllowedRegex(array &$state): ?array
     {
@@ -166,8 +166,11 @@ class AttributeLimit extends Auth\ProcessingFilter
                     if (!empty($attributes[$name])) {
                         continue;
                     }
-                } elseif (($regexpMatch = self::matchAnyRegex($name, $allowedAttributeRegex)) !== NULL) {
-                    $attributes[$name] = $this->filterAttributeValues($attributes[$name], $allowedAttributeRegex[$regexpMatch]);
+                } elseif (($regexpMatch = self::matchAnyRegex($name, $allowedAttributeRegex)) !== null) {
+                    $attributes[$name] = $this->filterAttributeValues(
+                        $attributes[$name],
+                        $allowedAttributeRegex[$regexpMatch]
+                    );
                     if (!empty($attributes[$name])) {
                         continue;
                     }
@@ -230,10 +233,10 @@ class AttributeLimit extends Auth\ProcessingFilter
      * Check if a string matches any of the regular expressions in the array of regexps
      *
      * @param string $needle The string we're searching on
-     * @param array|null  Array with regular expressions to test against. NULL is equivalent to an empty array.
-     * @return string|null  Regular expression that matched, or NULL if no match.
+     * @param array|null  Array with regular expressions to test against. null is equivalent to an empty array.
+     * @return string|null  Regular expression that matched, or null if no match.
      */
-    private static function matchAnyRegex(string $needle, ?array $regexps = NULL): string | NULL
+    private static function matchAnyRegex(string $needle, ?array $regexps = null): string | null
     {
         if ($regexps !== null) {
             foreach ($regexps as $x => $y) {
@@ -243,6 +246,6 @@ class AttributeLimit extends Auth\ProcessingFilter
                 }
             }
         }
-        return NULL;
+        return null;
     }
 }
