@@ -63,16 +63,14 @@ class AttributeLimit extends Auth\ProcessingFilter
                         var_export($value, true));
                 }
                 $this->allowedAttributes[] = $value;
-            } else { // Can only be string since PHP only allows string|int for array keys
-                if (!is_array($value)) {
-                    throw new Error\Exception('AttributeLimit: Values for ' .
-                        var_export($index, true) . ' must be specified in an array.');
-                } elseif (is_array($value) && array_key_exists('nameIsRegex', $value) && (true === (bool) $value['nameIsRegex'])) {
-                    $this->allowedAttributeRegex[$index] = $value;
-                    unset($this->allowedAttributeRegex[$index]['nameIsRegex']);
-                } else {
-                    $this->allowedAttributes[$index] = $value;
-                }
+            } elseif (!is_array($value)) {
+                throw new Error\Exception('AttributeLimit: Values for ' .
+                    var_export($index, true) . ' must be specified in an array.');
+            } elseif (array_key_exists('nameIsRegex', $value) && (true === (bool) $value['nameIsRegex'])) {
+                $this->allowedAttributeRegex[$index] = $value;
+                unset($this->allowedAttributeRegex[$index]['nameIsRegex']);
+            } else {
+                $this->allowedAttributes[$index] = $value;
             }
         }
     }
