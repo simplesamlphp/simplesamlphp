@@ -134,22 +134,18 @@ class AttributeLimit extends Auth\ProcessingFilter
             if (empty($allowedAttributes) && empty($allowedAttributeRegex)) {
                 $allowedAttributes = $this->allowedAttributes ?? [];
                 $allowedAttributeRegex = $this->allowedAttributeRegex ?? [];
-                if (empty($allowedAttributes) && empty($allowedAttributeRegex)) {
-                    // No limit on attributes
-                    return;
-                }
             }
-
         } elseif (!(empty($this->allowedAttributes) && empty($this->allowedAttributeRegex))) {
-            $allowedAttributes = $this->allowedAttributes !== null ? $this->allowedAttributes : [];
-            $allowedAttributeRegex = $this->allowedAttributeRegex != null ? $this->allowedAttributeRegex : [];
+            $allowedAttributes = $this->allowedAttributes ?? [];
+            $allowedAttributeRegex = $this->allowedAttributeRegex ?? [];
         } else {
             $allowedAttributes = self::getSPIdPAllowed($state) ?? [];
             $allowedAttributeRegex = self::getSPIdPAllowedRegex($state) ?? [];
-            if (empty($allowedAttributes) && empty($allowedAttributeRegex)) {
-                // No limit on attributes
-                return;
-            }
+        }
+
+        if (empty($allowedAttributes) && empty($allowedAttributeRegex)) {
+            // No limit on attributes
+            return;
         }
 
         $attributes = &$state['Attributes'];
