@@ -69,9 +69,9 @@ class UpdateTranslatableStringsCommand extends Command
      * It is expected that $iterator was made by getIterator() on Translations.
      * This can be useful as the entries are cloned in the iterator order.
      *
-     * @param Gettext\Translations $ret
+     * @param \Gettext\Translations $ret
      * @param iterable $iterator
-     * @return $ret
+     * @return \Gettext\Translations $ret
      */
     protected function cloneIteratorToTranslations(Translations $ret, iterable $iterator): Translations
     {
