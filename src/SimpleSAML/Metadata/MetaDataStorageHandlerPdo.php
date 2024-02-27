@@ -6,7 +6,6 @@ namespace SimpleSAML\Metadata;
 
 use Exception;
 use SimpleSAML\{Configuration, Database, Error};
-use SimpleSAML\Assert\Assert;
 
 use function array_key_exists;
 use function count;

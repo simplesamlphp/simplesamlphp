@@ -10,11 +10,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
-use DateInterval;
-use InvalidArgumentException;
 use SimpleSAML\{Configuration, Error, Logger};
 use SimpleSAML\Assert\CustomAssertionTrait;
-use SimpleSAML\SAML2\Constants as C;
 
 use function date_default_timezone_get;
 use function date_default_timezone_set;

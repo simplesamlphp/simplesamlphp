@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\saml\Controller;
 
 use Exception;
 use SimpleSAML\{Auth, Configuration, Error, IdP};
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\Module\saml\Error\NoAvailableIDP;
 use SimpleSAML\SAML2\Constants as C;

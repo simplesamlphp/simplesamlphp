@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SimpleSAML\{Error, Logger, Module};
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Module\saml\BaseNameIDGenerator;
 use SimpleSAML\Module\saml\Error as SAMLError;
 use SimpleSAML\Module\saml\IdP\SQLNameID;

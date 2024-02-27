@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\admin\Controller;
 
-use Exception;
 use SimpleSAML\{Configuration, Module, Session, Utils};
 use SimpleSAML\Locale\Translate;
-use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{Request, Response, StreamedResponse};
 

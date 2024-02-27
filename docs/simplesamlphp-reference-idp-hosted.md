@@ -294,7 +294,7 @@ The following SAML 2.0 options are available:
 `SingleSignOnService`
 :   Override the default URL for the SingleSignOnService for this
     IdP. This is an absolute URL. The default value is
-    `<SimpleSAMLphp-root>/saml2/idp/SSOService.php`
+    `<SimpleSAMLphp-root>/module.php/saml/idp/singleSignOnService`
 
 :   Note that this only changes the values in the generated
     metadata and in the messages sent to others. You must also
@@ -315,7 +315,7 @@ The following SAML 2.0 options are available:
 `SingleLogoutService`
 :   Override the default URL for the SingleLogoutService for this
     IdP. This is an absolute URL. The default value is
-    `<SimpleSAMLphp-root>/saml2/idp/SingleLogoutService.php`
+    `<SimpleSAMLphp-root>/module.php/saml/idp/singleLogout`
 
 :   Note that this only changes the values in the generated
     metadata and in the messages sent to others. You must also

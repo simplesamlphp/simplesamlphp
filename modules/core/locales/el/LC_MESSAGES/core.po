@@ -1,37 +1,6 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: core\n"
-
-msgid "Welcome"
-msgstr "Καλώς ορίσατε"
-
-msgid "Missing cookie"
-msgstr "Πρόβλημα λειτουργίας cookie"
-
-msgid "Retry"
-msgstr "Δοκιμάστε ξανά"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Ενδέχεται τα cookie του προγράμματος περιήγησής σας να έχουν απενεργοποιηθεί. Παρακαλούμε ελέγξτε τις σχετικές ρυθμίσεις και και δοκιμάστε ξανά."
-
-msgid "Retry login"
-msgstr "Επανάληψη σύνδεσης"
-
-msgid "Too short interval between single sign on events."
-msgstr "Σύντομο χρονικό διάστημα μεταξύ διαδοχικών συνδέσεων."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Έχουν περάσει μόλις λίγα δευτερόλεπτα από την τελευταία φορά που συνδεθήκατε σε αυτόν τον πάροχο υπηρεσιών, γεγονός που μπορεί να υποδηλώνει πρόβλημα με τον συγκεκριμένο πάροχο."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Εάν είστε διαχειριστής της υπηρεσίας ταυτοποίησης και εξουσιοδότησης, τότε αντιμετωπίζετε κάποιο πρόβλημα με τη διαμόρφωση των μεταδεδομένων. Βεβαιωθείτε ότι τα μεταδεδομένα έχουν ρυθμιστεί σωστά τόσο στον πάροχο ταυτότητας όσο και στον πάροχο υπηρεσιών."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Αν λάβατε αυτό το σφάλμα ακολουθώντας έναν σύνδεσμο σε κάποιον ιστότοπο, θα πρέπει να το αναφέρετε στον ιδιοκτήτη του εν λόγω ιστότοπου."
-
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Αυτό υποδεικνύει πρόβλημα με τις ρυθμίσεις είτε του παρόχου υπηρεσιών είτε του παρόχου ταυτότητας."
 
 msgid "Close the web browser, and try again."
 msgstr "Κλείστε το πρόγραμμα περιήγησης ιστού (web browser) και προσπαθήστε ξανά"
@@ -42,26 +11,35 @@ msgstr "Η λειτουργία cookie είναι απενεργοποιημέν
 msgid "Go back to the previous page and try again."
 msgstr "Επιστρέψτε στην προηγούμενη σελίδα και προσπαθήστε ξανά."
 
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Ανοίξατε το πρόγραμμα περιήγησης ιστού και επαναφέρατε καρτέλες προηγούμενης συνεδρίας."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Προτάσεις για την επίλυση αυτού του προβλήματος:"
-
-msgid "This error may be caused by:"
-msgstr "Αυτό το σφάλμα μπορεί να προκύψει, εάν:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Μεταβήκατε πίσω και εμπρός στο ιστορικό του προγράμματος περιήγησης ιστού."
-
-msgid "If this problem persists, you can report it to the system administrators."
-msgstr "Αν το πρόβλημα εξακολουθεί να υφίσταται, μπορείτε να το αναφέρετε στους διαχειριστές του συστήματος."
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "Μεταδεδομένα φιλοξενούμενου Παρόχου Ταυτότητας Shibboleth 1.3 (παράγονται αυτόματα)"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "Μεταδεδομένα φιλοξενούμενου Παρόχου Υπηρεσιών Shibboleth 1.3 (παράγονται αυτόματα)"
 
-msgid "We were unable to locate the state information for the current request."
-msgstr "Δεν ήταν δυνατό να εντοπιστούν πληροφορίες κατάστασης για το τρέχον αίτημα."
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "Αν το πρόβλημα εξακολουθεί να υφίσταται, μπορείτε να το αναφέρετε στους διαχειριστές του συστήματος."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Εάν είστε διαχειριστής της υπηρεσίας ταυτοποίησης και εξουσιοδότησης, τότε αντιμετωπίζετε κάποιο πρόβλημα με τη διαμόρφωση των μεταδεδομένων. Βεβαιωθείτε ότι τα μεταδεδομένα έχουν ρυθμιστεί σωστά τόσο στον πάροχο ταυτότητας όσο και στον πάροχο υπηρεσιών."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Αν λάβατε αυτό το σφάλμα ακολουθώντας έναν σύνδεσμο σε κάποιον ιστότοπο, θα πρέπει να το αναφέρετε στον ιδιοκτήτη του εν λόγω ιστότοπου."
+
+msgid "Missing cookie"
+msgstr "Πρόβλημα λειτουργίας cookie"
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Ανοίξατε το πρόγραμμα περιήγησης ιστού και επαναφέρατε καρτέλες προηγούμενης συνεδρίας."
+
+msgid "Report this error"
+msgstr "Αναφορά σφάλματος"
+
+msgid "Retry"
+msgstr "Δοκιμάστε ξανά"
+
+msgid "Retry login"
+msgstr "Επανάληψη σύνδεσης"
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Παράδειγμα Παρόχου Υπηρεσιών Shibboleth 1.3 - δοκιμή εισόδου μέσω Παρόχου Ταυτότητας Shibboleth 1.3"
@@ -69,8 +47,29 @@ msgstr "Παράδειγμα Παρόχου Υπηρεσιών Shibboleth 1.3 - 
 msgid "State information lost"
 msgstr "Δεν βρέθηκαν πληροφορίες κατάστασης"
 
-msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
-msgstr "Μεταδεδομένα φιλοξενούμενου Παρόχου Ταυτότητας Shibboleth 1.3 (παράγονται αυτόματα)"
+msgid "Suggestions for resolving this problem:"
+msgstr "Προτάσεις για την επίλυση αυτού του προβλήματος:"
 
-msgid "Report this error"
-msgstr "Αναφορά σφάλματος"
+msgid "This error may be caused by:"
+msgstr "Αυτό το σφάλμα μπορεί να προκύψει, εάν:"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Αυτό υποδεικνύει πρόβλημα με τις ρυθμίσεις είτε του παρόχου υπηρεσιών είτε του παρόχου ταυτότητας."
+
+msgid "Too short interval between single sign on events."
+msgstr "Σύντομο χρονικό διάστημα μεταξύ διαδοχικών συνδέσεων."
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Μεταβήκατε πίσω και εμπρός στο ιστορικό του προγράμματος περιήγησης ιστού."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Έχουν περάσει μόλις λίγα δευτερόλεπτα από την τελευταία φορά που συνδεθήκατε σε αυτόν τον πάροχο υπηρεσιών, γεγονός που μπορεί να υποδηλώνει πρόβλημα με τον συγκεκριμένο πάροχο."
+
+msgid "We were unable to locate the state information for the current request."
+msgstr "Δεν ήταν δυνατό να εντοπιστούν πληροφορίες κατάστασης για το τρέχον αίτημα."
+
+msgid "Welcome"
+msgstr "Καλώς ορίσατε"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Ενδέχεται τα cookie του προγράμματος περιήγησής σας να έχουν απενεργοποιηθεί. Παρακαλούμε ελέγξτε τις σχετικές ρυθμίσεις και και δοκιμάστε ξανά."

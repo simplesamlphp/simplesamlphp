@@ -44,7 +44,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           # Should be the higest supported version, so we can use the newest tools
-          php-version: '8.2'
+          php-version: '8.3'
           coverage: none
 
       - uses: actions/checkout@v4
@@ -82,7 +82,7 @@ jobs:
         if: steps.changes.outputs.files_changed == 'true' || steps.changes.outputs.packages_changed
         run: zip build.zip -r .
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: steps.changes.outputs.files_changed == 'true' || steps.changes.outputs.packages_changed
         with:
           name: build
@@ -96,7 +96,7 @@ jobs:
     runs-on: [ubuntu-latest]
 
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: build
 
@@ -141,7 +141,7 @@ jobs:
       (needs.build.result == 'success' && needs.commit.result == 'skipped')
 
     steps:
-      - uses: geekyeggo/delete-artifact@v2
+      - uses: geekyeggo/delete-artifact@v4
         with:
           name: |
             build

@@ -1,73 +1,389 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: messages\n"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
-msgid "No SAML response provided"
-msgstr "Neposkytnutá žiadna SAML odpoveď"
+msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
+msgstr "Služba požaduje Vašu autentifikáciu. Zadajte, prosím, Vaše prihlasovacie meno a heslo do formulára nižšie."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:71
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
-msgid "No SAML message provided"
-msgstr "Neposkytnutá žiadna SAML správa"
+msgid "ADFS IdP Metadata"
+msgstr "ADFS IdP Metadata"
+
+msgid "ADFS Identity Provider (Hosted)"
+msgstr "ADFS Identity Provider (lokálne prevádzkovaný)"
+
+msgid "ADFS SP Metadata"
+msgstr "ADFS SP Metadata"
+
+msgid "ADFS Service Provider (Remote)"
+msgstr "ADFS Service Provider (vzdialené)"
+
+msgid "Affiliation"
+msgstr "Vzťah k organizácii"
+
+msgid "Affiliation at home organization"
+msgstr "Vzťah k domovskej organizácii"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:196
+msgid "An error occurred when trying to create the SAML request."
+msgstr "Pri vytváraní SAML požiadavky nastala chyba."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:218
+msgid "An error occurred when trying to process the Logout Request."
+msgstr "Nastala chyba pri spracovávaní odhlasovacej požiadavky (Logout Request)."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:257
+msgid "An unhandled exception was thrown."
+msgstr "Vznikla neočakávaná chyba."
+
+msgid "As you are in debug mode, you get to see the content of the message you are sending:"
+msgstr "Keďže ste v debug režime, zobrazuje sa Vám obsah správy, ktorú posielate:"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
+msgid "Authentication aborted"
+msgstr "Autentifikácia zrušená"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:191
+msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
+msgstr "Chyba autentifikácie zo zdroja %AUTHSOURCE%. Dôvod: %REASON%"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:203
+msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
+msgstr "Autentifikácia zlyhala: certifikát, ktorý poslal Váš prehliadač je neplatný alebo sa nedá čítať"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:258
+msgid "Authentication failed: the certificate your browser sent is unknown"
+msgstr "Autentifikácia zlyhala: certifikát zaslaný Vašim prehliadačom je neznámy"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
+msgid "Authentication failed: your browser did not send any certificate"
+msgstr "Autentifikácia zlyhala: Váš prehliadač neodoslal žiadny certifikát"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:72
 msgid "Authentication source error"
 msgstr "Chyba zdroja autentifikácie"
 
+msgid "Authentication status"
+msgstr "Stav autentifikácie"
+
+msgid "Back"
+msgstr "Späť"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "Prijatá zlá požiadavka"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
-msgid "CAS Error"
-msgstr "CAS Chyba"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:75
-msgid "Configuration error"
-msgstr "Chyba konfigurácie"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:76
-msgid "Error creating request"
-msgstr "Chyba pri vytváraní požiadavky"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:77
 msgid "Bad request to discovery service"
 msgstr "Zlá požiadavka pre vyhľadávaciu službu"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
+msgid "CAS Error"
+msgstr "CAS Chyba"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
+msgid "Cannot retrieve session data"
+msgstr "Nepodarilo sa získať dáta relácie"
+
+msgid "Certificates"
+msgstr "Certifikáty"
+
+msgid "Change your home organization"
+msgstr "Zmeniť Vašu domovskú organizáciu"
+
+msgid "Choose home organization"
+msgstr "Vyberte domovskú organizáciu"
+
+msgid "Choose your home organization"
+msgstr "Vyberte si domovskú organizáciu"
+
+msgid "Common name"
+msgstr "Názov (Common Name)"
+
+msgid "Completed"
+msgstr "Dokončené"
+
+msgid "Configuration check"
+msgstr "Kontrola konfigurácie"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:75
+msgid "Configuration error"
+msgstr "Chyba konfigurácie"
+
+msgid "Contact information:"
+msgstr "Kontaktné informácie:"
+
+msgid "Converted metadata"
+msgstr "Konvertované metadáta"
+
+msgid "Copy to clipboard"
+msgstr "Kopírovať do schránky"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Nepodarilo sa vytvoriť autentifikačnú odpoveď"
+
+msgid "Date of birth"
+msgstr "Dátum narodenia"
+
+msgid "Debug information"
+msgstr "Debug informácie"
+
+msgid "Debug information to be used by your support staff"
+msgstr "Debug informácie pre personál podpory"
+
+msgid "Display name"
+msgstr "Zobrazované meno"
+
+msgid "Distinguished name (DN) of person's home organization"
+msgstr "Jednoznačné meno (DN) užívateľovej domovskej organizácie"
+
+msgid "Distinguished name (DN) of person's primary Organizational Unit"
+msgstr "Jednoznačné meno (DN) primárnej organizačnej jednotky človeka"
+
+msgid "Distinguished name (DN) of the person's home organizational unit"
+msgstr "Jednoznačné meno (DN) organizačnej jednotky človeka"
+
+msgid "Do you want to logout from all the services above?"
+msgstr "Chcete sa odhlásiť zo všetkých služieb vyššie?"
+
+msgid "Domain component (DC)"
+msgstr "Doména (DC)"
+
+msgid "Download the X509 certificates as PEM-encoded files."
+msgstr "Stiahnuť X509 certifikáty ako PEM kódované súbory."
+
+msgid "E-mail address:"
+msgstr "E-mailová adresa:"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:260
+msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
+msgstr "Buď sa užívateľ s týmto prihlasovacím menom nenašiel, alebo je zadané heslo nesprávne. Skontrolujte prosím prihlasovacie meno a heslo a skúste to znovu."
+
+msgid "Enter your username and password"
+msgstr "Zadajte Vaše prihlasovacie meno a heslo"
+
+msgid "Entitlement regarding the service"
+msgstr "Entitlement regarding the service"
+
+msgid "Error"
+msgstr "Chyba"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:76
+msgid "Error creating request"
+msgstr "Chyba pri vytváraní požiadavky"
+
+msgid "Error in this metadata entry"
+msgstr "Chyba v tomto metadáta zázname"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
+msgid "Error loading metadata"
+msgstr "Chyba pri načítavaní metadát"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
+msgid "Error processing request from Service Provider"
+msgstr "Chyba pri spracovávaní požiadavky z poskytovateľa služby (Service Provider)"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
+msgid "Error processing response from Identity Provider"
+msgstr "Nastala chyba pri spracovávaní odpovede z poskytovateľa identity (Identity Provider)"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:82
+msgid "Error processing the Logout Request"
+msgstr "Chyba pri spracovávaní požiadavky odhlásenia (Logout Request)"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
+msgid "Error received from Identity Provider"
+msgstr "Prijatá chyba z poskytovateľa identity (Identity Provider)"
+
+msgid "Error report sent"
+msgstr "Chybové hlásenie odoslané"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
+msgid "Error when communicating with the CAS server."
+msgstr "Chyba pri komunikácii s CAS serverom."
+
+msgid "Explain what you did when this error occurred..."
+msgstr "Vysvetlite, čo ste robili, keď nastala táto chyba..."
+
+msgid "Fax number"
+msgstr "Číslo faxu"
+
+msgid "Format"
+msgstr "Formát"
+
+msgid "Given name"
+msgstr "Krstné meno"
+
+msgid "Go back to SimpleSAMLphp installation page"
+msgstr "Ísť späť na inštalačnú stránku SimpleSAMLphp"
+
+msgid "Go back to the file list"
+msgstr "Ísť späť na zoznam súborov"
+
+msgid "Group membership"
+msgstr "Členstvo v skupine"
+
+msgid "Hello, %who%!"
+msgstr "Vitajte, %who%!"
+
+msgid "Hello, Untranslated World!"
+msgstr "Ahoj, nepreložený svet!"
+
+msgid "Help desk homepage"
+msgstr "Domovská stránka podpory"
+
+msgid "Help! I don't remember my password."
+msgstr "Pomoc! Nepamätám si heslo."
+
+msgid "Here is the metadata that SimpleSAMLphp has generated for you. You may send this metadata document to trusted partners to setup a trusted federation."
+msgstr "Tu sú metadáta, ktoré SimpleSAMLphp vygeneroval. Možno budete musieť odoslať tento dokument metadát dôveryhodným partnerom na nastavenie dôveryhodnej federácie."
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Toto je stránka so stavom SimpleSAMLphp. Tu môžete vidieť, či Vaša relácia vypršala, ako dlho trvá, dokým vyprší a všetky atribúty, ktoré sú pripojené k Vašej relácii."
+
+msgid "Home organization domain name"
+msgstr "Doménové meno organizácie"
+
+msgid "Home postal address"
+msgstr "Domovská poštová adresa"
+
+msgid "Home telephone"
+msgstr "Telefón domov"
+
+msgid "How to get help"
+msgstr "Ako získať pomoc"
+
+msgid "Identity assurance profile"
+msgstr "Profil uistenia identity"
+
+msgid "Identity number assigned by public authorities"
+msgstr "Číslo identity pridelené verejnou autoritou"
+
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "Ak nahlasujete túto chybu, nahláste prosím aj toto sledovacie číslo, ktoré umožní administrátorovi nájsť Vašu reláciu v logoch:"
+
+msgid "In SAML 2.0 Metadata XML format:"
+msgstr "V SAML 2.0 Metadata XML formáte:"
+
+msgid "In SimpleSAMLphp flat file format - use this if you are using a SimpleSAMLphp entity on the other side:"
+msgstr "V SimpleSAMLphp formáte - toto použite, ak používate SimpleSAMLphp entitu na druhej strane:"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
+msgid "Incorrect username or password"
+msgstr "Nesprávne prihlasovacie meno alebo heslo"
+
+msgid "Incorrect username or password."
+msgstr "Nesprávne meno alebo heslo."
+
+msgid "Information about your current session"
+msgstr "Informácie o Vašej aktuálnej relácii"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
 msgstr "Neplatný certifikát"
 
+msgid "JPEG Photo"
+msgstr "JPEG fotka"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:80
 msgid "LDAP Error"
 msgstr "LDAP Chyba"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:206
+msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
+msgstr "LDAP je databáza užívateľov a keď sa prihlasujete, potrebujeme sa na túto databázu pripojiť. Pri tomto pokuse nastala chyba."
+
+msgid "Labeled URI"
+msgstr "Označená URI"
+
+msgid "Language"
+msgstr "Jazyk"
+
+msgid "Legal name"
+msgstr "Právny názov"
+
+msgid "Local identity number"
+msgstr "Lokálne číslo identity"
+
+msgid "Locality"
+msgstr "Lokalita"
+
+msgid "Logged out"
+msgstr "Odhlásený"
+
+msgid "Logging out of the following services:"
+msgstr "Odhlasovanie z nasledujúcich služieb:"
+
+msgid "Logging out..."
+msgstr "Odhlasovanie..."
+
+msgid "Login"
+msgstr "Prihlásiť sa"
+
+msgid "Login at"
+msgstr "Prihlásenie na"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Logout"
+msgstr "Odhlásiť sa"
+
+msgid "Logout failed"
+msgstr "Odhlásenie zlyhalo"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:81
 msgid "Logout information lost"
 msgstr "Odhlasovacia informácia stratená"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:82
-msgid "Error processing the Logout Request"
-msgstr "Chyba pri spracovávaní požiadavky odhlásenia (Logout Request)"
+msgid "Mail"
+msgstr "Email"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
-msgid "Cannot retrieve session data"
-msgstr "Nepodarilo sa získať dáta relácie"
+msgid "Manager"
+msgstr "Manažér"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
-msgid "Error loading metadata"
-msgstr "Chyba pri načítavaní metadát"
+msgid "Message"
+msgstr "Správa"
+
+msgid "Metadata"
+msgstr "Metadáta"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:85
 msgid "Metadata not found"
 msgstr "Metadáta neboli nájdené"
+
+msgid "Metadata overview"
+msgstr "Prehľad metadát"
+
+msgid "Mobile"
+msgstr "Mobil"
+
+msgid "Next"
+msgstr "Ďalší"
+
+msgid "Nickname"
+msgstr "Prezývka"
+
+msgid "No"
+msgstr "Nie"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:88
+msgid "No RelayState"
+msgstr "Žiadny RelayState"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:71
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
+msgid "No SAML message provided"
+msgstr "Neposkytnutá žiadna SAML správa"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
+msgid "No SAML request provided"
+msgstr "Žiadna poskytnutá SAML požiadavka"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
+msgid "No SAML response provided"
+msgstr "Neposkytnutá žiadna SAML odpoveď"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:86
 msgid "No access"
@@ -77,135 +393,250 @@ msgstr "Žiadny prístup"
 msgid "No certificate"
 msgstr "Žiadny certifikát"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:88
-msgid "No RelayState"
-msgstr "Žiadny RelayState"
+msgid "No errors found."
+msgstr "Neboli nájdene žiadne chyby."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
-msgid "State information lost"
-msgstr "Stavová informácia stratená"
+msgid "No identity providers found. Cannot continue."
+msgstr "Nenašli sa žiadni poskytovalia identity. Nedá sa pokračovať."
+
+msgid "No, cancel"
+msgstr "Nie, zrušiť"
+
+msgid "No, only %SP%"
+msgstr "Nie, len %SP%"
+
+msgid "Notices"
+msgstr "Oznámenia"
+
+msgid "ORCID researcher identifiers"
+msgstr "ORCID researcher identifikátory"
+
+msgid "On hold"
+msgstr "Podržané"
+
+msgid "One or more of the services you are logged into <i>do not support logout</i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Jedna alebo viacero služieb, do ktorých ste prihlásený, <i>nepodporuje odhlásenie</i>. Aby ste uistili, že sú všetky relácie zatvorené, je odporúčané <i>zatvoriť Váš prehliadač</i>."
+
+msgid "Optional fields"
+msgstr "Voliteľné údaje"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "Dobrovoľne zadajte Vašu emailovú adresu, aby Vás administrátori mohli kontaktovať s ďalšími otázkami pre vyriešenie problému:"
+
+msgid "Options missing from config file"
+msgstr "Nastavenia chýbajúce v konfiguračnom súbore"
+
+msgid "Organization"
+msgstr "Organizácia"
+
+msgid "Organization name"
+msgstr "Názov organizácie"
+
+msgid "Organization's legal name"
+msgstr "Právny názov organizácie"
+
+msgid "Organizational homepage"
+msgstr "Domovská stránka organizácie"
+
+msgid "Organizational number"
+msgstr "Číslo organizácie"
+
+msgid "Organizational unit"
+msgstr "Organizačná jednotka"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:90
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:91
 msgid "Page not found"
 msgstr "Stránka nebola nájdená"
 
+msgid "Parse"
+msgstr "Parsovať"
+
+msgid "Password"
+msgstr "Heslo"
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
 msgid "Password not set"
 msgstr "Heslo nie je nastavené"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
-msgid "Error processing response from Identity Provider"
-msgstr "Nastala chyba pri spracovávaní odpovede z poskytovateľa identity (Identity Provider)"
+msgid "Persistent pseudonymous ID"
+msgstr "Perzistentné pseudonymné ID"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
-msgid "Error processing request from Service Provider"
-msgstr "Chyba pri spracovávaní požiadavky z poskytovateľa služby (Service Provider)"
+msgid "Person's non-reassignable, persistent pseudonymous ID at home organization"
+msgstr "Nepreraditeľné, perzistentné pseudonymné ID užívateľa v domovskej organizácii"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
-msgid "Error received from Identity Provider"
-msgstr "Prijatá chyba z poskytovateľa identity (Identity Provider)"
+msgid "Person's principal name at home organization"
+msgstr "Hlavné meno osoby v domovskej organizácii"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
-msgid "No SAML request provided"
-msgstr "Žiadna poskytnutá SAML požiadavka"
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Vyberte si prosím poskytovateľa identity, cez ktorého sa chcete autentifikovať:"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
-msgid "Unhandled exception"
-msgstr "Neočakávaná chyba"
+msgid "Post office box"
+msgstr "Poštová schránka"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:100
-msgid "Unknown certificate"
-msgstr "Neznámy certifikát"
+msgid "Postal address"
+msgstr "Poštová adresa"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
-msgid "Authentication aborted"
-msgstr "Autentifikácia zrušená"
+msgid "Postal code"
+msgstr "Poštové číslo"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
-msgid "Incorrect username or password"
-msgstr "Nesprávne prihlasovacie meno alebo heslo"
+msgid "Preferred language"
+msgstr "Preferovaný jazyk"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
-msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
-msgstr "Pristúpili ste k Assertion Consumer Service rozhraní, ale neposkytli ste SAML Authentication Response. Berte prosím na vedomie, že tento endpoint nie je určený na priamy prístup."
+msgid "Primary affiliation"
+msgstr "Primárny vzťah k organizácii"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:187
-msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
-msgstr "Pristúpili ste k Artifact Resolution Service rozhraní, ale neposkytli ste SAML ArtifactResolve správu. Berte prosím na vedomie, že tento endpoint nie je určený na priamy prístup."
+msgid "Private information elements"
+msgstr "Privátne informačné prvky"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:191
-msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
-msgstr "Chyba autentifikácie zo zdroja %AUTHSOURCE%. Dôvod: %REASON%"
+msgid "Processing..."
+msgstr "Spracovávanie..."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:193
-msgid "There is an error in the request to this page. The reason was: %REASON%"
-msgstr "V požiadavke na túto stránku je chyba. Dôvod: %REASON%"
+msgid "Remember"
+msgstr "Zapamätať"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
-msgid "Error when communicating with the CAS server."
-msgstr "Chyba pri komunikácii s CAS serverom."
+msgid "Remember me"
+msgstr "Zapamätať si ma"
+
+msgid "Remember my choice"
+msgstr "Zapamätať moju voľbu"
+
+msgid "Remember my username"
+msgstr "Zapamätať si prihlasovacie meno"
+
+msgid "Report errors"
+msgstr "Nahlásiť chyby"
+
+msgid "Required fields"
+msgstr "Povinné údaje"
+
+msgid "Return to service"
+msgstr "Vrátiť sa na službu"
+
+msgid "SAML 2.0 Identity Provider (Hosted)"
+msgstr "SAML 2.0 Identity Provider (lokálne prevádzkovaný)"
+
+msgid "SAML 2.0 SP Demo Example"
+msgstr "SAML 2.0 SP Demo"
+
+msgid "SAML 2.0 SP Metadata"
+msgstr "SAML 2.0 SP Metadata"
+
+msgid "SAML 2.0 Service Provider (Hosted)"
+msgstr "SAML 2.0 Service Provider (lokálne prevádzkovaný)"
+
+msgid "SAML 2.0 Service Provider (Remote)"
+msgstr "SAML 2.0 Service Provider (vzdialené)"
+
+msgid "SAML Subject"
+msgstr "SAML Subjekt"
+
+msgid "Select"
+msgstr "Vybrať"
+
+msgid "Select configuration file to check:"
+msgstr "Vyberte konfiguračný súbor na kontrolu:"
+
+msgid "Select your identity provider"
+msgstr "Vyberte si poskytovateľa identity"
+
+msgid "Send e-mail to help desk"
+msgstr "Odoslať e-mail na podporu"
+
+msgid "Send error report"
+msgstr "Odoslať správu o chybe"
+
+msgid "Sending message"
+msgstr "Odosiela sa správa"
+
+msgid "Service Provider"
+msgstr "Poskytovateľ služby (Service Provider)"
+
+msgid "Session size: %SIZE%"
+msgstr "Veľkosť relácie: %SIZE%"
+
+msgid "Shib 1.3 IdP Metadata"
+msgstr "Shib 1.3 IdP Metadata"
+
+msgid "Shib 1.3 Identity Provider (Hosted)"
+msgstr "Shib 1.3 Identity Provider (lokálne prevádzkovaný)"
+
+msgid "Shib 1.3 Identity Provider (Remote)"
+msgstr "Shib 1.3 Identity Provider (vzdialené)"
+
+msgid "Shib 1.3 SP Metadata"
+msgstr "Shib 1.3 SP Metadata"
+
+msgid "Shib 1.3 Service Provider (Hosted)"
+msgstr "Shib 1.3 Service Provider (lokálne prevádzkovaný)"
+
+msgid "Shib 1.3 Service Provider (Remote)"
+msgstr "Shib 1.3 Service Provider (vzdialené)"
+
+msgid "Shibboleth demo"
+msgstr "Shibboleth demo"
+
+msgid "SimpleSAMLphp Diagnostics"
+msgstr "SimpleSAMLphp diagnostika"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:195
 msgid "SimpleSAMLphp appears to be misconfigured."
 msgstr "SimpleSAMLphp vyzerá byť zle nakonfigurovaný."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:196
-msgid "An error occurred when trying to create the SAML request."
-msgstr "Pri vytváraní SAML požiadavky nastala chyba."
+msgid "SimpleSAMLphp error"
+msgstr "SimpleSAMLphp chyba"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:197
-msgid "The parameters sent to the discovery service were not according to specifications."
-msgstr "Parametre odoslané vyhľadávacej službe nie sú v súlade so špecifikáciou."
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr "Keďže Váš prehliadač nepodporuje Javascript, musíte stlačiť tlačido nižšie pre pokračovanie."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:200
-msgid "When this identity provider tried to create an authentication response, an error occurred."
-msgstr "Nastala chyba pri vytváraní autentifikačnej odpovede."
+msgid "Some error occurred"
+msgstr "Nastala nejaká chyba"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:203
-msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
-msgstr "Autentifikácia zlyhala: certifikát, ktorý poslal Váš prehliadač je neplatný alebo sa nedá čítať"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:206
-msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
-msgstr "LDAP je databáza užívateľov a keď sa prihlasujete, potrebujeme sa na túto databázu pripojiť. Pri tomto pokuse nastala chyba."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:209
-msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
-msgstr "Informácia o aktuálnej operácii odhlásenia bola stratená. Mali by ste sa vrátiť do služby, z ktorej sa snažíte odhlásiť, a skúsiť to znovu. Táto chyba môže byť zapríčinená expiráciou odhlasovacích informácií. Odhlasovacie informácie sú uložené po určitý čas - zvyčajne pár hodín, čo je dlhšie, ako by mal odhlasovací proces trvať, takže táto chyba môže indikovať problém s konfiguráciou. Ak tento problém pretrváva, kontaktujte Vášho poskytovateľa služby."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:218
-msgid "An error occurred when trying to process the Logout Request."
-msgstr "Nastala chyba pri spracovávaní odhlasovacej požiadavky (Logout Request)."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:219
-msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
-msgstr "Vaše dáta relácie sa nedajú momentálne získať kvôli technickým problémom. Skúste to prosím o pár minút."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:222
-msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
-msgstr "Vo Vašej inštalácii SimpleSAMLphp je niečo zle nakonfigurované. Ak ste administrátor tejto služby, mali by ste sa uistiť, že konfigurácia metadát je správna."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
-#, php-format
-msgid "Unable to locate metadata for %ENTITYID%"
-msgstr "Nepodarilo sa nájsť metadáta pre %ENTITYID%"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:227
-msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
-msgstr "Tento endpoint nie je aktivovaný. Skontrolujte aktivačné nastavenia v konfigurácii SimpleSAMLphp."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
-msgid "Authentication failed: your browser did not send any certificate"
-msgstr "Autentifikácia zlyhala: Váš prehliadač neodoslal žiadny certifikát"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:231
-msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
-msgstr "Iniciátor tejto požiadavky neposkytol parameter RelayState indikujúci kam pokračovať ďalej."
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
+msgid "State information lost"
+msgstr "Stavová informácia stratená"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:234
 msgid "State information lost, and no way to restart the request"
 msgstr "Stavová informácia stratená a požiadavku sa nedá reštartovať"
+
+msgid "Street"
+msgstr "Ulica"
+
+msgid "Submit message"
+msgstr "Odoslať správu"
+
+msgid "Superfluous options in config file"
+msgstr "Zbytočné nastavenia v konfiguračnom súbore"
+
+msgid "Surname"
+msgstr "Priezvisko"
+
+msgid "Telephone number"
+msgstr "Telefónne číslo"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
+msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
+msgstr "Poskytovateľ identity odpovedal chybou. (Kód stavu SAML odpovede nebol úspešný)"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:259
+msgid "The authentication was aborted by the user"
+msgstr "Autentifikácia bola prerušená užívateľom"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "Detailné informácie nižšie môžu byť pre administrátora alebo podporu nápomocné:"
+
+msgid "The error report has been sent to the administrators."
+msgstr "Správa o chybe bola odoslaná administrátorom."
+
+msgid "The following fields was not recognized"
+msgstr "Nasledujúce údaje neboli rozpoznané"
+
+msgid "The following optional fields was not found"
+msgstr "Nasledujúce voliteľné údaje neboli nájdené"
+
+msgid "The following required fields was not found"
+msgstr "Nasledujúce povinné údaje neboli nájdené"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:235
 msgid "The given page was not found. The URL was: %URL%"
@@ -215,613 +646,181 @@ msgstr "Stránka nebola nájdená. URL je: %URL%"
 msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
 msgstr "Stránka nebola nájdená. Dôvod: %REASON%  URL: %URL%"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:209
+msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
+msgstr "Informácia o aktuálnej operácii odhlásenia bola stratená. Mali by ste sa vrátiť do služby, z ktorej sa snažíte odhlásiť, a skúsiť to znovu. Táto chyba môže byť zapríčinená expiráciou odhlasovacích informácií. Odhlasovacie informácie sú uložené po určitý čas - zvyčajne pár hodín, čo je dlhšie, ako by mal odhlasovací proces trvať, takže táto chyba môže indikovať problém s konfiguráciou. Ak tento problém pretrváva, kontaktujte Vášho poskytovateľa služby."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:231
+msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
+msgstr "Iniciátor tejto požiadavky neposkytol parameter RelayState indikujúci kam pokračovať ďalej."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:197
+msgid "The parameters sent to the discovery service were not according to specifications."
+msgstr "Parametre odoslané vyhľadávacej službe nie sú v súlade so špecifikáciou."
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "Heslo v konfiguračnom súbore (auth.adminpassword) nie je zmenené z prednastavenej hodnoty. Zmeňte prosím konfiguračný súbor."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:241
-msgid "You did not present a valid certificate."
-msgstr "Neposkytli ste platný certifikát."
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:193
+msgid "There is an error in the request to this page. The reason was: %REASON%"
+msgstr "V požiadavke na túto stránku je chyba. Dôvod: %REASON%"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
-msgid "We did not accept the response sent from the Identity Provider."
-msgstr "Neakceptovali sme odpoveď odoslanú z poskytovateľa identity."
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:222
+msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
+msgstr "Vo Vašej inštalácii SimpleSAMLphp je niečo zle nakonfigurované. Ak ste administrátor tejto služby, mali by ste sa uistiť, že konfigurácia metadát je správna."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:243
 msgid "This Identity Provider received an Authentication Request from a Service Provider, but an error occurred when trying to process the request."
 msgstr "This Identity Provider received an Authentication Request from a Service Provider, but an error occurred when trying to process the request."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
-msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
-msgstr "Poskytovateľ identity odpovedal chybou. (Kód stavu SAML odpovede nebol úspešný)"
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:227
+msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
+msgstr "Tento endpoint nie je aktivovaný. Skontrolujte aktivačné nastavenia v konfigurácii SimpleSAMLphp."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
-msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
-msgstr "Pristúpili ste k SingleLogoutService rozhraní, ale neposkytli ste SAML LogoutRequest alebo LogoutResponse. Berte prosím na vedomie, že tento endpoint nie je určený na priamy prístup."
+msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
+msgstr "Táto chyba je pravdepodobne spôsobená nečakaným správaním alebo zlou konfiguráciou SimpleSAMLphp. Kontaktujte administrátorov tejto prihlasovacej služby s chybovou hláškou vyššie."
+
+msgid "Title"
+msgstr "Nadpis"
+
+msgid "To look at the details for an SAML entity, click on the SAML entity header."
+msgstr "Pre detaily kliknite na hlavičku SAML entity."
+
+msgid "Tracking number"
+msgstr "Sledovacie číslo"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
+#, php-format
+msgid "Unable to locate metadata for %ENTITYID%"
+msgstr "Nepodarilo sa nájsť metadáta pre %ENTITYID%"
+
+msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Nepodarilo sa odhlásiť z jednej alebo viacerých služieb. Aby ste uistili, že sú všetky relácie zatvorené, je odporúčané <i>zatvoriť Váš prehliadač</i>."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
+msgid "Unhandled exception"
+msgstr "Neočakávaná chyba"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:100
+msgid "Unknown certificate"
+msgstr "Neznámy certifikát"
+
+msgid "User ID"
+msgstr "ID užívateľa"
+
+msgid "User's password hash"
+msgstr "Hash hesla užívateľa"
+
+msgid "Username"
+msgstr "Prihlasovacie meno"
+
+msgid "WS-Fed SP Demo Example"
+msgstr "WS-Fed SP Demo"
+
+msgid "WS-Federation Identity Provider (Remote)"
+msgstr "WS-Federation Identity Provider (vzdialené)"
+
+msgid "WS-Federation Service Provider (Hosted)"
+msgstr "WS-Federation Service Provider (lokálne prevádzkovaný)"
+
+msgid "Warning"
+msgstr "Upozornenie"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
+msgid "We did not accept the response sent from the Identity Provider."
+msgstr "Neakceptovali sme odpoveď odoslanú z poskytovateľa identity."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:200
+msgid "When this identity provider tried to create an authentication response, an error occurred."
+msgstr "Nastala chyba pri vytváraní autentifikačnej odpovede."
+
+msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
+msgstr "Bez prihlasovacieho mena a hesla sa nemôžete autentifikovať pre prístup do služby. Kontaktujte podporu Vašej organizácie."
+
+msgid "World"
+msgstr "Svet"
+
+msgid "XML metadata"
+msgstr "XML metadáta"
+
+msgid "Yes, all services"
+msgstr "Áno, všetky služby"
+
+msgid "Yes, continue"
+msgstr "Áno, pokračovať"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:187
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr "Pristúpili ste k Artifact Resolution Service rozhraní, ale neposkytli ste SAML ArtifactResolve správu. Berte prosím na vedomie, že tento endpoint nie je určený na priamy prístup."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
+msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
+msgstr "Pristúpili ste k Assertion Consumer Service rozhraní, ale neposkytli ste SAML Authentication Response. Berte prosím na vedomie, že tento endpoint nie je určený na priamy prístup."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:253
 msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Pristúpili ste k Single Sign On Service rozhraní, ale neposkytli ste SAML Authentication Request. Berte prosím na vedomie, že tento endpoint nie je určený na priamy prístup."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:257
-msgid "An unhandled exception was thrown."
-msgstr "Vznikla neočakávaná chyba."
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:258
-msgid "Authentication failed: the certificate your browser sent is unknown"
-msgstr "Autentifikácia zlyhala: certifikát zaslaný Vašim prehliadačom je neznámy"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:259
-msgid "The authentication was aborted by the user"
-msgstr "Autentifikácia bola prerušená užívateľom"
-
-#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:260
-msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
-msgstr "Buď sa užívateľ s týmto prihlasovacím menom nenašiel, alebo je zadané heslo nesprávne. Skontrolujte prosím prihlasovacie meno a heslo a skúste to znovu."
-
-msgid "Authentication status"
-msgstr "Stav autentifikácie"
-
-msgid "Copy to clipboard"
-msgstr "Kopírovať do schránky"
-
-msgid "Debug information to be used by your support staff"
-msgstr "Debug informácie pre personál podpory"
-
-msgid "Format"
-msgstr "Formát"
-
-msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Toto je stránka so stavom SimpleSAMLphp. Tu môžete vidieť, či Vaša relácia vypršala, ako dlho trvá, dokým vyprší a všetky atribúty, ktoré sú pripojené k Vašej relácii."
-
-msgid "Information about your current session"
-msgstr "Informácie o Vašej aktuálnej relácii"
-
-msgid "Logout"
-msgstr "Odhlásiť sa"
-
-msgid "SAML Subject"
-msgstr "SAML Subjekt"
-
-msgid "Tracking number"
-msgstr "Sledovacie číslo"
-
-msgid "Your attributes"
-msgstr "Vaše atribúty"
-
-msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Vaša relácia je platná ešte %remaining% sekúnd."
-
-msgid "not set"
-msgstr "nenastavené"
-
-msgid "Debug information"
-msgstr "Debug informácie"
-
-msgid "E-mail address:"
-msgstr "E-mailová adresa:"
-
-msgid "Explain what you did when this error occurred..."
-msgstr "Vysvetlite, čo ste robili, keď nastala táto chyba..."
-
-msgid "How to get help"
-msgstr "Ako získať pomoc"
-
-msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "Ak nahlasujete túto chybu, nahláste prosím aj toto sledovacie číslo, ktoré umožní administrátorovi nájsť Vašu reláciu v logoch:"
-
-msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "Dobrovoľne zadajte Vašu emailovú adresu, aby Vás administrátori mohli kontaktovať s ďalšími otázkami pre vyriešenie problému:"
-
-msgid "Report errors"
-msgstr "Nahlásiť chyby"
-
-msgid "Send error report"
-msgstr "Odoslať správu o chybe"
-
-msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "Detailné informácie nižšie môžu byť pre administrátora alebo podporu nápomocné:"
-
-msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
-msgstr "Táto chyba je pravdepodobne spôsobená nečakaným správaním alebo zlou konfiguráciou SimpleSAMLphp. Kontaktujte administrátorov tejto prihlasovacej služby s chybovou hláškou vyššie."
-
-msgid "Hello, Untranslated World!"
-msgstr "Ahoj, nepreložený svet!"
-
-msgid "World"
-msgstr "Svet"
-
-msgid "Sending message"
-msgstr "Odosiela sa správa"
-
-msgid "Since your browser does not support Javascript, you must press the button below to proceed."
-msgstr "Keďže Váš prehliadač nepodporuje Javascript, musíte stlačiť tlačido nižšie pre pokračovanie."
-
-msgid "Warning"
-msgstr "Upozornenie"
-
-msgid "Yes, continue"
-msgstr "Áno, pokračovať"
-
-msgid "Language"
-msgstr "Jazyk"
-
-msgid "No identity providers found. Cannot continue."
-msgstr "Nenašli sa žiadni poskytovalia identity. Nedá sa pokračovať."
-
-msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Vyberte si prosím poskytovateľa identity, cez ktorého sa chcete autentifikovať:"
-
-msgid "Remember my choice"
-msgstr "Zapamätať moju voľbu"
-
-msgid "Select"
-msgstr "Vybrať"
-
-msgid "Select your identity provider"
-msgstr "Vyberte si poskytovateľa identity"
-
-msgid "Back"
-msgstr "Späť"
-
-msgid "[Preferred choice]"
-msgstr "[Preferovaná voľba]"
-
-msgid "Hello, %who%!"
-msgstr "Vitajte, %who%!"
-
-msgid "Person's principal name at home organization"
-msgstr "Hlavné meno osoby v domovskej organizácii"
-
-msgid "Superfluous options in config file"
-msgstr "Zbytočné nastavenia v konfiguračnom súbore"
-
-msgid "Mobile"
-msgstr "Mobil"
-
-msgid "Shib 1.3 Service Provider (Hosted)"
-msgstr "Shib 1.3 Service Provider (lokálne prevádzkovaný)"
-
-msgid "Display name"
-msgstr "Zobrazované meno"
-
-msgid "SAML 2.0 SP Metadata"
-msgstr "SAML 2.0 SP Metadata"
-
-msgid "ADFS IdP Metadata"
-msgstr "ADFS IdP Metadata"
-
-msgid "Notices"
-msgstr "Oznámenia"
-
-msgid "Home telephone"
-msgstr "Telefón domov"
-
-msgid "Service Provider"
-msgstr "Poskytovateľ služby (Service Provider)"
-
-msgid "Incorrect username or password."
-msgstr "Nesprávne meno alebo heslo."
-
-msgid "Submit message"
-msgstr "Odoslať správu"
-
-msgid "Locality"
-msgstr "Lokalita"
-
-msgid "The following required fields was not found"
-msgstr "Nasledujúce povinné údaje neboli nájdené"
-
-msgid "Download the X509 certificates as PEM-encoded files."
-msgstr "Stiahnuť X509 certifikáty ako PEM kódované súbory."
-
-msgid "Organizational number"
-msgstr "Číslo organizácie"
-
-msgid "Post office box"
-msgstr "Poštová schránka"
-
-msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
-msgstr "Služba požaduje Vašu autentifikáciu. Zadajte, prosím, Vaše prihlasovacie meno a heslo do formulára nižšie."
-
-msgid "Error"
-msgstr "Chyba"
-
-msgid "Next"
-msgstr "Ďalší"
-
-msgid "Distinguished name (DN) of the person's home organizational unit"
-msgstr "Jednoznačné meno (DN) organizačnej jednotky človeka"
-
-msgid "Converted metadata"
-msgstr "Konvertované metadáta"
-
-msgid "Mail"
-msgstr "Email"
-
-msgid "No, cancel"
-msgstr "Nie, zrušiť"
-
-msgid "You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong you may choose another one."
-msgstr "Vybrali ste si <b>%HOMEORG%</b> ako svoju domovskú organizáciu. Ak toto nie je správne, môžete vybrať inú."
-
-msgid "Distinguished name (DN) of person's primary Organizational Unit"
-msgstr "Jednoznačné meno (DN) primárnej organizačnej jednotky človeka"
-
-msgid "To look at the details for an SAML entity, click on the SAML entity header."
-msgstr "Pre detaily kliknite na hlavičku SAML entity."
-
-msgid "Enter your username and password"
-msgstr "Zadajte Vaše prihlasovacie meno a heslo"
-
-msgid "Login at"
-msgstr "Prihlásenie na"
-
-msgid "No"
-msgstr "Nie"
-
-msgid "Home postal address"
-msgstr "Domovská poštová adresa"
-
-msgid "WS-Fed SP Demo Example"
-msgstr "WS-Fed SP Demo"
-
-msgid "Do you want to logout from all the services above?"
-msgstr "Chcete sa odhlásiť zo všetkých služieb vyššie?"
-
-msgid "Given name"
-msgstr "Krstné meno"
-
-msgid "Identity assurance profile"
-msgstr "Profil uistenia identity"
-
-msgid "SAML 2.0 SP Demo Example"
-msgstr "SAML 2.0 SP Demo"
-
-msgid "Organization name"
-msgstr "Názov organizácie"
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
+msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
+msgstr "Pristúpili ste k SingleLogoutService rozhraní, ale neposkytli ste SAML LogoutRequest alebo LogoutResponse. Berte prosím na vedomie, že tento endpoint nie je určený na priamy prístup."
 
 msgid "You are about to send a message. Hit the submit message button to continue."
 msgstr "Chystáte sa poslať správu. Kliknite na tlačidlo odoslania pre pokračovanie."
 
-msgid "Home organization domain name"
-msgstr "Doménové meno organizácie"
-
-msgid "Go back to the file list"
-msgstr "Ísť späť na zoznam súborov"
-
-msgid "Error report sent"
-msgstr "Chybové hlásenie odoslané"
-
-msgid "Common name"
-msgstr "Názov (Common Name)"
-
-msgid "Logout failed"
-msgstr "Odhlásenie zlyhalo"
-
-msgid "Identity number assigned by public authorities"
-msgstr "Číslo identity pridelené verejnou autoritou"
-
-msgid "WS-Federation Identity Provider (Remote)"
-msgstr "WS-Federation Identity Provider (vzdialené)"
-
-msgid "Some error occurred"
-msgstr "Nastala nejaká chyba"
-
-msgid "Organization"
-msgstr "Organizácia"
-
-msgid "Choose home organization"
-msgstr "Vyberte domovskú organizáciu"
-
-msgid "Persistent pseudonymous ID"
-msgstr "Perzistentné pseudonymné ID"
-
-msgid "No errors found."
-msgstr "Neboli nájdene žiadne chyby."
-
-msgid "SAML 2.0 Service Provider (Hosted)"
-msgstr "SAML 2.0 Service Provider (lokálne prevádzkovaný)"
-
-msgid "Required fields"
-msgstr "Povinné údaje"
-
-msgid "Domain component (DC)"
-msgstr "Doména (DC)"
-
-msgid "Shib 1.3 Service Provider (Remote)"
-msgstr "Shib 1.3 Service Provider (vzdialené)"
-
-msgid "Password"
-msgstr "Heslo"
-
-msgid "ORCID researcher identifiers"
-msgstr "ORCID researcher identifikátory"
-
-msgid "Nickname"
-msgstr "Prezývka"
-
-msgid "The error report has been sent to the administrators."
-msgstr "Správa o chybe bola odoslaná administrátorom."
-
-msgid "Date of birth"
-msgstr "Dátum narodenia"
-
-msgid "Private information elements"
-msgstr "Privátne informačné prvky"
-
-msgid "Person's non-reassignable, persistent pseudonymous ID at home organization"
-msgstr "Nepreraditeľné, perzistentné pseudonymné ID užívateľa v domovskej organizácii"
+msgid "You are about to send a message. Hit the submit message link to continue."
+msgstr "Chystáte sa poslať správu. Kliknite na link odoslania správy pre pokračovanie."
 
 msgid "You are also logged in on these services:"
 msgstr "Ste taktiež prihlásený do týchto služieb:"
 
-msgid "SimpleSAMLphp Diagnostics"
-msgstr "SimpleSAMLphp diagnostika"
-
-msgid "No, only %SP%"
-msgstr "Nie, len %SP%"
-
-msgid "Username"
-msgstr "Prihlasovacie meno"
-
-msgid "Go back to SimpleSAMLphp installation page"
-msgstr "Ísť späť na inštalačnú stránku SimpleSAMLphp"
-
-msgid "You have successfully logged out from all services listed above."
-msgstr "Úspešne ste sa odhlásili zo všetkých služieb vyššie."
+msgid "You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>."
+msgstr "Práve pristupujete k predprodukčnému systému. Toto autentifikačné prostredie je určené len pre testovanie a predporodukčnú verifikáciu. Ak Vám niekto poslal link, ktorý Vás sem dostal, a nie ste <i>tester</i>, pravdepodobne máte zlý link a <b>nemali by ste tu byť</b>."
 
 msgid "You are now successfully logged out from %SP%."
 msgstr "Úspešne ste sa odhlásili z %SP%."
 
-msgid "Affiliation"
-msgstr "Vzťah k organizácii"
-
-msgid "You have been logged out."
-msgstr "Boli ste odhlásený."
-
-msgid "Return to service"
-msgstr "Vrátiť sa na službu"
-
-msgid "WS-Federation Service Provider (Hosted)"
-msgstr "WS-Federation Service Provider (lokálne prevádzkovaný)"
-
-msgid "Remember my username"
-msgstr "Zapamätať si prihlasovacie meno"
-
-msgid "Preferred language"
-msgstr "Preferovaný jazyk"
-
-msgid "SAML 2.0 Service Provider (Remote)"
-msgstr "SAML 2.0 Service Provider (vzdialené)"
-
-msgid "Surname"
-msgstr "Priezvisko"
-
-msgid "The following fields was not recognized"
-msgstr "Nasledujúce údaje neboli rozpoznané"
-
-msgid "User ID"
-msgstr "ID užívateľa"
-
-msgid "JPEG Photo"
-msgstr "JPEG fotka"
-
-msgid "Postal address"
-msgstr "Poštová adresa"
-
-msgid "ADFS SP Metadata"
-msgstr "ADFS SP Metadata"
-
-msgid "In SAML 2.0 Metadata XML format:"
-msgstr "V SAML 2.0 Metadata XML formáte:"
-
-msgid "Logging out of the following services:"
-msgstr "Odhlasovanie z nasledujúcich služieb:"
-
-msgid "Labeled URI"
-msgstr "Označená URI"
-
-msgid "Shib 1.3 Identity Provider (Hosted)"
-msgstr "Shib 1.3 Identity Provider (lokálne prevádzkovaný)"
-
-msgid "Metadata"
-msgstr "Metadáta"
-
-msgid "Login"
-msgstr "Prihlásiť sa"
-
-msgid "Yes, all services"
-msgstr "Áno, všetky služby"
-
-msgid "Logged out"
-msgstr "Odhlásený"
-
-msgid "Postal code"
-msgstr "Poštové číslo"
-
-msgid "Logging out..."
-msgstr "Odhlasovanie..."
-
-msgid "SAML 2.0 Identity Provider (Hosted)"
-msgstr "SAML 2.0 Identity Provider (lokálne prevádzkovaný)"
-
-msgid "Primary affiliation"
-msgstr "Primárny vzťah k organizácii"
-
-msgid "XML metadata"
-msgstr "XML metadáta"
-
-msgid "Telephone number"
-msgstr "Telefónne číslo"
-
-msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-msgstr "Nepodarilo sa odhlásiť z jednej alebo viacerých služieb. Aby ste uistili, že sú všetky relácie zatvorené, je odporúčané <i>zatvoriť Váš prehliadač</i>."
-
-msgid "Group membership"
-msgstr "Členstvo v skupine"
-
-msgid "Entitlement regarding the service"
-msgstr "Entitlement regarding the service"
-
-msgid "Shib 1.3 SP Metadata"
-msgstr "Shib 1.3 SP Metadata"
-
-msgid "As you are in debug mode, you get to see the content of the message you are sending:"
-msgstr "Keďže ste v debug režime, zobrazuje sa Vám obsah správy, ktorú posielate:"
-
-msgid "Certificates"
-msgstr "Certifikáty"
-
-msgid "Remember"
-msgstr "Zapamätať"
-
-msgid "Distinguished name (DN) of person's home organization"
-msgstr "Jednoznačné meno (DN) užívateľovej domovskej organizácie"
-
-msgid "You are about to send a message. Hit the submit message link to continue."
-msgstr "Chystáte sa poslať správu. Kliknite na link odoslania správy pre pokračovanie."
-
-msgid "Organizational unit"
-msgstr "Organizačná jednotka"
-
-msgid "Local identity number"
-msgstr "Lokálne číslo identity"
-
-msgid "Shib 1.3 IdP Metadata"
-msgstr "Shib 1.3 IdP Metadata"
-
-msgid "Change your home organization"
-msgstr "Zmeniť Vašu domovskú organizáciu"
-
-msgid "User's password hash"
-msgstr "Hash hesla užívateľa"
-
-msgid "In SimpleSAMLphp flat file format - use this if you are using a SimpleSAMLphp entity on the other side:"
-msgstr "V SimpleSAMLphp formáte - toto použite, ak používate SimpleSAMLphp entitu na druhej strane:"
-
-msgid "Completed"
-msgstr "Dokončené"
-
-msgid "Select configuration file to check:"
-msgstr "Vyberte konfiguračný súbor na kontrolu:"
-
-msgid "On hold"
-msgstr "Podržané"
-
-msgid "ADFS Identity Provider (Hosted)"
-msgstr "ADFS Identity Provider (lokálne prevádzkovaný)"
-
-msgid "Help! I don't remember my password."
-msgstr "Pomoc! Nepamätám si heslo."
+msgid "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
+msgstr "Môžete <a href=\"%METAURL%\">získať XML metadát na samostatnom odkaze</a>:"
 
 msgid "You can turn off debug mode in the global SimpleSAMLphp configuration file <tt>config/config.php</tt>."
 msgstr "Vypnúť ladiaci režim môžete v globálnom SimpleSAMLphp konfiguračnom súbore <tt>config/config.php</tt>."
 
-msgid "SimpleSAMLphp error"
-msgstr "SimpleSAMLphp chyba"
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:241
+msgid "You did not present a valid certificate."
+msgstr "Neposkytli ste platný certifikát."
 
-msgid "One or more of the services you are logged into <i>do not support logout</i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-msgstr "Jedna alebo viacero služieb, do ktorých ste prihlásený, <i>nepodporuje odhlásenie</i>. Aby ste uistili, že sú všetky relácie zatvorené, je odporúčané <i>zatvoriť Váš prehliadač</i>."
+msgid "You have been logged out."
+msgstr "Boli ste odhlásený."
 
-msgid "or select a file:"
-msgstr "alebo vyberte súbor:"
-
-msgid "Remember me"
-msgstr "Zapamätať si ma"
-
-msgid "Organization's legal name"
-msgstr "Právny názov organizácie"
-
-msgid "Options missing from config file"
-msgstr "Nastavenia chýbajúce v konfiguračnom súbore"
-
-msgid "The following optional fields was not found"
-msgstr "Nasledujúce voliteľné údaje neboli nájdené"
-
-msgid "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
-msgstr "Môžete <a href=\"%METAURL%\">získať XML metadát na samostatnom odkaze</a>:"
-
-msgid "Street"
-msgstr "Ulica"
-
-msgid "Message"
-msgstr "Správa"
-
-msgid "Contact information:"
-msgstr "Kontaktné informácie:"
-
-msgid "Legal name"
-msgstr "Právny názov"
-
-msgid "Optional fields"
-msgstr "Voliteľné údaje"
+msgid "You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong you may choose another one."
+msgstr "Vybrali ste si <b>%HOMEORG%</b> ako svoju domovskú organizáciu. Ak toto nie je správne, môžete vybrať inú."
 
 msgid "You have previously chosen to authenticate at"
 msgstr "V minulosti ste sa rozhodli autentifikovať cez "
 
+msgid "You have successfully logged out from all services listed above."
+msgstr "Úspešne ste sa odhlásili zo všetkých služieb vyššie."
+
 msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
 msgstr "You sent something to the login page, but for some reason the password was not sent. Try again please."
 
-msgid "Fax number"
-msgstr "Číslo faxu"
+msgid "Your attributes"
+msgstr "Vaše atribúty"
 
-msgid "Shibboleth demo"
-msgstr "Shibboleth demo"
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:219
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr "Vaše dáta relácie sa nedajú momentálne získať kvôli technickým problémom. Skúste to prosím o pár minút."
 
-msgid "Error in this metadata entry"
-msgstr "Chyba v tomto metadáta zázname"
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Vaša relácia je platná ešte %remaining% sekúnd."
 
-msgid "Session size: %SIZE%"
-msgstr "Veľkosť relácie: %SIZE%"
+msgid "[Preferred choice]"
+msgstr "[Preferovaná voľba]"
 
-msgid "Parse"
-msgstr "Parsovať"
+msgid "not set"
+msgstr "nenastavené"
 
-msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
-msgstr "Bez prihlasovacieho mena a hesla sa nemôžete autentifikovať pre prístup do služby. Kontaktujte podporu Vašej organizácie."
-
-msgid "ADFS Service Provider (Remote)"
-msgstr "ADFS Service Provider (vzdialené)"
-
-msgid "Choose your home organization"
-msgstr "Vyberte si domovskú organizáciu"
-
-msgid "Send e-mail to help desk"
-msgstr "Odoslať e-mail na podporu"
-
-msgid "Metadata overview"
-msgstr "Prehľad metadát"
-
-msgid "Title"
-msgstr "Nadpis"
-
-msgid "Manager"
-msgstr "Manažér"
-
-msgid "Affiliation at home organization"
-msgstr "Vzťah k domovskej organizácii"
-
-msgid "Help desk homepage"
-msgstr "Domovská stránka podpory"
-
-msgid "Configuration check"
-msgstr "Kontrola konfigurácie"
-
-msgid "Shib 1.3 Identity Provider (Remote)"
-msgstr "Shib 1.3 Identity Provider (vzdialené)"
-
-msgid "Here is the metadata that SimpleSAMLphp has generated for you. You may send this metadata document to trusted partners to setup a trusted federation."
-msgstr "Tu sú metadáta, ktoré SimpleSAMLphp vygeneroval. Možno budete musieť odoslať tento dokument metadát dôveryhodným partnerom na nastavenie dôveryhodnej federácie."
-
-msgid "Organizational homepage"
-msgstr "Domovská stránka organizácie"
-
-msgid "Processing..."
-msgstr "Spracovávanie..."
-
-msgid "You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>."
-msgstr "Práve pristupujete k predprodukčnému systému. Toto autentifikačné prostredie je určené len pre testovanie a predporodukčnú verifikáciu. Ak Vám niekto poslal link, ktorý Vás sem dostal, a nie ste <i>tester</i>, pravdepodobne máte zlý link a <b>nemali by ste tu byť</b>."
-
-msgid "Logo"
-msgstr "Logo"
+msgid "or select a file:"
+msgstr "alebo vyberte súbor:"

@@ -1,37 +1,6 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: core\n"
-
-msgid "Welcome"
-msgstr "欢迎"
-
-msgid "Missing cookie"
-msgstr "cookie丢失"
-
-msgid "Retry"
-msgstr "重试"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "你似乎禁止了你浏览器的cookie功能，请检查设置，然后重新尝试"
-
-msgid "Retry login"
-msgstr "重新尝试登陆"
-
-msgid "Too short interval between single sign on events."
-msgstr "单点登录事件之间间隔太短了"
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "我们检测到从你上一次连接到该服务提供者到本次连接中间间隔仅仅数秒的时间，我们猜测该SP可能有问题"
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "如果你是部署这个单点登录系统的开发人员，那么你的配置文件存在问题，验证服务提供者和身份提供者是否配置正确"
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "如果你是点击一个网站上的链接后收到该错误的用户，你应该报告这个错误给站点所有人"
-
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "这可能是服务提供者或者身份提供者的配置问题"
 
 msgid "Close the web browser, and try again."
 msgstr "关闭浏览器并重试"
@@ -42,26 +11,35 @@ msgstr "该浏览器上的cookie可能遭禁止"
 msgid "Go back to the previous page and try again."
 msgstr "返回上一页并重新尝试"
 
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "从先前的session保存的选项卡打开Web浏览器"
-
-msgid "Suggestions for resolving this problem:"
-msgstr "关于解决该问题的建议"
-
-msgid "This error may be caused by:"
-msgstr "该错误可能是以下原因导致的："
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "使用浏览器中的前进后退按钮"
-
-msgid "If this problem persists, you can report it to the system administrators."
-msgstr "如果这个错误再次出现，你可以向你的系统管理员报告"
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "存储的 Shibboleth 1.3 Identity Provider Metadata（自动生成）"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "存储的 Shibboleth 1.3 Service Provider Metadata（自动生成）"
 
-msgid "We were unable to locate the state information for the current request."
-msgstr "我们无法定位当前请求的状态信息"
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "如果这个错误再次出现，你可以向你的系统管理员报告"
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "如果你是部署这个单点登录系统的开发人员，那么你的配置文件存在问题，验证服务提供者和身份提供者是否配置正确"
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "如果你是点击一个网站上的链接后收到该错误的用户，你应该报告这个错误给站点所有人"
+
+msgid "Missing cookie"
+msgstr "cookie丢失"
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "从先前的session保存的选项卡打开Web浏览器"
+
+msgid "Report this error"
+msgstr "报告这个错误"
+
+msgid "Retry"
+msgstr "重试"
+
+msgid "Retry login"
+msgstr "重新尝试登陆"
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Shibboleth 1.3SP样例-测试从你的Shib idP登录"
@@ -69,8 +47,29 @@ msgstr "Shibboleth 1.3SP样例-测试从你的Shib idP登录"
 msgid "State information lost"
 msgstr "状态信息丢失"
 
-msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
-msgstr "存储的 Shibboleth 1.3 Identity Provider Metadata（自动生成）"
+msgid "Suggestions for resolving this problem:"
+msgstr "关于解决该问题的建议"
 
-msgid "Report this error"
-msgstr "报告这个错误"
+msgid "This error may be caused by:"
+msgstr "该错误可能是以下原因导致的："
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "这可能是服务提供者或者身份提供者的配置问题"
+
+msgid "Too short interval between single sign on events."
+msgstr "单点登录事件之间间隔太短了"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "使用浏览器中的前进后退按钮"
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "我们检测到从你上一次连接到该服务提供者到本次连接中间间隔仅仅数秒的时间，我们猜测该SP可能有问题"
+
+msgid "We were unable to locate the state information for the current request."
+msgstr "我们无法定位当前请求的状态信息"
+
+msgid "Welcome"
+msgstr "欢迎"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "你似乎禁止了你浏览器的cookie功能，请检查设置，然后重新尝试"

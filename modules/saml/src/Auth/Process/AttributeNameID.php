@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SimpleSAML\{Error, Logger};
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Module\saml\BaseNameIDGenerator;
 
 use function array_values;

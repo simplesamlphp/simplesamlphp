@@ -6,7 +6,6 @@ namespace SimpleSAML\Logger;
 
 use SimpleSAML\{Configuration, Utils};
 
-use function constants;
 use function defined;
 use function openlog;
 use function preg_replace;

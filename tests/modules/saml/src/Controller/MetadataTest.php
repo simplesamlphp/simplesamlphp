@@ -161,6 +161,12 @@ class MetadataTest extends TestCase
         $result = $c->metadata($request);
 
         $this->assertInstanceOf(Response::class, $result);
+
+        if ($protected === true) {
+            $this->assertEquals('no-cache, private', $result->headers->get('cache-control'));
+        } else {
+            $this->assertEquals('public', $result->headers->get('cache-control'));
+        }
     }
 
     public static function provideMetadataAccess(): array

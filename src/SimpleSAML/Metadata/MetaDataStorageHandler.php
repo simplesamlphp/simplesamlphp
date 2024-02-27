@@ -7,9 +7,7 @@ namespace SimpleSAML\Metadata;
 use Exception;
 use SimpleSAML\{Configuration, Error, Logger, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Error\MetadataNotFound;
 use SimpleSAML\SAML2\Constants as C;
-use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\Utils\ClearableState;
 
 use function array_key_exists;
@@ -115,7 +113,7 @@ class MetaDataStorageHandler implements ClearableState
         $httpUtils = new Utils\HTTP();
         $baseurl = $httpUtils->getSelfURLHost() . $this->globalConfig->getBasePath();
         if ($overrideHost !== null) {
-            $baseurl = str_replace('://' . $httpUtils->getSelfHostWithPath() . '/', '://' . $overrideHost . '/', $baseurl);
+            $baseurl = str_replace('://' . $httpUtils->getSelfHost() . '/', '://' . $overrideHost . '/', $baseurl);
         }
 
         if ($set == 'saml20-sp-hosted') {

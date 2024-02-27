@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Controller;
 
 use Exception as BuiltinException;
-use FILTER_REQUIRE_SCALAR;
-use FILTER_VALIDATE_EMAIL;
 use SimpleSAML\{Configuration, Error, Logger, Session, Utils};
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};

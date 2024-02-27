@@ -70,7 +70,7 @@
         "robrichards/xmlseclibs": "^3.1.1",
         "simplesamlphp/assert": "^1.0.0",
         "simplesamlphp/composer-module-installer": "^1.3",
-        "simplesamlphp/saml2": "v5.0.0-alpha.13",
+        "simplesamlphp/saml2": "^5.0.0-alpha.14",
         "simplesamlphp/saml2-legacy": "^4.6",
         "simplesamlphp/simplesamlphp-assets-base": "^2.1.5",
         "simplesamlphp/simplesamlphp-module-adfs": "^2.1",
@@ -86,7 +86,7 @@
         "symfony/http-kernel": "^6.4",
         "symfony/intl": "^6.4",
         "symfony/polyfill-intl-icu": "^1.28",
-        "symfony/psr-http-message-bridge": "^2.3",
+        "symfony/psr-http-message-bridge": "^6.4",
         "symfony/routing": "^6.4",
         "symfony/translation-contracts": "^3.0",
         "symfony/twig-bridge": "^6.4",
@@ -123,7 +123,8 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "simplesamlphp/composer-module-installer": true,
-            "muglug/package-versions-56": true
+            "muglug/package-versions-56": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
     "extra": {

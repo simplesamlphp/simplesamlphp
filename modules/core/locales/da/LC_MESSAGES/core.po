@@ -1,37 +1,6 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: core\n"
-
-msgid "Welcome"
-msgstr "Velkommen"
-
-msgid "Missing cookie"
-msgstr "Mangler cookie"
-
-msgid "Retry"
-msgstr "Forsøg igen"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Det ser ud til at du har slået cookies fra i din browser. Tjek dine browserindstillinger og prøv igen."
-
-msgid "Retry login"
-msgstr "Login igen"
-
-msgid "Too short interval between single sign on events."
-msgstr "For kort interval mellem single sign on hændelse."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Vi har opdaget at det kun er få sekunder siden du sidst autentificerede dig op mod denne service. Vi antager derfor at der er et problem med services."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Hvis du er udvikler, så har du et metadata-konfigurationsproblem. Tjek at metadata er konfigurerede korrekt både på service-siden og identitetsudbyder-siden."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Hvis du har modtaget denne fejlbesked efter at have klikket på et lilnk, skal du rappoterer fejlen til ejeren af siden. "
-
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Der er sandsynligvis en konfigurationsfejl hos enten servicen eller identitetsudbyderen."
 
 msgid "Close the web browser, and try again."
 msgstr "Luk din browser og prøv igen."
@@ -42,26 +11,35 @@ msgstr "Cookies kan være deaktiveret i browseren."
 msgid "Go back to the previous page and try again."
 msgstr "Gå tilbage til forrige side og prøv igen."
 
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Åben browseren med faner fra sidste session."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Løsningsforslag til problemet:"
-
-msgid "This error may be caused by:"
-msgstr "Fejlen kan være forårsaget af:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Brug frem- og tilbage-knappen i browseren."
-
-msgid "If this problem persists, you can report it to the system administrators."
-msgstr "Hvis dette problem fortsætter, kan du rapportere det til systemadministratoren."
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "Hosted Shibboleth 1.3 identitetsudbyder metadata (automatisk genereret)"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "Hosted Shibboleth 1.3 tjenesteudbyder metadata (automatisk genereret)"
 
-msgid "We were unable to locate the state information for the current request."
-msgstr "Tilstandsinformation for igangværende request kan ikke findes"
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "Hvis dette problem fortsætter, kan du rapportere det til systemadministratoren."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Hvis du er udvikler, så har du et metadata-konfigurationsproblem. Tjek at metadata er konfigurerede korrekt både på service-siden og identitetsudbyder-siden."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Hvis du har modtaget denne fejlbesked efter at have klikket på et lilnk, skal du rappoterer fejlen til ejeren af siden. "
+
+msgid "Missing cookie"
+msgstr "Mangler cookie"
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Åben browseren med faner fra sidste session."
+
+msgid "Report this error"
+msgstr "Rapporter denne fejl"
+
+msgid "Retry"
+msgstr "Forsøg igen"
+
+msgid "Retry login"
+msgstr "Login igen"
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Shibboleth 1.3 SP eksempel - test indlogning med Shibboleth 1.3 via din IdP"
@@ -69,8 +47,29 @@ msgstr "Shibboleth 1.3 SP eksempel - test indlogning med Shibboleth 1.3 via din 
 msgid "State information lost"
 msgstr "Tilstandsinformation forsvundet"
 
-msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
-msgstr "Hosted Shibboleth 1.3 identitetsudbyder metadata (automatisk genereret)"
+msgid "Suggestions for resolving this problem:"
+msgstr "Løsningsforslag til problemet:"
 
-msgid "Report this error"
-msgstr "Rapporter denne fejl"
+msgid "This error may be caused by:"
+msgstr "Fejlen kan være forårsaget af:"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Der er sandsynligvis en konfigurationsfejl hos enten servicen eller identitetsudbyderen."
+
+msgid "Too short interval between single sign on events."
+msgstr "For kort interval mellem single sign on hændelse."
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Brug frem- og tilbage-knappen i browseren."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Vi har opdaget at det kun er få sekunder siden du sidst autentificerede dig op mod denne service. Vi antager derfor at der er et problem med services."
+
+msgid "We were unable to locate the state information for the current request."
+msgstr "Tilstandsinformation for igangværende request kan ikke findes"
+
+msgid "Welcome"
+msgstr "Velkommen"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Det ser ud til at du har slået cookies fra i din browser. Tjek dine browserindstillinger og prøv igen."

@@ -21,7 +21,6 @@ use SimpleSAML\SAML2\XML\mdui\{DiscoHints, UIInfo};
 use SimpleSAML\SAML2\XML\saml\{Attribute, AttributeValue};
 use SimpleSAML\SAML2\XML\shibmd\Scope;
 use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\Utils as XMLUtils;
 use SimpleSAML\XMLSecurity\XML\ds\{KeyInfo, KeyName, X509Certificate, X509Data};
 
 use function array_key_exists;

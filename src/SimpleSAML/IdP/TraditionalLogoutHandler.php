@@ -6,7 +6,6 @@ namespace SimpleSAML\IdP;
 
 use Exception;
 use SimpleSAML\{Auth, Configuration, Error, IdP, Logger, Utils};
-use SimpleSAML\Assert\Assert;
 use Symfony\Component\HttpFoundation\Response;
 
 use function call_user_func;

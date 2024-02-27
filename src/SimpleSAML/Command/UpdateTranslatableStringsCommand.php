@@ -4,24 +4,21 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Command;
 
-use Exception;
-use Gettext\Scanner\PhpScanner;
 use Gettext\Generator\PoGenerator;
 use Gettext\Loader\PoLoader;
 use Gettext\Merge;
+use Gettext\Scanner\PhpScanner;
 use Gettext\Translation;
 use Gettext\Translations;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module;
 use SimpleSAML\TestUtils\ArrayLogger;
 use SimpleSAML\Utils;
-use SimpleSAML\XHTML\Template;
-use Symfony\Component\Finder\Finder;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Twig\Environment;
+use Symfony\Component\Finder\Finder;
 
 use function array_diff;
 use function array_fill_keys;
@@ -67,6 +64,26 @@ class UpdateTranslatableStringsCommand extends Command
         );
     }
 
+    /**
+     * Clone the entries from $iterator into the passed Translations object.
+     * It is expected that $iterator was made by getIterator() on Translations.
+     * This can be useful as the entries are cloned in the iterator order.
+     *
+     * @param Gettext\Translations $ret
+     * @param iterable $iterator
+     * @return $ret
+     */
+    protected function cloneIteratorToTranslations(Translations $ret, iterable $iterator): Translations
+    {
+        while ($iterator->valid()) {
+            $ret->addOrMerge(
+                $iterator->current(),
+                Merge::TRANSLATIONS_THEIRS | Merge::COMMENTS_OURS | Merge::HEADERS_OURS | Merge::REFERENCES_OURS,
+            );
+            $iterator->next();
+        }
+        return $ret;
+    }
 
     /**
      * @param \Symfony\Component\Console\Input\InputInterface $input
@@ -160,6 +177,16 @@ class UpdateTranslatableStringsCommand extends Command
                     $merged = $template->mergeWith(
                         $current,
                         Merge::TRANSLATIONS_THEIRS | Merge::COMMENTS_OURS | Merge::HEADERS_OURS | Merge::REFERENCES_OURS,
+                    );
+
+                    //
+                    // Sort the translations in a predictable way
+                    //
+                    $iter = $merged->getIterator();
+                    $iter->ksort();
+                    $merged = $this->cloneIteratorToTranslations(
+                        Translations::create($merged->getDomain(), $merged->getLanguage()),
+                        $iter,
                     );
 
                     $poGenerator->generateFile($merged, $poFile->getPathName());

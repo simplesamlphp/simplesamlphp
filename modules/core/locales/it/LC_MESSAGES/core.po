@@ -1,37 +1,6 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: core\n"
-
-msgid "Welcome"
-msgstr "Benvenuto"
-
-msgid "Missing cookie"
-msgstr "Cookie mancante"
-
-msgid "Retry"
-msgstr "Riprovare"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Sembra che i cookie siano disabilitati nel browser. Si prega di verificare e quindi riprovare."
-
-msgid "Retry login"
-msgstr "Riprovare a connettersi"
-
-msgid "Too short interval between single sign on events."
-msgstr "L'intervallo tra le autenticazioni è troppo breve."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "E' stato rilevato che sono passati solo alcuni secondi dalla tua ultima autenticazione con questo fornitore di servizio, quindi si può assumere che ci sia un problema con il Service Provider."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Se sei uno sviluppatore che sta sviluppando una soluzione di single sign-on, hai un problema con la configurazione dei metadati. Verifica che siano correttamente configurati sia sull'identity provider che sul service provider."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Se sei un utente che ha ricevuto questo errore dopo aver cliccato un link su un sito, dovresti riportare questo errore al gestore di quel sito."
-
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Questo è probabilmente un problema di configurazione del service provider o dell'identity provider."
 
 msgid "Close the web browser, and try again."
 msgstr "Chiudere il browser web e quindi provare di nuovo."
@@ -42,26 +11,35 @@ msgstr "I cookies potrebbe essere disabilitati."
 msgid "Go back to the previous page and try again."
 msgstr "Tornare alla pagina precedente e provare di nuovo."
 
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Il browser web è stato aperto e le finestre (tab) sono state ripristinate dalla sessione precedente."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Suggerimenti per risolvere questo problema:"
-
-msgid "This error may be caused by:"
-msgstr "Questo errore potrebbe essere causato da:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Utilizzo i pulsanti avanti ed indietro del browser web."
-
-msgid "If this problem persists, you can report it to the system administrators."
-msgstr "Se questo problema persiste, è possibile segnalarlo agli amministratori di sistema."
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "Metadati dell'Identity Provider Shibboleth 1.3 Locale (generati automaticamente)"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "Metadati del Service Provider Shibboleth 1.3 Locale (generati automaticamente)"
 
-msgid "We were unable to locate the state information for the current request."
-msgstr "Non è stato possibile localizzare le informazioni di stato per la richiesta corrente."
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "Se questo problema persiste, è possibile segnalarlo agli amministratori di sistema."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Se sei uno sviluppatore che sta sviluppando una soluzione di single sign-on, hai un problema con la configurazione dei metadati. Verifica che siano correttamente configurati sia sull'identity provider che sul service provider."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Se sei un utente che ha ricevuto questo errore dopo aver cliccato un link su un sito, dovresti riportare questo errore al gestore di quel sito."
+
+msgid "Missing cookie"
+msgstr "Cookie mancante"
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Il browser web è stato aperto e le finestre (tab) sono state ripristinate dalla sessione precedente."
+
+msgid "Report this error"
+msgstr "Riportare questo errore."
+
+msgid "Retry"
+msgstr "Riprovare"
+
+msgid "Retry login"
+msgstr "Riprovare a connettersi"
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Esempio di Shibboleth 1.3 SP - prova l'autenticazione tramite il tuo IdP Shibboleth"
@@ -69,8 +47,29 @@ msgstr "Esempio di Shibboleth 1.3 SP - prova l'autenticazione tramite il tuo IdP
 msgid "State information lost"
 msgstr "Informazioni di stato perse"
 
-msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
-msgstr "Metadati dell'Identity Provider Shibboleth 1.3 Locale (generati automaticamente)"
+msgid "Suggestions for resolving this problem:"
+msgstr "Suggerimenti per risolvere questo problema:"
 
-msgid "Report this error"
-msgstr "Riportare questo errore."
+msgid "This error may be caused by:"
+msgstr "Questo errore potrebbe essere causato da:"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Questo è probabilmente un problema di configurazione del service provider o dell'identity provider."
+
+msgid "Too short interval between single sign on events."
+msgstr "L'intervallo tra le autenticazioni è troppo breve."
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Utilizzo i pulsanti avanti ed indietro del browser web."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "E' stato rilevato che sono passati solo alcuni secondi dalla tua ultima autenticazione con questo fornitore di servizio, quindi si può assumere che ci sia un problema con il Service Provider."
+
+msgid "We were unable to locate the state information for the current request."
+msgstr "Non è stato possibile localizzare le informazioni di stato per la richiesta corrente."
+
+msgid "Welcome"
+msgstr "Benvenuto"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Sembra che i cookie siano disabilitati nel browser. Si prega di verificare e quindi riprovare."

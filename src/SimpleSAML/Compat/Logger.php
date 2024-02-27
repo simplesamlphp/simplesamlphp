@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Compat;
 
 use Psr\Log\{InvalidArgumentException, LoggerInterface, LogLevel};
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger as SspLogger;
 use Stringable;
 

@@ -11,7 +11,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Locale;
 
 use SimpleSAML\{Configuration, Logger, Utils};
-use SimpleSAML\Assert\Assert;
 
 use function array_fill_keys;
 use function array_key_exists;

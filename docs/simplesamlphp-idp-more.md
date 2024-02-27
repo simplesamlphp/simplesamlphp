@@ -35,11 +35,11 @@ If you do not want to start the SSO flow at the SP, you may use the IdP-first se
 
 Here is an example of such a URL:
 
-`https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice`
+`https://idp.example.org/simplesaml/module.php/saml/idp/singleSignOnService?spentityid=urn:mace:feide.no:someservice`
 
 You can also add a `RelayState` parameter to the IdP-first URL:
 
-`https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice&RelayState=https://sp.example.org/somepage`
+`https://idp.example.org/simplesaml/module.php/saml/idp/singleSignOnService?spentityid=urn:mace:feide.no:someservice&RelayState=https://sp.example.org/somepage`
 
 The `RelayState` parameter is often used to carry the URL the SP should redirect to after authentication. It is also possible to specify the Assertion
 Consumer URL with the `ConsumerURL` parameter.

@@ -12,7 +12,6 @@ namespace SimpleSAML\Locale;
 
 use Gettext\{Translator, TranslatorFunctions};
 use SimpleSAML\{Configuration, Logger, Module};
-use SimpleSAML\Assert\Assert;
 
 use function array_slice;
 use function func_get_args;

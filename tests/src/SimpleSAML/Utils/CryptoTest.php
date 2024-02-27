@@ -7,7 +7,6 @@ namespace SimpleSAML\Test\Utils;
 use InvalidArgumentException;
 use org\bovigo\vfs\{vfsStream, vfsStreamDirectory};
 use PHPUnit\Framework\TestCase;
-use ReflectionMethod;
 use SimpleSAML\{Configuration, Error, Utils};
 
 use function extension_loaded;

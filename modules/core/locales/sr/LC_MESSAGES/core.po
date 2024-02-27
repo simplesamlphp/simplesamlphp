@@ -1,37 +1,6 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: core\n"
-
-msgid "Welcome"
-msgstr "Dobrodošli"
-
-msgid "Missing cookie"
-msgstr "Nedostaje kolačić (cookie)"
-
-msgid "Retry"
-msgstr "Pokušaj ponovo"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Izgleda da ste onemogućili kolačiće (cookies) u vašem web pretraživaču. Molimo proverite podešavanja vašeg web pretraživača i pokušajte ponovo."
-
-msgid "Retry login"
-msgstr "Pokušaj se prijaviti ponovo"
-
-msgid "Too short interval between single sign on events."
-msgstr "Prekratak interval između uzastopnih SSO prijava."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Prošlo tek nekoliko sekundi otkad ste se zadnji put autentifikovali za pristup ovoj aplikaciji te stoga pretpostavljamo da se javio problem kod davaoca servisa."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Postoji greška sa podešavanjima metapodataka. Ukoliko ste administrator sistema, proverite da li metapodaci ispravno uneseni na strani davaoca servisa i davaoca identiteta."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Ukoliko se ova greška pojavila nakon što ste sledili link na nekoj web stranici, onda biste grešku trebali prijaviti vlasniku navedene stranice."
-
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Najverojatnije je problem u podešavanjima davaoca servisa ili davaoca identiteta."
 
 msgid "Close the web browser, and try again."
 msgstr "Zatvorite web pretraživač i pokušajte ponovo."
@@ -42,26 +11,35 @@ msgstr "Moguće da je podrška za kolačiće (\"cookies\") isključena u web pre
 msgid "Go back to the previous page and try again."
 msgstr "Vratite se na prethodnu stranicu i pokušajte ponovo."
 
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Otvaranjem web pretraživača sa stranicama sačuvanim iz prethodne sesije."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Preporuke za rešavanje ovog problema:"
-
-msgid "This error may be caused by:"
-msgstr "Ova greška može biti uzrokovana:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Korišćenjem tastera za prethodnu (back) i sledeću (forward) stranicu u web pretraživaču."
-
-msgid "If this problem persists, you can report it to the system administrators."
-msgstr "Ako se ova greška bude i dalje pojavljivala, možete je prijaviti administratorima."
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "Metapodaci za lokalni Shibboleth 1.3 Davalac Identiteta (automatski generisani)"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "Metapodaci za lokalni Shibboleth 1.3 Davalac Servisa (automatski generisani)"
 
-msgid "We were unable to locate the state information for the current request."
-msgstr "Ne možemo pronaći informacije o stanju aktuelnog zahteva."
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "Ako se ova greška bude i dalje pojavljivala, možete je prijaviti administratorima."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Postoji greška sa podešavanjima metapodataka. Ukoliko ste administrator sistema, proverite da li metapodaci ispravno uneseni na strani davaoca servisa i davaoca identiteta."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Ukoliko se ova greška pojavila nakon što ste sledili link na nekoj web stranici, onda biste grešku trebali prijaviti vlasniku navedene stranice."
+
+msgid "Missing cookie"
+msgstr "Nedostaje kolačić (cookie)"
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Otvaranjem web pretraživača sa stranicama sačuvanim iz prethodne sesije."
+
+msgid "Report this error"
+msgstr "Prijavite ovu grešku"
+
+msgid "Retry"
+msgstr "Pokušaj ponovo"
+
+msgid "Retry login"
+msgstr "Pokušaj se prijaviti ponovo"
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Shibboleth 1.3 SP primer - testirajte autentifikaciju kroz vaš Shib Davalac Servisa"
@@ -69,8 +47,29 @@ msgstr "Shibboleth 1.3 SP primer - testirajte autentifikaciju kroz vaš Shib Dav
 msgid "State information lost"
 msgstr "Informacije o stanju su izgubljene"
 
-msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
-msgstr "Metapodaci za lokalni Shibboleth 1.3 Davalac Identiteta (automatski generisani)"
+msgid "Suggestions for resolving this problem:"
+msgstr "Preporuke za rešavanje ovog problema:"
 
-msgid "Report this error"
-msgstr "Prijavite ovu grešku"
+msgid "This error may be caused by:"
+msgstr "Ova greška može biti uzrokovana:"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Najverojatnije je problem u podešavanjima davaoca servisa ili davaoca identiteta."
+
+msgid "Too short interval between single sign on events."
+msgstr "Prekratak interval između uzastopnih SSO prijava."
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Korišćenjem tastera za prethodnu (back) i sledeću (forward) stranicu u web pretraživaču."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Prošlo tek nekoliko sekundi otkad ste se zadnji put autentifikovali za pristup ovoj aplikaciji te stoga pretpostavljamo da se javio problem kod davaoca servisa."
+
+msgid "We were unable to locate the state information for the current request."
+msgstr "Ne možemo pronaći informacije o stanju aktuelnog zahteva."
+
+msgid "Welcome"
+msgstr "Dobrodošli"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Izgleda da ste onemogućili kolačiće (cookies) u vašem web pretraživaču. Molimo proverite podešavanja vašeg web pretraživača i pokušajte ponovo."

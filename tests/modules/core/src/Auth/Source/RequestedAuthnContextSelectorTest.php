@@ -315,7 +315,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
     /**
      * @return array
      */
-    public function provideRequestedAuthnContext(): array
+    public static function provideRequestedAuthnContext(): array
     {
         return [
             // Normal use-case - No RequestedAuthnContext provided

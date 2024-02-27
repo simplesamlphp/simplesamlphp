@@ -16,6 +16,7 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use SimpleSAML\Store\StoreFactory;
+use SimpleSAML\Utils;
 
 abstract class SessionHandler
 {
@@ -157,12 +158,13 @@ abstract class SessionHandler
     public function getCookieParams(): array
     {
         $config = Configuration::getInstance();
+        $httpUtils = new Utils\HTTP();
 
         return [
             'lifetime' => $config->getOptionalInteger('session.cookie.lifetime', 0),
             'path'     => $config->getOptionalString('session.cookie.path', '/'),
             'domain'   => $config->getOptionalString('session.cookie.domain', null),
-            'secure'   => $config->getOptionalBoolean('session.cookie.secure', false),
+            'secure'   => $config->getOptionalBoolean('session.cookie.secure', $httpUtils->isHTTPS()),
             'samesite' => $config->getOptionalString('session.cookie.samesite', null),
             'httponly' => true,
         ];

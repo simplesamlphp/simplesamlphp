@@ -1,37 +1,6 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: core\n"
-
-msgid "Welcome"
-msgstr "Sveiki atvykę"
-
-msgid "Missing cookie"
-msgstr "Slapukas nerastas"
-
-msgid "Retry"
-msgstr "Bandyti dar kartą"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Atrodo Jūsų naršyklė nepalaiko slapukų. Patikrinkite naršyklės nustatymus ir bandykite dar kartą."
-
-msgid "Retry login"
-msgstr "Prisijunkite iš naujo"
-
-msgid "Too short interval between single sign on events."
-msgstr "Per trumpas intervalas tarp prisijungimų prie paslaugų."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Mes nustatėme, kad praėjo tik kelios sekundės nuo Jūsų autentiškumo patvirtimo šiam paslaugos teikėjui, dėl to manome, kad yra nesklandumų su SP."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Jei Jūs esate kūrėjas, kuris diegiate SSO sprendimą, Jums iškilo problema susijusi su metaduomenų konfigūracija. Patikrinkite, ar metaduomenys teisingai sukonfigūruoti tiek tapatybių teikėjo, tiek paslaugos teikėjo pusėse."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Jei Jūs esate naudotojas, kuris gavote šią klaidą spragtelėjęs nuorodą tinklapyje, Jūs turėtumėte informuoti tinklapio administratorių apie šią klaidą."
-
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Tai greičiausiai konfigūracijos problema paslaugos teikėjo arba tapatybių teikėjo pusėje."
 
 msgid "Close the web browser, and try again."
 msgstr "Uždarykite interneto naršyklę ir pabandykite dar kartą."
@@ -42,26 +11,35 @@ msgstr "Interneto naršyklėje gali būti išjungti slapukai (cookies)."
 msgid "Go back to the previous page and try again."
 msgstr "Grįžkite į ankstesnį puslapį ir pabandykite dar kartą."
 
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Atidaryta interneto naršyklė su kortelėmis, išsaugotomis iš ankstesnės sesijos."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Pasiūlymai spręsti šią problemą:"
-
-msgid "This error may be caused by:"
-msgstr "Šią klaidą galėjo sukelti:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Back (Atgal) ir Forward (Pirmyn) mygtukų naudojimas interneto naršyklėje"
-
-msgid "If this problem persists, you can report it to the system administrators."
-msgstr "Jei ši problema išliks, galite pranešti apie tai sistemos administratoriui."
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "Vietinio Shibboleth 1.3 tapatybės teikėjo (IdP) metaduomenys (sugeneruoti automatiškai)"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "Vietinio Shibboleth 1.3 paslaugos teikėjo (SP) metaduomenys (sugeneruoti automatiškai)"
 
-msgid "We were unable to locate the state information for the current request."
-msgstr "Nepavyko nustatyti būsenos informacijos šiai užklausai."
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "Jei ši problema išliks, galite pranešti apie tai sistemos administratoriui."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Jei Jūs esate kūrėjas, kuris diegiate SSO sprendimą, Jums iškilo problema susijusi su metaduomenų konfigūracija. Patikrinkite, ar metaduomenys teisingai sukonfigūruoti tiek tapatybių teikėjo, tiek paslaugos teikėjo pusėse."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Jei Jūs esate naudotojas, kuris gavote šią klaidą spragtelėjęs nuorodą tinklapyje, Jūs turėtumėte informuoti tinklapio administratorių apie šią klaidą."
+
+msgid "Missing cookie"
+msgstr "Slapukas nerastas"
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Atidaryta interneto naršyklė su kortelėmis, išsaugotomis iš ankstesnės sesijos."
+
+msgid "Report this error"
+msgstr "Pranešti apie šią klaidą"
+
+msgid "Retry"
+msgstr "Bandyti dar kartą"
+
+msgid "Retry login"
+msgstr "Prisijunkite iš naujo"
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Shibboleth 1.3 SP pavyzdys - istorinių duomenų testavimas kartu su Jūsų Shib IdP"
@@ -69,8 +47,29 @@ msgstr "Shibboleth 1.3 SP pavyzdys - istorinių duomenų testavimas kartu su Jū
 msgid "State information lost"
 msgstr "Būsenos informacia prarasta"
 
-msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
-msgstr "Vietinio Shibboleth 1.3 tapatybės teikėjo (IdP) metaduomenys (sugeneruoti automatiškai)"
+msgid "Suggestions for resolving this problem:"
+msgstr "Pasiūlymai spręsti šią problemą:"
 
-msgid "Report this error"
-msgstr "Pranešti apie šią klaidą"
+msgid "This error may be caused by:"
+msgstr "Šią klaidą galėjo sukelti:"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Tai greičiausiai konfigūracijos problema paslaugos teikėjo arba tapatybių teikėjo pusėje."
+
+msgid "Too short interval between single sign on events."
+msgstr "Per trumpas intervalas tarp prisijungimų prie paslaugų."
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Back (Atgal) ir Forward (Pirmyn) mygtukų naudojimas interneto naršyklėje"
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Mes nustatėme, kad praėjo tik kelios sekundės nuo Jūsų autentiškumo patvirtimo šiam paslaugos teikėjui, dėl to manome, kad yra nesklandumų su SP."
+
+msgid "We were unable to locate the state information for the current request."
+msgstr "Nepavyko nustatyti būsenos informacijos šiai užklausai."
+
+msgid "Welcome"
+msgstr "Sveiki atvykę"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Atrodo Jūsų naršyklė nepalaiko slapukų. Patikrinkite naršyklės nustatymus ir bandykite dar kartą."

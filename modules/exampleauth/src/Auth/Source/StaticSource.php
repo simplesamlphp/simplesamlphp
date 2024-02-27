@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
 use Exception;
 use SimpleSAML\{Auth, Utils};
-use SimpleSAML\Assert\Assert;
 use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**

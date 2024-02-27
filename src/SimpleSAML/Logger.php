@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use Exception;
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger\ErrorLogLoggingHandler;
 use SimpleSAML\Logger\FileLoggingHandler;
 use SimpleSAML\Logger\LoggingHandlerInterface;

@@ -6,11 +6,8 @@ namespace SimpleSAML\Utils;
 
 use Exception;
 use InvalidArgumentException;
-use OPENSSL_RAW_DATA;
-use PASSWORD_DEFAULT;
 use PDO;
 use SimpleSAML\{Configuration, Database, Error, Logger};
-use SimpleSAML\Assert\Assert;
 
 use function base64_decode;
 use function base64_encode;

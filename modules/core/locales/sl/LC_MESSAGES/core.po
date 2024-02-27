@@ -1,37 +1,6 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: core\n"
-
-msgid "Welcome"
-msgstr "Dobrodošli"
-
-msgid "Missing cookie"
-msgstr "Piškotek (\"cookie\") ne obstaja!"
-
-msgid "Retry"
-msgstr "Poskusi ponovno"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Vaš spletni brskalnik ima onemogočene piškotke (\"cookies\"). Omogočite to nastavitev in poskusite ponovno."
-
-msgid "Retry login"
-msgstr "Ponovna prijava"
-
-msgid "Too short interval between single sign on events."
-msgstr "Prekratek interval med dogodki enotne prijave."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Sistem je zaznal naslednje, od predhodnje in te prijave je poteklo le nekaj sekund, zato sklepa na težave ponudnika storitve (SP)."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Če ste razvijalec, ki razvija SSO rešitev preverite, ali so nastavitve metapodatkov ustrezne, tako na stani ponudnika identitete (IdP), kot na strani ponudnika storitve (SP)."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Če ste na to težavo naleteli po kliku povezave te spletne strani, prijavite težavo skrbniku te spletne strani."
-
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Najverjetneje gre za težavo z nastavitvami bodisi ponudnika storitve (SP) bodisi ponudnika identitet (IdP)."
 
 msgid "Close the web browser, and try again."
 msgstr "Zaprite spletni brskalnik in poskusite znova."
@@ -42,26 +11,35 @@ msgstr "Spletni brskalnik ima izklopjeno podporo za piškotke."
 msgid "Go back to the previous page and try again."
 msgstr "Pojdite nazaj na prejšnjo stran in poskusite znova."
 
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Spletni brskalnik je odprl spletno stan s (poteklimi) podatki iz prejšnje seje."
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Predloga za razrešitev nastale težave:"
-
-msgid "This error may be caused by:"
-msgstr "Vzrok za to napako je lahko:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "Uporaba gumbov \"nazaj\" ali \"naprej\" v spletnem brskalniku."
-
-msgid "If this problem persists, you can report it to the system administrators."
-msgstr "Če se ta napaka ponavlja, jo lahko prijavite za skrbniku sistema."
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "Metapodatki za Shibboleth 1.3 IdP (samodejno generirani)"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "Metapodatki za Shibboleth 1.3 SP (samodejno generirani)"
 
-msgid "We were unable to locate the state information for the current request."
-msgstr "Informacije o stanju trenutne zahteve ni bilo moč najti."
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "Če se ta napaka ponavlja, jo lahko prijavite za skrbniku sistema."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Če ste razvijalec, ki razvija SSO rešitev preverite, ali so nastavitve metapodatkov ustrezne, tako na stani ponudnika identitete (IdP), kot na strani ponudnika storitve (SP)."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Če ste na to težavo naleteli po kliku povezave te spletne strani, prijavite težavo skrbniku te spletne strani."
+
+msgid "Missing cookie"
+msgstr "Piškotek (\"cookie\") ne obstaja!"
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Spletni brskalnik je odprl spletno stan s (poteklimi) podatki iz prejšnje seje."
+
+msgid "Report this error"
+msgstr "Prijavite to napako"
+
+msgid "Retry"
+msgstr "Poskusi ponovno"
+
+msgid "Retry login"
+msgstr "Ponovna prijava"
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Shibboleth 1.3 SP primer - preveri prijavo preko svojega Shib IdP"
@@ -69,8 +47,29 @@ msgstr "Shibboleth 1.3 SP primer - preveri prijavo preko svojega Shib IdP"
 msgid "State information lost"
 msgstr "Informacije o stanju zahtevka niso na voljo."
 
-msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
-msgstr "Metapodatki za Shibboleth 1.3 IdP (samodejno generirani)"
+msgid "Suggestions for resolving this problem:"
+msgstr "Predloga za razrešitev nastale težave:"
 
-msgid "Report this error"
-msgstr "Prijavite to napako"
+msgid "This error may be caused by:"
+msgstr "Vzrok za to napako je lahko:"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Najverjetneje gre za težavo z nastavitvami bodisi ponudnika storitve (SP) bodisi ponudnika identitet (IdP)."
+
+msgid "Too short interval between single sign on events."
+msgstr "Prekratek interval med dogodki enotne prijave."
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Uporaba gumbov \"nazaj\" ali \"naprej\" v spletnem brskalniku."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Sistem je zaznal naslednje, od predhodnje in te prijave je poteklo le nekaj sekund, zato sklepa na težave ponudnika storitve (SP)."
+
+msgid "We were unable to locate the state information for the current request."
+msgstr "Informacije o stanju trenutne zahteve ni bilo moč najti."
+
+msgid "Welcome"
+msgstr "Dobrodošli"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Vaš spletni brskalnik ima onemogočene piškotke (\"cookies\"). Omogočite to nastavitev in poskusite ponovno."

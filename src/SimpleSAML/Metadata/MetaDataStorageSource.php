@@ -6,7 +6,6 @@ namespace SimpleSAML\Metadata;
 
 use Exception;
 use SimpleSAML\{Configuration, Error, Module, Utils};
-use SimpleSAML\Assert\Assert;
 use Symfony\Component\Filesystem\Filesystem;
 
 use function array_flip;

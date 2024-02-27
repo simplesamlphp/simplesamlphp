@@ -1,37 +1,6 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: core\n"
-
-msgid "Welcome"
-msgstr "Tere tulemast"
-
-msgid "Missing cookie"
-msgstr "Küpsis puudub"
-
-msgid "Retry"
-msgstr "Proovi uuesti"
-
-msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
-msgstr "Paistab, et sinu brauseris on küpsised keelatud. Palun kontrolli brauseri seadistusi ja proovi seejärel uuesti."
-
-msgid "Retry login"
-msgstr "Proovi uuesti logida"
-
-msgid "Too short interval between single sign on events."
-msgstr "Liiga lühike intervall ühekordse sisselogimise sündmuste vahel."
-
-msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Tuvastasime, et sinu viimasest autentimisest selle teenusepakkujaga on möödunud ainult mõned sekundid ja seepärast arvame, et sellega teenusepakkujaga on probleeme."
-
-msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Kui sa oled arendaja, kes juurutab ühekordse sisselogimise lahendust, siis on probleemi põhjuseks metaandmete seadistused. Kontrolli, et metaandmed oleks seadistatud korrektselt nii identiteedipakkuja kui teenusepakkuja poolel."
-
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Kui sa oled kasutaja, kes sai selle veateate veebilehel linki klõpsates, siis peaksid sellest tõrkest veebilehe omanikku teavitama."
-
-msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Tõenäoliselt on tegemist probleemiga kas teenusepakkuja või identiteedipakkuja seadistustes."
 
 msgid "Close the web browser, and try again."
 msgstr "Sulge brauser ja proovi uuesti."
@@ -42,26 +11,35 @@ msgstr "küpsiste keelamisest brauseris"
 msgid "Go back to the previous page and try again."
 msgstr "Mine tagasi eelmisele leheküljele ja proovi uuesti."
 
-msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "brauseri avamisest eelmisel kasutuskorral salvestatud kaartidega"
-
-msgid "Suggestions for resolving this problem:"
-msgstr "Nõuanded selle probleemi lahendamiseks:"
-
-msgid "This error may be caused by:"
-msgstr "See tõrge võib olla põhjustatud:"
-
-msgid "Using the back and forward buttons in the web browser."
-msgstr "brauseri edasi-tagasi nuppude kasutamisest"
-
-msgid "If this problem persists, you can report it to the system administrators."
-msgstr "Kui probleem ei kao, siis teavita sellest süsteemi administraatoreid."
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "Hostitud Shibboleth 2.0 identiteedipakkuja metaandmed (automaatselt genereeritud) "
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
 msgstr "Hostitud Shibboleth 1.3 identiteedipakkuja metaandmed (automaatselt genereeritud) "
 
-msgid "We were unable to locate the state information for the current request."
-msgstr "Aktiivse päringu olekuinfo leidmine ei õnnestunud."
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "Kui probleem ei kao, siis teavita sellest süsteemi administraatoreid."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Kui sa oled arendaja, kes juurutab ühekordse sisselogimise lahendust, siis on probleemi põhjuseks metaandmete seadistused. Kontrolli, et metaandmed oleks seadistatud korrektselt nii identiteedipakkuja kui teenusepakkuja poolel."
+
+msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Kui sa oled kasutaja, kes sai selle veateate veebilehel linki klõpsates, siis peaksid sellest tõrkest veebilehe omanikku teavitama."
+
+msgid "Missing cookie"
+msgstr "Küpsis puudub"
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "brauseri avamisest eelmisel kasutuskorral salvestatud kaartidega"
+
+msgid "Report this error"
+msgstr "Teavita sellest tõrkest"
+
+msgid "Retry"
+msgstr "Proovi uuesti"
+
+msgid "Retry login"
+msgstr "Proovi uuesti logida"
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Shibboleth 1.3 SP näide - sisselogimine sinu Shib IdP kaudu"
@@ -69,8 +47,29 @@ msgstr "Shibboleth 1.3 SP näide - sisselogimine sinu Shib IdP kaudu"
 msgid "State information lost"
 msgstr "Olekuinfo on kadunud"
 
-msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
-msgstr "Hostitud Shibboleth 2.0 identiteedipakkuja metaandmed (automaatselt genereeritud) "
+msgid "Suggestions for resolving this problem:"
+msgstr "Nõuanded selle probleemi lahendamiseks:"
 
-msgid "Report this error"
-msgstr "Teavita sellest tõrkest"
+msgid "This error may be caused by:"
+msgstr "See tõrge võib olla põhjustatud:"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Tõenäoliselt on tegemist probleemiga kas teenusepakkuja või identiteedipakkuja seadistustes."
+
+msgid "Too short interval between single sign on events."
+msgstr "Liiga lühike intervall ühekordse sisselogimise sündmuste vahel."
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "brauseri edasi-tagasi nuppude kasutamisest"
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Tuvastasime, et sinu viimasest autentimisest selle teenusepakkujaga on möödunud ainult mõned sekundid ja seepärast arvame, et sellega teenusepakkujaga on probleeme."
+
+msgid "We were unable to locate the state information for the current request."
+msgstr "Aktiivse päringu olekuinfo leidmine ei õnnestunud."
+
+msgid "Welcome"
+msgstr "Tere tulemast"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Paistab, et sinu brauseris on küpsised keelatud. Palun kontrolli brauseri seadistusi ja proovi seejärel uuesti."

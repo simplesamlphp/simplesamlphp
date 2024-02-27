@@ -1,7 +1,12 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: cron\n"
+
+msgid "Click here to run the cron jobs:"
+msgstr "Kattintson a cron futtatásához."
+
+msgid "Cron is a way to run things regularly on unix systems."
+msgstr "A cron egy módszer unix rendszereken parancsok rendszeres futtatására."
 
 msgid "Cron ran at"
 msgstr "A cron ekkor futott le:"
@@ -14,12 +19,6 @@ msgstr "Cron futási eredmények"
 
 msgid "Here are the result for the cron job execution:"
 msgstr "A cron lefutásának eredményei:"
-
-msgid "Click here to run the cron jobs:"
-msgstr "Kattintson a cron futtatásához."
-
-msgid "Cron is a way to run things regularly on unix systems."
-msgstr "A cron egy módszer unix rendszereken parancsok rendszeres futtatására."
 
 msgid "Here is a suggestion for a crontab file:"
 msgstr "Javaslat crontab file-ra."

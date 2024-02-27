@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
 use Exception;
 use SimpleSAML\{Error, Utils};
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Module\core\Auth\UserPassBase;
 
 use function array_key_exists;

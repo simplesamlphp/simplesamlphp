@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Error;
 
 use PHPUnit\Framework\MockObject\MockObject;
-use SimpleSAML\Error\Error;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Error\Error;
 use SimpleSAML\Error\ErrorCodes;
 use Throwable;
 

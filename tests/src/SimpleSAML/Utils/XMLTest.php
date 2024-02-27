@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Utils;
 
-use DOMComment;
 use DOMDocument;
 use DOMElement;
 use DOMException;

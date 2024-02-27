@@ -12,7 +12,6 @@ use function error_get_last;
 use function explode;
 use function file_put_contents;
 use function function_exists;
-use function get_current_user;
 use function is_array;
 use function is_dir;
 use function is_writable;
@@ -22,7 +21,6 @@ use function ord;
 use function preg_match;
 use function rename;
 use function rtrim;
-use function sprintf;
 use function str_replace;
 use function stristr;
 use function strpos;
@@ -211,7 +209,7 @@ class System
      */
     public function writeFile(string $filename, string $data, int $mode = 0600): void
     {
-        $tmpFile = $this->getTempDir() . DIRECTORY_SEPARATOR . rand();
+        $tmpFile = $filename . '.' . bin2hex(random_bytes(4));
 
         $res = @file_put_contents($tmpFile, $data);
         if ($res === false) {

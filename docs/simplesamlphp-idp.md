@@ -220,14 +220,14 @@ If you do not want to start the SSO flow at the SP, you may use the IdP-first se
 
 Here is an example of such a URL:
 
-`https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=sp.example.org`
+`https://idp.example.org/simplesaml/module.php/saml/idp/singleSignOnService?spentityid=sp.example.org`
 
 If the SP is a SimpleSAMLphp SP, you must also specify a `RelayState` parameter for the SP.
 This must be set to a URL the user should be redirected to after authentication.
 The `RelayState` parameter can be specified in the [SP configuration](./saml:sp), or it can be sent from the IdP.
 To send the RelayState parameter from a SimpleSAMLphp IdP, specify it in the query string to SSOService.php:
 
-`https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=sp.example.org&RelayState=https://sp.example.org/welcome.php`
+`https://idp.example.org/simplesaml/module.php/saml/idp/singleSignOnService?spentityid=sp.example.org&RelayState=https://sp.example.org/welcome.php`
 
 To set it in the SP configuration, add it to `authsources.php`:
 

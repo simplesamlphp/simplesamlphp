@@ -1,7 +1,12 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "X-Domain: cron\n"
+
+msgid "Click here to run the cron jobs:"
+msgstr "Klõpsa siia croni töö käivitamiseks:"
+
+msgid "Cron is a way to run things regularly on unix systems."
+msgstr "Cron võimaldab Unix süsteemides regulaarselt ülesandeid täita."
 
 msgid "Cron ran at"
 msgstr "Cron töötas"
@@ -14,12 +19,6 @@ msgstr "Croni tulemuste lehekülg"
 
 msgid "Here are the result for the cron job execution:"
 msgstr "Siin on croni töö täitmise tulemus:"
-
-msgid "Click here to run the cron jobs:"
-msgstr "Klõpsa siia croni töö käivitamiseks:"
-
-msgid "Cron is a way to run things regularly on unix systems."
-msgstr "Cron võimaldab Unix süsteemides regulaarselt ülesandeid täita."
 
 msgid "Here is a suggestion for a crontab file:"
 msgstr "Siin on crontab faili soovitus:"

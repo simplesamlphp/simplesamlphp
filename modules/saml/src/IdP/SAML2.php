@@ -1521,7 +1521,15 @@ class SAML2
             value: $idpMetadata->getString('entityid'),
             Format: C::NAMEID_ENTITY,
         );
-        $r = new SAML2_Response($status, new \DateTimeImmutable('now', new \DateTimeZone('Z')), $issuer, null, '2.0', null, $consumerURL);
+        $r = new SAML2_Response(
+            $status,
+            new \DateTimeImmutable('now', new \DateTimeZone('Z')),
+            $issuer,
+            null,
+            '2.0',
+            null,
+            $consumerURL,
+        );
 
         if ($signResponse) {
             Message::addSign($idpMetadata, $spMetadata, $r);

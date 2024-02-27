@@ -9,7 +9,6 @@ use RuntimeException;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ProtocolViolationException;
 use SimpleSAML\{Configuration, Logger, Utils};
-use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Module\saml\Auth\Process\PairwiseID;
 
 /**

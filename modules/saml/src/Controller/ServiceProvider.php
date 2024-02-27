@@ -601,7 +601,8 @@ class ServiceProvider
      */
     public function metadata(Request $request, string $sourceId): Response
     {
-        if ($this->config->getOptionalBoolean('admin.protectmetadata', false)) {
+        $protectedMetadata = $this->config->getOptionalBoolean('admin.protectmetadata', false);
+        if ($protectedMetadata) {
             $response = $this->authUtils->requireAdmin();
             if ($response instanceof Response) {
                 return $response;
@@ -643,7 +644,12 @@ class ServiceProvider
 
         $response = new Response();
         $response->setEtag(hash('sha256', $metaxml));
-        $response->setPublic();
+        $response->setCache([
+            'no_cache' => $protectedMetadata === true,
+            'public' => $protectedMetadata === false,
+            'private' => $protectedMetadata === true,
+        ]);
+
         if ($response->isNotModified($request)) {
             return $response;
         }

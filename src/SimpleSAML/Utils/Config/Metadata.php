@@ -6,7 +6,6 @@ namespace SimpleSAML\Utils\Config;
 
 use SimpleSAML\{Configuration, Logger};
 use SimpleSAML\SAML2\Constants as C;
-use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\samlp\NameIDPolicy;
 
 use function in_array;
