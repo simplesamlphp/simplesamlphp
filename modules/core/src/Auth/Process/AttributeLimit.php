@@ -129,34 +129,26 @@ class AttributeLimit extends Auth\ProcessingFilter
         assert::keyExists($state, 'Attributes');
 
         if ($this->isDefault) {
-            $allowedAttributes = self::getSPIdPAllowed($state);
-            $allowedAttributeRegex = self::getSPIdPAllowedRegex($state);
-            if (($allowedAttributes === null) && ($allowedAttributeRegex === null)) {
-                $allowedAttributes = $this->allowedAttributes !== null ? $this->allowedAttributes : [];
-                $allowedAttributeRegex = $this->allowedAttributeRegex != null ? $this->allowedAttributeRegex : [];
+            $allowedAttributes = self::getSPIdPAllowed($state) ?? [];
+            $allowedAttributeRegex = self::getSPIdPAllowedRegex($state) ?? [];
+            if (empty($allowedAttributes) && empty($allowedAttributeRegex)) {
+                $allowedAttributes = $this->allowedAttributes ?? [];
+                $allowedAttributeRegex = $this->allowedAttributeRegex ?? [];
                 if (empty($allowedAttributes) && empty($allowedAttributeRegex)) {
                     // No limit on attributes
                     return;
                 }
-            } elseif ($allowedAttributes === null) {
-                $allowedAttributes = [];
-            } elseif ($allowedAttributeRegex === null) {
-                $allowedAttributeRegex = [];
             }
 
         } elseif (!(empty($this->allowedAttributes) && empty($this->allowedAttributeRegex))) {
             $allowedAttributes = $this->allowedAttributes !== null ? $this->allowedAttributes : [];
             $allowedAttributeRegex = $this->allowedAttributeRegex != null ? $this->allowedAttributeRegex : [];
         } else {
-            $allowedAttributes = self::getSPIdPAllowed($state);
-            $allowedAttributeRegex = self::getSPIdPAllowedRegex($state);
-            if (($allowedAttributes === null) && ($allowedAttributeRegex === null)) {
+            $allowedAttributes = self::getSPIdPAllowed($state) ?? [];
+            $allowedAttributeRegex = self::getSPIdPAllowedRegex($state) ?? [];
+            if (empty($allowedAttributes) && empty($allowedAttributeRegex)) {
                 // No limit on attributes
                 return;
-            } elseif ($allowedAttributes === null) {
-                $allowedAttributes = [];
-            } elseif ($allowedAttributeRegex === null) {
-                $allowedAttributeRegex = [];
             }
         }
 
