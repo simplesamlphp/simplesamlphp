@@ -11,6 +11,7 @@ Released TBD
 
 * Make error codes easier to extend (#1870)
 * Updated eduPerson attributes in attribute maps (#1948)
+* Add regex support for attribute names in AttributeLimit authproc filter (#1971)
 
 ## Version 2.1.2
 

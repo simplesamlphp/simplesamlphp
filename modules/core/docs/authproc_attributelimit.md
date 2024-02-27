@@ -53,6 +53,15 @@ Only allow specific values for an attribute ignoring case.
         ],
     ],
 
+Only allow attributes that match a regex pattern
+
+    'authproc' => [
+        50 => [
+            'class' => 'core:AttributeLimit',
+            '/^eduPerson' => [ 'nameIsRegex' => true ]
+        ],
+    ],
+
 Only allow specific values for an attribute that match a regex pattern
 
     'authproc' => [
@@ -82,13 +91,14 @@ like this:
         50 => 'core:AttributeLimit',
     ],
 
-Then, add the allowed attributes to each service provider metadata, in the `attributes` option:
+Then, add the allowed attributes to each service provider metadata, in the `attributes` option (for exact matches) or `attributesRegex` (for regular expression matches):
 
     $metadata['https://saml2sp.example.org'] = [
         'AssertionConsumerService' => 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
         'SingleLogoutService' => 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',
         ...
-        'attributes' => ['cn', 'mail'],
+        'attributes' => ['cn', ... ],
+        'attributesRegex' => [ '/^mail$/', ... ],
         ...
     ];
 

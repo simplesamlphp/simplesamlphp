@@ -154,7 +154,12 @@ class AttributeLimitTest extends TestCase
                  'mail' => ['user@example.org'],
             ],
             'Destination' => [
-                'attributes' => ['cn', 'mail'],
+                'attributes' => [
+                    'cn',
+                ],
+                'attributesRegex' => [
+                    '/^mail$/',
+                ]
             ],
             'Source' => [
             ],
@@ -242,6 +247,78 @@ class AttributeLimitTest extends TestCase
         ];
 
         self::processFilter($config, self::$request);
+    }
+
+
+    /**
+     * Test for attribute matching using regular expresssion support
+     */
+    public function testMatchAttributeRegex(): void
+    {
+        $config = [
+            '/^eduPersonTargetedID$/' => ['nameIsRegex' => true]
+        ];
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey('eduPersonTargetedID', $attributes);
+        $this->assertCount(1, $attributes);
+
+        $config = [
+            '/^eduPerson/' => ['nameIsRegex' => true]
+        ];
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey('eduPersonTargetedID', $attributes);
+        $this->assertArrayHasKey('eduPersonAffiliation', $attributes);
+        $this->assertCount(2, $attributes);
+
+        $config = [
+            '/.*nomatch.*/' => ['nameIsRegex' => true]
+        ];
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(0, $attributes);
+
+        // Test combination of plain and regexp matches
+        $config = [
+            '/^eduPersonTargetedID$/' => ['nameIsRegex' => true],
+            'cn'
+        ];
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(2, $attributes);
+
+        // Test case where both a plain and regexp match one of the attributes that
+        // they're not double counted
+        $config = [
+            '/^eduPerson/' => ['nameIsRegex' => true],
+            'cn',
+            'eduPersonTargetedID'
+        ];
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(3, $attributes);
+
+        // Both name and value regexps on the same item
+        $config = [
+            '/^eduPerson/' => [
+                'nameIsRegex' => true,
+                'regex' => true,
+                '/@example.org$/'
+            ],
+        ];
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey('eduPersonTargetedID', $attributes);
+        $this->assertCount(1, $attributes);
+
+        $config = [
+            'eduPersonTargetedID' => ['nameIsRegex' => false]
+        ];
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey('eduPersonTargetedID', $attributes);
+        $this->assertCount(1, $attributes);
     }
 
 
