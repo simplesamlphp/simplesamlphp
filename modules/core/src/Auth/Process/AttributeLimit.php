@@ -15,6 +15,7 @@ use function is_array;
 use function is_int;
 use function is_string;
 use function preg_match;
+use function sprintf;
 use function var_export;
 
 /**
@@ -59,13 +60,17 @@ class AttributeLimit extends Auth\ProcessingFilter
                 $this->isDefault = (bool) $value;
             } elseif (is_int($index)) {
                 if (!is_string($value)) {
-                    throw new Error\Exception('AttributeLimit: Invalid attribute name: ' .
-                        var_export($value, true));
+                    throw new Error\Exception(sprintf(
+                        'AttributeLimit: Invalid attribute name: %s',
+                        var_export($value, true),
+                    ));
                 }
                 $this->allowedAttributes[] = $value;
             } elseif (!is_array($value)) {
-                throw new Error\Exception('AttributeLimit: Values for ' .
-                    var_export($index, true) . ' must be specified in an array.');
+                throw new Error\Exception(sprintf(
+                    'AttributeLimit: Values for %s must be specified in an array.',
+                    var_export($index, true),
+                ));
             } elseif (array_key_exists('nameIsRegex', $value) && (true === (bool) $value['nameIsRegex'])) {
                 $this->allowedAttributeRegex[$index] = $value;
                 unset($this->allowedAttributeRegex[$index]['nameIsRegex']);
@@ -158,8 +163,10 @@ class AttributeLimit extends Auth\ProcessingFilter
                 if (array_key_exists($name, $allowedAttributes)) {
                     // but it is an index of the array
                     if (!is_array($allowedAttributes[$name])) {
-                        throw new Error\Exception('AttributeLimit: Values for ' .
-                            var_export($name, true) . ' must be specified in an array.');
+                        throw new Error\Exception(sprintf(
+                            'AttributeLimit: Values for %s must be specified in an array.',
+                            var_export($name, true),
+                        ));
                     }
 
                     $attributes[$name] = $this->filterAttributeValues($attributes[$name], $allowedAttributes[$name]);
