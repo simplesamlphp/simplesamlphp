@@ -95,6 +95,8 @@ abstract class MetaDataStorageSource
                 return new Sources\MDQ($sourceConfig);
             case 'pdo':
                 return new MetaDataStorageHandlerPdo($sourceConfig);
+            case 'directory':
+                return new MetaDataStorageHandlerDirectory($sourceConfig);
             default:
                 // metadata store from module
                 try {
