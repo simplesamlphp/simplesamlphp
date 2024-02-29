@@ -11,6 +11,7 @@ Released TBD
 
 * Fix static call for non-static method in bin/importPdoMetadata.php (#1969)
 * Validate AuthState before processing it (#1706)
+* Fix possible incompatible dependency-set (#1981)
 
 ## Version 2.1.3
 
