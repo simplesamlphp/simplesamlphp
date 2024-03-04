@@ -35,7 +35,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      *
      * @var string
      */
-    private string $file = null;
+    private ?string $file = null;
 
     /**
      * This is an associative array which stores the different metadata sets we have loaded.
