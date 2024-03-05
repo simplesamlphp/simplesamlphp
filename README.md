@@ -13,3 +13,4 @@ This is the official repository of the SimpleSAMLphp software.
 
 Please, [contribute](CONTRIBUTING.md)!
 
+nothing more.
