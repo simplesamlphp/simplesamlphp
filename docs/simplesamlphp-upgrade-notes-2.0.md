@@ -153,10 +153,8 @@ are using for your SP and IdP should be available in
 module.php/core/frontpage_federation.php location on your
 SimpleSAMLphp server.
 
-An EntityID is a unique identifier for your SP or IdP. It has to be
-unique, like an IP-address has to be unique in your network. You might
-like to use your host name and some additional path information for
-the EntityID.
+For a service provider, if it was set as auto-generated in 1.19, it
+will likely have the form of (<https://yourhostname/simplesaml/module.php/saml/sp/metadata.php/default-sp>).
 
 The EntityID is set in two locations, as the property 'entityID' for
 an SP and as the index in the $metadata array for an IdP. Examples of
@@ -192,6 +190,5 @@ $metadata['https://example.com/the-service/'] = [
 ...
 ```
 
-If you are using Azure and if you are configuring a hosted sp in ssp,
-the entityID will be a relying party you added in azure. It will have
-an entityid in azure like <https://your.ssp.hostname/default-sp>.
+If you use SimpleSAMLphp as an SP, the IdP you are using will have
+your correct entityID configured.
