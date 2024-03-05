@@ -126,12 +126,6 @@
     "scripts": {
         "translations:unused": "php bin/translations translations:unused",
         "translations:update:binary": "php bin/translations translations:update:binary",
-        "translations:update:translatable": "php bin/translations translations:update:translatable",
-        "post-install-cmd": [
-            "php bin/translations translations:update:binary"
-        ],
-        "post-update-cmd": [
-            "php bin/translations translations:update:binary"
-        ]
+        "translations:update:translatable": "php bin/translations translations:update:translatable"
     }
 }
