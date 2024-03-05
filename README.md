@@ -12,3 +12,4 @@ This is the official repository of the SimpleSAMLphp software.
 * [SimpleSAMLphp Downloads](https://simplesamlphp.org/download)
 
 Please, [contribute](CONTRIBUTING.md)!
+
