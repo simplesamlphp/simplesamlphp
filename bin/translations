@@ -13,6 +13,6 @@ require __DIR__.'/../vendor/autoload.php';
 
 $application = new Application();
 $application->add(new UnusedTranslatableStringsCommand());
-$application->add(new UpdateBinaryTranslationsCommand());
+//$application->add(new UpdateBinaryTranslationsCommand());
 $application->add(new UpdateTranslatableStringsCommand());
 $application->run();
