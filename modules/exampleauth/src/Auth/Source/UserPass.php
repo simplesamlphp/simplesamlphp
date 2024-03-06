@@ -48,6 +48,8 @@ class UserPass extends UserPassBase
                 throw new Exception(
                     'Invalid <username>:<password> for authentication source ' . $this->authId . ': ' . $userpass
                 );
+            } elseif ($userpass === 'authproc') {
+                continue;
             }
 
             $userpass = explode(':', $userpass, 2);
