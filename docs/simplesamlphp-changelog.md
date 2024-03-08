@@ -9,6 +9,8 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+* Fix incorrect method call introduced in 2.0.6 (#1996)
+
 ## Version 2.1.4
 
 Released 2024-02-29
