@@ -7,15 +7,70 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 2.2.0
 
-Released TBD
+Released TBD 2024-03-08
 
 * Make error codes easier to extend (#1870)
 * Updated eduPerson attributes in attribute maps (#1948)
 * Add regex support for attribute names in AttributeLimit authproc filter (#1971)
+* Reverted the .mo files change introduced in 2.1.x
+
+## Version 2.1.4
+
+Released 2024-02-29
+
+* Fix static call for non-static method in bin/importPdoMetadata.php (#1969)
+* Validate AuthState before processing it (#1706)
+* Fix possible incompatible dependency-set (#1981)
+
+## Version 2.1.3
+
+Released 2024-02-12
+
+* Fix backwards compatibility for mandatory cachedir-setting introduced in 2.1.2
+
+Deprecations:
+
+* The core:StatisticsWithAttribute authproc-filter has been deprecated. It is now available
+  in the 'statistics' module (v1.2+) as 'statistics:StatisticsWithAttribute', while only the
+  'core:StatisticsWithAttribute' filter will be removed from SimpleSAMLphp in a future release.
 
 ## Version 2.1.2
 
-Released TBD
+Released 2024-02-05
+
+* Restore possibility to use HTTP-Artifact on AuthnRequests (regression from 2.0.4)
+* Fixed undefined variable exception when using MS SQL store (#1917 + #1918)
+* Fix legacy-endpoints to not send responses twice
+* Fix exception when using iframe-logout (#1936)
+* Look for the schema files in the right place (#1929)
+* Fixed file logging handler to not fail on the first write after file-creation (#1877)
+* Fixed a warning in the RequestedAuthnContextSelector
+
+`adfs`
+
+* Fixed incorrect use of StreamedResponse (v2.1.3)
+
+`core`
+
+* Fixed a broken template for the WarnShortSSOInterval authproc-filter (#1920)
+* Fixed the order of the routes so that the least specific error-controller is hit last (#1923)
+
+`ldap`
+
+* Restored 1.x functionality to be able to fetch operational attributes (v2.3.0)
+* Fixed undesirable side-effect introduced in v2.3.0 (v2.3.1)
+* Restore the ability to read attributes using a privileged account (v2.3.2)
+
+`saml`
+
+* Disable caching for metadata-endpoint when protect.metadata is true (#1926)
+
+`saml2 library`
+
+* Fix serialization for the NameID element
+* Fix inheritance - There is no relation between BaseID and NameID
+
+NOTE: Clear your session store after updating, because old serialized sessions can no longer be unserialized
 
 ## Version 2.1.1
 

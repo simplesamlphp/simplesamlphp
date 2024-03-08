@@ -126,5 +126,6 @@
     "scripts": {
         "translations:unused": "php bin/translations translations:unused",
         "translations:update:translatable": "php bin/translations translations:update:translatable"
-    }
+    },
+    "version": "2.2.0"
 }
