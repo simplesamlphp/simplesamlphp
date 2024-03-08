@@ -106,9 +106,6 @@ Released 2023-10-30
 * Changed the UNIQUE constraint for the SP LogoutStore database to PRIMARY KEY to
   prevent confusing warnings in Drupal (#1862)
 * Add Accept HTTP headers to MDQ queries (#1865)
-
-### Chores
-
 * The custom error- and exception handlers were moved to their very own classes (#1858)
 
 ## Version 2.0.8
