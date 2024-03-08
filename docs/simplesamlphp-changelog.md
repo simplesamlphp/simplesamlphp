@@ -5,9 +5,13 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 2.3.0
+
+Released TBD
+
 ## Version 2.2.0
 
-Released TBD 2024-03-08
+Released 2024-03-08
 
 * Make error codes easier to extend (#1870)
 * Updated eduPerson attributes in attribute maps (#1948)
