@@ -5,9 +5,13 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
-## Version 2.1.5
+## Version 2.1.6
 
 Released TBD
+
+## Version 2.1.5
+
+Released 2024-03-08
 
 * Fix incorrect method call introduced in 2.0.6 (#1996)
 
