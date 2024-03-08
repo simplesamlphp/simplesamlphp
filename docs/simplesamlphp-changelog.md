@@ -5,9 +5,13 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
-## Version 2.0.11
+## Version 2.0.12
 
 Released TBD
+
+## Version 2.0.11
+
+Released 2024-03-08
 
 * Fix static call for non-static method in bin/importPdoMetadata.php (#1969)
 * Validate AuthState before processing it (#1706)
