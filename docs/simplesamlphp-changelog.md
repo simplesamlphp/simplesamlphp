@@ -13,6 +13,13 @@ Released 2024-03-08
 * Updated eduPerson attributes in attribute maps (#1948)
 * Add regex support for attribute names in AttributeLimit authproc filter (#1971)
 * Reverted the .mo files change introduced in 2.1.x
+* NOTE: 'core:StatisticsWithAttribute' filter was removed from SimpleSAMLphp, but is still
+  available as a module from https://github.com/simplesamlphp/simplesamlphp-module-statistics.
+  It was previously enabled in the default configuration file (config/config.php.dist), so
+  many lightly configured installations will have it enabled by default. Please check your 
+  config/confg.php (and anywhere else you have authprocs configured) that you've either
+  disabled "core:StatisticsWithAttribute" or migrated to "statistics:StatisticsWithAttribute"
+  before upgrading to SimpleSAMLphp 2.2.0.
 
 ## Version 2.1.4
 
