@@ -103,7 +103,7 @@ class ExpectedAuthnContextClassRef extends Auth\ProcessingFilter
 
         $id = Auth\State::saveState($state, 'saml:ExpectedAuthnContextClassRef:unauthorized');
         $url = Module::getModuleURL(
-            'saml/sp/wrong_authncontextclassref.php'
+            'saml/sp/wrongAuthnContextClassRef'
         );
 
         $httpUtils = new Utils\HTTP();
