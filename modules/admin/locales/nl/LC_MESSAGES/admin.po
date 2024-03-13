@@ -103,11 +103,11 @@ msgstr "LDAP-extensie"
 msgid "LDAP extension (required if an LDAP backend is used)"
 msgstr "LDAP-extensie (vereist als een LDAP-backend wordt gebruikt)"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:106
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:149
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:156
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:182
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:482
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:156
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:106
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:149
 msgid "Log out"
 msgstr "Log uit"
 
