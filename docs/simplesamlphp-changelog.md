@@ -17,7 +17,7 @@ Released 2024-03-08
   available from the [statistics](https://github.com/simplesamlphp/simplesamlphp-module-statistics)-module.
   It was previously enabled in the default configuration file (config/config.php.dist), so
   many lightly configured installations will have it enabled by default. Please check your
-  config/confg.php (and anywhere else you have authprocs configured) that you've either
+  config/config.php (and anywhere else you have authprocs configured) that you've either
   disabled "core:StatisticsWithAttribute" or migrated to "statistics:StatisticsWithAttribute"
   before upgrading to SimpleSAMLphp 2.2.0.
 
