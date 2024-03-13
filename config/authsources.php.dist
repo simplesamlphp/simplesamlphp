@@ -97,13 +97,15 @@ $config = [
         //'remember.username.enabled' => false,
         //'remember.username.checked' => false,
 
-        'student:studentpass' => [
-            'uid' => ['test'],
-            'eduPersonAffiliation' => ['member', 'student'],
-        ],
-        'employee:employeepass' => [
-            'uid' => ['employee'],
-            'eduPersonAffiliation' => ['member', 'employee'],
+        'users' => [
+            'student:studentpass' => [
+                'uid' => ['test'],
+                'eduPersonAffiliation' => ['member', 'student'],
+            ],
+            'employee:employeepass' => [
+                'uid' => ['employee'],
+                'eduPersonAffiliation' => ['member', 'employee'],
+            ],
         ],
     ],
     */
