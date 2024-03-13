@@ -83,13 +83,15 @@ In this setup, this file should contain a single entry:
 $config = [
     'example-userpass' => [
         'exampleauth:UserPass',
-        'student:studentpass' => [
-            'uid' => ['student'],
-            'eduPersonAffiliation' => ['member', 'student'],
-        ],
-        'employee:employeepass' => [
-            'uid' => ['employee'],
-            'eduPersonAffiliation' => ['member', 'employee'],
+        'users' => [
+            'student:studentpass' => [
+                'uid' => ['student'],
+                'eduPersonAffiliation' => ['member', 'student'],
+            ],
+            'employee:employeepass' => [
+                'uid' => ['employee'],
+                'eduPersonAffiliation' => ['member', 'employee'],
+            ],
         ],
     ],
 ];
