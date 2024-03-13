@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
 use Exception;
-use SimpleSAML\{Error, Utils};
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\{Error, Logger, Utils};
 use SimpleSAML\Module\core\Auth\UserPassBase;
 
 use function array_key_exists;
@@ -46,8 +47,11 @@ class UserPass extends UserPassBase
 
         $this->users = [];
 
+        Assert::keyExists($config, 'users');
+        $config_users = $config['users'];
+
         // Validate and parse our configuration
-        foreach ($config as $userpass => $attributes) {
+        foreach ($config_users as $userpass => $attributes) {
             if (!is_string($userpass)) {
                 throw new Exception(
                     'Invalid <username>:<password> for authentication source ' . $this->authId . ': ' . $userpass
