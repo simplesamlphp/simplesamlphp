@@ -9,6 +9,10 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+`sqlauth`
+
+* Add multi-query support (simplesamlphp/simplesamlphp-module-sqlauth#9) (v1.2.0)
+
 ## Version 2.2.0
 
 Released 2024-03-08
