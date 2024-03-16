@@ -245,12 +245,6 @@ class Localization
                 $arrayGenerator->generateArray($translations)
             );
         } else {
-            Logger::debug(sprintf(
-                "%s - Localization file '%s' not found or not readable in '%s', falling back to default",
-                $_SERVER['PHP_SELF'],
-                $file->getfileName(),
-                $langPath,
-            ));
             $file = new File($langPath . $domain . '.po', false);
             if ($file->getRealPath() !== false && $file->isReadable()) {
                 $translations = (new PoLoader())->loadFile($file->getRealPath());
