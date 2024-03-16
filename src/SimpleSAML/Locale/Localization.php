@@ -244,6 +244,7 @@ class Localization
             $file = new File($langPath . $domain . '.po', false);
             if ($file->getRealPath() !== false && $file->isReadable()) {
                 $translations = (new PoLoader())->loadFile($file->getRealPath());
+                $translations->setDomain('');
                 $arrayGenerator = new ArrayGenerator();
                 $this->translator->addTranslations(
                     $arrayGenerator->generateArray($translations)
