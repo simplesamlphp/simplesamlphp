@@ -10,6 +10,7 @@ See the upgrade notes for specific information about upgrading.
 Released TBD
 
 * Fix regression in bin/initMDSPdo.php (was #1892)
+* Fix regression in translations, causing a fallback to English (#2009 + #2010)
 
 ## Version 2.2.0
 
