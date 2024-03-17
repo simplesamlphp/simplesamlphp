@@ -5,5 +5,5 @@ msgstr ""
 msgid "Select an authentication source"
 msgstr "Wählen Sie eine Authentifizierungsquelle"
 
-msgid "The selected authentication source will be used to authenticate you and and to create a valid session."
+msgid "The selected authentication source will be used to authenticate you and to create a valid session."
 msgstr "Die gewählte Authentifizierungsquelle wird verwenden werden, um Sie zu authentifizieren und eine gültige Sitzung zu erzeugen."
