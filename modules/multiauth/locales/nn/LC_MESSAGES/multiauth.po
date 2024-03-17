@@ -19,7 +19,7 @@ msgid "Select an authentication source"
 msgstr "Vel ei innloggingskjelde"
 
 msgid ""
-"The selected authentication source will be used to authenticate you and "
+"The selected authentication source will be used to authenticate you "
 "and to create a valid session."
 msgstr ""
 "Innloggingskjelda du har vald blir brukt til å logga inn og laga ein "

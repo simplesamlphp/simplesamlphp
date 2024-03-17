@@ -19,7 +19,7 @@ msgid "Select an authentication source"
 msgstr "选择一个认证源"
 
 msgid ""
-"The selected authentication source will be used to authenticate you and "
+"The selected authentication source will be used to authenticate you "
 "and to create a valid session."
 msgstr "选定的认证源将会用于认证你的身份和给你一个有效的会话"
 

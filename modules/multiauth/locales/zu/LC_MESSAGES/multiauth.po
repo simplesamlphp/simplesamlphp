@@ -15,7 +15,7 @@ msgstr ""
 "Generated-By: Babel 1.3\n"
 
 msgid ""
-"The selected authentication source will be used to authenticate you and "
+"The selected authentication source will be used to authenticate you "
 "and to create a valid session."
 msgstr ""
 "Umthombo wokuqinisekisa okhethiwe uzosetshenziswa ukuze uqinisekiswe "

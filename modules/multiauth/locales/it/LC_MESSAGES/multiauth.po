@@ -19,7 +19,7 @@ msgid "Select an authentication source"
 msgstr "Selezionare una fonte di autenticazione"
 
 msgid ""
-"The selected authentication source will be used to authenticate you and "
+"The selected authentication source will be used to authenticate you "
 "and to create a valid session."
 msgstr ""
 "La fonte di autenticazione selezionata verrà usata per autenticarti e "

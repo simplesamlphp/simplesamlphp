@@ -25,6 +25,6 @@ msgstr ""
 "create a valid session."
 
 msgid ""
-"The selected authentication source will be used to authenticate you and and "
+"The selected authentication source will be used to authenticate you and "
 "to create a valid session."
 msgstr ""

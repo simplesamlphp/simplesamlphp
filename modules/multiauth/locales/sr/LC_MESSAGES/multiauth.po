@@ -20,7 +20,7 @@ msgid "Select an authentication source"
 msgstr "Odaberite izvor preko koga se želite autentifikovati"
 
 msgid ""
-"The selected authentication source will be used to authenticate you and "
+"The selected authentication source will be used to authenticate you "
 "and to create a valid session."
 msgstr ""
 "Izabrani autentifikacioni izvor će biti upotrebljen za vašu "

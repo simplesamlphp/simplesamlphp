@@ -19,7 +19,7 @@ msgid "Select an authentication source"
 msgstr "Válasszon azonosítási metódust"
 
 msgid ""
-"The selected authentication source will be used to authenticate you and "
+"The selected authentication source will be used to authenticate you "
 "and to create a valid session."
 msgstr ""
 "A kiválasztott azonosítási metódust kiválasztva azonosítani fogjuk, és "

@@ -84,7 +84,7 @@ class Message
 
 
     /**
-     * Add signature key and and senders certificate to message.
+     * Add signature key and senders certificate to message.
      *
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.

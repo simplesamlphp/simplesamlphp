@@ -19,7 +19,7 @@ msgid "Select an authentication source"
 msgstr "Kies 'n verifikasie bron"
 
 msgid ""
-"The selected authentication source will be used to authenticate you and "
+"The selected authentication source will be used to authenticate you "
 "and to create a valid session."
 msgstr ""
 "Die gekose verifikasie bron sal gebruik word om jou te identifiseer en 'n"
