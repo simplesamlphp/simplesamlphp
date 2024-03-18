@@ -5993,21 +5993,22 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
-            "version": "v1.6.0",
+            "version": "v1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-test-framework.git",
-                "reference": "41a3544811a9cce9dacfc3b485ebdfcf0eb433fe"
+                "reference": "149ad20f996867337ddda16001b6058630540891"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/41a3544811a9cce9dacfc3b485ebdfcf0eb433fe",
-                "reference": "41a3544811a9cce9dacfc3b485ebdfcf0eb433fe",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/149ad20f996867337ddda16001b6058630540891",
+                "reference": "149ad20f996867337ddda16001b6058630540891",
                 "shasum": ""
             },
             "require": {
                 "phpunit/phpunit": "^9.6 || ^10.0 || ^11.0",
-                "slevomat/coding-standard": "^8.15"
+                "slevomat/coding-standard": "^8.15",
+                "symfony/phpunit-bridge": "^6.4 || ^7.0"
             },
             "require-dev": {
                 "ext-curl": "*",
@@ -6038,7 +6039,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-test-framework"
             },
-            "time": "2024-03-13T23:59:07+00:00"
+            "time": "2024-03-16T23:19:26+00:00"
         },
         {
             "name": "slevomat/coding-standard",
@@ -6184,6 +6185,87 @@
                 }
             ],
             "time": "2024-02-16T15:06:51+00:00"
+        },
+        {
+            "name": "symfony/phpunit-bridge",
+            "version": "v7.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/phpunit-bridge.git",
+                "reference": "54ca13ec990a40411ad978e08d994fca6cdd865f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/54ca13ec990a40411ad978e08d994fca6cdd865f",
+                "reference": "54ca13ec990a40411ad978e08d994fca6cdd865f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5"
+            },
+            "conflict": {
+                "phpunit/phpunit": "<7.5|9.1.2"
+            },
+            "require-dev": {
+                "symfony/deprecation-contracts": "^2.5|^3.0",
+                "symfony/error-handler": "^5.4|^6.4|^7.0",
+                "symfony/polyfill-php81": "^1.27"
+            },
+            "bin": [
+                "bin/simple-phpunit"
+            ],
+            "type": "symfony-bridge",
+            "extra": {
+                "thanks": {
+                    "name": "phpunit/phpunit",
+                    "url": "https://github.com/sebastianbergmann/phpunit"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Bridge\\PhpUnit\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Provides utilities for PHPUnit, especially user deprecation notices management",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/phpunit-bridge/tree/v7.0.4"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-02-08T19:22:56+00:00"
         },
         {
             "name": "symfony/translation",
