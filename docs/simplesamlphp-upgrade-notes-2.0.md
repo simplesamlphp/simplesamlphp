@@ -43,6 +43,8 @@ composer require simplesamlphp/simplesamlphp-module-ldap --update-no-dev
   upgrading an existing installation).
   If you are using a database to store metadata, make sure to replace any `__DYNAMIC:<n>__` entityID's with
   a real value manually. Dynamic records are no longer loaded from the database.
+- EntityIDs are now checked for validity in accordance to SAML 2.0 Core specification, section 8.3.6 Entity Identifier:
+  "... The syntax of such an identifier is a URI of not more than 1024 characters in length."
 
 ## Configuration changes
 
