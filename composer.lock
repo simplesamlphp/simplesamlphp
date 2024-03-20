@@ -5993,20 +5993,20 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
-            "version": "v1.6.1",
+            "version": "v1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-test-framework.git",
-                "reference": "149ad20f996867337ddda16001b6058630540891"
+                "reference": "3c0fbc0fc5395e00e40a5708e330ec1ef3cc7fa8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/149ad20f996867337ddda16001b6058630540891",
-                "reference": "149ad20f996867337ddda16001b6058630540891",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/3c0fbc0fc5395e00e40a5708e330ec1ef3cc7fa8",
+                "reference": "3c0fbc0fc5395e00e40a5708e330ec1ef3cc7fa8",
                 "shasum": ""
             },
             "require": {
-                "phpunit/phpunit": "^9.6 || ^10.0 || ^11.0",
+                "phpunit/phpunit": "^10.0 || ^11.0",
                 "slevomat/coding-standard": "^8.15",
                 "symfony/phpunit-bridge": "^6.4 || ^7.0"
             },
@@ -6039,7 +6039,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-test-framework"
             },
-            "time": "2024-03-16T23:19:26+00:00"
+            "time": "2024-03-19T19:45:16+00:00"
         },
         {
             "name": "slevomat/coding-standard",
