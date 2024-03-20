@@ -1172,16 +1172,16 @@
         },
         {
             "name": "simplesamlphp/xml-common",
-            "version": "v1.16.0",
+            "version": "v1.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-common.git",
-                "reference": "4f1257d1357644c413438985de13c92d498b5018"
+                "reference": "a3c4c548ebd9783c3833c13ea7c01b010b0a1239"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/4f1257d1357644c413438985de13c92d498b5018",
-                "reference": "4f1257d1357644c413438985de13c92d498b5018",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/a3c4c548ebd9783c3833c13ea7c01b010b0a1239",
+                "reference": "a3c4c548ebd9783c3833c13ea7c01b010b0a1239",
                 "shasum": ""
             },
             "require": {
@@ -1195,7 +1195,7 @@
                 "simplesamlphp/assert": "^1.1"
             },
             "require-dev": {
-                "simplesamlphp/simplesamlphp-test-framework": "^1.5"
+                "simplesamlphp/simplesamlphp-test-framework": "^1.6"
             },
             "type": "project",
             "autoload": {
@@ -1227,7 +1227,7 @@
                 "issues": "https://github.com/simplesamlphp/xml-common/issues",
                 "source": "https://github.com/simplesamlphp/xml-common"
             },
-            "time": "2024-01-22T20:54:45+00:00"
+            "time": "2024-03-19T22:04:20+00:00"
         },
         {
             "name": "simplesamlphp/xml-security",
