@@ -198,7 +198,7 @@ Configure your master group by setting `store.redis.mastergroup` (`mymaster` by 
 
 ## Metadata storage
 
-Several metadata storage backends are available by default, including `flatfile`, `serialize`, `mdq` and
+Several metadata storage backends are available by default, including `flatfile`, `directory`, `serialize`, `mdq` and
 [`pdo`](https://simplesamlphp.org/docs/stable/simplesamlphp-metadata-pdostoragehandler). Here you have an
 example configuration of different metadata sources in use at the same time:
 
@@ -207,8 +207,17 @@ example configuration of different metadata sources in use at the same time:
     ['type' => 'flatfile'],
     ['type' => 'flatfile', 'directory' => 'metadata/metarefresh-kalmar'],
     ['type' => 'serialize', 'directory' => 'metadata/metarefresh-ukaccess'],
+    ['type' => 'directory'],
+    ['type' => 'directory', 'directory' => 'metadata/somewhere-else'],
 ],
 ```
+
+The directory type storage backend will look in subdirectories such as
+saml20-idp-hosted.d and saml20-sp-remote.d in the given directory (or
+the 'metadatadir' configuration option in 'config.php' by default).
+All xml and php files found in those subdirectories will be loaded. It is
+currently an error to have subdirectories inside the
+saml20-sp-remote.d directories.
 
 You may also implement your own metadata storage handler, in a very similar way to how you would implement
 your own session handler. Your class **must** extend the `\SimpleSAML\Metadata\MetaDataStorageSource` class
