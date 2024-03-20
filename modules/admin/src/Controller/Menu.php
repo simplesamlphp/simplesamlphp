@@ -7,6 +7,7 @@ namespace SimpleSAML\Module\admin\Controller;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Module;
+use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 
 /**
@@ -18,17 +19,20 @@ final class Menu
 {
     /** @var array */
     private array $options;
-
+    private Module $module;
 
     /**
      * Menu constructor.
      *
      * Initialize the menu with some default admin options, and call a hook for anyone willing to extend it.
      */
-    public function __construct()
+    public function __construct(Module $module = null)
     {
+        $this->module = $module ?? new Module();
+
         $this->options = [
             'main' => [
+                // TODO mivanci Get module from utils
                 'url' => Module::getModuleURL('admin/'),
                 'name' => Translate::noop('Configuration'),
             ],

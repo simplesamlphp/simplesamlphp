@@ -52,12 +52,19 @@
                 <directory name="tests" />
             </errorLevel>
         </UnsafeInstantiation>
+
+        <InvalidArgument>
+            <!-- Suppress InvalidArgument in tests, since we are to use a lot of mocks. -->
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </InvalidArgument>
     </issueHandlers>
 
-    <stubs>
-        <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/krb5.php" />
-        <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/memcache.php" />
-        <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/memcached.php" />
-        <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/predis.php" />
-    </stubs>
-</psalm>
+        <stubs>
+            <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/krb5.php" />
+            <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/memcache.php" />
+            <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/memcached.php" />
+            <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/predis.php" />
+        </stubs>
+    </psalm>

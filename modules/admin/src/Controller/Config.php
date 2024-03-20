@@ -34,14 +34,10 @@ class Config
 
     public const RELEASES_API = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases/latest';
 
-    /** @var \SimpleSAML\Utils\Auth */
-    protected Utils\Auth $authUtils;
-
-    /** @var \SimpleSAML\Utils\HTTP */
-    protected Utils\HTTP $httpUtils;
-
     /** @var \SimpleSAML\Module\admin\Controller\Menu */
     protected Menu $menu;
+
+    protected Utils $utils;
 
 
     /**
@@ -52,22 +48,12 @@ class Config
      */
     public function __construct(
         protected Configuration $config,
-        protected Session $session
+        protected Session $session,
+        Utils $utils = null,
+        Menu $menu = null
     ) {
-        $this->menu = new Menu();
-        $this->authUtils = new Utils\Auth();
-        $this->httpUtils = new Utils\HTTP();
-    }
-
-
-    /**
-     * Inject the \SimpleSAML\Utils\Auth dependency.
-     *
-     * @param \SimpleSAML\Utils\Auth $authUtils
-     */
-    public function setAuthUtils(Utils\Auth $authUtils): void
-    {
-        $this->authUtils = $authUtils;
+        $this->utils = $utils ?? new Utils($this->config, $this->session);
+        $this->menu = $menu ?? new Menu();
     }
 
 
@@ -80,26 +66,27 @@ class Config
      */
     public function diagnostics(Request $request): Response
     {
-        $response = $this->authUtils->requireAdmin();
+        $response = $this->utils->auth()->requireAdmin();
         if ($response instanceof Response) {
             return $response;
         }
 
+        // TODO Consider moving to Template factory.
         $t = new Template($this->config, 'admin:diagnostics.twig');
         $t->data = [
             'remaining' => $this->session->getAuthData('admin', 'Expire') - time(),
-            'logouturl' => $this->authUtils->getAdminLogoutURL(),
+            'logouturl' => $this->utils->auth()->getAdminLogoutURL(),
             'items' => [
                 'HTTP_HOST' => [$request->getHost()],
                 'HTTPS' => $request->isSecure() ? ['on'] : [],
                 'SERVER_PROTOCOL' => [$request->getProtocolVersion()],
-                'getBaseURL()' => [$this->httpUtils->getBaseURL()],
-                'getSelfHost()' => [$this->httpUtils->getSelfHost()],
-                'getSelfHostWithNonStandardPort()' => [$this->httpUtils->getSelfHostWithNonStandardPort()],
-                'getSelfURLHost()' => [$this->httpUtils->getSelfURLHost()],
-                'getSelfURLNoQuery()' => [$this->httpUtils->getSelfURLNoQuery()],
-                'getSelfHostWithPath()' => [$this->httpUtils->getSelfHostWithPath()],
-                'getSelfURL()' => [$this->httpUtils->getSelfURL()],
+                'getBaseURL()' => [$this->utils->http()->getBaseURL()],
+                'getSelfHost()' => [$this->utils->http()->getSelfHost()],
+                'getSelfHostWithNonStandardPort()' => [$this->utils->http()->getSelfHostWithNonStandardPort()],
+                'getSelfURLHost()' => [$this->utils->http()->getSelfURLHost()],
+                'getSelfURLNoQuery()' => [$this->utils->http()->getSelfURLNoQuery()],
+                'getSelfHostWithPath()' => [$this->utils->http()->getSelfHostWithPath()],
+                'getSelfURL()' => [$this->utils->http()->getSelfURL()],
             ],
         ];
 
@@ -117,7 +104,7 @@ class Config
      */
     public function main(/** @scrutinizer ignore-unused */ Request $request): Response
     {
-        $response = $this->authUtils->requireAdmin();
+        $response = $this->utils->auth()->requireAdmin();
         if ($response instanceof Response) {
             return $response;
         }
@@ -141,12 +128,12 @@ class Config
                 'saml20idp' => $this->config->getOptionalBoolean('enable.saml20-idp', false),
             ],
             'funcmatrix' => $this->getPrerequisiteChecks(),
-            'logouturl' => $this->authUtils->getAdminLogoutURL(),
+            'logouturl' => $this->utils->auth()->getAdminLogoutURL(),
             'modulelist' => $this->getModuleList(),
         ];
 
         Module::callHooks('configpage', $t);
-        $this->menu->addOption('logout', $this->authUtils->getAdminLogoutURL(), Translate::noop('Log out'));
+        $this->menu->addOption('logout', $this->utils->auth()->getAdminLogoutURL(), Translate::noop('Log out'));
         return $this->menu->insert($t);
     }
 
@@ -175,7 +162,7 @@ class Config
      */
     public function phpinfo(/** @scrutinizer ignore-unused */ Request $request): Response
     {
-        $response = $this->authUtils->requireAdmin();
+        $response = $this->utils->auth()->requireAdmin();
         if ($response instanceof Response) {
             return $response;
         }
@@ -402,7 +389,7 @@ class Config
         $warnings = [];
 
         // make sure we're using HTTPS
-        if (!$this->httpUtils->isHTTPS()) {
+        if (!$this->utils->http()->isHTTPS()) {
             $warnings[] = Translate::noop(
                 '<strong>You are not using HTTPS</strong> to protect communications with your users. HTTP works fine ' .
                 'for testing purposes, but in a production environment you should use HTTPS. <a ' .

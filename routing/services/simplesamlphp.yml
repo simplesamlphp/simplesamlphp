@@ -3,16 +3,31 @@
 services:
   # default configuration for services in *this* file
   _defaults:
+    autowire: true
+    autoconfigure: true
     public: false
+    bind:
+      Psr\Log\LoggerInterface: '@SimpleSAML\Compat\Logger'
 
+  # Main SSP services
   SimpleSAML\Configuration:
     factory: ['SimpleSAML\Configuration', 'getInstance']
 
   SimpleSAML\Session:
     factory: ['SimpleSAML\Session', 'getSessionFromRequest']
 
-  SimpleSAML\Auth\AuthenticationFactory:
-    class: SimpleSAML\Auth\AuthenticationFactory
+  ssp.auth_sources_config:
+    class: SimpleSAML\Configuration
+    factory: ['SimpleSAML\Configuration', 'getConfig']
     arguments:
-      - '@SimpleSAML\Configuration'
-      - '@SimpleSAML\Session'
+      - 'authsources.php'
+
+  SimpleSAML\Utils:
+    class: SimpleSAML\Utils
+    arguments:
+      $authSourcesConfig: '@ssp.auth_sources_config'
+
+  # Common SSP services
+  SimpleSAML\Auth\AuthenticationFactory: ~
+  SimpleSAML\Compat\Logger: ~
+  SimpleSAML\Module: ~

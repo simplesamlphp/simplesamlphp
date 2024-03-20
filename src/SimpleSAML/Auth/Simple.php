@@ -7,6 +7,7 @@ namespace SimpleSAML\Auth;
 use SimpleSAML\{Configuration, Error, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
 use Symfony\Component\HttpFoundation\Response;
+use Throwable;
 
 use function array_key_exists;
 use function call_user_func;
@@ -24,34 +25,29 @@ use function urlencode;
 
 class Simple
 {
-    /** @var \SimpleSAML\Configuration */
     protected Configuration $app_config;
 
-    /** @var \SimpleSAML\Session */
     protected Session $session;
+    protected Utils $utils;
 
 
     /**
      * Create an instance with the specified authsource.
      *
      * @param string $authSource The id of the authentication source.
-     * @param \SimpleSAML\Configuration|null $config Optional configuration to use.
-     * @param \SimpleSAML\Session|null $session Optional session to use.
+     * @param Configuration|null $config Optional configuration to use.
+     * @param Session|null $session Optional session to use.
+     * @throws \Exception
      */
     public function __construct(
         protected string $authSource,
         Configuration $config = null,
-        Session $session = null
+        Session $session = null,
+        Utils $utils = null
     ) {
-        if ($config === null) {
-            $config = Configuration::getInstance();
-        }
-        $this->app_config = $config->getOptionalConfigItem('application', []);
-
-        if ($session === null) {
-            $session = Session::getSessionFromRequest();
-        }
-        $this->session = $session;
+        $this->app_config = $config ?? (Configuration::getInstance())->getOptionalConfigItem('application', []);
+        $this->session = $session ?? Session::getSessionFromRequest();
+        $this->utils = $utils ?? new Utils();
     }
 
 
@@ -64,7 +60,12 @@ class Simple
      */
     public function getAuthSource(): Source
     {
-        $as = Source::getById($this->authSource);
+        try {
+            $as = $this->utils->authSource()->getById($this->authSource);
+        } catch (Throwable $exception) {
+            throw new Error\AuthSource($this->authSource, 'Error getting authentication source.', $exception);
+        }
+
         if ($as === null) {
             throw new Error\AuthSource($this->authSource, 'Unknown authentication source.');
         }

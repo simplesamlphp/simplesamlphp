@@ -346,6 +346,10 @@ abstract class Source
      * @return \SimpleSAML\Auth\Source|null The AuthSource object, or NULL if no authentication
      *     source with the given identifier is found.
      * @throws \SimpleSAML\Error\Exception If no such authentication source is found or it is invalid.
+     *
+     * @deprecated Static method access is deprecated. Move to instance method.
+     * @see Utils\AuthSource::getById()
+     * TODO NextMajorRelease Move content to substitute method and remove.
      */
     public static function getById(string $authId, ?string $type = null): ?Source
     {
