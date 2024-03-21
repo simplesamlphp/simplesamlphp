@@ -102,7 +102,7 @@ abstract class MetaDataStorageSource
             case 'pdo':
                 return new MetaDataStorageHandlerPdo($config, $sourceConfig);
             case 'directory':
-                return new MetaDataStorageHandlerDirectory($config,$sourceConfig);
+                return new MetaDataStorageHandlerDirectory($config, $sourceConfig);
             default:
                 // metadata store from module
                 try {
