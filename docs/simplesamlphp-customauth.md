@@ -21,7 +21,6 @@ cd modules
 mkdir mymodule
 ```
 
-Since this is a custom module, it should always be enabled in the configuration.
 Now that we have our own module, we can move on to creating an authentication source.
 
 Creating a basic authentication source
@@ -41,7 +40,7 @@ namespace SimpleSAML\Module\mymodule\Auth\Source;
 
 class MyAuth extends \SimpleSAML\Module\core\Auth\UserPassBase
 {
-    protected function login($username, $password)
+    protected function login(string $username, string $password): array
     {
         if ($username !== 'theusername' || $password !== 'thepassword') {
             throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
@@ -76,7 +75,7 @@ Configuring our authentication source
 -------------------------------------
 
 Before we can test our authentication source, we must add an entry for it in `config/authsources.php`.
-`config/authsources.php` contains an list of enabled authentication sources.
+`config/authsources.php` contains a list of enabled authentication sources.
 
 The entry looks like this:
 
@@ -105,6 +104,18 @@ The instance name is used to refer to this authentication source in other config
 
 The first element of the configuration of the authentication source must be `'mymodule:MyAuth'`.
 This tells SimpleSAMLphp to look for the `\SimpleSAML\Module\mymodule\Auth\Source\MyAuth` class.
+
+We also need to enable our new module in `config/config.php`.
+`config/config.php` contains a list of enabled modules.
+
+We want to add our new module to the list of other enabled modules.  We can add it to the beginning of the list, so the enabled modules section looks something like this:
+
+```php
+'module.enable' => [
+    'mymodule' => true,
+    /* Other enabled modules follow. */
+],
+```
 
 Testing our authentication source
 ---------------------------------
@@ -203,7 +214,7 @@ class MyAuth extends \SimpleSAML\Module\core\Auth\UserPassBase
         $this->password = $config['password'];
     }
 
-    protected function login($username, $password)
+    protected function login(string $username, string $password): array
     {
         if ($username !== $this->username || $password !== $this->password) {
             throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
@@ -332,7 +343,7 @@ class MyAuth extends \SimpleSAML\Module\core\Auth\UserPassBase
         return $digest === $checkDigest;
     }
 
-    protected function login($username, $password)
+    protected function login(string $username, string $password): array
     {
         /* Connect to the database. */
         $db = new PDO($this->dsn, $this->username, $this->password, $this->options);
@@ -380,7 +391,7 @@ class MyAuth extends \SimpleSAML\Module\core\Auth\UserPassBase
 }
 ```
 
-And configured in `config/authsources.php`:
+Configured in `config/authsources.php`:
 
 ```php
 'myauthinstance' => [
@@ -388,5 +399,14 @@ And configured in `config/authsources.php`:
     'dsn' => 'mysql:host=sql.example.org;dbname=userdatabase',
     'username' => 'db_username',
     'password' => 'secret_db_password',
+],
+```
+
+And enabled in `config/config.php`:
+
+```php
+'module.enable' => [
+    'mymodule' => true,
+    /* Other enabled modules follow. */
 ],
 ```
