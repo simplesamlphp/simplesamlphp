@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SimpleSAML\{Auth, Logger};
+use SimpleSAML\{Auth, Logger, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ProtocolViolationException;
 
 use function array_key_exists;
 use function explode;
+use function hash_hmac;
 use function preg_match;
 use function strpos;
 use function strtolower;
@@ -86,6 +87,18 @@ class SubjectID extends Auth\ProcessingFilter
     protected string $scopeAttribute;
 
     /**
+     * Whether the unique part of the subject id must be hashed
+     *
+     * @var bool
+     */
+    private bool $hashed = false;
+
+    /**
+     * @var \SimpleSAML\Utils\Config
+     */
+    protected Utils\Config $configUtils;
+
+    /**
      * @var \SimpleSAML\Logger|string
      * @psalm-var \SimpleSAML\Logger|class-string
      */
@@ -109,6 +122,13 @@ class SubjectID extends Auth\ProcessingFilter
 
         $this->identifyingAttribute = $config['identifyingAttribute'];
         $this->scopeAttribute = $config['scopeAttribute'];
+
+        if (array_key_exists('hashed', $config)) {
+            Assert::boolean($config['hashed']);
+            $this->hashed = $config['hashed'];
+        }
+
+        $this->configUtils = new Utils\Config();
     }
 
 
@@ -127,7 +147,12 @@ class SubjectID extends Auth\ProcessingFilter
             return;
         }
 
-        $value = strtolower($userID . '@' . $scope);
+        if ($this->hashed === true) {
+            $value = strtolower($this->calculateHash($userID) . '@' . $scope);
+        } else {
+            $value = strtolower($userID . '@' . $scope);
+        }
+
         $this->validateGeneratedIdentifier($value);
 
         $state['Attributes'][C::ATTR_SUBJECT_ID] = [$value];
@@ -233,6 +258,16 @@ class SubjectID extends Auth\ProcessingFilter
 
 
     /**
+     * Calculate the hash for the unique part of the identifier.
+     */
+    protected function calculateHash(string $input): string
+    {
+        $salt = $this->configUtils->getSecretSalt();
+        return hash_hmac('sha256', $input, $salt, false);
+    }
+
+
+    /**
      * Inject the \SimpleSAML\Logger dependency.
      *
      * @param \SimpleSAML\Logger $logger
@@ -240,5 +275,16 @@ class SubjectID extends Auth\ProcessingFilter
     public function setLogger(Logger $logger): void
     {
         $this->logger = $logger;
+    }
+
+
+    /**
+     * Inject the \SimpleSAML\Utils\Config dependency.
+     *
+     * @param \SimpleSAML\Utils\Config $configUtils
+     */
+    public function setConfigUtils(Utils\Config $configUtils): void
+    {
+        $this->configUtils = $configUtils;
     }
 }
