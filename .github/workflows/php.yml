@@ -306,6 +306,6 @@ jobs:
       (needs.unit-tests-linux == 'success' && needs.coverage == 'skipped')
 
     steps:
-      - uses: geekyeggo/delete-artifact@v4
+      - uses: geekyeggo/delete-artifact@v5
         with:
           name: coverage-data
