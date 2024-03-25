@@ -143,7 +143,7 @@ jobs:
       (needs.build.result == 'success' && needs.commit.result == 'skipped')
 
     steps:
-      - uses: geekyeggo/delete-artifact@v4
+      - uses: geekyeggo/delete-artifact@v5
         with:
           name: |
             build
