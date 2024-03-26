@@ -521,6 +521,16 @@ $config = [
         */
     ],
 
+    /***************
+     | AUTHSOURCES |
+     ***************/
+    /*
+     * Authsources storage
+     * if authsources.storage => 'database' get authsource configuration from database table 'authsources.database_table'
+     * else get authsource configuration from file /config/authsources.php (as default)
+     */
+    'authsources.storage' => 'file',
+    'authsources.database_table' => 'authsources',
 
 
     /*************
