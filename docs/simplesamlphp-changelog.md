@@ -11,6 +11,10 @@ Released TBD
 
 * Fix regression when setting the host-variable in `saml20-idp-hosted` (was #1922)
 
+`ldap`
+
+* Fix exception being thrown when password is empty
+
 ## Version 2.2.1
 
 Released 2014-03-17

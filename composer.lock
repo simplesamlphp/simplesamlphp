@@ -555,16 +555,16 @@
         },
         {
             "name": "simplesamlphp/assert",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/assert.git",
-                "reference": "abffdfef47d10a4345a4a8d79049b60a3f466440"
+                "reference": "8598fb2005f4eed689e30ebffd4e8e85ed7ce9aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/assert/zipball/abffdfef47d10a4345a4a8d79049b60a3f466440",
-                "reference": "abffdfef47d10a4345a4a8d79049b60a3f466440",
+                "url": "https://api.github.com/repos/simplesamlphp/assert/zipball/8598fb2005f4eed689e30ebffd4e8e85ed7ce9aa",
+                "reference": "8598fb2005f4eed689e30ebffd4e8e85ed7ce9aa",
                 "shasum": ""
             },
             "require": {
@@ -606,9 +606,9 @@
             "description": "A wrapper around webmozart/assert to make it useful beyond checking method arguments",
             "support": {
                 "issues": "https://github.com/simplesamlphp/assert/issues",
-                "source": "https://github.com/simplesamlphp/assert/tree/v1.1.0"
+                "source": "https://github.com/simplesamlphp/assert/tree/v1.1.1"
             },
-            "time": "2024-01-21T10:47:03+00:00"
+            "time": "2024-03-19T21:09:48+00:00"
         },
         {
             "name": "simplesamlphp/composer-module-installer",
@@ -3688,16 +3688,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.19.0",
+            "version": "v4.19.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "32cdab9a034239a8f57ae0e9a15bada4bd9747bf"
+                "reference": "4e1b88d21c69391150ace211e9eaf05810858d0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/32cdab9a034239a8f57ae0e9a15bada4bd9747bf",
-                "reference": "32cdab9a034239a8f57ae0e9a15bada4bd9747bf",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/4e1b88d21c69391150ace211e9eaf05810858d0b",
+                "reference": "4e1b88d21c69391150ace211e9eaf05810858d0b",
                 "shasum": ""
             },
             "require": {
@@ -3738,9 +3738,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.19.0"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.19.1"
             },
-            "time": "2024-03-16T14:49:31+00:00"
+            "time": "2024-03-17T08:10:35+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -3862,16 +3862,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.26.0",
+            "version": "1.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "231e3186624c03d7e7c890ec662b81e6b0405227"
+                "reference": "86e4d5a4b036f8f0be1464522f4c6b584c452757"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/231e3186624c03d7e7c890ec662b81e6b0405227",
-                "reference": "231e3186624c03d7e7c890ec662b81e6b0405227",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/86e4d5a4b036f8f0be1464522f4c6b584c452757",
+                "reference": "86e4d5a4b036f8f0be1464522f4c6b584c452757",
                 "shasum": ""
             },
             "require": {
@@ -3903,9 +3903,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.26.0"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.27.0"
             },
-            "time": "2024-02-23T16:05:55+00:00"
+            "time": "2024-03-21T13:14:53+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -4230,16 +4230,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "10.5.13",
+            "version": "10.5.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "20a63fc1c6db29b15da3bd02d4b6cf59900088a7"
+                "reference": "86376e05e8745ed81d88232ff92fee868247b07b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/20a63fc1c6db29b15da3bd02d4b6cf59900088a7",
-                "reference": "20a63fc1c6db29b15da3bd02d4b6cf59900088a7",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/86376e05e8745ed81d88232ff92fee868247b07b",
+                "reference": "86376e05e8745ed81d88232ff92fee868247b07b",
                 "shasum": ""
             },
             "require": {
@@ -4311,7 +4311,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.13"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.15"
             },
             "funding": [
                 {
@@ -4327,7 +4327,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-12T15:37:41+00:00"
+            "time": "2024-03-22T04:17:47+00:00"
         },
         {
             "name": "predis/predis",
@@ -4762,16 +4762,16 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "6.0.1",
+            "version": "6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "43c751b41d74f96cbbd4e07b7aec9675651e2951"
+                "reference": "8074dbcd93529b357029f5cc5058fd3e43666984"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/43c751b41d74f96cbbd4e07b7aec9675651e2951",
-                "reference": "43c751b41d74f96cbbd4e07b7aec9675651e2951",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/8074dbcd93529b357029f5cc5058fd3e43666984",
+                "reference": "8074dbcd93529b357029f5cc5058fd3e43666984",
                 "shasum": ""
             },
             "require": {
@@ -4786,7 +4786,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "6.0-dev"
+                    "dev-main": "6.1-dev"
                 }
             },
             "autoload": {
@@ -4814,7 +4814,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/environment/issues",
                 "security": "https://github.com/sebastianbergmann/environment/security/policy",
-                "source": "https://github.com/sebastianbergmann/environment/tree/6.0.1"
+                "source": "https://github.com/sebastianbergmann/environment/tree/6.1.0"
             },
             "funding": [
                 {
@@ -4822,7 +4822,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-04-11T05:39:26+00:00"
+            "time": "2024-03-23T08:47:14+00:00"
         },
         {
             "name": "sebastian/exporter",
@@ -5364,21 +5364,22 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
-            "version": "v1.6.0",
+            "version": "v1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-test-framework.git",
-                "reference": "41a3544811a9cce9dacfc3b485ebdfcf0eb433fe"
+                "reference": "3c0fbc0fc5395e00e40a5708e330ec1ef3cc7fa8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/41a3544811a9cce9dacfc3b485ebdfcf0eb433fe",
-                "reference": "41a3544811a9cce9dacfc3b485ebdfcf0eb433fe",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/3c0fbc0fc5395e00e40a5708e330ec1ef3cc7fa8",
+                "reference": "3c0fbc0fc5395e00e40a5708e330ec1ef3cc7fa8",
                 "shasum": ""
             },
             "require": {
-                "phpunit/phpunit": "^9.6 || ^10.0 || ^11.0",
-                "slevomat/coding-standard": "^8.15"
+                "phpunit/phpunit": "^10.0 || ^11.0",
+                "slevomat/coding-standard": "^8.15",
+                "symfony/phpunit-bridge": "^6.4 || ^7.0"
             },
             "require-dev": {
                 "ext-curl": "*",
@@ -5409,20 +5410,20 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-test-framework"
             },
-            "time": "2024-03-13T23:59:07+00:00"
+            "time": "2024-03-19T19:45:16+00:00"
         },
         {
             "name": "simplesamlphp/xml-common",
-            "version": "v1.16.0",
+            "version": "v1.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-common.git",
-                "reference": "4f1257d1357644c413438985de13c92d498b5018"
+                "reference": "a3c4c548ebd9783c3833c13ea7c01b010b0a1239"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/4f1257d1357644c413438985de13c92d498b5018",
-                "reference": "4f1257d1357644c413438985de13c92d498b5018",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/a3c4c548ebd9783c3833c13ea7c01b010b0a1239",
+                "reference": "a3c4c548ebd9783c3833c13ea7c01b010b0a1239",
                 "shasum": ""
             },
             "require": {
@@ -5436,7 +5437,7 @@
                 "simplesamlphp/assert": "^1.1"
             },
             "require-dev": {
-                "simplesamlphp/simplesamlphp-test-framework": "^1.5"
+                "simplesamlphp/simplesamlphp-test-framework": "^1.6"
             },
             "type": "project",
             "autoload": {
@@ -5468,20 +5469,20 @@
                 "issues": "https://github.com/simplesamlphp/xml-common/issues",
                 "source": "https://github.com/simplesamlphp/xml-common"
             },
-            "time": "2024-01-22T20:54:45+00:00"
+            "time": "2024-03-19T22:04:20+00:00"
         },
         {
             "name": "simplesamlphp/xml-security",
-            "version": "v1.7.0",
+            "version": "v1.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-security.git",
-                "reference": "5a07d07128a897c89fab2ec4213cd538e0763a91"
+                "reference": "1983558c181563246ce2062881545e2973f847e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/5a07d07128a897c89fab2ec4213cd538e0763a91",
-                "reference": "5a07d07128a897c89fab2ec4213cd538e0763a91",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/1983558c181563246ce2062881545e2973f847e6",
+                "reference": "1983558c181563246ce2062881545e2973f847e6",
                 "shasum": ""
             },
             "require": {
@@ -5492,8 +5493,8 @@
                 "ext-pcre": "*",
                 "ext-spl": "*",
                 "php": "^8.1",
-                "simplesamlphp/assert": "^1.0",
-                "simplesamlphp/xml-common": "^1.13"
+                "simplesamlphp/assert": "^1.1",
+                "simplesamlphp/xml-common": "^1.15"
             },
             "require-dev": {
                 "simplesamlphp/simplesamlphp-test-framework": "^1.5"
@@ -5530,9 +5531,9 @@
             ],
             "support": {
                 "issues": "https://github.com/simplesamlphp/xml-security/issues",
-                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.7.0"
+                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.7.1"
             },
-            "time": "2023-12-14T20:25:08+00:00"
+            "time": "2024-03-19T23:13:39+00:00"
         },
         {
             "name": "slevomat/coding-standard",
@@ -5678,6 +5679,87 @@
                 }
             ],
             "time": "2024-02-16T15:06:51+00:00"
+        },
+        {
+            "name": "symfony/phpunit-bridge",
+            "version": "v7.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/phpunit-bridge.git",
+                "reference": "54ca13ec990a40411ad978e08d994fca6cdd865f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/54ca13ec990a40411ad978e08d994fca6cdd865f",
+                "reference": "54ca13ec990a40411ad978e08d994fca6cdd865f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5"
+            },
+            "conflict": {
+                "phpunit/phpunit": "<7.5|9.1.2"
+            },
+            "require-dev": {
+                "symfony/deprecation-contracts": "^2.5|^3.0",
+                "symfony/error-handler": "^5.4|^6.4|^7.0",
+                "symfony/polyfill-php81": "^1.27"
+            },
+            "bin": [
+                "bin/simple-phpunit"
+            ],
+            "type": "symfony-bridge",
+            "extra": {
+                "thanks": {
+                    "name": "phpunit/phpunit",
+                    "url": "https://github.com/sebastianbergmann/phpunit"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Bridge\\PhpUnit\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Provides utilities for PHPUnit, especially user deprecation notices management",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/phpunit-bridge/tree/v7.0.4"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-02-08T19:22:56+00:00"
         },
         {
             "name": "symfony/translation",
