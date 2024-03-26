@@ -9,6 +9,10 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+`ldap`
+
+* Fix exception being thrown when password is empty
+
 ## Version 2.1.5
 
 Released 2024-03-08
