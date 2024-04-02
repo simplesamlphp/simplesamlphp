@@ -7,12 +7,10 @@ namespace SimpleSAML\Module\saml;
 use Beste\Clock\LocalizedClock;
 use Exception;
 use Psr\Clock\ClockInterface;
-use SimpleSAML\{Configuration, Logger, Utils};
+use SimpleSAML\{Configuration, Logger, Module, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Constants as C;
-//use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
-use SimpleSAML\SAML2\XML\md\AbstractEndpointType;
 use SimpleSAML\SAML2\XML\md\AbstractIndexedEndpointType;
 use SimpleSAML\SAML2\XML\md\AbstractMetadataDocument;
 use SimpleSAML\SAML2\XML\md\ArtifactResolutionService;
@@ -62,6 +60,7 @@ class MetadataBuilder
     /** @var \Psr\Clock\ClockInterface */
     protected ClockInterface $clock;
 
+
     /**
      * Constructor.
      *
@@ -78,8 +77,6 @@ class MetadataBuilder
 
     /**
      * Build a metadata document
-     *
-     * @return \SimpleSAML\SAML2\XML\md\EntityDescriptor
      */
     public function buildDocument(): EntityDescriptor
     {
@@ -104,8 +101,6 @@ class MetadataBuilder
 
 
     /**
-     * @param \SimpleSAML\SAML2\XML\md\AbstractMetadataDocument $document
-     * @return \SimpleSAML\SAML2\XML\md\AbstractMetadataDocument
      */
     protected function signDocument(AbstractMetadataDocument $document): AbstractMetadataDocument
     {
@@ -157,7 +152,10 @@ class MetadataBuilder
                 'OrganizationURL' => $arrayUtils->arrayize($this->metadata->getArray('OrganizationURL'), 'en'),
             ]);
         } catch (ArrayValidationException $e) {
-            Logger::error('Federation: invalid content found in contact: ' . $e->getMessage());
+            Logger::error(sprintf(
+                'Federation: invalid content found in contact: %s',
+                $e->getMessage(),
+            ));
         }
 
         return $org;
@@ -166,8 +164,6 @@ class MetadataBuilder
 
     /**
      * Whether or not this entity sends signed AuthnRequests
-     *
-     * @return bool|null
      */
     private function authnRequestsSigned(): ?bool
     {
@@ -193,8 +189,6 @@ class MetadataBuilder
 
     /**
      * Whether or not this entity wants AuthnRequests signed
-     *
-     * @return bool|null
      */
     private function wantsAuthnRequestsSigned(): ?bool
     {
@@ -209,6 +203,8 @@ class MetadataBuilder
 
     /**
      * This method builds the role descriptor elements
+     *
+     * @return array<\SimpleSAML\SAML2\XML\md\AbstractRoleDescriptorType>
      */
     private function getRoleDescriptor(): array
     {
@@ -223,32 +219,19 @@ class MetadataBuilder
             case 'saml20-idp-remote':
                 $descriptors[] = $this->getIDPSSODescriptor();
                 break;
-            case 'attributeautority-remote':
-                $descriptors[] = $this->getAttributeAuthority();
-                break;
-            case 'adfs-idp-hosted':
-                $descriptors[] = $this->getIDPSSODescriptor();
-                $descriptors[] = $this->getSecurityTokenService();
-                break;
+//            case 'attributeautority-remote':
+//                $descriptors[] = $this->getAttributeAuthority();
+//                break;
+//            case 'adfs-idp-hosted':
+//                $descriptors[] = $this->getIDPSSODescriptor();
+//                $descriptors[] = $this->getSecurityTokenService();
+//                break;
             default:
                 throw new Exception('Not implemented');
         }
 
         return $descriptors;
     }
-
-
-    /**
-     * @TODO finish ws-security library
-     *
-     * This method builds the SecurityTokenService element
-    private function getSecurityTokenService(): SecurityTokenService
-    {
-        return new SecurityTokenService(
-            protocolSupportEnumeration: [C::NS_FED]
-        );
-    }
-     */
 
 
     /**
@@ -387,7 +370,7 @@ class MetadataBuilder
     /**
      * This method builds the md:AttributeConsumingService element, if any
      *
-     * @return \SimpleSAML\SAML2\XML\md\AttributeConsumingService[]
+     * @return array<\SimpleSAML\SAML2\XML\md\AttributeConsumingService>
      */
     private function getAttributeConsumingService(): array
     {
@@ -445,6 +428,8 @@ class MetadataBuilder
 
     /**
      * This method builds the md:KeyDescriptor elements, if any
+     *
+     * @return array<\SimpleSAML\SAML2\XML\md\KeyDescriptor>
      */
     private function getKeyDescriptor(): array
     {
@@ -459,7 +444,11 @@ class MetadataBuilder
                 $keyDescriptor[] = self::buildKeyDescriptor('signing', $key['X509Certificate'], $key['name'] ?? null);
             }
             if (!isset($key['encryption']) || $key['encryption'] === true) {
-                $keyDescriptor[] = self::buildKeyDescriptor('encryption', $key['X509Certificate'], $key['name'] ?? null);
+                $keyDescriptor[] = self::buildKeyDescriptor(
+                    'encryption',
+                    $key['X509Certificate'],
+                    $key['name'] ?? null,
+                );
             }
         }
 
@@ -473,6 +462,8 @@ class MetadataBuilder
 
     /**
      * This method builds the md:ContactPerson elements, if any
+     *
+     * @return array<\SimpleSAML\SAML2\XML\md\ContactPerson>
      */
     private function getContactPerson(): array
     {
@@ -570,11 +561,9 @@ class MetadataBuilder
     /**
      * Add a list of endpoints to metadata.
      *
-     * @param array $endpoints The endpoints.
      * @param class-string $class The type of endpoint to create
      *
-     * @return array An array of endpoint objects,
-     *     either \SimpleSAML\SAML2\XML\md\AbstractEndpointType or \SimpleSAML\SAML2\XML\md\AbstractIndexedEndpointType.
+     * @return array<\SimpleSAML\SAML2\XML\md\AbstractEndpointType>  An array of endpoint objects.
      */
     private static function createEndpoints(array $endpoints, string $class): array
     {
@@ -610,6 +599,8 @@ class MetadataBuilder
     }
 
 
+    /**
+     */
     private static function buildKeyDescriptor(string $use, string $x509Cert, ?string $keyName): KeyDescriptor
     {
         Assert::oneOf($use, ['encryption', 'signing']);
