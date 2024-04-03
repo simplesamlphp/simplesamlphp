@@ -10,7 +10,7 @@ updates:
   - package-ecosystem: "github-actions"  # See documentation for possible values
     directory: "/"  # Location of package manifests
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     groups:
       all-actions:
         patterns: ["*"]
@@ -18,7 +18,7 @@ updates:
   - package-ecosystem: "composer"  # See documentation for possible values
     directory: "/"  # Location of package manifests
     schedule:
-      interval: "daily"
+      interval: "weekly"
     allow:
       # Allow both direct and indirect updates for all packages
       - dependency-type: "all"
