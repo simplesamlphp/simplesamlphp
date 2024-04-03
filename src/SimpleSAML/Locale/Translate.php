@@ -80,7 +80,12 @@ class Translate
         $original = $original ?? 'undefined variable';
 
         $text = TranslatorFunctions::getTranslator()->gettext($original);
-
+        if ($text === $original) {
+            $text = TranslatorFunctions::getTranslator()->dgettext("core", $original);
+            if ($text === $original) {
+                $text = TranslatorFunctions::getTranslator()->dgettext("messages", $original);
+            }
+        }
         if (func_num_args() === 1) {
             return $text;
         }
