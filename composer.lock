@@ -1231,16 +1231,16 @@
         },
         {
             "name": "simplesamlphp/xml-security",
-            "version": "v1.7.0",
+            "version": "v1.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-security.git",
-                "reference": "5a07d07128a897c89fab2ec4213cd538e0763a91"
+                "reference": "1983558c181563246ce2062881545e2973f847e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/5a07d07128a897c89fab2ec4213cd538e0763a91",
-                "reference": "5a07d07128a897c89fab2ec4213cd538e0763a91",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/1983558c181563246ce2062881545e2973f847e6",
+                "reference": "1983558c181563246ce2062881545e2973f847e6",
                 "shasum": ""
             },
             "require": {
@@ -1251,8 +1251,8 @@
                 "ext-pcre": "*",
                 "ext-spl": "*",
                 "php": "^8.1",
-                "simplesamlphp/assert": "^1.0",
-                "simplesamlphp/xml-common": "^1.13"
+                "simplesamlphp/assert": "^1.1",
+                "simplesamlphp/xml-common": "^1.15"
             },
             "require-dev": {
                 "simplesamlphp/simplesamlphp-test-framework": "^1.5"
@@ -1289,9 +1289,9 @@
             ],
             "support": {
                 "issues": "https://github.com/simplesamlphp/xml-security/issues",
-                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.7.0"
+                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.7.1"
             },
-            "time": "2023-12-14T20:25:08+00:00"
+            "time": "2024-03-19T23:13:39+00:00"
         },
         {
             "name": "simplesamlphp/xml-soap",
