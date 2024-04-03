@@ -19,9 +19,25 @@ updates:
     directory: "/"  # Location of package manifests
     schedule:
       interval: "daily"
+    allow:
+      # Allow both direct and indirect updates for all packages
+      - dependency-type: "all"
     groups:
-      dev-dependencies:
+      production-dependencies:
+        dependency-type: "production"
+        exclude-patterns:
+          - "symfony/*"
+        update-types:
+          - "minor"
+          - "patch"
+      development-dependencies:
         dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+      symfony:
+        patterns:
+          - "symfony/*"
         update-types:
           - "minor"
           - "patch"
