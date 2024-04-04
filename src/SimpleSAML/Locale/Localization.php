@@ -49,7 +49,7 @@ class Localization
     private Translator $translator;
 
     private string $foo;
-    
+
     /**
      * Pointer to current Language
      *
