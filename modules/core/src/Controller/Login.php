@@ -239,7 +239,6 @@ class Login
         }
 
         $t = new Template($this->config, 'core:loginuserpass.twig');
-        $t->data['AuthState'] = $authStateId;
 
         if ($source instanceof UserPassOrgBase) {
             $t->data['username'] = $username;
@@ -269,6 +268,7 @@ class Login
         }
 
         if ($source instanceof UserPassOrgBase) {
+            $t->data['formURL'] = Module::getModuleURL('core/loginuserpassorg', ['AuthState' => $authStateId]);
             if ($request->request->has($source->getAuthId() . '-username')) {
                 $t->data['rememberUsernameChecked'] = true;
             }
@@ -285,6 +285,7 @@ class Login
                 $t->data['organizations'] = $organizations;
             }
         } else {
+            $t->data['formURL'] = Module::getModuleURL('core/loginuserpass', ['AuthState' => $authStateId]);
             $t->data['loginpage_links'] = $source->getLoginLinks();
         }
 
