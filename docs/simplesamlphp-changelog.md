@@ -9,6 +9,8 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+* Fix posting the form to the incorrect endpoint when using an authsource based on UserPassOrgBase (#2022)
+
 `ldap`
 
 * Fix exception being thrown when password is empty
