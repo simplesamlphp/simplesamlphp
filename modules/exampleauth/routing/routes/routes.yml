@@ -5,7 +5,7 @@ exampleauth-authpage:
   defaults: {
     _controller: 'SimpleSAML\Module\exampleauth\Controller\ExampleAuth::authpage'
   }
-  methods: [POST]
+  methods: [GET, POST]
 
 exampleauth-redirecttest:
   path: /redirecttest
