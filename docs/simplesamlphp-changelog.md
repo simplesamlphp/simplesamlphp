@@ -11,6 +11,10 @@ Released TBD
 
 * Fix posting the form to the incorrect endpoint when using an authsource based on UserPassOrgBase (#2022)
 
+`exampleauth`
+
+* Fix controller for External-authsource
+
 ## Version 2.0.11
 
 Released 2024-03-08
