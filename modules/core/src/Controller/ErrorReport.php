@@ -86,7 +86,10 @@ class ErrorReport
         $data['hostname'] = php_uname('n');
         $data['directory'] = dirname(__FILE__, 2);
 
-        if ($this->config->getOptionalBoolean('errorreporting', true)) {
+        if(!empty($_REQUEST['name'])) {
+            // spam protection honeypot
+            Logger::debug('Ignoring error report from ' . $email . ': ' . preg_replace('/[\r\n]/', ' ', $text));
+        } elseif ($this->config->getOptionalBoolean('errorreporting', true)) {
             $mail = new Utils\EMail('SimpleSAMLphp error report from ' . $email);
             $mail->setData($data);
             if (filter_var($email, FILTER_VALIDATE_EMAIL, FILTER_REQUIRE_SCALAR)) {
