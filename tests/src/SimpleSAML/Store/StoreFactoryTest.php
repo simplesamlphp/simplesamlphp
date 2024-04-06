@@ -174,13 +174,10 @@ class StoreFactoryTest extends TestCase
     protected function clearInstance($service, string $className): void
     {
         $reflectedClass = new ReflectionClass($className);
-        $reflectedInstance = $reflectedClass->getProperty('instance');
-        $reflectedInstance->setAccessible(true);
         if ($service instanceof Configuration) {
-            $reflectedInstance->setValue($service, []);
+            $reflectedClass->setStaticPropertyValue('instance', []);
         } else {
-            $reflectedInstance->setValue($service, null);
+            $reflectedClass->setStaticPropertyValue('instance', null);
         }
-        $reflectedInstance->setAccessible(false);
     }
 }
