@@ -8,8 +8,8 @@ use Exception as BuiltinException;
 use SimpleSAML\{Configuration, Error, Logger, Session, Utils};
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 use function dirname;
 use function php_uname;
@@ -22,7 +22,7 @@ use function var_export;
  *
  * @package SimpleSAML\Module\core
  */
-class ErrorReport
+class ErrorReport extends AbstractController
 {
     /**
      * Controller constructor.

@@ -30,6 +30,7 @@ use SimpleSAML\Session;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\{Request, Response};
 
 use function array_merge;
@@ -48,7 +49,7 @@ use function var_export;
  *
  * @package simplesamlphp/simplesamlphp
  */
-class ServiceProvider
+class ServiceProvider extends AbstractController
 {
     /**
      * @var \SimpleSAML\Auth\State|string

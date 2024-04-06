@@ -20,6 +20,7 @@ use SimpleSAML\Logger;
 use SimpleSAML\Metadata;
 use SimpleSAML\Module;
 use SimpleSAML\Store\StoreFactory;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * Controller class for the Web Browser Single Sign On profile.
@@ -28,7 +29,7 @@ use SimpleSAML\Store\StoreFactory;
  *
  * @package simplesamlphp/simplesamlphp
  */
-class WebBrowserSingleSignOn
+class WebBrowserSingleSignOn extends AbstractController
 {
     /**
      * Controller constructor.

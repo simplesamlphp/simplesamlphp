@@ -13,8 +13,8 @@ use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
 use SimpleSAML\Utils;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**
  * Controller class for the IdP metadata.
@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @package simplesamlphp/simplesamlphp
  */
-class Metadata
+class Metadata extends AbstractController
 {
     /** @var \SimpleSAML\Utils\Auth */
     protected Utils\Auth $authUtils;

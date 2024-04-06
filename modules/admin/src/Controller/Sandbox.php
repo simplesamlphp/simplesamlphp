@@ -7,6 +7,7 @@ namespace SimpleSAML\Module\admin\Controller;
 use SimpleSAML\Configuration;
 use SimpleSAML\Session;
 use SimpleSAML\XHTML\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * Controller class for the admin module.
@@ -15,7 +16,7 @@ use SimpleSAML\XHTML\Template;
  *
  * @package SimpleSAML\Module\admin
  */
-class Sandbox
+class Sandbox extends AbstractController
 {
     /**
      * Sandbox constructor.

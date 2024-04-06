@@ -12,6 +12,7 @@ use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Message;
 use SimpleSAML\XHTML\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
 use function call_user_func;
@@ -30,7 +31,7 @@ use function var_export;
  *
  * @package simplesamlphp/simplesamlphp
  */
-class Logout
+class Logout extends AbstractController
 {
     /**
      * @var \SimpleSAML\Auth\State|string

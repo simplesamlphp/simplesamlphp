@@ -13,6 +13,7 @@ use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -22,7 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @package simplesamlphp/simplesamlphp
  */
-class SingleLogout
+class SingleLogout extends AbstractController
 {
     /** @var \SimpleSAML\Metadata\MetaDataStorageHandler */
     protected MetaDataStorageHandler $mdHandler;

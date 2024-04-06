@@ -10,8 +10,8 @@ use SimpleSAML\Error;
 use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
 use SimpleSAML\Session;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**
  * Controller class for the multiauth module.
@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @package SimpleSAML\Module\multiauth
  */
-class DiscoController
+class DiscoController extends AbstractController
 {
     /**
      * @var \SimpleSAML\Auth\Source|string

@@ -12,6 +12,7 @@ use SimpleSAML\Module\exampleauth\Auth\Source\External;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\{Request, Response};
 use Symfony\Component\HttpFoundation\Session\Session as SymfonySession;
 
@@ -25,7 +26,7 @@ use function urldecode;
  *
  * @package simplesamlphp/simplesamlphp
  */
-class ExampleAuth
+class ExampleAuth extends AbstractController
 {
     /**
      * @var \SimpleSAML\Auth\State|string

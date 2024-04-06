@@ -10,6 +10,7 @@ use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\{Request, Response, StreamedResponse};
 
 use function curl_close;
@@ -31,7 +32,7 @@ use function version_compare;
  *
  * @package SimpleSAML\Module\admin
  */
-class Config
+class Config extends AbstractController
 {
     public const LATEST_VERSION_STATE_KEY = 'core:latest_simplesamlphp_version';
 

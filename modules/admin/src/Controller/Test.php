@@ -13,8 +13,8 @@ use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**
  * Controller class for the admin module.
@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @package SimpleSAML\Module\admin
  */
-class Test
+class Test extends AbstractController
 {
     /**
      * @var \SimpleSAML\Utils\Auth

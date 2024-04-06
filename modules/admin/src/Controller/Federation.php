@@ -20,9 +20,8 @@ use SimpleSAML\Module\adfs\IdP\ADFS as ADFS_IdP;
 use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\{Request, Response, ResponseHeaderBag};
 use Symfony\Component\VarExporter\VarExporter;
 
 use function array_merge;
@@ -45,7 +44,7 @@ use function var_export;
  *
  * @package SimpleSAML\Module\admin
  */
-class Federation
+class Federation extends AbstractController
 {
     /**
      * @var \SimpleSAML\Auth\Source|string

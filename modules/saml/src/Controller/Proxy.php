@@ -14,6 +14,7 @@ use SimpleSAML\IdP;
 use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\Module\saml\Error\NoAvailableIDP;
 use SimpleSAML\XHTML\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**
@@ -23,7 +24,7 @@ use Symfony\Component\HttpFoundation\{Request, Response};
  *
  * @package simplesamlphp/simplesamlphp
  */
-class Proxy
+class Proxy extends AbstractController
 {
     /**
      * @var \SimpleSAML\Auth\State|string

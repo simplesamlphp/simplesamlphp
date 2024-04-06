@@ -10,8 +10,8 @@ use SimpleSAML\Error;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**
  * Controller class for the core module.
@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @package SimpleSAML\Module\core
  */
-class Redirection
+class Redirection extends AbstractController
 {
     /** @var \SimpleSAML\Utils\Crypto */
     protected $cryptoUtils;

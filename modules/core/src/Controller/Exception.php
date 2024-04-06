@@ -8,6 +8,7 @@ use DateTimeInterface;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\{Auth, Configuration, Error, Logger, Module, Session, Utils};
 use SimpleSAML\XHTML\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\{Request, Response};
 
 use function array_keys;
@@ -24,7 +25,7 @@ use function urlencode;
  *
  * @package SimpleSAML\Module\core
  */
-class Exception
+class Exception extends AbstractController
 {
     public const CODES = ['IDENTIFICATION_FAILURE', 'AUTHENTICATION_FAILURE', 'AUTHORIZATION_FAILURE', 'OTHER_ERROR'];
 

@@ -7,6 +7,7 @@ namespace SimpleSAML\Module\saml\Controller;
 use SimpleSAML\Configuration;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\XHTML\IdPDisco;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * Controller class for the saml module.
@@ -15,7 +16,7 @@ use SimpleSAML\XHTML\IdPDisco;
  *
  * @package simplesamlphp/simplesamlphp
  */
-class Disco
+class Disco extends AbstractController
 {
     /**
      * Controller constructor.

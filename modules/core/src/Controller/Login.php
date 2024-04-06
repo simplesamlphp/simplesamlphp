@@ -8,9 +8,8 @@ use Exception as BuiltinException;
 use SimpleSAML\{Auth, Configuration, Error, Module, Utils};
 use SimpleSAML\Module\core\Auth\{UserPassBase, UserPassOrgBase};
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Cookie;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\{Cookie, Request, Response};
 
 use function array_key_exists;
 use function substr;
@@ -24,7 +23,7 @@ use function trim;
  *
  * @package SimpleSAML\Module\core
  */
-class Login
+class Login extends AbstractController
 {
     /**
      * @var \SimpleSAML\Auth\Source|string
