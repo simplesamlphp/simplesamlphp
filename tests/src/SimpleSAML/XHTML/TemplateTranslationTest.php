@@ -7,6 +7,7 @@ namespace SimpleSAML\Test\XHTML;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Locale\{Translate, TwigTranslator};
+use SimpleSAML\Module;
 use SimpleSAML\XHTML\Template;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Component\Finder\{Finder, SplFileInfo};
