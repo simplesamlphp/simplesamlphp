@@ -51,6 +51,7 @@ class TemplateTranslationTest extends TestCase
         $t->data['rememberUsernameEnabled'] = false;
         $t->data['rememberMeEnabled'] = false;
         $t->data['AuthState'] = '_abc123';
+        $t->data['formURL'] = Module::getModuleURL('core/loginuserpass');
 
         $getContent = function (): string {
             /** @var \SimpleSAML\XHTML\Template $this */
