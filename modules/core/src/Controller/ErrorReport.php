@@ -6,7 +6,10 @@ namespace SimpleSAML\Module\core\Controller;
 
 use Exception as BuiltinException;
 use SimpleSAML\{Configuration, Error, Logger, Session, Utils};
+use SimpleSAML\Module\core\Entity;
+use SimpleSAML\Module\core\Form\ErrorReportType;
 use SimpleSAML\HTTP\RunnableResponse;
+
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -100,5 +103,21 @@ class ErrorReport
         // redirect the user back to this page to clear the POST request
         $httpUtils = new Utils\HTTP();
         return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$httpUtils->getSelfURLNoQuery()]);
+    }
+
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
+     */
+    public function new(Request $request): Response
+    {
+        $errorReport = new Entity\ErrorReport();
+
+        $form = $this->createForm(ErrorReportType::class, $errorReport);
+
+        return $this->render('templates/error.twig', [
+            'form' => $form,
+        ]);
     }
 }

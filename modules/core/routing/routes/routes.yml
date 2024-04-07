@@ -144,3 +144,10 @@ core-error-report:
     _controller: '\SimpleSAML\Module\core\Controller\ErrorReport::main'
   }
   methods: [GET, POST]
+
+core-error-report-test:
+  path: /new
+  defaults: {
+    _controller: '\SimpleSAML\Module\core\Controller\ErrorReport::new'
+  }
+  methods: [GET, POST]
