@@ -26,6 +26,7 @@ class Localization
      * @var string
      */
     public const DEFAULT_DOMAIN = 'messages';
+    public const CORE_DOMAIN = 'core';
 
     /**
      * The default locale directory
@@ -132,7 +133,11 @@ class Localization
         $this->addDomain($localeDir, $domain ?? $module);
     }
 
-
+    public function defaultDomain(string $domain): self
+    {
+        $this->translator->defaultDomain($domain);
+        return $this;
+    }
     /**
      * Add a new translation domain
      * (We're assuming that each domain only exists in one place)
@@ -244,7 +249,6 @@ class Localization
             $file = new File($langPath . $domain . '.po', false);
             if ($file->getRealPath() !== false && $file->isReadable()) {
                 $translations = (new PoLoader())->loadFile($file->getRealPath());
-                $translations->setDomain('');
                 $arrayGenerator = new ArrayGenerator();
                 $this->translator->addTranslations(
                     $arrayGenerator->generateArray($translations)
@@ -269,6 +273,9 @@ class Localization
         $this->setupTranslator();
         // setup default domain
         $this->addDomain($this->localeDir, self::DEFAULT_DOMAIN);
+        // There are not many "core" translations and we would like them to be
+        // loaded along with the messages.po and available to all.
+        $this->addModuleDomain(self::CORE_DOMAIN, null, self::CORE_DOMAIN);
     }
 
 
