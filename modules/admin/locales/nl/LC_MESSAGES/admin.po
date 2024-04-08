@@ -2,11 +2,11 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:411
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:417
 msgid "<strong>The configuration uses the default secret salt</strong>. Make sure to modify the <code>secretsalt</code> option in the SimpleSAMLphp configuration in production environments. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-install\">Read more about the maintenance of SimpleSAMLphp</a>."
 msgstr "<strong>In de configuratie staat het meegeleverde secret salt</strong>. Verzeker u ervan de waarde van de <code>secretsalt</code> parameter aan te passen voor productieomgevingen. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance\">Lees meer over het onderhoud van SimpleSAMLphp</a>."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:401
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:407
 msgid "<strong>You are not using HTTPS</strong> to protect communications with your users. HTTP works fine for testing purposes, but in a production environment you should use HTTPS. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance\">Read more about the maintenance of SimpleSAMLphp</a>."
 msgstr "<strong>U gebruikt geen HTTPS</strong> om de verbinding met uw gebruikers te beveiligen. HTTP werkt prima voor testdoeleinden, maar in een productieomgeving zou HTTPS gebruikt moeten worden.<a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance\">Lees meer over het onderhoud van SimpleSAMLphp</a>."
 
@@ -48,7 +48,7 @@ msgstr "Geconverteerde metadata"
 msgid "Copy to clipboard"
 msgstr "Kopieer naar klembord"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:217
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:223
 msgid "Date/Time Extension"
 msgstr "Date/Time-extensie"
 
@@ -69,7 +69,7 @@ msgstr "Federatie"
 msgid "Format"
 msgstr "Formaat"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:223
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:229
 msgid "Hashing function"
 msgstr "Hashfunctie"
 
@@ -91,15 +91,15 @@ msgstr "In SAML 2.0 Metadata XML-formaat:"
 msgid "Information on your PHP installation"
 msgstr "Informatie over uw PHP-installatie"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:259
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:265
 msgid "JSON support"
 msgstr "JSON-ondersteuning"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:303
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:309
 msgid "LDAP extension"
 msgstr "LDAP-extensie"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:302
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:308
 msgid "LDAP extension (required if an LDAP backend is used)"
 msgstr "LDAP-extensie (vereist als een LDAP-backend wordt gebruikt)"
 
@@ -126,11 +126,11 @@ msgstr "Overeenkomend sleutelpaar voor het ondertekenen van assertions (rollover
 msgid "Matching key-pair for signing metadata"
 msgstr "Overeenkomend sleutelpaar voor het ondertekenen van metadata"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:333
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:339
 msgid "Memcache or Memcached extension"
 msgstr "Memcache- of Memcached-extensie"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:330
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:336
 msgid "Memcache or Memcached extension (required if the memcache backend is used)"
 msgstr "Memache- of Memcached-extensie (vereist als de memcache-backend wordt gebruikt)"
 
@@ -140,26 +140,26 @@ msgstr "Metadata"
 msgid "Metadata parser"
 msgstr "Metadata parser"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:271
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:277
 msgid "Multibyte String extension"
 msgstr "Multibye String-extensie"
 
 msgid "No file selected."
 msgstr "Geen bestand geselecteerd."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:235
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:241
 msgid "OpenSSL"
 msgstr "OpenSSL"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:295
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:301
 msgid "PDO Extension (required if a database backend is used)"
 msgstr "PDO-extensie (vereist als een database-backend wordt gebruikt)"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:296
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:302
 msgid "PDO extension"
 msgstr "PDO-extensie"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:200
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:206
 #, php-format
 msgid "PHP %minimum% or newer is needed. You are running: %current%"
 msgstr "PHP %minimum% of hoger is benodigd. U heeft: %current%"
@@ -173,7 +173,7 @@ msgstr "Radius-extensie"
 msgid "Radius extension (required if a radius backend is used)"
 msgstr "Radius-extensie (vereist als een radius-backend wordt gebruikt)"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:247
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:253
 msgid "Regular expression support"
 msgstr "Reguliere expressie-ondersteuning"
 
@@ -196,11 +196,11 @@ msgstr "SAML Subject"
 msgid "Search"
 msgstr "Zoek"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:289
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:295
 msgid "Session extension"
 msgstr "Sessie-extensie"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:288
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:294
 msgid "Session extension (required if PHP sessions are used)"
 msgstr "Sessie-extensie (vereist als PHP-sessies worden gebruikt)"
 
@@ -216,7 +216,7 @@ msgstr "SimpleSAMLphp installatiepagina"
 msgid "SimpleSAMLphp is installed in:"
 msgstr "SimpleSAMLphp is geïnstalleerd in:"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:265
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:271
 msgid "Standard PHP library (SPL)"
 msgstr "Standard PHP library (SPL)"
 
@@ -230,15 +230,15 @@ msgstr "Test"
 msgid "Test Authentication Sources"
 msgstr "Test Authentication Sources"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:355
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:361
 msgid "The <code>technicalcontact_email</code> configuration option should be set"
 msgstr "Het instellen van de optie <code>technicalcontact_email</code> wordt aangeraden"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:361
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:367
 msgid "The auth.adminpassword configuration option must be set"
 msgstr "Er moet een auth.adminpassword ingesteld zijn"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:426
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:432
 msgid "The cURL PHP extension is missing. Cannot check for SimpleSAMLphp updates."
 msgstr "De cURL-extensie mist in PHP. Kan niet controleren op updates."
 
@@ -254,7 +254,7 @@ msgstr "Type:"
 msgid "Use this if you are using a SimpleSAMLphp entity on the other side:"
 msgstr "Gebruik dit als de andere zijde ook SimpleSAMLphp gebruikt:"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:241
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:247
 msgid "XML DOM"
 msgstr "XML DOM"
 
@@ -265,7 +265,7 @@ msgstr "XML-metadata"
 msgid "XML to SimpleSAMLphp metadata converter"
 msgstr "XML naar SimpleSAMLphp metadata vertaling"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:451
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:457
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr "U heeft een verouderde versie van SimpleSAMLphp. Het is aan te raden zo snel mogelijk te upgraden naar <a href=\"%latest%\">de laatste versie</a>."
 
@@ -281,15 +281,15 @@ msgstr "Uw attributen"
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Uw sessie is nog %remaining% seconden geldig vanaf dit moment."
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:229
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:235
 msgid "ZLib"
 msgstr "ZLib"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:277
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:283
 msgid "cURL (might be required by some modules)"
 msgstr "cURL (kan nodig zijn voor bepaalde modules)"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:280
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:286
 msgid "cURL (required if automatic version checks are used, also by some modules)"
 msgstr "cURL (vereist als automatische versiechecks ingeschakeld zijn, eveneens voor bepaalde modules)"
 
@@ -311,11 +311,11 @@ msgstr "optioneel"
 msgid "or select a file:"
 msgstr "of kies een bestand:"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:322
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:328
 msgid "predis/predis (required if the redis data store is used)"
 msgstr "predis/predis (vereist als de redis-dataopslag wordt gebruikt)"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:323
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:329
 msgid "predis/predis library"
 msgstr "predis/predis-bibliotheek"
 
