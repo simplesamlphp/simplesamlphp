@@ -12,6 +12,10 @@ Released TBD
 * Fix regression when setting the host-variable in `saml20-idp-hosted` (was #1922)
 * Fix posting the form to the incorrect endpoint when using an authsource based on UserPassOrgBase (#2022)
 
+`admin`
+
+* Set custom security header to properly display phpinfo-page
+
 `exampleauth`
 
 * Fix controller for External-authsource
