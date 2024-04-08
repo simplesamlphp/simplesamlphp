@@ -171,7 +171,13 @@ class Config
     {
         $this->authUtils->requireAdmin();
 
-        return new StreamedResponse('phpinfo');
+        $response = new StreamedResponse('phpinfo');
+        $response->headers->set(
+            'Content-Security-Policy',
+            "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'self';",
+        );
+
+        return $response;
     }
 
 
