@@ -76,6 +76,10 @@ class Translate
             $text = TranslatorFunctions::getTranslator()->dgettext("core", $original);
             if ($text === $original) {
                 $text = TranslatorFunctions::getTranslator()->dgettext("messages", $original);
+                // try attributes.po
+                if ($text === $original) {
+                    $text = TranslatorFunctions::getTranslator()->dgettext("", $original);
+                }
             }
         }
         if (func_num_args() === 1) {
