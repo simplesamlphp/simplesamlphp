@@ -11,6 +11,10 @@ Released TBD
 
 * Fix posting the form to the incorrect endpoint when using an authsource based on UserPassOrgBase (#2022)
 
+`admin`
+
+* Set custom security header to properly display phpinfo-page
+
 `exampleauth`
 
 * Fix controller for External-authsource
