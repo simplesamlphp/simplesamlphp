@@ -142,7 +142,7 @@ class RequestedAuthnContextSelector extends AbstractSourceSelector
                             return $context['source'];
                         }
                     }
-                    break 2;
+                    break 1;
                 case 'minimum':
                 case 'maximum':
                 case 'better':
