@@ -14,6 +14,7 @@
         </div>
         <br>
         <div class="center">
+            {% if upload %}
             <div class="pure-button-group two-elements" role="group">
                 <label class="pure-button">
                     <span class="fa fa-folder-open"></span>{{ 'or select a file:'|trans }}
@@ -22,6 +23,7 @@
                 <label id="show-file" class="pure-button hollow show-files" disabled>{{ 'No file selected.'|trans }}</label>
             </div>
             <br>
+            {% endif %}
             <button class="pure-button pure-button-red pure-input-1-3">{{ 'Parse'|trans }}</button>
         </div>
     </form>
