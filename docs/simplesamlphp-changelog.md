@@ -10,6 +10,7 @@ See the upgrade notes for specific information about upgrading.
 Released TBD
 
 * Fix posting the form to the incorrect endpoint when using an authsource based on UserPassOrgBase (#2022)
+* Fix RequestedAuthnContextSelector for case with multiple RACs in request
 
 `admin`
 
