@@ -11,6 +11,7 @@ Released TBD
 
 * Fix regression when setting the host-variable in `saml20-idp-hosted` (was #1922)
 * Fix posting the form to the incorrect endpoint when using an authsource based on UserPassOrgBase (#2022)
+* Fix RequestedAuthnContextSelector for case with multiple RACs in request
 
 `admin`
 
