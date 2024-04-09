@@ -21,8 +21,10 @@ use Symfony\Component\VarExporter\VarExporter;
 use function array_merge;
 use function array_pop;
 use function array_values;
+use function boolval;
 use function count;
 use function file_get_contents;
+use function ini_get;
 use function is_array;
 use function sprintf;
 use function str_replace;
@@ -243,7 +245,7 @@ class Federation
                     );
                     $entities[$index] = $entity;
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 Logger::error('Federation: Error loading saml20-idp: ' . $e->getMessage());
             }
         }
@@ -300,7 +302,7 @@ class Federation
                     );
                     $entities[$index] = $entity;
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 Logger::error('Federation: Error loading adfs-idp: ' . $e->getMessage());
             }
         }
@@ -477,6 +479,7 @@ class Federation
             'xmldata' => $xmldata,
             'output' => $output,
             'error' => $error,
+            'upload' => boolval(ini_get('file_upload')),
         ];
 
         $this->menu->addOption('logout', $t->data['logouturl'], Translate::noop('Log out'));
