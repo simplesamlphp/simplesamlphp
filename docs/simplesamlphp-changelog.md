@@ -15,6 +15,7 @@ Released TBD
 `admin`
 
 * Set custom security header to properly display phpinfo-page
+* Hide file-upload button for metadata-converter is uploads are disabled at PHP-level
 
 `exampleauth`
 
