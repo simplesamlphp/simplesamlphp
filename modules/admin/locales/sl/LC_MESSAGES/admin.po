@@ -10,13 +10,13 @@ msgstr ""
 msgid "<strong>You are not using HTTPS</strong> to protect communications with your users. HTTP works fine for testing purposes, but in a production environment you should use HTTPS. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance\">Read more about the maintenance of SimpleSAMLphp</a>."
 msgstr "<strong>Ne uporabljate HTTPS</strong>-šifrirane komunikacije. SimpleSAMLphp deluje brez težav na HTTP, vendar le za testne namene, za uporabo SimpleSAMLphp v produkcijskem okolju uporabite HTTPS. [ <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance\">Preberite več o SimpleSAMLphp vzdrževanju</a> ]"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:165
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:166
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:178
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:179
 msgid "ADFS IdP metadata"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:163
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:164
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:176
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:177
 msgid "ADFS SP metadata"
 msgstr ""
 
@@ -103,8 +103,8 @@ msgstr ""
 msgid "LDAP extension (required if an LDAP backend is used)"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:473
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:187
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:487
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:106
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:146
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:153
@@ -177,13 +177,13 @@ msgstr ""
 msgid "Regular expression support"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:161
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:162
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:175
 msgid "SAML 2.0 IdP metadata"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:159
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:160
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:172
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:173
 msgid "SAML 2.0 SP metadata"
 msgstr ""
 
@@ -261,7 +261,7 @@ msgstr ""
 msgid "XML metadata"
 msgstr "XML metapodatki"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:154
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:167
 msgid "XML to SimpleSAMLphp metadata converter"
 msgstr "XML v SimpleSAMLphp pretvornik metapodatkov"
 
