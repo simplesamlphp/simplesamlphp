@@ -7,11 +7,13 @@ namespace SimpleSAML\Test\Module\saml\Controller;
 use Exception;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Auth;
+use SimpleSAML\Auth\Source;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\saml\Controller;
 use SimpleSAML\Session;
+use SimpleSAML\Test\Metadata\MetaDataStorageSourceTest;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,8 +27,16 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ServiceProviderTest extends TestCase
 {
+    /** @var \SimpleSAML\AuthConfiguration */
+    protected Configuration $authSources;
+
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
+
+    /**
+     * @return \SimpleSAML\Configuration
+     */
+    protected Configuration $idpMetatdataConfig;
 
     /** @var \SimpleSAML\Session */
     protected Session $session;
@@ -41,33 +51,50 @@ class ServiceProviderTest extends TestCase
     {
         parent::setUp();
 
+
+        $_SERVER['REQUEST_URI'] = '/dummy';
+
         $this->session = Session::getSessionFromRequest();
+
+        $c = [
+            'key' => 'value'
+        ];
+        Configuration::loadFromArray($c, '', 'simplesaml');
+        $entityId1 = 'https://engine.surfconext.nl/authentication/idp/metadata';
+        $xml1 = MetaDataStorageSourceTest::generateIdpMetadataXml($entityId1);
+        $entityId2 = 'https://saml.idp/entity';
+        $xml2 = MetaDataStorageSourceTest::generateIdpMetadataXml($entityId2);
+        $strTestXML = "
+        <EntitiesDescriptor xmlns=\"urn:oasis:names:tc:SAML:2.0:metadata\">
+        $xml1
+        $xml2
+        </EntitiesDescriptor>
+        ";
+
         $this->config = Configuration::loadFromArray(
             [
                 'module.enable' => ['saml' => true],
                 'admin.protectmetadata' => false,
                 'trusted.url.domains' => ['example.org'],
+                'metadata.sources' => [['type' => 'xml', 'xml' => $strTestXML]]
             ],
             '[ARRAY]',
             'simplesaml'
         );
-        Configuration::setPreLoadedConfig($this->config, 'config.php');
-
-        Configuration::setPreLoadedConfig(
-            Configuration::loadFromArray(
-                [
-                    'admin' => ['core:AdminPassword'],
-                    'phpunit' => [
-                        'saml:SP',
-                        'entityID' => 'urn:x-simplesamlphp:example-sp',
-                    ],
+        Configuration::setPreLoadedConfig($this->config);
+        $this->authSources = Configuration::loadFromArray(
+            [
+                'admin' => ['core:AdminPassword'],
+                'phpunit' => [
+                    'saml:SP',
+                    'entityID' => 'urn:x-simplesamlphp:example-sp',
+                    'RequestInitiation' => true
                 ],
-                '[ARRAY]',
-                'simplesaml'
-            ),
-            'authsources.php',
-            'simplesaml'
+            ],
+            '[ARRAY]',
+            'authsource'
         );
+        Configuration::setPreLoadedConfig($this->authSources, 'authsources.php');
 
         $this->authUtils = new class () extends Utils\Auth {
             public function requireAdmin(): void
@@ -75,8 +102,6 @@ class ServiceProviderTest extends TestCase
                 // stub
             }
         };
-
-        $_SERVER['REQUEST_URI'] = '/dummy';
     }
 
 
@@ -119,6 +144,203 @@ class ServiceProviderTest extends TestCase
         $c->login($request, 'phpunit');
     }
 
+    /**
+     * Test handleLogin when:
+     * - Request Initiation is enabled
+     * - A session is valid
+     * - target and entityID query parameters are provided
+     *
+     * We expect a login flow to start
+     *
+     * @return void
+     */
+    public function testHandleLoginRequestInitiationWithSession(): void
+    {
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+
+        $this->authSources = Configuration::loadFromArray(
+            [
+                'admin' => ['core:AdminPassword'],
+                'phpunit' => [
+                    'saml:SP',
+                    'entityID' => 'urn:x-simplesamlphp:example-sp',
+                    'RequestInitiation' => true
+                ],
+            ],
+            '[ARRAY]',
+            'authsource'
+        );
+        Configuration::setPreLoadedConfig($this->authSources, 'authsources.php');
+
+        // Stub the session class
+        $session = $this->createMock(Session::class);
+        $session->method('isValid')->willReturn(true);
+
+        /** @var \SimpleSAML\Session $session */
+        $this->session = $session;
+        // Stub Auth\Simple
+        $as = $this->getMockBuilder(Auth\Simple::class)
+                   ->setConstructorArgs(['phpunit', $this->authSources, $this->session])
+                   ->onlyMethods(['login', 'getAuthDataArray'])
+                   ->getMock();
+        $as->method('getAuthDataArray')
+            ->willReturn(['saml:sp:IdP' => 'https://google.qa.cirrusidentity.com/gateway']);
+
+        $sp = new class($this->config, $this->session) extends Controller\ServiceProvider {
+            public function callHandleLogin(Auth\Simple $as, array $options): void
+            {
+                $this->handleLogin($as, $options);
+            }
+        };
+
+        $options = [
+            'ReturnTo' => 'https://example.org',
+            'saml:idp' => 'https://engine.surfconext.nl/authentication/idp/metadata',
+
+        ];
+
+        $as->expects($this->once())->method('login');
+        $sp->callHandleLogin($as, $options);
+    }
+
+
+    /**
+     * Test handleLogin when:
+     * - Request Initiation is off
+     * - A session is not present
+     * - target, and entityID query parameters are provided
+     *
+     *  We expect a login flow to start
+     *
+     * @return void
+     */
+    public function testHandleLoginNoSession(): void
+    {
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+
+        $this->authSources = Configuration::loadFromArray(
+            [
+                'admin' => ['core:AdminPassword'],
+                'phpunit' => [
+                    'saml:SP',
+                    'entityID' => 'urn:x-simplesamlphp:example-sp',
+                    'RequestInitiation' => false
+                ],
+            ],
+            '[ARRAY]',
+            'authsource'
+        );
+        Configuration::setPreLoadedConfig($this->authSources, 'authsources.php');
+
+        // Stub the session class
+        $session = $this->createMock(Session::class);
+        $session->method('isValid')->willReturn(false);
+
+        /** @var \SimpleSAML\Session $session */
+        $this->session = $session;
+        // Stub Auth\Simple
+        $as = $this->getMockBuilder(Auth\Simple::class)
+                   ->setConstructorArgs(['phpunit', $this->authSources, $this->session])
+                   ->onlyMethods(['login'])
+                   ->getMock();
+
+
+        $sp = new class($this->config, $this->session) extends Controller\ServiceProvider {
+            public function callHandleLogin(Auth\Simple $as, array $options): void
+            {
+                $this->handleLogin($as, $options);
+            }
+        };
+
+        $options = [
+            'ReturnTo' => 'https://example.org',
+            'saml:idp' => 'https://engine.surfconext.nl/authentication/idp/metadata',
+
+        ];
+
+        $as->expects($this->once())->method('login');
+        $sp->callHandleLogin($as, $options);
+    }
+
+    /**
+     * Test handleLogin when:
+     * - Request Initiation is off
+     * - A session is present
+     * - target, and entityID query parameters are provided
+     *
+     * We expect no login flow
+     *
+     * @return void
+     */
+    public function testHandleLoginWithSession(): void
+    {
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+
+        $this->authSources = Configuration::loadFromArray(
+            [
+                'admin' => ['core:AdminPassword'],
+                'phpunit' => [
+                    'saml:SP',
+                    'entityID' => 'urn:x-simplesamlphp:example-sp',
+                    'RequestInitiation' => false
+                ],
+            ],
+            '[ARRAY]',
+            'authsource'
+        );
+        Configuration::setPreLoadedConfig($this->authSources, 'authsources.php');
+
+        // Stub the session class
+        $session = $this->createMock(Session::class);
+        $session->method('isValid')->willReturn(true);
+
+        /** @var \SimpleSAML\Session $session */
+        $this->session = $session;
+        // Stub Auth\Simple
+        $as = $this->getMockBuilder(Auth\Simple::class)
+                   ->setConstructorArgs(['phpunit', $this->authSources, $this->session])
+                   ->onlyMethods(['login'])
+                   ->getMock();
+        $MyServiceProvider = new class($this->config, $this->session) extends Controller\ServiceProvider {
+            public function callHandleLogin(Auth\Simple $as, array $options): void
+            {
+                $this->handleLogin($as, $options);
+            }
+        };
+
+        $as->expects($this->never())->method('login');
+        // When a session already exists, we will just return
+        $this->assertEquals($MyServiceProvider->callHandleLogin($as, []), null);
+    }
+
+    /**
+     * Test query parameter mapper
+     *
+     * @return void
+     */
+    public function testMapToOptionsList(): void
+    {
+        $MyServiceProvider = new class($this->config, $this->session) extends Controller\ServiceProvider {
+            public function callMapToOptionsList(array $requestParams): array
+            {
+                return $this->mapToOptionsList($requestParams);
+            }
+        };
+
+        $requestParams = [
+            'target' => 'https://example.org',
+            'entityID' => 'https://engine.surfconext.nl/authentication/idp/metadata',
+            'isPassive' => '', // XXX Needed to test the continue block in the if statement
+        ];
+        $options = $MyServiceProvider->callMapToOptionsList($requestParams);
+        $this->assertEquals($options, [
+            'ReturnTo' => 'https://example.org',
+            'saml:idp' => 'https://engine.surfconext.nl/authentication/idp/metadata'
+        ]);
+
+
+    }
+
 
     /**
      * @TODO: This cannot be tested until we are PSR-7 compliant
@@ -157,7 +379,7 @@ class ServiceProviderTest extends TestCase
         $c = new Controller\ServiceProvider($this->config, $this->session);
 
         $this->expectException(Error\BadRequest::class);
-        $this->expectExceptionMessage('Missing AuthID to discovery service response handler');
+        $this->expectExceptionMessage('Missing AuthID parameter.');
 
         $c->discoResponse($request);
     }
@@ -179,7 +401,7 @@ class ServiceProviderTest extends TestCase
         $c = new Controller\ServiceProvider($this->config, $this->session);
 
         $this->expectException(Error\BadRequest::class);
-        $this->expectExceptionMessage('Missing idpentityid to discovery service response handler');
+        $this->expectExceptionMessage('Missing idpentityid parameter.');
 
         $c->discoResponse($request);
     }
@@ -568,5 +790,40 @@ XML;
         $result = $c->metadata($request, 'phpunit');
         $this->assertTrue($result->headers->has('ETag'));
         $this->assertEquals('public', $result->headers->get('Cache-Control'));
+    }
+
+    public function testParseRequestParameters(): void
+    {
+        $requestParams = [
+            'target' => 'https://example.org',
+            'entityID' => 'https://engine.surfconext.nl/authentication/idp/metadata'
+        ];
+
+        $paramList = [
+            'target' => false,
+            'entityID' => false,
+            'isPassive' => false,
+            'forceAuthn' => false,
+            'ReturnTo' => true,
+        ];
+
+        $request = Request::create(
+            '/sp/metadata/phpunit',
+            'GET',
+            $requestParams
+        );
+
+        $MyServiceProvider = new class($this->config, $this->session) extends Controller\ServiceProvider {
+            public function callParseRequestParameters(Request $request, array $parameterList = []): array
+            {
+                return $this->parseRequestParameters($request, $parameterList);
+            }
+        };
+
+        $extractedParams = $MyServiceProvider->callParseRequestParameters($request, $paramList);
+        $this->assertEquals($extractedParams, [
+            'target' => 'https://example.org',
+            'entityID' => 'https://engine.surfconext.nl/authentication/idp/metadata'
+        ]);
     }
 }
