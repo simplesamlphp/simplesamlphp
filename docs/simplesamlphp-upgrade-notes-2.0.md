@@ -21,6 +21,12 @@ composer require simplesamlphp/simplesamlphp-module-ldap --update-no-dev
 
 ## Functional changes
 
+- EntityIDs are no longer auto-generated. Make sure to set something sensible in the array-keys in
+  `metadata/saml20-idp-hosted.php` and for any saml:SP in `config/authsources.php` (or to the existing entityIDs when
+  upgrading an existing installation).
+  If you are using a database to store metadata, make sure to replace any `__DYNAMIC:<n>__` entityID's with
+  a real value manually. Dynamic records are no longer loaded from the database. See the "Upgrading and EntityIDs"
+  section at the end of the document for more information.
 - Modules must be enabled through the `module.enable` option in `config.php`. Modules can no longer be enabled by having
   a file named `enable` or `default-enable` in the module's root directory.
 - The base URL of the SimpleSAMLphp installation no longer provides an admin menu. Instead this is now at the location
@@ -38,11 +44,6 @@ composer require simplesamlphp/simplesamlphp-module-ldap --update-no-dev
 - All support for the Shibboleth 1.3 / SAML 1.1 protocol has been removed.
 - Sessions are no longer backwards compatible with previous versions. Make sure to clear your session cache during
   the upgrade process. How to do this depends on your session backend.
-- EntityIDs are no longer auto-generated. Make sure to set something sensible in the array-keys in
-  `metadata/saml20-idp-hosted.php` and for any saml:SP in `config/authsources.php` (or to the existing entityIDs when
-  upgrading an existing installation).
-  If you are using a database to store metadata, make sure to replace any `__DYNAMIC:<n>__` entityID's with
-  a real value manually. Dynamic records are no longer loaded from the database.
 
 ## Configuration changes
 
@@ -144,3 +145,50 @@ $x = \SimpleSAML\Utils\Arrays::arrayize($someVar)
 
 [1]: https://github.com/simplesamlphp/simplesamlphp/wiki/Migrating-translations-(pre-migration)
 [2]: https://github.com/simplesamlphp/simplesamlphp/wiki/Twig:-Migrating-templates
+
+## Upgrading and EntityIDs
+
+If you still have your 1.x installation available, the entityID you
+are using for your SP and IdP should be available in
+module.php/core/frontpage_federation.php location on your
+SimpleSAMLphp server.
+
+For a service provider, if it was set as auto-generated in 1.19, it
+will likely have the form of (<https://yourhostname/simplesaml/module.php/saml/sp/metadata.php/default-sp>).
+
+The EntityID is set in two locations, as the property 'entityID' for
+an SP and as the index in the $metadata array for an IdP. Examples of
+both are shown below.
+
+For the SP you can set the EntityID as shown in the below fragment of
+authsources.php. In all of the below configuration fragments the
+EntityID is set to (<https://example.com/the-service/>).
+
+```php
+...
+    'default-sp' => [
+        'saml:SP',
+        // The entity ID of this SP.
+        'entityID' => 'https://example.com/the-service/',
+...
+```
+
+One suggestion for forming an EntityID is to use the below scheme.
+
+```php
+$entityid_sp = 'https://'
+   . $_SERVER['HTTP_HOST']
+   . '/simplesaml/module.php/saml/sp/metadata.php/default-sp';
+```
+
+For an IdP you might like to look at saml20-idp-hosted.php where the
+EntityID is used as the key in the metadata array.
+
+```php
+...
+$metadata['https://example.com/the-service/'] = [
+...
+```
+
+If you use SimpleSAMLphp as an SP, the IdP you are using will have
+your correct entityID configured.
