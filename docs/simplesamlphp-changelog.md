@@ -12,6 +12,7 @@ Released TBD
 * Fix posting the form to the incorrect endpoint when using an authsource based on UserPassOrgBase (#2022)
 * Fix RequestedAuthnContextSelector for case with multiple RACs in request
 * Add xml opening-tag to SP-metadata for consistency with IdP-metadata (#2048)
+* Fixed a PHP 8.3 compliance issue in the logout handler (#2047)
 
 `admin`
 
