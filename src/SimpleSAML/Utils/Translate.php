@@ -35,6 +35,11 @@ class Translate
         foreach ($finder->files()->in($moduleSrcDir)->name('*.php') as $file) {
             $phpScanner->scanFile($file->getPathName());
         }
+        if (is_dir($moduleDir . 'hooks/')) {
+            foreach ($finder->files()->in($moduleDir . 'hooks/')->name('*.php') as $file) {
+                $phpScanner->scanFile($file->getPathName());
+            }
+        }
 
         return $phpScanner;
     }
@@ -48,10 +53,10 @@ class Translate
 
         // Scan Twig-templates
         $finder = new Finder();
-        foreach ($finder->files()->in($moduleTemplateDir)->depth('== 0')->name('*.twig') as $file) {
+        foreach ($finder->files()->in($moduleTemplateDir)->name('*.twig') as $file) {
             $template = new Template(
                 $this->configuration,
-                ($module ? ($module . ':') : '') . $file->getFileName(),
+                ($module ? ($module . ':') : '') . $file->getRelativePathname(),
             );
 
             $catalogue = new MessageCatalogue('en', []);

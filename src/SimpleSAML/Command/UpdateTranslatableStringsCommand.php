@@ -174,10 +174,16 @@ class UpdateTranslatableStringsCommand extends Command
                 $finder = new Finder();
                 foreach ($finder->files()->in($moduleLocalesDir . '**/LC_MESSAGES/')->name("{$domain}.po") as $poFile) {
                     $current = $loader->loadFile($poFile->getPathName());
+
                     $merged = $template->mergeWith(
                         $current,
-                        Merge::TRANSLATIONS_THEIRS | Merge::COMMENTS_OURS | Merge::HEADERS_OURS | Merge::REFERENCES_OURS,
+                        Merge::TRANSLATIONS_OVERRIDE
+                        | Merge::COMMENTS_OURS
+                        | Merge::HEADERS_OURS
+                        | Merge::REFERENCES_THEIRS
+                        | Merge::EXTRACTED_COMMENTS_OURS
                     );
+                    $merged->setDomain($domain);
 
                     //
                     // Sort the translations in a predictable way
