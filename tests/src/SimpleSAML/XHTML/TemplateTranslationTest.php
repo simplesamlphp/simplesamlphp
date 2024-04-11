@@ -7,6 +7,7 @@ namespace SimpleSAML\Test\XHTML;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Locale\{Translate, TwigTranslator};
+use SimpleSAML\Module;
 use SimpleSAML\XHTML\Template;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Component\Finder\{Finder, SplFileInfo};
@@ -51,6 +52,7 @@ class TemplateTranslationTest extends TestCase
         $t->data['rememberUsernameEnabled'] = false;
         $t->data['rememberMeEnabled'] = false;
         $t->data['AuthState'] = '_abc123';
+        $t->data['formURL'] = Module::getModuleURL('core/loginuserpass');
 
         $getContent = function (): string {
             /** @var \SimpleSAML\XHTML\Template $this */

@@ -294,9 +294,11 @@ class Template extends Response
         // load extra i18n domains
         if ($this->module) {
             $this->localization->addModuleDomain($this->module);
+            $this->localization->defaultDomain($this->module);
         }
         if ($this->theme['module'] !== null && $this->theme['module'] !== $this->module) {
             $this->localization->addModuleDomain($this->theme['module']);
+            $this->localization->defaultDomain($this->theme['module']);
         }
 
         // set up translation

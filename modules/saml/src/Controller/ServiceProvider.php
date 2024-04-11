@@ -30,7 +30,6 @@ use function is_null;
 use function sprintf;
 use function strpos;
 use function strrpos;
-use function substr;
 use function time;
 use function var_export;
 
@@ -633,14 +632,6 @@ class ServiceProvider
 
         // sign the metadata if enabled
         $metaxml = Metadata\Signer::sign($xml, $spconfig->toArray(), 'SAML 2 SP');
-
-        // make sure to export only the md:EntityDescriptor
-        $i = strpos($metaxml, '<md:EntityDescriptor');
-        $metaxml = substr($metaxml, $i ? $i : 0);
-
-        // 22 = strlen('</md:EntityDescriptor>')
-        $i = strrpos($metaxml, '</md:EntityDescriptor>');
-        $metaxml = substr($metaxml, 0, $i ? $i + 22 : 0);
 
         $response = new Response();
         $response->setEtag(hash('sha256', $metaxml));

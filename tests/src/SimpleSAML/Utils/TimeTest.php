@@ -6,7 +6,7 @@ namespace SimpleSAML\Test\Utils;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use ReflectionProperty;
+use ReflectionClass;
 use SimpleSAML\{Configuration, Error, Utils};
 
 use function date_default_timezone_get;
@@ -56,9 +56,8 @@ class TimeTest extends TestCase
         $this->assertEquals($os, @date_default_timezone_get());
 
         // clear initialization
-        $c = new ReflectionProperty('\SimpleSAML\Utils\Time', 'tz_initialized');
-        $c->setAccessible(true);
-        $c->setValue(false);
+        $c = new ReflectionClass(Utils\Time::class);
+        $c->setStaticPropertyValue('tz_initialized', false);
 
         // test unknown timezone
         Configuration::loadFromArray(['timezone' => 'INVALID'], '[ARRAY]', 'simplesaml');
