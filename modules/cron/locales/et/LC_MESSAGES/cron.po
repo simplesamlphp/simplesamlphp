@@ -8,6 +8,10 @@ msgstr "Klõpsa siia croni töö käivitamiseks:"
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "Cron võimaldab Unix süsteemides regulaarselt ülesandeid täita."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/cron/hooks/hook_configpage.php:18
+msgid "Cron module information page"
+msgstr ""
+
 msgid "Cron ran at"
 msgstr "Cron töötas"
 

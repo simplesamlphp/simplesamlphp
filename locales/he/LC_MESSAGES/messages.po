@@ -50,6 +50,9 @@ msgstr "ההיזדהות נכשלה: הדפדפן לא שלח תעודה"
 msgid "Authentication source error"
 msgstr "שגיאה במקור ההזדהות"
 
+msgid "Authentication status"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "התקבלה בקשה לא חוקית"
@@ -61,6 +64,10 @@ msgstr "בקשה שגויה לשירות גילוי"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "שגיאת שהם"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
+msgid "Cannot retrieve session data"
+msgstr ""
 
 msgid "Certificates"
 msgstr "תעודות"
@@ -93,6 +100,9 @@ msgstr "צור קשר"
 msgid "Converted metadata"
 msgstr "מטא-מידע מומר"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "אין אפשרות ליצור תגובת הזדהות"
@@ -102,6 +112,9 @@ msgstr "תאריך לידה"
 
 msgid "Debug information"
 msgstr "מידע דבאג"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Display name"
 msgstr "הראה שם"
@@ -180,6 +193,9 @@ msgstr "הסבר מה עשית כשהתרחשה השגיאה..."
 msgid "Fax number"
 msgstr "מס' פקס"
 
+msgid "Format"
+msgstr ""
+
 msgid "Given name"
 msgstr "שם פרטי"
 
@@ -188,6 +204,9 @@ msgstr "חזור לדף ההתקנה של SimpleSAMLphp"
 
 msgid "Go back to the file list"
 msgstr "חזור אל רשימת הקבצים"
+
+msgid "Hello, Untranslated World!"
+msgstr ""
 
 msgid "Help desk homepage"
 msgstr "תמיכה טכנית"
@@ -235,6 +254,9 @@ msgstr "שם משתמש או סיסמה לא נכונים"
 msgid "Incorrect username or password."
 msgstr "סיסמה או שם משתמש לא נכונים."
 
+msgid "Information about your current session"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
@@ -253,6 +275,9 @@ msgstr "LDAP הוא מסד הנתונים המכיל את המשתמשים, וכ
 
 msgid "Labeled URI"
 msgstr "סיווג URI"
+
+msgid "Language"
+msgstr ""
 
 msgid "Legal name"
 msgstr "שם רשמי"
@@ -328,6 +353,10 @@ msgstr "אין RelayState"
 msgid "No SAML message provided"
 msgstr "לא סופקו הודעות SAML"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
+msgid "No SAML request provided"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
 msgstr "לא סופקה תגובת SAML"
@@ -342,6 +371,9 @@ msgstr "אין תעודה"
 
 msgid "No errors found."
 msgstr "לא נמצאו שגיאות."
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "לא"
@@ -457,6 +489,9 @@ msgstr "מטא-מידע של סש מסוג SAML 2.0 "
 msgid "SAML 2.0 Service Provider (Hosted)"
 msgstr "ספק שירות מקומי מסוג SAML 2.0"
 
+msgid "SAML Subject"
+msgstr ""
+
 msgid "Select"
 msgstr "בחר"
 
@@ -511,6 +546,9 @@ msgstr "נראה ש SimpleSAMLphp לא מוגדר נכון"
 
 msgid "SimpleSAMLphp error"
 msgstr "שגיאה ב SimpleSAMLphp"
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
 
 msgid "Some error occurred"
 msgstr "התרחשה שגיאה"
@@ -610,6 +648,9 @@ msgstr "תואר"
 msgid "To look at the details for an SAML entity, click on the SAML entity header."
 msgstr "כדי להסתכל על הפרטים של ישות SAML, לחץ על כותרת ישות הSAML "
 
+msgid "Tracking number"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
 msgid "Unable to locate metadata for %ENTITYID%"
@@ -644,6 +685,9 @@ msgstr "ספק זהות מרוחק מסוג איחוד-WS"
 msgid "WS-Federation Service Provider (Hosted)"
 msgstr "ספק שירות מקומי מסוג איחוד-WS"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "לא קיבלנו את התגובה שנשלחה מספק הזהות."
@@ -655,6 +699,9 @@ msgstr "כאשר ספק הזהות ניסה ליצור תגובת הזדהות, 
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "חבל! - בלי שם המשתמש והסיסמה שלך אתה לא יכול להזדהות בכדי לגשת לשירות. יכול להיות שיש מישהו שיכול לעזור לך. פנה לתמיכה הטכנית באוניברסיטה שלך!"
 
+msgid "World"
+msgstr ""
+
 msgid "XML metadata"
 msgstr "מטא-מידע בתבנית XML"
 
@@ -664,9 +711,17 @@ msgstr "כן, כל השרותים"
 msgid "Yes, continue"
 msgstr "כן, המשך"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:187
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "ניגשת לממשק הכרזת שירות ללקוח, אבל לא סיפקת תגובת הזדהות SAML. "
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:253
+msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
@@ -715,8 +770,15 @@ msgstr "שלחת משהו לדף הכניסה למערכת, אבל בגלל סי
 msgid "Your attributes"
 msgstr "התכונות שלך"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:219
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr ""
+
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "השיחה שלך ברת-תוקף לעוד %remaining% שניות מעכשיו."
 
 msgid "[Preferred choice]"
 msgstr "[בחירה מעודפת]"
+
+msgid "not set"
+msgstr ""

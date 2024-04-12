@@ -75,6 +75,9 @@ msgstr "Federation"
 msgid "Format"
 msgstr ""
 
+msgid "Go back to SimpleSAMLphp installation page"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:234
 msgid "Hashing function"
 msgstr ""
@@ -115,6 +118,9 @@ msgstr ""
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:149
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:156
 msgid "Log out"
+msgstr ""
+
+msgid "Logged out"
 msgstr ""
 
 msgid "Logout"
@@ -288,6 +294,9 @@ msgstr ""
 msgid "You can get the metadata XML on a dedicated URL:"
 msgstr ""
 
+msgid "You have been logged out."
+msgstr ""
+
 msgid "You have the following modules installed"
 msgstr ""
 
@@ -307,6 +316,9 @@ msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:291
 msgid "cURL (required if automatic version checks are used, also by some modules)"
+msgstr ""
+
+msgid "default"
 msgstr ""
 
 msgid "disabled"

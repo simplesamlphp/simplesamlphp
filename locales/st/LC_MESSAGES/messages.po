@@ -44,6 +44,9 @@ msgstr "Netefatso e hlolehile: sebadi sa hao ha se a romela setifikeiti sa letho
 msgid "Authentication source error"
 msgstr "Phoso ya netefatso ya mohlodi"
 
+msgid "Authentication status"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "Kopo e mpe e amohetswe"
@@ -82,12 +85,18 @@ msgstr "Phoso ya Netefatso"
 msgid "Contact information:"
 msgstr "Tlhahisoleseding ya boikopanyo:"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Ha e a kgona ho theha karabelo ya ntefatso"
 
 msgid "Debug information"
 msgstr "Tlhahisoleseding ya debug"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Do you want to logout from all the services above?"
 msgstr "Na o batla ho tswa ditshebeletsong tsohle tse ka hodimo moo?"
@@ -145,6 +154,9 @@ msgstr "Fomata"
 msgid "Go back to SimpleSAMLphp installation page"
 msgstr "Kgutlela leqepheng la ho instola la SimpleSAMLphp"
 
+msgid "Hello, Untranslated World!"
+msgstr ""
+
 msgid "Help desk homepage"
 msgstr "Leqephe la lapeng la ba deske ya thuso"
 
@@ -167,6 +179,9 @@ msgstr "Lebitso la mosebedisi kapa phasewete e fosahetseng"
 msgid "Incorrect username or password."
 msgstr "Lebitso la mosebedisi kapa phasewete e fosahetse."
 
+msgid "Information about your current session"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
@@ -179,6 +194,9 @@ msgstr "Phoso ya LDAP"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:206
 msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
 msgstr "LDAP ke dathabeise ya mosebedisi, mme ha o leka ho kena, re hloka ho ikopanya le dathabeise ya LDAP. Phoso e hlahile ha re e leka lekgelong lena."
+
+msgid "Language"
+msgstr ""
 
 msgid "Logged out"
 msgstr "O ntshitswe"
@@ -239,6 +257,9 @@ msgstr "Ha ho phihlello"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:87
 msgid "No certificate"
 msgstr "Ha ho setifikeiti"
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "Tjhe"
@@ -312,6 +333,9 @@ msgstr "Romela imeile ho ba deske ya thuso"
 msgid "Send error report"
 msgstr "Romela tlaleho ya phoso"
 
+msgid "Sending message"
+msgstr ""
+
 msgid "Service Provider"
 msgstr "Mofani wa Tshebeletso"
 
@@ -330,6 +354,9 @@ msgstr "SimpleSAMLphp e bonahala e hlophisitswe hampe."
 
 msgid "SimpleSAMLphp error"
 msgstr "Phoso ya SimpleSAMLphp"
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
 
 msgid "Some error occurred"
 msgstr "Ho na le phoso e etsahetseng"
@@ -399,6 +426,9 @@ msgstr "Ntlha ya bofelo ha e a bulelwa. Hlahloba dikgetho tse tlhophisong ya hao
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Mohlomong phoso ena e ka lebaka la boitshwaro bo itseng bo sa lebellwang kapa tlhophiso e fosahetseng ya SimpleSAMLphp. Ikopanye le motsamaisi wa tshebeletso ena ya ho kena, ebe o romela molaetsa wa phoso ka hodimo mona."
 
+msgid "Tracking number"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
 msgid "Unable to locate metadata for %ENTITYID%"
@@ -418,6 +448,9 @@ msgstr "Setifikeiti se sa tsejweng"
 msgid "Username"
 msgstr "Lebitso la mosebedisi"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Ha re a amohela karabelo ho tswa ho Mofani wa Boitsebiso."
@@ -428,6 +461,9 @@ msgstr "Ha mofani enwa wa boitsebiso a leka ho theha karabelo ya netefatso, phos
 
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "Ntle le lebitso l ahao la mosebedisi le phasewete o ke ke wa inetefatsa bakeng sa phihlello ho tshebeletso. Ho ka nna ha ba le motho ya ka o thusang. Ikopanye le ba deske ya thuso khampaning ya heno!"
+
+msgid "World"
+msgstr ""
 
 msgid "Yes, all services"
 msgstr "E, ditshebeletso tsohle"
@@ -485,6 +521,9 @@ msgstr "Datha ya seshene ya hao ha e kgone ho fumanwa hona jwale ka lebaka la ma
 
 msgid "Your session is valid for %SECONDS% seconds from now."
 msgstr "Seshene ya hao e na le matla feela bakeng sa metsotswana e %SECONDS% ho tloha hona jwale."
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr ""
 
 msgid "[Preferred choice]"
 msgstr "[Kgetho e kgethwang]"

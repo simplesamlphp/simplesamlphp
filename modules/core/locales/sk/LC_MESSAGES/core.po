@@ -5,6 +5,9 @@ msgstr ""
 msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
 msgstr "Služba požaduje Vašu autentifikáciu. Zadajte, prosím, Vaše prihlasovacie meno a heslo do formulára nižšie."
 
+msgid "An error has occurred"
+msgstr ""
+
 msgid "Check that the link you used to access the web site is correct."
 msgstr "Skontrolujte, či je odkaz na prístup k webovej stránke správny."
 
@@ -46,6 +49,9 @@ msgstr "Ak ste vývojár a nastavujete systém jednotného prihlásenia, máte p
 
 msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "Ak ste dostali túto chybu po kliknutí na odkaz na nejakej stránky, mali by ste túto chybu nahlásiť vlastníkovi tejto stránky."
+
+msgid "If you are the administrator of this installation, please refer to the <a href=\"https://simplesamlphp.org/docs/\">SimpleSAMLphp documentation</a> for how to configure and interact with the software."
+msgstr ""
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr "Ak nahlasujete túto chybu, nahláste prosím aj toto sledovacie číslo, ktoré umožní administrátorovi nájsť Vašu reláciu v logoch:"
@@ -116,8 +122,17 @@ msgstr "Stavová informácia stratená"
 msgid "Suggestions for resolving this problem:"
 msgstr "Návrhy na vyriešenie tohto problému:"
 
+msgid "The authentication procesd has failed."
+msgstr ""
+
+msgid "The authorization procesd has failed."
+msgstr ""
+
 msgid "The error report has been sent to the administrators."
 msgstr "Chybová správa bola odoslaná administrátorom."
+
+msgid "The identification procesd has failed."
+msgstr ""
 
 msgid "The link used to get here was bad, perhaps a bookmark."
 msgstr "Odkaz smerujúci sem je zlý, napríklad zo záložky."
@@ -125,11 +140,17 @@ msgstr "Odkaz smerujúci sem je zlý, napríklad zo záložky."
 msgid "The problematic attribute(s) are:"
 msgstr "Problémové atribúty sú:"
 
+msgid "There was an issue while signing you in."
+msgstr ""
+
 msgid "This error may be caused by:"
 msgstr "Možné dôvody tejto chyby:"
 
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Toto je najpravdepodobnejšie problém konfigurácie buď na strane poskytovateľa služby alebo identity."
+
+msgid "This is the front page of the SimpleSAMLphp authentication software. There's not much to see here."
+msgstr ""
 
 msgid "Too short interval between single sign on events."
 msgstr "Moc krátky interval medzi akciami jednotného prihlásenia."

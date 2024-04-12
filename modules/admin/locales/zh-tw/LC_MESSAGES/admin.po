@@ -35,6 +35,9 @@ msgstr "憑證"
 msgid "Checking your PHP installation"
 msgstr "檢查您安裝的 PHP"
 
+msgid "Checks"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
 msgid "Configuration"
 msgstr "設定"
@@ -55,6 +58,9 @@ msgstr ""
 msgid "Deprecated"
 msgstr "棄置"
 
+msgid "Details"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:133
 msgid "Diagnostics on hostname, port and protocol"
 msgstr "診斷主機名稱，連接埠及協定"
@@ -68,6 +74,9 @@ msgstr "聯盟"
 
 msgid "Format"
 msgstr "格式"
+
+msgid "Go back to SimpleSAMLphp installation page"
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:234
 msgid "Hashing function"
@@ -111,6 +120,9 @@ msgstr ""
 msgid "Log out"
 msgstr ""
 
+msgid "Logged out"
+msgstr ""
+
 msgid "Logout"
 msgstr "登出"
 
@@ -140,6 +152,9 @@ msgstr "Metadata"
 msgid "Metadata parser"
 msgstr "Metadata 解析"
 
+msgid "Modules"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:282
 msgid "Multibyte String extension"
 msgstr ""
@@ -162,6 +177,10 @@ msgstr ""
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:211
 #, php-format
 msgid "PHP %minimum% or newer is needed. You are running: %current%"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:264
+msgid "PHP intl extension"
 msgstr ""
 
 msgid "Parse"
@@ -275,6 +294,12 @@ msgstr ""
 msgid "You can get the metadata XML on a dedicated URL:"
 msgstr ""
 
+msgid "You have been logged out."
+msgstr ""
+
+msgid "You have the following modules installed"
+msgstr ""
+
 msgid "Your attributes"
 msgstr "您的屬性值"
 
@@ -293,10 +318,22 @@ msgstr ""
 msgid "cURL (required if automatic version checks are used, also by some modules)"
 msgstr ""
 
+msgid "default"
+msgstr ""
+
+msgid "disabled"
+msgstr ""
+
+msgid "enabled"
+msgstr ""
+
 msgid "expired"
 msgstr ""
 
 msgid "expires"
+msgstr ""
+
+msgid "means the module is not enabled"
 msgstr ""
 
 msgid "new"

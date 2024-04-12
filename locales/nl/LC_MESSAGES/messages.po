@@ -62,6 +62,9 @@ msgstr "Authenticatie niet gelukt: uw browser stuurde geen certificaat"
 msgid "Authentication source error"
 msgstr "Fout in authenticatiebron"
 
+msgid "Authentication status"
+msgstr ""
+
 msgid "Back"
 msgstr "Terug"
 
@@ -112,6 +115,9 @@ msgstr "Contactinformatie"
 msgid "Converted metadata"
 msgstr "Geconverteerde metadata"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Authenticatie response kon niet worden aangemaakt"
@@ -121,6 +127,9 @@ msgstr "Geboortedatum"
 
 msgid "Debug information"
 msgstr "Debuginformatie"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Display name"
 msgstr "Weergavenaam"
@@ -214,6 +223,9 @@ msgstr "Ga terug naar de lijst van files."
 msgid "Group membership"
 msgstr "Groepslidmaatschap"
 
+msgid "Hello, Untranslated World!"
+msgstr ""
+
 msgid "Help desk homepage"
 msgstr "Helpdesk homepage"
 
@@ -260,6 +272,9 @@ msgstr "Incorrecte gebruikersnaam of wachtwoord"
 msgid "Incorrect username or password."
 msgstr "Gebruikersnaam of wachtwoord niet bekend."
 
+msgid "Information about your current session"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
@@ -278,6 +293,9 @@ msgstr "De account database is in LDAP opgeslagen en bij het inloggen moet er wo
 
 msgid "Labeled URI"
 msgstr "URI"
+
+msgid "Language"
+msgstr ""
 
 msgid "Legal name"
 msgstr "Officiële naam"
@@ -371,6 +389,9 @@ msgstr "Geen certificaat"
 
 msgid "No errors found."
 msgstr "Geen fouten gevonden."
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "Nee"
@@ -559,6 +580,9 @@ msgstr "SimpleSAMLphp is niet goed geconfigureerd."
 msgid "SimpleSAMLphp error"
 msgstr "SimpleSAMLphp-fout"
 
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
+
 msgid "Some error occurred"
 msgstr "Er is een fout opgetreden"
 
@@ -657,6 +681,9 @@ msgstr "Titel"
 msgid "To look at the details for an SAML entity, click on the SAML entity header."
 msgstr "Klik op een SAML-entiteit om de details voor die entiteit te bekijken."
 
+msgid "Tracking number"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
 msgid "Unable to locate metadata for %ENTITYID%"
@@ -691,6 +718,9 @@ msgstr "WS-Federation Identity Provider (Remote)"
 msgid "WS-Federation Service Provider (Hosted)"
 msgstr "WS-Federation Service Provider (Hosted)"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Het antwoord van de Identity Provider is niet geaccepteerd."
@@ -701,6 +731,9 @@ msgstr "Tijdens het aanmaken van een authenticatie response door deze Identity P
 
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "Zonder je gebruikersnaam en wachtwoord kun je je niet authenticeren en dus niet gebruikmaken van deze dienst."
+
+msgid "World"
+msgstr ""
 
 msgid "XML metadata"
 msgstr "XML metadata"

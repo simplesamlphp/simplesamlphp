@@ -41,6 +41,9 @@ msgstr "Ungqinisiso lusilele: ibhrawuza yakho ayithumelanga nasiphi na isatifike
 msgid "Authentication source error"
 msgstr "Impazamo yomthombo wongqinisiso"
 
+msgid "Authentication status"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "Kufunyenwe isicelo esibi"
@@ -73,12 +76,18 @@ msgstr "Impazamo yolungiselelo"
 msgid "Contact information:"
 msgstr "Inkcazelo yoqhagamshelwano:"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Ayikwazanga ukuyila impendulo yongqinisiso"
 
 msgid "Debug information"
 msgstr "Inkcazelo yokulungisa"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Do you want to logout from all the services above?"
 msgstr "Ngaba ufuna ukuphuma kuzo zonke iinkonzo ezingasentla?"
@@ -136,6 +145,9 @@ msgstr "Ufomatho"
 msgid "Go back to SimpleSAMLphp installation page"
 msgstr "Buyela emva kwikhasi lofakelo le-SimpleSAMLphp"
 
+msgid "Hello, Untranslated World!"
+msgstr ""
+
 msgid "Help desk homepage"
 msgstr "Ikhasi lekhaya ledesika yoncedo"
 
@@ -148,12 +160,18 @@ msgstr "Molo, eli likhasi lobume be-SimpleSAMLphp. Apha ungabona ukuba ngaba ise
 msgid "How to get help"
 msgstr "Indlela yokufumana uncedo"
 
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
 msgid "Incorrect username or password"
 msgstr "Igama lomsebenzisi okanye iphaswedi engachanekanga"
 
 msgid "Incorrect username or password."
 msgstr "Igama lomsebenzisi okanye iphaswedi engachanekanga."
+
+msgid "Information about your current session"
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
@@ -167,6 +185,9 @@ msgstr "Impazamo ye-LDAP"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:206
 msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
 msgstr "I-LDAP ngumvimba wengcombolo yomsebenzisi, yaye xa uzame ukungena, kufuneka siqhagamshele uvimba wengcombolo we-LDAP. Kwenzeke impazamo xa besiyizama."
+
+msgid "Language"
+msgstr ""
 
 msgid "Logged out"
 msgstr "Uphumile"
@@ -182,6 +203,9 @@ msgstr "Ngena"
 
 msgid "Login at"
 msgstr "Ungeno ngo-"
+
+msgid "Logout"
+msgstr ""
 
 msgid "Logout failed"
 msgstr "Ukuphuma kusilele"
@@ -224,6 +248,9 @@ msgstr "Akukho fikelelo"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:87
 msgid "No certificate"
 msgstr "Akukho satifikethi"
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "Hayi, rhoxisa"
@@ -294,6 +321,9 @@ msgstr "Thumela i-imeyile kwidesika yoncedo"
 msgid "Send error report"
 msgstr "Thumela ingxelo yempazamo"
 
+msgid "Sending message"
+msgstr ""
+
 msgid "Service Provider"
 msgstr "Umboneleli Wenkonzo"
 
@@ -312,6 +342,9 @@ msgstr "I-SimpleSAMLphp ibonakala ingalungiselelwanga kakuhle."
 
 msgid "SimpleSAMLphp error"
 msgstr "Impazamo ye-SimpleSAMLphp"
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
 
 msgid "Some error occurred"
 msgstr "Kwenzeke impazamo ethile"
@@ -381,6 +414,9 @@ msgstr "Le ndawo yokuphela ayenziwanga yasebenza. Jonga ukhetho lokwenza isebenz
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Le mpazamo kusenokwenzeka ingenxa yendlela yokwenza engalindelekanga okanye ulungiselelo olungachanekanga lwe-SimpleSAMLphp. Qhagamshelana nomlawuli wale nkonzo yokungena, uze umthumele umyalezo wempazamo ongentla."
 
+msgid "Tracking number"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
 msgid "Unable to locate metadata for %ENTITYID%"
@@ -400,6 +436,9 @@ msgstr "Isatifikethi esingaziwayo"
 msgid "Username"
 msgstr "Igama lomsebenzisi"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Asiyamkelanga impendulo ethunyelwe ukusuka kuMboneleli Wesazisi."
@@ -410,6 +449,9 @@ msgstr "Xa lo mboneleli wesazisi ezama ukuyila impendulo yongqinisiso, kwenzeke 
 
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "Ngaphandle kwegama lomsebenzisi nephaswedi yakho awukwazi ukuzingqinisisa ukuze ufumane ufikelelo kwinkonzo. Kusenokuba ukho umntu onokukunceda. Qhagamshelana nedesika yoncedo kumbutho wakho!"
+
+msgid "World"
+msgstr ""
 
 msgid "Yes, all services"
 msgstr "Ewe, zonke iinkonzo"
@@ -458,9 +500,15 @@ msgstr "Uphume ngokuyimpumelelo kuzo zonke iinkonzo ezidweliswe ngasentla."
 msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
 msgstr "Uthumele into kwikhasi lokungena, kodwa ngesizathu esithile iphaswedi ayithunyelwanga. Nceda uzame kwakhona."
 
+msgid "Your attributes"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:219
 msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
 msgstr "Ingcombolo yeseshoni yakho ayikwazi ukubuyiselwa okwangoku ngenxa yeengxaki zobugcisa. Nceda uzame kwakhona kwimizuzu embalwa."
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr ""
 
 msgid "[Preferred choice]"
 msgstr "[Ukhetho olukhethwayo]"

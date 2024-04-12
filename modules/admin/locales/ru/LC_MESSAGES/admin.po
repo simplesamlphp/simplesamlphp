@@ -35,6 +35,9 @@ msgstr "Сертификаты"
 msgid "Checking your PHP installation"
 msgstr "Проверка инсталляции PHP"
 
+msgid "Checks"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
 msgid "Configuration"
 msgstr "Конфигурация"
@@ -55,6 +58,9 @@ msgstr ""
 msgid "Deprecated"
 msgstr "Устаревшие"
 
+msgid "Details"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:133
 msgid "Diagnostics on hostname, port and protocol"
 msgstr "Диагностика имени хоста, порта и протокола"
@@ -68,6 +74,9 @@ msgstr "Федерация"
 
 msgid "Format"
 msgstr "Формат"
+
+msgid "Go back to SimpleSAMLphp installation page"
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:234
 msgid "Hashing function"
@@ -111,6 +120,9 @@ msgstr ""
 msgid "Log out"
 msgstr ""
 
+msgid "Logged out"
+msgstr ""
+
 msgid "Logout"
 msgstr "Выйти"
 
@@ -140,6 +152,9 @@ msgstr "Метаданные"
 msgid "Metadata parser"
 msgstr "Средство синтаксического анализа метаданных"
 
+msgid "Modules"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:282
 msgid "Multibyte String extension"
 msgstr ""
@@ -162,6 +177,10 @@ msgstr ""
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:211
 #, php-format
 msgid "PHP %minimum% or newer is needed. You are running: %current%"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:264
+msgid "PHP intl extension"
 msgstr ""
 
 msgid "Parse"
@@ -275,6 +294,12 @@ msgstr ""
 msgid "You can get the metadata XML on a dedicated URL:"
 msgstr ""
 
+msgid "You have been logged out."
+msgstr ""
+
+msgid "You have the following modules installed"
+msgstr ""
+
 msgid "Your attributes"
 msgstr "Ваши атрибуты"
 
@@ -293,10 +318,22 @@ msgstr ""
 msgid "cURL (required if automatic version checks are used, also by some modules)"
 msgstr ""
 
+msgid "default"
+msgstr ""
+
+msgid "disabled"
+msgstr ""
+
+msgid "enabled"
+msgstr ""
+
 msgid "expired"
 msgstr ""
 
 msgid "expires"
+msgstr ""
+
+msgid "means the module is not enabled"
 msgstr ""
 
 msgid "new"
