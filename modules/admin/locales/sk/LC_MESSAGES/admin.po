@@ -75,6 +75,9 @@ msgstr "Federácia"
 msgid "Format"
 msgstr "Formát"
 
+msgid "Go back to SimpleSAMLphp installation page"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:234
 msgid "Hashing function"
 msgstr "Hashovacia funkcia"
@@ -116,6 +119,9 @@ msgstr "rozšírenie LDAP (vyžadované, ak je využívaný LDAP backend)"
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:156
 msgid "Log out"
 msgstr "Odhlásiť sa"
+
+msgid "Logged out"
+msgstr ""
 
 msgid "Logout"
 msgstr "Odhlásenie"
@@ -288,6 +294,9 @@ msgstr "Vaša verzia: <kbd>%version%</kbd>."
 msgid "You can get the metadata XML on a dedicated URL:"
 msgstr "Môžete získať XML metadát na samostatnom odkaze:"
 
+msgid "You have been logged out."
+msgstr ""
+
 msgid "You have the following modules installed"
 msgstr "Nasledujúce moduly sú nainštalované"
 
@@ -308,6 +317,9 @@ msgstr "cURL (môže byť vyžadované niektorými modulmi)"
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:291
 msgid "cURL (required if automatic version checks are used, also by some modules)"
 msgstr "cURL (vyžadované, ak sú povolené kontroly aktualizácií, taktiež niektorými modulmi)"
+
+msgid "default"
+msgstr ""
 
 msgid "disabled"
 msgstr "vypnuté"

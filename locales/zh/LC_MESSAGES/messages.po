@@ -50,6 +50,9 @@ msgstr "认证失败，你的浏览器没有发送任何证书"
 msgid "Authentication source error"
 msgstr "认证源错误"
 
+msgid "Authentication status"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "收到了错误的请求"
@@ -61,6 +64,10 @@ msgstr "错误的搜寻服务请求"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "CAS错误"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
+msgid "Cannot retrieve session data"
+msgstr ""
 
 msgid "Certificates"
 msgstr "证书"
@@ -93,6 +100,9 @@ msgstr "联系方式"
 msgid "Converted metadata"
 msgstr "转换过的元信息"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "无法创建认证应答"
@@ -102,6 +112,9 @@ msgstr "生日"
 
 msgid "Debug information"
 msgstr "调试信息"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Display name"
 msgstr "显示名称"
@@ -180,6 +193,9 @@ msgstr "说明一下，你正在做什么的时候发生了这个错误"
 msgid "Fax number"
 msgstr "传真号码"
 
+msgid "Format"
+msgstr ""
+
 msgid "Given name"
 msgstr "名"
 
@@ -188,6 +204,9 @@ msgstr "返回SimpleSAMLphp安装页面"
 
 msgid "Go back to the file list"
 msgstr "返回至文件列表"
+
+msgid "Hello, Untranslated World!"
+msgstr ""
 
 msgid "Help desk homepage"
 msgstr "服务台的主页"
@@ -235,6 +254,9 @@ msgstr "不正确的用户名或密码"
 msgid "Incorrect username or password."
 msgstr "错误的用户名或者密码"
 
+msgid "Information about your current session"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
@@ -253,6 +275,9 @@ msgstr "LDAP是一个用户数据库，当你试图登录时，我们需要连�
 
 msgid "Labeled URI"
 msgstr "标签URI"
+
+msgid "Language"
+msgstr ""
 
 msgid "Legal name"
 msgstr "正式名称"
@@ -328,6 +353,10 @@ msgstr "无依赖状态"
 msgid "No SAML message provided"
 msgstr "没有提供SAML消息"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
+msgid "No SAML request provided"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
 msgstr "没有提供SAML应答"
@@ -342,6 +371,9 @@ msgstr "无证书"
 
 msgid "No errors found."
 msgstr "没有发现错误"
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "没有"
@@ -457,6 +489,9 @@ msgstr "SAML 2.0 SP 元信息"
 msgid "SAML 2.0 Service Provider (Hosted)"
 msgstr "SAML 2.0 服务提供者（本地）"
 
+msgid "SAML Subject"
+msgstr ""
+
 msgid "Select"
 msgstr "选择"
 
@@ -511,6 +546,9 @@ msgstr "SimpleSAMLphp出现配置错误"
 
 msgid "SimpleSAMLphp error"
 msgstr "SimpleSAMLphp错误"
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
 
 msgid "Some error occurred"
 msgstr "某些错误发生了"
@@ -610,6 +648,9 @@ msgstr "标题"
 msgid "To look at the details for an SAML entity, click on the SAML entity header."
 msgstr "想要查看SAML实体的详细情况，请点击SAML实体载入器"
 
+msgid "Tracking number"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
 msgid "Unable to locate metadata for %ENTITYID%"
@@ -644,6 +685,9 @@ msgstr "WS-Federation 身份提供者（远程）"
 msgid "WS-Federation Service Provider (Hosted)"
 msgstr "WS-Federation 服务提供者（本地）"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "我们不接受来自身份提供者的应答"
@@ -655,6 +699,9 @@ msgstr "在这个身份提供者创建认证应答的时候发生了一个错误
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "太糟糕了！-没有你的用户名和密码你将不能访问该服务，也许有人能够帮助你，请咨询你所在大学的服务台"
 
+msgid "World"
+msgstr ""
+
 msgid "XML metadata"
 msgstr "XML元信息"
 
@@ -664,9 +711,17 @@ msgstr "是的，所有的服务"
 msgid "Yes, continue"
 msgstr "是的，继续"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:187
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "你访问了Assertion Consumer Service接口，但是并没有提供一个SAML认证应答"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:253
+msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
@@ -715,8 +770,15 @@ msgstr "你确实发送了一些信息给登录页面，但由于某些原因，
 msgid "Your attributes"
 msgstr "你的属性"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:219
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr ""
+
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "你的会话在%remaining%秒内有效"
 
 msgid "[Preferred choice]"
 msgstr "首选选项"
+
+msgid "not set"
+msgstr ""

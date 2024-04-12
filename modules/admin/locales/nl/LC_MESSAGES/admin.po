@@ -35,6 +35,9 @@ msgstr "Certificaten"
 msgid "Checking your PHP installation"
 msgstr "Controle van de PHP-installatie"
 
+msgid "Checks"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
 msgid "Configuration"
 msgstr "Configuratie"
@@ -55,6 +58,9 @@ msgstr "Date/Time-extensie"
 msgid "Deprecated"
 msgstr "Verouderd"
 
+msgid "Details"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:133
 msgid "Diagnostics on hostname, port and protocol"
 msgstr "Inspectie op hostnaam, poort en protocol"
@@ -68,6 +74,9 @@ msgstr "Federatie"
 
 msgid "Format"
 msgstr "Formaat"
+
+msgid "Go back to SimpleSAMLphp installation page"
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:234
 msgid "Hashing function"
@@ -111,6 +120,9 @@ msgstr "LDAP-extensie (vereist als een LDAP-backend wordt gebruikt)"
 msgid "Log out"
 msgstr "Log uit"
 
+msgid "Logged out"
+msgstr ""
+
 msgid "Logout"
 msgstr "Afmelden"
 
@@ -140,6 +152,9 @@ msgstr "Metadata"
 msgid "Metadata parser"
 msgstr "Metadata parser"
 
+msgid "Modules"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:282
 msgid "Multibyte String extension"
 msgstr "Multibye String-extensie"
@@ -163,6 +178,10 @@ msgstr "PDO-extensie"
 #, php-format
 msgid "PHP %minimum% or newer is needed. You are running: %current%"
 msgstr "PHP %minimum% of hoger is benodigd. U heeft: %current%"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:264
+msgid "PHP intl extension"
+msgstr ""
 
 msgid "Parse"
 msgstr "Converteer"
@@ -275,6 +294,12 @@ msgstr "U draait versie <kbd>%version%</kbd>."
 msgid "You can get the metadata XML on a dedicated URL:"
 msgstr "U kunt de metadata-XML opvragen via deze URL:"
 
+msgid "You have been logged out."
+msgstr ""
+
+msgid "You have the following modules installed"
+msgstr ""
+
 msgid "Your attributes"
 msgstr "Uw attributen"
 
@@ -293,11 +318,23 @@ msgstr "cURL (kan nodig zijn voor bepaalde modules)"
 msgid "cURL (required if automatic version checks are used, also by some modules)"
 msgstr "cURL (vereist als automatische versiechecks ingeschakeld zijn, eveneens voor bepaalde modules)"
 
+msgid "default"
+msgstr ""
+
+msgid "disabled"
+msgstr ""
+
+msgid "enabled"
+msgstr ""
+
 msgid "expired"
 msgstr "verlopen"
 
 msgid "expires"
 msgstr "verloopt"
+
+msgid "means the module is not enabled"
+msgstr ""
 
 msgid "new"
 msgstr "nieuw"

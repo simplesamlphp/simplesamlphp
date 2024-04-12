@@ -41,6 +41,9 @@ msgstr "Ukuqinisekisa kuhlulekile: isiphequluli sakho asizange sithumele noma yi
 msgid "Authentication source error"
 msgstr "Iphutha lomthombo wokuqinisekisa"
 
+msgid "Authentication status"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "Kutholwe umlayezo ongalungile"
@@ -73,12 +76,18 @@ msgstr "Iphutha lomiso"
 msgid "Contact information:"
 msgstr "Ulwazi lokuxhumana:"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Ayikwazanga ukwakha impendulo yokuqinisekisa"
 
 msgid "Debug information"
 msgstr "Ulwazi lokususwa kwephutha"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Do you want to logout from all the services above?"
 msgstr "Ingabe ufuna ukuphuma kuwo wonke amasevisi angenhla?"
@@ -136,6 +145,9 @@ msgstr "Ifomethi"
 msgid "Go back to SimpleSAMLphp installation page"
 msgstr "Buyela emuva ekhasini lokufaka le-SimpleSAMLphp"
 
+msgid "Hello, Untranslated World!"
+msgstr ""
+
 msgid "Help desk homepage"
 msgstr "Ikhasi lasekhaya ledeski losizo"
 
@@ -148,12 +160,18 @@ msgstr "Sawubona, leli ikhasi lesimo se-SimpleSAMLphp. Lapha ungakwazi ukubona u
 msgid "How to get help"
 msgstr "Indlela yokuthola usizo"
 
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
 msgid "Incorrect username or password"
 msgstr "Igama lomsebenzisi elingalungile noma iphasiwedi"
 
 msgid "Incorrect username or password."
 msgstr "Igama lomsebenzisi noma iphasiwedi engalungile."
+
+msgid "Information about your current session"
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
@@ -167,6 +185,9 @@ msgstr "Iphutha le-LDAP"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:206
 msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
 msgstr "I-LDAP iyidathabheyisi yomsebenzisi, futhi lapho uzama ukungena, sidinga ukuthinta idathabheyisi ye-LDAP. Kuvele iphutha ngesikhathi siyizama ngalesi sikhathi."
+
+msgid "Language"
+msgstr ""
 
 msgid "Logged out"
 msgstr "Uphume ngemvume"
@@ -182,6 +203,9 @@ msgstr "Ngena"
 
 msgid "Login at"
 msgstr "Ngena kokuthi"
+
+msgid "Logout"
+msgstr ""
 
 msgid "Logout failed"
 msgstr "Ukuphuma kuhlulekile"
@@ -224,6 +248,9 @@ msgstr "Akukho ukufinyelela"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:87
 msgid "No certificate"
 msgstr "Asikho isitifiketi"
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "Cha, khansela"
@@ -294,6 +321,9 @@ msgstr "Thumela i-imeyili edeskini losizo"
 msgid "Send error report"
 msgstr "Thumela umbiko wephutha"
 
+msgid "Sending message"
+msgstr ""
+
 msgid "Service Provider"
 msgstr "Umhlinzeki Wesevisi"
 
@@ -312,6 +342,9 @@ msgstr "I-SimpleSAMLphp ibonakala ingamisiwe ngendlela efanele."
 
 msgid "SimpleSAMLphp error"
 msgstr "Iphutha le-SimpleSAMLphp"
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
 
 msgid "Some error occurred"
 msgstr "Kuvele iphutha elithile"
@@ -381,6 +414,9 @@ msgstr "Lesi siphetho asivunyelwe. Hlola izinketho zokuvumela kumiso lwakho lwe-
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
 msgstr "Leli phutha kungenzeka ukuthi libangelwa indlela yokuziphatha engalindelwe noma umiso olungafanele lwe-SimpleSAMLphp. Thinta umlawuli wale sevisi yokungena, bese umthumela umlayezo wephutha ongenhla."
 
+msgid "Tracking number"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
 msgid "Unable to locate metadata for %ENTITYID%"
@@ -400,6 +436,9 @@ msgstr "Isitifiketi esingaziwa"
 msgid "Username"
 msgstr "Igama lomsebenzisi"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Asizange samukele impendulo ethunyelwe ukusuka Kumhlinzeki Kamazisi."
@@ -410,6 +449,9 @@ msgstr "Ngenkathi lo mhlinzeki kamazisi ezama ukwakha impendulo yokuqinisekisa, 
 
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "Ngaphandle kwegama lakho lomsebenzisi nephasiwedi awukwazi ukuziqinisekisa ukuze ufinyelele isevisi. Kungase kube khona ozokusiza. Thinta ideski losizo enhlanganweni yakho!"
+
+msgid "World"
+msgstr ""
 
 msgid "Yes, all services"
 msgstr "Yebo, wonke amasevisi"
@@ -458,9 +500,15 @@ msgstr "Uphume ngempumelelo kuwo wonke amasevisi abhalwe ngenhla."
 msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
 msgstr "Uthumele okuthile ekhasini lokungena, kodwa ngasizathu simbe iphasiwedi ayizange ithunyelwe. Sicela uzame futhi."
 
+msgid "Your attributes"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:219
 msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
 msgstr "Idatha yeseshini yakho ayikwazi ukubuyiswa njengamanje ngenxa yezinkinga zobuchwepheshe. Sicela uzame futhi emizuzwini embalwa."
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr ""
 
 msgid "[Preferred choice]"
 msgstr "[Ukukhetha okuncanyelwayo]"

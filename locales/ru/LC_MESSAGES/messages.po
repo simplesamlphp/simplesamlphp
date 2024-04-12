@@ -62,6 +62,9 @@ msgstr "Ошибка при аутентификации: ваш браузер 
 msgid "Authentication source error"
 msgstr "Ошибка источника аутентификации"
 
+msgid "Authentication status"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "Получен неправильный отклик"
@@ -73,6 +76,10 @@ msgstr "Неправильный запрос к службе обнаружен
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "Ошибка CAS"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
+msgid "Cannot retrieve session data"
+msgstr ""
 
 msgid "Certificates"
 msgstr "Сертификаты"
@@ -105,6 +112,9 @@ msgstr "Контактная информация"
 msgid "Converted metadata"
 msgstr "Преобразованные метаданные"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Невозможно создать ответ по аутентификации"
@@ -114,6 +124,9 @@ msgstr "Дата рождения"
 
 msgid "Debug information"
 msgstr "Отладочная информация"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Display name"
 msgstr "Отображаемое имя"
@@ -207,6 +220,9 @@ msgstr "Вернуться к списку файлов"
 msgid "Group membership"
 msgstr "Членство в группе"
 
+msgid "Hello, Untranslated World!"
+msgstr ""
+
 msgid "Help desk homepage"
 msgstr "Домашняя страница службы поддержки"
 
@@ -253,6 +269,9 @@ msgstr "Неправильное имя пользователя или паро
 msgid "Incorrect username or password."
 msgstr "Неправильное имя пользователя или пароль."
 
+msgid "Information about your current session"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
@@ -271,6 +290,9 @@ msgstr "LDAP - это база данных пользователей, при �
 
 msgid "Labeled URI"
 msgstr "Маркированный URI (LabeledURI)"
+
+msgid "Language"
+msgstr ""
 
 msgid "Legal name"
 msgstr "Официальное название"
@@ -346,6 +368,10 @@ msgstr "Отсутствует параметр RelayState"
 msgid "No SAML message provided"
 msgstr "Отсутствует утверждение SAML "
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
+msgid "No SAML request provided"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
 msgstr "Отсутствует SAML отклик"
@@ -360,6 +386,9 @@ msgstr "Сертификат отсутствует"
 
 msgid "No errors found."
 msgstr "Ошибок не обнаружено."
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "Нет"
@@ -542,6 +571,9 @@ msgstr "Видимо, SimpleSAMLphp сконфигурирован неправ�
 msgid "SimpleSAMLphp error"
 msgstr "Ошибка SimpleSAMLphp"
 
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
+
 msgid "Some error occurred"
 msgstr "Произошла ошибка"
 
@@ -640,6 +672,9 @@ msgstr "Заглавие"
 msgid "To look at the details for an SAML entity, click on the SAML entity header."
 msgstr "Для просмотра подробностей записи SAML, кликните на заголовок записи SAML."
 
+msgid "Tracking number"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
 msgid "Unable to locate metadata for %ENTITYID%"
@@ -674,6 +709,9 @@ msgstr "Провайдер идентификации WS-Federation (удале�
 msgid "WS-Federation Service Provider (Hosted)"
 msgstr "Сервис провайдер WS-Federation (локальное размещение)"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Отклик от провайдера идентификации не получен."
@@ -685,6 +723,9 @@ msgstr "При попытке провайдера идентификации с
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "Очень плохо! - Без ваших имени пользователя и пароля вы не можете подтвердить ваше право на доступ к службе. Может быть есть кто-нибудь, кто сможет помочь вам. Проконсультируйтесь со своей службой поддержки в вашем университете!"
 
+msgid "World"
+msgstr ""
+
 msgid "XML metadata"
 msgstr "XML метаданные"
 
@@ -694,9 +735,17 @@ msgstr "Да, для всех служб"
 msgid "Yes, continue"
 msgstr "Да, продолжить"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:187
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Вы получили доступ к интерфейсу Assertion Consumer Service, но не предоставили отклик SAML аутентификации."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:253
+msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
@@ -744,6 +793,10 @@ msgstr "Вы отправили информацию на страницу вх�
 
 msgid "Your attributes"
 msgstr "Ваши атрибуты"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:219
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr ""
 
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Ваша сессия действительна в течение следующих %remaining% секунд."
