@@ -63,7 +63,7 @@ msgid "Authentication source error"
 msgstr "Error en la Autenticacion de origen"
 
 msgid "Authentication status"
-msgstr ""
+msgstr "Estado de la autenticación"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
@@ -79,7 +79,7 @@ msgstr "Error del CAS"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
 msgid "Cannot retrieve session data"
-msgstr ""
+msgstr "No se puedo recuperar información de la sesión"
 
 msgid "Certificates"
 msgstr "Certificados"
@@ -113,7 +113,7 @@ msgid "Converted metadata"
 msgstr "Metadatos convertidos"
 
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Copiar al portapapeles"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
@@ -126,7 +126,7 @@ msgid "Debug information"
 msgstr "Información de depuración"
 
 msgid "Debug information to be used by your support staff"
-msgstr ""
+msgstr "Información de depuración útil para sus técnicos de soporte"
 
 msgid "Display name"
 msgstr "Nombre para mostrar"
@@ -273,7 +273,7 @@ msgid "Incorrect username or password."
 msgstr "Nombre de usuario o contraseña erróneos"
 
 msgid "Information about your current session"
-msgstr ""
+msgstr "Información sobre su sesión actual"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
@@ -295,7 +295,7 @@ msgid "Labeled URI"
 msgstr "URI etiquetado"
 
 msgid "Language"
-msgstr ""
+msgstr "Idioma"
 
 msgid "Legal name"
 msgstr "Nombre legal"
@@ -373,7 +373,7 @@ msgstr "Falta el mensaje SAML"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
 msgid "No SAML request provided"
-msgstr ""
+msgstr "Falta la solicitud SAML"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
@@ -381,7 +381,7 @@ msgstr "Falta la respuesta SAML"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:86
 msgid "No access"
-msgstr "Acceso no definido"
+msgstr "Acceso no permitido"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:87
 msgid "No certificate"
@@ -391,10 +391,10 @@ msgid "No errors found."
 msgstr "No se han encontrado errores"
 
 msgid "No identity providers found. Cannot continue."
-msgstr ""
+msgstr "No se ha encontrado ningún proveedor de identidad. Imposible continuar."
 
 msgid "No, cancel"
-msgstr "No"
+msgstr "No, cancelar"
 
 msgid "No, only %SP%"
 msgstr "No, sólo %SPS"
@@ -575,7 +575,7 @@ msgid "SimpleSAMLphp error"
 msgstr "Error de SimpleSAMLphp"
 
 msgid "Since your browser does not support Javascript, you must press the button below to proceed."
-msgstr ""
+msgstr "Su navegador no soporta Javascript, pulse el botón a continuación para continuar."
 
 msgid "Some error occurred"
 msgstr "Se produjo un error"
@@ -676,7 +676,7 @@ msgid "To look at the details for an SAML entity, click on the SAML entity heade
 msgstr "Para ver los detalles de una entidad SAML, haga click en la cabecera de la entidad."
 
 msgid "Tracking number"
-msgstr ""
+msgstr "Número de seguimiento"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
@@ -713,7 +713,7 @@ msgid "WS-Federation Service Provider (Hosted)"
 msgstr "Proveedor de Servicios WS-Federation (local)"
 
 msgid "Warning"
-msgstr ""
+msgstr "Aviso"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
@@ -740,15 +740,15 @@ msgstr "Sí"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:187
 msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
-msgstr ""
+msgstr "Ha accedido al servicio de resolución de artefactos, pero no incluyó un mensaje SAML apropiado. Tenga en cuenta que esta página no está pensada para su acceso directo."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
-msgstr "Usted accedió a la interfaz consumidora de aserciones pero no incluyó una respuesta de autenticación SAML."
+msgstr "Ha accedido al servicio de consumo de aserciones, pero no incluyó una respuesta de autenticación SAML. Tenga en cuenta que esta página no está pensada para su acceso directo."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:253
 msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
-msgstr ""
+msgstr "Ha accedido al servicio de Single Sign-On, pero no incluyó una solicitud de autenticación SAML. Tenga en cuenta que esta página no está pensada para su acceso directo."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
@@ -799,7 +799,7 @@ msgstr "Atributos"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:219
 msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
-msgstr ""
+msgstr "No se ha podido recuperar su sesión por dificultades técnicas. Por favor, inténtelo de nuevo transcurridos unos minutos."
 
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Su sesión será valida durante %remaining% segundos."
