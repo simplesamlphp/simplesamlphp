@@ -49,7 +49,14 @@ class Config
     {
         $secretSalt = Configuration::getInstance()->getString('secretsalt');
         if ($secretSalt === 'defaultsecretsalt') {
-            throw new \InvalidArgumentException('The "secretsalt" configuration option must be set to a secret value.');
+            throw new Error\CriticalConfigurationError(
+                'The "secretsalt" configuration option must be set to a secret value.',
+                'config.php',
+            );
+        } elseif (str_contains($secretSalt, '%')) {
+            throw new Error\CriticalConfigurationError(
+                'The "secretsalt" configuration option may not contain a `%` sign.',
+            );
         }
 
         return $secretSalt;
