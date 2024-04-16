@@ -58,6 +58,10 @@ class Config
                 'The "secretsalt" configuration option must be set to a secret value.',
                 'config.php',
             );
+        } elseif (str_contains($secretSalt, '%')) {
+            throw new Error\CriticalConfigurationError(
+                'The "secretsalt" configuration option may not contain a `%` sign.',
+            );
         }
 
         return $secretSalt;
