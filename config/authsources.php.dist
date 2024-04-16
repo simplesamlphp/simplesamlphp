@@ -2,16 +2,16 @@
 
 $config = [
     /*
-     * When multiple authentication sources are defined, you can specify one to use by default
-     * in order to authenticate users. In order to do that, you just need to name it "default"
-     * here. That authentication source will be used by default then when a user reaches the
-     * SimpleSAMLphp installation from the web browser, without passing through the API.
-     *
-     * If you already have named your auth source with a different name, you don't need to change
-     * it in order to use it as a default. Just create an alias by the end of this file:
-     *
-     * $config['default'] = &$config['your_auth_source'];
-     */
+    * When multiple authentication sources are defined, you can specify one to use by default
+    * in order to authenticate users. In order to do that, you just need to name it "default"
+    * here. That authentication source will be used by default then when a user reaches the
+    * SimpleSAMLphp installation from the web browser, without passing through the API.
+    *
+    * If you already have named your auth source with a different name, you don't need to change
+    * it in order to use it as a default. Just create an alias by the end of this file:
+    *
+    * $config['default'] = &$config['your_auth_source'];
+    */
 
     // This is a authentication source which handles admin authentication.
     'admin' => [
@@ -38,20 +38,20 @@ $config = [
         'discoURL' => null,
 
         /*
-         * If SP behind the SimpleSAMLphp in IdP/SP proxy mode requests
-         * AuthnContextClassRef, decide whether the AuthnContextClassRef will be
-         * processed by the IdP/SP proxy or if it will be passed to the original
-         * IdP in front of the IdP/SP proxy.
-         */
+        * If SP behind the SimpleSAMLphp in IdP/SP proxy mode requests
+        * AuthnContextClassRef, decide whether the AuthnContextClassRef will be
+        * processed by the IdP/SP proxy or if it will be passed to the original
+        * IdP in front of the IdP/SP proxy.
+        */
         'proxymode.passAuthnContextClassRef' => false,
 
         /*
-         * The attributes parameter must contain an array of desired attributes by the SP.
-         * The attributes can be expressed as an array of names or as an associative array
-         * in the form of 'friendlyName' => 'name'. This feature requires 'name' to be set.
-         * The metadata will then be created as follows:
-         * <md:RequestedAttribute FriendlyName="friendlyName" Name="name" />
-         */
+        * The attributes parameter must contain an array of desired attributes by the SP.
+        * The attributes can be expressed as an array of names or as an associative array
+        * in the form of 'friendlyName' => 'name'. This feature requires 'name' to be set.
+        * The metadata will then be created as follows:
+        * <md:RequestedAttribute FriendlyName="friendlyName" Name="name" />
+        */
         /*
         'name' => [
             'en' => 'A service',
@@ -145,7 +145,7 @@ $config = [
     /*
     'yubikey' => [
         'authYubiKey:YubiKey',
-         'id' => '000',
+        'id' => '000',
         // 'key' => '012345678',
     ],
     */
@@ -241,8 +241,8 @@ $config = [
         // all attributes are fetched.
         'attributes' => null,
 
-         // Which attributes should be base64 encoded after retrieval from
-         // the LDAP server.
+        // Which attributes should be base64 encoded after retrieval from
+        // the LDAP server.
         'attributes.binary' => [
             'jpegPhoto',
             'objectGUID',
@@ -298,15 +298,15 @@ $config = [
     'example-ldapmulti' => [
         'ldap:LdapMulti',
 
-         // The way the organization as part of the username should be handled.
-         // Three possible values:
-         // - 'none':   No handling of the organization. Allows '@' to be part
-         //             of the username.
-         // - 'allow':  Will allow users to type 'username@organization'.
-         // - 'force':  Force users to type 'username@organization'. The dropdown
-         //             list will be hidden.
-         //
-         // The default is 'none'.
+        // The way the organization as part of the username should be handled.
+        // Three possible values:
+        // - 'none':   No handling of the organization. Allows '@' to be part
+        //             of the username.
+        // - 'allow':  Will allow users to type 'username@organization'.
+        // - 'force':  Force users to type 'username@organization'. The dropdown
+        //             list will be hidden.
+        //
+        // The default is 'none'.
         'username_organization_method' => 'none',
 
         // Whether the organization should be included as part of the username
