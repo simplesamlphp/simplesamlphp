@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:417
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:418
 msgid "<strong>The configuration uses the default secret salt</strong>. Make sure to modify the <code>secretsalt</code> option in the SimpleSAMLphp configuration in production environments. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-install\">Read more about the maintenance of SimpleSAMLphp</a>."
 msgstr ""
 
@@ -238,7 +238,7 @@ msgstr ""
 msgid "The auth.adminpassword configuration option must be set"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:432
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:437
 msgid "The cURL PHP extension is missing. Cannot check for SimpleSAMLphp updates."
 msgstr ""
 
@@ -265,7 +265,7 @@ msgstr "XML-metadata"
 msgid "XML to SimpleSAMLphp metadata converter"
 msgstr "XML till SimpleSAMLphp metadataöversättare"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:457
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:462
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr ""
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:417
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:418
 msgid "<strong>The configuration uses the default secret salt</strong>. Make sure to modify the <code>secretsalt</code> option in the SimpleSAMLphp configuration in production environments. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-install\">Read more about the maintenance of SimpleSAMLphp</a>."
 msgstr "<strong>In de configuratie staat het meegeleverde secret salt</strong>. Verzeker u ervan de waarde van de <code>secretsalt</code> parameter aan te passen voor productieomgevingen. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance\">Lees meer over het onderhoud van SimpleSAMLphp</a>."
 
@@ -238,7 +238,7 @@ msgstr "Het instellen van de optie <code>technicalcontact_email</code> wordt aan
 msgid "The auth.adminpassword configuration option must be set"
 msgstr "Er moet een auth.adminpassword ingesteld zijn"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:432
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:437
 msgid "The cURL PHP extension is missing. Cannot check for SimpleSAMLphp updates."
 msgstr "De cURL-extensie mist in PHP. Kan niet controleren op updates."
 
@@ -265,7 +265,7 @@ msgstr "XML-metadata"
 msgid "XML to SimpleSAMLphp metadata converter"
 msgstr "XML naar SimpleSAMLphp metadata vertaling"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:457
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:462
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr "U heeft een verouderde versie van SimpleSAMLphp. Het is aan te raden zo snel mogelijk te upgraden naar <a href=\"%latest%\">de laatste versie</a>."
 

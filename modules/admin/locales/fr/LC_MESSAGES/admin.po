@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "X-Domain: admin\n"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:417
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:418
 msgid "<strong>The configuration uses the default secret salt</strong>. Make sure to modify the <code>secretsalt</code> option in the SimpleSAMLphp configuration in production environments. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-install\">Read more about the maintenance of SimpleSAMLphp</a>."
 msgstr "<strong>La configuration utilise le code secret par défaut</strong>. Veillez à modifier l'option <code>secretsalt</code> dans la configuration de SimpleSAMLphp dans les environnements de production. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-install\">En lire d'avantage sur la maintenance de SimpleSAMLphp</a>."
 
@@ -240,7 +240,7 @@ msgstr "L'option de configuration <code>technicalcontact_email</code> doit être
 msgid "The auth.adminpassword configuration option must be set"
 msgstr "L'option de configuration auth.adminpassword doit être définie"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:432
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:437
 msgid "The cURL PHP extension is missing. Cannot check for SimpleSAMLphp updates."
 msgstr "L'extension PHP cURL est manquante. Impossible de vérifier les mises à jour de SimpleSAMLphp."
 
@@ -267,7 +267,7 @@ msgstr "Métadonnées XML"
 msgid "XML to SimpleSAMLphp metadata converter"
 msgstr "Convertisseur de métadonnées XML vers SimpleSAMLphp"
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:457
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:462
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
 msgstr "Vous utilisez une version obsolète de SimpleSAMLphp. Veuillez mettre à jour vers <a href=\"%latest%\">la dernière version</a> dès que possible."
 
