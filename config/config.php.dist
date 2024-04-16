@@ -58,7 +58,7 @@ $config = [
     /*
      * The following settings are *filesystem paths* which define where
      * SimpleSAMLphp can find or write the following things:
-     * - 'cachedir': Where SimpleSAMLphp can write its cache. 
+     * - 'cachedir': Where SimpleSAMLphp can write its cache.
      * - 'loggingdir': Where to write logs. MUST be set to NULL when using a logging
      *                 handler other than `file`.
      * - 'datadir': Storage of general data.
@@ -275,7 +275,16 @@ $config = [
      * Whenever you change any of these headers, make sure to validate your config by running your
      * hostname through a security-test like https://en.internet.nl
     'headers.security' => [
-        'Content-Security-Policy' => "default-src 'none'; frame-ancestors 'self'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'",
+          'Content-Security-Policy' =>
+            "default-src 'none'; " .
+            "frame-ancestors 'self'; " .
+            "object-src 'none'; " .
+            "script-src 'self'; " .
+            "style-src 'self'; " .
+            "font-src 'self'; " .
+            "connect-src 'self'; " .
+            "img-src 'self' data:; " .
+            "base-uri 'none'",
         'Referrer-Policy' => 'origin-when-cross-origin',
         'X-Content-Type-Options' => 'nosniff',
     ],

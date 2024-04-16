@@ -28,8 +28,6 @@ use function hash;
 use function in_array;
 use function is_null;
 use function sprintf;
-use function strpos;
-use function strrpos;
 use function time;
 use function var_export;
 
