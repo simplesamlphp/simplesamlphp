@@ -228,6 +228,10 @@ msgstr ""
 msgid "Test Authentication Sources"
 msgstr ""
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:430
+msgid "The \"secretsalt\" configuration option may not contain a `%` sign."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:366
 msgid "The <code>technicalcontact_email</code> configuration option should be set"
 msgstr ""
