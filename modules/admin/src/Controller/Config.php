@@ -418,12 +418,17 @@ class Config
         }
 
         // make sure we have a secret salt set
-        if ($this->config->getString('secretsalt') === 'defaultsecretsalt') {
+        $secretSalt = $this->config->getString('secretsalt');
+        if ($secretSalt === 'defaultsecretsalt') {
             $warnings[] = Translate::noop(
                 '<strong>The configuration uses the default secret salt</strong>. Make sure to modify the <code>' .
                 'secretsalt</code> option in the SimpleSAMLphp configuration in production environments. <a ' .
                 'href="https://simplesamlphp.org/docs/stable/simplesamlphp-install">Read more about the ' .
                 'maintenance of SimpleSAMLphp</a>.'
+            );
+        } elseif (str_contains($secretSalt, '%')) {
+            $warnings[] = Translate::noop(
+                'The "secretsalt" configuration option may not contain a `%` sign.',
             );
         }
 
