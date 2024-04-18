@@ -34,7 +34,7 @@
     },
     "sqlauth": {
       "repository": "simplesamlphp/simplesamlphp-module-sqlauth",
-      "version": "^1.2"
+      "version": "^1.3"
     }
   }
 }

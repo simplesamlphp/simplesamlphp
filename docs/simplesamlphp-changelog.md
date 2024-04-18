@@ -12,6 +12,8 @@ Released TBD
 `sqlauth`
 
 * Add multi-query support (simplesamlphp/simplesamlphp-module-sqlauth#9) (v1.2.0)
+* Add username_regex option - run regular expresion over username before querying the
+  database (simplesamlphp/simplesamlphp-module-sqlauth#11) (v1.3.0)
 
 ## Version 2.2.0
 
