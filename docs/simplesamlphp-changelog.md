@@ -35,6 +35,10 @@ Released 2014-03-17
 * Fix regression in bin/initMDSPdo.php (was #1892)
 * Fix regression in translations, causing a fallback to English (#2009 + #2010)
 
+`sqlauth`
+
+* Add multi-query support (simplesamlphp/simplesamlphp-module-sqlauth#9) (v1.2.0)
+
 ## Version 2.2.0
 
 Released 2024-03-08
