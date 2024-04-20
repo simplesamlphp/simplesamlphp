@@ -6,7 +6,7 @@ namespace SimpleSAML\Test\Module\saml\Auth\Process;
 
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
-use SAML2\Constants;
+use SAML2\Constants as C;
 use SAML2\Exception\ProtocolViolationException;
 use SimpleSAML\{Configuration, Logger, Utils};
 use SimpleSAML\Module\saml\Auth\Process\PairwiseID;
@@ -82,14 +82,14 @@ class PairwiseIDTest extends TestCase
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertArrayHasKey(Constants::ATTR_PAIRWISE_ID, $attributes);
+        $this->assertArrayHasKey(C::ATTR_PAIRWISE_ID, $attributes);
         $this->assertMatchesRegularExpression(
             PairwiseID::SPEC_PATTERN,
-            $attributes[Constants::ATTR_PAIRWISE_ID][0]
+            $attributes[C::ATTR_PAIRWISE_ID][0]
         );
         $this->assertEquals(
             'c22d58bebef42e50e203d0e932ae4a7f560a51d494266990a5b5c73f34b1854e@ex-ample.org',
-            $attributes[Constants::ATTR_PAIRWISE_ID][0]
+            $attributes[C::ATTR_PAIRWISE_ID][0]
         );
     }
 
@@ -106,14 +106,14 @@ class PairwiseIDTest extends TestCase
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertArrayHasKey(Constants::ATTR_PAIRWISE_ID, $attributes);
+        $this->assertArrayHasKey(C::ATTR_PAIRWISE_ID, $attributes);
         $this->assertMatchesRegularExpression(
             PairwiseID::SPEC_PATTERN,
-            $attributes[Constants::ATTR_PAIRWISE_ID][0]
+            $attributes[C::ATTR_PAIRWISE_ID][0]
         );
         $this->assertEquals(
             'c22d58bebef42e50e203d0e932ae4a7f560a51d494266990a5b5c73f34b1854e@ex-ample.org',
-            $attributes[Constants::ATTR_PAIRWISE_ID][0]
+            $attributes[C::ATTR_PAIRWISE_ID][0]
         );
     }
 
@@ -130,14 +130,14 @@ class PairwiseIDTest extends TestCase
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertArrayHasKey(Constants::ATTR_PAIRWISE_ID, $attributes);
+        $this->assertArrayHasKey(C::ATTR_PAIRWISE_ID, $attributes);
         $this->assertMatchesRegularExpression(
             PairwiseID::SPEC_PATTERN,
-            $attributes[Constants::ATTR_PAIRWISE_ID][0]
+            $attributes[C::ATTR_PAIRWISE_ID][0]
         );
         $this->assertEquals(
             'c22d58bebef42e50e203d0e932ae4a7f560a51d494266990a5b5c73f34b1854e@ex-ample.org',
-            $attributes[Constants::ATTR_PAIRWISE_ID][0]
+            $attributes[C::ATTR_PAIRWISE_ID][0]
         );
     }
 
@@ -154,14 +154,14 @@ class PairwiseIDTest extends TestCase
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertArrayHasKey(Constants::ATTR_PAIRWISE_ID, $attributes);
+        $this->assertArrayHasKey(C::ATTR_PAIRWISE_ID, $attributes);
         $this->assertMatchesRegularExpression(
             PairwiseID::SPEC_PATTERN,
-            $attributes[Constants::ATTR_PAIRWISE_ID][0]
+            $attributes[C::ATTR_PAIRWISE_ID][0]
         );
         $this->assertEquals(
             'c22d58bebef42e50e203d0e932ae4a7f560a51d494266990a5b5c73f34b1854e@ex-ample.org',
-            $attributes[Constants::ATTR_PAIRWISE_ID][0]
+            $attributes[C::ATTR_PAIRWISE_ID][0]
         );
     }
 
@@ -196,8 +196,8 @@ class PairwiseIDTest extends TestCase
         // Generate first ID
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertArrayHasKey(Constants::ATTR_PAIRWISE_ID, $attributes);
-        $value1 = $attributes[Constants::ATTR_PAIRWISE_ID][0];
+        $this->assertArrayHasKey(C::ATTR_PAIRWISE_ID, $attributes);
+        $value1 = $attributes[C::ATTR_PAIRWISE_ID][0];
 
         // Switch SP
         $request['core:SP'] = 'urn:some:other:sp';
@@ -205,8 +205,8 @@ class PairwiseIDTest extends TestCase
         // Generate second ID
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertArrayHasKey(Constants::ATTR_PAIRWISE_ID, $attributes);
-        $value2 = $attributes[Constants::ATTR_PAIRWISE_ID][0];
+        $this->assertArrayHasKey(C::ATTR_PAIRWISE_ID, $attributes);
+        $value2 = $attributes[C::ATTR_PAIRWISE_ID][0];
 
         $this->assertNotSame($value1, $value2);
     }
@@ -226,8 +226,8 @@ class PairwiseIDTest extends TestCase
         // Generate first ID
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertArrayHasKey(Constants::ATTR_PAIRWISE_ID, $attributes);
-        $value1 = $attributes[Constants::ATTR_PAIRWISE_ID][0];
+        $this->assertArrayHasKey(C::ATTR_PAIRWISE_ID, $attributes);
+        $value1 = $attributes[C::ATTR_PAIRWISE_ID][0];
 
         // Switch user
         $request['Attributes']['uid'] = ['user2'];
@@ -235,8 +235,8 @@ class PairwiseIDTest extends TestCase
         // Generate second ID
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertArrayHasKey(Constants::ATTR_PAIRWISE_ID, $attributes);
-        $value2 = $attributes[Constants::ATTR_PAIRWISE_ID][0];
+        $this->assertArrayHasKey(C::ATTR_PAIRWISE_ID, $attributes);
+        $value2 = $attributes[C::ATTR_PAIRWISE_ID][0];
 
         $this->assertNotSame($value1, $value2);
     }
@@ -256,8 +256,8 @@ class PairwiseIDTest extends TestCase
         // Generate first ID
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertArrayHasKey(Constants::ATTR_PAIRWISE_ID, $attributes);
-        $value1 = $attributes[Constants::ATTR_PAIRWISE_ID][0];
+        $this->assertArrayHasKey(C::ATTR_PAIRWISE_ID, $attributes);
+        $value1 = $attributes[C::ATTR_PAIRWISE_ID][0];
 
         // Change the salt
         self::$configUtils = new class () extends Utils\Config {
@@ -271,8 +271,8 @@ class PairwiseIDTest extends TestCase
         // Generate second ID
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertArrayHasKey(Constants::ATTR_PAIRWISE_ID, $attributes);
-        $value2 = $attributes[Constants::ATTR_PAIRWISE_ID][0];
+        $this->assertArrayHasKey(C::ATTR_PAIRWISE_ID, $attributes);
+        $value2 = $attributes[C::ATTR_PAIRWISE_ID][0];
 
         $this->assertNotSame($value1, $value2);
     }
@@ -292,8 +292,8 @@ class PairwiseIDTest extends TestCase
         // Generate first ID
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertArrayHasKey(Constants::ATTR_PAIRWISE_ID, $attributes);
-        $value1 = $attributes[Constants::ATTR_PAIRWISE_ID][0];
+        $this->assertArrayHasKey(C::ATTR_PAIRWISE_ID, $attributes);
+        $value1 = $attributes[C::ATTR_PAIRWISE_ID][0];
 
         // Change the scope
         $request['Attributes']['scope'] = ['example.edu'];
@@ -301,8 +301,8 @@ class PairwiseIDTest extends TestCase
         // Generate second ID
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertArrayHasKey(Constants::ATTR_PAIRWISE_ID, $attributes);
-        $value2 = $attributes[Constants::ATTR_PAIRWISE_ID][0];
+        $this->assertArrayHasKey(C::ATTR_PAIRWISE_ID, $attributes);
+        $value2 = $attributes[C::ATTR_PAIRWISE_ID][0];
 
         $this->assertNotSame($value1, $value2);
 

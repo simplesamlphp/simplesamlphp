@@ -9,10 +9,14 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+* The SubjectID authproc-filter now has a new option `hashed`, which if set to true
+  will automatically hash the unique part of the ID. This will also automatically
+  make the unique part of the ID in compliance with the specs (#2006)
+
 `sqlauth`
 
 * Add multi-query support (simplesamlphp/simplesamlphp-module-sqlauth#9) (v1.2.0)
-* Add username_regex option - run regular expresion over username before querying the
+* Add username_regex option - run regular expression over username before querying the
   database (simplesamlphp/simplesamlphp-module-sqlauth#11) (v1.3.0)
 
 ## Version 2.2.0
