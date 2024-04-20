@@ -220,17 +220,16 @@ class ServiceProvider
         $spSource = $as->getAuthSource();
 
         // Check if we are authenticated and under which Authenticating Authority
-        if(
+        if (
             $as->isAuthenticated()
             && $spSource->isRequestInitiation()
             &&  $options['saml:idp']
         ) {
             // Check the IdP we are currently authenticated to
             $authData = $as->getAuthDataArray();
-            if(
+            if (
                 (isset($authData['saml:sp:IdP']) && $options['saml:idp'] !== $authData['saml:sp:IdP'])
-                ||
-                (isset($options['ForceAuthn']) && $options['ForceAuthn'])
+                || (isset($options['ForceAuthn']) && $options['ForceAuthn'])
             ) {
                 // Force a re-authentication
                 $as->login($options);
