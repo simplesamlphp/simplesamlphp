@@ -4,34 +4,34 @@ msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/saml/hooks/hook_sanitycheck.php:25
 msgid "Hosted IdP metadata present"
-msgstr ""
+msgstr "Metadatos del IdP local presentes"
 
 msgid "Invalid Identity Provider"
 msgstr "Proveedor de Identidad inválido"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/saml/hooks/hook_sanitycheck.php:35
 msgid "Matching key-pair for signing assertions"
-msgstr ""
+msgstr "Par de claves correspondiente para firma de aserciones"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/saml/hooks/hook_sanitycheck.php:42
 msgid "Matching key-pair for signing assertions (rollover key)"
-msgstr ""
+msgstr "Par de claves correspondiente para firma de aserciones (para rotación de claves)"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/saml/hooks/hook_sanitycheck.php:52
 msgid "Matching key-pair for signing metadata"
-msgstr ""
+msgstr "Par de claves correspondiente para firma de metadatos"
 
 msgid "No, cancel"
-msgstr ""
+msgstr "No, cancelar"
 
 msgid "SimpleSAMLphp"
-msgstr ""
+msgstr "SimpleSAMLphp"
 
 msgid "Wrong authentication context"
 msgstr "Contexto de autenticación incorrecto"
 
 msgid "Yes, continue"
-msgstr ""
+msgstr "Sí, continuar"
 
 msgid "You already have a valid session with an identity provider (<em>%IDP%</em>) that is not accepted by <em>%SP%</em>. Would you like to log out from your existing session and log in again with another identity provider?"
 msgstr "Ya existe una sesión válida con un proveedor de identidad (<em>%IDP%</em>) que <em>%SP%</em> no acepta. ¿Desea cerrar su sesión actual e iniciar una nueva con otro proveedor de identidad?"
