@@ -86,6 +86,99 @@ class UpdateTranslatableStringsCommand extends Command
     }
 
     /**
+     * Update the translations in template and write those to a translation po file.
+     *
+     * Note that this method may do some things like copy non empty msgstr values to the messages.po
+     * level (or vice versa) and may in the future remove duplicate msgid from some very core modules
+     * such as core, saml, and admin.
+     *
+     * This method expects the $messages to be mutable and to be written after all the modules have
+     * been processed. This allows the method the scope to promote some msgid/msgstr values to the
+     * messages.po file if desired without triggering excessive writes.
+     *
+     * @param messages The translations for this language at the messages.po level
+     * @param domain The module domain or messages if we are not in a module
+     * @param template The translations for the module/messages.po level that we should update and write.
+     * @return void
+     */
+    protected function updateTranslation(\Gettext\Translations $messages, string $domain, \Gettext\Translations $template): void
+    {
+        $loader = new PoLoader();
+        $poGenerator = new PoGenerator();
+
+        // This is the base directory of the SimpleSAMLphp installation
+        $baseDir = dirname(__FILE__, 4);
+
+        // if we have no translations then there is nothing to write
+        if ($template->count() == 0) {
+            return;
+        }
+
+        $moduleDir = $baseDir . ($domain === 'messages' ? '' : '/modules/' . $domain);
+        $moduleLocalesDir = $moduleDir . '/locales/';
+        $domain = $domain ?: 'messages';
+        $finder = new Finder();
+        foreach ($finder->files()->in($moduleLocalesDir . '**/LC_MESSAGES/')->name("{$domain}.po") as $poFile) {
+            $current = $loader->loadFile($poFile->getPathName());
+
+            $merged = $template->mergeWith(
+                $current,
+                Merge::TRANSLATIONS_OVERRIDE
+                | Merge::COMMENTS_OURS
+                | Merge::HEADERS_OURS
+                | Merge::REFERENCES_THEIRS
+                | Merge::EXTRACTED_COMMENTS_OURS
+            );
+            $merged->setDomain($domain);
+
+            $carryTranslationModules = ["saml", "core", "admin"];
+            $langCode = basename(dirname($poFile->getPathName(), 2));
+            if (in_array($domain, $carryTranslationModules)) {
+                $iter = $messages->getIterator();
+                foreach ($iter as $key => $val) {
+                    if ($merged->has($val)) {
+                        // find the element in the module translation
+                        // the has() above means it should be there though it may
+                        // have no translation string
+                        $v = $merged->find($val->getContext(), $val->getOriginal())->getTranslation();
+
+                        // if there is no translation string in the module but
+                        // there is one in the messages.po level then push that
+                        // down to the module as well.
+                        if (!$v && $val->getTranslation()) {
+                            $tr = $merged->find($val->getContext(), $val->getOriginal());
+                            if ($tr) {
+                                $tr->translate($val->getTranslation());
+                            }
+                        }
+
+                        // if there is no translation at the messages level
+                        // but a module has one then push it up as well.
+                        if ($v && !$val->getTranslation()) {
+                            $id = $val->getId();
+                            $val->translate($v);
+                        }
+                    }
+                }
+            }
+
+            //
+            // Sort the translations in a predictable way
+            //
+            $iter = $merged->getIterator();
+            $iter->ksort();
+            $merged = $this->cloneIteratorToTranslations(
+                Translations::create($merged->getDomain(), $merged->getLanguage()),
+                $iter,
+            );
+
+            $poGenerator->generateFile($merged, $poFile->getPathName());
+        }
+    }
+
+
+
+    /**
      * @param \Symfony\Component\Console\Input\InputInterface $input
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      * @return int
@@ -113,9 +206,6 @@ class UpdateTranslatableStringsCommand extends Command
             }
             $modules = $known;
         }
-
-        // This is the base directory of the SimpleSAMLphp installation
-        $baseDir = dirname(__FILE__, 4);
 
         $translationDomains = [];
         foreach ($modules as $module) {
@@ -157,7 +247,9 @@ class UpdateTranslatableStringsCommand extends Command
         $loader = new PoLoader();
         $poGenerator = new PoGenerator();
 
-        foreach ($phpScanner->getTranslations() as $domain => $template) {
+        $translations = $phpScanner->getTranslations();
+
+        foreach ($translations as $domain => $template) {
             // If we also have results from the Twig-templates, merge them
             if (array_key_exists($domain, $migrated)) {
                 foreach ($migrated[$domain] as $migratedTranslations) {
@@ -165,40 +257,29 @@ class UpdateTranslatableStringsCommand extends Command
                 }
             }
 
-            // If we have at least one translation, write it into a template file
-            if ($template->count() > 0) {
-                $moduleDir = $baseDir . ($domain === 'messages' ? '' : '/modules/' . $domain);
-                $moduleLocalesDir = $moduleDir . '/locales/';
-                $domain = $domain ?: 'messages';
+            $translations[$domain] = $template;
+        }
 
-                $finder = new Finder();
-                foreach ($finder->files()->in($moduleLocalesDir . '**/LC_MESSAGES/')->name("{$domain}.po") as $poFile) {
-                    $current = $loader->loadFile($poFile->getPathName());
-
-                    $merged = $template->mergeWith(
-                        $current,
-                        Merge::TRANSLATIONS_OVERRIDE
-                        | Merge::COMMENTS_OURS
-                        | Merge::HEADERS_OURS
-                        | Merge::REFERENCES_THEIRS
-                        | Merge::EXTRACTED_COMMENTS_OURS
-                    );
-                    $merged->setDomain($domain);
-
-                    //
-                    // Sort the translations in a predictable way
-                    //
-                    $iter = $merged->getIterator();
-                    $iter->ksort();
-                    $merged = $this->cloneIteratorToTranslations(
-                        Translations::create($merged->getDomain(), $merged->getLanguage()),
-                        $iter,
-                    );
-
-                    $poGenerator->generateFile($merged, $poFile->getPathName());
-                }
+        //
+        // The modules are handled first to allow translations to move
+        // to the main messages.po file if desired. For example a if a
+        // translation exists in a module with a language msgstr and not
+        // in the main messages file then we might like to copy the
+        // msgstr from the module to the messages to help.
+        // In the future we may also like to dedup translations by removing
+        // them from the module if they are already present in the messages
+        // file. This allows some translations to be explicitly lifted to
+        // the messages.po level.
+        //
+        $messages = $translations["messages"];
+        foreach ($translations as $domain => $template) {
+            if ($domain != "messages") {
+                $this->updateTranslation($messages, $domain, $template);
             }
         }
+        $this->updateTranslation($messages, "messages", $messages);
+
+
 
         return Command::SUCCESS;
     }
