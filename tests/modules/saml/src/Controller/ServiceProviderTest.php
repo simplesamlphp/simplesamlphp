@@ -185,7 +185,7 @@ class ServiceProviderTest extends TestCase
         $as->method('getAuthDataArray')
             ->willReturn(['saml:sp:IdP' => 'https://google.qa.cirrusidentity.com/gateway']);
 
-        $sp = new class($this->config, $this->session) extends Controller\ServiceProvider {
+        $sp = new class ($this->config, $this->session) extends Controller\ServiceProvider {
             public function callHandleLogin(Auth\Simple $as, array $options): void
             {
                 $this->handleLogin($as, $options);
@@ -244,7 +244,7 @@ class ServiceProviderTest extends TestCase
                    ->getMock();
 
 
-        $sp = new class($this->config, $this->session) extends Controller\ServiceProvider {
+        $sp = new class ($this->config, $this->session) extends Controller\ServiceProvider {
             public function callHandleLogin(Auth\Simple $as, array $options): void
             {
                 $this->handleLogin($as, $options);
@@ -301,7 +301,7 @@ class ServiceProviderTest extends TestCase
                    ->setConstructorArgs(['phpunit', $this->authSources, $this->session])
                    ->onlyMethods(['login'])
                    ->getMock();
-        $myServiceProvider = new class($this->config, $this->session) extends Controller\ServiceProvider {
+        $myServiceProvider = new class ($this->config, $this->session) extends Controller\ServiceProvider {
             public function callHandleLogin(Auth\Simple $as, array $options): void
             {
                 $this->handleLogin($as, $options);
@@ -320,7 +320,7 @@ class ServiceProviderTest extends TestCase
      */
     public function testMapToOptionsList(): void
     {
-        $myServiceProvider = new class($this->config, $this->session) extends Controller\ServiceProvider {
+        $myServiceProvider = new class ($this->config, $this->session) extends Controller\ServiceProvider {
             public function callMapToOptionsList(array $requestParams): array
             {
                 return $this->mapToOptionsList($requestParams);
@@ -337,8 +337,6 @@ class ServiceProviderTest extends TestCase
             'ReturnTo' => 'https://example.org',
             'saml:idp' => 'https://engine.surfconext.nl/authentication/idp/metadata'
         ]);
-
-
     }
 
 
@@ -817,7 +815,7 @@ XML;
             $requestParams
         );
 
-        $myServiceProvider = new class($this->config, $this->session) extends Controller\ServiceProvider {
+        $myServiceProvider = new class ($this->config, $this->session) extends Controller\ServiceProvider {
             public function callParseRequestParameters(Request $request, array $parameterList = []): array
             {
                 return $this->parseRequestParameters($request, $parameterList);
