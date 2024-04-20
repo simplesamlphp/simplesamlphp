@@ -7,7 +7,6 @@ namespace SimpleSAML\Test\Module\saml\Controller;
 use Exception;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Auth;
-use SimpleSAML\Auth\Source;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
@@ -27,15 +26,13 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ServiceProviderTest extends TestCase
 {
-    /** @var \SimpleSAML\AuthConfiguration */
+    /** @var \SimpleSAML\Configuration */
     protected Configuration $authSources;
 
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
-    /**
-     * @return \SimpleSAML\Configuration
-     */
+    /** @return \SimpleSAML\Configuration */
     protected Configuration $idpMetatdataConfig;
 
     /** @var \SimpleSAML\Session */
@@ -43,6 +40,7 @@ class ServiceProviderTest extends TestCase
 
     /** @var \SimpleSAML\Utils\Auth */
     protected Utils\Auth $authUtils;
+
 
     /**
      * Set up for each test.
@@ -143,6 +141,7 @@ class ServiceProviderTest extends TestCase
         $this->expectExceptionMessage('Missing ReturnTo parameter.');
         $c->login($request, 'phpunit');
     }
+
 
     /**
      * Test handleLogin when:
@@ -262,6 +261,7 @@ class ServiceProviderTest extends TestCase
         $sp->callHandleLogin($as, $options);
     }
 
+
     /**
      * Test handleLogin when:
      * - Request Initiation is off
@@ -301,7 +301,7 @@ class ServiceProviderTest extends TestCase
                    ->setConstructorArgs(['phpunit', $this->authSources, $this->session])
                    ->onlyMethods(['login'])
                    ->getMock();
-        $MyServiceProvider = new class($this->config, $this->session) extends Controller\ServiceProvider {
+        $myServiceProvider = new class($this->config, $this->session) extends Controller\ServiceProvider {
             public function callHandleLogin(Auth\Simple $as, array $options): void
             {
                 $this->handleLogin($as, $options);
@@ -310,7 +310,7 @@ class ServiceProviderTest extends TestCase
 
         $as->expects($this->never())->method('login');
         // When a session already exists, we will just return
-        $this->assertEquals($MyServiceProvider->callHandleLogin($as, []), null);
+        $this->assertEquals($myServiceProvider->callHandleLogin($as, []), null);
     }
 
     /**
@@ -320,7 +320,7 @@ class ServiceProviderTest extends TestCase
      */
     public function testMapToOptionsList(): void
     {
-        $MyServiceProvider = new class($this->config, $this->session) extends Controller\ServiceProvider {
+        $myServiceProvider = new class($this->config, $this->session) extends Controller\ServiceProvider {
             public function callMapToOptionsList(array $requestParams): array
             {
                 return $this->mapToOptionsList($requestParams);
@@ -332,7 +332,7 @@ class ServiceProviderTest extends TestCase
             'entityID' => 'https://engine.surfconext.nl/authentication/idp/metadata',
             'isPassive' => '', // XXX Needed to test the continue block in the if statement
         ];
-        $options = $MyServiceProvider->callMapToOptionsList($requestParams);
+        $options = $myServiceProvider->callMapToOptionsList($requestParams);
         $this->assertEquals($options, [
             'ReturnTo' => 'https://example.org',
             'saml:idp' => 'https://engine.surfconext.nl/authentication/idp/metadata'
@@ -738,6 +738,7 @@ XML;
         ];
     }
 
+
     /**
      * Test that requesting a non-existing authsource yields an error
      */
@@ -754,6 +755,7 @@ XML;
         $this->expectExceptionMessage("Error with authentication source 'phpnonunit': Could not find authentication source.");
         $c->metadata($request, 'phpnonunit');
     }
+
 
     /**
      * Basic smoke test of generated metadata
@@ -775,6 +777,7 @@ XML;
         $this->assertStringContainsString($expect, $content);
     }
 
+
     /**
      * Check if caching headers are set
      */
@@ -791,6 +794,7 @@ XML;
         $this->assertTrue($result->headers->has('ETag'));
         $this->assertEquals('public', $result->headers->get('Cache-Control'));
     }
+
 
     public function testParseRequestParameters(): void
     {
@@ -813,14 +817,14 @@ XML;
             $requestParams
         );
 
-        $MyServiceProvider = new class($this->config, $this->session) extends Controller\ServiceProvider {
+        $myServiceProvider = new class($this->config, $this->session) extends Controller\ServiceProvider {
             public function callParseRequestParameters(Request $request, array $parameterList = []): array
             {
                 return $this->parseRequestParameters($request, $parameterList);
             }
         };
 
-        $extractedParams = $MyServiceProvider->callParseRequestParameters($request, $paramList);
+        $extractedParams = $myServiceProvider->callParseRequestParameters($request, $paramList);
         $this->assertEquals($extractedParams, [
             'target' => 'https://example.org',
             'entityID' => 'https://engine.surfconext.nl/authentication/idp/metadata'
