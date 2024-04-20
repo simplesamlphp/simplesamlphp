@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\Test\Auth\ProcessingFilter;
+namespace SimpleSAML\Test\Auth;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Auth\ProcessingFilter as AuthProcFilter;
