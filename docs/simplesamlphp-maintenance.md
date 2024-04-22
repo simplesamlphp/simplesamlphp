@@ -48,7 +48,7 @@ SimpleSAMLphp as an Identity Provider, or any other applications using it are no
 settings by leaving these options unset or setting them to `null`.
 
 If you need to restore your session's application after calling SimpleSAMLphp, you can do it by calling the `cleanup()` method of the
-`\SimpleSAML\Session` class, like described [here](simplesamlphp-sp#section_6).
+`\SimpleSAML\Session` class, like described [here](simplesamlphp-sp#integrating-authentication-with-your-own-application).
 
 ### Configuring memcache
 
@@ -238,7 +238,7 @@ alternative, you may log to flat files.
 
 ## Apache configuration
 
-Basic Apache configuration is described in [SimpleSAMLphp Installation](simplesamlphp-install#section_6).
+Basic Apache configuration is described in [SimpleSAMLphp Installation](simplesamlphp-install#configuring-apache).
 However, your IdP or SP is most likely a valuable website that you want to configure securely. Here are some checks.
 
 * Make sure you use HTTPS with a proper certificate. The best way is to not
