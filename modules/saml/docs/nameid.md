@@ -35,7 +35,7 @@ Uses the value of an attribute to generate a NameID.
 ## `saml:PersistentNameID`
 
 Generates a persistent NameID with the format `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`.
-The filter will take the user ID from the attribute described in the `attribute` option, and hash it with the `secretsalt` from `config.php`, and the SP and IdP entity ID.
+The filter will take the user ID from the attribute described in the `identifyingAttribute` option, and hash it with the `secretsalt` from `config.php`, and the SP and IdP entity ID.
 The resulting hash is sent as the persistent NameID.
 
 **Options**:
