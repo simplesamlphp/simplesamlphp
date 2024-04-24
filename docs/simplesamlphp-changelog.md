@@ -28,6 +28,11 @@ Released TBD
 
 * Fix exception being thrown when password is empty
 
+`saml2 library`
+
+Fixed a bug where base64 encoded strings were not decoded using the `strict` flag, leading
+to an incorrect error message.
+
 ## Version 2.2.1
 
 Released 2014-03-17
