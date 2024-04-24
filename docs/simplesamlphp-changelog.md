@@ -23,6 +23,11 @@ Released TBD
 
 * Fix controller for External-authsource
 
+`saml2 library`
+
+Fixed a bug where base64 encoded strings were not decoded using the `strict` flag, leading
+to an incorrect error message.
+
 ## Version 2.0.11
 
 Released 2024-03-08
