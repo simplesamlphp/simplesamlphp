@@ -451,7 +451,7 @@ $config = [
      * Proxy to use for retrieving URLs.
      *
      * Example:
-     *   'proxy' => 'tcp://proxy.example.com:5100'
+     *   'proxy' => 'http://proxy.example.com:5100'
      */
     'proxy' => null,
 
