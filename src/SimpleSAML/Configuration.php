@@ -61,6 +61,7 @@ class Configuration implements Utils\ClearableState
             "style-src 'self'; " .
             "font-src 'self'; " .
             "connect-src 'self'; " .
+            "media-src data:;" .
             "img-src 'self' data:; " .
             "base-uri 'none'",
         'X-Frame-Options' => 'SAMEORIGIN',
