@@ -59,7 +59,7 @@ class Redirection
         if ($redirId !== false) {
             $postId = $redirId;
         } elseif ($redirInfo !== false) {
-            $encData = base64_decode($redirInfo);
+            $encData = base64_decode($redirInfo, true);
 
             if (empty($encData)) {
                 throw new Error\BadRequest('Invalid RedirInfo data.');
