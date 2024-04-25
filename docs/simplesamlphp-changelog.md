@@ -13,6 +13,7 @@ Released TBD
 * Fix RequestedAuthnContextSelector for case with multiple RACs in request
 * Add xml opening-tag to SP-metadata for consistency with IdP-metadata (#2048)
 * Fixed a PHP 8.3 compliance issue in the logout handler (#2047)
+* Improve parsing of base64-encoded strings
 
 `admin`
 
