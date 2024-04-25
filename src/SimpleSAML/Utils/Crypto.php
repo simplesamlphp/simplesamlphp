@@ -312,7 +312,12 @@ class Crypto
         }
         unset($lines[$last]);
 
-        return base64_decode(implode($lines));
+        $transform = base64_decode(implode($lines), true);
+        if (empty($transform)) {
+            throw new InvalidArgumentException("pem2der: input is empty or not a valid base64 encoded string.");
+        }
+
+        return $transform;
     }
 
 
