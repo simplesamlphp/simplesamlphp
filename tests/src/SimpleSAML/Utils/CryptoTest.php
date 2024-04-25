@@ -119,7 +119,7 @@ PHP;
 uR2Yu0r4itInKx91D/l9y/08L5CIQyev9nAr27fh3Sshous4vbXRRcMcjqHDOrquD+2vqLyw7ygnbA9jA9TpB4hLZocvAWcTN8tyO82hiSY=
 CIPHER;
 
-        $decrypted = $this->cryptoUtils->aesDecrypt(base64_decode($ciphertext));
+        $decrypted = $this->cryptoUtils->aesDecrypt(base64_decode($ciphertext, true));
         $this->assertEquals($plaintext, $decrypted);
     }
 

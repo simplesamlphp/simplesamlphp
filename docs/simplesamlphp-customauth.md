@@ -335,7 +335,11 @@ class MyAuth extends \SimpleSAML\Module\core\Auth\UserPassBase
      */
     private function checkPassword($passwordHash, $password)
     {
-        $passwordHash = base64_decode($passwordHash);
+        $passwordHash = base64_decode($passwordHash, true);
+        if (empty($passwordHash)) {
+            throw new \InvalidArgumentException("Password hash is empty or not a valid base64 encoded string.");
+        }
+
         $digest = substr($passwordHash, 0, 20);
         $salt = substr($passwordHash, 20);
 
