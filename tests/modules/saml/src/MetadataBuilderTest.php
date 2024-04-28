@@ -15,6 +15,8 @@ use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XMLSecurity\TestUtils\PEMCertificatesMock;
 
 use function array_keys;
+use function array_filter;
+use function in_array;
 use function count;
 
 /**
@@ -27,12 +29,14 @@ final class MetadataBuilderTest extends TestCase
     private const ENTITY_SP = 'urn:x-simplesamlphp:serviceprovider';
     private const ENTITY_IDP = 'urn:x-simplesamlphp:identityprovider';
 
+
     /**
      */
     protected function setUp(): void
     {
         Configuration::loadFromArray([], '', 'simplesaml');
     }
+
 
     /**
      */
@@ -154,6 +158,45 @@ final class MetadataBuilderTest extends TestCase
         $this->assertCount(2, $contacts);
         $this->assertEquals($metadata['contacts'][0], $contacts[0]->toArray());
         $this->assertEquals($metadata['contacts'][1], $contacts[1]->toArray());
+    }
+
+
+    /**
+     * Test adding organization
+     */
+    public function testOrganization(): void
+    {
+        $info = ['AuthId' => 'default-sp'];
+        $metadata = [
+            'entityID' => self::ENTITY_SP,
+            'metadata-set' => 'saml20-sp-remote',
+            'OrganizationName' => [
+                'en' => 'Voorbeeld Organisatie Foundation b.a.',
+                'nl' => 'Stichting Voorbeeld Organisatie b.a.',
+            ],
+            'OrganizationDisplayName' => [
+                'en' => 'Example organization',
+                'nl' => 'Voorbeeldorganisatie',
+            ],
+            'OrganizationURL' => [
+                'en' => 'https://example.com',
+                'nl' => 'https://example.com/nl',
+            ],
+        ];
+
+        $entityDescriptor = $this->getEntityDescriptor($info, $metadata);
+
+        $organization = $entityDescriptor->getOrganization();
+        $this->assertEquals(
+            array_filter(
+                $metadata,
+                function($k) {
+                    return in_array($k, ['OrganizationName', 'OrganizationDisplayName', 'OrganizationURL']);
+                },
+                ARRAY_FILTER_USE_KEY,
+            ),
+            $organization->toArray(),
+        );
     }
 
 
