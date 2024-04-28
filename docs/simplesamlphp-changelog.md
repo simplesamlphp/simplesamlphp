@@ -5,9 +5,13 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
-## Version 2.0.12
+## Version 2.0.13
 
 Released TBD
+
+## Version 2.0.12
+
+Released 28-04-2024
 
 * Fix posting the form to the incorrect endpoint when using an authsource based on UserPassOrgBase (#2022)
 * Fix RequestedAuthnContextSelector for case with multiple RACs in request
