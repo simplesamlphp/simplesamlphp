@@ -67,3 +67,8 @@ the old version installed by composer
 All the tests are run by our *continuous integration* platform using GitHub
 Actions. If you are submitting a pull request, GitHub Actions will run your
 tests and notify whether your code builds or not according to them.
+
+If you are looking to test your module locally you might like to install
+and use simplesamlphp-test-utils. It is best to use the v2 branch of
+the test utils for testing modules against SimpleSAMLphp 2.x.
+https://github.com/cirrusidentity/simplesamlphp-test-utils/tree/v2
