@@ -10,9 +10,10 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Auth, Configuration, Error, Session, Utils};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
+use SimpleSAML\Module\saml\Auth\Source;
 use SimpleSAML\Module\saml\Controller;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 
 use function base64_encode;
 use function dirname;
@@ -29,19 +30,36 @@ class ServiceProviderTest extends TestCase
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
+    /** @var \SimpleSAML\Configuration */
+    protected Configuration $authsources;
+
     /** @var \SimpleSAML\Session */
     protected Session $session;
 
     /** @var \SimpleSAML\Utils\Auth */
     protected Utils\Auth $authUtils;
 
+    /** @var Controller\ServiceProvider */
+    protected Controller\ServiceProvider $serviceProvider;
+
+    /** @var Utils\HTTP */
+    protected Utils\HTTP $httpUtils;
+
+    /** @var string */
+    public const RELAY_STATE = 'https://example.org';
+
     /**
      * Set up for each test.
+     * @throws Exception
      */
     protected function setUp(): void
     {
         parent::setUp();
+        $_SERVER['REQUEST_URI'] = '/dummy';
+        $_SERVER['REQUEST_METHOD'] = 'GET';
 
+        $this->httpUtils = new Utils\HTTP();
+        $this->session = Session::getSessionFromRequest();
         $this->config = Configuration::loadFromArray(
             [
                 'module.enable' => ['saml' => true],
@@ -57,21 +75,18 @@ class ServiceProviderTest extends TestCase
         );
         Configuration::setPreLoadedConfig($this->config, 'config.php');
 
-        Configuration::setPreLoadedConfig(
-            Configuration::loadFromArray(
-                [
-                    'admin' => ['core:AdminPassword'],
-                    'phpunit' => [
-                        'saml:SP',
-                        'entityID' => 'urn:x-simplesamlphp:example-sp',
-                    ],
+        $this->authsources = Configuration::loadFromArray(
+            [
+                'admin' => ['core:AdminPassword'],
+                'phpunit' => [
+                    'saml:SP',
+                    'entityID' => 'urn:x-simplesamlphp:example-sp',
                 ],
-                '[ARRAY]',
-                'simplesaml'
-            ),
-            'authsources.php',
-            'simplesaml'
+            ],
+            '[ARRAY]',
+            'authsource'
         );
+        Configuration::setPreLoadedConfig($this->authsources, 'authsources.php');
 
         $this->session = Session::getSessionFromRequest();
         $this->authUtils = new class () extends Utils\Auth {
@@ -82,7 +97,16 @@ class ServiceProviderTest extends TestCase
             }
         };
 
-        $_SERVER['REQUEST_URI'] = '/dummy';
+        $this->serviceProvider = new class ($this->config, $this->session) extends Controller\ServiceProvider {
+            public function callHandleLogin(
+                Request $request,
+                Auth\Simple $authSource,
+                Auth\Source $spSource,
+                Utils\HTTP $httpUtils
+            ): string {
+                return $this->loginHandler($request, $authSource, $spSource, $httpUtils);
+            }
+        };
     }
 
 
@@ -202,6 +226,246 @@ class ServiceProviderTest extends TestCase
         $c->discoResponse($request);
     }
 
+
+    /**
+     * @return array
+     */
+    public static function loginNotAuthenticatedDataProvider(): array
+    {
+        return [
+            'no query params' => [
+                [], // If no query params are provided, it should default to the RelayState
+                [
+                    'ReturnTo' => self::RELAY_STATE
+                ]
+            ],
+            'entityID=example.edu' => [
+                [
+                    'entityID' => 'example.edu',
+                ],
+                [
+                    'ReturnTo' =>  self::RELAY_STATE,
+                    'saml:idp' => 'example.edu'
+                ]
+            ],
+            'entityID=example.edu&forceAuthn=false&isPassive=false' => [
+                [
+                    'entityID' => 'example.edu',
+                    'forceAuthn' => 'false',
+                    'isPassive' => 'false'
+                ],
+                [
+                    'ReturnTo' => self::RELAY_STATE,
+                    'saml:idp' => 'example.edu',
+                    'ForceAuthn' => false,
+                    'isPassive' => false
+                ]
+            ],
+            'entityID=other.edu' => [
+                [
+                    'entityID' => 'other.edu',
+                ],
+                [
+                    'ReturnTo' =>  self::RELAY_STATE,
+                    'saml:idp' => 'other.edu'
+                ]
+            ],
+            'forceAuthn=true&target=/some/url' => [
+                [
+                    'target' => '/some/url',
+                    'forceAuthn' => 'true'
+                ],
+                [
+                    'ReturnTo' => 'http://localhost/some/url',
+                    'ForceAuthn' => true
+                ],
+                false
+            ],
+            'target=https://evil.com' => [
+                [
+                    'target' => 'https://evil.com'
+                ],
+                [],
+                true
+            ]
+        ];
+    }
+
+    /**
+     * Test Login without Session/ Not Authenticated
+     *
+     * @dataProvider loginNotAuthenticatedDataProvider
+     *
+     * @param   array  $queryParameters
+     * @param   array  $options
+     * @param   bool   $expectingException
+     *
+     * @return void
+     */
+    public function testLoginHandleNotAuthenticated(array $queryParameters, array $options, bool $expectingException = false): void
+    {
+        $request = Request::create(
+            '/sp/login/phpunit',
+            'GET',
+            $queryParameters
+        );
+
+        $info = ['AuthId' => 'phpunit'];
+        $config =
+            [
+                'saml:SP',
+                'entityID' => 'urn:x-simplesamlphp:example-sp',
+                'RequestInitiation' => true,
+                'RelayState' => self::RELAY_STATE,
+            ];
+
+        $spSource = new Source\SP($info, $config);
+
+
+        $as = $this->getMockBuilder(Auth\Simple::class)
+                   ->disableOriginalConstructor()
+                   ->getMock();
+        $as->method('isAuthenticated')->willReturn(false);
+        $as->method('getAuthSource')->willReturn($spSource);
+
+        if ($expectingException) {
+            $this->expectException(\SimpleSAML\Error\Exception::class);
+            $this->expectExceptionMessage('URL not allowed: https://evil.com');
+            /** @psalm-suppress UndefinedMethod method defined in anonymous class */
+            $this->serviceProvider->callHandleLogin($request, $as, $spSource, $this->httpUtils);
+        } else {
+            $as->expects($this->once())->method('login')->with($options);
+            /** @psalm-suppress UndefinedMethod method defined in anonymous class */
+            $returnsTo = $this->serviceProvider
+                              ->callHandleLogin($request, $as, $spSource, $this->httpUtils);
+            $this->assertEquals($options['ReturnTo'], $returnsTo);
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public static function loginAuthenticatedDataProvider(): array
+    {
+        return [
+            'no query params' => [
+                [], // If no query params are provided, it should default to the RelayState
+                [
+                    'ReturnTo' =>  self::RELAY_STATE,
+                ],
+                false
+            ],
+            'entityID=example.edu' => [
+                [
+                    'entityID' => 'example.edu',
+                ],
+                [
+                    'ReturnTo' =>  self::RELAY_STATE,
+                ],
+                false
+            ],
+            'entityID=example.edu&forceAuthn=false&isPassive=false' => [
+                [
+                    'entityID' => 'example.edu',
+                    'forceAuthn' => 'false',
+                    'isPassive' => 'false'
+                ],
+                [
+                    'ReturnTo' =>  self::RELAY_STATE,
+                ],
+                false
+            ],
+            'entityID=other.edu' => [
+                [
+                    'entityID' => 'other.edu',
+                ],
+                [
+                    'ReturnTo' =>  self::RELAY_STATE,
+                    'saml:idp' => 'other.edu'
+                ],
+                true
+            ],
+            'forceAuthn=true&target=/some/url' => [
+                [
+                    'target' => '/some/url',
+                    'forceAuthn' => 'true'
+                ],
+                [
+                    'ReturnTo' => 'http://localhost/some/url',
+                    'ForceAuthn' => true
+                ],
+                true
+            ],
+            'target=https://evil.com' => [
+                [
+                    'target' => 'https://evil.com'
+                ],
+                [],
+                false,
+                true
+            ]
+        ];
+    }
+
+    /**
+     * Test Login with Session/Authenticated
+     *
+     * @dataProvider loginAuthenticatedDataProvider
+     *
+     * @param   array  $queryParameters
+     * @param   array  $options
+     * @param   bool   $expectLoginCalled
+     * @param   bool   $expectingException
+     *
+     * @return void
+     */
+    public function testLoginHandleAuthenticated(
+        array $queryParameters,
+        array $options,
+        bool $expectLoginCalled,
+        bool $expectingException = false
+    ): void {
+        $request = Request::create(
+            '/sp/login/phpunit',
+            'GET',
+            $queryParameters
+        );
+
+        $info = ['AuthId' => 'phpunit'];
+        $config =
+            [
+                'saml:SP',
+                'entityID' => 'urn:x-simplesamlphp:example-sp',
+                'RequestInitiation' => true,
+                'RelayState' => self::RELAY_STATE,
+            ];
+
+        $spSource = new Source\SP($info, $config);
+
+        $as = $this->getMockBuilder(Auth\Simple::class)
+                   ->disableOriginalConstructor()
+                   ->getMock();
+        $as->method('isAuthenticated')->willReturn(true);
+        $as->method('getAuthSource')->willReturn($spSource);
+        $as->method('getAuthDataArray')->willReturn(['saml:sp:IdP' => 'example.edu']);
+
+        if ($expectingException) {
+            $this->expectException(\SimpleSAML\Error\Exception::class);
+            $this->expectExceptionMessage('URL not allowed: https://evil.com');
+            /** @psalm-suppress UndefinedMethod method defined in anonymous class */
+            $this->serviceProvider->callHandleLogin($request, $as, $spSource, $this->httpUtils);
+        } else {
+            if ($expectLoginCalled) {
+                $as->expects($this->once())->method('login')->with($options);
+            } else {
+                $as->expects($this->never())->method('login');
+            }
+            /** @psalm-suppress UndefinedMethod method defined in anonymous class */
+            $returnsTo = $this->serviceProvider
+                              ->callHandleLogin($request, $as, $spSource, $this->httpUtils);
+            $this->assertEquals($options['ReturnTo'], $returnsTo);
+        }
+    }
 
     /**
      * Test that accessing the discoResponse-endpoint with unknown authsource in state results in an exception
@@ -578,7 +842,7 @@ XML;
         $result = $c->metadata($request, 'phpunit');
         $this->assertEquals('application/samlmetadata+xml', $result->headers->get('Content-Type'));
         $this->assertEquals('attachment; filename="phpunit.xml"', $result->headers->get('Content-Disposition'));
-        $content = $result->getContent();
+        $content = (string)$result->getContent();
         $expect = 'entityID="urn:x-simplesamlphp:example-sp"';
         $this->assertStringContainsString($expect, $content);
     }
