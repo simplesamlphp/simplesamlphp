@@ -222,10 +222,10 @@ class MetadataBuilder
 //            case 'attributeautority-remote':
 //                $descriptors[] = $this->getAttributeAuthority();
 //                break;
-//            case 'adfs-idp-hosted':
-//                $descriptors[] = $this->getIDPSSODescriptor();
+            case 'adfs-idp-hosted':
+                $descriptors[] = $this->getIDPSSODescriptor();
 //                $descriptors[] = $this->getSecurityTokenService();
-//                break;
+                break;
             default:
                 throw new Exception('Not implemented');
         }
