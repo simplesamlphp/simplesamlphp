@@ -129,6 +129,20 @@ class MetaDataStorageHandler implements ClearableState
                 case 'SingleLogoutServiceBinding':
                     return C::BINDING_HTTP_REDIRECT;
             }
+        } elseif ($set == 'adfs-idp-hosted') {
+            switch ($property) {
+                case 'SingleSignOnService':
+                    return $baseurl;
+
+                case 'SingleSignOnServiceBinding':
+                    return C::BINDING_HTTP_REDIRECT;
+
+                case 'SingleLogoutService':
+                    return $baseurl;
+
+                case 'SingleLogoutServiceBinding':
+                    return C::BINDING_HTTP_REDIRECT;
+            }
         }
 
         throw new Exception('Could not generate metadata property ' . $property . ' for set ' . $set . '.');
