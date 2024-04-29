@@ -13,7 +13,7 @@ use SimpleSAML\Module\core\Auth\Process\AttributeAlter;
  *
  * @covers \SimpleSAML\Auth\ProcessingFilter
  */
-class AttributeAlterTest extends TestCase
+class ProcessingFilterTest extends TestCase
 {
     /**
      * Helper function to run the filter with a given configuration.
