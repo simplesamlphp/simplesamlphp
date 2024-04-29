@@ -857,16 +857,16 @@
         },
         {
             "name": "simplesamlphp/assert",
-            "version": "v1.1.2",
+            "version": "v1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/assert.git",
-                "reference": "78644616a5910eb3161ba51ecb9253bd7cb1921b"
+                "reference": "4b0ef3b2917f7bac5d82b2e1c732f19929685e9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/assert/zipball/78644616a5910eb3161ba51ecb9253bd7cb1921b",
-                "reference": "78644616a5910eb3161ba51ecb9253bd7cb1921b",
+                "url": "https://api.github.com/repos/simplesamlphp/assert/zipball/4b0ef3b2917f7bac5d82b2e1c732f19929685e9f",
+                "reference": "4b0ef3b2917f7bac5d82b2e1c732f19929685e9f",
                 "shasum": ""
             },
             "require": {
@@ -908,9 +908,9 @@
             "description": "A wrapper around webmozart/assert to make it useful beyond checking method arguments",
             "support": {
                 "issues": "https://github.com/simplesamlphp/assert/issues",
-                "source": "https://github.com/simplesamlphp/assert/tree/v1.1.2"
+                "source": "https://github.com/simplesamlphp/assert/tree/v1.1.3"
             },
-            "time": "2024-04-18T07:45:21+00:00"
+            "time": "2024-04-25T14:13:34+00:00"
         },
         {
             "name": "simplesamlphp/composer-module-installer",
