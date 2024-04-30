@@ -9,6 +9,11 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+`adfs`
+
+* Fixed metadata download to become a proper xml-file
+* Prevent metadata-download from ever being cached
+
 ## Version 2.1.6
 
 Released 30-04-2024

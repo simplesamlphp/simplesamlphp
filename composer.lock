@@ -5375,16 +5375,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-adfs",
-            "version": "v2.1.3",
+            "version": "v2.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-adfs.git",
-                "reference": "59368e58fc5548e8b6bb75c102c5a3242722e22b"
+                "reference": "2c3717e2397dccfffaf3fc38479ad2b4a9fc20c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/59368e58fc5548e8b6bb75c102c5a3242722e22b",
-                "reference": "59368e58fc5548e8b6bb75c102c5a3242722e22b",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/2c3717e2397dccfffaf3fc38479ad2b4a9fc20c2",
+                "reference": "2c3717e2397dccfffaf3fc38479ad2b4a9fc20c2",
                 "shasum": ""
             },
             "require": {
@@ -5427,7 +5427,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-module-adfs/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-module-adfs"
             },
-            "time": "2023-11-26T09:54:31+00:00"
+            "time": "2024-04-30T19:34:36+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
