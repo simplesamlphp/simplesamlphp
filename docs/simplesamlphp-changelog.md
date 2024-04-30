@@ -44,6 +44,10 @@ Released 30-04-2024
 Fixed a bug where base64 encoded strings were not decoded using the `strict` flag, leading
 to an incorrect error message.
 
+`sqlauth`
+
+* Add username_regex option (simplesamlphp/simplesamlphp-module-sqlauth#11) (v1.3.0)
+
 ## Version 2.2.1
 
 Released 2014-03-17
