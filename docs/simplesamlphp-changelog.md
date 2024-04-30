@@ -23,7 +23,7 @@ Released 30-04-2024
 `admin`
 
 * Set custom security header to properly display phpinfo-page
-* Hide file-upload button for metadata-converter is uploads are disabled at PHP-level
+* Hide file-upload button for metadata-converter if uploads are disabled at PHP-level
 
 `exampleauth`
 
