@@ -9,9 +9,9 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
-## Version 30-04-2024
+## Version 2.2.2
 
-Released TBD
+Released 30-04-2024
 
 * Fix regression when setting the host-variable in `saml20-idp-hosted` (was #1922)
 * Fix posting the form to the incorrect endpoint when using an authsource based on UserPassOrgBase (#2022)
@@ -24,7 +24,7 @@ Released TBD
 `admin`
 
 * Set custom security header to properly display phpinfo-page
-* Hide file-upload button for metadata-converter is uploads are disabled at PHP-level
+* Hide file-upload button for metadata-converter if uploads are disabled at PHP-level
 
 `exampleauth`
 
