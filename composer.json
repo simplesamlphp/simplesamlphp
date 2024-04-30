@@ -78,7 +78,7 @@
         "symfony/polyfill-intl-icu": "^1.28",
         "symfony/routing": "^6.0 <6.4",
         "symfony/translation-contracts": "^3.0",
-        "tvdijen/twig-bridge": "^6.0.20",
+        "tvdijen/twig-bridge": "^6.0.21",
         "symfony/var-exporter": "^6.0 <6.4",
         "symfony/yaml": "^6.0 <6.4",
         "twig/intl-extra": "^3.7",
@@ -133,5 +133,5 @@
             "php bin/translations translations:update:binary"
         ]
     },
-    "version": "v2.1.5"
+    "version": "v2.1.6"
 }
