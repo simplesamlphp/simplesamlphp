@@ -411,9 +411,9 @@ class SAML2
             $psrHttpFactory = new PsrHttpFactory($psr17Factory, $psr17Factory, $psr17Factory, $psr17Factory);
             $psrRequest = $psrHttpFactory->createRequest($request);
             $binding = Binding::getCurrentBinding($psrRequest);
-            $request = $binding->receive($psrRequest);
+            $authnRequest = $binding->receive($psrRequest);
 
-            if (!($request instanceof AuthnRequest)) {
+            if (!($authnRequest instanceof AuthnRequest)) {
                 throw new Error\BadRequest(
                     "Message received on authentication request endpoint wasn't an authentication request."
                 );
@@ -421,7 +421,7 @@ class SAML2
 
             $username = $request->get('username', null);
 
-            $issuer = $request->getIssuer();
+            $issuer = $authnRequest->getIssuer();
             if ($issuer === null) {
                 throw new Error\BadRequest(
                     'Received message on authentication request endpoint without issuer.'
@@ -430,12 +430,12 @@ class SAML2
             $spEntityId = $issuer->getContent();
             $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
-            $authnRequestSigned = Message::validateMessage($spMetadata, $idpMetadata, $request);
+            $authnRequestSigned = Message::validateMessage($spMetadata, $idpMetadata, $authnRequest);
 
-            $relayState = $request->getRelayState();
+            $relayState = $authnRequest->getRelayState();
 
-            $requestId = $request->getId();
-            $scoping = $request->getScoping();
+            $requestId = $authnRequest->getId();
+            $scoping = $authnRequest->getScoping();
 
             $ProxyCount = $scoping?->getProxyCount();
             if ($ProxyCount !== null) {
@@ -457,15 +457,15 @@ class SAML2
                 }
             }
 
-            $forceAuthn = $request->getForceAuthn();
-            $isPassive = $request->getIsPassive();
-            $consumerURL = $request->getAssertionConsumerServiceURL();
-            $protocolBinding = $request->getProtocolBinding();
-            $consumerIndex = $request->getAssertionConsumerServiceIndex();
-            $extensions = $request->getExtensions();
-            $authnContext = $request->getRequestedAuthnContext();
+            $forceAuthn = $authnRequest->getForceAuthn();
+            $isPassive = $authnRequest->getIsPassive();
+            $consumerURL = $authnRequest->getAssertionConsumerServiceURL();
+            $protocolBinding = $authnRequest->getProtocolBinding();
+            $consumerIndex = $authnRequest->getAssertionConsumerServiceIndex();
+            $extensions = $authnRequest->getExtensions();
+            $authnContext = $authnRequest->getRequestedAuthnContext();
 
-            $nameIdPolicy = $request->getNameIdPolicy();
+            $nameIdPolicy = $authnRequest->getNameIdPolicy();
             $nameIDFormat = $nameIdPolicy?->getFormat();
             $allowCreate = $nameIdPolicy?->getAllowCreate() ?? false;
 
