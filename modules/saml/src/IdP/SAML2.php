@@ -20,7 +20,7 @@ use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\saml\{Assertion, EncryptedAssertion}; // Assertions
-use SimpleSAML\SAML2\XML\saml\{AttributeValue, Audience, Issuer, NameID, SubjectConfirmation, SubjectConfirmationData};
+use SimpleSAML\SAML2\XML\saml\{AttributeValue, Audience, Issuer, NameID, Subject, SubjectConfirmation, SubjectConfirmationData};
 use SimpleSAML\SAML2\XML\saml\{AuthenticatingAuthority, AuthnContext, AuthnContextClassRef}; // AuthnContext
 use SimpleSAML\SAML2\XML\samlp\{AuthnRequest, LogoutRequest, LogoutResponse, Response as SAML2_Response}; // Messages
 use SimpleSAML\SAML2\XML\samlp\{Status, StatusCode, StatusMessage}; // Status
@@ -1188,7 +1188,11 @@ class SAML2
             Format: C::NAMEID_ENTITY,
         );
 
-        $a = new Assertion($issuer, new \DateTimeImmutable('now', new \DateTimeZone('Z')));
+        $nameId = self::generateNameId($idpMetadata, $spMetadata, $state);
+        $state['saml:idp:NameID'] = $nameId;
+        $subject = new Subject($nameId);
+
+        $a = new Assertion($issuer, new \DateTimeImmutable('now', new \DateTimeZone('Z')), null, $subject);
         if ($signAssertion) {
             Message::addSign($idpMetadata, $spMetadata, $a);
         }
@@ -1313,10 +1317,6 @@ class SAML2
             $attributes = self::encodeAttributes($idpMetadata, $spMetadata, $state['Attributes']);
             $a->setAttributes($attributes);
         }
-
-        $nameId = self::generateNameId($idpMetadata, $spMetadata, $state);
-        $state['saml:idp:NameID'] = $nameId;
-        $a->setNameId($nameId);
 
         $encryptNameId = $spMetadata->getOptionalBoolean('nameid.encryption', null);
         if ($encryptNameId === null) {
