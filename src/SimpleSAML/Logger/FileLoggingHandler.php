@@ -87,9 +87,8 @@ class FileLoggingHandler implements LoggingHandlerInterface
                     sprintf("Could not write to logfile: %s", $this->logFile),
                 );
             }
-        } else {
-            $this->fileSystem->touch($this->logFile);
         }
+        $this->fileSystem->touch($this->logFile);
 
         $timeUtils = new Utils\Time();
         $timeUtils->initTimezone();
