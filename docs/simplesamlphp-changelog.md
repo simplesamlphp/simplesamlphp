@@ -11,6 +11,11 @@ Released TBD
 
 ## Version 2.0.12
 
+:warning: IMPORTANT NOTE :warning:
+
+Due to a mistake, this bugfix-release can turn out to become a backwards-incompatibility for those who override the loginuserpass.twig in their custom theme.
+Please update your theme to reflect the changes in [this commit](https://github.com/simplesamlphp/simplesamlphp/pull/2022/commits/691199e9b963a2861d731e6583555c7a8df39992) before updating.
+
 Released 28-04-2024
 
 * Fix posting the form to the incorrect endpoint when using an authsource based on UserPassOrgBase (#2022)
