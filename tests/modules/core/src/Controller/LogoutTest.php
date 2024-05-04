@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Controller;
 
-use SimpleSAML\Auth;
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
+use PHPUnit\Framework\Attributes\CoversClass;
+use SimpleSAML\{Auth, Configuration, Error};
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\core\Controller;
 use SimpleSAML\TestUtils\ClearStateTestCase;
@@ -18,9 +17,9 @@ use Symfony\Component\HttpFoundation\Request;
  * For now, this test extends ClearStateTestCase so that it doesn't interfere with other tests. Once every class has
  * been made PSR-7-aware, that won't be necessary any longer.
  *
- * @covers \SimpleSAML\Module\core\Controller\Logout
  * @package SimpleSAML\Test
  */
+#[CoversClass(Controller\Logout::class)]
 class LogoutTest extends ClearStateTestCase
 {
     /** @var \SimpleSAML\Configuration */

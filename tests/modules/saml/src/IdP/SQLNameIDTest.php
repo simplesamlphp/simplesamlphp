@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\saml\IdP;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use SimpleSAML\Configuration;
@@ -15,10 +16,9 @@ use SimpleSAML\Store\StoreFactory;
 /**
  * Test for the SQLNameID helper class.
  *
- * @covers \SimpleSAML\Module\saml\IdP\SQLNameID
- *
  * @package SimpleSAMLphp
  */
+#[CoversClass(SQLNameID::class)]
 class SQLNameIDTest extends TestCase
 {
     /**
@@ -35,7 +35,6 @@ class SQLNameIDTest extends TestCase
 
     /**
      * Test Store.
-     * @test
      */
     public function testSQLStore(): void
     {
@@ -56,7 +55,6 @@ class SQLNameIDTest extends TestCase
 
     /**
      * Test incompatible Store.
-     * @test
      */
     public function testIncompatibleStore(): void
     {
@@ -80,7 +78,6 @@ class SQLNameIDTest extends TestCase
 
     /**
      * Test Database.
-     * @test
      */
     public function testDatabase(): void
     {

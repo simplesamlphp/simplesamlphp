@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\admin\Controller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Auth;
@@ -19,9 +20,9 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Set of tests for the controllers in the "admin" module.
  *
- * @covers \SimpleSAML\Module\admin\Controller\Test
  * @package SimpleSAML\Test
  */
+#[CoversClass(TestController::class)]
 class TestTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */

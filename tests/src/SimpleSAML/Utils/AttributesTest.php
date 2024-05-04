@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Utils;
 
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Error;
 use SimpleSAML\Utils\Attributes;
 
 /**
  * Tests for SimpleSAML\Utils\Attributes.
- *
- * @covers \SimpleSAML\Utils\Attributes
  */
+#[CoversClass(Attributes::class)]
 class AttributesTest extends TestCase
 {
     /** @var \SimpleSAML\Utils\Attributes */

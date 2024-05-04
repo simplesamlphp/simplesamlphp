@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Utils;
 
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use SimpleSAML\Configuration;
@@ -12,13 +13,12 @@ use SimpleSAML\Error;
 use SimpleSAML\Utils;
 
 /**
- * @covers \SimpleSAML\Utils\Time
  */
+#[CoversClass(Utils\Time::class)]
 class TimeTest extends TestCase
 {
     /**
      * Test the SimpleSAML\Utils\Time::generateTimestamp() method.
-     *
      */
     public function testGenerateTimestamp(): void
     {
@@ -37,7 +37,6 @@ class TimeTest extends TestCase
 
     /**
      * Test the SimpleSAML\Utils\Time::initTimezone() method.
-     *
      */
     public function testInitTimezone(): void
     {
@@ -80,7 +79,6 @@ class TimeTest extends TestCase
 
     /**
      * Test the SimpleSAML\Utils\Time::parseDuration() method.
-     *
      */
     public function testParseDuration(): void
     {

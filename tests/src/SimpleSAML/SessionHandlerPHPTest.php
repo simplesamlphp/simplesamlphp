@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test;
 
-use SimpleSAML\Configuration;
-use SimpleSAML\SessionHandlerPHP;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RequiresPhpExtension;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
+use SimpleSAML\{Configuration, SessionHandlerPHP};
 use SimpleSAML\TestUtils\ClearStateTestCase;
 
 /**
- * @covers \SimpleSAML\SessionHandlerPHP
  */
+#[CoversClass(SessionHandlerPHP::class)]
 class SessionHandlerPHPTest extends ClearStateTestCase
 {
     /** @var array */
@@ -59,9 +61,9 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
 
     /**
-     * @runInSeparateProcess
-     * @requires extension xdebug
      */
+    #[RequiresPhpExtension('xdebug')]
+    #[RunInSeparateProcess]
     public function testSetCookie(): void
     {
         Configuration::loadFromArray($this->sessionConfig, '[ARRAY]', 'simplesaml');
@@ -82,9 +84,9 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
 
     /**
-     * @runInSeparateProcess
-     * @requires extension xdebug
      */
+    #[RequiresPhpExtension('xdebug')]
+    #[RunInSeparateProcess]
     public function testSetCookieSameSiteNone(): void
     {
         Configuration::loadFromArray(
@@ -102,9 +104,9 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
 
     /**
-     * @runInSeparateProcess
-     * @requires extension xdebug
      */
+    #[RequiresPhpExtension('xdebug')]
+    #[RunInSeparateProcess]
     public function testSetCookieSameSiteLax(): void
     {
         Configuration::loadFromArray(
@@ -122,9 +124,9 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
 
     /**
-     * @runInSeparateProcess
-     * @requires extension xdebug
      */
+    #[RequiresPhpExtension('xdebug')]
+    #[RunInSeparateProcess]
     public function testSetCookieSameSiteStrict(): void
     {
         Configuration::loadFromArray(
@@ -142,9 +144,9 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
 
     /**
-     * @runInSeparateProcess
-     * @requires extension xdebug
      */
+    #[RequiresPhpExtension('xdebug')]
+    #[RunInSeparateProcess]
     public function testRestorePrevious(): void
     {
         session_name('PHPSESSID');

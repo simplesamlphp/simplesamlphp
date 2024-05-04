@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\cron\Controller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\cron\Controller;
@@ -14,9 +15,9 @@ use SimpleSAML\XHTML\Template;
 /**
  * Set of tests for the controllers in the "cron" module.
  *
- * @covers \SimpleSAML\Module\cron\Controller\Cron
  * @package SimpleSAML\Test
  */
+#[CoversClass(Controller\Cron::class)]
 class CronTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */

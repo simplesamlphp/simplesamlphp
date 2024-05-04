@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\core\Auth\Process\CardinalitySingle;
@@ -153,6 +154,7 @@ class CardinalitySingleTest extends TestCase
     /**
      * Test abort
      */
+    #[DoesNotPerformAssertions]
     public function testAbort(): void
     {
         $config = [

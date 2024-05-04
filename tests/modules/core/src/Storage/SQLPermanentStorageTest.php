@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Storage;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\CriticalConfigurationError;
@@ -11,9 +12,8 @@ use SimpleSAML\Module\core\Storage\SQLPermanentStorage;
 
 /**
  * Test for the SQLPermanentStorage class.
- *
- * @covers \SimpleSAML\Module\core\Storage\SQLPermanentStorage
  */
+#[CoversClass(SQLPermanentStorage::class)]
 class SQLPermanentStorageTest extends TestCase
 {
     /** @var \SimpleSAML\Module\core\Storage\SQLPermanentStorage */

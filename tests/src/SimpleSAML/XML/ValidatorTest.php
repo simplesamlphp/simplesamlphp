@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\XML;
 
 use DOMElement;
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
 use SAML2\DOMDocumentFactory;
 use SimpleSAML\Test\SigningTestCase;
 use SimpleSAML\XML\Signer;
@@ -13,9 +14,8 @@ use SimpleSAML\XML\Validator;
 
 /**
  * Tests for SimpleSAML\XML\Validator.
- *
- * @covers \SimpleSAML\XML\Validator
  */
+#[CoversClass(Validator::class)]
 class ValidatorTest extends SigningTestCase
 {
     /**

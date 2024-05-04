@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\saml\Controller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\HTTP\RunnableResponse;
@@ -12,9 +13,9 @@ use SimpleSAML\Module\saml\Controller;
 /**
  * Set of tests for the controllers in the "saml" module.
  *
- * @covers \SimpleSAML\Module\saml\Controller\Disco
  * @package SimpleSAML\Test
  */
+#[CoversClass(Controller\Disco::class)]
 class DiscoTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */

@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Error;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Error\ErrorCodes;
 
 /**
- * @covers \SimpleSAML\Error\ErrorCodes
  */
+#[CoversClass(ErrorCodes::class)]
 class ErrorCodesTest extends TestCase
 {
     protected function instance(): ErrorCodes

@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Utils;
 
-use SimpleSAML\Configuration;
-use SimpleSAML\Error;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\RequiresPhpExtension;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
+use SimpleSAML\{Configuration, Error, Utils};
 use SimpleSAML\TestUtils\ClearStateTestCase;
-use SimpleSAML\Utils;
 
 /**
- * @covers \SimpleSAML\Utils\HTTP
  */
+#[CoversClass(Utils\HTTP::class)]
 class HTTPTest extends ClearStateTestCase
 {
     /**
@@ -443,9 +445,9 @@ class HTTPTest extends ClearStateTestCase
 
 
     /**
-     * @runInSeparateProcess
-     * @requires extension xdebug
      */
+    #[RequiresPhpExtension('xdebug')]
+    #[RunInSeparateProcess]
     public function testSetCookie(): void
     {
         $original = $_SERVER;
@@ -525,9 +527,9 @@ class HTTPTest extends ClearStateTestCase
 
 
     /**
-     * @runInSeparateProcess
-     * @requires extension xdebug
      */
+    #[RequiresPhpExtension('xdebug')]
+    #[RunInSeparateProcess]
     public function testSetCookieSameSite(): void
     {
         $httpUtils = new Utils\HTTP();
@@ -545,10 +547,11 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * Test detecting if user agent supports None
-     * @dataProvider detectSameSiteProvider
+     *
      * @param null|string $userAgent The user agent. Null means not set, like with CLI
      * @param bool $supportsNone None can be set as a SameSite flag
      */
+    #[DataProvider('detectSameSiteProvider')]
     public function testDetectSameSiteNoneBehavior(?string $userAgent, bool $supportsNone): void
     {
         if ($userAgent) {

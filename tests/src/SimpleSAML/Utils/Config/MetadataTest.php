@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Utils\Config;
 
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SAML2\Constants;
 use SAML2\XML\md\ContactPerson;
@@ -13,9 +14,8 @@ use TypeError;
 
 /**
  * Tests related to SAML metadata.
- *
- * @covers \SimpleSAML\Utils\Config\Metadata
  */
+#[CoversClass(Metadata::class)]
 class MetadataTest extends TestCase
 {
     /**

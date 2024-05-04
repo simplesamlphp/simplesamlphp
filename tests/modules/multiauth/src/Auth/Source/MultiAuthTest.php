@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\multiauth\Auth\Source;
 
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 
 /**
- * @covers \SimpleSAML\Module\multiauth\Auth\Source\MultiAuth
  */
+#[CoversClass(MultiAuth::class)]
 class MultiAuthTest extends ClearStateTestCase
 {
     /** @var \SimpleSAML\Configuration */

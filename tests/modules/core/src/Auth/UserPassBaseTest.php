@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SAML2\Constants;
 use SimpleSAML\Error\Error as SspError;
@@ -11,8 +12,8 @@ use SimpleSAML\Error\ErrorCodes;
 use SimpleSAML\Module\core\Auth\UserPassBase;
 
 /**
- * @covers \SimpleSAML\Module\core\Auth\UserPassBase
  */
+#[CoversClass(UserPassBase::class)]
 class UserPassBaseTest extends TestCase
 {
     /**
@@ -107,7 +108,7 @@ class UserPassBaseTest extends TestCase
         $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
             ->onlyMethods(['login'])
-            ->getMockForAbstractClass();
+            ->getMock();
 
         $stub->expects($this->once())
             ->method('login')

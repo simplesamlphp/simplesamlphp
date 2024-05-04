@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Store;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Store;
@@ -14,9 +15,9 @@ use SimpleSAML\Store;
  * For the full copyright and license information, please view the LICENSE file that was distributed with this source
  * code.
  *
- * @covers \SimpleSAML\Store\SQLStore
  * @package simplesamlphp/simplesamlphp
  */
+#[CoversClass(Store\SQLStore::class)]
 class SQLStoreTest extends TestCase
 {
     /** @var \SimpleSAML\Store\SQLStore $store */
@@ -38,18 +39,16 @@ class SQLStoreTest extends TestCase
 
 
     /**
-     * @test
      */
-    public function SQLInstance(): void
+    public function testSQLInstance(): void
     {
         $this->assertInstanceOf(Store\SQLStore::class, $this->store);
     }
 
 
     /**
-     * @test
      */
-    public function kvstoreTableVersion(): void
+    public function testKvstoreTableVersion(): void
     {
         $version = $this->store->getTableVersion('kvstore');
 
@@ -58,9 +57,8 @@ class SQLStoreTest extends TestCase
 
 
     /**
-     * @test
      */
-    public function newTableVersion(): void
+    public function testNewTableVersion(): void
     {
         $version = $this->store->getTableVersion('test');
 
@@ -69,7 +67,6 @@ class SQLStoreTest extends TestCase
 
 
     /**
-     * @test
      */
     public function testSetTableVersion(): void
     {
@@ -81,7 +78,6 @@ class SQLStoreTest extends TestCase
 
 
     /**
-     * @test
      */
     public function testGetEmptyData(): void
     {
@@ -92,7 +88,6 @@ class SQLStoreTest extends TestCase
 
 
     /**
-     * @test
      */
     public function testInsertData(): void
     {
@@ -104,7 +99,6 @@ class SQLStoreTest extends TestCase
 
 
     /**
-     * @test
      */
     public function testOverwriteData(): void
     {
@@ -117,7 +111,6 @@ class SQLStoreTest extends TestCase
 
 
     /**
-     * @test
      */
     public function testDeleteData(): void
     {
@@ -130,7 +123,6 @@ class SQLStoreTest extends TestCase
 
 
     /**
-     * @test
      */
     public function testVeryLongKey(): void
     {

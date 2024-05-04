@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Controller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\{Configuration, Logger, Session};
@@ -19,9 +21,9 @@ use function time;
 /**
  * Set of tests for the controllers in the "core" module.
  *
- * @covers \SimpleSAML\Module\core\Controller\Exception
  * @package SimpleSAML\Test
  */
+#[CoversClass(Controller\Exception::class)]
 class ExceptionTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */
@@ -64,10 +66,10 @@ class ExceptionTest extends TestCase
 
 
     /**
-     * @dataProvider codeProvider
      * @param string $code
      * Test that we are presented with an 'error was reported' page
      */
+    #[DataProvider('codeProvider')]
     public function testErrorURL(string $code, string $ts, string $rp, string $tid, string $ctx): void
     {
         $request = Request::create(

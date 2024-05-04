@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\admin\Controller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\admin\Controller;
@@ -14,9 +15,9 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Set of tests for the controllers in the "admin" module.
  *
- * @covers \SimpleSAML\Module\admin\Controller\Config
  * @package SimpleSAML\Test
  */
+#[CoversClass(Controller\Config::class)]
 class ConfigTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */

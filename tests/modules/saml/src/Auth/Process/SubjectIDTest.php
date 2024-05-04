@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\saml\Auth\Process;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 use SAML2\Constants as C;
@@ -13,9 +14,8 @@ use SimpleSAML\Module\saml\Auth\Process\SubjectID;
 
 /**
  * Test for the saml:SubjectID filter.
- *
- * @covers \SimpleSAML\Module\saml\Auth\Process\SubjectID
  */
+#[CoversClass(SubjectID::class)]
 class SubjectIDTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */

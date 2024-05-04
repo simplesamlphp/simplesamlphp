@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Store;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Predis\Client;
 use SimpleSAML\Configuration;
@@ -15,9 +16,9 @@ use SimpleSAML\Store;
  * For the full copyright and license information, please view the LICENSE file that was distributed with this source
  * code.
  *
- * @covers \SimpleSAML\Store\RedisStore
  * @package simplesamlphp/simplesamlphp
  */
+#[CoversClass(Store\RedisStore::class)]
 class RedisStoreTest extends TestCase
 {
     /** @var \Predis\Client */
@@ -118,7 +119,6 @@ class RedisStoreTest extends TestCase
 
 
     /**
-     * @test
      */
     public function testRedisInstance(): void
     {
@@ -131,7 +131,6 @@ class RedisStoreTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testRedisInstanceWithInsecureTLS(): void
     {
@@ -146,7 +145,6 @@ class RedisStoreTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testRedisInstanceWithSecureTLS(): void
     {
@@ -163,7 +161,6 @@ class RedisStoreTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testRedisInstanceWithPassword(): void
     {
@@ -177,7 +174,6 @@ class RedisStoreTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testRedisInstanceWithPasswordAndUsername(): void
     {
@@ -192,9 +188,6 @@ class RedisStoreTest extends TestCase
     }
 
     /**
-     * @covers \SimpleSAML\Store\StoreFactory::getInstance
-     * @covers \SimpleSAML\Store\RedisStore::__construct
-     * @test
      */
     public function testRedisSentinelInstance(): void
     {
@@ -208,7 +201,6 @@ class RedisStoreTest extends TestCase
     }
 
     /**
-     * @test
      */
     public function testInsertData(): void
     {
@@ -223,7 +215,6 @@ class RedisStoreTest extends TestCase
 
 
     /**
-     * @test
      */
     public function testInsertExpiringData(): void
     {
@@ -238,7 +229,6 @@ class RedisStoreTest extends TestCase
 
 
     /**
-     * @test
      */
     public function testGetEmptyData(): void
     {
@@ -249,7 +239,6 @@ class RedisStoreTest extends TestCase
 
 
     /**
-     * @test
      */
     public function testOverwriteData(): void
     {
@@ -266,7 +255,6 @@ class RedisStoreTest extends TestCase
 
 
     /**
-     * @test
      */
     public function testDeleteData(): void
     {

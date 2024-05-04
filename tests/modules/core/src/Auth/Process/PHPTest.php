@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Error;
 use SimpleSAML\Module\core\Auth\Process\PHP;
 
 /**
  * Test for the core:PHP filter.
- *
- * @covers \SimpleSAML\Module\core\Auth\Process\PHP
  */
+#[CoversClass(PHP::class)]
 class PHPTest extends TestCase
 {
     /**

@@ -5,14 +5,15 @@ declare(strict_types=1);
 namespace SimpleSAML\Test;
 
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module;
 use Symfony\Component\Filesystem\Path;
 
 /**
- * @covers \SimpleSAML\Module
  */
+#[CoversClass(Module::class)]
 class ModuleTest extends TestCase
 {
     /**

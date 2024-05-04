@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test;
 
 use Exception;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
@@ -119,8 +120,8 @@ class LoggerTest extends TestCase
     /**
      * @param string $method
      * @param int $level
-     * @dataProvider provideLogLevels
      */
+    #[DataProvider('provideLogLevels')]
     public function testLevelMethods(string $method, int $level): void
     {
         $this->setLoggingHandler(ArrayLogger::class);

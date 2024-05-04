@@ -6,7 +6,6 @@ namespace SimpleSAML\Error;
 
 use SimpleSAML\Locale\Translate;
 
-use function array_key_exists;
 use function array_merge;
 
 /**

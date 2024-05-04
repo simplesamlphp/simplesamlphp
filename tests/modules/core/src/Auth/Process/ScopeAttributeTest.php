@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Module\core\Auth\Process\ScopeAttribute;
 
 /**
  * Test for the core:ScopeAttribute filter.
- *
- * @covers \SimpleSAML\Module\core\Auth\Process\ScopeAttribute
  */
+#[CoversClass(ScopeAttribute::class)]
 class ScopeAttributeTest extends TestCase
 {
     /**

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\saml\IdP;
 
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\CoversClass;
 use SAML2\XML\Chunk;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
@@ -14,8 +15,8 @@ use SimpleSAML\Module\saml\IdP\SAML2;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 
 /**
- * @covers \SimpleSAML\Module\saml\IdP\SAML2
  */
+#[CoversClass(SAML2::class)]
 class SAML2Test extends ClearStateTestCase
 {
     /** @var string */

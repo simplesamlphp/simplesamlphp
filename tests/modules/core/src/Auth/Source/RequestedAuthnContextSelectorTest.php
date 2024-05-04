@@ -4,18 +4,21 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Source;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SAML2\Exception\Protocol\NoAuthnContextException;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
+use SimpleSAML\Module\core\Auth\Source\AbstractSourceSelector;
 use SimpleSAML\Module\core\Auth\Source\RequestedAuthnContextSelector;
 
 /**
- * @covers \SimpleSAML\Module\core\Auth\Source\AbstractSourceSelector
- * @covers \SimpleSAML\Module\core\Auth\Source\RequestedAuthnContextSelector
  */
+#[CoversClass(AbstractSourceSelector::class)]
+#[CoversClass(RequestedAuthnContextSelector::class)]
 class RequestedAuthnContextSelectorTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */
@@ -308,10 +311,10 @@ class RequestedAuthnContextSelectorTest extends TestCase
 
 
     /**
-     * @dataProvider provideRequestedAuthnContext
      * @param array $requestedAuthnContext  The RequestedAuthnContext
      * @param string $expected  The expected authsource
      */
+    #[DataProvider('provideRequestedAuthnContext')]
     public function testSelectAuthSource(array $requestedAuthnContext, string $expected): void
     {
         $info = ['AuthId' => 'selector'];

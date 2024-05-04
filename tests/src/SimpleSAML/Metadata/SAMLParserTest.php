@@ -5,16 +5,17 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Metadata;
 
 use DOMDocument;
+use PHPUnit\Framework\Attributes\CoversClass;
 use SAML2\DOMDocumentFactory;
 use SimpleSAML\Metadata\SAMLParser;
+use SimpleSAML\Test\SigningTestCase;
 use SimpleSAML\XML\Signer;
 
 /**
  * Test SAML parsing
- *
- * @covers \SimpleSAML\Metadata\SAMLParser
  */
-class SAMLParserTest extends \SimpleSAML\Test\SigningTestCase
+#[CoversClass(SAMLParser::class)]
+class SAMLParserTest extends SigningTestCase
 {
     /**
      * Test Registration Info is parsed

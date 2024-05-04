@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test;
 
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
 use SAML2\Constants;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
@@ -13,9 +14,8 @@ use SimpleSAML\TestUtils\ClearStateTestCase;
 
 /**
  * Tests for \SimpleSAML\Configuration
- *
- * @covers \SimpleSAML\Configuration
  */
+#[CoversClass(Configuration::class)]
 class ConfigurationTest extends ClearStateTestCase
 {
     /**
