@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\saml\Auth\Source;
 
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use SAML2\{AuthnRequest, LogoutRequest};
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
+use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\Protocol\{NoAvailableIDPException, NoSupportedIDPException};
 use SimpleSAML\SAML2\Utils\XPath;
@@ -22,9 +25,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Set of test cases for \SimpleSAML\Module\saml\Auth\Source\SP.
- *
- * @covers \SimpleSAML\Module\saml\Auth\Source\SP
  */
+#[CoversClass(SP::class)]
 class SPTest extends ClearStateTestCase
 {
     /** @var string */
@@ -168,7 +170,6 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test generating an AuthnRequest
-     * @test
      */
     public function testAuthnRequest(): void
     {
@@ -194,7 +195,6 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test setting a Subject
-     * @test
      */
     public function testNameID(): void
     {
@@ -229,7 +229,6 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test setting an AuthnConextClassRef
-     * @test
     public function testAuthnContextClassRef(): void
     {
         $state = [
@@ -261,7 +260,6 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test setting ForcedAuthn
-     * @test
      */
     public function testForcedAuthn(): void
     {
@@ -550,8 +548,8 @@ class SPTest extends ClearStateTestCase
      * Test that makes sure that the order in which the IDPList config is applied
      * is correct. Ie: The state IDPList has the highest priority, then the remote metadata,
      * then the idp config array.
-     * @dataProvider getScopingOrders
      */
+    #[DataProvider('getScopingOrders')]
     public function testSPIdpListScopingOrder(
         ?IDPList $stateIdpList,
         ?array $idpConfigArray,

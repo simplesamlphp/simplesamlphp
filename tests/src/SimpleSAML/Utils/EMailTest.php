@@ -6,15 +6,16 @@ namespace SimpleSAML\Test\Utils;
 
 use Exception;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use SimpleSAML\Configuration;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\Utils\EMail;
 
 /**
  * A base SSP test case that tests some simple e-mail related calls
- *
- * @covers \SimpleSAML\Utils\EMail
  */
+#[CoversClass(EMail::class)]
 class EMailTest extends ClearStateTestCase
 {
     /**
@@ -63,9 +64,10 @@ class EMailTest extends ClearStateTestCase
 
     /**
      * Test that the data given is visible in the resulting mail
-     * @dataProvider mailTemplates
+     *
      * @param string $template
      */
+    #[DataProvider('mailTemplates')]
     public function testMailContents($template): void
     {
         $mail = new EMail(

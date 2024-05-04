@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\exampleauth\Controller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Auth, Configuration, Error, Session};
 use SimpleSAML\Module\exampleauth\Controller;
@@ -12,9 +13,8 @@ use Symfony\Component\HttpFoundation\{RedirectResponse, Request};
 
 /**
  * Set of tests for the controllers in the "exampleauth" module.
- *
- * @covers \SimpleSAML\Module\exampleauth\Controller\ExampleAuth
  */
+#[CoversClass(Controller\ExampleAuth::class)]
 class ExampleAuthTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */

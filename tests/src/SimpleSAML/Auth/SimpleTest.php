@@ -5,18 +5,17 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Auth;
 
 use ReflectionClass;
+use PHPUnit\Framework\Attributes\CoversClass;
 use SimpleSAML\{Auth, Configuration};
 use SimpleSAML\TestUtils\ClearStateTestCase;
 
 /**
  * Tests for \SimpleSAML\Auth\Simple
- *
- * @covers \SimpleSAML\Auth\Simple
  */
+#[CoversClass(Auth\Simple::class)]
 class SimpleTest extends ClearStateTestCase
 {
     /**
-     * @test
      */
     public function testGetProcessedURL(): void
     {

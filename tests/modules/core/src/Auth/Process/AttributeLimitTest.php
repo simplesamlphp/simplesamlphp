@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\core\Auth\Process\AttributeLimit;
 
 /**
  * Test for the core:AttributeLimit filter.
- *
- * @covers \SimpleSAML\Module\core\Auth\Process\AttributeLimit
  */
+#[CoversClass(AttributeLimit::class)]
 class AttributeLimitTest extends TestCase
 {
     /**

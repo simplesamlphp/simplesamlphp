@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\XHTML;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Locale\{Translate, TwigTranslator};
@@ -16,8 +17,8 @@ use Twig\Extra\Intl\IntlExtension;
 use Twig\Loader\FilesystemLoader;
 
 /**
- * @covers \SimpleSAML\XHTML\Template
  */
+#[CoversClass(Template::class)]
 class TemplateTranslationTest extends TestCase
 {
     public function testCoreCardinalityErrorTemplate(): void

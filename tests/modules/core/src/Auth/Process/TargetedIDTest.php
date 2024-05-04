@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Configuration, Utils};
 use SimpleSAML\Module\core\Auth\Process\TargetedID;
@@ -13,9 +14,8 @@ use SimpleSAML\SAML2\XML\saml\NameID;
 
 /**
  * Test for the core:TargetedID filter.
- *
- * @covers \SimpleSAML\Module\core\Auth\Process\TargetedID
  */
+#[CoversClass(TargetedID::class)]
 class TargetedIDTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */

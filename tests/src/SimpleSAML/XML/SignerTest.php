@@ -8,15 +8,15 @@ use DOMDocument;
 use DOMElement;
 use Exception;
 use ReflectionClass;
+use PHPUnit\Framework\Attributes\CoversClass;
 use SimpleSAML\Configuration;
 use SimpleSAML\Test\SigningTestCase;
 use SimpleSAML\XML\{DOMDocumentFactory, Signer};
 
 /**
  * Tests for SimpleSAML\XML\Signer.
- *
- * @covers \SimpleSAML\XML\Signer
  */
+#[CoversClass(Signer::class)]
 class SignerTest extends SigningTestCase
 {
     /** @var string */

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\saml\IdP;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\{Configuration, IdP};
 use SimpleSAML\Error\Exception;
@@ -16,8 +17,8 @@ use Symfony\Component\HttpFoundation\{Request, Response};
 use function http_build_query;
 
 /**
- * @covers \SimpleSAML\Module\saml\IdP\SAML2
  */
+#[CoversClass(SAML2::class)]
 class SAML2Test extends ClearStateTestCase
 {
     /** @var string */

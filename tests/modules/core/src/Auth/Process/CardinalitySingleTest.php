@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Configuration, Utils};
 use SimpleSAML\Module\core\Auth\Process\CardinalitySingle;
 
 /**
  * Test for the core:CardinalitySingle filter.
- *
- * @covers \SimpleSAML\Module\core\Auth\Process\CardinalitySingle
  */
+#[CoversClass(CardinalitySingle::class)]
 class CardinalitySingleTest extends TestCase
 {
     /** @var \SimpleSAML\Utils\HTTP|\PHPUnit\Framework\MockObject\MockObject */
@@ -45,7 +46,7 @@ class CardinalitySingleTest extends TestCase
     protected function setUp(): void
     {
         Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
-        $this->httpUtils = $this->createStub(Utils\HTTP::class);
+        $this->httpUtils = $this->getMockBuilder(Utils\HTTP::class);
     }
 
 
@@ -152,6 +153,7 @@ class CardinalitySingleTest extends TestCase
     /**
      * Test abort
      */
+    #[DoesNotPerformAssertions]
     public function testAbort(): void
     {
         $config = [

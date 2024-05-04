@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Utils;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils;
 
 /**
  * Tests for SimpleSAML\Utils\Arrays.
- *
- * @covers \SimpleSAML\Utils\Arrays
  */
+#[CoversClass(Utils\Arrays::class)]
 class ArraysTest extends TestCase
 {
     /** @var \SimpleSAML\Utils\Arrays */

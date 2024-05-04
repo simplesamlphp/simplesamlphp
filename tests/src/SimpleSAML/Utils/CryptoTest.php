@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\Utils;
 
 use InvalidArgumentException;
 use org\bovigo\vfs\{vfsStream, vfsStreamDirectory};
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Configuration, Error, Utils};
 
@@ -16,9 +17,8 @@ use function trim;
 
 /**
  * Tests for SimpleSAML\Utils\Crypto.
- *
- * @covers \SimpleSAML\Utils\Crypto
  */
+#[CoversClass(Utils\Crypto::class)]
 class CryptoTest extends TestCase
 {
     private const ROOTDIRNAME = 'testdir';

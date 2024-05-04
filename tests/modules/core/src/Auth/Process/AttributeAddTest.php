@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Module\core\Auth\Process\AttributeAdd;
 
 /**
  * Test for the core:AttributeAdd filter.
- *
- * @covers \SimpleSAML\Module\core\Auth\Process\AttributeAdd
  */
+#[CoversClass(AttributeAdd::class)]
 class AttributeAddTest extends TestCase
 {
     /**

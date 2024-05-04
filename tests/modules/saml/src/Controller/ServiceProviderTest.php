@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\saml\Controller;
 
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Auth, Configuration, Error, Session, Utils};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
@@ -19,9 +21,9 @@ use function gzdeflate;
 /**
  * Set of tests for the controllers in the "saml" module.
  *
- * @covers \SimpleSAML\Module\saml\Controller\ServiceProvider
  * @package SimpleSAML\Test
  */
+#[CoversClass(Controller\ServiceProvider::class)]
 class ServiceProviderTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */
@@ -294,7 +296,7 @@ class ServiceProviderTest extends TestCase
         });
 
         $result = $c->discoResponse($request);
-        $result && $this->assertInstanceOf(Response::class, $result);
+        $this->assertInstanceOf(Response::class, $result);
     }
 
 
@@ -500,9 +502,8 @@ XML;
     /**
      * Test that accessing the metadata-endpoint with or without authentication
      * and admin.protectmetadata set to true or false is handled properly
-     *
-     * @dataProvider provideMetadataAccess
      */
+    #[DataProvider('provideMetadataAccess')]
     public function testMetadataAccess(bool $authenticated, bool $protected): void
     {
         $config = Configuration::loadFromArray(

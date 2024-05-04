@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Module\core\Auth\UserPassOrgBase;
 
 /**
- * @covers \SimpleSAML\Module\core\Auth\UserPassOrgBase
  */
+#[CoversClass(UserPassOrgBase::class)]
 class UserPassOrgBaseTest extends TestCase
 {
     /**
@@ -32,11 +34,18 @@ class UserPassOrgBaseTest extends TestCase
             ]
         ];
 
-        /** @var \SimpleSAML\Module\core\Auth\UserPassOrgBase $mockUserPassOrgBase */
-        $mockUserPassOrgBase = $this->getMockBuilder(\SimpleSAML\Module\core\Auth\UserPassOrgBase::class)
-            ->setConstructorArgs([['AuthId' => 'my-org'], &$config])
-            ->onlyMethods([])
-            ->getMockForAbstractClass();
-        $this->assertTrue($mockUserPassOrgBase->getRememberOrganizationEnabled());
+        $userPassOrgBase = new class (['AuthId' => 'my-org'], $config) extends UserPassOrgBase {
+            protected function login(string $username, string $password, string $organization): array
+            {
+                return [];
+            }
+
+
+            protected function getOrganizations(): array
+            {
+                return [];
+            }
+        };
+        $this->assertTrue($userPassOrgBase->getRememberOrganizationEnabled());
     }
 }

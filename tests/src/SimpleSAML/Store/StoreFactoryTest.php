@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test;
 
-use PHPUnit\Framework\{MockObject\MockObject, TestCase};
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use SimpleSAML\{Configuration, Store};
 use SimpleSAML\Error\CriticalConfigurationError;
@@ -16,15 +17,14 @@ use SimpleSAML\Store\StoreFactory;
  * For the full copyright and license information, please view the LICENSE file that was
  * distributed with this source code.
  *
- * @covers \SimpleSAML\Store\StoreFactory
  * @package simplesamlphp/simplesamlphp
  */
+#[CoversClass(StoreFactory::class)]
 class StoreFactoryTest extends TestCase
 {
     /**
-     * @test
      */
-    public function defaultStore(): void
+    public function testDefaultStore(): void
     {
         Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
 
@@ -37,9 +37,8 @@ class StoreFactoryTest extends TestCase
 
 
     /**
-     * @test
      */
-    public function phpSessionStore(): void
+    public function testPhpSessionStore(): void
     {
         Configuration::loadFromArray([
             'store.type' => 'phpsession',
@@ -54,9 +53,8 @@ class StoreFactoryTest extends TestCase
 
 
     /**
-     * @test
      */
-    public function memcacheStore(): void
+    public function testMemcacheStore(): void
     {
         Configuration::loadFromArray([
             'store.type' => 'memcache',
@@ -72,9 +70,8 @@ class StoreFactoryTest extends TestCase
 
 
     /**
-     * @test
      */
-    public function redisStore(): void
+    public function testRedisStore(): void
     {
         Configuration::loadFromArray([
             'store.type'                    => 'redis',
@@ -93,9 +90,8 @@ class StoreFactoryTest extends TestCase
 
 
     /**
-     * @test
      */
-    public function sqlStore(): void
+    public function testSqlStore(): void
     {
         Configuration::loadFromArray([
             'store.type'                    => 'sql',
@@ -113,9 +109,8 @@ class StoreFactoryTest extends TestCase
 
 
     /**
-     * @test
      */
-    public function pathStore(): void
+    public function testPathStore(): void
     {
         Configuration::loadFromArray([
             'store.type'                    => '\SimpleSAML\Store\SQLStore',
@@ -133,9 +128,8 @@ class StoreFactoryTest extends TestCase
 
 
     /**
-     * @test
      */
-    public function notFoundStoreException(): void
+    public function testNotFoundStoreException(): void
     {
         $this->expectException(CriticalConfigurationError::class);
         Configuration::loadFromArray([

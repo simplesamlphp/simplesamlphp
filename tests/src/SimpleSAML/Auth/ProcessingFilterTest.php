@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Auth\ProcessingFilter;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Auth\ProcessingFilter as AuthProcFilter;
 use SimpleSAML\Module\core\Auth\Process\AttributeAlter;
 
 /**
  * Test for the ProccessingFilter.
- *
- * @covers \SimpleSAML\Auth\ProcessingFilter
  */
+#[CoversClass(AuthProcFilter::class)]
 class ProcessingFilterTest extends TestCase
 {
     /**

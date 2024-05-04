@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Controller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Configuration, Error, Session};
 use SimpleSAML\Module\core\Controller;
@@ -13,9 +14,9 @@ use Symfony\Component\HttpFoundation\{RedirectResponse, Request};
 /**
  * Set of tests for the controllers in the "core" module.
  *
- * @covers \SimpleSAML\Module\core\Controller\ErrorReport
  * @package SimpleSAML\Test
  */
+#[CoversClass(Controller\ErrorReport::class)]
 class ErrorReportTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Utils;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Error, Utils};
 
@@ -12,9 +13,8 @@ use function putenv;
 
 /**
  * Tests for SimpleSAML\Utils\Config
- *
- * @covers \SimpleSAML\Utils\Config
  */
+#[CoversClass(Utils\Config::class)]
 class ConfigTest extends TestCase
 {
     /** @var \SimpleSAML\Utils\Config */

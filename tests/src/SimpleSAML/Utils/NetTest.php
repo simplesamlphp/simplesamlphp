@@ -4,19 +4,18 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Utils;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils;
 
 /**
  * Tests for SimpleSAML\Utils\Test.
- *
- * @covers \SimpleSAML\Utils\Net
  */
+#[CoversClass(Utils\Net::class)]
 class NetTest extends TestCase
 {
     /**
      * Test the function that checks for IPs belonging to a CIDR.
-     *
      */
     public function testIpCIDRcheck(): void
     {
@@ -52,7 +51,6 @@ class NetTest extends TestCase
 
     /**
      * Test IPv6 support in SimpleSAML\Utils\Net::ipCIDRcheck.
-     *
      */
     public function testIpv6CIDRcheck(): void
     {
