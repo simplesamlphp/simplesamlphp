@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Message;
 
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Auth\State;
 use SimpleSAML\Module\saml\AbstractMessage;
 use SimpleSAML\{Configuration, Logger, Module};
 use SimpleSAML\SAML2\Constants as C;
@@ -15,7 +14,6 @@ use SimpleSAML\SAML2\XML\samlp\LogoutRequest as SAML2_LogoutRequest;
 use SimpleSAML\SAML2\XML\samlp\Extensions;
 use SimpleSAML\SAML2\XML\samlp\SessionIndex;
 
-use function array_map;
 use function sprintf;
 use function var_export;
 

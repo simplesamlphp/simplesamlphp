@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\saml\Auth\Source;
 
 use InvalidArgumentException;
-use SAML2\{AuthnRequest, LogoutRequest};
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;

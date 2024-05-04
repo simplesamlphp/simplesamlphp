@@ -11,7 +11,6 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\Module\saml\MetadataBuilder;
 use SimpleSAML\SAML2\{Binding, HTTPArtifact, HTTPRedirect, SOAP}; // Bindings
-use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
 use SimpleSAML\SAML2\XML\saml\{Assertion, Issuer};
 use SimpleSAML\SAML2\XML\samlp\{LogoutRequest, LogoutResponse, Response as SAML2_Response};

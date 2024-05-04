@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\saml\Controller;
 
-use ArgumentCountError;
 use Beste\Clock\LocalizedClock;
 use Exception;
 use PHPUnit\Framework\TestCase;

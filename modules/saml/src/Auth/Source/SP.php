@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Source;
 
-use SAML2\{AuthnRequest, Binding, LogoutRequest};
 use SimpleSAML\{Auth, Configuration, Error, IdP, Logger, Module, Session, Store, Utils};
 use SimpleSAML\Assert\{Assert, AssertionFailedException};
 use SimpleSAML\HTTP\RunnableResponse;
@@ -443,7 +442,7 @@ class SP extends Auth\Source
      * @param \SimpleSAML\Configuration $idpMetadata  The metadata of the IdP.
      * @param array $state  The state array for the current authentication.
      */
-    private function startSSO2(Configuration $idpMetadata, array $state): void
+    private function startSSO2(Configuration $idpMetadata, array $state): Response
     {
         if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] < 0) {
             Auth\State::throwException(

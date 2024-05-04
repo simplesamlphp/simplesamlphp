@@ -12,7 +12,6 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Constants as C;
 //use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
-use SimpleSAML\SAML2\XML\md\AbstractEndpointType;
 use SimpleSAML\SAML2\XML\md\AbstractIndexedEndpointType;
 use SimpleSAML\SAML2\XML\md\AbstractMetadataDocument;
 use SimpleSAML\SAML2\XML\md\ArtifactResolutionService;

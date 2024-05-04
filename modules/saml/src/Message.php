@@ -11,9 +11,6 @@ use SAML2\{AuthnRequest, LogoutRequest, LogoutResponse, Response, StatusResponse
 use SimpleSAML\{Configuration, Error as SSP_Error, Logger, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\{Constants as C, SignedElement};
-use SimpleSAML\SAML2\XML\saml\Issuer;
-use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
-use SimpleSAML\SAML2\XML\samlp\RequestedAuthnContext;
 use SimpleSAML\SAML2\XML\samlp\{StatusCode, StatusMessage}; // Status
 use SimpleSAML\XMLSecurity\XML\ds\{KeyInfo, X509Certificate, X509Data};
 

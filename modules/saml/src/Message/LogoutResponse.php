@@ -4,19 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Message;
 
-use SimpleSAML\Assert\Assert;
-use SimpleSAML\Auth\State;
 use SimpleSAML\Configuration;
-use SimpleSAML\Module;
 use SimpleSAML\Module\saml\AbstractMessage;
-use SimpleSAML\SAML2\Constants as C;
-use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\SAML2\XML\samlp\LogoutResponse as SAML2_LogoutResponse;
-use SimpleSAML\SAML2\XML\samlp\Extensions;
-
-use function array_map;
-use function sprintf;
-use function var_export;
 
 /**
  * Class building SAML 2.0 LogoutResponse based on the available metadata.

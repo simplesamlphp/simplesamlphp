@@ -11,8 +11,6 @@ require_once(dirname(__FILE__, 2) . '/src/_autoload.php');
 use SimpleSAML\Compat\SspContainer;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
-use SimpleSAML\Module;
 use SimpleSAML\SAML2\Compat\ContainerSingleton;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Utils;
