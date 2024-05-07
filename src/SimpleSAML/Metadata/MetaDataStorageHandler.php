@@ -12,6 +12,7 @@ use SimpleSAML\Logger;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Utils;
 use SimpleSAML\Utils\ClearableState;
+use SimpleSAML\Module;
 
 use function array_key_exists;
 use function array_merge;
@@ -137,15 +138,16 @@ class MetaDataStorageHandler implements ClearableState
                     return C::BINDING_HTTP_REDIRECT;
             }
         } elseif ($set == 'adfs-idp-hosted') {
+            $endpoint = Module::getModuleURL('adfs/idp/prp.php');
             switch ($property) {
                 case 'SingleSignOnService':
-                    return $baseurl;
+                    return $endpoint;
 
                 case 'SingleSignOnServiceBinding':
                     return C::BINDING_HTTP_REDIRECT;
 
                 case 'SingleLogoutService':
-                    return $baseurl;
+                    return $endpoint;
 
                 case 'SingleLogoutServiceBinding':
                     return C::BINDING_HTTP_REDIRECT;
