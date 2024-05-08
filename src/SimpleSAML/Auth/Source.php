@@ -176,8 +176,8 @@ abstract class Source
             '\SimpleSAML\Auth\Source.id' => $this->authId,
             '\SimpleSAML\Auth\Source.Return' => $return,
             '\SimpleSAML\Auth\Source.ErrorURL' => $errorURL,
-            'LoginCompletedHandler' => [get_class(), 'loginCompleted'],
-            'LogoutCallback' => [get_class(), 'logoutCallback'],
+            'LoginCompletedHandler' => [static::class, 'loginCompleted'],
+            'LogoutCallback' => [static::class, 'logoutCallback'],
             'LogoutCallbackState' => [
                 '\SimpleSAML\Auth\Source.logoutSource' => $this->authId,
             ],
