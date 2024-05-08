@@ -137,20 +137,17 @@ class MetaDataStorageHandler implements ClearableState
                 case 'SingleLogoutServiceBinding':
                     return C::BINDING_HTTP_REDIRECT;
             }
-        } elseif ($set == 'adfs-idp-hosted') {
-            $endpoint = Module::getModuleURL('adfs/idp/prp.php');
-            switch ($property) {
-                case 'SingleSignOnService':
-                    return $endpoint;
+        } else {
+            $hookinfo = [
+                'set' => $set,
+                'property' => $property,
+                'info' => [],
+                'errors' => [],
+            ];
 
-                case 'SingleSignOnServiceBinding':
-                    return C::BINDING_HTTP_REDIRECT;
-
-                case 'SingleLogoutService':
-                    return $endpoint;
-
-                case 'SingleLogoutServiceBinding':
-                    return C::BINDING_HTTP_REDIRECT;
+            Module::callHooks('generate_metadata', $hookinfo);
+            if ($hookinfo['result']) {
+                return $hookinfo['result'];
             }
         }
 
