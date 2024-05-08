@@ -112,7 +112,6 @@ class MetaDataStorageHandler implements ClearableState
             $baseurl = str_replace('://' . $httpUtils->getSelfHost() . '/', '://' . $overrideHost . '/', $baseurl);
         }
 
-
         if ($set == 'saml20-sp-hosted') {
             if ($property === 'SingleLogoutServiceBinding') {
                 return C::BINDING_HTTP_REDIRECT;
@@ -132,7 +131,13 @@ class MetaDataStorageHandler implements ClearableState
                     return C::BINDING_HTTP_REDIRECT;
             }
         } else {
-            $hookinfo = [ 'set' => $set, 'property' => $property, 'info' => [], 'errors' => [] ];
+            $hookinfo = [
+                'set' => $set,
+                'property' => $property,
+                'info' => [],
+                'errors' => [],
+            ];
+
             Module::callHooks('generate_metadata', $hookinfo);
             if ($hookinfo['result']) {
                 return $hookinfo['result'];
