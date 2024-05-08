@@ -132,7 +132,8 @@ class FileLoggingHandler implements LoggingHandlerInterface
                 }
 
                 $formats[] = $matches[0];
-                $replacements[] = date($format);
+                $date = new \DateTime();
+                $replacements[] = $date->format($format);
             }
 
             if (preg_match('/^php:\/\//', $this->logFile)) {
