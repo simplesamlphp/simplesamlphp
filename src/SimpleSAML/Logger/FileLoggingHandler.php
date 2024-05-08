@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Logger;
 
+use DateTimeImmutable;
 use SimpleSAML\{Configuration, Logger, Utils};
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\Exception\CannotWriteFileException;
 use Symfony\Component\HttpFoundation\File\File;
 
 use function array_key_exists;
-use function date;
 use function file_put_contents;
 use function preg_match;
 use function preg_replace;
@@ -132,7 +132,8 @@ class FileLoggingHandler implements LoggingHandlerInterface
                 }
 
                 $formats[] = $matches[0];
-                $replacements[] = date($format);
+                $date = new DateTimeImmutable();
+                $replacements[] = $date->format($format);
             }
 
             if (preg_match('/^php:\/\//', $this->logFile)) {
