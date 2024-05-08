@@ -12,6 +12,7 @@ Released TBD
 * The SubjectID authproc-filter now has a new option `hashed`, which if set to true
   will automatically hash the unique part of the ID. This will also automatically
   make the unique part of the ID in compliance with the specs (#2006)
+* Add microsecond support to the FileLoggingHandler (#2084)
 
 `sqlauth`
 

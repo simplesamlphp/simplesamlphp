@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Logger;
 
-use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
-use SimpleSAML\Utils;
+use DateTimeImmutable;
+use SimpleSAML\{Configuration, Logger, Utils};
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\Exception\CannotWriteFileException;
 use Symfony\Component\HttpFoundation\File\File;
@@ -126,8 +125,9 @@ class FileLoggingHandler implements LoggingHandlerInterface
                     $format = $matches[1];
                 }
 
-                array_push($formats, $matches[0]);
-                array_push($replacements, date($format));
+                $formats[] = $matches[0];
+                $date = new DateTimeImmutable();
+                $replacements[] = $date->format($format);
             }
 
             if (preg_match('/^php:\/\//', $this->logFile)) {
