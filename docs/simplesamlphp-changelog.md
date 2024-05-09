@@ -9,6 +9,8 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+* Added a missing use-statement that would cause a 'class not found' exception.
+
 ## Version 2.0.12
 
 :warning: IMPORTANT NOTE :warning:
