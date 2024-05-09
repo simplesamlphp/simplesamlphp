@@ -76,7 +76,6 @@ class LanguageTest extends TestCase
      */
     public function testGetLanguageListCorrectConfig(): void
     {
-        // test langs from from language_names
         $c = Configuration::loadFromArray([
             'language.available' => ['en', 'nn', 'es'],
         ], '', 'simplesaml');
@@ -97,7 +96,7 @@ class LanguageTest extends TestCase
     {
         // test non-existent langs
         $c = Configuration::loadFromArray([
-            'language.available' => ['foo', 'bar'],
+            'language.available' => ['foo', 'baz'],
         ], '', 'simplesaml');
         $l = new Language($c);
         $l->setLanguage('foo');
