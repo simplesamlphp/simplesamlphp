@@ -9,6 +9,8 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+* Added a missing use-statement that would cause a 'class not found' exception.
+
 `adfs`
 
 * Fixed metadata download to become a proper xml-file
