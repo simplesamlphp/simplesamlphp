@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Utils;
 
 use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 
 /**
  * Utility class for SimpleSAMLphp configuration management and manipulation.
