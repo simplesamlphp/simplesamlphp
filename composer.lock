@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "256851a028a806fe16feb0c27f7a691b",
+    "content-hash": "566d521878e6700f26231f45288de2a0",
     "packages": [
         {
             "name": "beste/clock",
@@ -857,16 +857,16 @@
         },
         {
             "name": "simplesamlphp/assert",
-            "version": "v1.1.6",
+            "version": "v1.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/assert.git",
-                "reference": "c1dcd952c542c093f3f9282ac87b2f2e00d0904c"
+                "reference": "c03e67bacb298aae58de4535491b4aec9246611e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/assert/zipball/c1dcd952c542c093f3f9282ac87b2f2e00d0904c",
-                "reference": "c1dcd952c542c093f3f9282ac87b2f2e00d0904c",
+                "url": "https://api.github.com/repos/simplesamlphp/assert/zipball/c03e67bacb298aae58de4535491b4aec9246611e",
+                "reference": "c03e67bacb298aae58de4535491b4aec9246611e",
                 "shasum": ""
             },
             "require": {
@@ -908,9 +908,9 @@
             "description": "A wrapper around webmozart/assert to make it useful beyond checking method arguments",
             "support": {
                 "issues": "https://github.com/simplesamlphp/assert/issues",
-                "source": "https://github.com/simplesamlphp/assert/tree/v1.1.6"
+                "source": "https://github.com/simplesamlphp/assert/tree/v1.1.7"
             },
-            "time": "2024-05-02T16:19:56+00:00"
+            "time": "2024-05-09T16:03:57+00:00"
         },
         {
             "name": "simplesamlphp/composer-module-installer",

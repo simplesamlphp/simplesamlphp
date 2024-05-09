@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Utils;
 
-use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
+use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\{Configuration, Error, Utils};
 
 use function date_default_timezone_get;
@@ -178,15 +178,15 @@ class TimeTest extends TestCase
             // invalid string
             $timeUtils->parseDuration('abcdefg');
             $this->fail("Did not fail with invalid ISO 8601 duration.");
-        } catch (InvalidArgumentException $e) {
-            $this->assertStringStartsWith('Invalid ISO 8601 duration: ', $e->getMessage());
+        } catch (AssertionFailedException $e) {
+            $this->assertStringMatchesFormat('\'%s\' is not a valid xs:duration', $e->getMessage());
         }
         try {
             // missing T delimiter
             $timeUtils->parseDuration('P1S');
             $this->fail("Did not fail with duration missing T delimiter.");
-        } catch (InvalidArgumentException $e) {
-            $this->assertStringStartsWith('Invalid ISO 8601 duration: ', $e->getMessage());
+        } catch (AssertionFailedException $e) {
+            $this->assertStringMatchesFormat('\'%s\' is not a valid xs:duration', $e->getMessage());
         }
     }
 }
