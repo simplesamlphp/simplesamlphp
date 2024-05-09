@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
@@ -90,6 +91,8 @@ class Time
      */
     public function parseDuration(string $duration, int $timestamp = null): int
     {
+        Assert::validDuration($duration);
+
         // parse the duration. We use a very strict pattern
         $durationRegEx = '#^(-?)P(?:(?:(?:(\\d+)Y)?(?:(\\d+)M)?(?:(\\d+)D)?(?:T(?:(\\d+)H)?(?:(\\d+)M)?(?:(\\d+)' .
             '(?:[.,]\d+)?S)?)?)|(?:(\\d+)W))$#D';
