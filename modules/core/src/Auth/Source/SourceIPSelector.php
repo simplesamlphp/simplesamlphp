@@ -91,6 +91,7 @@ class SourceIPSelector extends AbstractSourceSelector
     protected function selectAuthSource(/** @scrutinizer ignore-unused */ array &$state): string
     {
         $ip = Request::createFromGlobals()->getClientIp();
+        Assert::notNull($ip, "Unable to determine client IP.");
 
         $source = $this->defaultSource;
         foreach ($this->zones as $name => $zone) {
