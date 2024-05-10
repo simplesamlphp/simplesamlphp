@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Locale;
 
 use SimpleSAML\{Configuration, Logger, Utils};
+use Symfony\Component\Intl\Languages;
 
 use function array_fill_keys;
 use function array_key_exists;
@@ -78,61 +79,6 @@ class Language
     private $customFunction;
 
     /**
-     * A list of languages supported with their names localized.
-     * Indexed by something that mostly resembles ISO 639-1 code,
-     * with some charming SimpleSAML-specific variants...
-     * that must remain before 2.0 due to backwards compatibility
-     *
-     * @var array<string, string>
-     */
-    public static array $language_names = [
-        'no'    => 'Bokmål', // Norwegian Bokmål
-        'nn'    => 'Nynorsk', // Norwegian Nynorsk
-        'se'    => 'Sámegiella', // Northern Sami
-        'sma'   => 'Åarjelh-saemien giele', // Southern Sami
-        'da'    => 'Dansk', // Danish
-        'en'    => 'English',
-        'de'    => 'Deutsch', // German
-        'sv'    => 'Svenska', // Swedish
-        'fi'    => 'Suomeksi', // Finnish
-        'es'    => 'Español', // Spanish
-        'ca'    => 'Català', // Catalan
-        'fr'    => 'Français', // French
-        'it'    => 'Italiano', // Italian
-        'nl'    => 'Nederlands', // Dutch
-        'lb'    => 'Lëtzebuergesch', // Luxembourgish
-        'cs'    => 'Čeština', // Czech
-        'sl'    => 'Slovenščina', // Slovensk
-        'lt'    => 'Lietuvių kalba', // Lithuanian
-        'hr'    => 'Hrvatski', // Croatian
-        'hu'    => 'Magyar', // Hungarian
-        'pl'    => 'Język polski', // Polish
-        'pt'    => 'Português', // Portuguese
-        'pt-br' => 'Português brasileiro', // Portuguese
-        'ru'    => 'русский язык', // Russian
-        'et'    => 'eesti keel', // Estonian
-        'tr'    => 'Türkçe', // Turkish
-        'el'    => 'ελληνικά', // Greek
-        'ja'    => '日本語', // Japanese
-        'zh'    => '简体中文', // Chinese (simplified)
-        'zh-tw' => '繁體中文', // Chinese (traditional)
-        'ar'    => 'العربية', // Arabic
-        'fa'    => 'پارسی', // Persian
-        'ur'    => 'اردو', // Urdu
-        'he'    => 'עִבְרִית', // Hebrew
-        'id'    => 'Bahasa Indonesia', // Indonesian
-        'sr'    => 'Srpski', // Serbian
-        'lv'    => 'Latviešu', // Latvian
-        'ro'    => 'Românește', // Romanian
-        'eu'    => 'Euskara', // Basque
-        'af'    => 'Afrikaans', // Afrikaans
-        'zu'    => 'IsiZulu', // Zulu
-        'xh'    => 'isiXhosa', // Xhosa
-        'st'    => 'Sesotho', // Sesotho
-        'sk'    => 'Slovenčina', // Slovak
-    ];
-
-    /**
      * A mapping of SSP languages to locales
      *
      * @var array<string, string>
@@ -168,7 +114,7 @@ class Language
     /**
      * Filter configured (available) languages against installed languages.
      *
-     * @return string[] The set of languages both in 'language.available' and self::$language_names.
+     * @return string[] The set of languages both in 'language.available' and  Languages::getNames().
      */
     private function getInstalledLanguages(): array
     {
@@ -178,12 +124,13 @@ class Language
         );
         $availableLanguages = [];
         foreach ($configuredAvailableLanguages as $code) {
-            if (array_key_exists($code, self::$language_names) && isset(self::$language_names[$code])) {
+            if (Languages::exists($code)) {
                 $availableLanguages[] = $code;
             } else {
                 Logger::error("Language \"$code\" not installed. Check config.");
             }
         }
+
         return $availableLanguages;
     }
 
@@ -272,8 +219,8 @@ class Language
      */
     public function getLanguageLocalizedName(string $code): ?string
     {
-        if (array_key_exists($code, self::$language_names) && isset(self::$language_names[$code])) {
-            return self::$language_names[$code];
+        if (Languages::exists($code)) {
+            return Languages::getName($code);
         }
         Logger::error("Name for language \"$code\" not found. Check config.");
         return null;
