@@ -30,8 +30,6 @@ use function strpos;
 use function substr;
 use function trim;
 
-use function hash_equals;
-
 /**
  * A class for cryptography-related functions.
  *
