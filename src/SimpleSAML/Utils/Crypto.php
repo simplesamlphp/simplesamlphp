@@ -79,6 +79,7 @@ class Crypto
      * @throws \InvalidArgumentException If $ciphertext is not a string.
      * @throws Error\Exception If the openssl module is not loaded.
      *
+     * @deprecated - Possibly use xml-security library
      */
     public function aesDecrypt(string $ciphertext, string $secret = null): string
     {
@@ -144,6 +145,7 @@ class Crypto
      * @throws \InvalidArgumentException If $data is not a string.
      * @throws Error\Exception If the openssl module is not loaded.
      *
+     * @deprecated - Possibly use xml-security library
      */
     public function aesEncrypt(string $data, string $secret = null): string
     {

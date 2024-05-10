@@ -11,6 +11,8 @@ The following classes were marked `deprecated` and will be removed in a next maj
 
 The following methods were marked `deprecated` and will be removed in a next major release.
 
+- SimpleSAML\Utils\Crypto::aesDecrypt - use the xml-security library instead - See commit `52ef3a78d1faf22e040efd5d0fd1f234da2458eb` for an example.
+- SimpleSAML\Utils\Crypto::aesEncrypt - use the xml-security library instead - See commit `52ef3a78d1faf22e040efd5d0fd1f234da2458eb` for an example.
 - SimpleSAML\Utils\Net::ipCIDRcheck - Use \Symfony\Component\HttpFoundation\IpUtils::checkIp instead
 
 The following properties were marked `deprecated` and will be removed in a next major release.
