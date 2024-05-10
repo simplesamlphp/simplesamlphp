@@ -27,7 +27,7 @@ class Net
     public function ipCIDRcheck(string|array $cidr, string $ip = null): bool
     {
         if ($ip === null) {
-            $ip = Request::createFromGlobals()->getClientIp();
+            $ip = Request::createFromGlobals()->getClientIp() ?? '127.0.0.1';
         }
 
         return IpUtils::checkIP($ip, $cidr);
