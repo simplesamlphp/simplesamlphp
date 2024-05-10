@@ -219,6 +219,7 @@ CIPHER;
 
 
     /**
+     * @deprecated
      */
     public function testGoodPwValid(): void
     {
@@ -232,6 +233,7 @@ CIPHER;
 
 
     /**
+     * @deprecated
      */
     public function testBadPwInvalid(): void
     {
@@ -246,6 +248,7 @@ CIPHER;
 
     /**
      * Check that hash cannot be used to authenticate ith.
+     * @deprecated
      */
     public function testHashAsPwInvalid(): void
     {
