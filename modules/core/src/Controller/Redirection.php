@@ -10,8 +10,7 @@ use SimpleSAML\Error;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**
  * Controller class for the core module.
@@ -22,10 +21,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class Redirection
 {
-    /** @var \SimpleSAML\Utils\Crypto */
-    protected $cryptoUtils;
-
-
     /**
      * Controller constructor.
      *
@@ -40,7 +35,6 @@ class Redirection
         protected Configuration $config,
         protected Session $session
     ) {
-        $this->cryptoUtils = new Utils\Crypto();
     }
 
 
@@ -65,7 +59,10 @@ class Redirection
                 throw new Error\BadRequest('Invalid RedirInfo data.');
             }
 
-            list($sessionId, $postId) = explode(':', $this->cryptoUtils->aesDecrypt($encData));
+            $key = new SymmetricKey((new Utils\Config())->getSecretSalt());
+            $decryptor = new AES($key, C::BLOCK_ENC_AES256_GCM);
+
+            list($sessionId, $postId) = explode(':', $decryptor->decrypt($encData));
 
             if (empty($sessionId) || empty($postId)) {
                 throw new Error\BadRequest('Invalid session info data.');
