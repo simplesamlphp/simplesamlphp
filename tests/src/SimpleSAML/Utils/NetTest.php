@@ -10,6 +10,7 @@ use SimpleSAML\Utils;
 
 /**
  * Tests for SimpleSAML\Utils\Test.
+ * @deprecated
  */
 #[CoversClass(Utils\Net::class)]
 class NetTest extends TestCase
