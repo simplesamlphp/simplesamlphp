@@ -28,6 +28,8 @@ use function php_sapi_name;
 use function time;
 use function var_export;
 
+use function hash_equal;
+
 /**
  * The Session class holds information about a user session, and everything attached to it.
  *
@@ -378,8 +380,7 @@ class Session implements Utils\ClearableState
                     Logger::warning('Missing AuthToken cookie.');
                     return null;
                 }
-                $cryptoUtils = new Utils\Crypto();
-                if (!$cryptoUtils->secureCompare($session->authToken, $_COOKIE[$authTokenCookieName])) {
+                if (!hash_equal($session->authToken, $_COOKIE[$authTokenCookieName])) {
                     Logger::warning('Invalid AuthToken cookie.');
                     return null;
                 }
