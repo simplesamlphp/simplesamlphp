@@ -75,6 +75,7 @@
         "symfony/http-foundation": "^6.4",
         "symfony/http-kernel": "^6.4",
         "symfony/intl": "^6.4",
+        "symfony/password-hasher": "^6.4",
         "symfony/polyfill-intl-icu": "^1.28",
         "symfony/routing": "^6.4",
         "symfony/translation-contracts": "^3.0",

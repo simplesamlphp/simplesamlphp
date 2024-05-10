@@ -258,6 +258,7 @@ CIPHER;
 
 
     /**
+     * @deprecated
      */
     public function testSecureCompareEqual(): void
     {
@@ -268,6 +269,7 @@ CIPHER;
 
 
     /**
+     * @deprecated
      */
     public function testSecureCompareNotEqual(): void
     {
