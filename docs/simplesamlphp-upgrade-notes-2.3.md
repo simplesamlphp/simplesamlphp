@@ -12,3 +12,7 @@ The following classes were marked `deprecated` and will be removed in a next maj
 The following methods were marked `deprecated` and will be removed in a next major release.
 
 - SimpleSAML\Utils\Net::ipCIDRcheck - Use \Symfony\Component\HttpFoundation\IpUtils::checkIp instead
+
+The following properties were marked `deprecated` and will be removed in a next major release.
+
+- SimpleSAML\Locale\Language::$language_names - Use \Symfony\Component\Intl\Languages::getNames() instead
