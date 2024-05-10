@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c5c2f0ddfde609b8e86f4f5ddf496584",
+    "content-hash": "457d7ddaa81736d79a7b07f8c1a44a15",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -746,6 +746,129 @@
                 "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.1.12"
             },
             "time": "2024-02-19T15:32:24+00:00"
+        },
+        {
+            "name": "simplesamlphp/xml-common",
+            "version": "v1.16.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/simplesamlphp/xml-common.git",
+                "reference": "a3c4c548ebd9783c3833c13ea7c01b010b0a1239"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/a3c4c548ebd9783c3833c13ea7c01b010b0a1239",
+                "reference": "a3c4c548ebd9783c3833c13ea7c01b010b0a1239",
+                "shasum": ""
+            },
+            "require": {
+                "ext-date": "*",
+                "ext-dom": "*",
+                "ext-libxml": "*",
+                "ext-pcre": "*",
+                "ext-spl": "*",
+                "ext-xmlreader": "*",
+                "php": "^8.1",
+                "simplesamlphp/assert": "^1.1"
+            },
+            "require-dev": {
+                "simplesamlphp/simplesamlphp-test-framework": "^1.6"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "SimpleSAML\\XML\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jaime Perez",
+                    "email": "jaime.perez@uninett.no"
+                },
+                {
+                    "name": "Tim van Dijen",
+                    "email": "tvdijen@gmail.com"
+                }
+            ],
+            "description": "A library with classes and utilities for handling XML structures.",
+            "homepage": "http://simplesamlphp.org",
+            "keywords": [
+                "saml",
+                "xml"
+            ],
+            "support": {
+                "issues": "https://github.com/simplesamlphp/xml-common/issues",
+                "source": "https://github.com/simplesamlphp/xml-common"
+            },
+            "time": "2024-03-19T22:04:20+00:00"
+        },
+        {
+            "name": "simplesamlphp/xml-security",
+            "version": "v1.7.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/simplesamlphp/xml-security.git",
+                "reference": "a4ac02019379ea41925bcf690f3d2a6b6e0c14a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/a4ac02019379ea41925bcf690f3d2a6b6e0c14a1",
+                "reference": "a4ac02019379ea41925bcf690f3d2a6b6e0c14a1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-hash": "*",
+                "ext-mbstring": "*",
+                "ext-openssl": "*",
+                "ext-pcre": "*",
+                "ext-spl": "*",
+                "php": "^8.1",
+                "simplesamlphp/assert": "^1.1",
+                "simplesamlphp/xml-common": "^1.15"
+            },
+            "require-dev": {
+                "simplesamlphp/simplesamlphp-test-framework": "^1.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SimpleSAML\\XMLSecurity\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jaime Perez Crespo",
+                    "email": "jaime.perez@uninett.no",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Tim van Dijen",
+                    "email": "tvdijen@gmail.com",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "SimpleSAMLphp library for XML Security",
+            "homepage": "https://github.com/simplesamlphp/xml-security",
+            "keywords": [
+                "security",
+                "signature",
+                "xml",
+                "xmldsig"
+            ],
+            "support": {
+                "issues": "https://github.com/simplesamlphp/xml-security/issues",
+                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.7.3"
+            },
+            "time": "2024-05-10T10:02:40+00:00"
         },
         {
             "name": "symfony/cache",
@@ -5411,129 +5534,6 @@
                 "source": "https://github.com/simplesamlphp/simplesamlphp-test-framework"
             },
             "time": "2024-03-19T19:45:16+00:00"
-        },
-        {
-            "name": "simplesamlphp/xml-common",
-            "version": "v1.16.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/simplesamlphp/xml-common.git",
-                "reference": "a3c4c548ebd9783c3833c13ea7c01b010b0a1239"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/a3c4c548ebd9783c3833c13ea7c01b010b0a1239",
-                "reference": "a3c4c548ebd9783c3833c13ea7c01b010b0a1239",
-                "shasum": ""
-            },
-            "require": {
-                "ext-date": "*",
-                "ext-dom": "*",
-                "ext-libxml": "*",
-                "ext-pcre": "*",
-                "ext-spl": "*",
-                "ext-xmlreader": "*",
-                "php": "^8.1",
-                "simplesamlphp/assert": "^1.1"
-            },
-            "require-dev": {
-                "simplesamlphp/simplesamlphp-test-framework": "^1.6"
-            },
-            "type": "project",
-            "autoload": {
-                "psr-4": {
-                    "SimpleSAML\\XML\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL-2.1-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Jaime Perez",
-                    "email": "jaime.perez@uninett.no"
-                },
-                {
-                    "name": "Tim van Dijen",
-                    "email": "tvdijen@gmail.com"
-                }
-            ],
-            "description": "A library with classes and utilities for handling XML structures.",
-            "homepage": "http://simplesamlphp.org",
-            "keywords": [
-                "saml",
-                "xml"
-            ],
-            "support": {
-                "issues": "https://github.com/simplesamlphp/xml-common/issues",
-                "source": "https://github.com/simplesamlphp/xml-common"
-            },
-            "time": "2024-03-19T22:04:20+00:00"
-        },
-        {
-            "name": "simplesamlphp/xml-security",
-            "version": "v1.7.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/simplesamlphp/xml-security.git",
-                "reference": "1983558c181563246ce2062881545e2973f847e6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/1983558c181563246ce2062881545e2973f847e6",
-                "reference": "1983558c181563246ce2062881545e2973f847e6",
-                "shasum": ""
-            },
-            "require": {
-                "ext-dom": "*",
-                "ext-hash": "*",
-                "ext-mbstring": "*",
-                "ext-openssl": "*",
-                "ext-pcre": "*",
-                "ext-spl": "*",
-                "php": "^8.1",
-                "simplesamlphp/assert": "^1.1",
-                "simplesamlphp/xml-common": "^1.15"
-            },
-            "require-dev": {
-                "simplesamlphp/simplesamlphp-test-framework": "^1.5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SimpleSAML\\XMLSecurity\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL-2.1-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Jaime Perez Crespo",
-                    "email": "jaime.perez@uninett.no",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Tim van Dijen",
-                    "email": "tvdijen@gmail.com",
-                    "role": "Maintainer"
-                }
-            ],
-            "description": "SimpleSAMLphp library for XML Security",
-            "homepage": "https://github.com/simplesamlphp/xml-security",
-            "keywords": [
-                "security",
-                "signature",
-                "xml",
-                "xmldsig"
-            ],
-            "support": {
-                "issues": "https://github.com/simplesamlphp/xml-security/issues",
-                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.7.1"
-            },
-            "time": "2024-03-19T23:13:39+00:00"
         },
         {
             "name": "slevomat/coding-standard",
