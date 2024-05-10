@@ -17,6 +17,7 @@ use function bin2hex;
 use function call_user_func;
 use function defined;
 use function get_object_vars;
+use function hash_equal;
 use function header_register_callback;
 use function intval;
 use function is_a;
@@ -27,8 +28,6 @@ use function openssl_random_pseudo_bytes;
 use function php_sapi_name;
 use function time;
 use function var_export;
-
-use function hash_equal;
 
 /**
  * The Session class holds information about a user session, and everything attached to it.
