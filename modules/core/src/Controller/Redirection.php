@@ -10,6 +10,9 @@ use SimpleSAML\Error;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
+use SimpleSAML\XMLSecurity\Alg\Encryption\AES;
+use SimpleSAML\XMLSecurity\Constants as C;
+use SimpleSAML\XMLSecurity\Key\SymmetricKey;
 use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**
