@@ -9,6 +9,8 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 
+use function hash_equals;
+
 /**
  * A class for cryptography-related functions.
  *
@@ -50,7 +52,7 @@ class Crypto
         $msg  = mb_substr($ciphertext, 48, $len - 48, '8bit');
 
         // authenticate the ciphertext
-        if ($this->secureCompare(hash_hmac('sha256', $iv . $msg, substr($key, 64, 64), true), $hmac)) {
+        if (hash_equals(hash_hmac('sha256', $iv . $msg, substr($key, 64, 64), true), $hmac)) {
             $plaintext = openssl_decrypt(
                 $msg,
                 'AES-256-CBC',
@@ -332,6 +334,7 @@ class Crypto
      * @throws Error\Exception If the algorithm specified is not supported.
      *
      * @see hash_algos()
+     * @deprecated Use Symfony NativePasswordHasher::hash instead
      *
      */
     public function pwHash(string $password, string|int|null $algorithm = PASSWORD_DEFAULT): string
@@ -350,6 +353,8 @@ class Crypto
      * @param string $user A user-provided string to compare with the known string.
      *
      * @return bool True if both strings are equal, false otherwise.
+     *
+     * @deprecated Use hash_equals instead
      */
     public function secureCompare(string $known, string $user): bool
     {
@@ -367,6 +372,7 @@ class Crypto
      * @throws \InvalidArgumentException If the input parameters are not strings.
      * @throws Error\Exception If the algorithm specified is not supported.
      *
+     * @deprecated Use Symfony NativePasswordHasher::verify instead
      */
     public function pwValid(string $hash, string $password): bool
     {

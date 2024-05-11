@@ -11,6 +11,9 @@ The following classes were marked `deprecated` and will be removed in a next maj
 
 The following methods were marked `deprecated` and will be removed in a next major release.
 
+- SimpleSAML\Utils\Crypto::pwHash - Use \Symfony\Component\PasswordHasher\NativePasswordHasher::hash instead
+- SimpleSAML\Utils\Crypto::pwValid - Use \Symfony\Component\PasswordHasher\NativePasswordHasher::verify instead
+- SimpleSAML\Utils\Crypto::secureCompare - Use hash_equals() instead
 - SimpleSAML\Utils\Net::ipCIDRcheck - Use \Symfony\Component\HttpFoundation\IpUtils::checkIp instead
 
 The following properties were marked `deprecated` and will be removed in a next major release.
