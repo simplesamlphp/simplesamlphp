@@ -8,6 +8,9 @@ use Exception;
 use SimpleSAML\{Auth, Configuration, Error, Logger, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XHTML\Template;
+use SimpleSAML\XMLSecurity\Alg\Encryption\AES;
+use SimpleSAML\XMLSecurity\Constants as C;
+use SimpleSAML\XMLSecurity\Key\SymmetricKey;
 use Symfony\Component\HttpFoundation\{Request, Response};
 
 use function base64_decode;
@@ -22,10 +25,6 @@ use function explode;
  */
 class Redirection
 {
-    /** @var \SimpleSAML\Utils\Crypto */
-    protected Utils\Crypto $cryptoUtils;
-
-
     /**
      * Controller constructor.
      *
@@ -40,7 +39,6 @@ class Redirection
         protected Configuration $config,
         protected Session $session
     ) {
-        $this->cryptoUtils = new Utils\Crypto();
     }
 
 
@@ -65,7 +63,10 @@ class Redirection
                 throw new Error\BadRequest('Invalid RedirInfo data.');
             }
 
-            list($sessionId, $postId) = explode(':', $this->cryptoUtils->aesDecrypt($encData));
+            $key = new SymmetricKey((new Utils\Config())->getSecretSalt());
+            $decryptor = new AES($key, C::BLOCK_ENC_AES256_GCM);
+
+            list($sessionId, $postId) = explode(':', $decryptor->decrypt($encData));
 
             if (empty($sessionId) || empty($postId)) {
                 throw new Error\BadRequest('Invalid session info data.');

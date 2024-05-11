@@ -7,6 +7,9 @@ namespace SimpleSAML\Utils;
 use InvalidArgumentException;
 use SimpleSAML\{Configuration, Error, Logger, Module, Session};
 use SimpleSAML\XHTML\Template;
+use SimpleSAML\XMLSecurity\Alg\Encryption\AES;
+use SimpleSAML\XMLSecurity\Constants as C;
+use SimpleSAML\XMLSecurity\Key\SymmetricKey;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use function array_key_exists;
@@ -129,8 +132,9 @@ class HTTP
         $session_id = $session->getSessionId();
 
         // encrypt the session ID and the random ID
-        $cryptoUtils = new Crypto();
-        $info = base64_encode($cryptoUtils->aesEncrypt($session_id . ':' . $id));
+        $symmetricKey = new SymmetricKey((new Config())->getSecretSalt());
+        $encryptor = new AES($symmetricKey, C::BLOCK_ENC_AES256_GCM);
+        $info = base64_encode($encryptor->encrypt($session_id . ':' . $id));
 
         $url = Module::getModuleURL('core/postredirect', ['RedirInfo' => $info]);
         return preg_replace('#^https:#', 'http:', $url);

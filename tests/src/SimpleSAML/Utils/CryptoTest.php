@@ -10,7 +10,6 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Configuration, Error, Utils};
 
-use function extension_loaded;
 use function file_put_contents;
 use function substr;
 use function trim;
@@ -101,88 +100,6 @@ PHP;
         $this->root_directory = vfsStream::url(self::ROOTDIRNAME);
         $this->certdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTCERTDIR;
         $this->cryptoUtils = new Utils\Crypto();
-    }
-
-
-    /**
-     * Test that aesDecrypt() works properly, being able to decrypt some previously known (and correct)
-     * ciphertext.
-     *
-     */
-    public function testAesDecrypt(): void
-    {
-        if (!extension_loaded('openssl')) {
-            $this->markTestSkipped('The openssl PHP module is not loaded.');
-        }
-
-        $plaintext = 'SUPER_SECRET_TEXT';
-        $ciphertext = <<<CIPHER
-uR2Yu0r4itInKx91D/l9y/08L5CIQyev9nAr27fh3Sshous4vbXRRcMcjqHDOrquD+2vqLyw7ygnbA9jA9TpB4hLZocvAWcTN8tyO82hiSY=
-CIPHER;
-
-        $decrypted = $this->cryptoUtils->aesDecrypt(base64_decode($ciphertext, true));
-        $this->assertEquals($plaintext, $decrypted);
-    }
-
-
-    /**
-     * @return void
-     */
-    public function testAesDecryptWithSmallCipherTextThrowsException(): void
-    {
-        if (!extension_loaded('openssl')) {
-            $this->markTestSkipped('The openssl PHP module is not loaded.');
-        }
-
-        $secret = 'SUPER_SECRET_SALT';
-        $plaintext = 'SUPER_SECRET_TEXT';
-        // This is too small!
-        $ciphertext = 'AWcTN8tyO82hiSY=';
-
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Input parameter "$ciphertext" must be a string with more than 48 characters.');
-        $this->cryptoUtils->aesDecrypt(base64_decode($ciphertext), $secret);
-    }
-
-
-    /**
-     * @return void
-     */
-    public function testAesDecryptWithWrongSecretThrowsException(): void
-    {
-        if (!extension_loaded('openssl')) {
-            $this->markTestSkipped('The openssl PHP module is not loaded.');
-        }
-
-        // This is the wrong secret!
-        $secret = 'notsosecret';
-        $plaintext = 'SUPER_SECRET_TEXT';
-        $ciphertext = <<<CIPHER
-uR2Yu0r4itInKx91D/l9y/08L5CIQyev9nAr27fh3Sshous4vbXRRcMcjqHDOrquD+2vqLyw7ygnbA9jA9TpB4hLZocvAWcTN8tyO82hiSY=
-CIPHER;
-
-        $this->expectException(Error\Exception::class);
-        $this->expectExceptionMessage('Failed to decrypt ciphertext.');
-        $this->cryptoUtils->aesDecrypt(base64_decode($ciphertext), $secret);
-    }
-
-
-    /**
-     * Test that aesEncrypt() produces ciphertexts that aesDecrypt() can decrypt.
-     *
-     */
-    public function testAesEncrypt(): void
-    {
-        if (!extension_loaded('openssl')) {
-            $this->markTestSkipped('The openssl PHP module is not loaded.');
-        }
-
-        $original_plaintext = 'SUPER_SECRET_TEXT';
-
-        $ciphertext = $this->cryptoUtils->aesEncrypt($original_plaintext);
-        $decrypted_plaintext = $this->cryptoUtils->aesDecrypt($ciphertext);
-
-        $this->assertEquals($original_plaintext, $decrypted_plaintext);
     }
 
 
