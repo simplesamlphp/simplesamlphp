@@ -7,7 +7,7 @@ namespace SimpleSAML\Module\core\Auth\Source;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Module\core\Auth\UserPassBase;
-use SimpleSAML\Utils;
+use Symfony\Component\PasswordHasher\Hasher\NativePasswordHasher;
 
 /**
  * Authentication source which verifies the password against
@@ -59,8 +59,8 @@ class AdminPassword extends UserPassBase
             throw new Error\Error(Error\ErrorCodes::WRONGUSERPASS);
         }
 
-        $cryptoUtils = new Utils\Crypto();
-        if (!$cryptoUtils->pwValid($adminPassword, $password)) {
+        $hasher = new NativePasswordHasher();
+        if (!$hasher->verify($adminPassword, $password)) {
             throw new Error\Error(Error\ErrorCodes::WRONGUSERPASS);
         }
         return ['user' => ['admin']];
