@@ -104,7 +104,7 @@ PHP;
     /**
      * Test that aesDecrypt() works properly, being able to decrypt some previously known (and correct)
      * ciphertext.
-     *
+     * @deprecated
      */
     public function testAesDecrypt(): void
     {
@@ -124,6 +124,7 @@ CIPHER;
 
     /**
      * @return void
+     * @deprecated
      */
     public function testAesDecryptWithSmallCipherTextThrowsException(): void
     {
@@ -144,6 +145,7 @@ CIPHER;
 
     /**
      * @return void
+     * @deprecated
      */
     public function testAesDecryptWithWrongSecretThrowsException(): void
     {
@@ -167,6 +169,7 @@ CIPHER;
     /**
      * Test that aesEncrypt() produces ciphertexts that aesDecrypt() can decrypt.
      *
+     * @deprecated
      */
     public function testAesEncrypt(): void
     {

@@ -10,6 +10,9 @@ use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\XHTML\Template;
+use SimpleSAML\XMLSecurity\Alg\Encryption\AES;
+use SimpleSAML\XMLSecurity\Constants as C;
+use SimpleSAML\XMLSecurity\Key\SymmetricKey;
 
 /**
  * HTTP-related utility methods.
@@ -87,8 +90,9 @@ class HTTP
         $session_id = $session->getSessionId();
 
         // encrypt the session ID and the random ID
-        $cryptoUtils = new Crypto();
-        $info = base64_encode($cryptoUtils->aesEncrypt($session_id . ':' . $id));
+        $symmetricKey = new SymmetricKey((new Config())->getSecretSalt());
+        $encryptor = new AES($symmetricKey, C::BLOCK_ENC_AES256_GCM);
+        $info = base64_encode($encryptor->encrypt($session_id . ':' . $id));
 
         $url = Module::getModuleURL('core/postredirect', ['RedirInfo' => $info]);
         return preg_replace('#^https:#', 'http:', $url);
