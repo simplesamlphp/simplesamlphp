@@ -223,65 +223,6 @@ CIPHER;
 
     /**
      */
-    public function testGoodPwValid(): void
-    {
-        $pw = "password";
-
-        $hash = $this->cryptoUtils->pwHash($pw);
-        $res = $this->cryptoUtils->pwValid($hash, $pw);
-
-        $this->assertTrue($res);
-    }
-
-
-    /**
-     */
-    public function testBadPwInvalid(): void
-    {
-        $pw = "password";
-        $pw2 = "password2";
-
-        $hash = $this->cryptoUtils->pwHash($pw);
-        $res = $this->cryptoUtils->pwValid($hash, $pw2);
-
-        $this->assertFalse($res);
-    }
-
-    /**
-     * Check that hash cannot be used to authenticate ith.
-     */
-    public function testHashAsPwInvalid(): void
-    {
-        $pw = "password";
-
-        $hash = $this->cryptoUtils->pwHash($pw);
-        $this->expectException(Error\Exception::class);
-        $this->cryptoUtils->pwValid($hash, $hash);
-    }
-
-
-    /**
-     */
-    public function testSecureCompareEqual(): void
-    {
-        $res = $this->cryptoUtils->secureCompare("string", "string");
-
-        $this->assertTrue($res);
-    }
-
-
-    /**
-     */
-    public function testSecureCompareNotEqual(): void
-    {
-        $res = $this->cryptoUtils->secureCompare("string1", "string2");
-
-        $this->assertFalse($res);
-    }
-
-
-    /**
-     */
     public function testLoadPrivateKeyRequiredMetadataMissing(): void
     {
         $this->expectException(Error\Exception::class);

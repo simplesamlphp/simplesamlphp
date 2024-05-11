@@ -19,16 +19,12 @@ use function extension_loaded;
 use function hash_equals;
 use function hash_hmac;
 use function implode;
-use function is_null;
 use function mb_strlen;
 use function mb_substr;
 use function openssl_decrypt;
 use function openssl_digest;
 use function openssl_encrypt;
 use function openssl_random_pseudo_bytes;
-use function password_get_info;
-use function password_hash;
-use function password_verify;
 use function strncmp;
 use function strpos;
 use function substr;
@@ -75,7 +71,7 @@ class Crypto
         $msg  = mb_substr($ciphertext, 48, $len - 48, '8bit');
 
         // authenticate the ciphertext
-        if ($this->secureCompare(hash_hmac('sha256', $iv . $msg, substr($key, 64, 64), true), $hmac)) {
+        if (hash_equals(hash_hmac('sha256', $iv . $msg, substr($key, 64, 64), true), $hmac)) {
             $plaintext = openssl_decrypt(
                 $msg,
                 'AES-256-CBC',
@@ -345,64 +341,6 @@ class Crypto
         return $transform;
     }
 
-
-    /**
-     * This function hashes a password with a given algorithm.
-     *
-     * @param string $password The password to hash.
-     * @param string|int|null $algorithm The algorithm to use. Defaults to the system default
-     *
-     * @return string The hashed password.
-     * @throws \Exception If the algorithm is not known ti PHP.
-     * @throws Error\Exception If the algorithm specified is not supported.
-     *
-     * @see hash_algos()
-     *
-     */
-    public function pwHash(string $password, string|int|null $algorithm = PASSWORD_DEFAULT): string
-    {
-        return password_hash($password, $algorithm);
-    }
-
-
-    /**
-     * Compare two strings securely.
-     *
-     * This method checks if two strings are equal in constant time, avoiding timing attacks. Use it every time we need
-     * to compare a string with a secret that shouldn't be leaked, i.e. when verifying passwords, one-time codes, etc.
-     *
-     * @param string $known A known string.
-     * @param string $user A user-provided string to compare with the known string.
-     *
-     * @return bool True if both strings are equal, false otherwise.
-     */
-    public function secureCompare(string $known, string $user): bool
-    {
-        return hash_equals($known, $user);
-    }
-
-
-    /**
-     * This function checks if a password is valid
-     *
-     * @param string $hash The password as it appears in password file, optionally prepended with algorithm.
-     * @param string $password The password to check in clear.
-     *
-     * @return boolean True if the hash corresponds with the given password, false otherwise.
-     * @throws \InvalidArgumentException If the input parameters are not strings.
-     * @throws Error\Exception If the algorithm specified is not supported.
-     *
-     */
-    public function pwValid(string $hash, string $password): bool
-    {
-        if (!is_null(password_get_info($password)['algo'])) {
-            throw new Error\Exception("Cannot use a hash value for authentication.");
-        }
-        if (password_verify($password, $hash)) {
-            return true;
-        }
-        return $hash === $password;
-    }
 
     /**
      * Retrieve a certificate or private key from specified storage location
