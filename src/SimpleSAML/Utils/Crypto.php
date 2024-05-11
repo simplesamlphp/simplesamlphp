@@ -199,64 +199,6 @@ class Crypto
 
 
     /**
-     * This function hashes a password with a given algorithm.
-     *
-     * @param string $password The password to hash.
-     * @param string|int|null $algorithm The algorithm to use. Defaults to the system default
-     *
-     * @return string The hashed password.
-     * @throws \Exception If the algorithm is not known ti PHP.
-     * @throws Error\Exception If the algorithm specified is not supported.
-     *
-     * @see hash_algos()
-     *
-     */
-    public function pwHash(string $password, string|int|null $algorithm = PASSWORD_DEFAULT): string
-    {
-        return password_hash($password, $algorithm);
-    }
-
-
-    /**
-     * Compare two strings securely.
-     *
-     * This method checks if two strings are equal in constant time, avoiding timing attacks. Use it every time we need
-     * to compare a string with a secret that shouldn't be leaked, i.e. when verifying passwords, one-time codes, etc.
-     *
-     * @param string $known A known string.
-     * @param string $user A user-provided string to compare with the known string.
-     *
-     * @return bool True if both strings are equal, false otherwise.
-     */
-    public function secureCompare(string $known, string $user): bool
-    {
-        return hash_equals($known, $user);
-    }
-
-
-    /**
-     * This function checks if a password is valid
-     *
-     * @param string $hash The password as it appears in password file, optionally prepended with algorithm.
-     * @param string $password The password to check in clear.
-     *
-     * @return boolean True if the hash corresponds with the given password, false otherwise.
-     * @throws \InvalidArgumentException If the input parameters are not strings.
-     * @throws Error\Exception If the algorithm specified is not supported.
-     *
-     */
-    public function pwValid(string $hash, string $password): bool
-    {
-        if (!is_null(password_get_info($password)['algo'])) {
-            throw new Error\Exception("Cannot use a hash value for authentication.");
-        }
-        if (password_verify($password, $hash)) {
-            return true;
-        }
-        return $hash === $password;
-    }
-
-    /**
      * Retrieve a certificate or private key from specified storage location
      *
      * @param string $data_type Type of data to retrieve, either "certificate" or "private_key"

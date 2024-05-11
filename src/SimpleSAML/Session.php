@@ -17,6 +17,7 @@ use function bin2hex;
 use function call_user_func;
 use function defined;
 use function get_object_vars;
+use function hash_equal;
 use function header_register_callback;
 use function intval;
 use function is_a;
@@ -378,8 +379,7 @@ class Session implements Utils\ClearableState
                     Logger::warning('Missing AuthToken cookie.');
                     return null;
                 }
-                $cryptoUtils = new Utils\Crypto();
-                if (!$cryptoUtils->secureCompare($session->authToken, $_COOKIE[$authTokenCookieName])) {
+                if (!hash_equal($session->authToken, $_COOKIE[$authTokenCookieName])) {
                     Logger::warning('Invalid AuthToken cookie.');
                     return null;
                 }
