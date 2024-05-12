@@ -246,8 +246,11 @@ class SessionHandlerPHP extends SessionHandler
         $session = $_SESSION['SimpleSAMLphp_SESSION'];
         Assert::string($session);
 
-        $session = unserialize($session);
-
+        try {
+            $session = unserialize($session);
+        } catch (\Throwable $e) {
+            $session = null;  # sometimes deserializing fails, so we throw it away
+        }
         return ($session !== false) ? $session : null;
     }
 
