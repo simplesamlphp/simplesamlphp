@@ -3724,16 +3724,16 @@
         },
         {
             "name": "symfony/twig-bridge",
-            "version": "v6.4.6",
+            "version": "v6.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/twig-bridge.git",
-                "reference": "f150e06e2fbe8004dbcaa66a46bf20b2b3a99308"
+                "reference": "544e47a4f2d4a786abd65531d2c326fb6e53da72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/twig-bridge/zipball/f150e06e2fbe8004dbcaa66a46bf20b2b3a99308",
-                "reference": "f150e06e2fbe8004dbcaa66a46bf20b2b3a99308",
+                "url": "https://api.github.com/repos/symfony/twig-bridge/zipball/544e47a4f2d4a786abd65531d2c326fb6e53da72",
+                "reference": "544e47a4f2d4a786abd65531d2c326fb6e53da72",
                 "shasum": ""
             },
             "require": {
@@ -3813,7 +3813,7 @@
             "description": "Provides integration for Twig with various Symfony components",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/twig-bridge/tree/v6.4.6"
+                "source": "https://github.com/symfony/twig-bridge/tree/v6.4.7"
             },
             "funding": [
                 {
@@ -3829,7 +3829,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-28T21:00:57+00:00"
+            "time": "2024-04-18T09:22:46+00:00"
         },
         {
             "name": "symfony/var-dumper",
