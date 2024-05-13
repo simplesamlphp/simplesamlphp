@@ -174,10 +174,12 @@ class AttributeLimit extends Auth\ProcessingFilter
                         continue;
                     }
                 } elseif (($regexpMatch = self::matchAnyRegex($name, $allowedAttributeRegex)) !== null) {
-                    $attributes[$name] = $this->filterAttributeValues(
-                        $attributes[$name],
-                        $allowedAttributeRegex[$regexpMatch]
-                    );
+                    if (array_key_exists($regexpMatch, $allowedAttributeRegex)) {
+                        $attributes[$name] = $this->filterAttributeValues(
+                            $attributes[$name],
+                            $allowedAttributeRegex[$regexpMatch]
+                        );
+                    }
                     if (!empty($attributes[$name])) {
                         continue;
                     }
