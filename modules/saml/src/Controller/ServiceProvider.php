@@ -180,9 +180,7 @@ class ServiceProvider
         /**
          * Try to authenticate
          */
-        if (!$authSource->isAuthenticated()) {
-            $authSource->login($options);
-        }
+        $authSource->requireAuth($options);
 
         $response = $as->requireAuth($options);
         if ($response === null) {

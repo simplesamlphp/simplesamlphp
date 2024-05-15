@@ -334,7 +334,7 @@ class ServiceProviderTest extends TestCase
             /** @psalm-suppress UndefinedMethod method defined in anonymous class */
             $this->serviceProvider->callHandleLogin($request, $as, $spSource, $this->httpUtils);
         } else {
-            $as->expects($this->once())->method('login')->with($options);
+            $as->expects($this->once())->method('requireAuth')->with($options);
             /** @psalm-suppress UndefinedMethod method defined in anonymous class */
             $returnsTo = $this->serviceProvider
                               ->callHandleLogin($request, $as, $spSource, $this->httpUtils);
@@ -456,7 +456,7 @@ class ServiceProviderTest extends TestCase
             $this->serviceProvider->callHandleLogin($request, $as, $spSource, $this->httpUtils);
         } else {
             if ($expectLoginCalled) {
-                $as->expects($this->once())->method('login')->with($options);
+                $as->expects($this->once())->method('requireAuth')->with($options);
             } else {
                 $as->expects($this->never())->method('login');
             }
