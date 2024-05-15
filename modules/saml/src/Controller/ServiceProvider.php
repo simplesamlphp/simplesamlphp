@@ -193,9 +193,7 @@ class ServiceProvider
         /**
          * Try to authenticate
          */
-        if (!$authSource->isAuthenticated()) {
-            $authSource->login($options);
-        }
+        $authSource->requireAuth($options);
 
         // Return the redirect target
         return $options['ReturnTo'];
