@@ -294,16 +294,18 @@ class ServiceProviderTest extends TestCase
     /**
      * Test Login without Session/ Not Authenticated
      *
-     * @dataProvider loginNotAuthenticatedDataProvider
-     *
      * @param   array  $queryParameters
      * @param   array  $options
      * @param   bool   $expectingException
      *
      * @return void
      */
-    public function testLoginHandleNotAuthenticated(array $queryParameters, array $options, bool $expectingException = false): void
-    {
+    #[DataProvider('loginNotAuthenticatedDataProvider')]
+    public function testLoginHandleNotAuthenticated(
+        array $queryParameters,
+        array $options,
+        bool $expectingException = false
+    ): void {
         $request = Request::create(
             '/sp/login/phpunit',
             'GET',
@@ -410,8 +412,6 @@ class ServiceProviderTest extends TestCase
     /**
      * Test Login with Session/Authenticated
      *
-     * @dataProvider loginAuthenticatedDataProvider
-     *
      * @param   array  $queryParameters
      * @param   array  $options
      * @param   bool   $expectLoginCalled
@@ -419,6 +419,7 @@ class ServiceProviderTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('loginAuthenticatedDataProvider')]
     public function testLoginHandleAuthenticated(
         array $queryParameters,
         array $options,
