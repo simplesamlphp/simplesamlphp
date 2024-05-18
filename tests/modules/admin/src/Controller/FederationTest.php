@@ -72,7 +72,7 @@ class FederationTest extends TestCase
                 'enable.saml20-idp' => true,
                 'enable.adfs-idp' => true,
                 'language.default' => 'fr',
-                'language.get_language_function' => [$this, 'getLanguage']
+                'language.get_language_function' => [$this, 'getLanguage'],
             ],
             '[ARRAY]',
             'simplesaml'
@@ -120,21 +120,21 @@ class FederationTest extends TestCase
                         0 => [
                             'name' => 'SimpleSAMLphp Hosted IDP',
                             'descr' => 'The local IDP',
-                            'OrganizationDisplayName' => ['en' => 'My IDP', 'nl' => 'Mijn IDP']
-                        ]
+                            'OrganizationDisplayName' => ['en' => 'My IDP', 'nl' => 'Mijn IDP'],
+                        ],
                     ];
                 } elseif ($set === 'saml20-sp-remote') {
                     return [
                         0 => [
                             'name' => ['nl' => 'SimpleSAMLphp Remote SP'],
                             'descr' => 'The remote SP',
-                            'OrganizationDisplayName' => ['en' => 'His SP', 'nl' => 'Zijn SP', 'fr' => 'Son SP']
+                            'OrganizationDisplayName' => ['en' => 'His SP', 'nl' => 'Zijn SP', 'fr' => 'Son SP'],
                         ],
                         1 => [
                             'name' => ['fr' => 'SimpleSAMLphp Remote SP'],
                             'descr' => 'The remote SP',
-                            'OrganizationDisplayName' => ['en' => 'Her SP']
-                        ]
+                            'OrganizationDisplayName' => ['en' => 'Her SP'],
+                        ],
                     ];
                 }
                 return [];
@@ -166,9 +166,9 @@ class FederationTest extends TestCase
                             'entityID' => 'urn:x-simplesamlphp:example-sp',
                             'privatekey' => FederationTest::CERT_KEY,
                             'certificate' => FederationTest::CERT_PUBLIC,
-                            'attributes' => ['uid', 'mail']
-                        ]
-                    )
+                            'attributes' => ['uid', 'mail'],
+                        ],
+                    ),
                 ];
             }
         };
@@ -198,9 +198,9 @@ class FederationTest extends TestCase
                     'valid-metadata-selfsigned.xml',
                     'application/xml',
                     null,
-                    true
-                )
-            ]
+                    true,
+                ),
+            ],
         );
 
         $c = new Controller\Federation($this->config);
@@ -219,7 +219,7 @@ class FederationTest extends TestCase
         $request = Request::create(
             '/federation/metadata-converter',
             'POST',
-            ['xmldata' => file_get_contents($this->metadata_xml)]
+            ['xmldata' => file_get_contents($this->metadata_xml)],
         );
 
         $c = new Controller\Federation($this->config);
@@ -237,7 +237,7 @@ class FederationTest extends TestCase
         $request = Request::create(
             '/federation/metadata-converter',
             'POST',
-            ['xmldata' => file_get_contents($this->expired_metadata_xml)]
+            ['xmldata' => file_get_contents($this->expired_metadata_xml)],
         );
 
         $c = new Controller\Federation($this->config);
@@ -256,7 +256,7 @@ class FederationTest extends TestCase
         $request = Request::create(
             '/federation/metadata-converter',
             'POST',
-            ['xmldata' => file_get_contents($this->broken_metadata_xml)]
+            ['xmldata' => file_get_contents($this->broken_metadata_xml)],
         );
 
         $c = new Controller\Federation($this->config);
@@ -276,7 +276,7 @@ class FederationTest extends TestCase
         $request = Request::create(
             '/federation/metadata-converter',
             'POST',
-            ['xmldata' => '']
+            ['xmldata' => ''],
         );
 
         $c = new Controller\Federation($this->config);
@@ -299,8 +299,8 @@ class FederationTest extends TestCase
             'GET',
             [
                 'set' => 'saml20-sp-hosted',
-                'source' => 'default-sp'
-            ]
+                'source' => 'default-sp',
+            ],
         );
 
         $c = new Controller\Federation($this->config);
@@ -321,7 +321,7 @@ class FederationTest extends TestCase
                 return Configuration::loadFromArray(
                     ['certData' => 'abc123'],
                     '[ARRAY]',
-                    'simplesaml'
+                    'simplesaml',
                 );
             }
 
@@ -350,8 +350,8 @@ class FederationTest extends TestCase
             'GET',
             [
                 'set' => 'saml20-idp-hosted',
-                'entity' => 'some entity'
-            ]
+                'entity' => 'some entity',
+            ],
         );
 
         $mdh = new class () extends MetaDataStorageHandler {
@@ -387,7 +387,7 @@ class FederationTest extends TestCase
         $request = Request::create(
             '/federation/show',
             'GET',
-            ['set' => 'saml20-sp-hosted', 'entityid' => 'some entity']
+            ['set' => 'saml20-sp-hosted', 'entityid' => 'some entity'],
         );
 
         $mdh = new class () extends MetaDataStorageHandler {

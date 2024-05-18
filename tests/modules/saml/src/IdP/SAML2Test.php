@@ -62,7 +62,7 @@ class SAML2Test extends ClearStateTestCase
 
         $this->assertStringStartsWith(
             'http://idp.examlple.com/module.php/saml/idp/singleSignOnService?spentityid=https%3A%2F%2Fsome-sp-entity-id&cookie',
-            $state['\SimpleSAML\Auth\State.restartURL']
+            $state['\SimpleSAML\Auth\State.restartURL'],
         );
         unset($state['saml:AuthnRequestReceivedAt']); // timestamp can't be tested in equality assertion
         unset($state['SPMetadata']); // entityid asserted above
@@ -287,9 +287,9 @@ EOT;
         $this->assertEquals(
             [
                 'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService'
+                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService',
             ],
-            $hostedMd['SingleSignOnService'][0]
+            $hostedMd['SingleSignOnService'][0],
         );
         $this->assertArrayHasKey('SingleLogoutService', $hostedMd);
         $this->assertIsArray($hostedMd['SingleLogoutService']);
@@ -297,9 +297,9 @@ EOT;
         $this->assertEquals(
             [
                 'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleLogout'
+                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleLogout',
             ],
-            $hostedMd['SingleLogoutService'][0]
+            $hostedMd['SingleLogoutService'][0],
         );
 
         $this->assertArrayHasKey('keys', $hostedMd);
@@ -364,9 +364,9 @@ EOT;
             [
                 'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP',
                 'index' => 0,
-                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/artifactResolutionService'
+                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/artifactResolutionService',
             ],
-            $hostedMd['ArtifactResolutionService'][0]
+            $hostedMd['ArtifactResolutionService'][0],
         );
     }
 
@@ -382,16 +382,16 @@ EOT;
             [
                 'Binding' => 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser',
                 'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService',
-                'hoksso:ProtocolBinding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'
+                'hoksso:ProtocolBinding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
             ],
-            $hostedMd['SingleSignOnService'][0]
+            $hostedMd['SingleSignOnService'][0],
         );
         $this->assertEquals(
             [
                 'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService'
+                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService',
             ],
-            $hostedMd['SingleSignOnService'][1]
+            $hostedMd['SingleSignOnService'][1],
         );
     }
 
@@ -406,17 +406,17 @@ EOT;
         $this->assertEquals(
             [
                 'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService'
+                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService',
             ],
-            $hostedMd['SingleSignOnService'][0]
+            $hostedMd['SingleSignOnService'][0],
         );
         $this->assertEquals(
             [
                 'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP',
                 'index' => 0,
-                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService'
+                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService',
             ],
-            $hostedMd['SingleSignOnService'][1]
+            $hostedMd['SingleSignOnService'][1],
         );
     }
 
@@ -568,7 +568,7 @@ EOT;
         $republishTarget = $dom->createElementNS(
             'http://eduid.cz/schema/metadata/1.0',
             'eduidmd:RepublishTarget',
-            'http://edugain.org/'
+            'http://edugain.org/',
         );
         $republishRequest->appendChild($republishTarget);
         $ext = [new Chunk($republishRequest)];
@@ -583,7 +583,7 @@ EOT;
         $this->assertInstanceOf(Chunk::class, $md['saml:Extensions'][0]);
         $this->assertEquals(
             'http://edugain.org/',
-            $md['saml:Extensions'][0]->getXML()->firstChild->firstChild->textContent
+            $md['saml:Extensions'][0]->getXML()->firstChild->firstChild->textContent,
         );
     }
 
@@ -596,11 +596,11 @@ EOT;
             'UIInfo' => [
                 'DisplayName' => [
                     'en' => 'English name',
-                    'es' => 'Nombre en Español'
+                    'es' => 'Nombre en Español',
                  ],
                  'Description' => [
                     'en' => 'English description',
-                    'es' => 'Descripción en Español'
+                    'es' => 'Descripción en Español',
                  ],
                  'Logo' => [
                      [
@@ -777,7 +777,7 @@ EOT;
                     'emailAddress'      => 'j.doe@example.edu',
                     'surName'           => 'Doe',
                 ],
-            ]
+            ],
         ];
         $md = $this->idpMetadataHandlerHelper($config, $globalConfig);
 

@@ -60,7 +60,7 @@ class Signer
 
             $ret = [
                 'privatekey'  => $entityMetadata['metadata.sign.privatekey'],
-                'certificate' => $entityMetadata['metadata.sign.certificate']
+                'certificate' => $entityMetadata['metadata.sign.certificate'],
             ];
 
             if (array_key_exists('metadata.sign.privatekey_pass', $entityMetadata)) {
@@ -111,7 +111,7 @@ class Signer
 
             $ret = [
                 'privatekey'  => $entityMetadata['privatekey'],
-                'certificate' => $entityMetadata['certificate']
+                'certificate' => $entityMetadata['certificate'],
             ];
 
             if (array_key_exists('privatekey_pass', $entityMetadata)) {

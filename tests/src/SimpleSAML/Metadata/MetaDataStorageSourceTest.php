@@ -64,7 +64,7 @@ class MetaDataStorageSourceTest extends TestCase
     public function testLoadEntitiesStaticXMLSource(): void
     {
         $c = [
-            'key' => 'value'
+            'key' => 'value',
         ];
         Configuration::loadFromArray($c, '', 'simplesaml');
         $entityId1 = "https://example.com";

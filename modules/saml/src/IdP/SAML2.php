@@ -62,7 +62,7 @@ class SAML2
         $spEntityId = $spMetadata['entityid'];
         $spMetadata = Configuration::loadFromArray(
             $spMetadata,
-            '$metadata[' . var_export($spEntityId, true) . ']'
+            '$metadata[' . var_export($spEntityId, true) . ']',
         );
 
         Logger::info('Sending SAML 2.0 Response to ' . var_export($spEntityId, true));
@@ -499,7 +499,7 @@ class SAML2
             'Responder' => ['\SimpleSAML\Module\saml\IdP\SAML2', 'sendResponse'],
             Auth\State::EXCEPTION_HANDLER_FUNC => [
                 '\SimpleSAML\Module\saml\IdP\SAML2',
-                'handleAuthError'
+                'handleAuthError',
             ],
             Auth\State::RESTART => $sessionLostURL,
 
@@ -550,8 +550,8 @@ class SAML2
             'SingleLogoutService',
             [
                 Constants::BINDING_HTTP_REDIRECT,
-                Constants::BINDING_HTTP_POST
-            ]
+                Constants::BINDING_HTTP_POST,
+            ],
         );
         $binding = Binding::getBinding($dst['Binding']);
         $lr = self::buildLogoutRequest($idpMetadata, $spMetadata, $association, $relayState);
@@ -598,7 +598,7 @@ class SAML2
         Stats::log('saml:idp:LogoutResponse:sent', [
             'spEntityID'  => $spEntityId,
             'idpEntityID' => $idpMetadata->getString('entityid'),
-            'partial'     => $partial
+            'partial'     => $partial,
         ]);
 
         /** @var array $dst */
@@ -606,8 +606,8 @@ class SAML2
             'SingleLogoutService',
             [
                 Constants::BINDING_HTTP_REDIRECT,
-                Constants::BINDING_HTTP_POST
-            ]
+                Constants::BINDING_HTTP_POST,
+            ],
         );
         $binding = Binding::getBinding($dst['Binding']);
         if (isset($dst['ResponseLocation'])) {
@@ -713,7 +713,7 @@ class SAML2
 
         $bindings = [
             Constants::BINDING_HTTP_REDIRECT,
-            Constants::BINDING_HTTP_POST
+            Constants::BINDING_HTTP_POST,
         ];
 
         /** @var array $dst */
@@ -878,7 +878,7 @@ class SAML2
                 'signing' => true,
                 'encryption' => false,
                 'X509Certificate' => $httpsCert['certData'],
-                'prefix' => 'https.'
+                'prefix' => 'https.',
             ];
         }
         $metadata['keys'] = $keys;
@@ -900,7 +900,7 @@ class SAML2
                     'hoksso:ProtocolBinding' => Constants::BINDING_HTTP_REDIRECT,
                     'Binding' => Constants::BINDING_HOK_SSO,
                     'Location' => Module::getModuleURL('saml/idp/singleSignOnService'),
-                ]
+                ],
             );
         }
 
@@ -918,7 +918,7 @@ class SAML2
             $metadata['OrganizationName'] = $config->getLocalizedString('OrganizationName');
             $metadata['OrganizationDisplayName'] = $config->getOptionalLocalizedString(
                 'OrganizationDisplayName',
-                $metadata['OrganizationName']
+                $metadata['OrganizationName'],
             );
 
             if (!$config->hasValue('OrganizationURL')) {

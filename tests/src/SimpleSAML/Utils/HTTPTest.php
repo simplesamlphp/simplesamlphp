@@ -466,7 +466,7 @@ class HTTPTest extends ClearStateTestCase
                 'path' => '/ourPath',
                 'domain' => 'example.com',
                 'secure' => true,
-                'httponly' => true
+                'httponly' => true,
             ]
         );
         $httpUtils->setCookie(
@@ -478,7 +478,7 @@ class HTTPTest extends ClearStateTestCase
                 'domain' => 'example.com',
                 'secure' => true,
                 'httponly' => true,
-                'raw' => true
+                'raw' => true,
             ]
         );
 

@@ -720,7 +720,7 @@ class SP extends \SimpleSAML\Auth\Source
         $params = [
             'entityID' => $this->entityId,
             'return' => $returnTo,
-            'returnIDParam' => 'idpentityid'
+            'returnIDParam' => 'idpentityid',
         ];
 
         if (isset($state['saml:IDPList'])) {
@@ -1056,7 +1056,7 @@ class SP extends \SimpleSAML\Auth\Source
             'SingleLogoutService',
             [
                 Constants::BINDING_HTTP_REDIRECT,
-                Constants::BINDING_HTTP_POST
+                Constants::BINDING_HTTP_POST,
             ],
             false
         );

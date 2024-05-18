@@ -111,7 +111,7 @@ class SQLStore implements StoreInterface
         } elseif ($tableVer < 2 && $tableVer > 0) {
             throw new Exception(
                 'No upgrade path available. Please migrate to the latest 1.16+ '
-                . 'version of SimpleSAMLphp first before upgrading to 2.x.'
+                . 'version of SimpleSAMLphp first before upgrading to 2.x.',
             );
         }
 

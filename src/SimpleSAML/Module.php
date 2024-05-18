@@ -102,7 +102,7 @@ class Module
      */
     public static array $core_modules = [
         'core' => true,
-        'saml' => true
+        'saml' => true,
     ];
 
     /**
@@ -335,7 +335,7 @@ class Module
             // "public" allows response caching even if the request was authenticated,
             // which is exactly what we want for static resources
             'public' => true,
-            'max_age' => strval($cacheConfig->getOptionalInteger('max_age', 86400))
+            'max_age' => strval($cacheConfig->getOptionalInteger('max_age', 86400)),
         ]);
         $response->setAutoLastModified();
         if ($cacheConfig->getOptionalBoolean('etag', false)) {

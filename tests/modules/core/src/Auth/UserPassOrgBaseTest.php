@@ -30,7 +30,7 @@ class UserPassOrgBaseTest extends TestCase
                 'dnpattern' => 'uid=%username%,ou=employees,dc=example,dc=org',
                 // Whether SSL/TLS should be used when contacting the LDAP server.
                 'enable_tls' => false,
-            ]
+            ],
         ];
 
         /** @var \SimpleSAML\Module\core\Auth\UserPassOrgBase $mockUserPassOrgBase */

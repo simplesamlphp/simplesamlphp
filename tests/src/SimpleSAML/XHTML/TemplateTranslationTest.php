@@ -180,7 +180,7 @@ class TemplateTranslationTest extends TestCase
             ->in(
                 [
                     $root . '/templates',
-                    $root . '/modules'
+                    $root . '/modules',
                 ]
             );
 

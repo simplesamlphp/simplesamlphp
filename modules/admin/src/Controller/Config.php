@@ -124,12 +124,12 @@ class Config
             'links' => [
                 [
                     'href' => Module::getModuleURL('admin/diagnostics'),
-                    'text' => Translate::noop('Diagnostics on hostname, port and protocol')
+                    'text' => Translate::noop('Diagnostics on hostname, port and protocol'),
                 ],
                 [
                     'href' => Module::getModuleURL('admin/phpinfo'),
-                    'text' => Translate::noop('Information on your PHP installation')
-                ]
+                    'text' => Translate::noop('Information on your PHP installation'),
+                ],
             ],
             'enablematrix' => [
                 'saml20idp' => $this->config->getOptionalBoolean('enable.saml20-idp', false),
@@ -203,11 +203,11 @@ class Config
                     Translate::noop('PHP %minimum% or newer is needed. You are running: %current%'),
                     [
                         '%minimum%' => '7.4',
-                        '%current%' => explode('-', phpversion())[0]
-                    ]
+                        '%current%' => explode('-', phpversion())[0],
+                    ],
                 ],
-                'enabled' => version_compare(phpversion(), '7.4', '>=')
-            ]
+                'enabled' => version_compare(phpversion(), '7.4', '>='),
+            ],
         ];
         $store = $this->config->getOptionalString('store.type', null);
         $checkforupdates = $this->config->getOptionalBoolean('admin.checkforupdates', true);
@@ -218,93 +218,93 @@ class Config
                 'required' => 'required',
                 'descr' => [
                     'required' => Translate::noop('Date/Time Extension'),
-                ]
+                ],
             ],
             'hash' => [
                 'required' => 'required',
                 'descr' => [
                     'required' => Translate::noop('Hashing function'),
-                ]
+                ],
             ],
             'gzinflate' => [
                 'required' => 'required',
                 'descr' => [
                     'required' => Translate::noop('ZLib'),
-                ]
+                ],
             ],
             'openssl_sign' => [
                 'required' => 'required',
                 'descr' => [
                     'required' => Translate::noop('OpenSSL'),
-                ]
+                ],
             ],
             'dom_import_simplexml' => [
                 'required' => 'required',
                 'descr' => [
                     'required' => Translate::noop('XML DOM'),
-                ]
+                ],
             ],
             'preg_match' => [
                 'required' => 'required',
                 'descr' => [
                     'required' => Translate::noop('Regular expression support'),
-                ]
+                ],
             ],
             'intl_get_error_code' => [
                 'required' => 'optional',
                 'descr' => [
                     'optional' => Translate::noop('PHP intl extension'),
-                ]
+                ],
             ],
             'json_decode' => [
                 'required' => 'required',
                 'descr' => [
                     'required' => Translate::noop('JSON support'),
-                ]
+                ],
             ],
             'class_implements' => [
                 'required' => 'required',
                 'descr' => [
                     'required' => Translate::noop('Standard PHP library (SPL)'),
-                ]
+                ],
             ],
             'mb_strlen' => [
                 'required' => 'required',
                 'descr' => [
                     'required' => Translate::noop('Multibyte String extension'),
-                ]
+                ],
             ],
             'curl_init' => [
                 'required' => ($checkforupdates === true) ? 'required' : 'optional',
                 'descr' => [
                     'optional' => Translate::noop(
-                        'cURL (might be required by some modules)'
+                        'cURL (might be required by some modules)',
                     ),
                     'required' => Translate::noop(
-                        'cURL (required if automatic version checks are used, also by some modules)'
+                        'cURL (required if automatic version checks are used, also by some modules)',
                     ),
-                ]
+                ],
             ],
             'session_start' => [
                 'required' => $store === 'phpsession' ? 'required' : 'optional',
                 'descr' => [
                     'optional' => Translate::noop('Session extension (required if PHP sessions are used)'),
                     'required' => Translate::noop('Session extension'),
-                ]
+                ],
             ],
             'pdo_drivers' => [
                 'required' => $store === 'sql' ? 'required' : 'optional',
                 'descr' => [
                     'optional' => Translate::noop('PDO Extension (required if a database backend is used)'),
                     'required' => Translate::noop('PDO extension'),
-                ]
+                ],
             ],
             'ldap_bind' => [
                 'required' => Module::isModuleEnabled('ldap') ? 'required' : 'optional',
                 'descr' => [
                     'optional' => Translate::noop('LDAP extension (required if an LDAP backend is used)'),
                     'required' => Translate::noop('LDAP extension'),
-                ]
+                ],
             ],
         ];
 
@@ -324,18 +324,18 @@ class Config
                 'descr' => [
                     'optional' => Translate::noop('predis/predis (required if the redis data store is used)'),
                     'required' => Translate::noop('predis/predis library'),
-                ]
+                ],
             ],
             [
                 'classes' => ['\Memcache', '\Memcached'],
                 'required' => $store === 'memcache' ? 'required' : 'optional',
                 'descr' => [
                     'optional' => Translate::noop(
-                        'Memcache or Memcached extension (required if the memcache backend is used)'
+                        'Memcache or Memcached extension (required if the memcache backend is used)',
                     ),
                     'required' => Translate::noop('Memcache or Memcached extension'),
-                ]
-            ]
+                ],
+            ],
         ];
 
         foreach ($libs as $lib) {
@@ -439,7 +439,7 @@ class Config
                 '<strong>You are not using HTTPS</strong> to protect communications with your users. HTTP works fine ' .
                 'for testing purposes, but in a production environment you should use HTTPS. <a ' .
                 'href="https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance">Read more about the ' .
-                'maintenance of SimpleSAMLphp</a>.'
+                'maintenance of SimpleSAMLphp</a>.',
             );
         }
 
@@ -450,7 +450,7 @@ class Config
                 '<strong>The configuration uses the default secret salt</strong>. Make sure to modify the <code>' .
                 'secretsalt</code> option in the SimpleSAMLphp configuration in production environments. <a ' .
                 'href="https://simplesamlphp.org/docs/stable/simplesamlphp-install">Read more about the ' .
-                'maintenance of SimpleSAMLphp</a>.'
+                'maintenance of SimpleSAMLphp</a>.',
             );
         } elseif (str_contains($secretSalt, '%')) {
             $warnings[] = Translate::noop(
@@ -466,7 +466,7 @@ class Config
         if (($checkforupdates === true) && $this->config->getVersion() !== 'master') {
             if (!function_exists('curl_init')) {
                 $warnings[] = Translate::noop(
-                    'The cURL PHP extension is missing. Cannot check for SimpleSAMLphp updates.'
+                    'The cURL PHP extension is missing. Cannot check for SimpleSAMLphp updates.',
                 );
             } else {
                 $latest = $this->session->getData(self::LATEST_VERSION_STATE_KEY, "version");

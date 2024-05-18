@@ -575,8 +575,8 @@ class ServiceProvider
                 'SingleLogoutService',
                 [
                     Constants::BINDING_HTTP_REDIRECT,
-                    Constants::BINDING_HTTP_POST
-                ]
+                    Constants::BINDING_HTTP_POST,
+                ],
             );
 
             if (!($binding instanceof SOAP)) {

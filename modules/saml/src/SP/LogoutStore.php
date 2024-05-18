@@ -37,7 +37,7 @@ class LogoutStore
         } elseif ($tableVer < 4 && $tableVer > 0) {
             throw new Exception(
                 'No upgrade path available. Please migrate to the latest 1.18+ '
-                .  'version of SimpleSAMLphp first before upgrading to 2.x.'
+                .  'version of SimpleSAMLphp first before upgrading to 2.x.',
             );
         }
 
@@ -115,7 +115,7 @@ class LogoutStore
         $store->insertOrUpdate(
             $store->prefix . '_saml_LogoutStore',
             ['_authSource', '_nameId', '_sessionIndex'],
-            $data
+            $data,
         );
     }
 
@@ -301,13 +301,13 @@ class LogoutStore
 
             if (!$session->isValid($authId)) {
                 Logger::info(
-                    'saml.LogoutStore: Skipping logout of session because it isn\'t authenticated.'
+                    'saml.LogoutStore: Skipping logout of session because it isn\'t authenticated.',
                 );
                 continue;
             }
 
             Logger::info(
-                'saml.LogoutStore: Logging out of session with trackId [' . $session->getTrackID() . '].'
+                'saml.LogoutStore: Logging out of session with trackId [' . $session->getTrackID() . '].',
             );
             $session->doLogout($authId);
             $numLoggedOut += 1;
