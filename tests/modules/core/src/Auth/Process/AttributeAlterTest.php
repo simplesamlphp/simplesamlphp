@@ -91,7 +91,7 @@ class AttributeAlterTest extends TestCase
             'target' => 'test2',
             'pattern' => '/wrong/',
             'replacement' => 'right',
-            '%merge'
+            '%merge',
         ];
 
         $request = [

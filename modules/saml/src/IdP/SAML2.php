@@ -527,7 +527,7 @@ class SAML2
             'Responder' => ['\SimpleSAML\Module\saml\IdP\SAML2', 'sendResponse'],
             Auth\State::EXCEPTION_HANDLER_FUNC => [
                 '\SimpleSAML\Module\saml\IdP\SAML2',
-                'handleAuthError'
+                'handleAuthError',
             ],
             Auth\State::RESTART => $sessionLostURL,
 
@@ -578,7 +578,7 @@ class SAML2
             'SingleLogoutService',
             [
                 C::BINDING_HTTP_REDIRECT,
-                C::BINDING_HTTP_POST
+                C::BINDING_HTTP_POST,
             ]
         );
 
@@ -632,7 +632,7 @@ class SAML2
         Stats::log('saml:idp:LogoutResponse:sent', [
             'spEntityID'  => $spEntityId,
             'idpEntityID' => $idpMetadata->getString('entityid'),
-            'partial'     => $partial
+            'partial'     => $partial,
         ]);
 
         /** @var array $dst */
@@ -640,7 +640,7 @@ class SAML2
             'SingleLogoutService',
             [
                 C::BINDING_HTTP_REDIRECT,
-                C::BINDING_HTTP_POST
+                C::BINDING_HTTP_POST,
             ]
         );
         $binding = Binding::getBinding($dst['Binding']);
@@ -755,7 +755,7 @@ class SAML2
 
         $bindings = [
             C::BINDING_HTTP_REDIRECT,
-            C::BINDING_HTTP_POST
+            C::BINDING_HTTP_POST,
         ];
 
         /** @var array $dst */
@@ -920,7 +920,7 @@ class SAML2
                 'signing' => true,
                 'encryption' => false,
                 'X509Certificate' => $httpsCert['certData'],
-                'prefix' => 'https.'
+                'prefix' => 'https.',
             ];
         }
         $metadata['keys'] = $keys;
@@ -942,7 +942,7 @@ class SAML2
                     'hoksso:ProtocolBinding' => C::BINDING_HTTP_REDIRECT,
                     'Binding' => C::BINDING_HOK_SSO,
                     'Location' => Module::getModuleURL('saml/idp/singleSignOnService'),
-                ]
+                ],
             );
         }
 
@@ -960,7 +960,7 @@ class SAML2
             $metadata['OrganizationName'] = $config->getLocalizedString('OrganizationName');
             $metadata['OrganizationDisplayName'] = $config->getOptionalLocalizedString(
                 'OrganizationDisplayName',
-                $metadata['OrganizationName']
+                $metadata['OrganizationName'],
             );
 
             if (!$config->hasValue('OrganizationURL')) {

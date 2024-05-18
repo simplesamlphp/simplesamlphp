@@ -211,30 +211,30 @@ class TestTest extends TestCase
                 /** @psalm-suppress PossiblyNullPropertyFetch */
                 return [
                     'urn:mace:dir:attribute-def:cn' => [
-                        'Tim van Dijen'
+                        'Tim van Dijen',
                     ],
                     'urn:mace:dir:attribute-def:givenName' => [
-                        'Tim'
+                        'Tim',
                     ],
                     'urn:mace:dir:attribute-def:sn' => [
-                        'van Dijen'
+                        'van Dijen',
                     ],
                     'urn:mace:dir:attribute-def:displayName' => [
-                        'Mr. T. van Dijen BSc'
+                        'Mr. T. van Dijen BSc',
                     ],
                     'urn:mace:dir:attribute-def:mail' => [
                         'tvdijen@hotmail.com',
-                        'tvdijen@gmail.com'
+                        'tvdijen@gmail.com',
                     ],
                     'urn:mace:dir:attribute-def:eduPersonTargetedID' => [
-                        $nameId->toXML()->ownerDocument->childNodes
+                        $nameId->toXML()->ownerDocument->childNodes,
                     ],
                     'jpegPhoto' => [
-                        'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+                        'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=',
                     ],
                     'nameId' => [
-                        $nameId
-                    ]
+                        $nameId,
+                    ],
                 ];
             }
 

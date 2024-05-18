@@ -204,7 +204,7 @@ XML
         $expected_a = [
             "urn:mace:dir:attribute-def:eduPersonPrincipalName",
             "urn:mace:dir:attribute-def:mail",
-            "urn:mace:dir:attribute-def:displayName"
+            "urn:mace:dir:attribute-def:displayName",
         ];
         $expected_r = ["urn:mace:dir:attribute-def:eduPersonPrincipalName"];
 

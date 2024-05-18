@@ -26,7 +26,7 @@ class LoggerTest extends TestCase
         $this->originalLogger = Logger::getLoggingHandler();
         $config = [
             'logging.handler' => $handler,
-            'logging.level' => Logger::DEBUG
+            'logging.level' => Logger::DEBUG,
         ];
 
         // testing static methods is slightly painful

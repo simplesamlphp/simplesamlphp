@@ -51,7 +51,7 @@ class LanguageTest extends TestCase
         // test that it works with non-defaults
         Configuration::loadFromArray([
             'language.available' => ['en', 'es', 'nn'],
-            'language.cookie.name' => 'xyz'
+            'language.cookie.name' => 'xyz',
         ], '', 'simplesaml');
         $_COOKIE['xyz'] = 'Es'; // test values are converted to lowercase too
         $this->assertEquals('es', Language::getLanguageCookie());
@@ -116,7 +116,7 @@ class LanguageTest extends TestCase
 
         // test for valid configuration
         $c = Configuration::loadFromArray([
-            'language.parameter.name' => 'xyz'
+            'language.parameter.name' => 'xyz',
         ], '', 'simplesaml');
         $l = new Language($c);
         $this->assertEquals('xyz', $l->getLanguageParameterName());

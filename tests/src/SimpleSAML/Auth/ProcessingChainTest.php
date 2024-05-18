@@ -30,8 +30,8 @@ class ProcessingChainTest extends TestCase
         ];
         $state = [
             ProcessingChain::FILTERS_INDEX => [
-                new AttributeLimit($config, [])
-            ]
+                new AttributeLimit($config, []),
+            ],
         ];
         $this->assertCount(1, $state[ProcessingChain::FILTERS_INDEX], 'Unexpected number of filters preinsert');
 
@@ -55,8 +55,8 @@ class ProcessingChainTest extends TestCase
         ];
         $state = [
             ProcessingChain::FILTERS_INDEX => [
-                new AttributeLimit($config, [])
-            ]
+                new AttributeLimit($config, []),
+            ],
         ];
         $this->assertCount(1, $state[ProcessingChain::FILTERS_INDEX], 'Unexpected number of filters preinsert');
 

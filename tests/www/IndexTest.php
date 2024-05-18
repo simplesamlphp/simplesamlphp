@@ -73,7 +73,7 @@ class IndexTest extends TestCase
     {
         // test most basic redirection
         $this->updateConfig([
-            'baseurlpath' => 'http://example.org/simplesaml/'
+            'baseurlpath' => 'http://example.org/simplesaml/',
         ]);
         $resp = self::$server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
@@ -81,12 +81,12 @@ class IndexTest extends TestCase
         $this->assertEquals('303', $resp['code']);
         $this->assertEquals(
             'http://example.org/simplesaml/module.php/core/welcome',
-            $resp['headers']['Location']
+            $resp['headers']['Location'],
         );
 
         // test non-default path and https
         $this->updateConfig([
-            'baseurlpath' => 'https://example.org/'
+            'baseurlpath' => 'https://example.org/',
         ]);
         $resp = self::$server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
@@ -94,12 +94,12 @@ class IndexTest extends TestCase
         $this->assertEquals('303', $resp['code']);
         $this->assertEquals(
             'https://example.org/module.php/core/welcome',
-            $resp['headers']['Location']
+            $resp['headers']['Location'],
         );
 
         // test URL guessing
         $this->updateConfig([
-            'baseurlpath' => '/simplesaml/'
+            'baseurlpath' => '/simplesaml/',
         ]);
         $resp = self::$server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
@@ -107,7 +107,7 @@ class IndexTest extends TestCase
         $this->assertEquals('303', $resp['code']);
         $this->assertEquals(
             'http://' . self::$server_addr . '/simplesaml/module.php/core/welcome',
-            $resp['headers']['Location']
+            $resp['headers']['Location'],
         );
     }
 
@@ -117,7 +117,7 @@ class IndexTest extends TestCase
     public function testRedirectionFrontpageRedirectOption(): void
     {
         $this->updateConfig([
-            'frontpage.redirect' => 'https://www.example.edu/'
+            'frontpage.redirect' => 'https://www.example.edu/',
         ]);
         $resp = self::$server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
@@ -125,7 +125,7 @@ class IndexTest extends TestCase
         $this->assertEquals('303', $resp['code']);
         $this->assertEquals(
             'https://www.example.edu/',
-            $resp['headers']['Location']
+            $resp['headers']['Location'],
         );
     }
 

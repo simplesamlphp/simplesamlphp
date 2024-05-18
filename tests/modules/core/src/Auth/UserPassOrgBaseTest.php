@@ -31,7 +31,7 @@ class UserPassOrgBaseTest extends TestCase
                 'dnpattern' => 'uid=%username%,ou=employees,dc=example,dc=org',
                 // Whether SSL/TLS should be used when contacting the LDAP server.
                 'enable_tls' => false,
-            ]
+            ],
         ];
 
         $userPassOrgBase = new class (['AuthId' => 'my-org'], $config) extends UserPassOrgBase {

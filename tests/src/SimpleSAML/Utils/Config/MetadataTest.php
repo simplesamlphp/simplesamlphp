@@ -66,7 +66,7 @@ class MetadataTest extends TestCase
         $nameIdPolicy = [
             'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:persistent',
             'AllowCreate' => false,
-            'SPNameQualifier' => 'TEST'
+            'SPNameQualifier' => 'TEST',
         ];
         $this->assertInstanceOf(NameIDPolicy::class, Metadata::parseNameIdPolicy($nameIdPolicy));
     }

@@ -93,7 +93,7 @@ class EMailTest extends ClearStateTestCase
     {
         return [
             'TXT template' => ['mailtxt.twig'],
-            'HTML template' => ['mailhtml.twig']
+            'HTML template' => ['mailhtml.twig'],
         ];
     }
 
@@ -107,7 +107,7 @@ class EMailTest extends ClearStateTestCase
 
         // load the configuration with an invalid mail.transport.method
         Configuration::loadFromArray(array_merge($originalTestConfiguration, [
-            'mail.transport.method' => 'foobar'
+            'mail.transport.method' => 'foobar',
         ]), '[ARRAY]', 'simplesaml');
 
 
