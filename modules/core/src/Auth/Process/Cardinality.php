@@ -138,13 +138,13 @@ class Cardinality extends Auth\ProcessingFilter
                             $k,
                             $entityid,
                             $this->cardinality[$k]['min'],
-                            count($v)
-                        )
+                            count($v),
+                        ),
                     );
                 } else {
                     $state['core:cardinality:errorAttributes'][$k] = [
                         count($v),
-                        $this->cardinality[$k]['_expr']
+                        $this->cardinality[$k]['_expr'],
                     ];
                 }
                 continue;
@@ -159,13 +159,13 @@ class Cardinality extends Auth\ProcessingFilter
                             $k,
                             $entityid,
                             $this->cardinality[$k]['max'],
-                            count($v)
-                        )
+                            count($v),
+                        ),
                     );
                 } else {
                     $state['core:cardinality:errorAttributes'][$k] = [
                         count($v),
-                        $this->cardinality[$k]['_expr']
+                        $this->cardinality[$k]['_expr'],
                     ];
                 }
                 continue;
@@ -181,12 +181,12 @@ class Cardinality extends Auth\ProcessingFilter
                 Logger::warning(sprintf(
                     'Cardinality: attribute %s from %s is missing',
                     $k,
-                    $entityid
+                    $entityid,
                 ));
             } else {
                 $state['core:cardinality:errorAttributes'][$k] = [
                     0,
-                    $this->cardinality[$k]['_expr']
+                    $this->cardinality[$k]['_expr'],
                 ];
             }
         }

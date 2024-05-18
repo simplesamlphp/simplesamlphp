@@ -154,12 +154,12 @@ class AttributesTest extends TestCase
         $attributes = [
             'key1' => 'value1',
             'key2' => ['value2', 'value3'],
-            'key3' => 'value1'
+            'key3' => 'value1',
         ];
         $expected = [
             'key1' => ['value1'],
             'key2' => ['value2', 'value3'],
-            'key3' => ['value1']
+            'key3' => ['value1'],
         ];
         $this->assertEquals(
             $expected,

@@ -161,7 +161,7 @@ class Memcache
         Logger::debug("saving key $key to memcache");
         $savedInfo = [
             'timestamp' => microtime(true),
-            'data'      => $value
+            'data'      => $value,
         ];
 
         if ($expire === null) {

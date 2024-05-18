@@ -38,8 +38,8 @@ final class Menu
             ],
             'federation' => [
                 'url' => Module::getModuleURL('admin/federation'),
-                'name' => Translate::noop('Federation')
-            ]
+                'name' => Translate::noop('Federation'),
+            ],
         ];
     }
 

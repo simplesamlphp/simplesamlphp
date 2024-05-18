@@ -220,7 +220,7 @@ class Login
                     $errorParams = $e->getParameters();
                     $state['error'] = [
                         'code' => $errorCode,
-                        'params' => $errorParams
+                        'params' => $errorParams,
                     ];
                     $authStateId = Auth\State::saveState($state, $source::STAGEID);
                 }

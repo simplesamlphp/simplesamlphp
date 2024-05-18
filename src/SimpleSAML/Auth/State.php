@@ -128,7 +128,7 @@ class State
             'LogoutState',
             'AuthInstant',
             'RememberMe',
-            'saml:sp:NameID'
+            'saml:sp:NameID',
         ];
         foreach ($mandatory as $key) {
             if (isset($state[$key])) {

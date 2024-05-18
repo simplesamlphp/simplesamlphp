@@ -21,7 +21,7 @@ class FilterScopes extends ProcessingFilter
      */
     private array $scopedAttributes = [
         'eduPersonScopedAffiliation',
-        'eduPersonPrincipalName'
+        'eduPersonPrincipalName',
     ];
 
     /**

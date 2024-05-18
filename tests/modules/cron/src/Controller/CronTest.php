@@ -39,7 +39,7 @@ class CronTest extends TestCase
         $this->config = Configuration::loadFromArray(
             [
                 'module.enable' => ['cron' => true],
-                'secretsalt' => 'defaultsecretsalt'
+                'secretsalt' => 'defaultsecretsalt',
             ],
             '[ARRAY]',
             'simplesaml'
