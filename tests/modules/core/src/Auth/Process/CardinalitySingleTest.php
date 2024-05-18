@@ -57,7 +57,7 @@ class CardinalitySingleTest extends TestCase
     public function testSingleValuedUnchanged(): void
     {
         $config = [
-            'singleValued' => ['eduPersonPrincipalName']
+            'singleValued' => ['eduPersonPrincipalName'],
         ];
         $request = [
             'Attributes' => [
@@ -77,7 +77,7 @@ class CardinalitySingleTest extends TestCase
     public function testFirstValue(): void
     {
         $config = [
-            'firstValue' => ['eduPersonPrincipalName']
+            'firstValue' => ['eduPersonPrincipalName'],
         ];
         $request = [
             'Attributes' => [
@@ -96,7 +96,7 @@ class CardinalitySingleTest extends TestCase
     public function testFirstValueUnchanged(): void
     {
         $config = [
-            'firstValue' => ['eduPersonPrincipalName']
+            'firstValue' => ['eduPersonPrincipalName'],
         ];
         $request = [
             'Attributes' => [
@@ -168,7 +168,7 @@ class CardinalitySingleTest extends TestCase
 
         /** @psalm-suppress UndefinedMethod */
         $this->httpUtils->expects($this->once())
-                   ->method('redirectTrustedURL');
+            ->method('redirectTrustedURL');
 
         $this->processFilter($config, $request);
     }

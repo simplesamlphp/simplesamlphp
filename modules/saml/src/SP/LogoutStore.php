@@ -43,7 +43,7 @@ class LogoutStore
                         'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore DROP CONSTRAINT IF EXISTS ' .
                           $store->prefix . '_saml_LogoutStore___authSource__nameId__sessionIndex_key',
                         'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ADD PRIMARY KEY ' .
-                          '(_authSource, _nameId, _sessionIndex)'
+                          '(_authSource, _nameId, _sessionIndex)',
                     ];
                     break;
                 case 'sqlsrv':
@@ -56,7 +56,7 @@ class LogoutStore
                           'FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_NAME=' . $store->prefix . '_saml_LogoutStore ' .
                           'AND CONSTRAINT_NAME LIKE \'UQ__%"\'',
                         'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ADD CONSTRAINT _authSource ' .
-                          'PRIMARY KEY CLUSTERED (_authSource, _nameId, _sessionIndex)'
+                          'PRIMARY KEY CLUSTERED (_authSource, _nameId, _sessionIndex)',
                     ];
                     break;
                 case 'sqlite':
@@ -81,7 +81,7 @@ class LogoutStore
                         'CREATE INDEX ' . $store->prefix . '_saml_LogoutStore_expire ON ' .
                           $store->prefix . '_saml_LogoutStore (_expire)',
                         'CREATE INDEX ' . $store->prefix . '_saml_LogoutStore_nameId ON ' .
-                          $store->prefix . '_saml_LogoutStore (_authSource, _nameId)'
+                          $store->prefix . '_saml_LogoutStore (_authSource, _nameId)',
                     ];
                     break;
                 case 'mysql':
@@ -89,7 +89,7 @@ class LogoutStore
                     $update = [
                         'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore DROP INDEX _authSource',
                         'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ADD PRIMARY KEY ' .
-                          '(_authSource(191), _nameId, _sessionIndex)'
+                          '(_authSource(191), _nameId, _sessionIndex)',
                     ];
                     break;
                 default:
@@ -97,7 +97,7 @@ class LogoutStore
                     $update = [
                         'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore DROP INDEX _authSource',
                         'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ADD PRIMARY KEY ' .
-                          '(_authSource, _nameId, _sessionIndex)'
+                          '(_authSource, _nameId, _sessionIndex)',
                     ];
                     break;
             }
@@ -115,7 +115,7 @@ class LogoutStore
         } elseif ($tableVer < 4 && $tableVer > 0) {
             throw new Exception(
                 'No upgrade path available. Please migrate to the latest 1.18+ '
-                .  'version of SimpleSAMLphp first before upgrading to 2.x.'
+                .  'version of SimpleSAMLphp first before upgrading to 2.x.',
             );
         }
 
@@ -193,7 +193,7 @@ class LogoutStore
         $store->insertOrUpdate(
             $store->prefix . '_saml_LogoutStore',
             ['_authSource', '_nameId', '_sessionIndex'],
-            $data
+            $data,
         );
     }
 
@@ -379,13 +379,13 @@ class LogoutStore
 
             if (!$session->isValid($authId)) {
                 Logger::info(
-                    'saml.LogoutStore: Skipping logout of session because it isn\'t authenticated.'
+                    'saml.LogoutStore: Skipping logout of session because it isn\'t authenticated.',
                 );
                 continue;
             }
 
             Logger::info(
-                'saml.LogoutStore: Logging out of session with trackId [' . $session->getTrackID() . '].'
+                'saml.LogoutStore: Logging out of session with trackId [' . $session->getTrackID() . '].',
             );
             $session->doLogout($authId);
             $numLoggedOut += 1;

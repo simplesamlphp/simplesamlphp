@@ -20,7 +20,7 @@ $metadata['entityA'] = [
                     'index' => 1,
                     'isDefault' => true,
                 ],
-        ]
+        ],
 ];
 
 $metadata['entityInBoth'] = [
@@ -39,7 +39,7 @@ $metadata['entityInBoth'] = [
                     'index' => 1,
                     'isDefault' => true,
                 ],
-        ]
+        ],
 ];
 
 $metadata['expiredInSrc1InSrc2'] = [
@@ -60,7 +60,7 @@ $metadata['expiredInSrc1InSrc2'] = [
                     'index' => 1,
                     'isDefault' => true,
                 ],
-        ]
+        ],
 ];
 
 $metadata['http://localhost/simplesaml'] = [
@@ -80,5 +80,5 @@ $metadata['http://localhost/simplesaml'] = [
                     'index' => 1,
                     'isDefault' => true,
                 ],
-        ]
+        ],
 ];

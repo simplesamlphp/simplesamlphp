@@ -75,78 +75,78 @@ class ArraysTest extends TestCase
         // check array with numerical keys
         $array = [
             'key1' => [
-                'value1'
+                'value1',
             ],
             'key2' => [
                 'value1',
-                'value2'
-            ]
+                'value2',
+            ],
         ];
         $transposed = [
             [
                 'key1' => 'value1',
-                'key2' => 'value1'
+                'key2' => 'value1',
             ],
             [
-                'key2' => 'value2'
-            ]
+                'key2' => 'value2',
+            ],
         ];
         $this->assertEquals(
             $transposed,
             $this->arrayUtils->transpose($array),
-            'Unexpected result of transpose()'
+            'Unexpected result of transpose()',
         );
 
         // check array with string keys
         $array = [
             'key1' => [
-                'subkey1' => 'value1'
+                'subkey1' => 'value1',
             ],
             'key2' => [
                 'subkey1' => 'value1',
-                'subkey2' => 'value2'
-            ]
+                'subkey2' => 'value2',
+            ],
         ];
         $transposed = [
             'subkey1' => [
                 'key1' => 'value1',
-                'key2' => 'value1'
+                'key2' => 'value1',
             ],
             'subkey2' => [
-                'key2' => 'value2'
-            ]
+                'key2' => 'value2',
+            ],
         ];
         $this->assertEquals(
             $transposed,
             $this->arrayUtils->transpose($array),
-            'Unexpected result of transpose()'
+            'Unexpected result of transpose()',
         );
 
         // check array with no keys in common between sub arrays
         $array = [
             'key1' => [
-                'subkey1' => 'value1'
+                'subkey1' => 'value1',
             ],
             'key2' => [
                 'subkey2' => 'value1',
-                'subkey3' => 'value2'
-            ]
+                'subkey3' => 'value2',
+            ],
         ];
         $transposed = [
             'subkey1' => [
                 'key1' => 'value1',
             ],
             'subkey2' => [
-                'key2' => 'value1'
+                'key2' => 'value1',
             ],
             'subkey3' => [
-                'key2' => 'value2'
-            ]
+                'key2' => 'value2',
+            ],
         ];
         $this->assertEquals(
             $transposed,
             $this->arrayUtils->transpose($array),
-            'Unexpected result of transpose()'
+            'Unexpected result of transpose()',
         );
     }
 }

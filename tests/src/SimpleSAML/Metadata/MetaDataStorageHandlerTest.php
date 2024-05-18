@@ -37,7 +37,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
             'entityB',
             'nosuchEntity',
             'entityInBoth',
-            'expiredInSrc1InSrc2'
+            'expiredInSrc1InSrc2',
         ], 'saml20-sp-remote');
         $this->assertCount(4, $entities);
         $this->assertEquals('entityA SP from source1', $entities['entityA']['name']['en']);

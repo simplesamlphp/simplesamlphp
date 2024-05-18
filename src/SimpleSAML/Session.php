@@ -902,7 +902,7 @@ class Session implements Utils\ClearableState
         $dataInfo = [
             'expires' => $expires,
             'timeout' => $timeout,
-            'data'    => $data
+            'data'    => $data,
         ];
 
         if (!array_key_exists($type, $this->dataStore)) {

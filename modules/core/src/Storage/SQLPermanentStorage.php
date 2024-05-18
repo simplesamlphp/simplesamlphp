@@ -109,7 +109,7 @@ class SQLPermanentStorage
         $data = [':key1' => $key1, ':key2' => $key2,
             ':type' => $type, ':created' => time(),
             ':updated' => time(), ':expire' => $expire,
-            ':value' => serialize($value)
+            ':value' => serialize($value),
         ];
         $prepared->execute($data);
         $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
@@ -134,7 +134,7 @@ class SQLPermanentStorage
         $prepared = $this->db->prepare($query);
         $data = [':key1' => $key1, ':key2' => $key2,
             ':type' => $type, ':updated' => time(),
-            ':expire' => $expire, ':value' => serialize($value)
+            ':expire' => $expire, ':value' => serialize($value),
         ];
         $prepared->execute($data);
         $results = $prepared->fetchAll(PDO::FETCH_ASSOC);

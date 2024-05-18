@@ -198,7 +198,7 @@ class SPTest extends ClearStateTestCase
     public function testNameID(): void
     {
         $state = [
-            'saml:NameID' => ['Value' => 'user@example.org', 'Format' => Constants::NAMEID_UNSPECIFIED]
+            'saml:NameID' => ['Value' => 'user@example.org', 'Format' => Constants::NAMEID_UNSPECIFIED],
         ];
 
         $ar = $this->createAuthnRequest($state);
@@ -214,7 +214,7 @@ class SPTest extends ClearStateTestCase
         $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Subject/saml:NameID/@Format');
         $this->assertEquals(
             $state['saml:NameID']['Format'],
-            $q[0]->value
+            $q[0]->value,
         );
 
         $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Subject/saml:NameID');
@@ -248,7 +248,7 @@ class SPTest extends ClearStateTestCase
         $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/samlp:RequestedAuthnContext/saml:AuthnContextClassRef');
         $this->assertEquals(
             $state['saml:AuthnContextClassRef'],
-            $q[0]->textContent
+            $q[0]->textContent,
         );
     }
 
@@ -260,14 +260,14 @@ class SPTest extends ClearStateTestCase
     {
         /** @var bool $state['ForceAuthn'] */
         $state = [
-            'ForceAuthn' => true
+            'ForceAuthn' => true,
         ];
 
         $ar = $this->createAuthnRequest($state);
 
         $this->assertEquals(
             $state['ForceAuthn'],
-            $ar->getForceAuthn()
+            $ar->getForceAuthn(),
         );
 
         $xml = $ar->toSignedXML();
@@ -276,7 +276,7 @@ class SPTest extends ClearStateTestCase
         $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/@ForceAuthn');
         $this->assertEquals(
             $state['ForceAuthn'] ? 'true' : 'false',
-            $q[0]->value
+            $q[0]->value,
         );
     }
 
@@ -288,7 +288,7 @@ class SPTest extends ClearStateTestCase
     {
         $this->expectException(NoSupportedIDPException::class);
         $state = [
-            'saml:IDPList' => ['noSuchIdp']
+            'saml:IDPList' => ['noSuchIdp'],
         ];
 
         $info = ['AuthId' => 'default-sp'];
@@ -313,13 +313,13 @@ class SPTest extends ClearStateTestCase
         ];
         Configuration::loadFromArray($c, '', 'simplesaml');
         $state = [
-            'saml:IDPList' => ['noSuchIdp', $entityId]
+            'saml:IDPList' => ['noSuchIdp', $entityId],
         ];
 
         $info = ['AuthId' => 'default-sp'];
         $config = [
             'entityID' => 'urn:x-simplesamlphp:example-sp',
-            'idp' => 'https://engine.surfconext.nl/authentication/idp/metadata'
+            'idp' => 'https://engine.surfconext.nl/authentication/idp/metadata',
         ];
         $as = new SpTester($info, $config);
         $as->authenticate($state);
@@ -340,13 +340,13 @@ class SPTest extends ClearStateTestCase
         ];
         Configuration::loadFromArray($c, '', 'simplesaml');
         $state = [
-            'saml:IDPList' => ['noSuchIdp', $entityId]
+            'saml:IDPList' => ['noSuchIdp', $entityId],
         ];
 
         $info = ['AuthId' => 'default-sp'];
         $config = [
             'entityID' => 'urn:x-simplesamlphp:example-sp',
-            'idp' => $entityId
+            'idp' => $entityId,
         ];
         $as = new SpTester($info, $config);
         try {
@@ -362,7 +362,7 @@ class SPTest extends ClearStateTestCase
             $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/@Destination');
             $this->assertEquals(
                 'https://saml.idp/sso/',
-                $q[0]->value
+                $q[0]->value,
             );
         }
     }
@@ -382,7 +382,7 @@ class SPTest extends ClearStateTestCase
         ];
         Configuration::loadFromArray($c, '', 'simplesaml');
         $state = [
-            'saml:IDPList' => ['noSuchIdp', $entityId]
+            'saml:IDPList' => ['noSuchIdp', $entityId],
         ];
 
         $info = ['AuthId' => 'default-sp'];
@@ -401,7 +401,7 @@ class SPTest extends ClearStateTestCase
             $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/@Destination');
             $this->assertEquals(
                 'https://saml.idp/sso/',
-                $q[0]->value
+                $q[0]->value,
             );
         }
     }
@@ -426,7 +426,7 @@ class SPTest extends ClearStateTestCase
         ];
         Configuration::loadFromArray($c, '', 'simplesaml');
         $state = [
-            'saml:IDPList' => ['noSuchIdp', $entityId, $entityId1]
+            'saml:IDPList' => ['noSuchIdp', $entityId, $entityId1],
         ];
 
         $info = ['AuthId' => 'default-sp'];
@@ -434,7 +434,7 @@ class SPTest extends ClearStateTestCase
             'entityID' => 'urn:x-simplesamlphp:example-sp',
             // Use a url that is invalid for http redirects so redirect code throws an error
             // otherwise it will call exit
-            'discoURL' => 'smtp://invalidurl'
+            'discoURL' => 'smtp://invalidurl',
         ];
         // Http redirect util library requires a request_uri to be set.
         $_SERVER['REQUEST_URI'] = 'https://l.example.com/';
@@ -462,7 +462,7 @@ class SPTest extends ClearStateTestCase
         foreach ($md['AssertionConsumerService'] as $acs) {
             $this->assertEquals(
                 'http://localhost/simplesaml/module.php/saml/sp/saml2-acs.php/' . $spId,
-                $acs['Location']
+                $acs['Location'],
             );
             $this->assertStringStartsWith('urn:oasis:names:tc:SAML:2.0:bindings', $acs['Binding']);
             $this->assertIsInt($acs['index']);
@@ -509,7 +509,7 @@ class SPTest extends ClearStateTestCase
         $info = ['AuthId' => 'default-sp'];
         $config = [
             'entityID' => 'urn:x-simplesamlphp:example-sp',
-            'IDPList' => ['https://scope.example.com']
+            'IDPList' => ['https://scope.example.com'],
         ];
         $as = new SpTester($info, $config);
 
@@ -544,10 +544,12 @@ class SPTest extends ClearStateTestCase
         if (isset($stateIdpList)) {
             $state['IDPList'] = $stateIdpList;
         }
+
         $config = ['entityID' => 'urn:x-simplesamlphp:example-sp'];
         if (isset($remoteMetadata)) {
             $config['IDPList'] = $remoteMetadata;
         }
+
         if (isset($idpConfigArray)) {
             $this->idpConfigArray['IDPList'] = $idpConfigArray;
         }
@@ -575,7 +577,7 @@ class SPTest extends ClearStateTestCase
                 'stateIdpList' => ['https//scope1.example.com'],
                 'idpConfigArray' => ['https//scope2.example.com'],
                 'remoteMetadata' => ['https//scope3.example.com'],
-                'expectedScope' => 'https//scope1.example.com'
+                'expectedScope' => 'https//scope1.example.com',
             ],
             [
                 'stateIdpList' => null,
@@ -587,20 +589,20 @@ class SPTest extends ClearStateTestCase
                 'stateIdpList' => null,
                 'idpConfigArray' => null,
                 'remoteMetadata' => ['https//scope3.example.com'],
-                'expectedScope' => 'https//scope3.example.com'
+                'expectedScope' => 'https//scope3.example.com',
             ],
             [
                 'stateIdpList' => ['https//scope1.example.com'],
                 'idpConfigArray' => null,
                 'remoteMetadata' => ['https//scope3.example.com'],
-                'expectedScope' => 'https//scope1.example.com'
+                'expectedScope' => 'https//scope1.example.com',
             ],
             [
                 'stateIdpList' => ['https//scope1.example.com'],
                 'idpConfigArray' => ['https//scope2.example.com'],
                 'remoteMetadata' => null,
-                'expectedScope' => 'https//scope1.example.com'
-            ]
+                'expectedScope' => 'https//scope1.example.com',
+            ],
         ];
     }
 
@@ -645,7 +647,7 @@ class SPTest extends ClearStateTestCase
                     'givenName'         => 'Jane',
                     'surName'           => 'Doe',
                 ],
-            ]
+            ],
         ];
         $as = new SpTester($info, $config);
 
@@ -698,7 +700,7 @@ class SPTest extends ClearStateTestCase
                     'givenName'         => 'Jane',
                     'surName'           => 'Doe',
                 ],
-            ]
+            ],
         ];
         $as = new SpTester($info, $config);
 
@@ -742,7 +744,7 @@ class SPTest extends ClearStateTestCase
                     'emailAddress'      => 'j.doe@example.edu',
                     'surName'           => 'Doe',
                 ],
-            ]
+            ],
         ];
         $as = new SpTester($info, $config);
 
@@ -767,7 +769,7 @@ class SPTest extends ClearStateTestCase
                    'givenName'         => 'Jane',
                    'surName'           => 'Doe',
                 ],
-            ]
+            ],
         ];
         $as = new SpTester($info, $config);
 
@@ -802,7 +804,7 @@ class SPTest extends ClearStateTestCase
         $this->assertCount(1, $md['AssertionConsumerService']);
         $this->assertEquals(
             'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-            $md['AssertionConsumerService'][0]['Binding']
+            $md['AssertionConsumerService'][0]['Binding'],
         );
     }
 
@@ -852,7 +854,7 @@ class SPTest extends ClearStateTestCase
         $this->assertCount(1, $md['SingleLogoutService']);
         $this->assertEquals(
             'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-            $md['SingleLogoutService'][0]['Binding']
+            $md['SingleLogoutService'][0]['Binding'],
         );
     }
 
@@ -884,7 +886,7 @@ class SPTest extends ClearStateTestCase
             'entityID' => 'urn:x-simplesamlphp:example-sp',
             'SingleLogoutServiceBinding' => [
                 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-                'urn:this:doesnotexist'
+                'urn:this:doesnotexist',
             ],
         ];
         $as = new SpTester($info, $config);
@@ -893,7 +895,7 @@ class SPTest extends ClearStateTestCase
         $this->assertCount(2, $md['SingleLogoutService']);
         $this->assertEquals(
             'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-            $md['SingleLogoutService'][0]['Binding']
+            $md['SingleLogoutService'][0]['Binding'],
         );
         $this->assertEquals('urn:this:doesnotexist', $md['SingleLogoutService'][1]['Binding']);
     }
@@ -909,7 +911,7 @@ class SPTest extends ClearStateTestCase
             'entityID' => 'urn:x-simplesamlphp:example-sp',
             'SingleLogoutServiceBinding' => [
                 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-                'urn:this:doesnotexist'
+                'urn:this:doesnotexist',
             ],
             'SingleLogoutServiceLocation' => 'https://sp.example.org/logout',
         ];
@@ -919,7 +921,7 @@ class SPTest extends ClearStateTestCase
         $this->assertCount(2, $md['SingleLogoutService']);
         $this->assertEquals(
             'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-            $md['SingleLogoutService'][0]['Binding']
+            $md['SingleLogoutService'][0]['Binding'],
         );
         $this->assertEquals('urn:this:doesnotexist', $md['SingleLogoutService'][1]['Binding']);
         $this->assertEquals('https://sp.example.org/logout', $md['SingleLogoutService'][0]['Location']);
@@ -955,7 +957,7 @@ class SPTest extends ClearStateTestCase
         $this->assertCount(2, $md['AssertionConsumerService']);
         $this->assertEquals(
             'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-            $md['AssertionConsumerService'][0]['Binding']
+            $md['AssertionConsumerService'][0]['Binding'],
         );
         $this->assertEquals('https://sp.example.org/ACS', $md['AssertionConsumerService'][0]['Location']);
         $this->assertEquals(1, $md['AssertionConsumerService'][0]['index']);
@@ -963,7 +965,7 @@ class SPTest extends ClearStateTestCase
 
         $this->assertEquals(
             'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact',
-            $md['AssertionConsumerService'][1]['Binding']
+            $md['AssertionConsumerService'][1]['Binding'],
         );
         $this->assertEquals('https://sp.example.org/ACSeventeen', $md['AssertionConsumerService'][1]['Location']);
         $this->assertEquals(17, $md['AssertionConsumerService'][1]['index']);
@@ -1062,7 +1064,7 @@ class SPTest extends ClearStateTestCase
             'entityID' => 'urn:x-simplesamlphp:example-sp',
             'NameIDPolicy' => [
                 'Format' => 'urn:mace:shibboleth:1.0:nameIdentifier',
-                'AllowCreate' => true
+                'AllowCreate' => true,
             ],
         ];
         $as = new SpTester($info, $config);
@@ -1184,11 +1186,11 @@ class SPTest extends ClearStateTestCase
             'UIInfo' => [
                 'DisplayName' => [
                     'en' => 'English name',
-                    'es' => 'Nombre en Español'
+                    'es' => 'Nombre en Español',
                  ],
                  'Description' => [
                     'en' => 'English description',
-                    'es' => 'Descripción en Español'
+                    'es' => 'Descripción en Español',
                  ],
             ],
         ];
@@ -1363,7 +1365,7 @@ class SPTest extends ClearStateTestCase
         $this->assertEquals('urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser', $hok['Binding']);
         $this->assertEquals(
             'http://localhost/simplesaml/module.php/saml/sp/saml2-acs.php/' . $spId,
-            $hok['Location']
+            $hok['Location'],
         );
         $this->assertEquals(2, $hok['index']);
         $this->assertEquals('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect', $hok['hoksso:ProtocolBinding']);
@@ -1466,7 +1468,7 @@ class SPTest extends ClearStateTestCase
                     'Binding' => 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
                 ],
             ],
-            ];
+        ];
         $as = new SpTester($info, $config);
 
         $md = $as->getHostedMetadata();

@@ -41,7 +41,7 @@ class ConfigTest extends TestCase
             [
                 'module.enable' => ['admin' => true],
                 'secretsalt' => 'defaultsecretsalt',
-                'admin.checkforupdates' => true
+                'admin.checkforupdates' => true,
             ],
             '[ARRAY]'
         ) extends Configuration

@@ -29,8 +29,8 @@ class SimpleTest extends ClearStateTestCase
         // test merging configuration option with passed URL
         Configuration::loadFromArray([
             'application' => [
-                'baseURL' => 'https://example.org'
-            ]
+                'baseURL' => 'https://example.org',
+            ],
         ], '[ARRAY]', 'simplesaml');
 
         $s = new Auth\Simple('');
@@ -42,7 +42,7 @@ class SimpleTest extends ClearStateTestCase
             'https://example.org/foo/bar?a=b#fragment',
             $method->invokeArgs(
                 $s,
-                ['http://some.overridden.host/foo/bar?a=b#fragment']
+                ['http://some.overridden.host/foo/bar?a=b#fragment'],
             )
         );
 
@@ -57,8 +57,8 @@ class SimpleTest extends ClearStateTestCase
         // test config option with ending with / and port
         Configuration::loadFromArray([
             'application' => [
-                'baseURL' => 'http://example.org:8080/'
-            ]
+                'baseURL' => 'http://example.org:8080/',
+            ],
         ], '[ARRAY]', 'simplesaml');
         $s = new Auth\Simple('');
         $this->assertEquals('http://example.org:8080/foo/bar?a=b#fragment', $method->invokeArgs($s, [null]));
@@ -66,7 +66,7 @@ class SimpleTest extends ClearStateTestCase
         // test again with a relative URL as a parameter
         $this->assertEquals(
             'http://example.org:8080/something?foo=bar#something',
-            $method->invokeArgs($s, ['/something?foo=bar#something'])
+            $method->invokeArgs($s, ['/something?foo=bar#something']),
         );
 
         // now test with no configuration
@@ -82,13 +82,13 @@ class SimpleTest extends ClearStateTestCase
         // no configuration and a relative URL as a parameter
         $this->assertEquals(
             'https://example.org:1234/something?foo=bar#something',
-            $method->invokeArgs($s, ['/something?foo=bar#something'])
+            $method->invokeArgs($s, ['/something?foo=bar#something']),
         );
 
         // finally, no configuration and full URL as a parameter
         $this->assertEquals(
             'https://example.org/one/two/three?foo=bar#fragment',
-            $method->invokeArgs($s, ['https://example.org/one/two/three?foo=bar#fragment'])
+            $method->invokeArgs($s, ['https://example.org/one/two/three?foo=bar#fragment']),
         );
     }
 }
