@@ -83,7 +83,7 @@ XML;
         $result = $this->xml->getValueDefault('/Root/Other', 'Hello');
         $this->assertEquals(
             'Hello',
-            $result
+            $result,
         );
     }
 
@@ -97,13 +97,13 @@ XML;
             ->xml
             ->getValueAlternatives([
                 '/Root/Other',
-                '/Root/Value'
+                '/Root/Value',
             ], true)
         ;
 
         $this->assertEquals(
             'Hello, World!',
-            $result
+            $result,
         );
     }
 
@@ -117,13 +117,13 @@ XML;
             ->xml
             ->getValueAlternatives([
                 '/Root/Foo',
-                '/Root/Bar'
+                '/Root/Bar',
             ], false)
         ;
 
         $this->assertEquals(
             null,
-            $result
+            $result,
         );
     }
 
@@ -137,9 +137,9 @@ XML;
         $this->xml->getValueAlternatives(
             [
                 '/Root/Foo',
-                '/Root/Bar'
+                '/Root/Bar',
             ],
-            true
+            true,
         );
     }
 }

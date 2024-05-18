@@ -165,7 +165,7 @@ class Federation
                 [
                     'href' => Module::getModuleURL('admin/federation/metadata-converter'),
                     'text' => Translate::noop('XML to SimpleSAMLphp metadata converter'),
-                ]
+                ],
             ],
             'entries' => $entries,
             'mdtype' => [

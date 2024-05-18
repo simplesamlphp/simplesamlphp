@@ -44,7 +44,7 @@ class ModuleTest extends TestCase
     public function testGetModuleURL(): void
     {
         Configuration::loadFromArray([
-            'baseurlpath' => 'https://example.com/simplesaml/'
+            'baseurlpath' => 'https://example.com/simplesaml/',
         ], '', 'simplesaml');
         $this->assertEquals(
             'https://example.com/simplesaml/module.php/module/script.php',
