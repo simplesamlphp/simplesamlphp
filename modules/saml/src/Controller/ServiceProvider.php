@@ -65,8 +65,8 @@ class ServiceProvider
      *
      * It initializes the global configuration for the controllers implemented here.
      *
-     * @param \SimpleSAML\Configuration $config The configuration to use by the controllers.
-     * @param \SimpleSAML\Session $session The Session to use by the controllers.
+     * @param   Configuration  $config   The configuration to use by the controllers.
+     * @param   Session        $session  The Session to use by the controllers.
      */
     public function __construct(
         protected Configuration $config,
@@ -98,36 +98,105 @@ class ServiceProvider
     }
 
 
-    /**
-     * Start single sign-on for an SP identified with the specified Authsource ID
-     *
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string $sourceId
-     * @return \SimpleSAML\HTTP\RunnableResponse
-     */
+  /**
+   * Start single sign-on for an SP identified with the specified Authsource ID
+   *
+   * @param   \Symfony\Component\HttpFoundation\Request  $request
+   * @param   string                                     $sourceId
+   *
+   * @return \SimpleSAML\HTTP\RunnableResponse
+   * @throws Error\Exception
+   */
     public function login(Request $request, string $sourceId): RunnableResponse
     {
-        $as = new Auth\Simple($sourceId);
-        if (!($as->getAuthSource() instanceof SP)) {
+        // Initialize all the dependencies
+        $authSource = new Auth\Simple($sourceId);
+        $spSource = $authSource->getAuthSource();
+
+        if (!($spSource instanceof SP)) {
             throw new Error\Exception('Authsource must be of type saml:SP.');
         }
 
-        if (!$request->query->has('ReturnTo')) {
+        $httpUtils = new Utils\HTTP();
+
+        $returnTo = $this->loginHandler($request, $authSource, $spSource, $httpUtils);
+
+        // Redirect to the returnTo destination
+        return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$returnTo]);
+    }
+
+    /**
+     * @param   Request       $request
+     * @param   Auth\Simple   $authSource
+     * @param   Auth\Source   $spSource
+     * @param   Utils\HTTP    $httpUtils
+     *
+     * @return string
+     * @throws BadRequest
+     * @throws Error\Exception
+     */
+    protected function loginHandler(
+        Request $request,
+        Auth\Simple $authSource,
+        Auth\Source $spSource,
+        Utils\HTTP $httpUtils
+    ): string {
+        $options = [];
+
+        if ($spSource->isRequestInitiation()) {
+            if ($request->query->has('target')) {
+                $options['ReturnTo'] = $httpUtils->checkURLAllowed($request->query->get('target'));
+            }
+            if ($request->query->has('forceAuthn')) {
+                $options['ForceAuthn'] = $request->query->getBoolean('forceAuthn');
+            }
+            if ($request->query->has('entityID')) {
+                $options['saml:idp'] = $request->query->get('entityID');
+            }
+            if ($request->query->has('isPassive')) {
+                $options['isPassive'] = $request->query->getBoolean('isPassive');
+            }
+        }
+
+        if (
+            !isset($options['ReturnTo'])
+            && !$request->query->has('ReturnTo')
+            && !$spSource->getMetadata()->hasValue('RelayState')
+        ) {
             throw new Error\BadRequest('Missing ReturnTo parameter.');
         }
-        $returnTo = $request->query->get('ReturnTo');
+        if (!isset($options['ReturnTo'])) {
+            $options['ReturnTo'] = $httpUtils->checkURLAllowed(
+                $request->query->get('ReturnTo') ?? $spSource->getMetadata()->getString('RelayState')
+            );
+        }
+
+        $authData = $authSource->getAuthDataArray();
+
+        if (
+            $authSource->isAuthenticated()
+            && $spSource->isRequestInitiation()
+        ) {
+            if (
+                // Check the IdP we are currently authenticated to
+                (isset($authData['saml:sp:IdP'], $options['saml:idp'])
+                 && $options['saml:idp'] !== $authData['saml:sp:IdP'])
+                ||
+                (isset($options['ForceAuthn']) && $options['ForceAuthn'])
+            ) {
+                // Force a re-authentication
+                $authSource->login($options);
+            }
+            // We are already authenticated, do nothing
+        }
 
         /**
-         * Setting up the options for the requireAuth() call later..
+         * Try to authenticate
          */
-        $httpUtils = new Utils\HTTP();
-        $options = [
-            'ReturnTo' => $httpUtils->checkURLAllowed($returnTo),
-        ];
+        $authSource->requireAuth($options);
 
-        $as->requireAuth($options);
-
-        return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$returnTo]);
+        // Return the redirect target
+        return $options['ReturnTo'];
     }
 
 

@@ -76,6 +76,13 @@ class SP extends \SimpleSAML\Auth\Source
      */
     private array $protocols = [Constants::NS_SAMLP];
 
+    /**
+     * Flag to indicate whether to disable sending the Scoping element.
+     *
+     * @var bool
+     */
+    private bool $requestInitiation;
+
 
     /**
      * Constructor for SAML SP authentication source.
@@ -113,6 +120,7 @@ class SP extends \SimpleSAML\Auth\Source
         $this->idp = $this->metadata->getOptionalString('idp', null);
         $this->discoURL = $this->metadata->getOptionalString('discoURL', null);
         $this->disable_scoping = $this->metadata->getOptionalBoolean('disable_scoping', false);
+        $this->requestInitiation = $this->metadata->getOptionalBoolean('RequestInitiation', false);
         $this->passAuthnContextClassRef = $this->metadata->getOptionalBoolean(
             'proxymode.passAuthnContextClassRef',
             false
@@ -430,6 +438,16 @@ class SP extends \SimpleSAML\Auth\Source
             ];
         }
         return $endpoints;
+    }
+
+    /**
+     * Determine if the Request Initiator Protocol is enabled
+     *
+     * @return bool
+     */
+    public function isRequestInitiation(): bool
+    {
+        return $this->requestInitiation;
     }
 
 
