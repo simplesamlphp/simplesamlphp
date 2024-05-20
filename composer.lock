@@ -4131,16 +4131,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.10.1",
+            "version": "v3.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "3af5ab2e52279e5e23dc192b1a26db3b8cffa4e7"
+                "reference": "67f29781ffafa520b0bbfbd8384674b42db04572"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3af5ab2e52279e5e23dc192b1a26db3b8cffa4e7",
-                "reference": "3af5ab2e52279e5e23dc192b1a26db3b8cffa4e7",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/67f29781ffafa520b0bbfbd8384674b42db04572",
+                "reference": "67f29781ffafa520b0bbfbd8384674b42db04572",
                 "shasum": ""
             },
             "require": {
@@ -4194,7 +4194,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.10.1"
+                "source": "https://github.com/twigphp/Twig/tree/v3.10.3"
             },
             "funding": [
                 {
@@ -4206,7 +4206,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-05-12T06:16:18+00:00"
+            "time": "2024-05-16T10:04:27+00:00"
         },
         {
             "name": "webmozart/assert",
