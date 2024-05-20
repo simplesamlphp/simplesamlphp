@@ -180,12 +180,10 @@ class ServiceProvider
         /**
          * Try to authenticate
          */
-        $authSource->requireAuth($options);
-
-        $response = $as->requireAuth($options);
+        $response = $authSource->requireAuth($options);
         if ($response === null) {
             // We are already authenticated
-            return $httpUtils->redirectTrustedURL($returnTo);
+            return $httpUtils->redirectTrustedURL($options['ReturnTo']);
         }
 
         return $response;
