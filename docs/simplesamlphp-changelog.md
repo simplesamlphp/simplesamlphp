@@ -16,6 +16,11 @@ Released TBD
 * Fixed metadata download to become a proper xml-file
 * Prevent metadata-download from ever being cached
 
+`ldap`
+
+* Fixed a bug that would throw an unhandled exception to the user if they would enter
+  a non-existing organization and `username_organization_method` is set to `allow` or `force` (v2.3.6).
+
 ## Version 2.1.6
 
 :warning: IMPORTANT NOTE :warning:
