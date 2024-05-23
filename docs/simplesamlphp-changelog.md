@@ -3,7 +3,7 @@
 [TOC]
 
 This document lists the changes between versions of SimpleSAMLphp.
-See the upgrade notes for specific information about upgrading.
+See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
 ## Version 2.3.0
 
