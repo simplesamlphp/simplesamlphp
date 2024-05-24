@@ -155,17 +155,22 @@ class Configuration implements Utils\ClearableState
             ob_start();
             if (interface_exists('Throwable', false)) {
                 try {
-                    require($filename);
+                    $returnedConfig = require($filename);
                 } catch (ParseError $e) {
                     self::$loadedConfigs[$filename] = self::loadFromArray([], '[ARRAY]', 'simplesaml');
                     throw new Error\ConfigurationError($e->getMessage(), $filename, []);
                 }
             } else {
-                require($filename);
+                $returnedConfig = require($filename);
             }
 
             $spurious_output = ob_get_length() > 0;
             ob_end_clean();
+
+            // Check if the config file actually returned an array instead of defining $config variable.
+            if (is_array($returnedConfig)) {
+                $config = $returnedConfig;
+            }
 
             // check that $config exists
             if (!isset($config)) {

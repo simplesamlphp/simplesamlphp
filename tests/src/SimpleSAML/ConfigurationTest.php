@@ -1087,6 +1087,26 @@ class ConfigurationTest extends ClearStateTestCase
     }
 
 
+    public function testCanLoadDefinedConfigFromFile(): void
+    {
+        $testConfigDir = dirname(__FILE__, 3) . DIRECTORY_SEPARATOR . 'config';
+        putenv('SIMPLESAMLPHP_CONFIG_DIR=' .  $testConfigDir);
+
+        $config = Configuration::getConfig('defined_config.php');
+        $this->assertArrayHasKey('defined', $config->toArray());
+    }
+
+
+    public function testCanLoadReturnedConfigFromFile(): void
+    {
+        $testConfigDir = dirname(__FILE__, 3) . DIRECTORY_SEPARATOR . 'config';
+        putenv('SIMPLESAMLPHP_CONFIG_DIR=' .  $testConfigDir);
+
+        $config = Configuration::getConfig('returned_config.php');
+        $this->assertArrayHasKey('returned', $config->toArray());
+    }
+
+
     /**
      * Test that Configuration objects can be initialized from an array.
      *
