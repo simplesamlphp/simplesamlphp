@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Module\core\Auth\Process\ScopeAttribute;
 
 /**
  * Test for the core:ScopeAttribute filter.
- *
- * @covers \SimpleSAML\Module\core\Auth\Process\ScopeAttribute
  */
+#[CoversClass(ScopeAttribute::class)]
 class ScopeAttributeTest extends TestCase
 {
     /**
@@ -43,7 +43,7 @@ class ScopeAttributeTest extends TestCase
             'Attributes' => [
                 'eduPersonPrincipalName' => ['jdoe@example.com'],
                 'eduPersonAffiliation' => ['member'],
-            ]
+            ],
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
@@ -67,13 +67,13 @@ class ScopeAttributeTest extends TestCase
                 'eduPersonPrincipalName' => ['jdoe@example.com'],
                 'eduPersonAffiliation' => ['member'],
                 'eduPersonScopedAffiliation' => ['library-walk-in@example.edu'],
-            ]
+            ],
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertEquals(
             $attributes['eduPersonScopedAffiliation'],
-            ['library-walk-in@example.edu', 'member@example.com']
+            ['library-walk-in@example.edu', 'member@example.com'],
         );
     }
 
@@ -93,7 +93,7 @@ class ScopeAttributeTest extends TestCase
                 'eduPersonPrincipalName' => ['jdoe@example.com'],
                 'eduPersonAffiliation' => ['member'],
                 'eduPersonScopedAffiliation' => ['member@example.com'],
-            ]
+            ],
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
@@ -116,7 +116,7 @@ class ScopeAttributeTest extends TestCase
                 'mail' => ['j.doe@example.edu', 'john@example.org'],
                 'eduPersonAffiliation' => ['member'],
                 'eduPersonScopedAffiliation' => ['library-walk-in@example.edu'],
-            ]
+            ],
         ];
         $result = self::processFilter($config, $request);
         $this->assertEquals($request['Attributes'], $result['Attributes']);
@@ -138,7 +138,7 @@ class ScopeAttributeTest extends TestCase
                 'mail' => ['j.doe@example.edu', 'john@example.org'],
                 'eduPersonScopedAffiliation' => ['library-walk-in@example.edu'],
                 'eduPersonPrincipalName' => ['jdoe@example.com'],
-            ]
+            ],
         ];
         $result = self::processFilter($config, $request);
         $this->assertEquals($request['Attributes'], $result['Attributes']);
@@ -159,7 +159,7 @@ class ScopeAttributeTest extends TestCase
             'Attributes' => [
                 'eduPersonPrincipalName' => ['john@doe@example.com'],
                 'eduPersonAffiliation' => ['member'],
-            ]
+            ],
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
@@ -181,13 +181,13 @@ class ScopeAttributeTest extends TestCase
             'Attributes' => [
                 'eduPersonPrincipalName' => ['jdoe@example.com'],
                 'eduPersonAffiliation' => ['member', 'staff', 'faculty'],
-            ]
+            ],
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertEquals(
             $attributes['eduPersonScopedAffiliation'],
-            ['member@example.com', 'staff@example.com', 'faculty@example.com']
+            ['member@example.com', 'staff@example.com', 'faculty@example.com'],
         );
     }
 
@@ -206,7 +206,7 @@ class ScopeAttributeTest extends TestCase
             'Attributes' => [
                 'schacHomeOrganization' => ['example.org'],
                 'eduPersonAffiliation' => ['student'],
-            ]
+            ],
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
@@ -230,7 +230,7 @@ class ScopeAttributeTest extends TestCase
                 'schacHomeOrganization' => ['example.org'],
                 'eduPersonAffiliation' => ['student'],
                 'eduPersonScopedAffiliation' => ['staff@example.org', 'member@example.org'],
-            ]
+            ],
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];

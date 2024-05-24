@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Utils\Config;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SAML2\XML\samlp\NameIDPolicy;
 use SimpleSAML\Utils\Config\Metadata;
@@ -11,9 +12,8 @@ use TypeError;
 
 /**
  * Tests related to SAML metadata.
- *
- * @covers \SimpleSAML\Utils\Config\Metadata
  */
+#[CoversClass(Metadata::class)]
 class MetadataTest extends TestCase
 {
     /**
@@ -57,7 +57,6 @@ class MetadataTest extends TestCase
 
 
     /**
-     * @covers \SimpleSAML\Utils\Config\Metadata::parseNameIdPolicy
      */
     public function testParseNameIdPolicy(): void
     {
@@ -67,7 +66,7 @@ class MetadataTest extends TestCase
         $nameIdPolicy = [
             'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:persistent',
             'AllowCreate' => false,
-            'SPNameQualifier' => 'TEST'
+            'SPNameQualifier' => 'TEST',
         ];
         $this->assertInstanceOf(NameIDPolicy::class, Metadata::parseNameIdPolicy($nameIdPolicy));
     }

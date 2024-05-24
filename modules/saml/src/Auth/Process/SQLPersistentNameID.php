@@ -120,7 +120,7 @@ class SQLPersistentNameID extends BaseNameIDGenerator
 
         $validNameIdFormats = @array_filter([
             $state['saml:NameIDFormat'],
-            $state['SPMetadata']['NameIDFormat']
+            $state['SPMetadata']['NameIDFormat'],
         ]);
         if (
             count($validNameIdFormats)

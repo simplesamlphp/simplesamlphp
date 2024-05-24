@@ -27,7 +27,7 @@ class FilterScopes extends Auth\ProcessingFilter
      */
     private array $scopedAttributes = [
         'eduPersonScopedAffiliation',
-        'eduPersonPrincipalName'
+        'eduPersonPrincipalName',
     ];
 
     /**

@@ -6,8 +6,8 @@ namespace SimpleSAML\Error;
 
 use SimpleSAML\Locale\Translate;
 
-use function array_key_exists;
 use function array_merge;
+use function strval;
 
 /**
  * Class that maps SimpleSAMLphp error codes to translateable strings.
@@ -16,55 +16,50 @@ use function array_merge;
  */
 class ErrorCodes
 {
-    // TODO PHPv8.1 - Consider moving to final consts for these default error codes to prevent overrides.
-    public const ACSPARAMS = 'ACSPARAMS';
-    public const ARSPARAMS = 'ARSPARAMS';
-    public const AUTHSOURCEERROR = 'AUTHSOURCEERROR';
-    public const BADREQUEST = 'BADREQUEST';
-    public const CASERROR = 'CASERROR';
-    public const CONFIG = 'CONFIG';
-    public const CREATEREQUEST = 'CREATEREQUEST';
-    public const DISCOPARAMS = 'DISCOPARAMS';
-    public const GENERATEAUTHNRESPONSE = 'GENERATEAUTHNRESPONSE';
-    public const INVALIDCERT = 'INVALIDCERT';
-    public const LDAPERROR = 'LDAPERROR';
-    public const LOGOUTINFOLOST = 'LOGOUTINFOLOST';
-    public const LOGOUTREQUEST = 'LOGOUTREQUEST';
-    public const MEMCACHEDOWN = 'MEMCACHEDOWN';
-    public const METADATA = 'METADATA';
-    public const METADATANOTFOUND = 'METADATANOTFOUND';
-    public const NOACCESS = 'NOACCESS';
-    public const NOCERT = 'NOCERT';
-    public const NORELAYSTATE = 'NORELAYSTATE';
-    public const NOSTATE = 'NOSTATE';
-    public const NOTFOUND = 'NOTFOUND';
-    public const NOTFOUNDREASON = 'NOTFOUNDREASON';
-    public const NOTSET = 'NOTSET';
-    public const NOTVALIDCERT = 'NOTVALIDCERT';
-    public const PROCESSASSERTION = 'PROCESSASSERTION';
-    public const PROCESSAUTHNREQUEST = 'PROCESSAUTHNREQUEST';
-    public const RESPONSESTATUSNOSUCCESS = 'RESPONSESTATUSNOSUCCESS';
-    public const SLOSERVICEPARAMS = 'SLOSERVICEPARAMS';
-    public const SSOPARAMS = 'SSOPARAMS';
-    public const UNHANDLEDEXCEPTION = 'UNHANDLEDEXCEPTION';
-    public const UNKNOWNCERT = 'UNKNOWNCERT';
-    public const USERABORTED = 'USERABORTED';
-    public const WRONGUSERPASS = 'WRONGUSERPASS';
+    final public const ACSPARAMS = 'ACSPARAMS';
+    final public const ARSPARAMS = 'ARSPARAMS';
+    final public const AUTHSOURCEERROR = 'AUTHSOURCEERROR';
+    final public const BADREQUEST = 'BADREQUEST';
+    final public const CASERROR = 'CASERROR';
+    final public const CONFIG = 'CONFIG';
+    final public const CREATEREQUEST = 'CREATEREQUEST';
+    final public const DISCOPARAMS = 'DISCOPARAMS';
+    final public const GENERATEAUTHNRESPONSE = 'GENERATEAUTHNRESPONSE';
+    final public const INVALIDCERT = 'INVALIDCERT';
+    final public const LDAPERROR = 'LDAPERROR';
+    final public const LOGOUTINFOLOST = 'LOGOUTINFOLOST';
+    final public const LOGOUTREQUEST = 'LOGOUTREQUEST';
+    final public const MEMCACHEDOWN = 'MEMCACHEDOWN';
+    final public const METADATA = 'METADATA';
+    final public const METADATANOTFOUND = 'METADATANOTFOUND';
+    final public const NOACCESS = 'NOACCESS';
+    final public const NOCERT = 'NOCERT';
+    final public const NORELAYSTATE = 'NORELAYSTATE';
+    final public const NOSTATE = 'NOSTATE';
+    final public const NOTFOUND = 'NOTFOUND';
+    final public const NOTFOUNDREASON = 'NOTFOUNDREASON';
+    final public const NOTSET = 'NOTSET';
+    final public const NOTVALIDCERT = 'NOTVALIDCERT';
+    final public const PROCESSASSERTION = 'PROCESSASSERTION';
+    final public const PROCESSAUTHNREQUEST = 'PROCESSAUTHNREQUEST';
+    final public const RESPONSESTATUSNOSUCCESS = 'RESPONSESTATUSNOSUCCESS';
+    final public const SLOSERVICEPARAMS = 'SLOSERVICEPARAMS';
+    final public const SSOPARAMS = 'SSOPARAMS';
+    final public const UNHANDLEDEXCEPTION = 'UNHANDLEDEXCEPTION';
+    final public const UNKNOWNCERT = 'UNKNOWNCERT';
+    final public const USERABORTED = 'USERABORTED';
+    final public const WRONGUSERPASS = 'WRONGUSERPASS';
 
-    public const KEY_TITLE = 'title';
-    public const KEY_DESCRIPTION = 'descr';
+    final public const KEY_TITLE = 'title';
+    final public const KEY_DESCRIPTION = 'descr';
 
 
     /**
      * Fetch all default translation strings for error code titles.
      *
      * @return array A map from error code to error code title
-     *
-     * @deprecated Static method access is deprecated. Move to instance method.
-     * @see self::getDefaultTitles()
-     * TODO NextMajorRelease Move content to substitute method and remove.
      */
-    final public static function defaultGetAllErrorCodeTitles(): array
+    final public function getDefaultTitles(): array
     {
         return [
             self::ACSPARAMS => Translate::noop('No SAML response provided'),
@@ -103,32 +98,6 @@ class ErrorCodes
         ];
     }
 
-    /**
-     * Fetch all default translation strings for error code titles.
-     *
-     * @return array A map from error code to error code title
-     */
-    final public function getDefaultTitles(): array
-    {
-        // TODO NextMajorRelease Move content from self::defaultGetAllErrorCodeTitles() to this method.
-        return self::defaultGetAllErrorCodeTitles();
-    }
-
-    /**
-     * Fetch all title translation strings for custom error codes.
-     *
-     * Extend this to define custom error codes and their title translations.
-     *
-     * @return array A map from custom error code to error code title
-     *
-     * @deprecated Static method access is deprecated. Move to instance method.
-     * @see self::getCustomTitles()
-     * TODO NextMajorRelease Remove this method.
-     */
-    public static function getCustomErrorCodeTitles(): array
-    {
-        return [];
-    }
 
     /**
      * Fetch all title translation strings for custom error codes.
@@ -147,22 +116,8 @@ class ErrorCodes
      * Fetch all translation strings for error code titles.
      *
      * @return array A map from error code to error code title
-     *
-     * @deprecated Static method access is deprecated. Move to instance method.
-     * @see self::getAllTitles()
-     * TODO NextMajorRelease Remove this method.
      */
-    public static function getAllErrorCodeTitles(): array
-    {
-        return array_merge(self::defaultGetAllErrorCodeTitles(), static::getCustomErrorCodeTitles());
-    }
-
-    /**
-     * Fetch all translation strings for error code titles.
-     *
-     * @return array A map from error code to error code title
-     */
-    public function getAllTitles(): array
+    final public function getAllTitles(): array
     {
         return array_merge($this->getDefaultTitles(), $this->getCustomTitles());
     }
@@ -172,12 +127,8 @@ class ErrorCodes
      * Fetch all default translation strings for error code descriptions.
      *
      * @return array A map from error code to error code description
-     *
-     * @deprecated Static method access is deprecated. Move to instance method.
-     * @see self::getDefaultDescriptions()
-     * TODO NextMajorRelease Move content to substitute method and remove.
      */
-    final public static function defaultGetAllErrorCodeDescriptions(): array
+    final public function getDefaultDescriptions(): array
     {
         return [
             self::ACSPARAMS => Translate::noop("" .
@@ -263,32 +214,6 @@ class ErrorCodes
         ];
     }
 
-    /**
-     * Fetch all default translation strings for error code descriptions.
-     *
-     * @return array A map from error code to error code description
-     */
-    final public function getDefaultDescriptions(): array
-    {
-        // TODO NextMajorRelease Move content from self::defaultGetAllErrorCodeDescriptions() to this method.
-        return self::defaultGetAllErrorCodeDescriptions();
-    }
-
-    /**
-     * Fetch all description translation strings for custom error codes.
-     *
-     * Extend this to define custom error codes and their description translations.
-     *
-     * @return array A map from error code to error code description
-     *
-     * @deprecated Static method access is deprecated. Move to instance method.
-     * @see self::getCustomDescriptions()
-     * TODO NextMajorRelease Remove this method.
-     */
-    public static function getCustomErrorCodeDescriptions(): array
-    {
-        return [];
-    }
 
     /**
      * Fetch all description translation strings for custom error codes.
@@ -302,43 +227,12 @@ class ErrorCodes
         return [];
     }
 
-    /**
-     * Fetch all translation strings for error code descriptions.
-     *
-     * @return array A map from error code to error code description
-     *
-     * @deprecated Static method access is deprecated. Move to instance method.
-     * @see self::getAllDescriptions()
-     * TODO NextMajorRelease Remove this method.
-     */
-    public static function getAllErrorCodeDescriptions(): array
-    {
-        return array_merge(self::defaultGetAllErrorCodeDescriptions(), static::getCustomErrorCodeDescriptions());
-    }
 
     public function getAllDescriptions(): array
     {
         return array_merge($this->getDefaultDescriptions(), $this->getCustomDescriptions());
     }
 
-
-    /**
-     * Get a map of both errorcode titles and descriptions
-     *
-     * Convenience-method for template-callers
-     *
-     * @return array An array containing both errorcode maps.
-     * @deprecated Static method access is deprecated. Move to instance method.
-     * @see self::getAllMessages()
-     * TODO NextMajorRelease Remove this method.
-     */
-    public static function getAllErrorCodeMessages(): array
-    {
-        return [
-            self::KEY_TITLE => self::getAllErrorCodeTitles(),
-            self::KEY_DESCRIPTION => self::getAllErrorCodeDescriptions(),
-        ];
-    }
 
     /**
      * Get a map of both errorcode titles and descriptions
@@ -362,53 +256,12 @@ class ErrorCodes
      * @param string $errorCode The error code to look up
      *
      * @return string A string to translate
-     *
-     * @deprecated Static method access is deprecated. Move to instance method.
-     * @see self::getTitle()
-     * TODO NextMajorRelease Remove this method.
-     */
-    public static function getErrorCodeTitle(string $errorCode): string
-    {
-        if (array_key_exists($errorCode, self::getAllErrorCodeTitles())) {
-            $errorCodeTitles = self::getAllErrorCodeTitles();
-            return $errorCodeTitles[$errorCode];
-        } else {
-            return Translate::addTagPrefix($errorCode, 'title_');
-        }
-    }
-
-    /**
-     * Fetch a translation string for a title for a given error code.
-     *
-     * @param string $errorCode The error code to look up
-     *
-     * @return string A string to translate
      */
     public function getTitle(string $errorCode): string
     {
-        return (string)($this->getAllTitles()[$errorCode] ?? Translate::addTagPrefix($errorCode, 'title_'));
+        return strval($this->getAllTitles()[$errorCode] ?? Translate::addTagPrefix($errorCode, 'title_'));
     }
 
-    /**
-     * Fetch a translation string for a description for a given error code.
-     *
-     * @param string $errorCode The error code to look up
-     *
-     * @return string A string to translate
-     *
-     * @deprecated Static method access is deprecated. Move to instance method.
-     * @see self::getDescription()
-     * TODO NextMajorRelease Remove this method.
-     */
-    public static function getErrorCodeDescription(string $errorCode): string
-    {
-        if (array_key_exists($errorCode, self::getAllErrorCodeDescriptions())) {
-            $errorCodeDescriptions = self::getAllErrorCodeDescriptions();
-            return $errorCodeDescriptions[$errorCode];
-        } else {
-            return Translate::addTagPrefix($errorCode, 'descr_');
-        }
-    }
 
     /**
      * Fetch a translation string for a description for a given error code.
@@ -419,29 +272,9 @@ class ErrorCodes
      */
     public function getDescription(string $errorCode): string
     {
-        return (string)($this->getAllDescriptions()[$errorCode] ?? Translate::addTagPrefix($errorCode, 'descr_'));
+        return strval($this->getAllDescriptions()[$errorCode] ?? Translate::addTagPrefix($errorCode, 'descr_'));
     }
 
-    /**
-     * Get both title and description for a specific error code
-     *
-     * Convenience-method for template-callers
-     *
-     * @param string $errorCode The error code to look up
-     *
-     * @return array An array containing both errorcode strings.
-     *
-     * @deprecated Static method access is deprecated. Move to instance method.
-     * @see self::getMessage()
-     * TODO NextMajorRelease Remove this method.
-     */
-    public static function getErrorCodeMessage(string $errorCode): array
-    {
-        return [
-            self::KEY_TITLE => self::getErrorCodeTitle($errorCode),
-            self::KEY_DESCRIPTION => self::getErrorCodeDescription($errorCode),
-        ];
-    }
 
     /**
      * Get both title and description for a specific error code

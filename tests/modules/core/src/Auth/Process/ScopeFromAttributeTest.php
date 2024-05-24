@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Module\core\Auth\Process\ScopeFromAttribute;
 
 /**
  * Test for the core:ScopeFromAttribute filter.
- *
- * @covers \SimpleSAML\Module\core\Auth\Process\ScopeFromAttribute
  */
+#[CoversClass(ScopeFromAttribute::class)]
 class ScopeFromAttributeTest extends TestCase
 {
     /**
@@ -41,7 +41,7 @@ class ScopeFromAttributeTest extends TestCase
         $request = [
             'Attributes' => [
                 'eduPersonPrincipalName' => ['jdoe@example.com'],
-            ]
+            ],
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
@@ -62,8 +62,8 @@ class ScopeFromAttributeTest extends TestCase
         $request = [
             'Attributes' => [
                 'eduPersonPrincipalName' => ['jdoe@example.com'],
-                'scope' => ['example.edu']
-            ]
+                'scope' => ['example.edu'],
+            ],
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
@@ -83,8 +83,8 @@ class ScopeFromAttributeTest extends TestCase
         $request = [
             'Attributes' => [
                 'mail' => ['j.doe@example.edu', 'john@example.org'],
-                'scope' => ['example.edu']
-            ]
+                'scope' => ['example.edu'],
+            ],
         ];
         $result = self::processFilter($config, $request);
         $this->assertEquals($request['Attributes'], $result['Attributes']);
@@ -103,7 +103,7 @@ class ScopeFromAttributeTest extends TestCase
         $request = [
             'Attributes' => [
                 'eduPersonPrincipalName' => ['john@doe@example.com'],
-            ]
+            ],
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
@@ -123,7 +123,7 @@ class ScopeFromAttributeTest extends TestCase
         $request = [
             'Attributes' => [
                 'eduPersonPrincipalName' => ['johndoe'],
-            ]
+            ],
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];

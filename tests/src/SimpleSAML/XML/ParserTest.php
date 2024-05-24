@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\XML;
 
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\XML\Parser;
 
@@ -15,9 +16,8 @@ use SimpleSAML\XML\Parser;
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- *
- * @covers \SimpleSAML\XML\Parser
  */
+#[CoversClass(Parser::class)]
 class ParserTest extends TestCase
 {
     private const XMLDOC = <<< XML
@@ -40,9 +40,8 @@ XML;
 
 
     /**
-     * @test
      */
-    public function getValue(): void
+    public function testGetValue(): void
     {
         $result = $this->xml->getValue('/Root/Value', true);
         $this->assertEquals(
@@ -53,9 +52,8 @@ XML;
 
 
     /**
-     * @test
      */
-    public function getEmptyValue(): void
+    public function testGetEmptyValue(): void
     {
         $result = $this->xml->getValue('/Root/Foo', false);
         $this->assertEquals(
@@ -66,9 +64,8 @@ XML;
 
 
     /**
-     * @test
      */
-    public function getValueException(): void
+    public function testGetValueException(): void
     {
         $this->expectException(Exception::class);
         $this->xml->getValue('/Root/Foo', true);
@@ -76,70 +73,66 @@ XML;
 
 
     /**
-     * @test
      */
-    public function getDefaultValue(): void
+    public function testGetDefaultValue(): void
     {
         $result = $this->xml->getValueDefault('/Root/Other', 'Hello');
         $this->assertEquals(
             'Hello',
-            $result
+            $result,
         );
     }
 
 
     /**
-     * @test
      */
-    public function getValueAlternatives(): void
+    public function testGetValueAlternatives(): void
     {
         $result = $this
             ->xml
             ->getValueAlternatives([
                 '/Root/Other',
-                '/Root/Value'
+                '/Root/Value',
             ], true)
         ;
 
         $this->assertEquals(
             'Hello, World!',
-            $result
+            $result,
         );
     }
 
 
     /**
-     * @test
      */
-    public function getEmptyValueAlternatives(): void
+    public function testGetEmptyValueAlternatives(): void
     {
         $result = $this
             ->xml
             ->getValueAlternatives([
                 '/Root/Foo',
-                '/Root/Bar'
+                '/Root/Bar',
             ], false)
         ;
 
         $this->assertEquals(
             null,
-            $result
+            $result,
         );
     }
 
 
     /**
-     * @test
      */
-    public function getValueAlternativesException(): void
+    public function testGetValueAlternativesException(): void
     {
         $this->expectException(Exception::class);
         $this->xml->getValueAlternatives(
             [
                 '/Root/Foo',
-                '/Root/Bar'
+                '/Root/Bar',
             ],
-            true
+            true,
         );
     }
 }

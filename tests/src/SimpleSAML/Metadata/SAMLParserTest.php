@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Metadata;
 
 use DOMDocument;
+use PHPUnit\Framework\Attributes\CoversClass;
 use SimpleSAML\Metadata\SAMLParser;
 use SimpleSAML\Test\SigningTestCase;
 use SimpleSAML\XML\{DOMDocumentFactory, Signer};
 
 /**
  * Test SAML parsing
- *
- * @covers \SimpleSAML\Metadata\SAMLParser
  */
+#[CoversClass(SAMLParser::class)]
 class SAMLParserTest extends SigningTestCase
 {
     /**
@@ -204,7 +204,7 @@ XML
         $expected_a = [
             "urn:mace:dir:attribute-def:eduPersonPrincipalName",
             "urn:mace:dir:attribute-def:mail",
-            "urn:mace:dir:attribute-def:displayName"
+            "urn:mace:dir:attribute-def:displayName",
         ];
         $expected_r = ["urn:mace:dir:attribute-def:eduPersonPrincipalName"];
 

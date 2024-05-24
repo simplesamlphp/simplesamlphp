@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\core\Auth\Process\AttributeLimit;
 
 /**
  * Test for the core:AttributeLimit filter.
- *
- * @covers \SimpleSAML\Module\core\Auth\Process\AttributeLimit
  */
+#[CoversClass(AttributeLimit::class)]
 class AttributeLimitTest extends TestCase
 {
     /**
@@ -44,7 +44,7 @@ class AttributeLimitTest extends TestCase
     public function testIdPAttrs(): void
     {
         $config = [
-            'cn', 'mail'
+            'cn', 'mail',
         ];
 
         $request = [
@@ -90,7 +90,7 @@ class AttributeLimitTest extends TestCase
     public function testNULLMetadataAttrs(): void
     {
         $config = [
-            'cn', 'mail'
+            'cn', 'mail',
         ];
 
         $request = [
@@ -159,7 +159,7 @@ class AttributeLimitTest extends TestCase
                 ],
                 'attributesRegex' => [
                     '/^mail$/',
-                ]
+                ],
             ],
             'Source' => [
             ],
@@ -173,7 +173,7 @@ class AttributeLimitTest extends TestCase
     public function testBasic(): void
     {
         $config = [
-            'cn', 'mail'
+            'cn', 'mail',
         ];
 
         $result = self::processFilter($config, self::$request);
@@ -243,7 +243,7 @@ class AttributeLimitTest extends TestCase
     {
         $this->expectException(Exception::class);
         $config = [
-            null
+            null,
         ];
 
         self::processFilter($config, self::$request);
@@ -256,7 +256,7 @@ class AttributeLimitTest extends TestCase
     public function testMatchAttributeRegex(): void
     {
         $config = [
-            '/^eduPersonTargetedID$/' => ['nameIsRegex' => true]
+            '/^eduPersonTargetedID$/' => ['nameIsRegex' => true],
         ];
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
@@ -264,7 +264,7 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(1, $attributes);
 
         $config = [
-            '/^eduPerson/' => ['nameIsRegex' => true]
+            '/^eduPerson/' => ['nameIsRegex' => true],
         ];
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
@@ -273,7 +273,7 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(2, $attributes);
 
         $config = [
-            '/.*nomatch.*/' => ['nameIsRegex' => true]
+            '/.*nomatch.*/' => ['nameIsRegex' => true],
         ];
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
@@ -281,8 +281,8 @@ class AttributeLimitTest extends TestCase
 
         // Test combination of plain and regexp matches
         $config = [
-            '/^eduPersonTargetedID$/' => ['nameIsRegex' => true],
-            'cn'
+            '/^eduPersonTargetedID$/' => ['nameIsRegex' => true],,
+            'cn',
         ];
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
@@ -293,7 +293,7 @@ class AttributeLimitTest extends TestCase
         $config = [
             '/^eduPerson/' => ['nameIsRegex' => true],
             'cn',
-            'eduPersonTargetedID'
+            'eduPersonTargetedID',
         ];
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
@@ -304,7 +304,7 @@ class AttributeLimitTest extends TestCase
             '/^eduPerson/' => [
                 'nameIsRegex' => true,
                 'regex' => true,
-                '/@example.org$/'
+                '/@example.org$/',
             ],
         ];
         $result = self::processFilter($config, self::$request);
@@ -313,7 +313,7 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(1, $attributes);
 
         $config = [
-            'eduPersonTargetedID' => ['nameIsRegex' => false]
+            'eduPersonTargetedID' => ['nameIsRegex' => false],
         ];
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
@@ -328,7 +328,7 @@ class AttributeLimitTest extends TestCase
     public function testMatchAttributeValues(): void
     {
         $config = [
-            'eduPersonAffiliation' => ['member']
+            'eduPersonAffiliation' => ['member'],
         ];
 
         $result = self::processFilter($config, self::$request);
@@ -339,7 +339,7 @@ class AttributeLimitTest extends TestCase
         $this->assertEquals($attributes['eduPersonAffiliation'], ['member']);
 
         $config = [
-            'eduPersonAffiliation' => ['member', 'staff']
+            'eduPersonAffiliation' => ['member', 'staff'],
         ];
 
         $result = self::processFilter($config, self::$request);
@@ -350,7 +350,7 @@ class AttributeLimitTest extends TestCase
         $this->assertEquals($attributes['eduPersonAffiliation'], ['member']);
 
         $config = [
-            'eduPersonAffiliation' => ['student']
+            'eduPersonAffiliation' => ['student'],
         ];
         $result = self::processFilter($config, self::$request);
         /** @psalm-var array $attributes */
@@ -358,7 +358,7 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(0, $attributes);
 
         $config = [
-            'eduPersonAffiliation' => ['student', 'staff']
+            'eduPersonAffiliation' => ['student', 'staff'],
         ];
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
@@ -373,7 +373,7 @@ class AttributeLimitTest extends TestCase
         // Ensure really misconfigured ignoreCase and regex options are not interpreted as valid valus
         $config = [
             'eduPersonAffiliation' => ['ignoreCase' => 'member', 'nomatch'],
-            'mail' => ['regex' => 'user@example.org', 'nomatch']
+            'mail' => ['regex' => 'user@example.org', 'nomatch'],
         ];
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
@@ -388,7 +388,7 @@ class AttributeLimitTest extends TestCase
     public function testThatIgnoreCaseOptionNotMatchBooleanAsStringValue(): void
     {
         $config = [
-            'someAttribute' => ['ignoreCase' => true, 'someValue']
+            'someAttribute' => ['ignoreCase' => true, 'someValue'],
         ];
 
         $request = [
@@ -409,7 +409,7 @@ class AttributeLimitTest extends TestCase
     public function testMatchAttributeValuesIgnoreCase(): void
     {
         $config = [
-            'eduPersonAffiliation' => ['ignoreCase' => true, 'meMber']
+            'eduPersonAffiliation' => ['ignoreCase' => true, 'meMber'],
         ];
 
         $result = self::processFilter($config, self::$request);
@@ -420,7 +420,7 @@ class AttributeLimitTest extends TestCase
         $this->assertEquals($attributes['eduPersonAffiliation'], ['member']);
 
         $config = [
-            'eduPersonAffiliation' => ['ignoreCase' => true, 'membeR', 'sTaff']
+            'eduPersonAffiliation' => ['ignoreCase' => true, 'membeR', 'sTaff'],
         ];
 
         $result = self::processFilter($config, self::$request);
@@ -431,14 +431,14 @@ class AttributeLimitTest extends TestCase
         $this->assertEquals($attributes['eduPersonAffiliation'], ['member']);
 
         $config = [
-            'eduPersonAffiliation' => ['ignoreCase' => true, 'Student']
+            'eduPersonAffiliation' => ['ignoreCase' => true, 'Student'],
         ];
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
         $this->assertCount(0, $attributes);
 
         $config = [
-            'eduPersonAffiliation' => ['ignoreCase' => true, 'studeNt', 'sTaff']
+            'eduPersonAffiliation' => ['ignoreCase' => true, 'studeNt', 'sTaff'],
         ];
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
@@ -458,14 +458,14 @@ class AttributeLimitTest extends TestCase
             'urn:mace:example.terena.org:tcs:personal-user',
             'urn:x-surfnet:surfdomeinen.nl:role:dnsadmin',
             'urn:x-surfnet:surf.nl:surfdrive:quota:100',
-            '1' //boolean true as a string
+            '1', //boolean true as a string
         ];
 
         $config = [
             'eduPersonEntitlement' => [
                 'regex' => true,
-                '/^urn:x-surfnet:surf/'
-            ]
+                '/^urn:x-surfnet:surf/',
+            ],
         ];
 
         $result = self::processFilter($config, $state);
@@ -475,7 +475,7 @@ class AttributeLimitTest extends TestCase
         $this->assertArrayHasKey('eduPersonEntitlement', $attributes);
         $this->assertEquals(
             ['urn:x-surfnet:surfdomeinen.nl:role:dnsadmin', 'urn:x-surfnet:surf.nl:surfdrive:quota:100'],
-            $attributes['eduPersonEntitlement']
+            $attributes['eduPersonEntitlement'],
         );
 
         // Matching multiple lines shouldn't duplicate the attribute
@@ -483,9 +483,8 @@ class AttributeLimitTest extends TestCase
             'eduPersonEntitlement' => [
                 'regex' => true,
                 '/urn:x-surfnet:surf/',
-                '/urn:x-surfnet/'
-
-            ]
+                '/urn:x-surfnet/',
+            ],
         ];
 
         $result = self::processFilter($config, $state);
@@ -495,7 +494,7 @@ class AttributeLimitTest extends TestCase
         $this->assertArrayHasKey('eduPersonEntitlement', $attributes);
         $this->assertEquals(
             ['urn:x-surfnet:surfdomeinen.nl:role:dnsadmin', 'urn:x-surfnet:surf.nl:surfdrive:quota:100'],
-            $attributes['eduPersonEntitlement']
+            $attributes['eduPersonEntitlement'],
         );
 
         // Invalid and no-match regex expressions should not stop a valid regex from matching
@@ -504,8 +503,8 @@ class AttributeLimitTest extends TestCase
                 'regex' => true,
                 '/urn:mace:example.terena.org:tcs:no-match/',
                 '$invalidRegex[',
-                '/^URN:x-surf.*SURF.*n$/i'
-            ]
+                '/^URN:x-surf.*SURF.*n$/i',
+            ],
         ];
 
         $result = self::processFilter($config, $state);
@@ -515,15 +514,15 @@ class AttributeLimitTest extends TestCase
         $this->assertArrayHasKey('eduPersonEntitlement', $attributes);
         $this->assertEquals(
             ['urn:x-surfnet:surfdomeinen.nl:role:dnsadmin'],
-            $attributes['eduPersonEntitlement']
+            $attributes['eduPersonEntitlement'],
         );
 
         // No matches should remove attribute
         $config = [
             'eduPersonEntitlement' => [
                 'regex' => true,
-                '/urn:x-no-match/'
-            ]
+                '/urn:x-no-match/',
+            ],
         ];
         $result = self::processFilter($config, $state);
         $attributes = $result['Attributes'];
@@ -533,8 +532,8 @@ class AttributeLimitTest extends TestCase
         $config = [
             'eduPersonEntitlement' => [
                 'regex' => true,
-                '/surf/'
-            ]
+                '/surf/',
+            ],
         ];
         $result = self::processFilter($config, $state);
         /** @psalm-var array $attributes */
@@ -543,7 +542,7 @@ class AttributeLimitTest extends TestCase
         $this->assertArrayHasKey('eduPersonEntitlement', $attributes);
         $this->assertEquals(
             ['urn:x-surfnet:surfdomeinen.nl:role:dnsadmin', 'urn:x-surfnet:surf.nl:surfdrive:quota:100'],
-            $attributes['eduPersonEntitlement']
+            $attributes['eduPersonEntitlement'],
         );
     }
 

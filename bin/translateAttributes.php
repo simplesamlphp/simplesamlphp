@@ -32,7 +32,7 @@ $trans = json_decode(file_get_contents($base . 'dictionaries/attributes.translat
 
 $attributes = [];
 
-$languages = SimpleSAML\Locale\Language::$language_names;
+$languages = Symfony\Component\Intl\Languages::getNames();
 $languages['nb'] = $languages['no'];
 unset($languages['no']);
 

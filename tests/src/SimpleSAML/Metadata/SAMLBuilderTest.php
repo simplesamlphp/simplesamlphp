@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Metadata;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Metadata\SAMLBuilder;
@@ -14,9 +15,8 @@ use function array_keys;
 
 /**
  * Class SAMLBuilderTest
- *
- * @covers \SimpleSAML\Metadata\SAMLBuilder
  */
+#[CoversClass(SAMLBuilder::class)]
 class SAMLBuilderTest extends TestCase
 {
     private const SECURITY = 'vendor/simplesamlphp/xml-security/resources';

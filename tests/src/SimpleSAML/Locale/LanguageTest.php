@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Locale;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Locale\Language;
 
 /**
- * @covers \SimpleSAML\Locale\Language
  */
+#[CoversClass(Language::class)]
 class LanguageTest extends TestCase
 {
     /**
@@ -50,7 +51,7 @@ class LanguageTest extends TestCase
         // test that it works with non-defaults
         Configuration::loadFromArray([
             'language.available' => ['en', 'es', 'nn'],
-            'language.cookie.name' => 'xyz'
+            'language.cookie.name' => 'xyz',
         ], '', 'simplesaml');
         $_COOKIE['xyz'] = 'Es'; // test values are converted to lowercase too
         $this->assertEquals('es', Language::getLanguageCookie());
@@ -75,7 +76,6 @@ class LanguageTest extends TestCase
      */
     public function testGetLanguageListCorrectConfig(): void
     {
-        // test langs from from language_names
         $c = Configuration::loadFromArray([
             'language.available' => ['en', 'nn', 'es'],
         ], '', 'simplesaml');
@@ -96,7 +96,7 @@ class LanguageTest extends TestCase
     {
         // test non-existent langs
         $c = Configuration::loadFromArray([
-            'language.available' => ['foo', 'bar'],
+            'language.available' => ['foo', 'baz'],
         ], '', 'simplesaml');
         $l = new Language($c);
         $l->setLanguage('foo');
@@ -116,7 +116,7 @@ class LanguageTest extends TestCase
 
         // test for valid configuration
         $c = Configuration::loadFromArray([
-            'language.parameter.name' => 'xyz'
+            'language.parameter.name' => 'xyz',
         ], '', 'simplesaml');
         $l = new Language($c);
         $this->assertEquals('xyz', $l->getLanguageParameterName());

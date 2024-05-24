@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\saml\Controller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Configuration, Error, Session, Utils};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
@@ -13,9 +15,9 @@ use Symfony\Component\HttpFoundation\{Request, Response};
 /**
  * Set of tests for the controllers in the "saml" module.
  *
- * @covers \SimpleSAML\Module\saml\Controller\Metadata
  * @package SimpleSAML\Test
  */
+#[CoversClass(Controller\Metadata::class)]
 class MetadataTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */
@@ -129,9 +131,8 @@ class MetadataTest extends TestCase
     /**
      * Test that accessing the metadata-endpoint with or without authentication
      * and admin.protectmetadata set to true or false is handled properly
-     *
-     * @dataProvider provideMetadataAccess
      */
+    #[DataProvider('provideMetadataAccess')]
     public function testMetadataAccess(bool $authenticated, bool $protected): void
     {
         $_SERVER['REQUEST_METHOD'] = 'GET';

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Error\Error as SspError;
 use SimpleSAML\Error\ErrorCodes;
@@ -12,8 +13,8 @@ use SimpleSAML\SAML2\Constants as C;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @covers \SimpleSAML\Module\core\Auth\UserPassBase
  */
+#[CoversClass(UserPassBase::class)]
 class UserPassBaseTest extends TestCase
 {
     /**
@@ -31,12 +32,12 @@ class UserPassBaseTest extends TestCase
         $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
             ->onlyMethods(['login'])
-            ->getMockForAbstractClass();
+            ->getMock();
 
         $stub->expects($this->once())
             ->method('login')
             ->with($username, $password)
-            ->will($this->returnValue($attributes));
+            ->willReturn($attributes);
 
         $request = Request::createFromGlobals();
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
@@ -62,7 +63,7 @@ class UserPassBaseTest extends TestCase
 
         $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
-            ->getMockForAbstractClass();
+            ->getMock();
 
         $request = Request::createFromGlobals();
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
@@ -86,7 +87,7 @@ class UserPassBaseTest extends TestCase
 
         $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
-            ->getMockForAbstractClass();
+            ->getMock();
 
         $request = Request::createFromGlobals();
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
@@ -111,12 +112,12 @@ class UserPassBaseTest extends TestCase
         $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
             ->onlyMethods(['login'])
-            ->getMockForAbstractClass();
+            ->getMock();
 
         $stub->expects($this->once())
             ->method('login')
             ->with($forcedUsername, $password)
-            ->will($this->returnValue($attributes));
+            ->willReturn($attributes);
 
         $request = Request::createFromGlobals();
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */

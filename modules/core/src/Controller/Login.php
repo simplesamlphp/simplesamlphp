@@ -227,7 +227,7 @@ class Login
                     $errorParams = $e->getParameters();
                     $state['error'] = [
                         'code' => $errorCode,
-                        'params' => $errorParams
+                        'params' => $errorParams,
                     ];
                     $authStateId = Auth\State::saveState($state, $source::STAGEID);
                 }
@@ -290,7 +290,7 @@ class Login
         }
 
         $t->data['errorcode'] = $errorCode;
-        $t->data['errorcodes'] = Error\ErrorCodes::getAllErrorCodeMessages();
+        $t->data['errorcodes'] = (new Error\ErrorCodes())->getAllMessages();
         $t->data['errorparams'] = $errorParams;
 
         if (isset($state['SPMetadata'])) {

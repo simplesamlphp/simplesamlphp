@@ -526,7 +526,7 @@ class IdPDisco
                     'IdPentityID'   => $idp,
                     'returnIDParam' => $this->returnIdParam,
                     'isPassive'     => 'true',
-                    'return'        => $this->returnURL
+                    'return'        => $this->returnURL,
                 ]);
             } else {
                 $this->log(

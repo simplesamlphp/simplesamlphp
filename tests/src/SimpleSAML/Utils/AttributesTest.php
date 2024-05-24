@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Utils;
 
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Error;
 use SimpleSAML\Utils\Attributes;
 
 /**
  * Tests for SimpleSAML\Utils\Attributes.
- *
- * @covers \SimpleSAML\Utils\Attributes
  */
+#[CoversClass(Attributes::class)]
 class AttributesTest extends TestCase
 {
     /** @var \SimpleSAML\Utils\Attributes */
@@ -154,12 +154,12 @@ class AttributesTest extends TestCase
         $attributes = [
             'key1' => 'value1',
             'key2' => ['value2', 'value3'],
-            'key3' => 'value1'
+            'key3' => 'value1',
         ];
         $expected = [
             'key1' => ['value1'],
             'key2' => ['value2', 'value3'],
-            'key3' => ['value1']
+            'key3' => ['value1'],
         ];
         $this->assertEquals(
             $expected,

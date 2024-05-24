@@ -6,14 +6,15 @@ namespace SimpleSAML\Test\Module\multiauth\Auth\Source;
 
 use Error;
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @covers \SimpleSAML\Module\multiauth\Auth\Source\MultiAuth
  */
+#[CoversClass(MultiAuth::class)]
 class MultiAuthTest extends ClearStateTestCase
 {
     /** @var \SimpleSAML\Configuration */

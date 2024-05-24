@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test;
 
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Configuration, Module};
 use Symfony\Component\Filesystem\Path;
@@ -14,8 +15,8 @@ use function dirname;
 use function var_export;
 
 /**
- * @covers \SimpleSAML\Module
  */
+#[CoversClass(Module::class)]
 class ModuleTest extends TestCase
 {
     /**
@@ -47,7 +48,7 @@ class ModuleTest extends TestCase
     public function testGetModuleURL(): void
     {
         Configuration::loadFromArray([
-            'baseurlpath' => 'https://example.com/simplesaml/'
+            'baseurlpath' => 'https://example.com/simplesaml/',
         ], '', 'simplesaml');
         $this->assertEquals(
             'https://example.com/simplesaml/module.php/module/script.php',

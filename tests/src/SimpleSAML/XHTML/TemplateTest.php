@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\XHTML;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\XHTML\Template;
 
 /**
- * @covers \SimpleSAML\XHTML\Template
  */
+#[CoversClass(Template::class)]
 class TemplateTest extends TestCase
 {
     private const TEMPLATE = 'sandbox.twig';

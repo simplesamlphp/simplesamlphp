@@ -328,6 +328,10 @@ The following attributes are available:
 `RelayState`
 :   The page the user should be redirected to after an IdP initiated SSO.
 
+`RequestInitiation`
+:   Enable the [Service Provider Request Initiation Protocol](https://wiki.oasis-open.org/security/RequestInitProtProf).
+    To validate the `target` the `trusted.url.domains` configuration option has to be used.
+
 `saml.SOAPClient.certificate`
 :   A file with a certificate *and* private key that should be used when issuing SOAP requests from this SP.
     If this option isn't specified, the SP private key and certificate will be used.
