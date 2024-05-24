@@ -281,7 +281,7 @@ class AttributeLimitTest extends TestCase
 
         // Test combination of plain and regexp matches
         $config = [
-            '/^eduPersonTargetedID$/' => ['nameIsRegex' => true],,
+            '/^eduPersonTargetedID$/' => ['nameIsRegex' => true],
             'cn',
         ];
         $result = self::processFilter($config, self::$request);
