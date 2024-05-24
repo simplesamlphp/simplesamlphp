@@ -347,6 +347,10 @@ class SQLStore implements StoreInterface
      */
     public function get(string $type, string $key): mixed
     {
+        if ($type == 'session') {
+            $key = static::hashBase64($key);
+        }
+
         if (strlen($key) > 50) {
             $key = sha1($key);
         }
@@ -393,6 +397,10 @@ class SQLStore implements StoreInterface
             $this->cleanKVStore();
         }
 
+        if ($type == 'session') {
+            $key = static::hashBase64($key);
+        }
+
         if (strlen($key) > 50) {
             $key = sha1($key);
         }
@@ -423,6 +431,10 @@ class SQLStore implements StoreInterface
      */
     public function delete(string $type, string $key): void
     {
+        if ($type == 'session') {
+            $key = static::hashBase64($key);
+        }
+
         if (strlen($key) > 50) {
             $key = sha1($key);
         }
@@ -435,5 +447,26 @@ class SQLStore implements StoreInterface
         $query = 'DELETE FROM ' . $this->prefix . '_kvstore WHERE _type=:_type AND _key=:_key';
         $query = $this->pdo->prepare($query);
         $query->execute($data);
+    }
+
+
+    /**
+     * Calculates a base-64 encoded, URL-safe sha-256 hash.
+     *
+     * @param string $data
+     * @return string The hashed data.
+     */
+    public static function hashBase64(string $data) {
+        $hash = base64_encode(hash('sha256', $data, TRUE));
+        // Modify the hash so it's safe to use in URLs.
+        return str_replace([
+            '+',
+            '/',
+            '=',
+        ], [
+            '-',
+            '_',
+            '',
+        ], $hash);
     }
 }
