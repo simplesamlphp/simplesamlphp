@@ -253,7 +253,7 @@ class Template extends Response
         if ($this->theme['module']) {
             try {
                 $templateDirs[] = [
-                    $this->theme['module'] => TemplateLoader::getModuleTemplateDir($this->theme['module'])
+                    $this->theme['module'] => TemplateLoader::getModuleTemplateDir($this->theme['module']),
                 ];
             } catch (InvalidArgumentException $e) {
                 // either the module is not enabled or it has no "templates" directory, ignore
@@ -264,7 +264,7 @@ class Template extends Response
 
         // default, themeless templates are checked last
         $templateDirs[] = [
-            FilesystemLoader::MAIN_NAMESPACE => $this->configuration->resolvePath('templates')
+            FilesystemLoader::MAIN_NAMESPACE => $this->configuration->resolvePath('templates'),
         ];
         foreach ($templateDirs as $entry) {
             $loader->addPath($entry[key($entry)], key($entry));
@@ -294,9 +294,11 @@ class Template extends Response
         // load extra i18n domains
         if ($this->module) {
             $this->localization->addModuleDomain($this->module);
+            $this->localization->defaultDomain($this->module);
         }
         if ($this->theme['module'] !== null && $this->theme['module'] !== $this->module) {
             $this->localization->addModuleDomain($this->theme['module']);
+            $this->localization->defaultDomain($this->theme['module']);
         }
 
         // set up translation

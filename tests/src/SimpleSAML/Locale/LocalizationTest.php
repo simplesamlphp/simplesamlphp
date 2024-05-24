@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Locale;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Locale\Localization;
 
 /**
- * @covers \SimpleSAML\Locale\Localization
  */
+#[CoversClass(Localization::class)]
 class LocalizationTest extends TestCase
 {
     /**

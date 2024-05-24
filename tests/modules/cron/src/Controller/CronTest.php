@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\cron\Controller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Configuration, Error, Session, Utils};
 use SimpleSAML\Module\cron\Controller;
@@ -13,9 +15,9 @@ use Symfony\Component\HttpFoundation\{Request, Response};
 /**
  * Set of tests for the controllers in the "cron" module.
  *
- * @covers \SimpleSAML\Module\cron\Controller\Cron
  * @package SimpleSAML\Test
  */
+#[CoversClass(Controller\Cron::class)]
 class CronTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */
@@ -38,7 +40,7 @@ class CronTest extends TestCase
         $this->config = Configuration::loadFromArray(
             [
                 'module.enable' => ['cron' => true],
-                'secretsalt' => 'defaultsecretsalt'
+                'secretsalt' => 'defaultsecretsalt',
             ],
             '[ARRAY]',
             'simplesaml'
@@ -120,8 +122,8 @@ class CronTest extends TestCase
 
 
     /**
-     * @dataProvider provideStupidSecret
      */
+    #[DataProvider('provideStupidSecret')]
     public function testRunWithStupidSecretThrowsException(string $secret): void
     {
         $request = Request::create(
@@ -137,8 +139,8 @@ class CronTest extends TestCase
 
 
     /**
-     * @dataProvider provideStupidSecret
      */
+    #[DataProvider('provideStupidSecret')]
     public function testRunWithConfiguredStupidSecretThrowsException(string $secret): void
     {
         Configuration::setPreLoadedConfig(

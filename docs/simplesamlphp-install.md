@@ -14,7 +14,7 @@ repository](simplesamlphp-install-repo).
 ## Prerequisites
 
 * A web server capable of executing PHP scripts.
-* PHP version >= 8.0.0.
+* PHP version >= 8.1.0.
 * Support for the following PHP extensions:
   * Always required: `date`, `dom`, `fileinfo`, `filter`, `hash`, `json`, `libxml`, `mbstring`, `openssl`,
                      `pcre`, `session`, `simplexml`, `sodium`, `SPL` and `zlib`
@@ -109,7 +109,7 @@ directory doesn't need to be inside the library's directory, making it easier to
 to set this environment variable is to set it in your web server's configuration. See the next section for more
 information.
 
-## Configuring Apache {#section_4}
+## Configuring Apache
 
 Examples below assume that SimpleSAMLphp is installed in the default location, `/var/simplesamlphp`. You may choose
 another location, but this requires a path update in a few files. See Appendix _Installing SimpleSAMLphp
@@ -142,7 +142,7 @@ Note the `Alias` directive, which gives control to SimpleSAMLphp for all urls ma
 them are accessible through the `public` subdirectory of your SimpleSAMLphp installation. You can name the alias
 whatever you want, but the name must be specified in the `baseurlpath` configuration option in the `config.php` file of
 SimpleSAMLphp as described in
-[the section called “SimpleSAMLphp configuration: config.php”](simplesamlphp-install#section_6).
+[the section called “SimpleSAMLphp configuration: config.php”](simplesamlphp-install#configuration).
 Here is an example of how this configuration may look like in `config.php`:
 
 ```php
@@ -162,7 +162,7 @@ directory too, use the `metadatadir` configuration option to specify the locatio
 
 This is just the basic configuration to get things working. For a checklist
 further completing your documentation, please see
-[Maintenance and configuration: Apache](simplesamlphp-maintenance#section_5).
+[Maintenance and configuration: Apache](simplesamlphp-maintenance).
 
 ## Configuring Nginx
 
@@ -204,7 +204,7 @@ server {
 }
 ```
 
-## SimpleSAMLphp configuration: config.php {#section_6}
+## SimpleSAMLphp configuration: config.php
 
 There are a few steps that you should complete in the main configuration file, `config.php`, right away:
 
@@ -374,7 +374,7 @@ The SimpleSAMLphp package contains one folder named `simplesamlphp-x.y.z` (where
 this folder there are a lot of subfolders for library, metadata, configuration, etc. One of these folders is named
 `public`. **Only this folder should be exposed on the web**. The recommended configuration is to put the whole
 `simplesamlphp` folder outside the web root, and then link to the `public` folder by using the `Alias` directive, as
-described in [the section called “Configuring Apache”](simplesamlphp-install#section_4). This is not the only
+described in [the section called “Configuring Apache”](simplesamlphp-install#configuring-apache). This is not the only
 possible way, though.
 
 As an example, let's see how you can install SimpleSAMLphp in your home directory on a shared hosting server.

@@ -58,7 +58,7 @@ class DiscoControllerTest extends TestCase
                         'sources' => [
                             'admin' => [],
                             'admin2' => [],
-                        ]
+                        ],
                     ],
                 ],
                 '[ARRAY]',
@@ -122,12 +122,12 @@ class DiscoControllerTest extends TestCase
             {
                 return [
                     'LogoutState' => [
-                        'multiauth:discovery' => 'foo'
+                        'multiauth:discovery' => 'foo',
                     ],
                     MultiAuth::SOURCESID => [
                         'admin' => ['help' => ['en' => 'help'], 'text' => ['en' => 'text']],
-                        'admin2' => ['help' => ['en' => 'help'], 'text' => ['en' => 'text']]
-                    ]
+                        'admin2' => ['help' => ['en' => 'help'], 'text' => ['en' => 'text']],
+                    ],
                 ];
             }
         });
@@ -150,7 +150,7 @@ class DiscoControllerTest extends TestCase
         $request = Request::create(
             '/discovery',
             'GET',
-            ['AuthState' => '_abc123']
+            ['AuthState' => '_abc123'],
         );
 
         $c = new Controller\DiscoController($this->config, $this->session);
@@ -160,13 +160,13 @@ class DiscoControllerTest extends TestCase
             {
                 return [
                     'LogoutState' => [
-                        'multiauth:discovery' => 'foo'
+                        'multiauth:discovery' => 'foo',
                     ],
                     '\SimpleSAML\Auth\Source.id' => 'multi',
                     MultiAuth::SOURCESID => [
                         'admin' => ['help' => ['en' => 'help'], 'text' => ['en' => 'text']],
-                        'admin2' => ['help' => ['en' => 'help'], 'text' => ['en' => 'text']]
-                    ]
+                        'admin2' => ['help' => ['en' => 'help'], 'text' => ['en' => 'text']],
+                    ],
                 ];
             }
         });
@@ -189,7 +189,7 @@ class DiscoControllerTest extends TestCase
         $request = Request::create(
             '/discovery',
             'GET',
-            ['AuthState' => '_abc123']
+            ['AuthState' => '_abc123'],
         );
 
         $c = new Controller\DiscoController($this->config, $this->session);
@@ -199,15 +199,15 @@ class DiscoControllerTest extends TestCase
             {
                 return [
                     'LogoutState' => [
-                        'multiauth:discovery' => 'foo'
+                        'multiauth:discovery' => 'foo',
                     ],
                     'multiauth:preselect' => 'admin',
                     '\SimpleSAML\Auth\Source.id' => 'multi',
                     MultiAuth::AUTHID => 'bar',
                     MultiAuth::SOURCESID => [
                         'admin' => ['help' => ['en' => 'help'], 'text' => ['nl' => 'text']],
-                        'admin2' => ['text' => ['en' => 'text'], 'help' => ['nl' => 'help']]
-                    ]
+                        'admin2' => ['text' => ['en' => 'text'], 'help' => ['nl' => 'help']],
+                    ],
                 ];
             }
         });
@@ -230,7 +230,7 @@ class DiscoControllerTest extends TestCase
         $request = Request::create(
             '/discovery',
             'GET',
-            ['AuthState' => '_abc123', 'source' => 'admin']
+            ['AuthState' => '_abc123', 'source' => 'admin'],
         );
 
         $c = new Controller\DiscoController($this->config, $this->session);
@@ -240,15 +240,15 @@ class DiscoControllerTest extends TestCase
             {
                 return [
                     'LogoutState' => [
-                        'multiauth:discovery' => 'foo'
+                        'multiauth:discovery' => 'foo',
                     ],
                     'multiauth:preselect' => 'admin',
                     '\SimpleSAML\Auth\Source.id' => 'multi',
                     MultiAuth::AUTHID => 'bar',
                     MultiAuth::SOURCESID => [
                         'admin' => ['help' => ['en' => 'help']],
-                        'admin2' => ['text' => ['en' => 'text']]
-                    ]
+                        'admin2' => ['text' => ['en' => 'text']],
+                    ],
                 ];
             }
         });
@@ -271,7 +271,7 @@ class DiscoControllerTest extends TestCase
         $request = Request::create(
             '/discovery',
             'GET',
-            ['AuthState' => '_abc123', 'sourceChoice[admin]' => 'something admin']
+            ['AuthState' => '_abc123', 'sourceChoice[admin]' => 'something admin'],
         );
 
         $c = new Controller\DiscoController($this->config, $this->session);
@@ -281,13 +281,13 @@ class DiscoControllerTest extends TestCase
             {
                 return [
                     'LogoutState' => [
-                        'multiauth:discovery' => 'foo'
+                        'multiauth:discovery' => 'foo',
                     ],
                     MultiAuth::AUTHID => 'bar',
                     MultiAuth::SOURCESID => [
                         'admin' => ['help' => ['en' => 'help'], 'text' => ['en' => 'text']],
-                        'admin2' => ['text' => ['en' => 'text'], 'help' => ['en' => 'help']]
-                    ]
+                        'admin2' => ['text' => ['en' => 'text'], 'help' => ['en' => 'help']],
+                    ],
                 ];
             }
         });

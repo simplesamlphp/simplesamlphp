@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\admin\Controller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Auth, Configuration, Error, Session, Utils};
 use SimpleSAML\Module\admin\Controller\Test as TestController;
@@ -14,9 +15,9 @@ use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 /**
  * Set of tests for the controllers in the "admin" module.
  *
- * @covers \SimpleSAML\Module\admin\Controller\Test
  * @package SimpleSAML\Test
  */
+#[CoversClass(TestController::class)]
 class TestTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */
@@ -210,30 +211,30 @@ class TestTest extends TestCase
                 /** @psalm-suppress PossiblyNullPropertyFetch */
                 return [
                     'urn:mace:dir:attribute-def:cn' => [
-                        'Tim van Dijen'
+                        'Tim van Dijen',
                     ],
                     'urn:mace:dir:attribute-def:givenName' => [
-                        'Tim'
+                        'Tim',
                     ],
                     'urn:mace:dir:attribute-def:sn' => [
-                        'van Dijen'
+                        'van Dijen',
                     ],
                     'urn:mace:dir:attribute-def:displayName' => [
-                        'Mr. T. van Dijen BSc'
+                        'Mr. T. van Dijen BSc',
                     ],
                     'urn:mace:dir:attribute-def:mail' => [
                         'tvdijen@hotmail.com',
-                        'tvdijen@gmail.com'
+                        'tvdijen@gmail.com',
                     ],
                     'urn:mace:dir:attribute-def:eduPersonTargetedID' => [
-                        $nameId->toXML()->ownerDocument->childNodes
+                        $nameId->toXML()->ownerDocument->childNodes,
                     ],
                     'jpegPhoto' => [
-                        'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+                        'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=',
                     ],
                     'nameId' => [
-                        $nameId
-                    ]
+                        $nameId,
+                    ],
                 ];
             }
 

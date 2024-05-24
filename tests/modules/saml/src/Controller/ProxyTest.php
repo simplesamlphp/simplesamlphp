@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\saml\Controller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Auth, Configuration, Error};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
@@ -17,9 +18,9 @@ use function dirname;
 /**
  * Set of tests for the controllers in the "saml" module.
  *
- * @covers \SimpleSAML\Module\saml\Controller\Proxy
  * @package SimpleSAML\Test
  */
+#[CoversClass(Controller\Proxy::class)]
 class ProxyTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */

@@ -97,6 +97,13 @@ class SP extends Auth\Source
      */
     private array $protocols = [C::NS_SAMLP];
 
+    /**
+     * Flag to indicate whether to disable sending the Scoping element.
+     *
+     * @var bool
+     */
+    private bool $requestInitiation;
+
 
     /**
      * Constructor for SAML SP authentication source.
@@ -135,6 +142,7 @@ class SP extends Auth\Source
         $this->idp = $this->metadata->getOptionalString('idp', null);
         $this->discoURL = $this->metadata->getOptionalString('discoURL', null);
         $this->disable_scoping = $this->metadata->getOptionalBoolean('disable_scoping', false);
+        $this->requestInitiation = $this->metadata->getOptionalBoolean('RequestInitiation', false);
         $this->passAuthnContextClassRef = $this->metadata->getOptionalBoolean(
             'proxymode.passAuthnContextClassRef',
             false
@@ -452,6 +460,16 @@ class SP extends Auth\Source
         return $endpoints;
     }
 
+    /**
+     * Determine if the Request Initiator Protocol is enabled
+     *
+     * @return bool
+     */
+    public function isRequestInitiation(): bool
+    {
+        return $this->requestInitiation;
+    }
+
 
     /**
      * Send a SAML2 SSO request to an IdP
@@ -459,7 +477,7 @@ class SP extends Auth\Source
      * @param \SimpleSAML\Configuration $idpMetadata  The metadata of the IdP.
      * @param array $state  The state array for the current authentication.
      */
-    private function startSSO2(Configuration $idpMetadata, array $state): void
+    private function startSSO2(Configuration $idpMetadata, array $state): Response
     {
         if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] < 0) {
             Auth\State::throwException(
@@ -669,7 +687,7 @@ class SP extends Auth\Source
 
         $b = Binding::getBinding($dst['Binding']);
 
-        $this->sendSAML2AuthnRequest($b, $ar);
+        return $this->sendSAML2AuthnRequest($b, $ar);
     }
 
 
@@ -742,7 +760,7 @@ class SP extends Auth\Source
         $params = [
             'entityID' => $this->entityId,
             'return' => $returnTo,
-            'returnIDParam' => 'idpentityid'
+            'returnIDParam' => 'idpentityid',
         ];
 
         if (isset($state['saml:IDPList'])) {
@@ -1077,7 +1095,7 @@ class SP extends Auth\Source
             'SingleLogoutService',
             [
                 C::BINDING_HTTP_REDIRECT,
-                C::BINDING_HTTP_POST
+                C::BINDING_HTTP_POST,
             ],
             false
         );

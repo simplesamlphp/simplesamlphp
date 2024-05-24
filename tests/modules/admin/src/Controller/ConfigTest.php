@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\admin\Controller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Configuration, Session, Utils};
@@ -13,9 +14,9 @@ use Symfony\Component\HttpFoundation\{Request, Response};
 /**
  * Set of tests for the controllers in the "admin" module.
  *
- * @covers \SimpleSAML\Module\admin\Controller\Config
  * @package SimpleSAML\Test
  */
+#[CoversClass(Controller\Config::class)]
 class ConfigTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */
@@ -42,7 +43,7 @@ class ConfigTest extends TestCase
             [
                 'module.enable' => ['admin' => true],
                 'secretsalt' => 'defaultsecretsalt',
-                'admin.checkforupdates' => true
+                'admin.checkforupdates' => true,
             ],
             '[ARRAY]'
         ) extends Configuration

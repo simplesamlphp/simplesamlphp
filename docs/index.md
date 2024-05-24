@@ -28,6 +28,7 @@
   * [Authentication Processing Filters](simplesamlphp-authproc) - attribute filtering, attribute mapping, consent, group generation etc.
   * [State Information Lost](simplesamlphp-nostate) - more about this common error message
   * [Advanced features](simplesamlphp-advancedfeatures) - covers bridging protocols, attribute filtering, etc.
+  * [Developer documentation](simplesamlphp-developer-information) - code overview and other docs for new and returning developers
 * SimpleSAMLphp Modules
   * [Documentation for specific modules](/docs/contributed_modules.html)
   * [Theming SimpleSAMLphp](simplesamlphp-theming)

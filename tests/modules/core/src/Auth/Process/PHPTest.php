@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Error;
 use SimpleSAML\Module\core\Auth\Process\PHP;
 
 /**
  * Test for the core:PHP filter.
- *
- * @covers \SimpleSAML\Module\core\Auth\Process\PHP
  */
+#[CoversClass(PHP::class)]
 class PHPTest extends TestCase
 {
     /**
@@ -81,14 +81,14 @@ class PHPTest extends TestCase
             'Attributes' => [
                 'orig1' => ['value1', 'value2'],
                 'orig2' => ['value3'],
-                'orig3' => ['value4']
-            ]
+                'orig3' => ['value4'],
+            ],
         ];
         $expected = [
             'Attributes' => [
                 'orig1' => ['value1', 'value2'],
                 'orig2' => ['value0'],
-                'orig3' => ['value4']
+                'orig3' => ['value4'],
             ],
         ];
 
@@ -113,7 +113,7 @@ class PHPTest extends TestCase
         $request = [
             'Attributes' => [
                 'orig1' => ['value1', 'value2'],
-            ]
+            ],
         ];
 
         $this->expectException(Exception::class);
@@ -139,22 +139,22 @@ class PHPTest extends TestCase
             'Attributes' => [
                 'orig1' => ['value1', 'value2'],
                 'orig2' => ['value3'],
-                'orig3' => ['value4']
+                'orig3' => ['value4'],
             ],
             'Destination' => [
-                'attributes' => ['eduPersonPrincipalName']
+                'attributes' => ['eduPersonPrincipalName'],
             ],
         ];
         $expected = [
             'Attributes' => [
                 'orig1' => ['value1', 'value2'],
                 'orig2' => ['value0'],
-                'orig3' => ['value4']
+                'orig3' => ['value4'],
             ],
             'Destination' => [
-                'attributes' => ['eduPersonPrincipalName', 'givenName']
+                'attributes' => ['eduPersonPrincipalName', 'givenName'],
             ],
-            'newKey' => ['newValue']
+            'newKey' => ['newValue'],
         ];
 
         $this->assertEquals($expected, $this->processFilter($config, $request));

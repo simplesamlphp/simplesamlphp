@@ -297,8 +297,8 @@ class MDQ extends MetaDataStorageSource
         $httpUtils = new Utils\HTTP();
         $context = [
             'http' => [
-                'header' => 'Accept: application/samlmetadata+xml'
-            ]
+                'header' => 'Accept: application/samlmetadata+xml',
+            ],
         ];
         try {
             $xmldata = $httpUtils->fetch($mdq_url, $context);

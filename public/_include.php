@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+// Set start-time for debugging purposes
+define('SIMPLESAMLPHP_START', hrtime(true));
+
 // initialize the autoloader
 require_once(dirname(__FILE__, 2) . '/src/_autoload.php');
 

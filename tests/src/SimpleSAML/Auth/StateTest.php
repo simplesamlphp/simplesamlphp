@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Auth;
 
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Auth;
 
@@ -13,9 +14,8 @@ use function print_r;
 
 /**
  * Tests for \SimpleSAML\Auth\State
- *
- * @covers \SimpleSAML\Auth\State
  */
+#[CoversClass(Auth\State::class)]
 class StateTest extends TestCase
 {
     /**

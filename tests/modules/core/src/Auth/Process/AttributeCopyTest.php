@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Module\core\Auth\Process\AttributeCopy;
 
 /**
  * Test for the core:AttributeCopy filter.
- *
- * @covers \SimpleSAML\Module\core\Auth\Process\AttributeCopy
  */
+#[CoversClass(AttributeCopy::class)]
 class AttributeCopyTest extends TestCase
 {
     /**

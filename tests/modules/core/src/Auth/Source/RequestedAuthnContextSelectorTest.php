@@ -4,18 +4,21 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Source;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Auth, Configuration};
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Error\Exception;
+use SimpleSAML\Module\core\Auth\Source\AbstractSourceSelector;
 use SimpleSAML\Module\core\Auth\Source\RequestedAuthnContextSelector;
 use SimpleSAML\SAML2\Exception\Protocol\NoAuthnContextException;
 use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**
- * @covers \SimpleSAML\Module\core\Auth\Source\AbstractSourceSelector
- * @covers \SimpleSAML\Module\core\Auth\Source\RequestedAuthnContextSelector
  */
+#[CoversClass(AbstractSourceSelector::class)]
+#[CoversClass(RequestedAuthnContextSelector::class)]
 class RequestedAuthnContextSelectorTest extends TestCase
 {
     /** @var \SimpleSAML\Configuration */
@@ -284,10 +287,10 @@ class RequestedAuthnContextSelectorTest extends TestCase
 
 
     /**
-     * @dataProvider provideRequestedAuthnContext
      * @param array $requestedAuthnContext  The RequestedAuthnContext
      * @param string $expected  The expected authsource
      */
+    #[DataProvider('provideRequestedAuthnContext')]
     public function testSelectAuthSource(array $requestedAuthnContext, string $expected): void
     {
         $info = ['AuthId' => 'selector'];
@@ -351,6 +354,18 @@ class RequestedAuthnContextSelectorTest extends TestCase
                     'AuthnContextClassRef' => [
                         'urn:x-simplesamlphp:loa2',
                         'urn:x-simplesamlphp:loa1',
+                    ],
+                    'Comparison' => 'exact',
+                ],
+                'loa2',
+            ],
+            [
+                [
+                    'AuthnContextClassRef' => [
+                        'urn:x-simplesamlphp:loa30',
+                        'urn:x-simplesamlphp:loa20',
+                        'urn:x-simplesamlphp:loa2',
+                        'urn:x-simplesamlphp:loa10',
                     ],
                     'Comparison' => 'exact',
                 ],

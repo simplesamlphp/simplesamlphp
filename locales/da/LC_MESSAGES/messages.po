@@ -62,6 +62,9 @@ msgstr "Login fejlede - din browser sendte ikke noget certifikat"
 msgid "Authentication source error"
 msgstr "Authentication source fejl"
 
+msgid "Authentication status"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "Fejlagtig forespørgsel"
@@ -73,6 +76,10 @@ msgstr "Fejlagtig forespørgsel til Discovery Service"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "CAS fejl"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
+msgid "Cannot retrieve session data"
+msgstr ""
 
 msgid "Certificates"
 msgstr "Certifikater"
@@ -105,6 +112,9 @@ msgstr "Kontaktoplysninger"
 msgid "Converted metadata"
 msgstr "Konverteret metadata"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Kunne ikke generere single sign-on svar"
@@ -114,6 +124,9 @@ msgstr "Fødselsdato"
 
 msgid "Debug information"
 msgstr "Detaljer til fejlsøgning"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Display name"
 msgstr "Visningsnavn"
@@ -207,6 +220,9 @@ msgstr "Tilbage til listen over filer"
 msgid "Group membership"
 msgstr "Gruppemedlemsskab"
 
+msgid "Hello, Untranslated World!"
+msgstr ""
+
 msgid "Help desk homepage"
 msgstr "Servicedesk"
 
@@ -253,6 +269,9 @@ msgstr "Forkert brugernavn eller kodeord"
 msgid "Incorrect username or password."
 msgstr "Forkert brugernavn eller kodeord."
 
+msgid "Information about your current session"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
@@ -271,6 +290,9 @@ msgstr "Der opstod en fejl i kommunikationen med LDAP databasen under login."
 
 msgid "Labeled URI"
 msgstr "Labeled URI"
+
+msgid "Language"
+msgstr ""
 
 msgid "Legal name"
 msgstr "Officielt navn"
@@ -346,6 +368,10 @@ msgstr "RelayState mangler"
 msgid "No SAML message provided"
 msgstr "Ingen SAML besked"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
+msgid "No SAML request provided"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
 msgstr "SAML response mangler"
@@ -360,6 +386,9 @@ msgstr "Intet certifikat"
 
 msgid "No errors found."
 msgstr "Ingen fejl"
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "Nej"
@@ -542,6 +571,9 @@ msgstr "SimpleSAMLphp er tilsyneladende ikke Konfigureret korrekt"
 msgid "SimpleSAMLphp error"
 msgstr "SimpleSAMLphp fejl"
 
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
+
 msgid "Some error occurred"
 msgstr "En fejl opstod."
 
@@ -640,6 +672,9 @@ msgstr "Titel"
 msgid "To look at the details for an SAML entity, click on the SAML entity header."
 msgstr "For at se detaljer vedrørende SAML-entiteten, klik på entitets-headeren"
 
+msgid "Tracking number"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
 msgid "Unable to locate metadata for %ENTITYID%"
@@ -674,6 +709,9 @@ msgstr "WS-Federation identitetsudbyder (remote)"
 msgid "WS-Federation Service Provider (Hosted)"
 msgstr "WS-Federation tjenesteudbyder (hosted)"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Svaret fra Identitetsudbydere kunne ikke accepteres"
@@ -685,6 +723,9 @@ msgstr "En fejl opstod da denne identitetsudbyder forsøgte at sende svar"
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "Desværre, uden korrekt brugernavn og kodeord kan du ikke få adgang til tjenesten. Måske kan help-desk på din hjemmeinstitution hjælpe dig!"
 
+msgid "World"
+msgstr ""
+
 msgid "XML metadata"
 msgstr "XML metadata"
 
@@ -694,9 +735,17 @@ msgstr "Ja, alle services"
 msgid "Yes, continue"
 msgstr "Ja, jeg accepterer"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:187
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Du forsøger at tilgå Assertion Consumer Service grænsefladen uden at sende et SAML Authentication Response"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:253
+msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
@@ -744,6 +793,10 @@ msgstr "Dit kodeord blev ikke sendt - prøv igen."
 
 msgid "Your attributes"
 msgstr "Dine oplysninger"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:219
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr ""
 
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Du har %remaining% tilbage af din session"

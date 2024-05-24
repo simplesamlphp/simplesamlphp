@@ -11,7 +11,7 @@ set_time_limit(0);
 require __DIR__.'/../vendor/autoload.php';
 
 $input = new ArgvInput();
-$module = $input->getParameterOption(['--modules', '-m'], 'core');
+$module = $input->getParameterOption(['--module', '-m'], 'core');
 $kernel = new Kernel($module);
 
 $application = new Application($kernel);

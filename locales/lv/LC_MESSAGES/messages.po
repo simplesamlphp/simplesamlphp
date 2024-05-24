@@ -50,6 +50,9 @@ msgstr "Autentifikācija neizdevās, jo Jūsu interneta pārlūks nav atsūtīji
 msgid "Authentication source error"
 msgstr "Autentifikācijas avota kļūda"
 
+msgid "Authentication status"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "Saņemts nepareizs pieprasījums"
@@ -61,6 +64,10 @@ msgstr "Nepareizs pieprasījums discovery servisam"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "CAS kļūda"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
+msgid "Cannot retrieve session data"
+msgstr ""
 
 msgid "Certificates"
 msgstr "Sertifikāti"
@@ -93,6 +100,9 @@ msgstr "Kontaktinformācija"
 msgid "Converted metadata"
 msgstr "Konvertētie metadati"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Neizdevās izveidot autentifikācijas atbildi"
@@ -102,6 +112,9 @@ msgstr "Dzimšanas datums"
 
 msgid "Debug information"
 msgstr "Atkļūdošanas infomācija"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Display name"
 msgstr "Parādāmais vārds"
@@ -180,6 +193,9 @@ msgstr "Aprakstiet, ko Jūs darījāt, kad notika kļūda."
 msgid "Fax number"
 msgstr "Fakss"
 
+msgid "Format"
+msgstr ""
+
 msgid "Given name"
 msgstr "Vārds"
 
@@ -188,6 +204,9 @@ msgstr "Iet atpakaļ uz SimpleSAMLphp instalācijas lapu"
 
 msgid "Go back to the file list"
 msgstr "Iet atpakaļ uz sarakstu"
+
+msgid "Hello, Untranslated World!"
+msgstr ""
 
 msgid "Help desk homepage"
 msgstr "Palīdzības dienesta interneta lapa"
@@ -235,6 +254,9 @@ msgstr "Nekorekts lietotāja vārds vai parole"
 msgid "Incorrect username or password."
 msgstr "Nekorekts lietotāja vārds vai parole."
 
+msgid "Information about your current session"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
@@ -253,6 +275,9 @@ msgstr "LDAP ir lietotāju datu bāze. Pieslēdzoties pie tās ir jāspēj piek�
 
 msgid "Labeled URI"
 msgstr "URI nosaukums"
+
+msgid "Language"
+msgstr ""
 
 msgid "Legal name"
 msgstr "Juridiskais nosaukums"
@@ -328,6 +353,10 @@ msgstr "Nav RelayState"
 msgid "No SAML message provided"
 msgstr "Nav SAML ziņojuma"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
+msgid "No SAML request provided"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
 msgstr "Nav SAML atbildes"
@@ -342,6 +371,9 @@ msgstr "Nav sertifikāta"
 
 msgid "No errors found."
 msgstr "Kļūdas nav atrastas."
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "Nē"
@@ -457,6 +489,9 @@ msgstr "SAML 2.0 SP metadati"
 msgid "SAML 2.0 Service Provider (Hosted)"
 msgstr "SAML 2.0 servisa piegādātājs (hostēts)"
 
+msgid "SAML Subject"
+msgstr ""
+
 msgid "Select"
 msgstr "Izvēlēties"
 
@@ -511,6 +546,9 @@ msgstr "SimpleSAMLphp nav pareizi nokonfigurēts."
 
 msgid "SimpleSAMLphp error"
 msgstr "SimpleSAMLphp kļūda"
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
 
 msgid "Some error occurred"
 msgstr "Notikusi kļūda"
@@ -610,6 +648,9 @@ msgstr "Amats"
 msgid "To look at the details for an SAML entity, click on the SAML entity header."
 msgstr "Lai aplūkotu SAML vienuma detaļas, klikšķiniet uz vienuma galvenes."
 
+msgid "Tracking number"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
 msgid "Unable to locate metadata for %ENTITYID%"
@@ -644,6 +685,9 @@ msgstr "WS-Federation servisa piegādātājs (attālināts)"
 msgid "WS-Federation Service Provider (Hosted)"
 msgstr "WS-Federation servisa piegādātājs (hostēts)"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Netiek akceptēta atbilde no identitātes piegādātāja."
@@ -655,6 +699,9 @@ msgstr "Kad identitātes piegādātājs mēģināja izveigot autentifikācijas a
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "Bez lietotāja vārda un paroles Jūs nevarat autentificēties un nevarat izmantot servisu. Iespējams, ir kāds, kas var Jums palīdzēt. Vaicājiet savas universitātes palīdzības dienestam."
 
+msgid "World"
+msgstr ""
+
 msgid "XML metadata"
 msgstr "XML metadati"
 
@@ -664,9 +711,17 @@ msgstr "Jā, no visiem"
 msgid "Yes, continue"
 msgstr "Jā, turpināt"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:187
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Jūs izmantojat Assertion Consumer Service interfeisu, bet neesat devis SAML autentifikācijas atbildi."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:253
+msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
@@ -715,8 +770,15 @@ msgstr "Kaut kādu iemeslu dēļ parole nav nosūtīta. Lūdzu mēģiniet vēlre
 msgid "Your attributes"
 msgstr "Atribūti"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:219
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr ""
+
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Sesija ir derīga %remaining% sekundes no šī brīža."
 
 msgid "[Preferred choice]"
 msgstr "(Mana labākā izvēle)"
+
+msgid "not set"
+msgstr ""

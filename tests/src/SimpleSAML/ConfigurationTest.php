@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test;
 
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\{Configuration, Error};
 use SimpleSAML\SAML2\Constants as C;
@@ -12,9 +13,8 @@ use SimpleSAML\TestUtils\ClearStateTestCase;
 
 /**
  * Tests for \SimpleSAML\Configuration
- *
- * @covers \SimpleSAML\Configuration
  */
+#[CoversClass(Configuration::class)]
 class ConfigurationTest extends ClearStateTestCase
 {
     /**
@@ -798,7 +798,7 @@ class ConfigurationTest extends ClearStateTestCase
             // if we specify the binding, we should get it back
             [
                 'Location' => 'https://example.com/endpoint.php',
-                'Binding' => C::BINDING_HTTP_POST
+                'Binding' => C::BINDING_HTTP_POST,
             ],
             // if we specify ResponseLocation, we should get it back too
             [
@@ -825,7 +825,7 @@ class ConfigurationTest extends ClearStateTestCase
                 'isDefault' => false,
                 'Location' => 'https://www2.example.com/endpoint.php',
                 'Binding' => C::BINDING_HTTP_POST,
-            ]
+            ],
         ];
 
         $a = [
@@ -852,7 +852,7 @@ class ConfigurationTest extends ClearStateTestCase
             $c = Configuration::loadFromArray($a);
             $this->assertEquals($acs_expected_eps[$i], $c->getDefaultEndpoint(
                 'AssertionConsumerService',
-                $valid_bindings
+                $valid_bindings,
             ));
         }
 
@@ -888,7 +888,7 @@ class ConfigurationTest extends ClearStateTestCase
         } catch (Exception $e) {
             $this->assertEquals(
                 '[ARRAY][\'SingleLogoutService\']:Could not find a supported SingleLogoutService ' . 'endpoint.',
-                $e->getMessage()
+                $e->getMessage(),
             );
         }
         $a['metadata-set'] = 'foo';
@@ -918,7 +918,7 @@ class ConfigurationTest extends ClearStateTestCase
                 'Location' => 'https://example.com/endpoint.php',
                 'Binding' => C::BINDING_HTTP_REDIRECT,
                 'ResponseLocation' => 'https://example.com/response.php',
-            ]
+            ],
         ];
         $this->assertEquals($e, $c->getEndpoints('SingleSignOnService'));
 
@@ -936,7 +936,7 @@ class ConfigurationTest extends ClearStateTestCase
             10,
             // invalid definition of endpoint inside the endpoints array
             [
-                1234
+                1234,
             ],
             // missing location
             [
@@ -948,7 +948,7 @@ class ConfigurationTest extends ClearStateTestCase
             [
                 [
                     'Location' => 1234,
-                ]
+                ],
             ],
             // missing binding
             [
@@ -1081,7 +1081,7 @@ class ConfigurationTest extends ClearStateTestCase
     public function testGetConfigNonexistentFilePreload(): void
     {
         $c = Configuration::loadFromArray([
-            'key' => 'value'
+            'key' => 'value',
         ]);
         $virtualFile = 'nonexistent-preload.php';
         Configuration::setPreLoadedConfig($c, $virtualFile);
@@ -1098,7 +1098,7 @@ class ConfigurationTest extends ClearStateTestCase
     public function testLoadInstanceFromArray(): void
     {
         $c = [
-            'key' => 'value'
+            'key' => 'value',
         ];
         // test loading a custom instance
         Configuration::loadFromArray($c, '', 'dummy');

@@ -28,9 +28,6 @@ use function hash;
 use function in_array;
 use function is_null;
 use function sprintf;
-use function strpos;
-use function strrpos;
-use function substr;
 use function time;
 use function var_export;
 
@@ -58,8 +55,8 @@ class ServiceProvider
      *
      * It initializes the global configuration for the controllers implemented here.
      *
-     * @param \SimpleSAML\Configuration $config The configuration to use by the controllers.
-     * @param \SimpleSAML\Session $session The Session to use by the controllers.
+     * @param   Configuration  $config   The configuration to use by the controllers.
+     * @param   Session        $session  The Session to use by the controllers.
      */
     public function __construct(
         protected Configuration $config,
@@ -97,31 +94,96 @@ class ServiceProvider
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $sourceId
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws Error\Exception
      */
     public function login(Request $request, string $sourceId): RedirectResponse
     {
-        $as = new Auth\Simple($sourceId);
-        if (!($as->getAuthSource() instanceof SP)) {
+        // Initialize all the dependencies
+        $authSource = new Auth\Simple($sourceId);
+        $spSource = $authSource->getAuthSource();
+
+        if (!($spSource instanceof SP)) {
             throw new Error\Exception('Authsource must be of type saml:SP.');
         }
 
-        if (!$request->query->has('ReturnTo')) {
+        $httpUtils = new Utils\HTTP();
+
+        // Redirect to the returnTo destination
+        return $this->loginHandler($request, $authSource, $spSource, $httpUtils);
+    }
+
+    /**
+     * @param   Request       $request
+     * @param   Auth\Simple   $authSource
+     * @param   Auth\Source   $spSource
+     * @param   Utils\HTTP    $httpUtils
+     *
+     * @return string
+     * @throws BadRequest
+     * @throws Error\Exception
+     */
+    protected function loginHandler(
+        Request $request,
+        Auth\Simple $authSource,
+        Auth\Source $spSource,
+        Utils\HTTP $httpUtils
+    ): RedirectResponse {
+        $options = [];
+
+        if ($spSource->isRequestInitiation()) {
+            if ($request->query->has('target')) {
+                $options['ReturnTo'] = $httpUtils->checkURLAllowed($request->query->get('target'));
+            }
+            if ($request->query->has('forceAuthn')) {
+                $options['ForceAuthn'] = $request->query->getBoolean('forceAuthn');
+            }
+            if ($request->query->has('entityID')) {
+                $options['saml:idp'] = $request->query->get('entityID');
+            }
+            if ($request->query->has('isPassive')) {
+                $options['isPassive'] = $request->query->getBoolean('isPassive');
+            }
+        }
+
+        if (
+            !isset($options['ReturnTo'])
+            && !$request->query->has('ReturnTo')
+            && !$spSource->getMetadata()->hasValue('RelayState')
+        ) {
             throw new Error\BadRequest('Missing ReturnTo parameter.');
         }
-        $returnTo = $request->query->get('ReturnTo');
+        if (!isset($options['ReturnTo'])) {
+            $options['ReturnTo'] = $httpUtils->checkURLAllowed(
+                $request->query->get('ReturnTo') ?? $spSource->getMetadata()->getString('RelayState')
+            );
+        }
+
+        $authData = $authSource->getAuthDataArray();
+
+        if (
+            $authSource->isAuthenticated()
+            && $spSource->isRequestInitiation()
+        ) {
+            if (
+                // Check the IdP we are currently authenticated to
+                (isset($authData['saml:sp:IdP'], $options['saml:idp'])
+                 && $options['saml:idp'] !== $authData['saml:sp:IdP'])
+                ||
+                (isset($options['ForceAuthn']) && $options['ForceAuthn'])
+            ) {
+                // Force a re-authentication
+                $authSource->login($options);
+            }
+            // We are already authenticated, do nothing
+        }
 
         /**
-         * Setting up the options for the requireAuth() call later..
+         * Try to authenticate
          */
-        $httpUtils = new Utils\HTTP();
-        $options = [
-            'ReturnTo' => $httpUtils->checkURLAllowed($returnTo),
-        ];
-
-        $response = $as->requireAuth($options);
+        $response = $authSource->requireAuth($options);
         if ($response === null) {
             // We are already authenticated
-            return $httpUtils->redirectTrustedURL($returnTo);
+            return $httpUtils->redirectTrustedURL($options['ReturnTo']);
         }
 
         return $response;
@@ -412,7 +474,10 @@ class ServiceProvider
         }
 
         $state['LogoutState'] = $logoutState;
-        $state['saml:AuthenticatingAuthority'] = $authenticatingAuthority;
+        $state['saml:AuthenticatingAuthority'] = array_map(
+            fn($authority): string => $authority->getContent(),
+            $authenticatingAuthority,
+        );
         $state['saml:AuthenticatingAuthority'][] = $issuer;
         $state['PersistentAuthData'][] = 'saml:AuthenticatingAuthority';
         $state['saml:AuthnInstant'] = $assertion->getAuthnInstant();
@@ -570,7 +635,7 @@ class ServiceProvider
                 'SingleLogoutService',
                 [
                     C::BINDING_HTTP_REDIRECT,
-                    C::BINDING_HTTP_POST
+                    C::BINDING_HTTP_POST,
                 ]
             );
 
@@ -633,14 +698,6 @@ class ServiceProvider
 
         // sign the metadata if enabled
         $metaxml = Metadata\Signer::sign($xml, $spconfig->toArray(), 'SAML 2 SP');
-
-        // make sure to export only the md:EntityDescriptor
-        $i = strpos($metaxml, '<md:EntityDescriptor');
-        $metaxml = substr($metaxml, $i ? $i : 0);
-
-        // 22 = strlen('</md:EntityDescriptor>')
-        $i = strrpos($metaxml, '</md:EntityDescriptor>');
-        $metaxml = substr($metaxml, 0, $i ? $i + 22 : 0);
 
         $response = new Response();
         $response->setEtag(hash('sha256', $metaxml));

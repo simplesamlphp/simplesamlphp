@@ -5,8 +5,8 @@
 {% block content %}
     <h1>{{ 'Welcome'|trans }}</h1>
 
-    <p>{{ 'This is the front page of the SimpleSAMLphp authentication software. There\'s not much to see here.' }}</p>
+    <p>{{ 'This is the front page of the SimpleSAMLphp authentication software. There\'s not much to see here.'|trans }}</p>
 
-    <p>{{ 'If you are the administrator of this installation, please refer to the <a href="https://simplesamlphp.org/docs/">SimpleSAMLphp documentation</a> for how to configure and interact with the software.' }}</p>
+    <p>{% trans %}If you are the administrator of this installation, please refer to the <a href="https://simplesamlphp.org/docs/">SimpleSAMLphp documentation</a> for how to configure and interact with the software.{% endtrans %}</p>
 
 {% endblock %}

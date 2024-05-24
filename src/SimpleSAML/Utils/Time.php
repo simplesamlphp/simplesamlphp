@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Utils;
 
 use SimpleSAML\{Configuration, Error, Logger};
-use SimpleSAML\Assert\CustomAssertionTrait;
+use SimpleSAML\Assert\Assert;
 
 use function date_default_timezone_get;
 use function date_default_timezone_set;
@@ -23,8 +23,6 @@ use function time;
 
 class Time
 {
-    use CustomAssertionTrait;
-
     /**
      * Whether the timezone has been initialized or not.
      *
@@ -99,6 +97,8 @@ class Time
      */
     public function parseDuration(string $duration, int $timestamp = null): int
     {
+        Assert::validDuration($duration);
+
         // parse the duration. We use a very strict pattern
         $durationRegEx = '#^(-?)P(?:(?:(?:(\\d+)Y)?(?:(\\d+)M)?(?:(\\d+)D)?(?:T(?:(\\d+)H)?(?:(\\d+)M)?(?:(\\d+)' .
             '(?:[.,]\d+)?S)?)?)|(?:(\\d+)W))$#D';

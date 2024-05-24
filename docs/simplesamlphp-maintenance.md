@@ -48,7 +48,7 @@ SimpleSAMLphp as an Identity Provider, or any other applications using it are no
 settings by leaving these options unset or setting them to `null`.
 
 If you need to restore your session's application after calling SimpleSAMLphp, you can do it by calling the `cleanup()` method of the
-`\SimpleSAML\Session` class, like described [here](simplesamlphp-sp#section_6).
+`\SimpleSAML\Session` class, like described [here](simplesamlphp-sp#integrating-authentication-with-your-own-application).
 
 ### Configuring memcache
 
@@ -198,7 +198,7 @@ Configure your master group by setting `store.redis.mastergroup` (`mymaster` by 
 
 ## Metadata storage
 
-Several metadata storage backends are available by default, including `flatfile`, `serialize`, `mdq` and
+Several metadata storage backends are available by default, including `flatfile`, `directory`, `serialize`, `mdq` and
 [`pdo`](https://simplesamlphp.org/docs/stable/simplesamlphp-metadata-pdostoragehandler). Here you have an
 example configuration of different metadata sources in use at the same time:
 
@@ -207,8 +207,17 @@ example configuration of different metadata sources in use at the same time:
     ['type' => 'flatfile'],
     ['type' => 'flatfile', 'directory' => 'metadata/metarefresh-kalmar'],
     ['type' => 'serialize', 'directory' => 'metadata/metarefresh-ukaccess'],
+    ['type' => 'directory'],
+    ['type' => 'directory', 'directory' => 'metadata/somewhere-else'],
 ],
 ```
+
+The directory type storage backend will look in subdirectories such as
+saml20-idp-hosted.d and saml20-sp-remote.d in the given directory (or
+the 'metadatadir' configuration option in 'config.php' by default).
+All xml and php files found in those subdirectories will be loaded. It is
+currently an error to have subdirectories inside the
+saml20-sp-remote.d directories.
 
 You may also implement your own metadata storage handler, in a very similar way to how you would implement
 your own session handler. Your class **must** extend the `\SimpleSAML\Metadata\MetaDataStorageSource` class
@@ -238,7 +247,7 @@ alternative, you may log to flat files.
 
 ## Apache configuration
 
-Basic Apache configuration is described in [SimpleSAMLphp Installation](simplesamlphp-install#section_6).
+Basic Apache configuration is described in [SimpleSAMLphp Installation](simplesamlphp-install#configuring-apache).
 However, your IdP or SP is most likely a valuable website that you want to configure securely. Here are some checks.
 
 * Make sure you use HTTPS with a proper certificate. The best way is to not

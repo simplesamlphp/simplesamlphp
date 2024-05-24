@@ -8,6 +8,9 @@ use Exception;
 use InvalidArgumentException;
 use SimpleSAML\{Configuration, Error, Logger, Module, Session, Utils};
 use SimpleSAML\XHTML\Template;
+use SimpleSAML\XMLSecurity\Alg\Encryption\AES;
+use SimpleSAML\XMLSecurity\Constants as C;
+use SimpleSAML\XMLSecurity\Key\SymmetricKey;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use function array_key_exists;

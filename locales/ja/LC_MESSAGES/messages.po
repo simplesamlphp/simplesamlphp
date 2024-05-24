@@ -50,6 +50,9 @@ msgstr "認証失敗: あなたのブラウザは証明書を送信しません�
 msgid "Authentication source error"
 msgstr "認証元エラー"
 
+msgid "Authentication status"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "不正なリクエストを受信しました"
@@ -61,6 +64,10 @@ msgstr "サービスディスカバリ中の不正なリクエスト"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "CASエラー"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
+msgid "Cannot retrieve session data"
+msgstr ""
 
 msgid "Change your home organization"
 msgstr "あなたの組織を変更してください"
@@ -90,6 +97,9 @@ msgstr "連絡先:"
 msgid "Converted metadata"
 msgstr "変換されたメタデータ"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "認証応答を生成出来ませんでした"
@@ -99,6 +109,9 @@ msgstr "生年月日"
 
 msgid "Debug information"
 msgstr "デバッグ情報"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Display name"
 msgstr "表示名"
@@ -174,6 +187,9 @@ msgstr "何をした際にこのエラーが発生したかを教えてくださ
 msgid "Fax number"
 msgstr "FAX番号"
 
+msgid "Format"
+msgstr ""
+
 msgid "Given name"
 msgstr "名"
 
@@ -182,6 +198,9 @@ msgstr "SimpleSAMLphpの設定ページに戻る"
 
 msgid "Go back to the file list"
 msgstr "ファイルリストに戻る"
+
+msgid "Hello, Untranslated World!"
+msgstr ""
 
 msgid "Help desk homepage"
 msgstr "ヘルプデスクページ"
@@ -229,6 +248,9 @@ msgstr "ユーザー名かパスワードが間違っています"
 msgid "Incorrect username or password."
 msgstr "ユーザー名かパスワードが間違っています。"
 
+msgid "Information about your current session"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
@@ -247,6 +269,9 @@ msgstr "あなたがログインを行う時、LDAPというユーザーデー�
 
 msgid "Labeled URI"
 msgstr "URI"
+
+msgid "Language"
+msgstr ""
 
 msgid "Legal name"
 msgstr "正式名称"
@@ -322,6 +347,10 @@ msgstr "RelayStateがありません"
 msgid "No SAML message provided"
 msgstr "SAMLメッセージがありません"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
+msgid "No SAML request provided"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
 msgstr "SAMLレスポンスがありません"
@@ -336,6 +365,9 @@ msgstr "証明書がありません"
 
 msgid "No errors found."
 msgstr "エラーは見つかりませんでした。"
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "いいえ"
@@ -451,6 +483,9 @@ msgstr "SAML 2.0 SPメタデータ"
 msgid "SAML 2.0 Service Provider (Hosted)"
 msgstr "SAML 2.0サービスプロバイダ(ホスト)"
 
+msgid "SAML Subject"
+msgstr ""
+
 msgid "Select"
 msgstr "選択"
 
@@ -505,6 +540,9 @@ msgstr "SimpleSAMLphpの設定にミスがあるようです。"
 
 msgid "SimpleSAMLphp error"
 msgstr "SimpleSAMLphpエラー"
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
 
 msgid "Some error occurred"
 msgstr "幾つかのエラーが発生しました"
@@ -604,6 +642,9 @@ msgstr "タイトル"
 msgid "To look at the details for an SAML entity, click on the SAML entity header."
 msgstr "SAMLエンティティの詳細を確認するためには、SAMLエンティティヘッダをクリックして下さい。"
 
+msgid "Tracking number"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
 msgid "Unable to locate metadata for %ENTITYID%"
@@ -638,6 +679,9 @@ msgstr "WS-Federationアイデンティティプロバイダ(リモート)"
 msgid "WS-Federation Service Provider (Hosted)"
 msgstr "WS-Federationサービスプロバイダ(ホスト)"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "アイデンティティプロバイダから送信されたレスポンスを受け付けませんでした。"
@@ -649,6 +693,9 @@ msgstr "アイデンティティプロバイダの認証レスポンスの生成
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "ユーザー名とパスワードがないと、サービスにアクセスするための認証ができません。組織のヘルプデスクに相談してください。"
 
+msgid "World"
+msgstr ""
+
 msgid "XML metadata"
 msgstr "XMLメタデータ"
 
@@ -658,9 +705,17 @@ msgstr "はい、全てのサービスからログアウトします"
 msgid "Yes, continue"
 msgstr "はい、続けます"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:187
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Assertion Consumer Serviceインターフェースへアクセスしましたが、SAML認証レスポンスが提供されませんでした。"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:253
+msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
@@ -709,8 +764,15 @@ msgstr "あなたはログインページで何かを送信しましたが、何
 msgid "Your attributes"
 msgstr "属性"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:219
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr ""
+
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "セッションは今から %remaining% 秒間有効です"
 
 msgid "[Preferred choice]"
 msgstr "[推奨する選択]"
+
+msgid "not set"
+msgstr ""
