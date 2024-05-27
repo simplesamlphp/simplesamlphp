@@ -58,7 +58,7 @@ class PHP extends Auth\ProcessingFilter
          */
         $function = function (
             /** @scrutinizer ignore-unused */ array &$attributes,
-            /** @scrutinizer ignore-unused */ array &$state
+            /** @scrutinizer ignore-unused */ array &$state,
         ): void {
             eval($this->code);
         };

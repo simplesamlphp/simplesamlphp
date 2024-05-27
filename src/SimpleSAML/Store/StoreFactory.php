@@ -66,7 +66,7 @@ abstract class StoreFactory implements Utils\ClearableState
                     throw new Error\CriticalConfigurationError(
                         "Invalid 'store.type' configuration option. Cannot find store '$storeType'.",
                         null,
-                        $c
+                        $c,
                     );
                 }
                 /** @var \SimpleSAML\Store\StoreInterface|false */

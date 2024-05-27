@@ -72,7 +72,31 @@ class SubjectIDTest extends TestCase
         $this->assertArrayHasKey(Constants::ATTR_SUBJECT_ID, $attributes);
         $this->assertMatchesRegularExpression(
             SubjectID::SPEC_PATTERN,
-            $attributes[Constants::ATTR_SUBJECT_ID][0]
+            $attributes[Constants::ATTR_SUBJECT_ID][0],
+        );
+        $this->assertEquals('u=se-r2@ex-ample.org', $attributes[Constants::ATTR_SUBJECT_ID][0]);
+    }
+
+
+    /**
+     * Test the most basic functionality with hash
+     */
+    public function testBasicWithHash(): void
+    {
+        $config = ['identifyingAttribute' => 'uid', 'scopeAttribute' => 'scope', 'hashed' => true];
+        $request = [
+            'Attributes' => ['uid' => ['u=se-r2'], 'scope' => ['ex-ample.org']],
+        ];
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey(Constants::ATTR_SUBJECT_ID, $attributes);
+        $this->assertMatchesRegularExpression(
+            SubjectID::SPEC_PATTERN,
+            $attributes[Constants::ATTR_SUBJECT_ID][0],
+        );
+        $this->assertEquals(
+            'u=se-r2@ex-ample.org',
+            $attributes[Constants::ATTR_SUBJECT_ID][0],
         );
         $this->assertEquals('u=se-r2@ex-ample.org', $attributes[Constants::ATTR_SUBJECT_ID][0]);
     }
@@ -92,7 +116,7 @@ class SubjectIDTest extends TestCase
         $this->assertArrayHasKey(Constants::ATTR_SUBJECT_ID, $attributes);
         $this->assertMatchesRegularExpression(
             SubjectID::SPEC_PATTERN,
-            $attributes[Constants::ATTR_SUBJECT_ID][0]
+            $attributes[Constants::ATTR_SUBJECT_ID][0],
         );
         $this->assertEquals('u=se-r2@ex-ample.org', $attributes[Constants::ATTR_SUBJECT_ID][0]);
     }
@@ -186,11 +210,11 @@ class SubjectIDTest extends TestCase
 
         $this->assertMatchesRegularExpression(
             '/@example.org$/i',
-            $value1
+            $value1,
         );
         $this->assertMatchesRegularExpression(
             '/@example.edu$/i',
-            $value2
+            $value2,
         );
     }
 
@@ -223,7 +247,7 @@ class SubjectIDTest extends TestCase
 
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage(
-            'saml:SubjectID: Generated ID \'a1398u9u25@example\' can hardly be considered globally unique.'
+            'saml:SubjectID: Generated ID \'a1398u9u25@example\' can hardly be considered globally unique.',
         );
 
         self::processFilter($config, $request);

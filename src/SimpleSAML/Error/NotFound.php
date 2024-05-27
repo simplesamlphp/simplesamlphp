@@ -23,7 +23,7 @@ class NotFound extends Error
      * @param string $reason  Optional description of why the given page could not be found.
      */
     public function __construct(
-        private ?string $reason = null
+        private ?string $reason = null,
     ) {
         $httpUtils = new Utils\HTTP();
         $url = $httpUtils->getSelfURL();

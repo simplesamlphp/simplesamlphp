@@ -50,7 +50,7 @@ class UpdateTranslatableStringsCommand extends Command
                 'logging.handler' => ArrayLogger::class,
             ]),
             'config.php',
-            'simplesaml'
+            'simplesaml',
         );
 
         $this->setDescription(

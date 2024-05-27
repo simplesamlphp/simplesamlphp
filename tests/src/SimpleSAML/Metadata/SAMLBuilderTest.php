@@ -240,7 +240,7 @@ class SAMLBuilderTest extends TestCase
 
         $this->assertMatchesRegularExpression(
             '/<md:AttributeAuthorityDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">/',
-            $entityDescriptorXml
+            $entityDescriptorXml,
         );
 
         // explicit protocols
@@ -256,7 +256,7 @@ class SAMLBuilderTest extends TestCase
         $protocols = implode(' ', $metadata['protocols']);
         $this->assertMatchesRegularExpression(
             '/<md:AttributeAuthorityDescriptor protocolSupportEnumeration="' . $protocols . '">/',
-            $entityDescriptorXml
+            $entityDescriptorXml,
         );
     }
 
@@ -271,13 +271,13 @@ class SAMLBuilderTest extends TestCase
         $dom = \SAML2\DOMDocumentFactory::create();
         $republishRequest = $dom->createElementNS(
             'http://eduid.cz/schema/metadata/1.0',
-            'eduidmd:RepublishRequest'
+            'eduidmd:RepublishRequest',
         );
         $republishTargetContent = 'http://edugain.org/';
         $republishTarget = $dom->createElementNS(
             'http://eduid.cz/schema/metadata/1.0',
             'eduidmd:RepublishTarget',
-            $republishTargetContent
+            $republishTargetContent,
         );
         $republishRequest->appendChild($republishTarget);
         $ext = [new \SAML2\XML\Chunk($republishRequest)];
@@ -349,7 +349,7 @@ class SAMLBuilderTest extends TestCase
         $this->assertTrue($first->hasAttribute("remd:contactType"));
         $this->assertEquals(
             "http://refeds.org/metadata/contactType/security",
-            $first->getAttribute("remd:contactType")
+            $first->getAttribute("remd:contactType"),
         );
         $mail = $first->getElementsByTagName("EmailAddress");
         $this->assertEquals(1, $mail->length);

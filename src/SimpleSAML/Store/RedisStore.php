@@ -87,7 +87,7 @@ class RedisStore implements StoreInterface
                     + (!empty($password) ? ['password' => $password] : []),
                     [
                         'prefix' => $prefix,
-                    ]
+                    ],
                 );
             } else {
                 $mastergroup = $config->getOptionalString('store.redis.mastergroup', 'mymaster');
@@ -103,7 +103,7 @@ class RedisStore implements StoreInterface
                         + (!empty($ssl) ? ['ssl' => $ssl] : [])
                         + (!empty($username) ? ['username' => $username] : [])
                         + (!empty($password) ? ['password' => $password] : []),
-                    ]
+                    ],
                 );
             }
         }

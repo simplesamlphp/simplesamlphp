@@ -69,7 +69,7 @@ class Localization
      * @param \SimpleSAML\Configuration $configuration Configuration object
      */
     public function __construct(
-        private Configuration $configuration
+        private Configuration $configuration,
     ) {
         /** @var string $locales */
         $locales = $configuration->resolvePath('locales');
@@ -218,7 +218,7 @@ class Localization
      */
     private function loadGettextGettextFromPO(
         string $domain = self::DEFAULT_DOMAIN,
-        bool $catchException = true
+        bool $catchException = true,
     ): void {
         try {
             $langPath = $this->getLangPath($domain);
@@ -238,7 +238,7 @@ class Localization
             $translations = (new MoLoader())->loadFile($file->getRealPath());
             $arrayGenerator = new ArrayGenerator();
             $this->translator->addTranslations(
-                $arrayGenerator->generateArray($translations)
+                $arrayGenerator->generateArray($translations),
             );
         } else {
             $file = new File($langPath . $domain . '.po', false);
@@ -246,7 +246,7 @@ class Localization
                 $translations = (new PoLoader())->loadFile($file->getRealPath());
                 $arrayGenerator = new ArrayGenerator();
                 $this->translator->addTranslations(
-                    $arrayGenerator->generateArray($translations)
+                    $arrayGenerator->generateArray($translations),
                 );
             } else {
                 Logger::debug(sprintf(

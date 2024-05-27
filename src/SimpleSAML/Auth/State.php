@@ -366,7 +366,7 @@ class State
             // Redirect to the exception handler
             $httpUtils->redirectTrustedURL(
                 $state[self::EXCEPTION_HANDLER_URL],
-                [self::EXCEPTION_PARAM => $id]
+                [self::EXCEPTION_PARAM => $id],
             );
         } elseif (array_key_exists(self::EXCEPTION_HANDLER_FUNC, $state)) {
             // Call the exception handler

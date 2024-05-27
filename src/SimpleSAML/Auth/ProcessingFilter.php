@@ -75,7 +75,7 @@ abstract class ProcessingFilter
     {
         $function = /** @return bool */ function (
             array &$attributes,
-            array &$state
+            array &$state,
         ) {
             return eval($this->precondition);
         };

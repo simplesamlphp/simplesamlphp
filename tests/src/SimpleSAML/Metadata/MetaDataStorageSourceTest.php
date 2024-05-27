@@ -50,7 +50,7 @@ class MetaDataStorageSourceTest extends TestCase
         $this->assertArrayHasKey(
             $testEntityId,
             $idpSet,
-            "Did not extract expected IdP entity ID from static XML source"
+            "Did not extract expected IdP entity ID from static XML source",
         );
 
         // Finally verify that a different entity ID does not get loaded

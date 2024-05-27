@@ -46,7 +46,7 @@ class EMail
         string $from = null,
         string $to = null,
         private string $txt_template = 'mailtxt.twig',
-        private string $html_template = 'mailhtml.twig'
+        private string $html_template = 'mailhtml.twig',
     ) {
         $this->mail = new PHPMailer(true);
         $this->mail->Subject = $subject;
@@ -99,7 +99,7 @@ class EMail
             function ($v) {
                 return is_array($v) ? $v : [$v];
             },
-            $data
+            $data,
         );
     }
 
@@ -221,7 +221,7 @@ class EMail
                 break;
             default:
                 throw new \InvalidArgumentException(
-                    "Invalid Mail Transport Method - Check 'mail.transport.method' Configuration Option"
+                    "Invalid Mail Transport Method - Check 'mail.transport.method' Configuration Option",
                 );
         }
     }
@@ -239,7 +239,7 @@ class EMail
         $config = Configuration::getInstance();
         $EMail->setTransportMethod(
             $config->getOptionalString('mail.transport.method', 'mail'),
-            $config->getOptionalArrayize('mail.transport.options', [])
+            $config->getOptionalArrayize('mail.transport.options', []),
         );
 
         return $EMail;

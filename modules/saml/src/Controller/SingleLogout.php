@@ -42,7 +42,7 @@ class SingleLogout
      * @param \SimpleSAML\Configuration $config The configuration to use by the controllers.
      */
     public function __construct(
-        protected Configuration $config
+        protected Configuration $config,
     ) {
         $this->mdHandler = MetaDataStorageHandler::getMetadataHandler();
     }
@@ -92,11 +92,11 @@ class SingleLogout
         if ($request->query->has('ReturnTo')) {
             return new RunnableResponse(
                 [$idp, 'doLogoutRedirect'],
-                [$httpUtils->checkURLAllowed($request->query->get('ReturnTo'))]
+                [$httpUtils->checkURLAllowed($request->query->get('ReturnTo'))],
             );
         } elseif ($request->request->has('ReturnTo')) {
             return $idp->doLogoutRedirect(
-                $httpUtils->checkURLAllowed($request->request->get('ReturnTo'))
+                $httpUtils->checkURLAllowed($request->request->get('ReturnTo')),
             );
         }
 
@@ -132,7 +132,7 @@ class SingleLogout
         $httpUtils = new Utils\HTTP();
         return new RunnableResponse(
             [$idp, 'doLogoutRedirect'],
-            [$httpUtils->checkURLAllowed($request->query->get('RelayState'))]
+            [$httpUtils->checkURLAllowed($request->query->get('RelayState'))],
         );
     }
 }

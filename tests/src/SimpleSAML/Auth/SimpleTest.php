@@ -45,7 +45,7 @@ class SimpleTest extends ClearStateTestCase
             $method->invokeArgs(
                 $s,
                 ['http://some.overridden.host/foo/bar?a=b#fragment'],
-            )
+            ),
         );
 
         // test a full, current URL with no parameters

@@ -51,7 +51,7 @@ class Validator
     public function __construct(
         DOMDocument $xmlNode,
         string|array|null $idAttribute = null,
-        array|false|null|string $publickey = false
+        array|false|null|string $publickey = false,
     ) {
         if ($publickey === null) {
             $publickey = false;

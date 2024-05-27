@@ -26,7 +26,7 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
      * @param \SimpleSAML\IdP $idp The IdP to log out from.
      */
     public function __construct(
-        private IdP $idp
+        private IdP $idp,
     ) {
     }
 

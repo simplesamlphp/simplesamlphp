@@ -20,7 +20,7 @@ class Translate
 
 
     public function __construct(
-        protected Configuration $configuration
+        protected Configuration $configuration,
     ) {
         $this->baseDir = $configuration->getBaseDir();
     }

@@ -44,7 +44,7 @@ class DiscoControllerTest extends TestCase
                 'module.enable' => ['multiauth' => true],
             ],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
         Configuration::setPreLoadedConfig($this->config, 'config.php', 'simplesaml');
 
@@ -64,10 +64,10 @@ class DiscoControllerTest extends TestCase
                     ],
                 ],
                 '[ARRAY]',
-                'simplesaml'
+                'simplesaml',
             ),
             'authsources.php',
-            'simplesaml'
+            'simplesaml',
         );
     }
 
@@ -81,7 +81,7 @@ class DiscoControllerTest extends TestCase
     {
         $request = Request::create(
             '/discovery',
-            'GET'
+            'GET',
         );
 
         $c = new Controller\DiscoController($this->config, $this->session);

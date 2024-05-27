@@ -150,7 +150,7 @@ class FilterScopesTest extends TestCase
                     'jdoe@example.com',
                 ],
             ],
-            $result['Attributes']
+            $result['Attributes'],
         );
 
         // test attribute missing scope

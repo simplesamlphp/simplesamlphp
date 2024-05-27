@@ -33,7 +33,7 @@ class DiscoTest extends TestCase
                 'module.enable' => ['saml' => true],
             ],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
         Configuration::setPreLoadedConfig($this->config, 'config.php');
     }

@@ -20,6 +20,7 @@ use SimpleSAML\IdP;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
+use SimpleSAML\Module\saml\Error\ProxyCountExceeded;
 use SimpleSAML\Session;
 use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
@@ -93,7 +94,7 @@ class SP extends \SimpleSAML\Auth\Source
         $config['entityid'] = $config['entityID'];
         $this->metadata = Configuration::loadFromArray(
             $config,
-            'authsources[' . var_export($this->authId, true) . ']'
+            'authsources[' . var_export($this->authId, true) . ']',
         );
 
         $entityId = $this->metadata->getString('entityID');
@@ -101,7 +102,7 @@ class SP extends \SimpleSAML\Auth\Source
         Assert::maxLength(
             $entityId,
             Constants::SAML2INT_ENTITYID_MAX_LENGTH,
-            sprintf('The entityID cannot be longer than %d characters.', Constants::SAML2INT_ENTITYID_MAX_LENGTH)
+            sprintf('The entityID cannot be longer than %d characters.', Constants::SAML2INT_ENTITYID_MAX_LENGTH),
         );
         Assert::notEq(
             $entityId,
@@ -115,7 +116,7 @@ class SP extends \SimpleSAML\Auth\Source
         $this->disable_scoping = $this->metadata->getOptionalBoolean('disable_scoping', false);
         $this->passAuthnContextClassRef = $this->metadata->getOptionalBoolean(
             'proxymode.passAuthnContextClassRef',
-            false
+            false,
         );
     }
 
@@ -196,12 +197,12 @@ class SP extends \SimpleSAML\Auth\Source
             $metadata['OrganizationName'] = $org;
             $metadata['OrganizationDisplayName'] = $this->metadata->getOptionalLocalizedString(
                 'OrganizationDisplayName',
-                $org
+                $org,
             );
             $metadata['OrganizationURL'] = $this->metadata->getOptionalLocalizedString('OrganizationURL', null);
             if ($metadata['OrganizationURL'] === null) {
                 throw new Error\Exception(
-                    'If OrganizationName is set, OrganizationURL must also be set.'
+                    'If OrganizationName is set, OrganizationURL must also be set.',
                 );
             }
         }
@@ -413,7 +414,7 @@ class SP extends \SimpleSAML\Auth\Source
             [
                 Constants::BINDING_HTTP_REDIRECT,
                 Constants::BINDING_SOAP,
-            ]
+            ],
         );
         $defaultLocation = Module::getModuleURL('saml/sp/saml2-logout.php/' . $this->getAuthId());
         $location = $this->metadata->getOptionalString('SingleLogoutServiceLocation', $defaultLocation);
@@ -444,7 +445,7 @@ class SP extends \SimpleSAML\Auth\Source
         if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] < 0) {
             Auth\State::throwException(
                 $state,
-                new Module\saml\Error\ProxyCountExceeded(Constants::STATUS_RESPONDER)
+                new ProxyCountExceeded(Constants::STATUS_RESPONDER),
             );
         }
 
@@ -496,7 +497,7 @@ class SP extends \SimpleSAML\Auth\Source
                         Constants::COMPARISON_MAXIMUM,
                         Constants::COMPARISON_BETTER,
                     ],
-                    true
+                    true,
                 )
             ) {
                 // RequestedAuthnContext has been set by an SP behind the proxy so pass it to the upper IdP
@@ -612,7 +613,7 @@ class SP extends \SimpleSAML\Auth\Source
         $ar->setId($id);
 
         Logger::debug(
-            'Sending SAML 2 AuthnRequest to ' . var_export($idpMetadata->getString('entityid'), true)
+            'Sending SAML 2 AuthnRequest to ' . var_export($idpMetadata->getString('entityid'), true),
         );
 
         // Select appropriate SSO endpoint
@@ -622,7 +623,7 @@ class SP extends \SimpleSAML\Auth\Source
                 'SingleSignOnService',
                 [
                     Constants::BINDING_HOK_SSO,
-                ]
+                ],
             );
         } elseif ($ar->getProtocolBinding() === Constants::BINDING_HTTP_ARTIFACT) {
             /** @var array $dst */
@@ -630,7 +631,7 @@ class SP extends \SimpleSAML\Auth\Source
                 'SingleSignOnService',
                 [
                     Constants::BINDING_HTTP_ARTIFACT,
-                ]
+                ],
             );
         } else {
             /** @var array $dst */
@@ -639,7 +640,7 @@ class SP extends \SimpleSAML\Auth\Source
                 [
                     Constants::BINDING_HTTP_REDIRECT,
                     Constants::BINDING_HTTP_POST,
-                ]
+                ],
             );
         }
         $ar->setDestination($dst['Location']);
@@ -762,14 +763,14 @@ class SP extends \SimpleSAML\Auth\Source
             if (empty($matchedEntities)) {
                 // all requested IdPs are unknown
                 throw new NoSupportedIDPException(
-                    'None of the IdPs requested are supported by this proxy.'
+                    'None of the IdPs requested are supported by this proxy.',
                 );
             }
 
             if (!is_null($idp) && !array_key_exists($idp, $matchedEntities)) {
                 // the IdP is enforced but not in the IDPList
                 throw new NoAvailableIDPException(
-                    'None of the IdPs requested are available to this proxy.'
+                    'None of the IdPs requested are available to this proxy.',
                 );
             }
 
@@ -830,7 +831,7 @@ class SP extends \SimpleSAML\Auth\Source
             if (empty($intersection)) {
                 // all requested IdPs are unknown
                 throw new NoSupportedIDPException(
-                    'None of the IdPs requested are supported by this proxy.'
+                    'None of the IdPs requested are supported by this proxy.',
                 );
             }
 
@@ -842,7 +843,7 @@ class SP extends \SimpleSAML\Auth\Source
             if (!is_null($this->idp) && !in_array($this->idp, $intersection, true)) {
                 // an IdP is enforced but not requested
                 throw new NoAvailableIDPException(
-                    'None of the IdPs requested are available to this proxy.'
+                    'None of the IdPs requested are available to this proxy.',
                 );
             }
 
@@ -855,7 +856,7 @@ class SP extends \SimpleSAML\Auth\Source
                 "Reauthentication after logout is needed. The IdP '%s' is not in the IDPList "
                 . "provided by the Service Provider '%s'.",
                 $state['saml:sp:IdP'],
-                $state['core:SP']
+                $state['core:SP'],
             ));
 
             $state['saml:sp:IdPMetadata'] = $this->getIdPMetadata($state['saml:sp:IdP']);
@@ -880,7 +881,7 @@ class SP extends \SimpleSAML\Auth\Source
             Logger::warning(sprintf(
                 "Reauthentication requires change in AuthnContext from '%s' to '%s'.",
                 $data['saml:sp:AuthnContext'],
-                $state['saml:RequestedAuthnContext']['AuthnContextClassRef'][0]
+                $state['saml:RequestedAuthnContext']['AuthnContextClassRef'][0],
             ));
             $state['saml:idp'] = $data['saml:sp:IdP'];
             $state['saml:sp:AuthId'] = $this->authId;
@@ -918,7 +919,7 @@ class SP extends \SimpleSAML\Auth\Source
         if (isset($state['isPassive']) && (bool) $state['isPassive']) {
             // passive request, we cannot authenticate the user
             throw new NoPassiveException(
-                Constants::STATUS_REQUESTER . ':  Reauthentication required'
+                Constants::STATUS_REQUESTER . ':  Reauthentication required',
             );
         }
 
@@ -952,7 +953,7 @@ class SP extends \SimpleSAML\Auth\Source
         if (isset($state['isPassive']) && (bool) $state['isPassive']) {
             // passive request, we cannot authenticate the user
             throw new NoPassiveException(
-                Constants::STATUS_REQUESTER . ':  Reauthentication required'
+                Constants::STATUS_REQUESTER . ':  Reauthentication required',
             );
         }
 
@@ -1058,7 +1059,7 @@ class SP extends \SimpleSAML\Auth\Source
                 Constants::BINDING_HTTP_REDIRECT,
                 Constants::BINDING_HTTP_POST,
             ],
-            false
+            false,
         );
         if ($endpoint === false) {
             Logger::info('No logout endpoint for IdP ' . var_export($idp, true) . '.');

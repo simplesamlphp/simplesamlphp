@@ -860,14 +860,14 @@ class ConfigurationTest extends ClearStateTestCase
                 'Location' => 'https://example.com/ars',
                 'Binding' => Constants::BINDING_SOAP,
             ],
-            $c->getDefaultEndpoint('ArtifactResolutionService')
+            $c->getDefaultEndpoint('ArtifactResolutionService'),
         );
         $this->assertEquals(
             [
                 'Location' => 'https://example.com/slo',
                 'Binding' => Constants::BINDING_HTTP_REDIRECT,
             ],
-            $c->getDefaultEndpoint('SingleLogoutService')
+            $c->getDefaultEndpoint('SingleLogoutService'),
         );
 
         // test for no valid endpoints specified

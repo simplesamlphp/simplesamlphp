@@ -47,7 +47,7 @@ XML;
         $result = $this->xml->getValue('/Root/Value', true);
         $this->assertEquals(
             'Hello, World!',
-            $result
+            $result,
         );
     }
 
@@ -60,7 +60,7 @@ XML;
         $result = $this->xml->getValue('/Root/Foo', false);
         $this->assertEquals(
             null,
-            $result
+            $result,
         );
     }
 

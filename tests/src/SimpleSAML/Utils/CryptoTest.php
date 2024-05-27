@@ -344,7 +344,7 @@ CIPHER;
                 'privatekey' => $filename,
                 'privatekey_pass' => $password,
             ],
-            'test'
+            'test',
         );
         $full_path = true;
 
@@ -370,7 +370,7 @@ CIPHER;
                 $prefix . 'privatekey' => $filename,
                 $prefix . 'privatekey_pass' => $password,
             ],
-            'test'
+            'test',
         );
         $full_path = true;
 
@@ -445,7 +445,7 @@ CIPHER;
                     ],
                 ],
             ],
-            'test'
+            'test',
         );
 
         $res = $this->cryptoUtils->loadPublicKey($config);
@@ -469,7 +469,7 @@ CIPHER;
                     ],
                 ],
             ],
-            'test'
+            'test',
         );
 
         /** @var array $pubkey */

@@ -38,7 +38,7 @@ class Redirection
      */
     public function __construct(
         protected Configuration $config,
-        protected Session $session
+        protected Session $session,
     ) {
         $this->cryptoUtils = new Utils\Crypto();
     }

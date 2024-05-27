@@ -29,14 +29,14 @@ class SyslogLoggingHandler implements LoggingHandlerInterface
     {
         $facility = $config->getOptionalInteger(
             'logging.facility',
-            defined('LOG_LOCAL5') ? constant('LOG_LOCAL5') : LOG_USER
+            defined('LOG_LOCAL5') ? constant('LOG_LOCAL5') : LOG_USER,
         );
 
         // Remove any non-printable characters before storing
         $processname = preg_replace(
             '/[\x00-\x1F\x7F\xA0]/u',
             '',
-            $config->getOptionalString('logging.processname', 'SimpleSAMLphp')
+            $config->getOptionalString('logging.processname', 'SimpleSAMLphp'),
         );
 
         // Setting facility to LOG_USER (only valid in Windows), enable log level rewrite on windows systems

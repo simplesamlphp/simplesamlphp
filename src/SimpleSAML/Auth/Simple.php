@@ -36,7 +36,7 @@ class Simple
     public function __construct(
         protected string $authSource,
         Configuration $config = null,
-        Session $session = null
+        Session $session = null,
     ) {
         if ($config === null) {
             $config = Configuration::getInstance();
@@ -380,7 +380,7 @@ class Simple
 
         $base = trim($this->app_config->getOptionalString(
             'baseURL',
-            $scheme . '://' . $host . $port
+            $scheme . '://' . $host . $port,
         ), '/');
         return $base . $path . ($query ? '?' . $query : '') . ($fragment ? '#' . $fragment : '');
     }

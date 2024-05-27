@@ -33,7 +33,7 @@ class ErrorsTest extends TestCase
 
         $this->assertEquals(
             "level=3,code=76,line=1,col=18,msg=Opening and ending tag mismatch: Test line 1 and test\n",
-            $errors
+            $errors,
         );
     }
 
@@ -54,7 +54,7 @@ class ErrorsTest extends TestCase
 
         $this->assertEquals(
             "level=3,code=76,line=1,col=18,msg=msg\nlevel=3,code=76,line=1,col=18,msg=msg\n",
-            $errors
+            $errors,
         );
     }
 }

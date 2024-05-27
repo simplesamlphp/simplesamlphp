@@ -70,7 +70,7 @@ class MetaDataStorageHandler implements ClearableState
             $this->sources = MetaDataStorageSource::parseSources($sourcesConfig);
         } catch (\Exception $e) {
             throw new \Exception(
-                "Invalid configuration of the 'metadata.sources' configuration option: " . $e->getMessage()
+                "Invalid configuration of the 'metadata.sources' configuration option: " . $e->getMessage(),
             );
         }
     }
@@ -153,7 +153,7 @@ class MetaDataStorageHandler implements ClearableState
                         unset($srcList[$key]);
                         Logger::warning(
                             "Dropping metadata entity " . var_export($key, true) . ", expired " .
-                            $timeUtils->generateTimestamp($le['expire']) . "."
+                            $timeUtils->generateTimestamp($le['expire']) . ".",
                         );
                     }
                 }
@@ -227,7 +227,7 @@ class MetaDataStorageHandler implements ClearableState
         // we were unable to find the hostname/path in any metadata source
         throw new \Exception(
             'Could not find any default metadata entities in set [' . $set . '] for host [' . $currenthost . ' : ' .
-            $currenthostwithpath . ']'
+            $currenthostwithpath . ']',
         );
     }
 
@@ -274,7 +274,7 @@ class MetaDataStorageHandler implements ClearableState
                         unset($srcList[$key]);
                         Logger::warning(
                             "Dropping metadata entity " . var_export($key, true) . ", expired " .
-                            $timeUtils->generateTimestamp($le['expire']) . "."
+                            $timeUtils->generateTimestamp($le['expire']) . ".",
                         );
                         continue;
                     }
@@ -316,7 +316,7 @@ class MetaDataStorageHandler implements ClearableState
                     if ($metadata['expire'] < time()) {
                         throw new \Exception(
                             'Metadata for the entity [' . $entityId . '] expired ' .
-                            (time() - $metadata['expire']) . ' seconds ago.'
+                            (time() - $metadata['expire']) . ' seconds ago.',
                         );
                     }
                 }
@@ -377,7 +377,7 @@ class MetaDataStorageHandler implements ClearableState
 
                 return Configuration::loadFromArray(
                     $remote_provider,
-                    $set . '/' . var_export($remote_provider['entityid'], true)
+                    $set . '/' . var_export($remote_provider['entityid'], true),
                 );
             }
         }

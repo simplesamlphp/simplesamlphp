@@ -29,7 +29,7 @@ class Error extends \SimpleSAML\Error\Exception
         private string $status,
         private ?string $subStatus = null,
         private ?string $statusMessage = null,
-        Throwable $cause = null
+        Throwable $cause = null,
     ) {
         $st = self::shortStatus($status);
         if ($subStatus !== null) {
@@ -94,7 +94,7 @@ class Error extends \SimpleSAML\Error\Exception
                 Constants::STATUS_RESPONDER,
                 null,
                 $e::class . ': ' . $e->getMessage(),
-                $e
+                $e,
             );
         }
 
@@ -123,7 +123,7 @@ class Error extends \SimpleSAML\Error\Exception
                     case Constants::STATUS_NO_PASSIVE:
                         $e = new \SimpleSAML\Module\saml\Error\NoPassive(
                             Constants::STATUS_RESPONDER,
-                            $this->statusMessage
+                            $this->statusMessage,
                         );
                         break;
                 }

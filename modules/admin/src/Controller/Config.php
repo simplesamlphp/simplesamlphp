@@ -55,7 +55,7 @@ class Config
      */
     public function __construct(
         protected Configuration $config,
-        protected Session $session
+        protected Session $session,
     ) {
         $this->menu = new Menu();
         $this->authUtils = new Utils\Auth();
@@ -461,7 +461,7 @@ class Config
                     $warnings[] = [
                         Translate::noop(
                             'You are running an outdated version of SimpleSAMLphp. Please update to <a href="' .
-                            '%latest%">the latest version</a> as soon as possible.'
+                            '%latest%">the latest version</a> as soon as possible.',
                         ),
                         [
                             '%latest%' => $latest['html_url'],

@@ -350,7 +350,7 @@ class XML
                         return null;
                     }
                     return $system;
-                }
+                },
             );
 
             /** @psalm-suppress PossiblyUndefinedVariable */

@@ -138,12 +138,10 @@ class SubjectID extends Auth\ProcessingFilter
             !array_key_exists('Attributes', $state)
             || !array_key_exists($this->identifyingAttribute, $state['Attributes'])
         ) {
-            $this->logger::warning(
-                sprintf(
-                    "saml:" . static::NAME . ": Missing attribute '%s', which is needed to generate the ID.",
-                    $this->identifyingAttribute
-                )
-            );
+            $this->logger::warning(sprintf(
+                "saml:" . static::NAME . ": Missing attribute '%s', which is needed to generate the ID.",
+                $this->identifyingAttribute,
+            ));
 
             return null;
         }
@@ -151,7 +149,7 @@ class SubjectID extends Auth\ProcessingFilter
         $userID = $state['Attributes'][$this->identifyingAttribute][0];
         Assert::stringNotEmpty(
             $userID,
-            'saml:' . static::NAME . ': \'identifyingAttribute\' cannot be an empty string.'
+            'saml:' . static::NAME . ': \'identifyingAttribute\' cannot be an empty string.',
         );
 
         return $userID;
@@ -169,12 +167,10 @@ class SubjectID extends Auth\ProcessingFilter
     protected function getScopeAttribute(array $state): ?string
     {
         if (!array_key_exists('Attributes', $state) || !array_key_exists($this->scopeAttribute, $state['Attributes'])) {
-            $this->logger::warning(
-                sprintf(
-                    "saml:" . static::NAME . ": Missing attribute '%s', which is needed to generate the ID.",
-                    $this->scopeAttribute
-                )
-            );
+            $this->logger::warning(sprintf(
+                "saml:" . static::NAME . ": Missing attribute '%s', which is needed to generate the ID.",
+                $this->scopeAttribute,
+            ));
 
             return null;
         }
@@ -192,7 +188,7 @@ class SubjectID extends Auth\ProcessingFilter
             $scope,
             self::SCOPE_PATTERN,
             'saml:' . static::NAME . ': \'scopeAttribute\' contains illegal characters.',
-            ProtocolViolationException::class
+            ProtocolViolationException::class,
         );
         return $scope;
     }
@@ -212,12 +208,12 @@ class SubjectID extends Auth\ProcessingFilter
             $value,
             self::SPEC_PATTERN,
             'saml:' . static::NAME . ': Generated ID \'' . $value . '\' contains illegal characters.',
-            ProtocolViolationException::class
+            ProtocolViolationException::class,
         );
 
         if (preg_match(self::WARN_PATTERN, $value) === 0) {
             $this->logger::warning(
-                'saml:' . static::NAME . ': Generated ID \'' . $value . '\' can hardly be considered globally unique.'
+                'saml:' . static::NAME . ': Generated ID \'' . $value . '\' can hardly be considered globally unique.',
             );
         }
     }

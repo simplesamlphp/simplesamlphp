@@ -29,7 +29,7 @@ class StandardErrorLoggingHandler extends FileLoggingHandler
         $this->processname = preg_replace(
             '/[\x00-\x1F\x7F\xA0]/u',
             '',
-            $config->getOptionalString('logging.processname', 'SimpleSAMLphp')
+            $config->getOptionalString('logging.processname', 'SimpleSAMLphp'),
         );
 
         $this->logFile = 'php://stderr';
