@@ -8,7 +8,7 @@ use Exception;
 use PDO;
 use PDOException;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\{Configuration, Logger};
+use SimpleSAML\{Configuration, Logger, Utils};
 
 use function array_keys;
 use function count;
@@ -348,7 +348,7 @@ class SQLStore implements StoreInterface
     public function get(string $type, string $key): mixed
     {
         if ($type == 'session') {
-            $key = static::hashBase64($key);
+            $key = $this->hashData($key);
         }
 
         if (strlen($key) > 50) {
@@ -398,7 +398,7 @@ class SQLStore implements StoreInterface
         }
 
         if ($type == 'session') {
-            $key = static::hashBase64($key);
+            $key = $this->hashData($key);
         }
 
         if (strlen($key) > 50) {
@@ -432,7 +432,7 @@ class SQLStore implements StoreInterface
     public function delete(string $type, string $key): void
     {
         if ($type == 'session') {
-            $key = static::hashBase64($key);
+            $key = $this->hashData($key);
         }
 
         if (strlen($key) > 50) {
@@ -451,22 +451,14 @@ class SQLStore implements StoreInterface
 
 
     /**
-     * Calculates a base-64 encoded, URL-safe sha-256 hash.
+     * Calculates an URL-safe sha-256 hash.
      *
      * @param string $data
      * @return string The hashed data.
      */
-    public static function hashBase64(string $data) {
-        $hash = base64_encode(hash('sha256', $data, TRUE));
-        // Modify the hash so it's safe to use in URLs.
-        return str_replace([
-            '+',
-            '/',
-            '=',
-        ], [
-            '-',
-            '_',
-            '',
-        ], $hash);
+    private function hashData(string $data): string
+    {
+        $secretSalt = (new Utils\Config())->getSecretSalt();
+        return hash_hmac('sha256', $data, $secretSalt);
     }
 }
