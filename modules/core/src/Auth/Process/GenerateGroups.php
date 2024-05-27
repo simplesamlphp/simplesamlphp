@@ -145,7 +145,7 @@ class GenerateGroups extends Auth\ProcessingFilter
             function ($m) {
                 return sprintf("%%%02x", ord($m[1]));
             },
-            $string
+            $string,
         );
     }
 }

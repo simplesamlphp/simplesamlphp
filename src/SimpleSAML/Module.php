@@ -217,7 +217,7 @@ class Module
             $request->files->all(),
             function ($val) {
                 return !is_null($val);
-            }
+            },
         );
         $request->initialize(
             $request->query->all(),
@@ -226,7 +226,7 @@ class Module
             $request->cookies->all(),
             $request_files,
             $request->server->all(),
-            $request->getContent()
+            $request->getContent(),
         );
 
         try {
@@ -458,7 +458,7 @@ class Module
         if ($subclass !== null && !is_subclass_of($className, $subclass)) {
             throw new Exception(
                 'Could not resolve \'' . $id . '\': The class \'' . $className
-                . '\' isn\'t a subclass of \'' . $subclass . '\'.'
+                . '\' isn\'t a subclass of \'' . $subclass . '\'.',
             );
         }
 

@@ -71,7 +71,7 @@ class EMailTest extends ClearStateTestCase
         $mail = new EMail(
             'subject-subject-subject-subject-subject-subject-subject',
             'phpunit@simplesamlphp.org',
-            'phpunit@simplesamlphp.org'
+            'phpunit@simplesamlphp.org',
         );
         $mail->setText('text-text-text-text-text-text-text');
         $mail->setData(['key-key-key-key-key-key-key' => 'value-value-value-value-value-value-value']);

@@ -69,7 +69,7 @@ class AttributeValueMap extends Auth\ProcessingFilter
                 } else {
                     // unknown configuration option, log it and ignore the error
                     Logger::warning(
-                        "AttributeValueMap: unknown configuration flag '" . var_export($value, true) . "'"
+                        "AttributeValueMap: unknown configuration flag '" . var_export($value, true) . "'",
                     );
                 }
                 continue;
@@ -142,7 +142,7 @@ class AttributeValueMap extends Auth\ProcessingFilter
             } else {
                 $attributes[$this->targetattribute] = array_unique(array_merge(
                     $attributes[$this->targetattribute],
-                    $targetvalues
+                    $targetvalues,
                 ));
             }
         }

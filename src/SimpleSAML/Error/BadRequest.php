@@ -21,7 +21,7 @@ class BadRequest extends Error
      * @param string $reason  Description of why the request was unacceptable.
      */
     public function __construct(
-        protected string $reason
+        protected string $reason,
     ) {
         parent::__construct([ErrorCodes::BADREQUEST, '%REASON%' => $reason], null, 400);
     }

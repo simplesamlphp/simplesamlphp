@@ -94,7 +94,7 @@ class Database
             $config->getString('database.dsn'),
             $config->getOptionalString('database.username', null),
             $config->getOptionalString('database.password', null),
-            $driverOptions
+            $driverOptions,
         );
 
         // TODO: deprecated: the "database.slave" terminology is preserved here for backwards compatibility.
@@ -116,8 +116,8 @@ class Database
                     $secondary['dsn'],
                     $secondary['username'],
                     $secondary['password'],
-                    $driverOptions
-                )
+                    $driverOptions,
+                ),
             );
         }
         $this->tablePrefix = $config->getOptionalString('database.prefix', '');

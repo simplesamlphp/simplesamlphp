@@ -62,7 +62,7 @@ class SPTest extends ClearStateTestCase
         if (!$this->idpMetadata) {
             $this->idpMetadata = new Configuration(
                 $this->idpConfigArray,
-                'Auth_Source_SP_Test::getIdpMetadata()'
+                'Auth_Source_SP_Test::getIdpMetadata()',
             );
         }
 
@@ -181,13 +181,13 @@ class SPTest extends ClearStateTestCase
         $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/@Destination');
         $this->assertEquals(
             $this->idpConfigArray['SingleSignOnService'][0]['Location'],
-            $q[0]->value
+            $q[0]->value,
         );
 
         $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Issuer');
         $this->assertEquals(
             'urn:x-simplesamlphp:example-sp',
-            $q[0]->textContent
+            $q[0]->textContent,
         );
     }
 
@@ -221,7 +221,7 @@ class SPTest extends ClearStateTestCase
         $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Subject/saml:NameID');
         $this->assertEquals(
             $state['saml:NameID']['Value'],
-            $q[0]->textContent
+            $q[0]->textContent,
         );
     }
 
@@ -233,7 +233,7 @@ class SPTest extends ClearStateTestCase
     public function testAuthnContextClassRef(): void
     {
         $state = [
-            'saml:AuthnContextClassRef' => 'http://example.com/myAuthnContextClassRef'
+            'saml:AuthnContextClassRef' => 'http://example.com/myAuthnContextClassRef',
         ];
 
         $ar = $this->createAuthnRequest($state);
@@ -540,7 +540,7 @@ class SPTest extends ClearStateTestCase
         ?array $stateIdpList,
         ?array $idpConfigArray,
         ?array $remoteMetadata,
-        string $expectedScope
+        string $expectedScope,
     ): void {
         $info = ['AuthId' => 'default-sp'];
         $state = [];
@@ -836,7 +836,7 @@ class SPTest extends ClearStateTestCase
         $this->assertCount(1, $md['AssertionConsumerService']);
         $this->assertEquals(
             'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-            $md['AssertionConsumerService'][0]['Binding']
+            $md['AssertionConsumerService'][0]['Binding'],
         );
     }
 
@@ -1262,14 +1262,14 @@ class SPTest extends ClearStateTestCase
                 'mail' => 'urn:oid:0.9.2342.19200300.100.1.3',
                 'schacHomeOrganization' => 'urn:oid:1.3.6.1.4.1.25178.1.2.9',
             ],
-            $md['attributes']
+            $md['attributes'],
         );
         $this->assertArrayHasKey('attributes.required', $md);
         $this->assertEquals(
             [
                 'eduPersonPrincipalName' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.6',
             ],
-            $md['attributes.required']
+            $md['attributes.required'],
         );
     }
 

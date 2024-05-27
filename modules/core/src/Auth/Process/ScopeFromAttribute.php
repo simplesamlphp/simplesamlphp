@@ -89,7 +89,7 @@ class ScopeFromAttribute extends Auth\ProcessingFilter
             $scope = substr($sourceAttrVal, $scopeIndex + 1);
             $attributes[$this->targetAttribute][] = $scope;
             Logger::debug(
-                'ScopeFromAttribute: Inserted new attribute ' . $this->targetAttribute . ', with scope ' . $scope
+                'ScopeFromAttribute: Inserted new attribute ' . $this->targetAttribute . ', with scope ' . $scope,
             );
         } else {
             Logger::warning('ScopeFromAttribute: The configured source attribute ' . $this->sourceAttribute

@@ -237,7 +237,7 @@ class SQLPermanentStorage
         string $type = null,
         string $key1 = null,
         string $key2 = null,
-        string $whichKey = 'type'
+        string $whichKey = 'type',
     ): ?array {
         if (!in_array($whichKey, ['key1', 'key2', 'type'], true)) {
             throw new \Exception('Invalid key type');

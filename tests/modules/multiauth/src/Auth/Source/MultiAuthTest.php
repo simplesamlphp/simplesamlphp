@@ -28,7 +28,7 @@ class MultiAuthTest extends ClearStateTestCase
         $this->config = Configuration::loadFromArray(
             ['module.enable' => ['multiauth' => true]],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
         Configuration::setPreLoadedConfig($this->config, 'config.php');
 

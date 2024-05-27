@@ -42,7 +42,7 @@ class SystemTest extends TestCase
             null,
             [
                 self::DEFAULTTEMPDIR => [],
-            ]
+            ],
         );
         $this->root_directory = vfsStream::url(self::ROOTDIRNAME);
         $this->sysUtils = new Utils\System();

@@ -30,7 +30,7 @@ class TimeTest extends TestCase
         // test timestamp generation for current time
         $this->assertMatchesRegularExpression(
             '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/',
-            $timeUtils->generateTimestamp()
+            $timeUtils->generateTimestamp(),
         );
     }
 
@@ -106,63 +106,63 @@ class TimeTest extends TestCase
         $this->assertEquals(
             $second,
             $timeUtils->parseDuration('PT1S', $base),
-            "Failure checking for 1 second duration."
+            "Failure checking for 1 second duration.",
         );
 
         // test minutes
         $this->assertEquals(
             $minute,
             $timeUtils->parseDuration('PT1M', $base),
-            "Failure checking for 1 minute duration."
+            "Failure checking for 1 minute duration.",
         );
 
         // test hours
         $this->assertEquals(
             $hour,
             $timeUtils->parseDuration('PT1H', $base),
-            "Failure checking for 1 hour duration."
+            "Failure checking for 1 hour duration.",
         );
 
         // test days
         $this->assertEquals(
             $day,
             $timeUtils->parseDuration('P1D', $base),
-            "Failure checking for 1 day duration."
+            "Failure checking for 1 day duration.",
         );
 
         // test weeks
         $this->assertEquals(
             $week,
             $timeUtils->parseDuration('P1W', $base),
-            "Failure checking for 1 week duration."
+            "Failure checking for 1 week duration.",
         );
 
         // test month
         $this->assertEquals(
             $month,
             $timeUtils->parseDuration('P1M', $base),
-            "Failure checking for 1 month duration."
+            "Failure checking for 1 month duration.",
         );
 
         // test year
         $this->assertEquals(
             $year,
             $timeUtils->parseDuration('P1Y', $base),
-            "Failure checking for 1 year duration."
+            "Failure checking for 1 year duration.",
         );
 
         // test months > 12
         $this->assertEquals(
             $manymonths,
             $timeUtils->parseDuration('P14M', $base),
-            "Failure checking for 14 months duration (1 year and 2 months)."
+            "Failure checking for 14 months duration (1 year and 2 months).",
         );
 
         // test negative months
         $this->assertEquals(
             $negmonths,
             $timeUtils->parseDuration('-P3M', $base),
-            "Failure checking for -3 months duration (-1 year + 9 months)."
+            "Failure checking for -3 months duration (-1 year + 9 months).",
         );
 
         // test from current time
@@ -170,7 +170,7 @@ class TimeTest extends TestCase
         $this->assertGreaterThanOrEqual(
             $now + 60,
             $timeUtils->parseDuration('PT1M'),
-            "Failure testing for 1 minute over current time."
+            "Failure testing for 1 minute over current time.",
         );
 
         // test invalid durations
@@ -181,6 +181,7 @@ class TimeTest extends TestCase
         } catch (AssertionFailedException $e) {
             $this->assertStringMatchesFormat('\'%s\' is not a valid xs:duration', $e->getMessage());
         }
+
         try {
             // missing T delimiter
             $timeUtils->parseDuration('P1S');

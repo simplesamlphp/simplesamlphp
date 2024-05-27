@@ -70,7 +70,7 @@ class ServiceProvider
      */
     public function __construct(
         protected Configuration $config,
-        protected Session $session
+        protected Session $session,
     ) {
         $this->authUtils = new Utils\Auth();
     }
@@ -236,7 +236,7 @@ class ServiceProvider
             Logger::info(sprintf(
                 '%s - %s',
                 'Duplicate SAML 2 response detected',
-                'ignoring the response and redirecting the user to the correct page.'
+                'ignoring the response and redirecting the user to the correct page.',
             ));
             if (isset($prevAuth['redirect'])) {
                 return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$prevAuth['redirect']]);
@@ -274,7 +274,7 @@ class ServiceProvider
             if ($state['saml:sp:AuthId'] !== $sourceId) {
                 throw new Error\Exception(
                     "The authentication source id in the URL doesn't match the authentication"
-                    . " source that sent the request."
+                    . " source that sent the request.",
                 );
             }
 
@@ -285,7 +285,7 @@ class ServiceProvider
                 $idplist = $idpMetadata->getOptionalArrayize('IDPList', []);
                 if (!in_array($state['ExpectedIssuer'], $idplist, true)) {
                     Logger::warning(
-                        'The issuer of the response not match to the identity provider we sent the request to.'
+                        'The issuer of the response not match to the identity provider we sent the request to.',
                     );
                 }
             }
@@ -503,7 +503,7 @@ class ServiceProvider
 
             if (!$message->isSuccess()) {
                 Logger::warning(
-                    'Unsuccessful logout. Status was: ' . Module\saml\Message::getResponseError($message)
+                    'Unsuccessful logout. Status was: ' . Module\saml\Message::getResponseError($message),
                 );
             }
 
@@ -626,7 +626,7 @@ class ServiceProvider
         if (!($source instanceof SP)) {
             throw new Error\AuthSource(
                 $sourceId,
-                'The authentication source is not a SAML Service Provider.'
+                'The authentication source is not a SAML Service Provider.',
             );
         }
 

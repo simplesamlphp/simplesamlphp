@@ -120,7 +120,7 @@ switch ($argv[1]) {
             STDERR,
             "Merging (for nullify) " . count($sourcePairs) .
             " entries from source language (destination language has " .
-            count($destPairs) . " already.\n"
+            count($destPairs) . " already.\n",
         );
         $outputPairs = mergeWithSource($sourcePairs, $destPairs);
         foreach ($outputPairs as $key => $value) {
@@ -132,7 +132,7 @@ switch ($argv[1]) {
             STDERR,
             "Merging " . count($sourcePairs) .
             " entries from source language (destination language has " .
-            count($destPairs) . " already.\n"
+            count($destPairs) . " already.\n",
         );
         $outputPairs = mergeWithSource($sourcePairs, $destPairs);
         break;
@@ -141,7 +141,7 @@ switch ($argv[1]) {
             STDERR,
             "Codifying " . count($sourcePairs) .
             " entries from destination language (pool has " .
-            count($destPairs) . " candidates).\n"
+            count($destPairs) . " candidates).\n",
         );
         $outputPairs = codifyWithSource($sourcePairs, $destPairs);
         break;

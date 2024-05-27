@@ -122,7 +122,7 @@ class MultiAuth extends Auth\Source
             $number_of_sources = count($new_sources);
             if ($number_of_sources === 0) {
                 throw new NoAuthnContextException(
-                    'No authentication sources exist for the requested AuthnContextClassRefs: ' . implode(', ', $refs)
+                    'No authentication sources exist for the requested AuthnContextClassRefs: ' . implode(', ', $refs),
                 );
             } elseif ($number_of_sources === 1) {
                 MultiAuth::delegateAuthentication(array_key_first($new_sources), $state);
@@ -177,7 +177,7 @@ class MultiAuth extends Auth\Source
             self::SESSION_SOURCE,
             $state[self::AUTHID],
             $authId,
-            Session::DATA_TIMEOUT_SESSION_END
+            Session::DATA_TIMEOUT_SESSION_END,
         );
 
         return new RunnableResponse([self::class, 'doAuthentication'], [$as, $state]);

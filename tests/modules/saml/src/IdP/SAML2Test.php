@@ -93,7 +93,7 @@ class SAML2Test extends ClearStateTestCase
         $this->assertStringStartsWith(
             'http://idp.examlple.com/module.php/saml/idp/singleSignOnService?'
             . 'spentityid=https%3A%2F%2Fsome-sp-entity-id&RelayState=http%3A%2F%2Frelay&cookieTime',
-            $state['\SimpleSAML\Auth\State.restartURL']
+            $state['\SimpleSAML\Auth\State.restartURL'],
         );
         unset($state['saml:AuthnRequestReceivedAt']); // timestamp can't be tested in equality assertion
         unset($state['SPMetadata']); // entityid asserted above
@@ -121,7 +121,7 @@ class SAML2Test extends ClearStateTestCase
 
         $this->assertStringStartsWith(
             'http://idp.examlple.com/module.php/saml/idp/singleSignOnService?spentityid=https%3A%2F%2Fsome-sp-entity-id&cookie',
-            $state['\SimpleSAML\Auth\State.restartURL']
+            $state['\SimpleSAML\Auth\State.restartURL'],
         );
         unset($state['saml:AuthnRequestReceivedAt']); // timestamp can't be tested in equality assertion
         unset($state['SPMetadata']); // entityid asserted above
@@ -151,7 +151,7 @@ class SAML2Test extends ClearStateTestCase
         $this->assertStringStartsWith(
             'http://idp.examlple.com/module.php/saml/idp/singleSignOnService?'
             . 'spentityid=https%3A%2F%2Fsome-sp-entity-id&RelayState=http%3A%2F%2Frelay&cookieTime',
-            $state['\SimpleSAML\Auth\State.restartURL']
+            $state['\SimpleSAML\Auth\State.restartURL'],
         );
         unset($state['saml:AuthnRequestReceivedAt']); // timestamp can't be tested in equality assertion
         unset($state['SPMetadata']); // entityid asserted above
@@ -223,7 +223,7 @@ EOT;
                 function ($arg) use (&$state) {
                     $state = $arg;
                     return true;
-                }
+                },
             ));
 
         /** @psalm-suppress InvalidArgument */

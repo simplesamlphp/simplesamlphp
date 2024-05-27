@@ -86,8 +86,8 @@ class Config
                     sprintf(
                         'Config directory specified by environment variable SIMPLESAMLPHP_CONFIG_DIR is not a ' .
                         'directory.  Given: "%s"',
-                        $configDirEnv
-                    )
+                        $configDirEnv,
+                    ),
                 );
             }
             $configDir = $configDirEnv;

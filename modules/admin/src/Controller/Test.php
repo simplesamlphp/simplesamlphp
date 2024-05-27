@@ -54,7 +54,7 @@ class Test
      */
     public function __construct(
         protected Configuration $config,
-        protected Session $session
+        protected Session $session,
     ) {
         $this->menu = new Menu();
         $this->authUtils = new Utils\Auth();

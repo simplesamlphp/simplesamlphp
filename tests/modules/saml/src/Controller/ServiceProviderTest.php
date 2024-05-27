@@ -49,7 +49,7 @@ class ServiceProviderTest extends TestCase
                 'trusted.url.domains' => ['example.org'],
             ],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
         Configuration::setPreLoadedConfig($this->config, 'config.php');
 
@@ -63,10 +63,10 @@ class ServiceProviderTest extends TestCase
                     ],
                 ],
                 '[ARRAY]',
-                'simplesaml'
+                'simplesaml',
             ),
             'authsources.php',
-            'simplesaml'
+            'simplesaml',
         );
 
         $this->authUtils = new class () extends Utils\Auth {
@@ -173,7 +173,7 @@ class ServiceProviderTest extends TestCase
         $request = Request::create(
             '/discoResponse',
             'GET',
-            ['AuthID' => 'abc123']
+            ['AuthID' => 'abc123'],
         );
 
         $c = new Controller\ServiceProvider($this->config, $this->session);
@@ -471,7 +471,7 @@ XML;
                 'admin.protectmetadata' => $protected,
             ],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
         Configuration::setPreLoadedConfig($config, 'config.php');
 

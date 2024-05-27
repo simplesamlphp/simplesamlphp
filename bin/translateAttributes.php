@@ -61,7 +61,7 @@ foreach ($names as $name => $urn) {
             [
                 'en' => $defs['attribute_' . $lower]['en'],
             ],
-            $trans['attribute_' . $lower]
+            $trans['attribute_' . $lower],
         ),
     ];
 }

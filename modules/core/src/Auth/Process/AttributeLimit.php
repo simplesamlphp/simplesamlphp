@@ -179,7 +179,7 @@ class AttributeLimit extends Auth\ProcessingFilter
                     if (array_key_exists($regexpMatch, $allowedAttributeRegex)) {
                         $attributes[$name] = $this->filterAttributeValues(
                             $attributes[$name],
-                            $allowedAttributeRegex[$regexpMatch]
+                            $allowedAttributeRegex[$regexpMatch],
                         );
                     }
                     if (!empty($attributes[$name])) {

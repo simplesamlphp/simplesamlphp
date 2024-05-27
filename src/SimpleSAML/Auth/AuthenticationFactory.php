@@ -18,7 +18,7 @@ class AuthenticationFactory
      */
     public function __construct(
         protected Configuration $config,
-        protected Session $session
+        protected Session $session,
     ) {
     }
 

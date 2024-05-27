@@ -50,7 +50,7 @@ class SessionHandlerPHP extends SessionHandler
         $config = Configuration::getInstance();
         $this->cookie_name = $config->getOptionalString(
             'session.phpsession.cookiename',
-            ini_get('session.name') ?: 'PHPSESSID'
+            ini_get('session.name') ?: 'PHPSESSID',
         );
 
         if (session_status() === PHP_SESSION_ACTIVE) {
@@ -58,7 +58,7 @@ class SessionHandlerPHP extends SessionHandler
                 Logger::warning(
                     'There is already a PHP session with the same name as SimpleSAMLphp\'s session, or the ' .
                     "'session.phpsession.cookiename' configuration option is not set. Make sure to set " .
-                    "SimpleSAMLphp's cookie name with a value not used by any other applications."
+                    "SimpleSAMLphp's cookie name with a value not used by any other applications.",
                 );
             }
 
@@ -284,12 +284,12 @@ class SessionHandlerPHP extends SessionHandler
 
         if ($config->hasValue('session.phpsession.limitedpath') && $config->hasValue('session.cookie.path')) {
             throw new Error\Exception(
-                'You cannot set both the session.phpsession.limitedpath and session.cookie.path options.'
+                'You cannot set both the session.phpsession.limitedpath and session.cookie.path options.',
             );
         } elseif ($config->hasValue('session.phpsession.limitedpath')) {
             $ret['path'] = $config->getOptionalBoolean(
                 'session.phpsession.limitedpath',
-                false
+                false,
             ) ? $config->getBasePath() : '/';
         }
 
@@ -318,14 +318,14 @@ class SessionHandlerPHP extends SessionHandler
         if ($cookieParams['secure'] && !$httpUtils->isHTTPS()) {
             throw new Error\CannotSetCookie(
                 'Setting secure cookie on plain HTTP is not allowed.',
-                Error\CannotSetCookie::SECURE_COOKIE
+                Error\CannotSetCookie::SECURE_COOKIE,
             );
         }
 
         if (headers_sent()) {
             throw new Error\CannotSetCookie(
                 'Headers already sent.',
-                Error\CannotSetCookie::HEADERS_SENT
+                Error\CannotSetCookie::HEADERS_SENT,
             );
         }
 

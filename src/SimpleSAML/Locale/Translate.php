@@ -29,7 +29,7 @@ class Translate
      * @param \SimpleSAML\Configuration $configuration Configuration object
      */
     public function __construct(
-        private Configuration $configuration
+        private Configuration $configuration,
     ) {
         $this->language = new Language($configuration);
     }
