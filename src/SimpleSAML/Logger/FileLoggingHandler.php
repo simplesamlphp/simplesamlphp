@@ -69,7 +69,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
         $this->processname = preg_replace(
             '/[\x00-\x1F\x7F\xA0]/u',
             '',
-            $config->getOptionalString('logging.processname', 'SimpleSAMLphp')
+            $config->getOptionalString('logging.processname', 'SimpleSAMLphp'),
         );
 
         $file = new File($this->logFile, false);

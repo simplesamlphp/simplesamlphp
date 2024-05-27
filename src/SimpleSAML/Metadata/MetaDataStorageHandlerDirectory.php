@@ -97,7 +97,7 @@ class MetaDataStorageHandlerDirectory extends MetaDataStorageSource
         $dh = @opendir($metadatasetdir);
         if ($dh === false) {
             Logger::warning(
-                'Directory metadata handler: Unable to open directory: ' . var_export($metadatasetdir, true)
+                'Directory metadata handler: Unable to open directory: ' . var_export($metadatasetdir, true),
             );
             return $metadata;
         }
@@ -112,7 +112,7 @@ class MetaDataStorageHandlerDirectory extends MetaDataStorageSource
             if (is_dir($path)) {
                 Logger::warning(
                     'Directory metadata handler: Metadata directory contained a directory where only files should ' .
-                    'exist: ' . var_export($path, true)
+                    'exist: ' . var_export($path, true),
                 );
                  continue;
             }

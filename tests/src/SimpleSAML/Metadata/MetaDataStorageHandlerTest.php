@@ -45,12 +45,12 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         $this->assertEquals(
             'entityInBoth SP from source1',
             $entities['entityInBoth']['name']['en'],
-            "Entity is in both sources, but should get loaded from the first"
+            "Entity is in both sources, but should get loaded from the first",
         );
         $this->assertEquals(
             'expiredInSrc1InSrc2 SP from source2',
             $entities['expiredInSrc1InSrc2']['name']['en'],
-            "Entity is in both sources, expired in src1 and available from src2"
+            "Entity is in both sources, expired in src1 and available from src2",
         );
         // Did not ask for this one, which is in source1
         $this->assertArrayNotHasKey('http://localhost/simplesaml', $entities);
@@ -69,12 +69,12 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         $this->assertEquals(
             'entityInBoth SP from source1',
             $entities['entityInBoth']['name']['en'],
-            "Entity is in both sources, but should get loaded from the first"
+            "Entity is in both sources, but should get loaded from the first",
         );
         $this->assertEquals(
             'expiredInSrc1InSrc2 SP from source2',
             $entities['expiredInSrc1InSrc2']['name']['en'],
-            "Entity is in both sources, expired in src1 and available from src2"
+            "Entity is in both sources, expired in src1 and available from src2",
         );
         $this->assertEquals('entityA SP from source1', $entities['entityA']['name']['en']);
         $this->assertEquals('hostname SP from source1', $entities['http://localhost/simplesaml']['name']['en']);

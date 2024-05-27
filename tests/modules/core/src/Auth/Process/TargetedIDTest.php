@@ -143,7 +143,7 @@ class TargetedIDTest extends TestCase
             '#^<saml:NameID xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" NameQualifier="urn:example:src:id"' .
             ' SPNameQualifier="joe"' .
             ' Format="urn:oasis:names:tc:SAML:2.0:nameid-format:persistent">[0-9a-f]{40}</saml:NameID>$#',
-            strval($attributes['eduPersonTargetedID'][0])
+            strval($attributes['eduPersonTargetedID'][0]),
         );
     }
 

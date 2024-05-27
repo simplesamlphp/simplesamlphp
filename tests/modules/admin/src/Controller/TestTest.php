@@ -47,7 +47,7 @@ class TestTest extends TestCase
                 'module.enable' => ['admin' => true],
             ],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
 
         $this->authUtils = new class () extends Utils\Auth {
@@ -65,10 +65,10 @@ class TestTest extends TestCase
                     'admin' => ['core:AdminPassword'],
                 ],
                 '[ARRAY]',
-                'simplesaml'
+                'simplesaml',
             ),
             'authsources.php',
-            'simplesaml'
+            'simplesaml',
         );
     }
 
@@ -80,7 +80,7 @@ class TestTest extends TestCase
         $_SERVER['REQUEST_URI'] = '/module.php/admin/test';
         $request = Request::create(
             '/test',
-            'GET'
+            'GET',
         );
 
         $c = new TestController($this->config, $this->session);
@@ -100,7 +100,7 @@ class TestTest extends TestCase
         $request = Request::create(
             '/test',
             'GET',
-            ['logout' => 'notnull']
+            ['logout' => 'notnull'],
         );
 
         $c = new TestController($this->config, $this->session);
@@ -125,7 +125,7 @@ class TestTest extends TestCase
     {
         $request = Request::create(
             '/logout',
-            'GET'
+            'GET',
         );
 
         $c = new TestController($this->config, $this->session);
@@ -144,7 +144,7 @@ class TestTest extends TestCase
         $request = Request::create(
             '/test',
             'GET',
-            [Auth\State::EXCEPTION_PARAM => 'someException']
+            [Auth\State::EXCEPTION_PARAM => 'someException'],
         );
 
         $c = new TestController($this->config, $this->session);
@@ -170,7 +170,7 @@ class TestTest extends TestCase
         $request = Request::create(
             '/test',
             'GET',
-            ['as' => 'admin']
+            ['as' => 'admin'],
         );
 
         $c = new TestController($this->config, $this->session);
@@ -201,7 +201,7 @@ class TestTest extends TestCase
         $_SERVER['REQUEST_URI'] = '/module.php/admin/test';
         $request = Request::create(
             '/test',
-            'GET'
+            'GET',
         );
 
         $c = new TestController($this->config, $this->session);

@@ -47,7 +47,7 @@ class ExceptionTest extends TestCase
                 'module.enable' => ['core' => true],
             ],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
 
         Configuration::setPreLoadedConfig(self::$config, 'config.php');
@@ -153,7 +153,7 @@ class ExceptionTest extends TestCase
         $this->expectException(AssertionFailedException::class);
         $this->expectExceptionMessage(
             'Expected one of: "IDENTIFICATION_FAILURE", "AUTHENTICATION_FAILURE",'
-            . ' "AUTHORIZATION_FAILURE", "OTHER_ERROR". Got: "doesNotExist"'
+            . ' "AUTHORIZATION_FAILURE", "OTHER_ERROR". Got: "doesNotExist"',
         );
 
         $c->error($request, 'doesNotExist');

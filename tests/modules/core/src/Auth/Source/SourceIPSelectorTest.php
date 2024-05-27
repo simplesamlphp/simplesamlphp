@@ -34,7 +34,7 @@ class SourceIPSelectorTest extends TestCase
         $this->config = Configuration::loadFromArray(
             ['module.enable' => ['core' => true]],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
         Configuration::setPreLoadedConfig($this->config, 'config.php');
 

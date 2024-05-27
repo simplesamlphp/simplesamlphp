@@ -49,7 +49,7 @@ class Login
      * @throws \Exception
      */
     public function __construct(
-        protected Configuration $config
+        protected Configuration $config,
     ) {
     }
 
@@ -107,7 +107,7 @@ class Login
         $source = $this->authSource::getById($state[UserPassBase::AUTHID]);
         if ($source === null) {
             throw new BuiltinException(
-                'Could not find authentication source with id ' . $state[UserPassBase::AUTHID]
+                'Could not find authentication source with id ' . $state[UserPassBase::AUTHID],
             );
         }
 
@@ -322,7 +322,7 @@ class Login
         $source = $this->authSource::getById($state[UserPassOrgBase::AUTHID]);
         if ($source === null) {
             throw new BuiltinException(
-                'Could not find authentication source with id ' . $state[UserPassOrgBase::AUTHID]
+                'Could not find authentication source with id ' . $state[UserPassOrgBase::AUTHID],
             );
         }
 
@@ -351,7 +351,7 @@ class Login
         ?bool $secure = null,
         bool $httponly = true,
         bool $raw = false,
-        ?string $sameSite = 'none'
+        ?string $sameSite = 'none',
     ): Cookie {
         return new Cookie($name, $value, $expire, $path, $domain, $secure, $httponly, $raw, $sameSite);
     }

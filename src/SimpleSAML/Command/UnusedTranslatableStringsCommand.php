@@ -45,7 +45,7 @@ class UnusedTranslatableStringsCommand extends Command
                 'logging.handler' => ArrayLogger::class,
             ]),
             'config.php',
-            'simplesaml'
+            'simplesaml',
         );
 
         $this->setDescription('Generates a list of translations that are no longer in used in PHP or Twig files');

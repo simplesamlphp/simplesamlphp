@@ -115,7 +115,7 @@ class IdPDisco
      */
     public function __construct(
         protected array $metadataSets,
-        protected string $instance
+        protected string $instance,
     ) {
         // initialize standard classes
         $this->config = Configuration::getInstance();
@@ -524,7 +524,7 @@ class IdPDisco
             } else {
                 $this->log(
                     'Choice made [' . $idp . '] (Redirecting the user back. returnIDParam='
-                    . $this->returnIdParam . ')'
+                    . $this->returnIdParam . ')',
                 );
                 $httpUtils->redirectTrustedURL($this->returnURL, [$this->returnIdParam => $idp]);
             }
@@ -562,11 +562,11 @@ class IdPDisco
         if (sizeof($idpintersection) == 1) {
             $this->log(
                 'Choice made [' . $idpintersection[0] . '] (Redirecting the user back. returnIDParam=' .
-                $this->returnIdParam . ')'
+                $this->returnIdParam . ')',
             );
             $httpUtils->redirectTrustedURL(
                 $this->returnURL,
-                [$this->returnIdParam => $idpintersection[0]]
+                [$this->returnIdParam => $idpintersection[0]],
             );
         }
 
@@ -607,7 +607,7 @@ class IdPDisco
              */
             function (array $idpentry1, array $idpentry2) {
                 return strcasecmp($idpentry1['name'], $idpentry2['name']);
-            }
+            },
         );
 
         $t->data['idplist'] = $newlist;

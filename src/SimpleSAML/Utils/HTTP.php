@@ -673,7 +673,7 @@ class HTTP
                 'Invalid value for \'baseurlpath\' in config.php. Valid format is in the form: ' .
                 '[(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/]. It must end with a \'/\'.',
                 null,
-                $c
+                $c,
             );
         }
     }
@@ -1104,7 +1104,7 @@ class HTTP
             if ($throw) {
                 throw new Error\CannotSetCookie(
                     'Setting secure cookie on plain HTTP is not allowed.',
-                    Error\CannotSetCookie::SECURE_COOKIE
+                    Error\CannotSetCookie::SECURE_COOKIE,
                 );
             }
             Logger::warning('Error setting cookie: setting secure cookie on plain HTTP is not allowed.');
@@ -1134,7 +1134,7 @@ class HTTP
                     'secure' => $params['secure'],
                     'httponly' => $params['httponly'],
                     'samesite' => $params['samesite'],
-                ]
+                ],
             );
         } else {
             /** @psalm-suppress InvalidArgument */
@@ -1148,7 +1148,7 @@ class HTTP
                     'secure' => $params['secure'],
                     'httponly' => $params['httponly'],
                     'samesite' => $params['samesite'],
-                ]
+                ],
             );
         }
 
@@ -1156,7 +1156,7 @@ class HTTP
             if ($throw) {
                 throw new Error\CannotSetCookie(
                     'Headers already sent.',
-                    Error\CannotSetCookie::HEADERS_SENT
+                    Error\CannotSetCookie::HEADERS_SENT,
                 );
             }
             Logger::warning('Error setting cookie: headers already sent.');

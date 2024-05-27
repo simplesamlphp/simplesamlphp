@@ -58,7 +58,7 @@ class AttributeAdd extends Auth\ProcessingFilter
             foreach ($values as $value) {
                 if (!is_string($value)) {
                     throw new Exception(
-                        'Invalid value for attribute ' . $name . ': ' . var_export($values, true)
+                        'Invalid value for attribute ' . $name . ': ' . var_export($values, true),
                     );
                 }
             }

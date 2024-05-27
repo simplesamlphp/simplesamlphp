@@ -92,7 +92,7 @@ class LoggerTest extends TestCase
 
         $this->expectException(Exception::class);
         $this->expectExceptionMessage(
-            "Invalid value for the 'logging.handler' configuration option. Unknown handler 'nohandler'."
+            "Invalid value for the 'logging.handler' configuration option. Unknown handler 'nohandler'.",
         );
 
         Logger::critical('should throw exception');

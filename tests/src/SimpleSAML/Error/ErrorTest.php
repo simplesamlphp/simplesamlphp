@@ -38,7 +38,7 @@ class ErrorTest extends TestCase
             $this->errorCodeSample,
             $this->causeMock,
             $this->httpCodeSample,
-            $this->errorCodesMock
+            $this->errorCodesMock,
         );
     }
 
@@ -53,11 +53,11 @@ class ErrorTest extends TestCase
         $this->assertArrayNotHasKey('paramKey', $error->getParameters());
         $this->assertSame(
             $this->errorCodes->getTitle(ErrorCodes::WRONGUSERPASS),
-            $error->getDictTitle()
+            $error->getDictTitle(),
         );
         $this->assertSame(
             $this->errorCodes->getDescription(ErrorCodes::WRONGUSERPASS),
-            $error->getDictDescr()
+            $error->getDictDescr(),
         );
     }
 
@@ -77,11 +77,11 @@ class ErrorTest extends TestCase
         $this->assertArrayHasKey('paramKey', $error->getParameters());
         $this->assertSame(
             $this->errorCodes->getTitle(ErrorCodes::WRONGUSERPASS),
-            $error->getDictTitle()
+            $error->getDictTitle(),
         );
         $this->assertSame(
             $this->errorCodes->getDescription(ErrorCodes::WRONGUSERPASS),
-            $error->getDictDescr()
+            $error->getDictDescr(),
         );
     }
 

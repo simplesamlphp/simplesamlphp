@@ -50,7 +50,7 @@ class UpdateTranslatableStringsCommand extends Command
                 'logging.handler' => ArrayLogger::class,
             ]),
             'config.php',
-            'simplesaml'
+            'simplesaml',
         );
 
         $this->setDescription(
@@ -181,7 +181,7 @@ class UpdateTranslatableStringsCommand extends Command
                         | Merge::COMMENTS_OURS
                         | Merge::HEADERS_OURS
                         | Merge::REFERENCES_THEIRS
-                        | Merge::EXTRACTED_COMMENTS_OURS
+                        | Merge::EXTRACTED_COMMENTS_OURS,
                     );
                     $merged->setDomain($domain);
 

@@ -38,7 +38,7 @@ class SandboxTest extends TestCase
                 'module.enable' => ['admin' => true],
             ],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
 
         $this->session = Session::getSessionFromRequest();

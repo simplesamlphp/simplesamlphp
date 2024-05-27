@@ -24,7 +24,7 @@ try {
     Configuration::getInstance();
 } catch (Exception $e) {
     throw new Error\CriticalConfigurationError(
-        $e->getMessage()
+        $e->getMessage(),
     );
 }
 

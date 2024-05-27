@@ -205,7 +205,7 @@ class Crypto
         Configuration $metadata,
         bool $required = false,
         string $prefix = '',
-        bool $full_path = false
+        bool $full_path = false,
     ): ?array {
         $location = $metadata->getOptionalString($prefix . 'privatekey', null);
         if ($location === null) {

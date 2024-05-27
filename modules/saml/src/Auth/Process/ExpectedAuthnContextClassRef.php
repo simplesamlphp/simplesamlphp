@@ -58,10 +58,10 @@ class ExpectedAuthnContextClassRef extends ProcessingFilter
 
         if (empty($config['accepted'])) {
             Logger::error(
-                'ExpectedAuthnContextClassRef: Configuration error. There is no accepted AuthnContextClassRef.'
+                'ExpectedAuthnContextClassRef: Configuration error. There is no accepted AuthnContextClassRef.',
             );
             throw new Error\Exception(
-                'ExpectedAuthnContextClassRef: Configuration error. There is no accepted AuthnContextClassRef.'
+                'ExpectedAuthnContextClassRef: Configuration error. There is no accepted AuthnContextClassRef.',
             );
         }
         $this->accepted = $config['accepted'];
@@ -99,12 +99,12 @@ class ExpectedAuthnContextClassRef extends ProcessingFilter
     {
         Logger::error(
             'ExpectedAuthnContextClassRef: Invalid authentication context: ' . strval($this->AuthnContextClassRef) .
-            '. Accepted values are: ' . var_export($this->accepted, true)
+            '. Accepted values are: ' . var_export($this->accepted, true),
         );
 
         $id = Auth\State::saveState($state, 'saml:ExpectedAuthnContextClassRef:unauthorized');
         $url = Module::getModuleURL(
-            'saml/sp/wrongAuthnContextClassRef'
+            'saml/sp/wrongAuthnContextClassRef',
         );
 
         $httpUtils = new Utils\HTTP();

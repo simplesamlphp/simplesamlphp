@@ -121,7 +121,7 @@ class TemplateTranslationTest extends TestCase
 
         $this->assertStringContainsString(
             'Your session is valid for ' . $t->data['remaining'] . ' seconds from now.',
-            $html
+            $html,
         );
     }
 
@@ -143,16 +143,16 @@ class TemplateTranslationTest extends TestCase
                 'asset',
                 function () {
                     return '';
-                }
-            )
+                },
+            ),
         );
         $twig->addFunction(
             new TwigFunction(
                 'moduleURL',
                 function () {
                     return '';
-                }
-            )
+                },
+            ),
         );
 
         // Fake filters
@@ -162,16 +162,16 @@ class TemplateTranslationTest extends TestCase
                 function () {
                     return '';
                 },
-                ['needs_context' => true]
-            )
+                ['needs_context' => true],
+            ),
         );
         $twig->addFilter(
             new TwigFilter(
                 'entityDisplayName',
                 function () {
                     return '';
-                }
-            )
+                },
+            ),
         );
 
         $files = Finder::create()
@@ -180,7 +180,7 @@ class TemplateTranslationTest extends TestCase
                 [
                     $root . '/templates',
                     $root . '/modules',
-                ]
+                ],
             );
 
         foreach ($files as $file) {

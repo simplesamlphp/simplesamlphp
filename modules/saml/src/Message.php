@@ -41,7 +41,7 @@ class Message
     public static function addSign(
         Configuration $srcMetadata,
         Configuration $dstMetadata,
-        SignedElement $element
+        SignedElement $element,
     ): void {
         $dstPrivateKey = $dstMetadata->getOptionalString('signature.privatekey', null);
         $cryptoUtils = new Utils\Crypto();
@@ -93,7 +93,7 @@ class Message
     private static function addRedirectSign(
         Configuration $srcMetadata,
         Configuration $dstMetadata,
-        \SAML2\Message $message
+        \SAML2\Message $message,
     ): void {
         $signingEnabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
@@ -152,7 +152,7 @@ class Message
         } else {
             throw new SSP_Error\Exception(
                 'Missing certificate in metadata for ' .
-                var_export($srcMetadata->getString('entityid'), true)
+                var_export($srcMetadata->getString('entityid'), true),
             );
         }
 
@@ -199,7 +199,7 @@ class Message
     public static function validateMessage(
         Configuration $srcMetadata,
         Configuration $dstMetadata,
-        \SAML2\Message $message
+        \SAML2\Message $message,
     ): bool {
         $enabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
@@ -232,7 +232,7 @@ class Message
             return false;
         } elseif (!self::checkSign($srcMetadata, $message)) {
             throw new SSP_Error\Exception(
-                'Validation of received messages enabled, but no signature found on message.'
+                'Validation of received messages enabled, but no signature found on message.',
             );
         }
         return true;
@@ -252,7 +252,7 @@ class Message
     public static function getDecryptionKeys(
         Configuration $srcMetadata,
         Configuration $dstMetadata,
-        $encryptionMethod = null
+        $encryptionMethod = null,
     ): array {
         $sharedKey = $srcMetadata->getOptionalString('sharedkey', null);
         if ($sharedKey !== null) {
@@ -320,7 +320,7 @@ class Message
      */
     public static function getBlacklistedAlgorithms(
         Configuration $srcMetadata,
-        Configuration $dstMetadata
+        Configuration $dstMetadata,
     ): array {
         $blacklist = $srcMetadata->getOptionalArray('encryption.blacklisted-algorithms', null);
         if ($blacklist === null) {
@@ -346,7 +346,7 @@ class Message
     private static function decryptAssertion(
         Configuration $srcMetadata,
         Configuration $dstMetadata,
-        Assertion|EncryptedAssertion $assertion
+        Assertion|EncryptedAssertion $assertion,
     ): Assertion {
         if ($assertion instanceof Assertion) {
             $encryptAssertion = $srcMetadata->getOptionalBoolean('assertion.encryption', null);
@@ -408,7 +408,7 @@ class Message
     private static function decryptAttributes(
         Configuration $srcMetadata,
         Configuration $dstMetadata,
-        Assertion &$assertion
+        Assertion &$assertion,
     ): void {
         if (!$assertion->hasEncryptedAttributes()) {
             return;
@@ -462,7 +462,7 @@ class Message
      */
     public static function buildAuthnRequest(
         Configuration $spMetadata,
-        Configuration $idpMetadata
+        Configuration $idpMetadata,
     ): AuthnRequest {
         $ar = new AuthnRequest();
 
@@ -496,10 +496,10 @@ class Message
         $issuer->setValue($spMetadata->getString('entityID'));
         $ar->setIssuer($issuer);
         $ar->setAssertionConsumerServiceIndex(
-            $spMetadata->getOptionalInteger('AssertionConsumerServiceIndex', null)
+            $spMetadata->getOptionalInteger('AssertionConsumerServiceIndex', null),
         );
         $ar->setAttributeConsumingServiceIndex(
-            $spMetadata->getOptionalInteger('AttributeConsumingServiceIndex', null)
+            $spMetadata->getOptionalInteger('AttributeConsumingServiceIndex', null),
         );
 
         if ($spMetadata->hasValue('AuthnContextClassRef')) {
@@ -528,7 +528,7 @@ class Message
      */
     public static function buildLogoutRequest(
         Configuration $srcMetadata,
-        Configuration $dstMetadata
+        Configuration $dstMetadata,
     ): LogoutRequest {
         $lr = new LogoutRequest();
         $issuer = new Issuer();
@@ -551,7 +551,7 @@ class Message
      */
     public static function buildLogoutResponse(
         Configuration $srcMetadata,
-        Configuration $dstMetadata
+        Configuration $dstMetadata,
     ): LogoutResponse {
         $lr = new LogoutResponse();
         $issuer = new Issuer();
@@ -582,7 +582,7 @@ class Message
     public static function processResponse(
         Configuration $spMetadata,
         Configuration $idpMetadata,
-        Response $response
+        Response $response,
     ): array {
         if (!$response->isSuccess()) {
             throw self::getResponseError($response);
@@ -638,7 +638,7 @@ class Message
         Configuration $idpMetadata,
         Response $response,
         Assertion|EncryptedAssertion $assertion,
-        bool $responseSigned
+        bool $responseSigned,
     ): Assertion {
         $assertion = self::decryptAssertion($idpMetadata, $spMetadata, $assertion);
         self::decryptAttributes($idpMetadata, $spMetadata, $assertion);
@@ -666,19 +666,19 @@ class Message
         $notBefore = $assertion->getNotBefore();
         if ($notBefore !== null && $notBefore > time() + $allowed_clock_skew) {
             throw new SSP_Error\Exception(
-                'Received an assertion that is valid in the future. Check clock synchronization on IdP and SP.'
+                'Received an assertion that is valid in the future. Check clock synchronization on IdP and SP.',
             );
         }
         $notOnOrAfter = $assertion->getNotOnOrAfter();
         if ($notOnOrAfter !== null && $notOnOrAfter <= time() - $allowed_clock_skew) {
             throw new SSP_Error\Exception(
-                'Received an assertion that has expired. Check clock synchronization on IdP and SP.'
+                'Received an assertion that has expired. Check clock synchronization on IdP and SP.',
             );
         }
         $sessionNotOnOrAfter = $assertion->getSessionNotOnOrAfter();
         if ($sessionNotOnOrAfter !== null && $sessionNotOnOrAfter <= time() - $allowed_clock_skew) {
             throw new SSP_Error\Exception(
-                'Received an assertion with a session that has expired. Check clock synchronization on IdP and SP.'
+                'Received an assertion with a session that has expired. Check clock synchronization on IdP and SP.',
             );
         }
         $validAudiences = $assertion->getValidAudiences();
@@ -688,7 +688,7 @@ class Message
                 $candidates = '[' . implode('], [', $validAudiences) . ']';
                 throw new SSP_Error\Exception(
                     'This SP [' . $spEntityId .
-                    ']  is not a valid audience for the assertion. Candidates were: ' . $candidates
+                    ']  is not a valid audience for the assertion. Candidates were: ' . $candidates,
                 );
             }
         }

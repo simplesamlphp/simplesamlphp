@@ -307,7 +307,7 @@ class Session implements Utils\ClearableState
                 throw new Error\CriticalConfigurationError(
                     $e->getMessage(),
                     null,
-                    $c->toArray()
+                    $c->toArray(),
                 );
             }
             Logger::error('Error creating session: ' . $e->getMessage());
@@ -356,7 +356,7 @@ class Session implements Utils\ClearableState
             if ($session->authToken !== null) {
                 $authTokenCookieName = $globalConfig->getOptionalString(
                     'session.authtoken.cookiename',
-                    'SimpleSAMLAuthToken'
+                    'SimpleSAMLAuthToken',
                 );
                 if (!isset($_COOKIE[$authTokenCookieName])) {
                     Logger::warning('Missing AuthToken cookie.');
@@ -660,7 +660,7 @@ class Session implements Utils\ClearableState
                 $httpUtils->setCookie(
                     self::$config->getOptionalString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
                     $this->authToken,
-                    $sessionHandler->getCookieParams()
+                    $sessionHandler->getCookieParams(),
                 );
             } catch (Error\CannotSetCookie $e) {
                 /*
@@ -727,7 +727,7 @@ class Session implements Utils\ClearableState
 
                 throw new \Exception(
                     'Logout handler is not a valid function: ' . $classname . '::' .
-                    $functionname
+                    $functionname,
                 );
             }
 
@@ -753,7 +753,7 @@ class Session implements Utils\ClearableState
         if (!isset($this->authData[$authority])) {
             Logger::debug(
                 'Session: ' . var_export($authority, true) .
-                ' not valid because we are not authenticated.'
+                ' not valid because we are not authenticated.',
             );
             return false;
         }
@@ -788,7 +788,7 @@ class Session implements Utils\ClearableState
             $httpUtils->setCookie(
                 self::$config->getOptionalString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
                 $this->authToken,
-                $params
+                $params,
             );
         }
     }
@@ -830,7 +830,7 @@ class Session implements Utils\ClearableState
         if (!is_callable($logout_handler)) {
             throw new \Exception(
                 'Logout handler is not a valid function: ' . $classname . '::' .
-                $functionname
+                $functionname,
             );
         }
 
@@ -887,7 +887,7 @@ class Session implements Utils\ClearableState
                 if ($timeout <= 0) {
                     throw new \Exception(
                         'The value of the session.datastore.timeout' .
-                        ' configuration option should be a positive integer.'
+                        ' configuration option should be a positive integer.',
                     );
                 }
             }

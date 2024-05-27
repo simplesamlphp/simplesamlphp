@@ -131,26 +131,26 @@ class DatabaseTest extends TestCase
         $this->assertNotEquals(
             $instance1,
             $instance2,
-            "Database instances should be different, but returned the same id"
+            "Database instances should be different, but returned the same id",
         );
         // Assert that $instance1 and $instance3 have identical instance ids
         $this->assertEquals(
             $instance1,
             $instance3,
-            "Database instances should have the same id, but returned different id"
+            "Database instances should have the same id, but returned different id",
         );
 
         // Assert that $db1 and $db2 are different instances
         $this->assertNotEquals(
             spl_object_hash($db1),
             spl_object_hash($db2),
-            "Database instances should be different, but returned the same spl_object_hash"
+            "Database instances should be different, but returned the same spl_object_hash",
         );
         // Assert that $db1 and $db3 are identical instances
         $this->assertEquals(
             spl_object_hash($db1),
             spl_object_hash($db3),
-            "Database instances should be the same, but returned different spl_object_hash"
+            "Database instances should be the same, but returned different spl_object_hash",
         );
     }
 
@@ -171,12 +171,12 @@ class DatabaseTest extends TestCase
         $this->assertTrue(($primary == $secondary), "getSecondary should have returned the primary database object");
 
         $config = [
-            'database.dsn'        => 'sqlite::memory:',
-            'database.username'   => null,
-            'database.password'   => null,
-            'database.prefix'     => 'phpunit_',
-            'database.persistent' => true,
-            'database.secondaries'     => [
+            'database.dsn'         => 'sqlite::memory:',
+            'database.username'    => null,
+            'database.password'    => null,
+            'database.prefix'      => 'phpunit_',
+            'database.persistent'  => true,
+            'database.secondaries' => [
                 [
                     'dsn'      => 'sqlite::memory:',
                     'username' => null,
@@ -200,7 +200,7 @@ class DatabaseTest extends TestCase
         $this->assertEquals(
             spl_object_hash($secondaries[0]),
             $gotSecondary,
-            "getSecondary should have returned a secondary database object"
+            "getSecondary should have returned a secondary database object",
         );
     }
 
@@ -233,7 +233,7 @@ class DatabaseTest extends TestCase
         $this->assertEquals($this->config->getString('database.prefix') . "sspdbt", $table);
 
         $this->db->write(
-            "CREATE TABLE IF NOT EXISTS $table (ssp_key INT(16) NOT NULL, ssp_value TEXT NOT NULL)"
+            "CREATE TABLE IF NOT EXISTS $table (ssp_key INT(16) NOT NULL, ssp_value TEXT NOT NULL)",
         );
 
         $query1 = $this->db->read("SELECT * FROM $table");
@@ -243,7 +243,7 @@ class DatabaseTest extends TestCase
         $ssp_value = md5(strval(rand(0, 10000)));
         $stmt = $this->db->write(
             "INSERT INTO $table (ssp_key, ssp_value) VALUES (:ssp_key, :ssp_value)",
-            ['ssp_key' => [$ssp_key, PDO::PARAM_INT], 'ssp_value' => $ssp_value]
+            ['ssp_key' => [$ssp_key, PDO::PARAM_INT], 'ssp_value' => $ssp_value],
         );
         $this->assertEquals(1, $stmt, "Could not insert data into $table.");
 

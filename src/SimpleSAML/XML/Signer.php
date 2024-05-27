@@ -253,7 +253,7 @@ class Signer
     public function sign(
         DOMElement $node,
         DOMElement $insertInto,
-        DOMElement|DOMComment|DOMText|null $insertBefore = null
+        DOMElement|DOMComment|DOMText|null $insertBefore = null,
     ): void {
         $privateKey = $this->privateKey;
         if ($privateKey === false) {
@@ -273,7 +273,7 @@ class Signer
             [$node],
             XMLSecurityDSig::SHA256,
             ['http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N],
-            $options
+            $options,
         );
 
         $objXMLSecDSig->sign($privateKey);

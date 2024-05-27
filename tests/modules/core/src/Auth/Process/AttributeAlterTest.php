@@ -132,7 +132,7 @@ class AttributeAlterTest extends TestCase
         $this->assertEquals(
             $attributes,
             ['something' => ['somevalue'],
-            'somethingelse' => ['someothervalue']]
+            'somethingelse' => ['someothervalue']],
         );
     }
 

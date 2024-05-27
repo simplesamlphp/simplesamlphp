@@ -189,7 +189,7 @@ class MDQ extends MetaDataStorageSource
         $data = json_decode($rawData);
         if ($data === false) {
             throw new Exception(
-                sprintf('%s: error unserializing cached data from file "%s".', __CLASS__, strval($file))
+                sprintf('%s: error unserializing cached data from file "%s".', __CLASS__, strval($file)),
             );
         }
 
@@ -316,7 +316,7 @@ class MDQ extends MetaDataStorageSource
                 'Unable to fetch metadata for "%s" from %s: %s',
                 $entityId,
                 $mdq_url,
-                (is_array($error) ? $error['message'] : 'no error available')
+                (is_array($error) ? $error['message'] : 'no error available'),
             ));
             return null;
         }
@@ -336,7 +336,7 @@ class MDQ extends MetaDataStorageSource
         $data = self::getParsedSet($entity, $set);
         if ($data === null) {
             throw new Exception(
-                sprintf('%s: no metadata for set "%s" available from "%s".', __CLASS__, $set, $entityId)
+                sprintf('%s: no metadata for set "%s" available from "%s".', __CLASS__, $set, $entityId),
             );
         }
 

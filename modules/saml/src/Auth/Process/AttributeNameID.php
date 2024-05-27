@@ -62,14 +62,14 @@ class AttributeNameID extends BaseNameIDGenerator
         ) {
             Logger::warning(
                 'Missing attribute ' . var_export($this->identifyingAttribute, true) .
-                ' on user - not generating attribute NameID.'
+                ' on user - not generating attribute NameID.',
             );
             return null;
         }
         if (count($state['Attributes'][$this->identifyingAttribute]) > 1) {
             Logger::warning(
                 'More than one value in attribute ' . var_export($this->identifyingAttribute, true) .
-                ' on user - not generating attribute NameID.'
+                ' on user - not generating attribute NameID.',
             );
             return null;
         }
@@ -80,7 +80,7 @@ class AttributeNameID extends BaseNameIDGenerator
         if (empty($value)) {
             Logger::warning(
                 'Empty value in attribute ' . var_export($this->identifyingAttribute, true) .
-                ' on user - not generating attribute NameID.'
+                ' on user - not generating attribute NameID.',
             );
             return null;
         }

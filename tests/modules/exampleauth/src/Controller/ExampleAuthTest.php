@@ -40,7 +40,7 @@ class ExampleAuthTest extends TestCase
                 'module.enable' => ['exampleauth' => true],
             ],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
 
         $this->session = Session::getSessionFromRequest();

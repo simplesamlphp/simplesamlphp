@@ -26,7 +26,7 @@ class RouterDebugCommand extends Command
      * @throws \Symfony\Component\Console\Exception\LogicException When the command name is empty
      */
     public function __construct(
-        protected RouterInterface $router
+        protected RouterInterface $router,
     ) {
         parent::__construct();
     }
@@ -43,7 +43,7 @@ class RouterDebugCommand extends Command
 The <info>%command.name%</info> displays the configured routes for a module:
 
   <info>php %command.full_name%</info>
-EOF
+EOF,
             )
         ;
     }

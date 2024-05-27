@@ -40,7 +40,7 @@ class PHPTest extends TestCase
         $config = [];
         $this->expectException(Error\Exception::class);
         $this->expectExceptionMessage(
-            "core:PHP: missing mandatory configuration option 'code'."
+            "core:PHP: missing mandatory configuration option 'code'.",
         );
         new PHP($config, null);
     }

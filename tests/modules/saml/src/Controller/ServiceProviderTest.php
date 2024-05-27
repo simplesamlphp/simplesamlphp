@@ -68,7 +68,7 @@ class ServiceProviderTest extends TestCase
                 'trusted.url.domains' => ['example.org'],
             ],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
         Configuration::setPreLoadedConfig($this->config, 'config.php');
 
@@ -81,7 +81,7 @@ class ServiceProviderTest extends TestCase
                 ],
             ],
             '[ARRAY]',
-            'authsource'
+            'authsource',
         );
         Configuration::setPreLoadedConfig($this->authsources, 'authsources.php');
 
@@ -97,7 +97,7 @@ class ServiceProviderTest extends TestCase
                 Request $request,
                 Auth\Simple $authSource,
                 Auth\Source $spSource,
-                Utils\HTTP $httpUtils
+                Utils\HTTP $httpUtils,
             ): string {
                 return $this->loginHandler($request, $authSource, $spSource, $httpUtils);
             }
@@ -198,7 +198,7 @@ class ServiceProviderTest extends TestCase
         $request = Request::create(
             '/discoResponse',
             'GET',
-            ['AuthID' => 'abc123']
+            ['AuthID' => 'abc123'],
         );
 
         $c = new Controller\ServiceProvider($this->config, $this->session);
@@ -287,12 +287,12 @@ class ServiceProviderTest extends TestCase
     public function testLoginHandleNotAuthenticated(
         array $queryParameters,
         array $options,
-        bool $expectingException = false
+        bool $expectingException = false,
     ): void {
         $request = Request::create(
             '/sp/login/phpunit',
             'GET',
-            $queryParameters
+            $queryParameters,
         );
 
         $info = ['AuthId' => 'phpunit'];
@@ -407,12 +407,12 @@ class ServiceProviderTest extends TestCase
         array $queryParameters,
         array $options,
         bool $expectLoginCalled,
-        bool $expectingException = false
+        bool $expectingException = false,
     ): void {
         $request = Request::create(
             '/sp/login/phpunit',
             'GET',
-            $queryParameters
+            $queryParameters,
         );
 
         $info = ['AuthId' => 'phpunit'];
@@ -736,7 +736,7 @@ XML;
                 'admin.protectmetadata' => $protected,
             ],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
         Configuration::setPreLoadedConfig($config, 'config.php');
 
