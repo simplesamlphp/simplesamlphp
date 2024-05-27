@@ -59,7 +59,7 @@ class AdminPassword extends UserPassBase
             throw new Error\Error(Error\ErrorCodes::WRONGUSERPASS);
         }
 
-        if( $password === $adminPassword ) {
+        if ($password === $adminPassword) {
             return ['user' => ['admin']];
         }
         $hasher = new NativePasswordHasher();
