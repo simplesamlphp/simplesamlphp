@@ -270,7 +270,7 @@ abstract class UserPassOrgBase extends Auth\Source
         string $authStateId,
         string $username,
         string $password,
-        string $organization
+        string $organization,
     ): Response {
         /* Retrieve the authentication state. */
         $state = Auth\State::loadState($authStateId, self::STAGEID);
@@ -308,7 +308,7 @@ abstract class UserPassOrgBase extends Auth\Source
 
         Logger::stats(
             'User \'' . $username . '\' at \'' . $organization
-            . '\' successfully authenticated from ' . $_SERVER['REMOTE_ADDR']
+            . '\' successfully authenticated from ' . $_SERVER['REMOTE_ADDR'],
         );
 
         // Add the selected Org to the state

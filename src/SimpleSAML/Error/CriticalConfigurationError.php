@@ -58,7 +58,7 @@ class CriticalConfigurationError extends ConfigurationError
         Configuration::loadFromArray(
             $config,
             '',
-            'simplesaml'
+            'simplesaml',
         );
         parent::__construct($reason, $file);
     }

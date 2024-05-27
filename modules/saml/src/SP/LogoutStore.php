@@ -176,7 +176,7 @@ class LogoutStore
         string $nameId,
         string $sessionIndex,
         int $expire,
-        string $sessionId
+        string $sessionId,
     ): void {
         self::createLogoutTable($store);
 
@@ -244,7 +244,7 @@ class LogoutStore
     private static function getSessionsStore(
         StoreInterface $store,
         string $nameId,
-        array $sessionIndexes
+        array $sessionIndexes,
     ): array {
         $res = [];
         foreach ($sessionIndexes as $sessionIndex) {

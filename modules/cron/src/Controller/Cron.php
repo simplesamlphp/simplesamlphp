@@ -42,7 +42,7 @@ class Cron
      */
     public function __construct(
         protected Configuration $config,
-        protected Session $session
+        protected Session $session,
     ) {
         $this->cronconfig = Configuration::getConfig('module_cron.php');
         $this->authUtils = new Utils\Auth();

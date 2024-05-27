@@ -70,7 +70,7 @@ class TargetedID extends Auth\ProcessingFilter
         Assert::keyExists($config, 'identifyingAttribute', "Missing mandatory 'identifyingAttribute' config setting.");
         Assert::stringNotEmpty(
             $config['identifyingAttribute'],
-            "TargetedID: 'identifyingAttribute' must be a non-empty string."
+            "TargetedID: 'identifyingAttribute' must be a non-empty string.",
         );
 
         $this->identifyingAttribute = $config['identifyingAttribute'];
@@ -109,8 +109,8 @@ class TargetedID extends Auth\ProcessingFilter
             Logger::warning(
                 sprintf(
                     "core:TargetedID: Missing attribute '%s', which is needed to generate the TargetedID.",
-                    $this->identifyingAttribute
-                )
+                    $this->identifyingAttribute,
+                ),
             );
 
             return;

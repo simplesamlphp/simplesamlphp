@@ -39,7 +39,7 @@ class ErrorReportTest extends TestCase
                 'module.enable' => ['core' => true],
             ],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
 
         Configuration::setPreLoadedConfig($this->config, 'config.php');

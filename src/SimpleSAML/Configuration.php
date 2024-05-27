@@ -169,7 +169,7 @@ class Configuration implements Utils\ClearableState
             if (!isset($config)) {
                 throw new Error\ConfigurationError(
                     '$config is not defined in the configuration file.',
-                    $filename
+                    $filename,
                 );
             }
 
@@ -177,7 +177,7 @@ class Configuration implements Utils\ClearableState
             if (!is_array($config)) {
                 throw new Error\ConfigurationError(
                     '$config is not an array.',
-                    $filename
+                    $filename,
                 );
             }
 
@@ -185,7 +185,7 @@ class Configuration implements Utils\ClearableState
             if (empty($config)) {
                 throw new Error\ConfigurationError(
                     '$config is empty.',
-                    $filename
+                    $filename,
                 );
             }
         } elseif ($required) {
@@ -205,7 +205,7 @@ class Configuration implements Utils\ClearableState
 
         if ($spurious_output) {
             Logger::warning(
-                "The configuration file '$filename' generates output. Please review your configuration."
+                "The configuration file '$filename' generates output. Please review your configuration.",
             );
         }
 
@@ -239,7 +239,7 @@ class Configuration implements Utils\ClearableState
     public static function setPreLoadedConfig(
         Configuration $config,
         string $filename = 'config.php',
-        string $configSet = 'simplesaml'
+        string $configSet = 'simplesaml',
     ): void {
         if (!array_key_exists($configSet, self::$configDirs)) {
             if ($configSet !== 'simplesaml') {
@@ -267,7 +267,7 @@ class Configuration implements Utils\ClearableState
      */
     public static function getConfig(
         string $filename = 'config.php',
-        string $configSet = 'simplesaml'
+        string $configSet = 'simplesaml',
     ): Configuration {
         if (!array_key_exists($configSet, self::$configDirs)) {
             if ($configSet !== 'simplesaml') {
@@ -297,7 +297,7 @@ class Configuration implements Utils\ClearableState
      */
     public static function getOptionalConfig(
         string $filename = 'config.php',
-        string $configSet = 'simplesaml'
+        string $configSet = 'simplesaml',
     ): Configuration {
         if (!array_key_exists($configSet, self::$configDirs)) {
             if ($configSet !== 'simplesaml') {
@@ -328,7 +328,7 @@ class Configuration implements Utils\ClearableState
     public static function loadFromArray(
         array $config,
         string $location = '[ARRAY]',
-        ?string $instance = null
+        ?string $instance = null,
     ): Configuration {
         $c = new Configuration($config, $location);
         if ($instance !== null) {
@@ -369,7 +369,7 @@ class Configuration implements Utils\ClearableState
         }
 
         throw new Error\CriticalConfigurationError(
-            'Configuration with name ' . $instancename . ' is not initialized.'
+            'Configuration with name ' . $instancename . ' is not initialized.',
         );
     }
 
@@ -502,7 +502,7 @@ class Configuration implements Utils\ClearableState
             $this->getOptionalString('baseurlpath', 'simplesaml/') . '". Valid format is in the form' .
             ' [(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/].',
             $this->filename,
-            $c
+            $c,
         );
     }
 
@@ -666,7 +666,7 @@ class Configuration implements Utils\ClearableState
             sprintf(
                 '%s: The option %s is not a valid boolean value or null.',
                 $this->location,
-                var_export($name, true)
+                var_export($name, true),
             ),
         );
 
@@ -720,7 +720,7 @@ class Configuration implements Utils\ClearableState
             sprintf(
                 '%s: The option %s is not a valid string value or null.',
                 $this->location,
-                var_export($name, true)
+                var_export($name, true),
             ),
         );
 
@@ -774,7 +774,7 @@ class Configuration implements Utils\ClearableState
             sprintf(
                 '%s: The option %s is not a valid integer value or null.',
                 $this->location,
-                var_export($name, true)
+                var_export($name, true),
             ),
         );
 
@@ -1438,7 +1438,7 @@ class Configuration implements Utils\ClearableState
 
             if ($data === null) {
                 throw new Exception(
-                    $this->location . ': Unable to load certificate/public key from location "' . $location . '".'
+                    $this->location . ': Unable to load certificate/public key from location "' . $location . '".',
                 );
             }
 
@@ -1446,7 +1446,7 @@ class Configuration implements Utils\ClearableState
             $pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
             if (!preg_match($pattern, $data, $matches)) {
                 throw new Error\Exception(
-                    $this->location . ': Could not find PEM encoded certificate in "' . $location . '".'
+                    $this->location . ': Could not find PEM encoded certificate in "' . $location . '".',
                 );
             }
             $certData = preg_replace('/\s+/', '', $matches[1]);

@@ -113,7 +113,7 @@ class SQLPersistentNameID extends BaseNameIDGenerator
         if (!isset($state['saml:NameIDFormat']) && !$this->allowUnspecified) {
             Logger::debug(
                 'SQLPersistentNameID: Request did not specify persistent NameID format, ' .
-                'not generating persistent NameID.'
+                'not generating persistent NameID.',
             );
             return null;
         }
@@ -129,7 +129,7 @@ class SQLPersistentNameID extends BaseNameIDGenerator
         ) {
             Logger::debug(
                 'SQLPersistentNameID: SP expects different NameID format (' .
-                implode(', ', $validNameIdFormats) . '),  not generating persistent NameID.'
+                implode(', ', $validNameIdFormats) . '),  not generating persistent NameID.',
             );
             return null;
         }
@@ -152,7 +152,7 @@ class SQLPersistentNameID extends BaseNameIDGenerator
         ) {
             Logger::warning(
                 'SQLPersistentNameID: Missing attribute ' . var_export($this->identifyingAttribute, true) .
-                ' on user - not generating persistent NameID.'
+                ' on user - not generating persistent NameID.',
             );
             return null;
         }
@@ -160,7 +160,7 @@ class SQLPersistentNameID extends BaseNameIDGenerator
             Logger::warning(
                 'SQLPersistentNameID: More than one value in attribute ' .
                 var_export($this->identifyingAttribute, true) .
-                ' on user - not generating persistent NameID.'
+                ' on user - not generating persistent NameID.',
             );
             return null;
         }
@@ -171,7 +171,7 @@ class SQLPersistentNameID extends BaseNameIDGenerator
         if (empty($uid)) {
             Logger::warning(
                 'Empty value in attribute ' . var_export($this->identifyingAttribute, true) .
-                ' on user - not generating persistent NameID.'
+                ' on user - not generating persistent NameID.',
             );
             return null;
         }
@@ -180,25 +180,25 @@ class SQLPersistentNameID extends BaseNameIDGenerator
         if ($value !== null) {
             Logger::debug(
                 'SQLPersistentNameID: Found persistent NameID ' . var_export($value, true) . ' for user ' .
-                var_export($uid, true) . '.'
+                var_export($uid, true) . '.',
             );
             return $value;
         }
 
         if ((!isset($state['saml:AllowCreate']) || !$state['saml:AllowCreate']) && !$this->alwaysCreate) {
             Logger::warning(
-                'SQLPersistentNameID: Did not find persistent NameID for user, and not allowed to create new NameID.'
+                'SQLPersistentNameID: Did not find persistent NameID for user, and not allowed to create new NameID.',
             );
             throw new SAMLError(
                 C::STATUS_RESPONDER,
-                C::STATUS_INVALID_NAMEID_POLICY
+                C::STATUS_INVALID_NAMEID_POLICY,
             );
         }
 
         $value = bin2hex(openssl_random_pseudo_bytes(20));
         Logger::debug(
             'SQLPersistentNameID: Created persistent NameID ' . var_export($value, true) . ' for user ' .
-            var_export($uid, true) . '.'
+            var_export($uid, true) . '.',
         );
         SQLNameID::add($idpEntityId, $spEntityId, $uid, $value, $this->storeConfig);
 

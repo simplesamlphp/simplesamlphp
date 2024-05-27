@@ -115,7 +115,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
             return $metadata;
         } else {
             throw new Exception(
-                'PDO metadata handler: Database error: ' . var_export($this->db->getLastError(), true)
+                'PDO metadata handler: Database error: ' . var_export($this->db->getLastError(), true),
             );
         }
     }
@@ -172,13 +172,13 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         $tableName = $this->getTableName($set);
         $stmt = $this->db->read(
             "SELECT entity_id, entity_data FROM {$tableName} WHERE entity_id = :entityId",
-            ['entityId' => $entityId]
+            ['entityId' => $entityId],
         );
 
         // throw pdo exception upon execution failure
         if (!$stmt->execute()) {
             throw new Exception(
-                'PDO metadata handler: Database error: ' . var_export($this->db->getLastError(), true)
+                'PDO metadata handler: Database error: ' . var_export($this->db->getLastError(), true),
             );
         }
 
@@ -188,7 +188,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
             $data = json_decode($d['entity_data'], true);
             if (json_last_error() != JSON_ERROR_NONE) {
                 throw new Error\Exception(
-                    "Cannot decode metadata for entity '${d['entity_id']}'"
+                    "Cannot decode metadata for entity '${d['entity_id']}'",
                 );
             }
 
@@ -228,7 +228,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
             "SELECT entity_id, entity_data FROM $tableName WHERE entity_id = :entity_id",
             [
                 'entity_id' => $index,
-            ]
+            ],
         );
 
         $retrivedEntityIDs = $metadata->fetch();
@@ -241,12 +241,12 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         if ($retrivedEntityIDs !== false && count($retrivedEntityIDs) > 0) {
             $rows = $this->db->write(
                 "UPDATE $tableName SET entity_data = :entity_data WHERE entity_id = :entity_id",
-                $params
+                $params,
             );
         } else {
             $rows = $this->db->write(
                 "INSERT INTO $tableName (entity_id, entity_data) VALUES (:entity_id, :entity_data)",
-                $params
+                $params,
             );
         }
 
@@ -272,7 +272,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
 
         $rows = $this->db->write(
             "DELETE FROM $tableName WHERE entity_id = :entity_id",
-            ['entity_id' => $entityId]
+            ['entity_id' => $entityId],
         );
 
         return $rows === 1;
@@ -314,7 +314,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
             $rows = $this->db->write(sprintf(
                 "CREATE TABLE IF NOT EXISTS $tableName (entity_id VARCHAR(255) PRIMARY KEY NOT NULL, "
                     . "entity_data %s NOT NULL)",
-                $text
+                $text,
             ));
 
             if ($rows === false) {

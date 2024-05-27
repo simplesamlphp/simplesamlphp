@@ -66,7 +66,7 @@ class Federation
      * @param \SimpleSAML\Configuration $config The configuration to use.
      */
     public function __construct(
-        protected Configuration $config
+        protected Configuration $config,
     ) {
         $this->menu = new Menu();
         $this->mdHandler = MetaDataStorageHandler::getMetadataHandler($config);
@@ -222,7 +222,7 @@ class Federation
                     $saml2entities['saml20-idp'] = $this->mdHandler->getMetaDataCurrent('saml20-idp-hosted');
                     $saml2entities['saml20-idp']['url'] = $metadataBase;
                     $saml2entities['saml20-idp']['metadata_array'] = SAML2_IdP::getHostedMetadata(
-                        $this->mdHandler->getMetaDataCurrentEntityID('saml20-idp-hosted')
+                        $this->mdHandler->getMetaDataCurrentEntityID('saml20-idp-hosted'),
                     );
                 }
 
@@ -231,7 +231,7 @@ class Federation
                     Assert::maxLength(
                         $entity['entityid'],
                         C::SAML2INT_ENTITYID_MAX_LENGTH,
-                        sprintf('The entityID cannot be longer than %d characters.', C::SAML2INT_ENTITYID_MAX_LENGTH)
+                        sprintf('The entityID cannot be longer than %d characters.', C::SAML2INT_ENTITYID_MAX_LENGTH),
                     );
 
                     $builder = new SAMLBuilder($entity['entityid']);
@@ -241,7 +241,7 @@ class Federation
                     $entity['metadata'] = Signer::sign(
                         $builder->getEntityDescriptorText(),
                         $entity['metadata_array'],
-                        'SAML 2 IdP'
+                        'SAML 2 IdP',
                     );
                     $entities[$index] = $entity;
                 }
@@ -268,7 +268,7 @@ class Federation
                     $adfsentities['adfs-idp'] = $this->mdHandler->getMetaDataCurrent('adfs-idp-hosted');
                     $adfsentities['adfs-idp']['url'] = Module::getModuleURL('adfs/idp/metadata.php');
                     $adfsentities['adfs-idp']['metadata_array'] = ADFS_IdP::getHostedMetadata(
-                        $this->mdHandler->getMetaDataCurrentEntityID('adfs-idp-hosted')
+                        $this->mdHandler->getMetaDataCurrentEntityID('adfs-idp-hosted'),
                     );
                 }
 
@@ -277,7 +277,7 @@ class Federation
                     Assert::maxLength(
                         $entity['entityid'],
                         C::SAML2INT_ENTITYID_MAX_LENGTH,
-                        sprintf('The entityID cannot be longer than %d characters.', C::SAML2INT_ENTITYID_MAX_LENGTH)
+                        sprintf('The entityID cannot be longer than %d characters.', C::SAML2INT_ENTITYID_MAX_LENGTH),
                     );
 
                     $builder = new SAMLBuilder($entity['entityid']);
@@ -298,7 +298,7 @@ class Federation
                     $entity['metadata'] = Signer::sign(
                         $builder->getEntityDescriptorText(),
                         $entity['metadata_array'],
-                        'ADFS IdP'
+                        'ADFS IdP',
                     );
                     $entities[$index] = $entity;
                 }
@@ -358,8 +358,8 @@ class Federation
                 'name',
                 $source->getMetadata()->getOptionalLocalizedString(
                     'OrganizationDisplayName',
-                    ['en' => $source->getAuthId()]
-                )
+                    ['en' => $source->getAuthId()],
+                ),
             );
 
             $builder = new SAMLBuilder($source->getEntityId());
@@ -523,7 +523,7 @@ class Federation
         $response = new Response($certInfo['PEM']);
         $disposition = $response->headers->makeDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-            'cert.pem'
+            'cert.pem',
         );
 
         $response->headers->set('Content-Disposition', $disposition);

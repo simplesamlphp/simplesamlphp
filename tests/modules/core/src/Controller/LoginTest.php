@@ -43,7 +43,7 @@ class LoginTest extends ClearStateTestCase
                 'module.enable' => ['exampleauth' => true],
             ],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
 
         Configuration::setPreLoadedConfig($this->config, 'config.php');

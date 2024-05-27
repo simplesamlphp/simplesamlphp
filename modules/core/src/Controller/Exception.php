@@ -41,7 +41,7 @@ class Exception
      */
     public function __construct(
         protected Configuration $config,
-        protected Session $session
+        protected Session $session,
     ) {
     }
 
@@ -122,14 +122,14 @@ class Exception
         $state = Auth\State::loadState($stateId, 'core:cardinality');
         Logger::stats(
             'core:cardinality:error ' . $state['Destination']['entityid'] . ' ' . $state['saml:sp:IdP'] .
-            ' ' . implode(',', array_keys($state['core:cardinality:errorAttributes']))
+            ' ' . implode(',', array_keys($state['core:cardinality:errorAttributes'])),
         );
 
         $t = new Template($this->config, 'core:cardinality_error.twig');
         $t->data['cardinalityErrorAttributes'] = $state['core:cardinality:errorAttributes'];
         if (isset($state['Source']['auth'])) {
             $t->data['LogoutURL'] = Module::getModuleURL(
-                'saml/sp/login/' . urlencode($state['Source']['auth'])
+                'saml/sp/login/' . urlencode($state['Source']['auth']),
             );
         }
 

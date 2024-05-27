@@ -217,12 +217,12 @@ class HTTPTest extends ClearStateTestCase
         $this->setupEnvFromURL('http://www.example.org/module.php/module/file.php?foo=bar');
         $this->assertEquals(
             'https://example.com/simplesaml/module.php/module/file.php?foo=bar',
-            $httpUtils->getSelfURL()
+            $httpUtils->getSelfURL(),
         );
         $this->assertEquals('https://example.com', $httpUtils->getSelfURLHost());
         $this->assertEquals(
             'https://example.com/simplesaml/module.php/module/file.php',
-            $httpUtils->getSelfURLNoQuery()
+            $httpUtils->getSelfURLNoQuery(),
         );
         $this->assertTrue($httpUtils->isHTTPS());
         $this->assertEquals('https://' . $httpUtils->getSelfHostWithNonStandardPort(), $httpUtils->getSelfURLHost());
@@ -233,12 +233,12 @@ class HTTPTest extends ClearStateTestCase
         ], '[ARRAY]', 'simplesaml');
         $this->assertEquals(
             'https://example.com/simplesaml/module.php/module/file.php?foo=bar',
-            $httpUtils->getSelfURL()
+            $httpUtils->getSelfURL(),
         );
         $this->assertEquals('https://example.com', $httpUtils->getSelfURLHost());
         $this->assertEquals(
             'https://example.com/simplesaml/module.php/module/file.php',
-            $httpUtils->getSelfURLNoQuery()
+            $httpUtils->getSelfURLNoQuery(),
         );
         $this->assertTrue($httpUtils->isHTTPS());
         $this->assertEquals('https://' . $httpUtils->getSelfHostWithNonStandardPort(), $httpUtils->getSelfURLHost());
@@ -249,7 +249,7 @@ class HTTPTest extends ClearStateTestCase
         ], '[ARRAY]', 'simplesaml');
         $this->assertEquals(
             'https://example.com/module.php/module/file.php?foo=bar',
-            $httpUtils->getSelfURL()
+            $httpUtils->getSelfURL(),
         );
         $this->assertEquals('https://example.com', $httpUtils->getSelfURLHost());
         $this->assertEquals('https://example.com/module.php/module/file.php', $httpUtils->getSelfURLNoQuery());
@@ -263,12 +263,12 @@ class HTTPTest extends ClearStateTestCase
         $this->setupEnvFromURL('http://www.example.org/simplesaml/module.php/module/file.php?foo=bar');
         $this->assertEquals(
             'http://www.example.org/simplesaml/module.php/module/file.php?foo=bar',
-            $httpUtils->getSelfURL()
+            $httpUtils->getSelfURL(),
         );
         $this->assertEquals('http://www.example.org', $httpUtils->getSelfURLHost());
         $this->assertEquals(
             'http://www.example.org/simplesaml/module.php/module/file.php',
-            $httpUtils->getSelfURLNoQuery()
+            $httpUtils->getSelfURLNoQuery(),
         );
         $this->assertFalse($httpUtils->isHTTPS());
         $this->assertEquals('http://' . $httpUtils->getSelfHostWithNonStandardPort(), $httpUtils->getSelfURLHost());
@@ -280,12 +280,12 @@ class HTTPTest extends ClearStateTestCase
         $this->setupEnvFromURL('http://example.org:8080/simplesaml/module.php/module/file.php?foo=bar');
         $this->assertEquals(
             'http://example.org:8080/simplesaml/module.php/module/file.php?foo=bar',
-            $httpUtils->getSelfURL()
+            $httpUtils->getSelfURL(),
         );
         $this->assertEquals('http://example.org:8080', $httpUtils->getSelfURLHost());
         $this->assertEquals(
             'http://example.org:8080/simplesaml/module.php/module/file.php',
-            $httpUtils->getSelfURLNoQuery()
+            $httpUtils->getSelfURLNoQuery(),
         );
         $this->assertFalse($httpUtils->isHTTPS());
         $this->assertEquals('http://' . $httpUtils->getSelfHostWithNonStandardPort(), $httpUtils->getSelfURLHost());
@@ -297,12 +297,12 @@ class HTTPTest extends ClearStateTestCase
         $this->setupEnvFromURL('https://example.org:8080/simplesaml/module.php/module/file.php?foo=bar');
         $this->assertEquals(
             'https://example.org:8080/simplesaml/module.php/module/file.php?foo=bar',
-            $httpUtils->getSelfURL()
+            $httpUtils->getSelfURL(),
         );
         $this->assertEquals('https://example.org:8080', $httpUtils->getSelfURLHost());
         $this->assertEquals(
             'https://example.org:8080/simplesaml/module.php/module/file.php',
-            $httpUtils->getSelfURLNoQuery()
+            $httpUtils->getSelfURLNoQuery(),
         );
         $this->assertTrue($httpUtils->isHTTPS());
         $this->assertEquals('https://' . $httpUtils->getSelfHostWithNonStandardPort(), $httpUtils->getSelfURLHost());
@@ -472,7 +472,7 @@ class HTTPTest extends ClearStateTestCase
                 'domain' => 'example.com',
                 'secure' => true,
                 'httponly' => true,
-            ]
+            ],
         );
         $httpUtils->setCookie(
             'RawCookie',
@@ -484,7 +484,7 @@ class HTTPTest extends ClearStateTestCase
                 'secure' => true,
                 'httponly' => true,
                 'raw' => true,
-            ]
+            ],
         );
 
         $headers = xdebug_get_headers();
@@ -498,7 +498,7 @@ class HTTPTest extends ClearStateTestCase
         $this->assertStringContainsString('RawCookie=value%20;', $headers[1]);
         $this->assertMatchesRegularExpression(
             '/\b[Ee]xpires=([Mm]on|[Tt]ue|[Ww]ed|[Tt]hu|[Ff]ri|[Ss]at|[Ss]un)/',
-            $headers[1]
+            $headers[1],
         );
         $this->assertMatchesRegularExpression('/\b[Pp]ath=\/ourPath(;|$)/', $headers[1]);
         $this->assertMatchesRegularExpression('/\b[Dd]omain=example.com(;|$)/', $headers[1]);
@@ -599,7 +599,7 @@ class HTTPTest extends ClearStateTestCase
             ['Mozilla/5.0 (Linux; U; Android 8.1.0; zh-CN; EML-AL00 Build/HUAWEIEML-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 baidu.sogo.uc.UCBrowser/11.9.4.974 UWS/2.13.1.48 Mobile Safari/537.36 AliApp(DingTalk/4.5.11) com.alibaba.android.rimet/10487439 Channel/227200 language/zh-CN', false],
             ['Mozilla/5.0 (Linux; U; Android 7.1.1; en-US; CPH1723 Build/N6F26Q) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 UCBrowser/12.13.0.1207 Mobile Safari/537.36', false],
             // old embedded browser
-            ['Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/605.1.15 (KHTML, like Gecko)', false]
+            ['Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/605.1.15 (KHTML, like Gecko)', false],
         ];
         // @codingStandardsIgnoreEnd
     }

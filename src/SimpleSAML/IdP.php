@@ -288,7 +288,7 @@ class IdP
                 'core:idp-ssotime',
                 $state['core:IdP'] . ';' . $state['core:SP'],
                 time(),
-                Session::DATA_TIMEOUT_SESSION_END
+                Session::DATA_TIMEOUT_SESSION_END,
             );
         }
 

@@ -65,11 +65,11 @@ class ArraysTest extends TestCase
         // check bad arrays
         $this->assertFalse(
             $this->arrayUtils->transpose(['1', '2', '3']),
-            'Invalid two-dimensional array was accepted'
+            'Invalid two-dimensional array was accepted',
         );
         $this->assertFalse(
             $this->arrayUtils->transpose(['1' => 0, '2' => '0', '3' => [0]]),
-            'Invalid elements on a two-dimensional array were accepted'
+            'Invalid elements on a two-dimensional array were accepted',
         );
 
         // check array with numerical keys

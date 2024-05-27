@@ -109,12 +109,12 @@ abstract class MetaDataStorageSource
                     $className = Module::resolveClass(
                         $type,
                         'MetadataStore',
-                        '\SimpleSAML\Metadata\MetaDataStorageSource'
+                        '\SimpleSAML\Metadata\MetaDataStorageSource',
                     );
                 } catch (Exception $e) {
                     throw new Error\CriticalConfigurationError(
                         "Invalid 'type' for metadata source. Cannot find store '$type'.",
-                        null
+                        null,
                     );
                 }
 

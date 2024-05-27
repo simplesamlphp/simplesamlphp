@@ -99,7 +99,7 @@ class Database
             $config->getString('database.dsn'),
             $config->getOptionalString('database.username', null),
             $config->getOptionalString('database.password', null),
-            $driverOptions
+            $driverOptions,
         );
 
         // connect to any configured secondaries
@@ -109,7 +109,7 @@ class Database
                 $secondary['dsn'],
                 $secondary['username'],
                 $secondary['password'],
-                $driverOptions
+                $driverOptions,
             );
         }
         $this->tablePrefix = $config->getOptionalString('database.prefix', '');

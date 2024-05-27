@@ -135,7 +135,7 @@ class ProcessingChain
             if (!is_array($filter)) {
                 throw new Exception(
                     "Invalid authentication processing filter configuration: " .
-                    "One of the filters wasn't a string or an array."
+                    "One of the filters wasn't a string or an array.",
                 );
             }
 
@@ -163,7 +163,7 @@ class ProcessingChain
         $className = Module::resolveClass(
             $config['class'],
             'Auth\Process',
-            '\SimpleSAML\Auth\ProcessingFilter'
+            '\SimpleSAML\Auth\ProcessingFilter',
         );
         $config['%priority'] = $priority;
         unset($config['class']);

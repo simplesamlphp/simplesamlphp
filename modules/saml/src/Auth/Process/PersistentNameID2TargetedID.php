@@ -64,7 +64,7 @@ class PersistentNameID2TargetedID extends Auth\ProcessingFilter
     {
         if (!isset($state['saml:NameID'][C::NAMEID_PERSISTENT])) {
             Logger::warning(
-                'Unable to generate eduPersonTargetedID because no persistent NameID was available.'
+                'Unable to generate eduPersonTargetedID because no persistent NameID was available.',
             );
             return;
         }

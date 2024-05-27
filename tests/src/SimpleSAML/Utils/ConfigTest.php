@@ -94,7 +94,7 @@ class ConfigTest extends TestCase
         $this->expectException(Error\CriticalConfigurationError::class);
         $this->expectExceptionMessage(
             'Config directory specified by environment variable SIMPLESAMLPHP_CONFIG_DIR is not a directory.  ' .
-            'Given: "' . $invalidDir . '"'
+            'Given: "' . $invalidDir . '"',
         );
 
         $this->configUtils->getConfigDir();

@@ -133,7 +133,7 @@ class AttributeAlter extends Auth\ProcessingFilter
 
         if (!$this->replace && !$this->remove && $this->replacement === false) {
             throw new Error\Exception(
-                "'replacement' must be set if neither '%replace' nor " . "'%remove' are set."
+                "'replacement' must be set if neither '%replace' nor " . "'%remove' are set.",
             );
         }
 
@@ -174,7 +174,7 @@ class AttributeAlter extends Auth\ProcessingFilter
                         $value = $new_value;
                     } elseif ($this->merge === true) {
                         $attributes[$this->target] = array_values(
-                            array_diff($attributes[$this->target], [$value])
+                            array_diff($attributes[$this->target], [$value]),
                         );
                         $attributes[$this->target][] = $new_value;
                     } else {
@@ -202,16 +202,16 @@ class AttributeAlter extends Auth\ProcessingFilter
                 $attributes[$this->target] = preg_replace(
                     $this->pattern,
                     $this->replacement,
-                    $attributes[$this->subject]
+                    $attributes[$this->subject],
                 );
             } else {
                 $diff = array_diff(
                     preg_replace(
                         $this->pattern,
                         $this->replacement,
-                        $attributes[$this->subject]
+                        $attributes[$this->subject],
                     ),
-                    $attributes[$this->subject]
+                    $attributes[$this->subject],
                 );
 
                 if ($this->merge === true) {

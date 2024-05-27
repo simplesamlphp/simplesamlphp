@@ -88,7 +88,7 @@ class Parser
         if (!is_array($result) || empty($result)) {
             if ($required) {
                 throw new Exception(
-                    'Could not get value from XML document using the following XPath expression: ' . $xpath
+                    'Could not get value from XML document using the following XPath expression: ' . $xpath,
                 );
             } else {
                 return null;
@@ -115,7 +115,7 @@ class Parser
 
         if ($required) {
             throw new Exception(
-                'Could not get value from XML document using multiple alternative XPath expressions.'
+                'Could not get value from XML document using multiple alternative XPath expressions.',
             );
         } else {
             return null;

@@ -36,7 +36,7 @@ class Proxy
      * @param \SimpleSAML\Configuration $config The configuration to use by the controllers.
      */
     public function __construct(
-        protected Configuration $config
+        protected Configuration $config,
     ) {
     }
 
@@ -90,8 +90,8 @@ class Proxy
                 $state,
                 new NoAvailableIDP(
                     C::STATUS_RESPONDER,
-                    'User refused to reauthenticate with any of the IdPs requested.'
-                )
+                    'User refused to reauthenticate with any of the IdPs requested.',
+                ),
             );
         }
 

@@ -54,7 +54,7 @@ class Attributes
         } elseif (count($attribute) > 1) {
             if ($allow_multiple === false) {
                 throw new Error\Exception(
-                    'More than one value found for the attribute, multiple values not allowed.'
+                    'More than one value found for the attribute, multiple values not allowed.',
                 );
             }
         }
@@ -93,7 +93,7 @@ class Attributes
                 if (!is_string($value)) {
                     $value = print_r($value, true);
                     throw new InvalidArgumentException(
-                        sprintf('Invalid attribute value for attribute %s: "%s".', $name, $value)
+                        sprintf('Invalid attribute value for attribute %s: "%s".', $name, $value),
                     );
                 }
             }

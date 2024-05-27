@@ -90,19 +90,19 @@ class Memcache
              */
             if (!is_array($info)) {
                 Logger::warning(
-                    'Retrieved invalid data from a memcache server. Data was not an array.'
+                    'Retrieved invalid data from a memcache server. Data was not an array.',
                 );
                 continue;
             }
             if (!array_key_exists('timestamp', $info)) {
                 Logger::warning(
-                    'Retrieved invalid data from a memcache server. Missing timestamp.'
+                    'Retrieved invalid data from a memcache server. Missing timestamp.',
                 );
                 continue;
             }
             if (!array_key_exists('data', $info)) {
                 Logger::warning(
-                    'Retrieved invalid data from a memcache server. Missing data.'
+                    'Retrieved invalid data from a memcache server. Missing data.',
                 );
                 continue;
             }
@@ -224,7 +224,7 @@ class Memcache
         // the hostname option is required
         if (!array_key_exists('hostname', $server)) {
             throw new Exception(
-                "hostname setting missing from server in the 'memcache_store.servers' configuration option."
+                "hostname setting missing from server in the 'memcache_store.servers' configuration option.",
             );
         }
 
@@ -234,7 +234,7 @@ class Memcache
         if (!is_string($hostname)) {
             throw new Exception(
                 "Invalid hostname for server in the 'memcache_store.servers' configuration option. The hostname is" .
-                ' supposed to be a string.'
+                ' supposed to be a string.',
             );
         }
 
@@ -248,7 +248,7 @@ class Memcache
             if (($port <= 0) || ($port > 65535)) {
                 throw new Exception(
                     "Invalid port for server in the 'memcache_store.servers' configuration option. The port number" .
-                    ' is supposed to be an integer between 0 and 65535.'
+                    ' is supposed to be an integer between 0 and 65535.',
                 );
             }
         } else {
@@ -301,7 +301,7 @@ class Memcache
                 throw new Exception(
                     "Invalid index on element in the 'memcache_store.servers' configuration option. Perhaps you" .
                     ' have forgotten to add an array(...) around one of the server groups? The invalid index was: ' .
-                    $index
+                    $index,
                 );
             }
 
@@ -310,7 +310,7 @@ class Memcache
                 throw new Exception(
                     'Invalid value for the server with index ' . $index .
                     '. Remember that the \'memcache_store.servers\' configuration option' .
-                    ' contains an array of arrays of arrays.'
+                    ' contains an array of arrays of arrays.',
                 );
             }
 
@@ -356,7 +356,7 @@ class Memcache
                 throw new Exception(
                     "Invalid value for the server with index " . $index .
                     ". Remember that the 'memcache_store.servers' configuration option" .
-                    ' contains an array of arrays of arrays.'
+                    ' contains an array of arrays of arrays.',
                 );
             }
 
@@ -396,7 +396,7 @@ class Memcache
         // it must be a positive integer
         if ($expire < 0) {
             throw new Exception(
-                "The value of 'memcache_store.expires' in the configuration can't be a negative integer."
+                "The value of 'memcache_store.expires' in the configuration can't be a negative integer.",
             );
         }
 

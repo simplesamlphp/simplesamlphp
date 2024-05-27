@@ -54,14 +54,14 @@ class UserPass extends UserPassBase
         foreach ($config_users as $userpass => $attributes) {
             if (!is_string($userpass)) {
                 throw new Exception(
-                    'Invalid <username>:<password> for authentication source ' . $this->authId . ': ' . $userpass
+                    'Invalid <username>:<password> for authentication source ' . $this->authId . ': ' . $userpass,
                 );
             }
 
             $userpass = explode(':', $userpass, 2);
             if (count($userpass) !== 2) {
                 throw new Exception(
-                    'Invalid <username>:<password> for authentication source ' . $this->authId . ': ' . $userpass[0]
+                    'Invalid <username>:<password> for authentication source ' . $this->authId . ': ' . $userpass[0],
                 );
             }
             $username = $userpass[0];

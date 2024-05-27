@@ -63,7 +63,7 @@ class SAMLBuilder
     public function __construct(
         string $entityId,
         private ?int $maxCache = null,
-        private ?int $maxDuration = null
+        private ?int $maxDuration = null,
     ) {
         $this->entityDescriptor = new EntityDescriptor();
         $this->entityDescriptor->setEntityID($entityId);
@@ -312,7 +312,7 @@ class SAMLBuilder
      */
     private function addAttributeConsumingService(
         SPSSODescriptor $spDesc,
-        Configuration $metadata
+        Configuration $metadata,
     ): void {
         $attributes = $metadata->getOptionalArray('attributes', []);
         $serviceName = $metadata->getOptionalLocalizedString('name', []);
@@ -587,7 +587,7 @@ class SAMLBuilder
         RoleDescriptor $rd,
         string $use,
         string $x509cert,
-        ?string $keyName = null
+        ?string $keyName = null,
     ): void {
         Assert::oneOf($use, ['encryption', 'signing']);
         $info = [

@@ -47,7 +47,7 @@ class ProxyTest extends TestCase
                 ],
             ],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
         Configuration::setPreLoadedConfig($this->config, 'config.php');
 
@@ -60,10 +60,10 @@ class ProxyTest extends TestCase
                     ],
                 ],
                 '[ARRAY]',
-                'simplesaml'
+                'simplesaml',
             ),
             'authsources.php',
-            'simplesaml'
+            'simplesaml',
         );
     }
 

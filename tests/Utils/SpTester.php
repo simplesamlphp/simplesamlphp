@@ -48,7 +48,7 @@ class SpTester extends SP
             [
                 'binding' => $binding,
                 'ar'      => $ar,
-            ]
+            ],
         );
     }
 
@@ -63,7 +63,7 @@ class SpTester extends SP
             [
                 'binding' => $binding,
                 'lr'      => $lr,
-            ]
+            ],
         );
     }
 }

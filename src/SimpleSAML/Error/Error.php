@@ -95,7 +95,7 @@ class Error extends Exception
         string|array $errorCode,
         Throwable $cause = null,
         ?int $httpCode = null,
-        ErrorCodes $errorCodes = null
+        ErrorCodes $errorCodes = null,
     ) {
         if (is_array($errorCode)) {
             $this->parameters = $errorCode;

@@ -30,7 +30,7 @@ class ErrorCodesTest extends TestCase
         $this->assertSameSize(
             $this->instance()->getDefaultTitles(),
             $this->instance()->getDefaultDescriptions(),
-            'Not all error codes have their title / description pair.'
+            'Not all error codes have their title / description pair.',
         );
 
         $this->assertArrayHasKey(ErrorCodes::WRONGUSERPASS, $this->instance()->getDefaultTitles());
@@ -40,29 +40,29 @@ class ErrorCodesTest extends TestCase
 
         $this->assertSame(
             $this->instance()->getDefaultTitles()[ErrorCodes::WRONGUSERPASS],
-            $this->instance()->getTitle(ErrorCodes::WRONGUSERPASS)
+            $this->instance()->getTitle(ErrorCodes::WRONGUSERPASS),
         );
         $this->assertSame(
             $this->instance()->getDefaultDescriptions()[ErrorCodes::WRONGUSERPASS],
-            $this->instance()->getDescription(ErrorCodes::WRONGUSERPASS)
+            $this->instance()->getDescription(ErrorCodes::WRONGUSERPASS),
         );
 
         $this->assertSame(
             $this->instance()->getAllTitles(),
-            $this->instance()->getAllMessages()[ErrorCodes::KEY_TITLE]
+            $this->instance()->getAllMessages()[ErrorCodes::KEY_TITLE],
         );
         $this->assertSame(
             $this->instance()->getAllDescriptions(),
-            $this->instance()->getAllMessages()[ErrorCodes::KEY_DESCRIPTION]
+            $this->instance()->getAllMessages()[ErrorCodes::KEY_DESCRIPTION],
         );
 
         $this->assertSame(
             $this->instance()->getTitle(ErrorCodes::WRONGUSERPASS),
-            $this->instance()->getMessage(ErrorCodes::WRONGUSERPASS)[ErrorCodes::KEY_TITLE]
+            $this->instance()->getMessage(ErrorCodes::WRONGUSERPASS)[ErrorCodes::KEY_TITLE],
         );
         $this->assertSame(
             $this->instance()->getDescription(ErrorCodes::WRONGUSERPASS),
-            $this->instance()->getMessage(ErrorCodes::WRONGUSERPASS)[ErrorCodes::KEY_DESCRIPTION]
+            $this->instance()->getMessage(ErrorCodes::WRONGUSERPASS)[ErrorCodes::KEY_DESCRIPTION],
         );
     }
 }

@@ -160,12 +160,12 @@ class Kernel extends BaseKernel
 
             $loader = new DirectoryLoader(
                 $container,
-                new FileLocator($controllerDir . '/')
+                new FileLocator($controllerDir . '/'),
             );
             $loader->registerClasses(
                 $definition,
                 'SimpleSAML\\Module\\' . $this->module . '\\Controller\\',
-                $controllerDir . '/*'
+                $controllerDir . '/*',
             );
         } catch (FileLocatorFileNotFoundException $e) {
             // fall through

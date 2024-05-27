@@ -41,7 +41,7 @@ class MetadataTest extends TestCase
                 'admin.protectmetadata' => false,
             ],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
         Configuration::setPreLoadedConfig($this->config, 'config.php');
 
@@ -110,10 +110,10 @@ class MetadataTest extends TestCase
                     'phpunit' => ['saml:SP'],
                 ],
                 '[ARRAY]',
-                'simplesaml'
+                'simplesaml',
             ),
             'authsources.php',
-            'simplesaml'
+            'simplesaml',
         );
 
         $this->authUtils = new class () extends Utils\Auth {
@@ -144,7 +144,7 @@ class MetadataTest extends TestCase
                 'admin.protectmetadata' => $protected,
             ],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
         Configuration::setPreLoadedConfig($config, 'config.php');
 
@@ -192,7 +192,7 @@ class MetadataTest extends TestCase
                 'enable.saml20-idp' => false,
             ],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
         Configuration::setPreLoadedConfig($config, 'config.php');
 

@@ -63,7 +63,7 @@ class Auth
             return $as->login();
         } else {
             throw new Error\Exception(
-                'Cannot find "admin" auth source, and admin privileges are required.'
+                'Cannot find "admin" auth source, and admin privileges are required.',
             );
         }
     }

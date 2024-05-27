@@ -197,7 +197,7 @@ NOWDOC;
             null,
             [
                 self::DEFAULTCERTDIR => $this->getCertDirContent(),
-            ]
+            ],
         );
         $this->root_directory = vfsStream::url(self::ROOTDIRNAME);
 

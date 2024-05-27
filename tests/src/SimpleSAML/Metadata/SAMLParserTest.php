@@ -35,7 +35,7 @@ class SAMLParserTest extends SigningTestCase
     <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
   </EntityDescriptor>
 </EntitiesDescriptor>
-XML
+XML,
         );
 
         $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
@@ -78,7 +78,7 @@ XML
     </EntityDescriptor>
   </EntitiesDescriptor>
 </EntitiesDescriptor>
-XML
+XML,
         );
 
         $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
@@ -121,7 +121,7 @@ XML
     <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
   </EntityDescriptor>
 </EntitiesDescriptor>
-XML
+XML,
         );
 
         $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
@@ -153,7 +153,7 @@ XML
     <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
   </EntityDescriptor>
 </EntitiesDescriptor>
-XML
+XML,
         );
 
         $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
@@ -190,7 +190,7 @@ XML
 
   </EntityDescriptor>
 </EntitiesDescriptor>
-XML
+XML,
         );
 
         $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
@@ -218,13 +218,14 @@ XML
      */
     public function makeTestDocument(): DOMDocument
     {
-        $doc = DOMDocumentFactory::fromString(<<<XML
+        $doc = DOMDocumentFactory::fromString(
+            <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
   <EntityDescriptor entityID="theEntityID">
     <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
   </EntityDescriptor>
 </EntitiesDescriptor>
-XML
+XML,
         );
 
         /** @psalm-var \DOMElement $entities_root */
@@ -250,9 +251,9 @@ XML
             ],
             'UIInfo' => [
                 'DisplayName' => ['en' => 'DisplayName', 'af' => 'VertoonNaam'],
-                'Description' => ['en' => 'Description',],
-                'InformationURL' => ['en' => 'https://localhost/information',],
-                'PrivacyStatementURL' => ['en' => 'https://localhost/privacypolicy',],
+                'Description' => ['en' => 'Description'],
+                'InformationURL' => ['en' => 'https://localhost/information'],
+                'PrivacyStatementURL' => ['en' => 'https://localhost/privacypolicy'],
                 'Logo' => [
                     [
                         'url' => 'https://localhost/logo',
@@ -267,9 +268,9 @@ XML
                 ],
             ],
             'DiscoHints' => [
-                'IPHint' => ['127.0.0.1', '127.0.0.2',],
-                'DomainHint' => ['example.net', 'example.org',],
-                'GeolocationHint' => ['geo:-29.00000,24.00000;u=830000',],
+                'IPHint' => ['127.0.0.1', '127.0.0.2'],
+                'DomainHint' => ['example.net', 'example.org'],
+                'GeolocationHint' => ['geo:-29.00000,24.00000;u=830000'],
             ],
             'name' => ['en' => 'DisplayName', 'af' => 'VertoonNaam'],
         ];
@@ -303,7 +304,7 @@ XML
     </IDPSSODescriptor>
   </EntityDescriptor>
 </EntitiesDescriptor>
-XML
+XML,
         );
 
         $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
@@ -314,17 +315,17 @@ XML
         $this->assertEquals(
             $expected['scope'],
             $metadata['scope'],
-            'shibmd:Scope elements not reflected in parsed metadata'
+            'shibmd:Scope elements not reflected in parsed metadata',
         );
         $this->assertEquals(
             $expected['UIInfo'],
             $metadata['UIInfo'],
-            'mdui:UIInfo elements not reflected in parsed metadata'
+            'mdui:UIInfo elements not reflected in parsed metadata',
         );
         $this->assertEquals(
             $expected['DiscoHints'],
             $metadata['DiscoHints'],
-            'mdui:DiscoHints elements not reflected in parsed metadata'
+            'mdui:DiscoHints elements not reflected in parsed metadata',
         );
         $this->assertEquals($expected['name'], $metadata['name']);
     }
@@ -351,7 +352,7 @@ XML
     <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
   </EntityDescriptor>
 </EntitiesDescriptor>
-XML
+XML,
         );
 
         $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
@@ -383,7 +384,7 @@ XML
     <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
   </EntityDescriptor>
 </EntitiesDescriptor>
-XML
+XML,
         );
 
         $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
@@ -411,7 +412,7 @@ XML
     <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
   </EntityDescriptor>
 </EntitiesDescriptor>
-XML
+XML,
         );
 
         $entities = SAMLParser::parseDescriptorsElement($document->documentElement);

@@ -95,7 +95,7 @@ class Language
      * @param \SimpleSAML\Configuration $configuration Configuration object
      */
     public function __construct(
-        private Configuration $configuration
+        private Configuration $configuration,
     ) {
         $this->availableLanguages = $this->getInstalledLanguages();
         $this->defaultLanguage = $configuration->getOptionalString('language.default', self::FALLBACKLANGUAGE);
@@ -105,7 +105,7 @@ class Language
         if (isset($_GET[$this->languageParameterName])) {
             $this->setLanguage(
                 $_GET[$this->languageParameterName],
-                $configuration->getOptionalBoolean('language.parameter.setcookie', true)
+                $configuration->getOptionalBoolean('language.parameter.setcookie', true),
             );
         }
     }
@@ -120,7 +120,7 @@ class Language
     {
         $configuredAvailableLanguages = $this->configuration->getOptionalArray(
             'language.available',
-            [self::FALLBACKLANGUAGE]
+            [self::FALLBACKLANGUAGE],
         );
         $availableLanguages = [];
         foreach ($configuredAvailableLanguages as $code) {

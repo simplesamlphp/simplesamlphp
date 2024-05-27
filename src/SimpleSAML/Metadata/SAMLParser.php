@@ -167,7 +167,7 @@ class SAMLParser
         EntityDescriptor $entityElement,
         ?int $maxExpireTime,
         array $validators = [],
-        array $parentExtensions = []
+        array $parentExtensions = [],
     ) {
         $this->fileSystem = new Filesystem();
 
@@ -378,7 +378,7 @@ class SAMLParser
         SignedElementHelper $element,
         ?int $maxExpireTime = null,
         array $validators = [],
-        array $parentExtensions = []
+        array $parentExtensions = [],
     ): array {
         if ($element instanceof EntityDescriptor) {
             $ret = new SAMLParser($element, $maxExpireTime, $validators, $parentExtensions);
@@ -837,7 +837,7 @@ class SAMLParser
      */
     private function processAttributeAuthorityDescriptor(
         AttributeAuthorityDescriptor $element,
-        ?int $expireTime
+        ?int $expireTime,
     ): void {
         $aad = self::parseRoleDescriptorType($element, $expireTime);
         $aad['entityid'] = $this->getEntityId();
@@ -1198,9 +1198,10 @@ class SAMLParser
 
             $certData = $cryptoUtils->retrieveCertificate($certLocation);
             if ($certData === null) {
-                throw new Exception(
-                    'Could not find certificate location [' . $certLocation . '], which is needed to validate signature'
-                );
+                throw new Exception(sprintf(
+                    'Could not find certificate location [%s], which is needed to validate signature',
+                    $certLocation,
+                ));
             }
 
             foreach ($this->validators as $validator) {

@@ -25,7 +25,7 @@ class Disco
      * @param \SimpleSAML\Configuration $config The configuration to use by the controllers.
      */
     public function __construct(
-        protected Configuration $config
+        protected Configuration $config,
     ) {
     }
 

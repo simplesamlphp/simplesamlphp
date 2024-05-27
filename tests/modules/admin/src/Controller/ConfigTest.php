@@ -54,7 +54,7 @@ class ConfigTest extends TestCase
         $this->config::setPreloadedConfig(
             Configuration::loadFromArray([], '[ARRAY]', 'simplesaml'),
             'config.php',
-            'simplesaml'
+            'simplesaml',
         );
 
         $this->authUtils = new class () extends Utils\Auth {
@@ -80,7 +80,7 @@ class ConfigTest extends TestCase
         $_SERVER['REQUEST_URI'] = '/module.php/admin/diagnostics';
         $request = Request::create(
             '/diagnostics',
-            'GET'
+            'GET',
         );
 
         $c = new Controller\Config($this->config, $this->session);
@@ -98,7 +98,7 @@ class ConfigTest extends TestCase
         $_SERVER['REQUEST_URI'] = '/module.php/admin';
         $request = Request::create(
             '/',
-            'GET'
+            'GET',
         );
 
         $c = new Controller\Config($this->config, $this->session);
@@ -116,7 +116,7 @@ class ConfigTest extends TestCase
         $_SERVER['REQUEST_URI'] = '/module.php/admin/phpinfo';
         $request = Request::create(
             '/phpinfo',
-            'GET'
+            'GET',
         );
 
         $c = new Controller\Config($this->config, $this->session);

@@ -91,7 +91,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
         $loc = new File($this->directory, false);
         if (!$this->fileSystem->exists($this->directory) || !$loc->isReadable()) {
             Logger::warning(
-                'Serialize metadata handler: Unable to open directory: ' . var_export($this->directory, true)
+                'Serialize metadata handler: Unable to open directory: ' . var_export($this->directory, true),
             );
             return $ret;
         }
@@ -227,7 +227,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
             $this->fileSystem->rename($new->getPathName(), $old->getPathName(), true);
         } catch (IOException $e) {
             Logger::error(
-                sprintf('Error renaming %s to %s: %s', $new->getPathName(), $old->getPathName(), $e->getMessage())
+                sprintf('Error renaming %s to %s: %s', $new->getPathName(), $old->getPathName(), $e->getMessage()),
             );
             return false;
         }
@@ -249,7 +249,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
         if (!$this->fileSystem->exists($filePath)) {
             Logger::warning(
                 'Attempted to erase nonexistent metadata entry ' .
-                var_export($entityId, true) . ' in set ' . var_export($set, true) . '.'
+                var_export($entityId, true) . ' in set ' . var_export($set, true) . '.',
             );
             return;
         }

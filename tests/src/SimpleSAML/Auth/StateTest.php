@@ -38,7 +38,7 @@ class StateTest extends TestCase
         $this->assertEquals(
             $expected,
             Auth\State::getPersistentAuthData($state),
-            'Mandatory state attributes did not survive as expected' . print_r($expected, true)
+            'Mandatory state attributes did not survive as expected' . print_r($expected, true),
         );
 
         // check missing mandatory parameters
@@ -48,7 +48,7 @@ class StateTest extends TestCase
         $this->assertEquals(
             $expected,
             Auth\State::getPersistentAuthData($state),
-            'Some error occurred with missing mandatory parameters'
+            'Some error occurred with missing mandatory parameters',
         );
 
         // check additional non-persistent parameters
@@ -61,7 +61,7 @@ class StateTest extends TestCase
         $this->assertEquals(
             $expected,
             Auth\State::getPersistentAuthData($state),
-            'Additional parameters survived'
+            'Additional parameters survived',
         );
 
         // check additional persistent parameters
@@ -73,7 +73,7 @@ class StateTest extends TestCase
         $this->assertEquals(
             $expected,
             Auth\State::getPersistentAuthData($state),
-            'Some error occurred with additional, persistent parameters'
+            'Some error occurred with additional, persistent parameters',
         );
 
         // check only additional persistent parameters
@@ -84,7 +84,7 @@ class StateTest extends TestCase
         $this->assertEquals(
             $expected,
             Auth\State::getPersistentAuthData($state),
-            'Some error occurred with additional, persistent parameters, and no mandatory ones'
+            'Some error occurred with additional, persistent parameters, and no mandatory ones',
         );
     }
 

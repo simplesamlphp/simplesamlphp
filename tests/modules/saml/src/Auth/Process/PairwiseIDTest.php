@@ -85,11 +85,11 @@ class PairwiseIDTest extends TestCase
         $this->assertArrayHasKey(C::ATTR_PAIRWISE_ID, $attributes);
         $this->assertMatchesRegularExpression(
             PairwiseID::SPEC_PATTERN,
-            $attributes[C::ATTR_PAIRWISE_ID][0]
+            $attributes[C::ATTR_PAIRWISE_ID][0],
         );
         $this->assertEquals(
             'c22d58bebef42e50e203d0e932ae4a7f560a51d494266990a5b5c73f34b1854e@ex-ample.org',
-            $attributes[C::ATTR_PAIRWISE_ID][0]
+            $attributes[C::ATTR_PAIRWISE_ID][0],
         );
     }
 
@@ -109,11 +109,11 @@ class PairwiseIDTest extends TestCase
         $this->assertArrayHasKey(C::ATTR_PAIRWISE_ID, $attributes);
         $this->assertMatchesRegularExpression(
             PairwiseID::SPEC_PATTERN,
-            $attributes[C::ATTR_PAIRWISE_ID][0]
+            $attributes[C::ATTR_PAIRWISE_ID][0],
         );
         $this->assertEquals(
             'c22d58bebef42e50e203d0e932ae4a7f560a51d494266990a5b5c73f34b1854e@ex-ample.org',
-            $attributes[C::ATTR_PAIRWISE_ID][0]
+            $attributes[C::ATTR_PAIRWISE_ID][0],
         );
     }
 
@@ -133,11 +133,11 @@ class PairwiseIDTest extends TestCase
         $this->assertArrayHasKey(C::ATTR_PAIRWISE_ID, $attributes);
         $this->assertMatchesRegularExpression(
             PairwiseID::SPEC_PATTERN,
-            $attributes[C::ATTR_PAIRWISE_ID][0]
+            $attributes[C::ATTR_PAIRWISE_ID][0],
         );
         $this->assertEquals(
             'c22d58bebef42e50e203d0e932ae4a7f560a51d494266990a5b5c73f34b1854e@ex-ample.org',
-            $attributes[C::ATTR_PAIRWISE_ID][0]
+            $attributes[C::ATTR_PAIRWISE_ID][0],
         );
     }
 
@@ -157,11 +157,11 @@ class PairwiseIDTest extends TestCase
         $this->assertArrayHasKey(C::ATTR_PAIRWISE_ID, $attributes);
         $this->assertMatchesRegularExpression(
             PairwiseID::SPEC_PATTERN,
-            $attributes[C::ATTR_PAIRWISE_ID][0]
+            $attributes[C::ATTR_PAIRWISE_ID][0],
         );
         $this->assertEquals(
             'c22d58bebef42e50e203d0e932ae4a7f560a51d494266990a5b5c73f34b1854e@ex-ample.org',
-            $attributes[C::ATTR_PAIRWISE_ID][0]
+            $attributes[C::ATTR_PAIRWISE_ID][0],
         );
     }
 
@@ -308,11 +308,11 @@ class PairwiseIDTest extends TestCase
 
         $this->assertMatchesRegularExpression(
             '/@example.org$/i',
-            $value1
+            $value1,
         );
         $this->assertMatchesRegularExpression(
             '/@example.edu$/i',
-            $value2
+            $value2,
         );
     }
 
@@ -331,7 +331,7 @@ class PairwiseIDTest extends TestCase
         $expected = 'be511fc7f95e22816dbac21e3b70546660963b6e9b85f5a41d80bfc6baadd547@b';
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage(
-            'saml:PairwiseID: Generated ID \'' . $expected . '\' can hardly be considered globally unique.'
+            'saml:PairwiseID: Generated ID \'' . $expected . '\' can hardly be considered globally unique.',
         );
 
         self::processFilter($config, $request);

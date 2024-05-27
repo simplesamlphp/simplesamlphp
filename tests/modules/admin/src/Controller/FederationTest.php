@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Auth, Configuration, Module, Session, Utils};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\admin\Controller;
+use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{Cookie, Request, Response};
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -72,7 +73,7 @@ class FederationTest extends TestCase
                 'language.get_language_function' => [$this, 'getLanguage'],
             ],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
 
         $this->authUtils = new class () extends Utils\Auth {
@@ -89,10 +90,10 @@ class FederationTest extends TestCase
                     'admin' => ['core:AdminPassword'],
                 ],
                 '[ARRAY]',
-                'simplesaml'
+                'simplesaml',
             ),
             'authsources.php',
-            'simplesaml'
+            'simplesaml',
         );
     }
 
@@ -103,7 +104,7 @@ class FederationTest extends TestCase
     {
         $request = Request::create(
             '/federation',
-            'GET'
+            'GET',
         );
 
         $mdh = new class () extends MetaDataStorageHandler {
@@ -154,7 +155,7 @@ class FederationTest extends TestCase
             public static function getSourcesOfType(string $type): array
             {
                 return [
-                    new \SimpleSAML\Module\saml\Auth\Source\SP(
+                    new SP(
                         ['AuthId' => 'AuthId'],
                         [
                             'saml:SP',
@@ -188,7 +189,7 @@ class FederationTest extends TestCase
     {
         $request = Request::create(
             '/federation/metadata-converter',
-            'POST'
+            'POST',
         );
         $request->files->add(
             [

@@ -19,7 +19,7 @@ class Application extends BaseApplication
 
         $inputDefinition = $this->getDefinition();
         $inputDefinition->addOption(
-            new InputOption('--module', '-m', InputOption::VALUE_REQUIRED, 'The module name', $kernel->getModule())
+            new InputOption('--module', '-m', InputOption::VALUE_REQUIRED, 'The module name', $kernel->getModule()),
         );
     }
 }

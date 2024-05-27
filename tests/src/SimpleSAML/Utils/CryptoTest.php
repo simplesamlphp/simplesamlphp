@@ -204,7 +204,7 @@ PHP;
                 'privatekey' => $filename,
                 'privatekey_pass' => $password,
             ],
-            'test'
+            'test',
         );
         $full_path = true;
 
@@ -230,7 +230,7 @@ PHP;
                 $prefix . 'privatekey' => $filename,
                 $prefix . 'privatekey_pass' => $password,
             ],
-            'test'
+            'test',
         );
         $full_path = true;
 
@@ -305,7 +305,7 @@ PHP;
                     ],
                 ],
             ],
-            'test'
+            'test',
         );
 
         $res = $this->cryptoUtils->loadPublicKey($config);
@@ -329,7 +329,7 @@ PHP;
                     ],
                 ],
             ],
-            'test'
+            'test',
         );
 
         /** @var array $pubkey */

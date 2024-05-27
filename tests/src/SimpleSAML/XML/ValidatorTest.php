@@ -72,7 +72,7 @@ class ValidatorTest extends SigningTestCase
         $validator = new Validator(
             $doc,
             'node',
-            ['PEM' => $this->good_certificate]
+            ['PEM' => $this->good_certificate],
         );
 
         $result = $validator->isNodeValidated($node);
@@ -102,7 +102,7 @@ class ValidatorTest extends SigningTestCase
         $validator = new Validator(
             $doc,
             'node1',
-            ['PEM' => $this->good_certificate]
+            ['PEM' => $this->good_certificate],
         );
 
         $result = $validator->isNodeValidated($node2);

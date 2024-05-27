@@ -28,7 +28,7 @@ class RunnableResponse extends Response
      */
     public function __construct(
         callable $callable,
-        protected array $arguments = []
+        protected array $arguments = [],
     ) {
         $this->callable = $callable;
         $this->setCharset('UTF-8');

@@ -36,7 +36,7 @@ class ExampleAuthTest extends TestCase
                 'module.enable' => ['exampleauth' => true],
             ],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
 
         Configuration::setPreLoadedConfig($this->config, 'config.php');
@@ -47,10 +47,10 @@ class ExampleAuthTest extends TestCase
                     'external-example' => ['exampleauth:External'],
                 ],
                 '[ARRAY]',
-                'simplesaml'
+                'simplesaml',
             ),
             'authsources.php',
-            'simplesaml'
+            'simplesaml',
         );
 
         $this->session = Session::getSessionFromRequest();
@@ -198,7 +198,7 @@ class ExampleAuthTest extends TestCase
         $request = Request::create(
             '/resume',
             'GET',
-            ['AuthState' => 'someState']
+            ['AuthState' => 'someState'],
         );
 
         $c = new Controller\ExampleAuth($this->config, $this->session);
@@ -231,7 +231,7 @@ class ExampleAuthTest extends TestCase
         $request = Request::create(
             '/redirecttest',
             'GET',
-            ['AuthState' => '_abc123']
+            ['AuthState' => '_abc123'],
         );
 
         $c = new Controller\ExampleAuth($this->config, $this->session);

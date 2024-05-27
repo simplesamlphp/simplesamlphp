@@ -113,7 +113,7 @@ class IdPDisco
     public function __construct(
         protected Request $request,
         protected array $metadataSets,
-        protected string $instance
+        protected string $instance,
     ) {
         // initialize standard classes
         $this->request = $request;
@@ -349,7 +349,7 @@ class IdPDisco
         foreach ($this->metadataSets as $metadataSet) {
             $idp = $this->metadata->getPreferredEntityIdFromCIDRhint(
                 $metadataSet,
-                $this->request->server->get('REMOTE_ADDR')
+                $this->request->server->get('REMOTE_ADDR'),
             );
 
             if (!empty($idp)) {
@@ -531,7 +531,7 @@ class IdPDisco
             } else {
                 $this->log(
                     'Choice made [' . $idp . '] (Redirecting the user back. returnIDParam='
-                    . $this->returnIdParam . ')'
+                    . $this->returnIdParam . ')',
                 );
                 return $httpUtils->redirectTrustedURL($this->returnURL, [$this->returnIdParam => $idp]);
             }
@@ -574,12 +574,12 @@ class IdPDisco
         if (sizeof($idpintersection) == 1) {
             $this->log(
                 'Choice made [' . $idpintersection[0] . '] (Redirecting the user back. returnIDParam=' .
-                $this->returnIdParam . ')'
+                $this->returnIdParam . ')',
             );
 
             return $httpUtils->redirectTrustedURL(
                 $this->returnURL,
-                [$this->returnIdParam => $idpintersection[0]]
+                [$this->returnIdParam => $idpintersection[0]],
             );
         }
 
@@ -620,7 +620,7 @@ class IdPDisco
              */
             function (array $idpentry1, array $idpentry2) {
                 return strcasecmp($idpentry1['name'], $idpentry2['name']);
-            }
+            },
         );
 
         $t->data['idplist'] = $newlist;
