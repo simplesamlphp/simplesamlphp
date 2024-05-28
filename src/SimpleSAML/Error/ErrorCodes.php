@@ -50,6 +50,7 @@ class ErrorCodes
     final public const UNKNOWNCERT = 'UNKNOWNCERT';
     final public const USERABORTED = 'USERABORTED';
     final public const WRONGUSERPASS = 'WRONGUSERPASS';
+
     final public const KEY_TITLE = 'title';
     final public const KEY_DESCRIPTION = 'descr';
 
