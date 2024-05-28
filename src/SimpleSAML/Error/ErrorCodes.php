@@ -241,7 +241,11 @@ class ErrorCodes
                 "from the default value. Please edit the configuration file."),
             self::ADMINNOTHASHED => Translate::noop("" .
                 "The password in the configuration (auth.adminpassword) is not a hashed value. " .
-                "Full details on how to fix this are supplied at https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"),
+                "Full details on how to fix this are supplied at " .
+                "https://github.com/simplesamlphp/simplesamlphp/wiki/" .
+                "Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-" .
+                "admin-page-with-and-error-message-admin-password-" .
+                "not-set-to-a-hashed-value"),
             self::NOTVALIDCERT => Translate::noop('You did not present a valid certificate.'),
             self::PROCESSASSERTION => Translate::noop('We did not accept the response sent from the Identity Provider.'),
             self::PROCESSAUTHNREQUEST => Translate::noop("" .
