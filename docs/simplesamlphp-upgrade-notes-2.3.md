@@ -3,6 +3,9 @@
 SimpleSAMLphp 2.3 is a minor new release which introduces a few new features.
 The following changes are relevant for installers and/or developers.
 
+- Session ID's are now hashed when stored in a database. This means all old sessions are effectively
+  invalidated by this upgrade. We recommend clearing your session store as part of the upgrade-routine.
+
 ## Deprecations
 
 The following classes were marked `deprecated` and will be removed in a next major release.
