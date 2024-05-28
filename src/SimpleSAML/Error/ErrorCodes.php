@@ -39,6 +39,7 @@ class ErrorCodes
     final public const NOTFOUND = 'NOTFOUND';
     final public const NOTFOUNDREASON = 'NOTFOUNDREASON';
     final public const NOTSET = 'NOTSET';
+    final public const ADMINNOTHASHED = 'ADMINNOTHASHED';
     final public const NOTVALIDCERT = 'NOTVALIDCERT';
     final public const PROCESSASSERTION = 'PROCESSASSERTION';
     final public const PROCESSAUTHNREQUEST = 'PROCESSAUTHNREQUEST';
@@ -49,7 +50,6 @@ class ErrorCodes
     final public const UNKNOWNCERT = 'UNKNOWNCERT';
     final public const USERABORTED = 'USERABORTED';
     final public const WRONGUSERPASS = 'WRONGUSERPASS';
-
     final public const KEY_TITLE = 'title';
     final public const KEY_DESCRIPTION = 'descr';
 
@@ -85,6 +85,7 @@ class ErrorCodes
             self::NOTFOUND => Translate::noop('Page not found'),
             self::NOTFOUNDREASON => Translate::noop('Page not found'),
             self::NOTSET => Translate::noop('Password not set'),
+            self::ADMINNOTHASHED => Translate::noop('Admin password not set to a hashed value'),
             self::NOTVALIDCERT => Translate::noop('Invalid certificate'),
             self::PROCESSASSERTION => Translate::noop('Error processing response from Identity Provider'),
             self::PROCESSAUTHNREQUEST => Translate::noop('Error processing request from Service Provider'),
@@ -189,6 +190,9 @@ class ErrorCodes
             self::NOTSET => Translate::noop("" .
                 "The password in the configuration (auth.adminpassword) is not changed " .
                 "from the default value. Please edit the configuration file."),
+            self::ADMINNOTHASHED => Translate::noop("" .
+                "The password in the configuration (auth.adminpassword) is not a hashed value. " .
+                "Full details on how to fix this are supplied at https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"),
             self::NOTVALIDCERT => Translate::noop('You did not present a valid certificate.'),
             self::PROCESSASSERTION => Translate::noop('We did not accept the response sent from the Identity Provider.'),
             self::PROCESSAUTHNREQUEST => Translate::noop("" .
