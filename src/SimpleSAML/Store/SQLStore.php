@@ -8,7 +8,7 @@ use Exception;
 use PDO;
 use PDOException;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\{Configuration, Logger};
+use SimpleSAML\{Configuration, Logger, Utils};
 
 use function array_keys;
 use function count;
@@ -347,6 +347,10 @@ class SQLStore implements StoreInterface
      */
     public function get(string $type, string $key): mixed
     {
+        if ($type == 'session') {
+            $key = $this->hashData($key);
+        }
+
         if (strlen($key) > 50) {
             $key = sha1($key);
         }
@@ -393,6 +397,10 @@ class SQLStore implements StoreInterface
             $this->cleanKVStore();
         }
 
+        if ($type == 'session') {
+            $key = $this->hashData($key);
+        }
+
         if (strlen($key) > 50) {
             $key = sha1($key);
         }
@@ -423,6 +431,10 @@ class SQLStore implements StoreInterface
      */
     public function delete(string $type, string $key): void
     {
+        if ($type == 'session') {
+            $key = $this->hashData($key);
+        }
+
         if (strlen($key) > 50) {
             $key = sha1($key);
         }
@@ -435,5 +447,18 @@ class SQLStore implements StoreInterface
         $query = 'DELETE FROM ' . $this->prefix . '_kvstore WHERE _type=:_type AND _key=:_key';
         $query = $this->pdo->prepare($query);
         $query->execute($data);
+    }
+
+
+    /**
+     * Calculates an URL-safe sha-256 hash.
+     *
+     * @param string $data
+     * @return string The hashed data.
+     */
+    private function hashData(string $data): string
+    {
+        $secretSalt = (new Utils\Config())->getSecretSalt();
+        return hash_hmac('sha256', $data, $secretSalt);
     }
 }
