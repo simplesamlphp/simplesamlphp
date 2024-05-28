@@ -62,7 +62,7 @@ class AdminPassword extends UserPassBase
         if (!$pwinfo['algo']) {
             throw new Error\Error(Error\ErrorCodes::ADMINNOTHASHED);
         }
-        
+
         $hasher = new NativePasswordHasher();
         if (!$hasher->verify($adminPassword, $password)) {
             throw new Error\Error(Error\ErrorCodes::WRONGUSERPASS);
