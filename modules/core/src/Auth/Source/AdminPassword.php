@@ -59,7 +59,7 @@ class AdminPassword extends UserPassBase
         }
 
         $pwinfo = password_get_info($adminPassword);
-        if (!$pwinfo['algo']) {
+        if ($pwinfo['algo'] === null) {
             throw new Error\Error(Error\ErrorCodes::ADMINNOTHASHED);
         }
 
