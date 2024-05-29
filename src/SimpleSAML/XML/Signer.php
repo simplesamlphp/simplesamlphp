@@ -132,8 +132,12 @@ class Signer
      *                         Default to false.
      * @throws \Exception
      */
-    public function loadPrivateKey(string $location, ?string $pass, bool $full_path = false): void
-    {
+    public function loadPrivateKey(
+        string $location,
+        #[\SensitiveParameter]
+        ?string $pass,
+        bool $full_path = false
+    ): void {
         $cryptoUtils = new Utils\Crypto();
         $keyData = $cryptoUtils->retrieveKey($location, $full_path);
 

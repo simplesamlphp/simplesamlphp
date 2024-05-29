@@ -53,7 +53,11 @@ function saml_hook_sanitycheck(array &$hookinfo): void
     }
 }
 
-function matchingKeyPair(string $publicKey, string $privateKey, ?string $password = null): bool
-{
+function matchingKeyPair(
+    string $publicKey,
+    string $privateKey,
+    #[\SensitiveParameter]
+    ?string $password = null
+): bool {
     return openssl_x509_check_private_key($publicKey, [$privateKey, $password]);
 }

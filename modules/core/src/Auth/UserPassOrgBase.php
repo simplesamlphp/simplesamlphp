@@ -238,7 +238,12 @@ abstract class UserPassOrgBase extends Auth\Source
      * @param string $organization  The id of the organization the user chose.
      * @return array  Associative array with the user's attributes.
      */
-    abstract protected function login(string $username, string $password, string $organization): array;
+    abstract protected function login(
+        string $username,
+        #[\SensitiveParameter]
+        string $password,
+        string $organization
+    ): array;
 
 
     /**
@@ -269,6 +274,7 @@ abstract class UserPassOrgBase extends Auth\Source
     public static function handleLogin(
         string $authStateId,
         string $username,
+        #[\SensitiveParameter]
         string $password,
         string $organization,
     ): Response {

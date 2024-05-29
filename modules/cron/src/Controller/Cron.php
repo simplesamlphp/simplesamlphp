@@ -117,6 +117,7 @@ class Cron
     public function run(
         /** @scrutinizer ignore-unused */Request $request,
         string $tag,
+        #[\SensitiveParameter]
         string $key,
         string $output = 'xhtml',
     ): Template {

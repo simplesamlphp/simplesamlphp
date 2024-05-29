@@ -45,8 +45,11 @@ class AdminPassword extends UserPassBase
      * @param string $password  The password the user wrote.
      * @return array  Associative array with the users attributes.
      */
-    protected function login(string $username, string $password): array
-    {
+    protected function login(
+        string $username,
+        #[\SensitiveParameter]
+        string $password,
+    ): array {
         $config = Configuration::getInstance();
         $adminPassword = $config->getString('auth.adminpassword');
         if ($adminPassword === '123') {

@@ -152,8 +152,13 @@ class Database
      * @throws \Exception If an error happens while trying to connect to the database.
      * @return \PDO object
      */
-    private function connect(string $dsn, string $username = null, string $password = null, array $options): PDO
-    {
+    private function connect(
+        string $dsn,
+        string $username = null,
+        #[\SensitiveParameter]
+        string $password = null,
+        array $options
+    ): PDO {
         try {
             $db = new PDO($dsn, $username, $password, $options);
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
