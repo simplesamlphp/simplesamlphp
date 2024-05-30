@@ -117,7 +117,8 @@ jobs:
           # Default: '.'
           add: "['**/*.po']"
           fetch: false
-          push: false
+          push: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
           # Determines the way the action fills missing author name and email. Three options are available:
           # - github_actor -> UserName <UserName@users.noreply.github.com>
@@ -138,11 +139,11 @@ jobs:
           # Default: ignore
           pathspec_error_handling: exitImmediately
 
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          branch: ${{ github.ref_name }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Push changes
+#        uses: ad-m/github-push-action@master
+#        with:
+#          branch: ${{ github.ref_name }}
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
         
   cleanup:
     name: Cleanup artifacts
