@@ -13,34 +13,17 @@ on:  # yamllint disable-line rule:truthy
   workflow_dispatch:
 
 jobs:
-  quality:
-    name: Quality checks
-    runs-on: ['ubuntu-latest']
-
-    steps:
-      - uses: actions/checkout@v4
-
-      #- uses: actions/setup-python@v4
-      #  with:
-      #    python-version: '3.10'
-
-      #- run: pip install lint-po
-
-      #- name: Lint PO(T) files
-      #  run: |
-      #    lint-po locales/*/LC_MESSAGES/*.po
-      #    lint-po modules/*/locales/*/LC_MESSAGES/*.po
-
 
   build:
-    name: Build PO-files
+    name: Setup and Build PO-files
     runs-on: ['ubuntu-latest']
-    needs: quality
 
     outputs:
       files_changed: ${{ steps.changes.outputs.files_changed }}
 
     steps:
+      - uses: actions/checkout@v4
+        
       - name: Setup PHP, with composer and extensions
         id: setup-php
         # https://github.com/shivammathur/setup-php
@@ -117,7 +100,7 @@ jobs:
           # Default: '.'
           add: "['**/*.po']"
           fetch: false
-          push: true
+          push: false
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
           # Determines the way the action fills missing author name and email. Three options are available:
@@ -139,11 +122,11 @@ jobs:
           # Default: ignore
           pathspec_error_handling: exitImmediately
 
-#      - name: Push changes
-#        uses: ad-m/github-push-action@master
-#        with:
-#          branch: ${{ github.ref_name }}
-#          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: ${{ github.ref_name }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
         
   cleanup:
     name: Cleanup artifacts
