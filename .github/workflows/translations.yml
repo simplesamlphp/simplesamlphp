@@ -60,7 +60,7 @@ jobs:
           echo "Changed files"
           echo $SourceDiff
 
-          $HasSourceDiff = $SourceDiff.Length -gt -1
+          $HasSourceDiff = $SourceDiff.Length -gt 0
           echo "($($SourceDiff.Length) changes)"
           echo "files_changed=$HasSourceDiff" >> $env:GITHUB_OUTPUT
 
@@ -99,7 +99,6 @@ jobs:
           add: "['**/*.po']"
           fetch: false
           push: false
-          github_token: ${{ secrets.GITHUB_TOKEN }}
 
           # Determines the way the action fills missing author name and email. Three options are available:
           # - github_actor -> UserName <UserName@users.noreply.github.com>
