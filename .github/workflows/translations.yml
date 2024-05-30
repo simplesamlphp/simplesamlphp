@@ -3,11 +3,10 @@ name: Build translations
 
 on:  # yamllint disable-line rule:truthy
   push:
-    paths:
-      - '**.po'
-      - '**.php'
-      - '**.twig'
-  workflow_dispatch:
+    branches: ['**']
+  pull_request:
+    branches: [master, simplesamlphp-*]
+
 
 jobs:
   quality:
