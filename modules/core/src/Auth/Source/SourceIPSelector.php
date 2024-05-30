@@ -50,7 +50,7 @@ class SourceIPSelector extends AbstractSourceSelector
     public function nomerge()
     {
         $var = 7;
-        return $var*2;
+        return $var * 2;
     }
 
     /**
