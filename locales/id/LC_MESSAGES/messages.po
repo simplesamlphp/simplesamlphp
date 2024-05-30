@@ -583,6 +583,9 @@ msgstr "No Telepon"
 msgid "TestTranslationString1234"
 msgstr ""
 
+msgid "TestTranslationString12345"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
 msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
 msgstr "Identity Provider merespon dengan error. (Kode status di Response SAML adalah tidak berhasil)"

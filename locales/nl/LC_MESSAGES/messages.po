@@ -616,6 +616,9 @@ msgstr "Telefoonnummer"
 msgid "TestTranslationString1234"
 msgstr ""
 
+msgid "TestTranslationString12345"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
 msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
 msgstr "De Identity Provider antwoordde met een fout. (De statuscode in de SAML Response was niet success)"
