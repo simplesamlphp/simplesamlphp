@@ -1,4 +1,5 @@
 ---
+
 name: Build translations
 
 on:  # yamllint disable-line rule:truthy
@@ -137,7 +138,9 @@ jobs:
 
       - name: Push changes
         uses: ad-m/github-push-action@master
-
+        with:
+          branch: ${{ github.ref }}
+        
   cleanup:
     name: Cleanup artifacts
     needs: [build, commit]
