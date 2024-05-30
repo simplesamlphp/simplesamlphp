@@ -113,6 +113,7 @@ jobs:
           # The arguments for the `git add` command (see the paragraph below for more info)
           # Default: '.'
           add: "['**/*.po']"
+          fetch: false
 
           # Determines the way the action fills missing author name and email. Three options are available:
           # - github_actor -> UserName <UserName@users.noreply.github.com>
