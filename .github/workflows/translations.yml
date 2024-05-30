@@ -100,7 +100,6 @@ jobs:
           add: "['**/*.po']"
           fetch: false
           push: false
-          github_token: ${{ secrets.GITHUB_TOKEN }}
 
           # Determines the way the action fills missing author name and email. Three options are available:
           # - github_actor -> UserName <UserName@users.noreply.github.com>
