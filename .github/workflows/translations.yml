@@ -114,6 +114,7 @@ jobs:
           # Default: '.'
           add: "['**/*.po']"
           fetch: false
+          push: false
 
           # Determines the way the action fills missing author name and email. Three options are available:
           # - github_actor -> UserName <UserName@users.noreply.github.com>
@@ -133,6 +134,9 @@ jobs:
           # - exitAtEnd -> the action will go on, every pathspec error will be logged at the end, the step will fail.
           # Default: ignore
           pathspec_error_handling: exitImmediately
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
 
   cleanup:
     name: Cleanup artifacts
