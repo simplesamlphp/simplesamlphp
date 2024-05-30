@@ -120,7 +120,7 @@ jobs:
           # - user_info -> Your Display Name <your-actual@email.com>
           # - github_actions -> github-actions <email associated with the github logo>
           # Default: github_actor
-          default_author: github_actions
+#          default_author: github_actions
 
           # The message for the commit.
           # Default: 'Commit from GitHub Actions (name of the workflow)'
