@@ -823,4 +823,4 @@ msgid "not set"
 msgstr "not set"
 
 msgid "or select a file:"
-msgstr "or select a file:"
+msgstr "or select a file: NO MERGE"
