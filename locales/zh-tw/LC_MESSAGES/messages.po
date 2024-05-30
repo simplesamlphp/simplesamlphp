@@ -607,6 +607,9 @@ msgstr "姓"
 msgid "Telephone number"
 msgstr "電話號碼"
 
+msgid "TestTranslationString1234"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
 msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
 msgstr "驗證提供者回應一個錯誤。(在 SAML 回應裡的狀態碼為不成功)"

@@ -580,6 +580,9 @@ msgstr "Efternamn"
 msgid "Telephone number"
 msgstr "Telefonnummer"
 
+msgid "TestTranslationString1234"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
 msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
 msgstr "Identitetshanteraren (Identity Provider) svarade med ett felmeddelande. (Statusmeddelandet i SAML-svaret var ett felmeddelande)"

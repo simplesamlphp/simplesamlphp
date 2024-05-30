@@ -370,6 +370,9 @@ msgstr "Cognoms"
 msgid "Telephone number"
 msgstr "Número de telèfon"
 
+msgid "TestTranslationString1234"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:254
 msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
 msgstr ""

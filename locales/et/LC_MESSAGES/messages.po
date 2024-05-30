@@ -580,6 +580,9 @@ msgstr "Perekonnanimi"
 msgid "Telephone number"
 msgstr "Telefoninumber"
 
+msgid "TestTranslationString1234"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
 msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
 msgstr "Identiteedipakkuja vastas tõrkega (SAML-vastuse olekukood polnud positiivne)."

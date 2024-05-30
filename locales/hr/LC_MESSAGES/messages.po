@@ -580,6 +580,9 @@ msgstr "Prezime"
 msgid "Telephone number"
 msgstr "Broj telefona"
 
+msgid "TestTranslationString1234"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
 msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
 msgstr "Autentifikacijski servis je poslao odgovor koji sadrži informaciju o pojavi greške. (Šifra statusa dostavljena u SAML odgovoru ne odgovara šifri uspješno obrađenog zahtjeva)"
