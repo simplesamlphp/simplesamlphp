@@ -5,6 +5,10 @@ msgstr ""
 msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
 msgstr "Foi pedida a sua autenticação por um serviço. Por favor, introduza o seu nome de utilizador e senha nos campos seguintes."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
+msgid "Admin password not set to a hashed value"
+msgstr ""
+
 msgid "Affiliation"
 msgstr "Afiliação com a organização de origem"
 
@@ -26,6 +30,33 @@ msgstr "Foi despoletada um excepção que não foi tratada."
 msgid "As you are in debug mode, you get to see the content of the message you are sending:"
 msgstr "Estando em modo debug, pode consultar o conteúdo da mensagem que está a enviar:"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
+msgid "Authentication aborted"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:192
+msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:204
+msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:266
+msgid "Authentication failed: the certificate your browser sent is unknown"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:231
+msgid "Authentication failed: your browser did not send any certificate"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:72
+msgid "Authentication source error"
+msgstr ""
+
+msgid "Authentication status"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "Pedido inválido recebido"
@@ -37,6 +68,10 @@ msgstr "Pedido incorrecto efectuado ao serviço de descoberta de IdP"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "Erro de CAS"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
+msgid "Cannot retrieve session data"
+msgstr ""
 
 msgid "Change your home organization"
 msgstr "Alterar a sua organização de origem"
@@ -66,6 +101,9 @@ msgstr "Contactos:"
 msgid "Converted metadata"
 msgstr "Resultado da conversão de Metadados"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Não foi possível criar uma resposta de autenticação"
@@ -75,6 +113,9 @@ msgstr "Data de nascimento"
 
 msgid "Debug information"
 msgstr "Informação de debug"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Display name"
 msgstr "Nome de apresentação"
@@ -150,6 +191,9 @@ msgstr "Introduza uma breve explicação do sucedido..."
 msgid "Fax number"
 msgstr "Número de Fax"
 
+msgid "Format"
+msgstr ""
+
 msgid "Given name"
 msgstr "Nome Próprio"
 
@@ -158,6 +202,9 @@ msgstr "Voltar à página de instalação do SimpleSAMLphp"
 
 msgid "Go back to the file list"
 msgstr "Voltar à lista de ficheiros"
+
+msgid "Hello, Untranslated World!"
+msgstr ""
 
 msgid "Help desk homepage"
 msgstr "Página do serviço de apoio ao utilizador"
@@ -202,6 +249,9 @@ msgstr "Utilizador ou senha incorrecto"
 msgid "Incorrect username or password."
 msgstr "Nome de utilizador ou senha incorrecta."
 
+msgid "Information about your current session"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
@@ -220,6 +270,9 @@ msgstr "Ocorreu um erro ao contactar a base de dados LDAP."
 
 msgid "Labeled URI"
 msgstr "Página web"
+
+msgid "Language"
+msgstr ""
 
 msgid "Local identity number"
 msgstr "Número de Identificação local"
@@ -264,6 +317,10 @@ msgstr "Mensagem"
 msgid "Metadata"
 msgstr "Metadados"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:85
+msgid "Metadata not found"
+msgstr ""
+
 msgid "Metadata overview"
 msgstr "Vista geral dos metadados"
 
@@ -288,6 +345,10 @@ msgstr "RelayState não definido"
 msgid "No SAML message provided"
 msgstr "Mensagem SAML não fornecida"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
+msgid "No SAML request provided"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
 msgstr "Mensagem SAML não fornecida"
@@ -296,8 +357,15 @@ msgstr "Mensagem SAML não fornecida"
 msgid "No access"
 msgstr "Acesso negado"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:87
+msgid "No certificate"
+msgstr ""
+
 msgid "No errors found."
 msgstr "Não foram encontrados erros."
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "Não"
@@ -413,6 +481,9 @@ msgstr "Metadados SAML 2.0 SP"
 msgid "SAML 2.0 Service Provider (Hosted)"
 msgstr "Fornecedor de serviço (SP) SAML 2.0 (Local)"
 
+msgid "SAML Subject"
+msgstr ""
+
 msgid "Select"
 msgstr "Escolher"
 
@@ -468,8 +539,19 @@ msgstr "O software SimpleSAMLphp tem um problema de configuração."
 msgid "SimpleSAMLphp error"
 msgstr "Erro no SimpleSAMLphp"
 
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
+
 msgid "Some error occurred"
 msgstr "Ocorreu um erro"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
+msgid "State information lost"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:235
+msgid "State information lost, and no way to restart the request"
+msgstr ""
 
 msgid "Street"
 msgstr "Rua"
@@ -489,6 +571,10 @@ msgstr "Telefone"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
 msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
 msgstr "O Fornecedor de Identidade respondeu com um erro. (A resposta SAML contém um código de insucesso)"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:267
+msgid "The authentication was aborted by the user"
+msgstr ""
 
 msgid "The debug information below may be of interest to the administrator / help desk:"
 msgstr "A informação de debug abaixo pode ter interesse para o administrador / apoio ao utilizador:"
@@ -525,6 +611,10 @@ msgstr "Este pedido foi iniciado sem o parâmetro RelayState necessário para co
 msgid "The parameters sent to the discovery service were not according to specifications."
 msgstr "O pedido efectuado ao serviço de descoberta de IdP não está de acordo com as especificações."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
+msgid "The password in the configuration (auth.adminpassword) is not a hashed value. Full details on how to fix this are supplied at https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "A password presente na configuração (auth.adminpassword) tem o valor de omissão. Por favor altere esta password no ficheiro de configuração."
@@ -554,12 +644,24 @@ msgstr "Título"
 msgid "To look at the details for an SAML entity, click on the SAML entity header."
 msgstr "Para obter detalhes sobre uma entidade SAML, clique no título da entidade."
 
+msgid "Tracking number"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:227
+#, php-format
+msgid "Unable to locate metadata for %ENTITYID%"
+msgstr ""
+
 msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
 msgstr "Não foi possível sair de um ou mais serviços. Para garantir que todas as suas sessões são fechadas, é recomendado <i>fechar o seu browser</i>."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
 msgid "Unhandled exception"
 msgstr "Excepção não tratada"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
+msgid "Unknown certificate"
+msgstr ""
 
 msgid "User ID"
 msgstr "Identificação de utilizador"
@@ -579,6 +681,9 @@ msgstr "Fornecedor de identidade (IdP) WS-Federation (Remoto)"
 msgid "WS-Federation Service Provider (Hosted)"
 msgstr "Fornecedor de serviço (SP) WS-Federation (Local)"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "A resposta emitida pelo fornecedor de identidade não foi aceite."
@@ -590,6 +695,9 @@ msgstr "Ocorreu um erro ao criar uma resposta de autenticação neste fornecedor
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "Sem o seu nome de utilizador e senha não se pode autenticar para acesso ao serviço. Para obter ajuda, consulte o seu serviço de apoio ao utilizador."
 
+msgid "World"
+msgstr ""
+
 msgid "XML metadata"
 msgstr "Metadados em XML"
 
@@ -599,9 +707,17 @@ msgstr "Sim, todos os serviços"
 msgid "Yes, continue"
 msgstr "Sim, Aceito"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:188
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Na interface Assertion Consumer Service deve fornecer uma mensagem SAML do tipo Authentication Response."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:261
+msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
@@ -650,8 +766,15 @@ msgstr "A senha não foi enviada no seu pedido. Por favor tente de novo."
 msgid "Your attributes"
 msgstr "Os seus atributos"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:220
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr ""
+
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "A sua sessão é válida por %remaining% segundos."
 
 msgid "[Preferred choice]"
 msgstr "Escolha preferida"
+
+msgid "not set"
+msgstr ""

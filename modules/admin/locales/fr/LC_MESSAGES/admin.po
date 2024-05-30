@@ -55,6 +55,9 @@ msgstr "Extension Date/Heure"
 msgid "Deprecated"
 msgstr "Obsolète"
 
+msgid "Details"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:130
 msgid "Diagnostics on hostname, port and protocol"
 msgstr "Diagnostics sur le nom d'hôte, le port et le protocole"
@@ -68,6 +71,9 @@ msgstr "Fédération"
 
 msgid "Format"
 msgstr "Format"
+
+msgid "Go back to SimpleSAMLphp installation page"
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:223
 msgid "Hashing function"
@@ -113,6 +119,9 @@ msgstr "Extension LDAP (nécessaire si un backend LDAP est utilisé)"
 msgid "Log out"
 msgstr "Déconnexion"
 
+msgid "Logged out"
+msgstr ""
+
 msgid "Logout"
 msgstr "Déconnexion"
 
@@ -142,6 +151,9 @@ msgstr "Métadonnées"
 msgid "Metadata parser"
 msgstr "Analyseur de métadonnées"
 
+msgid "Modules"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:271
 msgid "Multibyte String extension"
 msgstr "Extension de chaîne multioctets"
@@ -165,6 +177,10 @@ msgstr "Extension PDO"
 #, php-format
 msgid "PHP %minimum% or newer is needed. You are running: %current%"
 msgstr "PHP %minimum% ou plus récent est nécessaire. Vous utilisez : %current%"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:259
+msgid "PHP intl extension"
+msgstr ""
 
 msgid "Parse"
 msgstr "Analyser"
@@ -232,6 +248,10 @@ msgstr "Test"
 msgid "Test Authentication Sources"
 msgstr "Tester les sources d'authentification"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:425
+msgid "The \"secretsalt\" configuration option may not contain a `%` sign."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:355
 msgid "The <code>technicalcontact_email</code> configuration option should be set"
 msgstr "L'option de configuration <code>technicalcontact_email</code> doit être définie"
@@ -277,6 +297,15 @@ msgstr "Vous utilisez la version <kbd>%version%</kbd>\""
 msgid "You can get the metadata XML on a dedicated URL:"
 msgstr "Vous pouvez obtenir les métadonnées XML sur une URL dédiée:"
 
+msgid "You have been logged out."
+msgstr ""
+
+msgid "You have the following modules installed"
+msgstr ""
+
+msgid "Your PHP installation"
+msgstr ""
+
 msgid "Your attributes"
 msgstr "Vos attributs"
 
@@ -295,11 +324,23 @@ msgstr "cURL (peut être requis par certains modules)"
 msgid "cURL (required if automatic version checks are used, also by some modules)"
 msgstr "cURL (nécessaire si des vérifications automatiques de version sont utilisées, également par certains modules)"
 
+msgid "default"
+msgstr ""
+
+msgid "disabled"
+msgstr ""
+
+msgid "enabled"
+msgstr ""
+
 msgid "expired"
 msgstr "expiré"
 
 msgid "expires"
 msgstr "expire"
+
+msgid "means the module is not enabled"
+msgstr ""
 
 msgid "new"
 msgstr "nouveau"

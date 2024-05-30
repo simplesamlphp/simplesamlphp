@@ -5,6 +5,10 @@ msgstr ""
 msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
 msgstr "Služba požaduje vaši identifikaci. Prosím vložte své jméno a heslo."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
+msgid "Admin password not set to a hashed value"
+msgstr ""
+
 msgid "Affiliation"
 msgstr "Vztah k organizaci"
 
@@ -50,6 +54,9 @@ msgstr "Přihlášení neproběhlo: Váš prohlížeč neodeslal žádný certif
 msgid "Authentication source error"
 msgstr "Chyba autentizačního zdroje"
 
+msgid "Authentication status"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "Zaslán špatný požadavek"
@@ -61,6 +68,10 @@ msgstr "Špatný požadavek pro prohledávací službu"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "CAS chyba"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
+msgid "Cannot retrieve session data"
+msgstr ""
 
 msgid "Certificates"
 msgstr "Certifikáty"
@@ -93,6 +104,9 @@ msgstr "Kontaktní informace"
 msgid "Converted metadata"
 msgstr "Konvertovaná metadata"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Nelze vytvořit odpověď"
@@ -102,6 +116,9 @@ msgstr "Datum narozeni"
 
 msgid "Debug information"
 msgstr "Ladicí informace"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Display name"
 msgstr "Zobrazované jméno"
@@ -180,6 +197,9 @@ msgstr "Vysvětlete, jak došlo k této chybě ..."
 msgid "Fax number"
 msgstr "Fax"
 
+msgid "Format"
+msgstr ""
+
 msgid "Given name"
 msgstr "Křestní jméno"
 
@@ -188,6 +208,9 @@ msgstr "Zpátky na SimpleSAMLphp instalační stránku"
 
 msgid "Go back to the file list"
 msgstr "Zpátky na seznam souborů"
+
+msgid "Hello, Untranslated World!"
+msgstr ""
 
 msgid "Help desk homepage"
 msgstr "Help desk"
@@ -235,6 +258,9 @@ msgstr "Špatné jméno a heslo."
 msgid "Incorrect username or password."
 msgstr "Nesprávné jméno nebo heslo."
 
+msgid "Information about your current session"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
@@ -253,6 +279,9 @@ msgstr "LDAP je databáze uživatelů, a když se chcete přihlásit, je potřeb
 
 msgid "Labeled URI"
 msgstr "URI"
+
+msgid "Language"
+msgstr ""
 
 msgid "Legal name"
 msgstr "Oficiální jméno"
@@ -328,6 +357,10 @@ msgstr "Nenalezen RelayState."
 msgid "No SAML message provided"
 msgstr "SAML zpráva nebyla zaslána"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
+msgid "No SAML request provided"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
 msgstr "Nebyla zaslána SAML odpověď"
@@ -342,6 +375,9 @@ msgstr "Chybí certifikát"
 
 msgid "No errors found."
 msgstr "Nenalezeny žádné chyby"
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "Ne"
@@ -457,6 +493,9 @@ msgstr "SAML 2.0 SP Metadata"
 msgid "SAML 2.0 Service Provider (Hosted)"
 msgstr "SAML 2.0 Service Provider (Hosted - lokální)"
 
+msgid "SAML Subject"
+msgstr ""
+
 msgid "Select"
 msgstr "Zvolit"
 
@@ -511,6 +550,9 @@ msgstr "SimpleSAMLphp je špatně nakonfigurovaný"
 
 msgid "SimpleSAMLphp error"
 msgstr "SimpleSAMLphp chyba"
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
 
 msgid "Some error occurred"
 msgstr "Nalezena chyba"
@@ -581,6 +623,10 @@ msgstr "Původce této žádosti nezadal parametr RelayState, který určuje kam
 msgid "The parameters sent to the discovery service were not according to specifications."
 msgstr "Parametr zaslaný vyhledávací službě neodpovídá specifikaci."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
+msgid "The password in the configuration (auth.adminpassword) is not a hashed value. Full details on how to fix this are supplied at https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "Heslo v konfiguraci (auth.adminpassword) není nastaveno. Prosím nastavte ho."
@@ -609,6 +655,9 @@ msgstr "Nadpis"
 
 msgid "To look at the details for an SAML entity, click on the SAML entity header."
 msgstr "Pro zobrazení detailu SAML entity klikni na hlavičku entity"
+
+msgid "Tracking number"
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
@@ -644,6 +693,9 @@ msgstr "WS-Federation Identity Provider (Remote - vzdálený)"
 msgid "WS-Federation Service Provider (Hosted)"
 msgstr "WS-Federation Service Provider (Hosted - lokální)"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Neakceptujeme odpověď zaslanou poskytovatelem identity."
@@ -655,6 +707,9 @@ msgstr "Při vytváření přihlašovací odpovědi tímto poskytovatelem identi
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "Bez jména a hesla se nemůžete identifikovat. Zkuste kontaktovat helpdesk své organizace."
 
+msgid "World"
+msgstr ""
+
 msgid "XML metadata"
 msgstr "XML metadata"
 
@@ -664,9 +719,17 @@ msgstr "Ano, všechny služby"
 msgid "Yes, continue"
 msgstr "Ano, akceptuji"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:188
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Přistupujete k Assertion Consumer Service rozhraní, ale neposíláte SAML Authentication Response."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:261
+msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
@@ -715,8 +778,15 @@ msgstr "Odeslal jste data do přihlašovací stránky, ale z nějakého důvodu 
 msgid "Your attributes"
 msgstr "Vaše atributy"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:220
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr ""
+
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Vaše sezení je platné ještě %remaining% sekund."
 
 msgid "[Preferred choice]"
 msgstr "[Preferovaná volba]"
+
+msgid "not set"
+msgstr ""

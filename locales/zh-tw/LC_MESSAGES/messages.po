@@ -17,6 +17,10 @@ msgstr "ADFS 服務提供者 Metadata"
 msgid "ADFS Service Provider (Remote)"
 msgstr "ADFS 服務提供者(遠端)"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
+msgid "Admin password not set to a hashed value"
+msgstr ""
+
 msgid "Affiliation"
 msgstr "連絡方式"
 
@@ -62,6 +66,9 @@ msgstr "認證錯誤：您的瀏覽器並未送出任何憑證"
 msgid "Authentication source error"
 msgstr "認證來源錯誤"
 
+msgid "Authentication status"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "錯誤請求"
@@ -73,6 +80,10 @@ msgstr "無效的請求於搜尋服務"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "CAS 錯誤"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
+msgid "Cannot retrieve session data"
+msgstr ""
 
 msgid "Certificates"
 msgstr "憑證"
@@ -105,6 +116,9 @@ msgstr "聯絡資訊："
 msgid "Converted metadata"
 msgstr "已轉換之 Metadata"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "無法建立認證回應"
@@ -114,6 +128,9 @@ msgstr "生日"
 
 msgid "Debug information"
 msgstr "除錯資訊"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Display name"
 msgstr "顯示名稱"
@@ -207,6 +224,9 @@ msgstr "回到檔案清單"
 msgid "Group membership"
 msgstr "群組成員"
 
+msgid "Hello, Untranslated World!"
+msgstr ""
+
 msgid "Help desk homepage"
 msgstr "協助頁面"
 
@@ -253,6 +273,9 @@ msgstr "帳號或密碼錯誤"
 msgid "Incorrect username or password."
 msgstr "錯誤的帳號或密碼。"
 
+msgid "Information about your current session"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
@@ -271,6 +294,9 @@ msgstr "LDAP 是使用這資料庫，當您嘗試登入時，我們必須連結�
 
 msgid "Labeled URI"
 msgstr "標籤網址"
+
+msgid "Language"
+msgstr ""
 
 msgid "Legal name"
 msgstr "正式名字"
@@ -346,6 +372,10 @@ msgstr "沒有 RelayState"
 msgid "No SAML message provided"
 msgstr "無法提供 SAML 訊息"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
+msgid "No SAML request provided"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
 msgstr "SAML 無回應"
@@ -360,6 +390,9 @@ msgstr "無憑證"
 
 msgid "No errors found."
 msgstr "沒有錯誤。"
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "不，取消"
@@ -545,6 +578,9 @@ msgstr "SimpleSAMLphp 出現無效設定。"
 msgid "SimpleSAMLphp error"
 msgstr "SimpleSAMLphp 異常"
 
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
+
 msgid "Some error occurred"
 msgstr "有錯誤發生"
 
@@ -614,6 +650,10 @@ msgstr "初始化請求並未提供一個中繼狀態 RelayState 參數說明下
 msgid "The parameters sent to the discovery service were not according to specifications."
 msgstr "傳遞至搜尋服務的參數並非按照規格所訂。"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
+msgid "The password in the configuration (auth.adminpassword) is not a hashed value. Full details on how to fix this are supplied at https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "設定檔裡的密碼(auth.adminpassword)還是預設值，請編輯設定檔。"
@@ -642,6 +682,9 @@ msgstr "標題"
 
 msgid "To look at the details for an SAML entity, click on the SAML entity header."
 msgstr "點選 SAML 物件標題，可檢視 SAML 物件詳細資訊。"
+
+msgid "Tracking number"
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
@@ -677,6 +720,9 @@ msgstr "WS-Federation 驗證提供者(遠端)"
 msgid "WS-Federation Service Provider (Hosted)"
 msgstr "WS-Federation 服務提供者(主機)"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "我們無法於驗證提供者完成回應傳送。"
@@ -688,6 +734,9 @@ msgstr "當這個驗證提供者嘗試建立一個驗證回應時，有個錯誤
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "喔喔！如果您的帳號和密碼錯誤，系統將無法提供相關服務！"
 
+msgid "World"
+msgstr ""
+
 msgid "XML metadata"
 msgstr "XML Metadata"
 
@@ -697,9 +746,17 @@ msgstr "Yea，登出所有服務"
 msgid "Yes, continue"
 msgstr "是，繼續"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:188
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "您連結消費者聲明服務界面，但是沒有提供一個 SAML 認證回應。"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:261
+msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
@@ -747,6 +804,10 @@ msgstr "您可能有傳送至網頁，但是密碼因為某些原因未傳送，
 
 msgid "Your attributes"
 msgstr "您的屬性值"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:220
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr ""
 
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "您的 session 從現在起還有 %remaining% 有效。"

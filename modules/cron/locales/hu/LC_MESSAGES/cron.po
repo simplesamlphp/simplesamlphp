@@ -8,6 +8,10 @@ msgstr "Kattintson a cron futtatásához."
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "A cron egy módszer unix rendszereken parancsok rendszeres futtatására."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/cron/hooks/hook_configpage.php:18
+msgid "Cron module information page"
+msgstr ""
+
 msgid "Cron ran at"
 msgstr "A cron ekkor futott le:"
 

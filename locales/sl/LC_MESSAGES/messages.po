@@ -5,6 +5,10 @@ msgstr ""
 msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
 msgstr "Storitev zahteva, da se prijavite. To pomeni, da je potreben vnos uporabniškega imena in gesla v spodnji polji."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
+msgid "Admin password not set to a hashed value"
+msgstr ""
+
 msgid "Affiliation"
 msgstr "Vloga uporabnika"
 
@@ -50,6 +54,9 @@ msgstr "Avtentikacija je spodletela: vaš spletni brskalnik ni posredoval digita
 msgid "Authentication source error"
 msgstr "Napaka v avtentikacijskem viru"
 
+msgid "Authentication status"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "Napaka v prejetem zahtevku."
@@ -61,6 +68,10 @@ msgstr "Zahteva, ki je bila poslana \"Discovery service-u\" je napačna."
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "CAS napaka"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
+msgid "Cannot retrieve session data"
+msgstr ""
 
 msgid "Certificates"
 msgstr "Digitalna potrdila"
@@ -93,6 +104,9 @@ msgstr "Kontakt"
 msgid "Converted metadata"
 msgstr "Pretvorjeni metapodatki"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Odgovora za odjavo ni bilo mogoče ustvariti"
@@ -102,6 +116,9 @@ msgstr "Datum rojstva"
 
 msgid "Debug information"
 msgstr "Pomoč pri odpravljanju napak (debug)"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Display name"
 msgstr "Prikazno ime"
@@ -180,6 +197,9 @@ msgstr "Opišite, kako je prišlo do napake..."
 msgid "Fax number"
 msgstr "Fax"
 
+msgid "Format"
+msgstr ""
+
 msgid "Given name"
 msgstr "Ime"
 
@@ -188,6 +208,9 @@ msgstr "Nazaj na namestitveno stran SimpleSAMLphp"
 
 msgid "Go back to the file list"
 msgstr "Vrnite se na seznam datotek"
+
+msgid "Hello, Untranslated World!"
+msgstr ""
 
 msgid "Help desk homepage"
 msgstr "Spletna stran tehnične podpore uporabnikom."
@@ -235,6 +258,9 @@ msgstr "Napačno uporabniško ime ali geslo"
 msgid "Incorrect username or password."
 msgstr "Napačno uporabniško ime ali geslo!"
 
+msgid "Information about your current session"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
@@ -253,6 +279,9 @@ msgstr "LDAP je zbirka uporabnikov. Ko se želite prijaviti, je potrebno prijavo
 
 msgid "Labeled URI"
 msgstr "Označen URI"
+
+msgid "Language"
+msgstr ""
 
 msgid "Legal name"
 msgstr "Uradno ime"
@@ -328,6 +357,10 @@ msgstr "RelayState parameter ne obstaja"
 msgid "No SAML message provided"
 msgstr "SAML sporočilo ni na voljo"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
+msgid "No SAML request provided"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
 msgstr "Nobenega odgovora za SAML ni na voljo"
@@ -342,6 +375,9 @@ msgstr "Ni digitalnega potrdila"
 
 msgid "No errors found."
 msgstr "Ni napak"
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "Ne"
@@ -457,6 +493,9 @@ msgstr "SAML 2.0 SP Metapodatki"
 msgid "SAML 2.0 Service Provider (Hosted)"
 msgstr "SAML 2.0 SP (Lokalni)"
 
+msgid "SAML Subject"
+msgstr ""
+
 msgid "Select"
 msgstr "Izberite"
 
@@ -511,6 +550,9 @@ msgstr "Nastavitve SimpleSAMLphp so napačne ali se med seboj izključujejo."
 
 msgid "SimpleSAMLphp error"
 msgstr "SimpleSAMLphp napaka"
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
 
 msgid "Some error occurred"
 msgstr "Prišlo je do napake!"
@@ -581,6 +623,10 @@ msgstr "Pobudnik te zahteve ni posredoval RelayState parametra."
 msgid "The parameters sent to the discovery service were not according to specifications."
 msgstr "Parametri, ki so bili poslani \"Discovery service-u\", ne ustrezajo specifikaciji."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
+msgid "The password in the configuration (auth.adminpassword) is not a hashed value. Full details on how to fix this are supplied at https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "V nastavitvah je geslo skrbnika (auth.adminpassword) še vedno nastavljeno na začetno vrednost. Spremenite ga!"
@@ -609,6 +655,9 @@ msgstr "Naziv"
 
 msgid "To look at the details for an SAML entity, click on the SAML entity header."
 msgstr "Za pregled podrobnosti SAML entitete, kliknite na glavo te entitete"
+
+msgid "Tracking number"
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
@@ -644,6 +693,9 @@ msgstr "WS-Federation Idp (Oddaljni)"
 msgid "WS-Federation Service Provider (Hosted)"
 msgstr "WS-Fedration SP (Lokalni)"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Odgovor, poslan od IdP-ja, ni bil sprejet."
@@ -655,6 +707,9 @@ msgstr "Ko je IdP želel ustvariti odgovor o prijavi, je prišlo do napake."
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "Žal se brez uporabniškega imena in gesla ne morete prijaviti in uporabljati storitev."
 
+msgid "World"
+msgstr ""
+
 msgid "XML metadata"
 msgstr "XML metapodatki"
 
@@ -664,9 +719,17 @@ msgstr "Da, odjavi me z vseh storitev"
 msgid "Yes, continue"
 msgstr "Da, nadaljuj"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:188
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Dostopili ste do \"Assertion Consumer Service\" vmesnika, ampak niste zagotovili \"SAML Authentication Responsa\"."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:261
+msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
@@ -715,8 +778,15 @@ msgstr "Prišlo je do napake, poskusite znova."
 msgid "Your attributes"
 msgstr "Vaši atributi"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:220
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr ""
+
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Vaša trenutna seja je veljavna še %remaining% sekund."
 
 msgid "[Preferred choice]"
 msgstr "Prioritetna izbira"
+
+msgid "not set"
+msgstr ""

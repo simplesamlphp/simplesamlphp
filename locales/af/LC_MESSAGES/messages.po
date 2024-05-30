@@ -5,6 +5,10 @@ msgstr ""
 msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
 msgstr "'n Diens vereis dat jy jouself identifiseer. Voer jou gebruikersnaam en wagwoord in die onderstaande vorm in."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
+msgid "Admin password not set to a hashed value"
+msgstr ""
+
 msgid "Affiliation"
 msgstr "Affiliasie"
 
@@ -47,6 +51,9 @@ msgstr "Verifikasie het misluk: Jou webblaaier het geen sertifikaat gestuur nie"
 msgid "Authentication source error"
 msgstr "Fout in verifikasie bron"
 
+msgid "Authentication status"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "Foutiewe versoek ontvang"
@@ -58,6 +65,10 @@ msgstr "Toegangsfout by die ontdekkings diens"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "CAS Fout"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
+msgid "Cannot retrieve session data"
+msgstr ""
 
 msgid "Change your home organization"
 msgstr "Verander jou tuisorganisasie"
@@ -81,6 +92,9 @@ msgstr "Instellings fout"
 msgid "Contact information:"
 msgstr "Kontak detail:"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Kon nie 'n verifikasie versoek skep nie"
@@ -90,6 +104,9 @@ msgstr "Geboorte datum"
 
 msgid "Debug information"
 msgstr "Ontleed informasie"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Display name"
 msgstr "Vertoon naam"
@@ -162,6 +179,9 @@ msgstr "Verduidelik wat jy gedoen het toe jy die probleem ervaar..."
 msgid "Fax number"
 msgstr "Faksnommer"
 
+msgid "Format"
+msgstr ""
+
 msgid "Given name"
 msgstr "Voornaam"
 
@@ -171,11 +191,17 @@ msgstr "Gaan terug na die SimpleSAMLphp installasie bladsy"
 msgid "Group membership"
 msgstr "Groeplidmaatskap"
 
+msgid "Hello, Untranslated World!"
+msgstr ""
+
 msgid "Help desk homepage"
 msgstr "Hulplyn-tuisblad"
 
 msgid "Help! I don't remember my password."
 msgstr "Hulp! Ek het nie my wagwoord onthou nie."
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr ""
 
 msgid "Home organization domain name"
 msgstr "Tuis Organisasie domein naam"
@@ -205,6 +231,9 @@ msgstr "Inkorrekte gebruikersnaam of wagwoord"
 msgid "Incorrect username or password."
 msgstr "Verkeerde gebruikersnaam of wagwoord."
 
+msgid "Information about your current session"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
@@ -223,6 +252,9 @@ msgstr "LDAP is die gebruikers databasis en waneer jy probeer inteken moet ons d
 
 msgid "Labeled URI"
 msgstr "URI"
+
+msgid "Language"
+msgstr ""
 
 msgid "Legal name"
 msgstr "Wettige naam"
@@ -247,6 +279,9 @@ msgstr "Meld aan"
 
 msgid "Login at"
 msgstr "Meld aan by"
+
+msgid "Logout"
+msgstr ""
 
 msgid "Logout failed"
 msgstr "Afmelding misluk"
@@ -286,6 +321,10 @@ msgstr "Geen aflos staat('RelayState')"
 msgid "No SAML message provided"
 msgstr "Geen SAML boodskap gevind nie"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
+msgid "No SAML request provided"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
 msgstr "Geen SAML versoek gevind nie"
@@ -297,6 +336,9 @@ msgstr "Geen toegang"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:87
 msgid "No certificate"
 msgstr "Geen sertifikaat"
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "Nee"
@@ -388,6 +430,9 @@ msgstr "Rapporteer foute"
 msgid "Return to service"
 msgstr "Terug na diens"
 
+msgid "SAML Subject"
+msgstr ""
+
 msgid "Select"
 msgstr "Kies"
 
@@ -400,6 +445,9 @@ msgstr "Stuur e-pos aan hulplyn"
 msgid "Send error report"
 msgstr "Stuur die fout verslag"
 
+msgid "Sending message"
+msgstr ""
+
 msgid "Service Provider"
 msgstr "Diens Verskaffer"
 
@@ -409,6 +457,9 @@ msgstr "SimpleSAMLphp is nie korrek ingestel nie"
 
 msgid "SimpleSAMLphp error"
 msgstr "SimpleSAMLphp-fout"
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
 msgid "State information lost"
@@ -461,6 +512,10 @@ msgstr "Die inisieerder van hierdie versoek het nie 'n aflos staat('RelayState')
 msgid "The parameters sent to the discovery service were not according to specifications."
 msgstr "Die gestuurde parameters na die ontdekkings diens was not volgens die korrekte spesifikasies nie."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
+msgid "The password in the configuration (auth.adminpassword) is not a hashed value. Full details on how to fix this are supplied at https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "Die wagwoord in die konfigurasie (auth.adminpassword) is nie aangepas nie. Redigeer asb die konfigurasie leër."
@@ -487,6 +542,9 @@ msgstr "Die fout is moontlik te danke aan onverwagte gedrag of weens inkorrekte 
 msgid "Title"
 msgstr "Titel"
 
+msgid "Tracking number"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
 msgid "Unable to locate metadata for %ENTITYID%"
@@ -512,6 +570,9 @@ msgstr "Gebruikerswagwoord"
 msgid "Username"
 msgstr "Gebruikersnaam"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Die antwoord vanaf die Indentiteits Verskaffer is nie aanvaar nie."
@@ -523,15 +584,26 @@ msgstr "Daar was 'n fout tydens die verifikasie skepping deur die Identiteits Ve
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "Jammer! - Sonder jou gebruikersnaam en wagwoord kan jy jouself nie vir toegang tot die diens identifiseer nie. Dalk is daar iemand wat jou kan help. Raadpleeg die hulplyn by jou organisasie!"
 
+msgid "World"
+msgstr ""
+
 msgid "Yes, all services"
 msgstr "Ja, alle dienste"
 
 msgid "Yes, continue"
 msgstr "Ja, voortgaan"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:188
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Jy het aansoek gedoen vir toegang na die Assertion Consumer Service koppelvlak, maar geen SAML Verifikasie Versoek is saam gestuur nie."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:261
+msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
@@ -565,5 +637,18 @@ msgstr "Jy het suksesvol afgemeld."
 msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
 msgstr "Jy het probeer aanmeld maar jou wagwoord is nie verstuur nie, probeer asb. weer."
 
+msgid "Your attributes"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:220
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr ""
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr ""
+
 msgid "[Preferred choice]"
 msgstr "[Verkies]"
+
+msgid "not set"
+msgstr ""

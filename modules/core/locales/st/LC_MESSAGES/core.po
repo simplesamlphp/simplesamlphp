@@ -2,14 +2,38 @@ msgid ""
 msgstr ""
 "X-Domain: core\n"
 
+msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
+msgstr ""
+
+msgid "An error has occurred"
+msgstr ""
+
+msgid "Check that the link you used to access the web site is correct."
+msgstr ""
+
 msgid "Close the web browser, and try again."
 msgstr "Kwala sebadi sa webe, ebe o leka hape."
+
+msgid "Continue"
+msgstr ""
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "Dikhuki di ka nna tsa kwalwa sebading sa webe."
 
+msgid "Do you want to logout from all the services above?"
+msgstr ""
+
+msgid "Enter your username and password"
+msgstr ""
+
+msgid "Error report sent"
+msgstr ""
+
 msgid "Go back to the previous page and try again."
 msgstr "Kgutlela leqepheng le fetileng ebe o leka hape."
+
+msgid "Help! I don't remember my password."
+msgstr ""
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Haeba bothata bona bo phehella, o ka bo tlaleha ho batsamaisi ba sistimi."
@@ -20,11 +44,32 @@ msgstr "Haeba o mohlahisi ya sebedisang tharollo ya ho saena hang, o na le botha
 msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "Haeba o le mosebedisi ya fumaneng phoso ena kamora ho latela lehokela le setsing, o tlameha ho tlaleha phoso ena ho monga setsi."
 
+msgid "If you are the administrator of this installation, please refer to the <a href=\"https://simplesamlphp.org/docs/\">SimpleSAMLphp documentation</a> for how to configure and interact with the software."
+msgstr ""
+
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr ""
+
 msgid "Incorrect Attributes"
 msgstr "Makgabane a Fosahetseng"
 
+msgid "Logging out..."
+msgstr ""
+
+msgid "Login"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
 msgid "Missing cookie"
 msgstr "Khukhi e siyo"
+
+msgid "No"
+msgstr ""
+
+msgid "No, only %SP%"
+msgstr ""
 
 msgid "One or more of the attributes supplied by your identity provider did not contain the expected number of values."
 msgstr "E le nngwe kapa ho feta ya makgabane a fanweng ke wena ke mofani wa boitsebiso wa hao ha e na lenane le nepahetseng la dipalo."
@@ -32,11 +77,35 @@ msgstr "E le nngwe kapa ho feta ya makgabane a fanweng ke wena ke mofani wa boit
 msgid "Opened the web browser with tabs saved from the previous session."
 msgstr "O butse sebadi sa webe ka di-tab tse bolokilweng sesheneng e fetileng."
 
+msgid "Organization"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Processing..."
+msgstr ""
+
+msgid "Remember me"
+msgstr ""
+
+msgid "Remember my organization"
+msgstr ""
+
+msgid "Remember my username"
+msgstr ""
+
 msgid "Report this error"
 msgstr "Tlaleha phoso ena"
 
 msgid "Retry"
 msgstr "Khukhi e siyo"
+
+msgid "Retry login"
+msgstr ""
+
+msgid "SimpleSAMLphp"
+msgstr ""
 
 msgid "State information lost"
 msgstr "Tlhahisoleseding ya provense e lahlehile"
@@ -44,8 +113,26 @@ msgstr "Tlhahisoleseding ya provense e lahlehile"
 msgid "Suggestions for resolving this problem:"
 msgstr "Ditlhahiso bakeng sa ho rarolla bothata bona:"
 
+msgid "The authentication procesd has failed."
+msgstr ""
+
+msgid "The authorization procesd has failed."
+msgstr ""
+
+msgid "The error report has been sent to the administrators."
+msgstr ""
+
+msgid "The identification procesd has failed."
+msgstr ""
+
+msgid "The link used to get here was bad, perhaps a bookmark."
+msgstr ""
+
 msgid "The problematic attribute(s) are:"
 msgstr "Makgabane a nang le mathata ke:"
+
+msgid "There was an issue while signing you in."
+msgstr ""
 
 msgid "This error may be caused by:"
 msgstr "Phoso ena e ka bakwa ke:"
@@ -53,15 +140,54 @@ msgstr "Phoso ena e ka bakwa ke:"
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Bona ke bothata bo ka kgonahalang ka ho fetisisa ho mofani wa tshebeletso kapa mofani wa tshebeletso."
 
+msgid "This is the front page of the SimpleSAMLphp authentication software. There's not much to see here."
+msgstr ""
+
+msgid "Too short interval between single sign on events."
+msgstr ""
+
+msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr ""
+
+msgid "Username"
+msgstr ""
+
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Ho sebedisa dikonopo tsa pele le morao sebading sa webo."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr ""
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "Ha re kgone ho fumana tlhahisoleseding ka provenseng bakeng sa kopo ya ha jwale."
 
+msgid "Welcome"
+msgstr ""
+
+msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
+msgstr ""
+
+msgid "Yes, all services"
+msgstr ""
+
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "O bonahala o kwetse dikhukhi sebading sa hao. Ka kopo hlahloba disetting sebading sa hao."
+
+msgid "You are also logged in on these services:"
+msgstr ""
+
+msgid "You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+
+msgid "You are now successfully logged out from %SP%."
+msgstr ""
 
 #, python-format
 msgid "got %GOT% values, want %WANT%"
 msgstr "o fumane dipalo tse %GOT%, o batla tse %WANT%"
+
+msgid "got %got% values, want %want%"
+msgstr ""
+
+msgid "logout is not supported"
+msgstr ""
