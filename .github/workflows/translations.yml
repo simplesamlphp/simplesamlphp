@@ -135,8 +135,8 @@ jobs:
           # Default: ignore
           pathspec_error_handling: exitImmediately
 
-    - name: Push changes
-      uses: ad-m/github-push-action@master
+      - name: Push changes
+        uses: ad-m/github-push-action@master
 
   cleanup:
     name: Cleanup artifacts
