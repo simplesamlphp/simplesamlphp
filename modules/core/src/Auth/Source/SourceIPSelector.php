@@ -47,6 +47,11 @@ class SourceIPSelector extends AbstractSourceSelector
      */
     protected array $zones = [];
 
+    public function nomerge()
+    {
+        $var = 7;
+        return $var;
+    }
 
     /**
      * Constructor for this authentication source.
@@ -102,7 +107,7 @@ class SourceIPSelector extends AbstractSourceSelector
                     Logger::info(sprintf(
                         "core:SourceIPSelector:  Selecting zone `%s` based on client IP %s",
                         $name,
-                        $ip
+                        $ip,
                     ));
                     $source = $zone['source'];
                     break;
