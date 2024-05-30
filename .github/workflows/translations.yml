@@ -55,7 +55,9 @@ jobs:
           # token: ${{ secrets.PAT_TOKEN }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.ref }}
-
+          persist-credentials: false
+          fetch-depth: 0
+        
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
@@ -140,6 +142,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           branch: ${{ github.ref_name }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
         
   cleanup:
     name: Cleanup artifacts
