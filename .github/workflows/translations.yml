@@ -61,7 +61,7 @@ jobs:
           echo "Changed files"
           echo $SourceDiff
 
-          $HasSourceDiff = $SourceDiff.Length -gt -1
+          $HasSourceDiff = $SourceDiff.Length -gt 0
           echo "($($SourceDiff.Length) changes)"
           echo "files_changed=$HasSourceDiff" >> $env:GITHUB_OUTPUT
 
