@@ -1116,16 +1116,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-adfs",
-            "version": "v2.1.4",
+            "version": "v2.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-adfs.git",
-                "reference": "2c3717e2397dccfffaf3fc38479ad2b4a9fc20c2"
+                "reference": "f2202b9d8d4c14f09690f4781988e435f7dfd405"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/2c3717e2397dccfffaf3fc38479ad2b4a9fc20c2",
-                "reference": "2c3717e2397dccfffaf3fc38479ad2b4a9fc20c2",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/f2202b9d8d4c14f09690f4781988e435f7dfd405",
+                "reference": "f2202b9d8d4c14f09690f4781988e435f7dfd405",
                 "shasum": ""
             },
             "require": {
@@ -1168,7 +1168,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-module-adfs/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-module-adfs"
             },
-            "time": "2024-04-30T19:34:36+00:00"
+            "time": "2024-05-27T12:30:45+00:00"
         },
         {
             "name": "simplesamlphp/xml-common",
