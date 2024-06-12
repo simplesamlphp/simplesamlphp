@@ -5,11 +5,16 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
-## Version 2.0.13
+## Version 2.0.14
 
 Released TBD
 
+## Version 2.0.13
+
+Released 2024-06-12
+
 * Added a missing use-statement that would cause a 'class not found' exception.
+* Updated composer/composer dependency (CVE-2024-35241, CVE-2024-35242)
 
 ## Version 2.0.12
 
