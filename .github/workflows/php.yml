@@ -272,3 +272,17 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
           verbose: true
+
+  cleanup:
+    name: Cleanup artifacts
+    needs: [unit-tests-linux, coverage]
+    runs-on: [ubuntu-latest]
+    if: |
+      always() &&
+      needs.coverage.result == 'success' ||
+      (needs.unit-tests-linux.result == 'success' && needs.coverage.result == 'skipped')
+
+    steps:
+      - uses: geekyeggo/delete-artifact@v5
+        with:
+          name: coverage-data
