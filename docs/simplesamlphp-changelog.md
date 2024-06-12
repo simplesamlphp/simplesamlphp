@@ -13,6 +13,7 @@ Released TBD
 
 Released 2024-06-12
 
+* Fix deprecation notice for PHP 8.3
 * Added a missing use-statement that would cause a 'class not found' exception.
 * Updated composer/composer dependency (CVE-2024-35241, CVE-2024-35242)
 
