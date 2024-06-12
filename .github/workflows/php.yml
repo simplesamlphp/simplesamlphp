@@ -303,7 +303,7 @@ jobs:
     if: |
       always() &&
       needs.coverage.result == 'success' ||
-      (needs.unit-tests-linux == 'success' && needs.coverage == 'skipped')
+      (needs.unit-tests-linux.result == 'success' && needs.coverage.result == 'skipped')
 
     steps:
       - uses: geekyeggo/delete-artifact@v5
