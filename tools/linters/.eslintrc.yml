@@ -1,9 +1,0 @@
----
-
-extends: ["plugin:json/recommended"]
-
-ignorePatterns: ["!/tools/linters/.eslintrc.yml", "!/tools/linters/.stylelintrc.json"]
-
-parserOptions:
-  sourceType: "module"
-  ecmaVersion: 2015
