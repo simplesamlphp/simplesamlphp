@@ -29,30 +29,30 @@ msgstr "D'Authentifikatioun gouf ofgebrach"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:191
 msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
-msgstr ""
+msgstr "Authentifikatiounsfeeler an der Source %AUTHSOURCE%. De Grond war: %REASON% "
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:203
 msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
-msgstr ""
+msgstr "D'Authentifikatioun ass feelgeschloen: Den Zertifikat deen Äre Browser geschéckt huet ass ongülteg oder kann net gelies ginn"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:258
 msgid "Authentication failed: the certificate your browser sent is unknown"
-msgstr ""
+msgstr "D'Authentifikatioun ass feelgeschloen: Den Zertifikat deen Äre Browser geschéckt huet ass onbekannt"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
 msgid "Authentication failed: your browser did not send any certificate"
-msgstr ""
+msgstr "D'Authentifikatioun ass feelgeschloen: Äre Browser huet keen Zertifikat geschéckt"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:72
 msgid "Authentication source error"
-msgstr ""
+msgstr "D'Authentifikatioun Source Feeler"
 
 msgid "Authentication status"
-msgstr ""
+msgstr "Authentifikatiouns-Status"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
-msgstr ""
+msgstr "Schlecht Ufro kritt"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:77
 msgid "Bad request to discovery service"
@@ -64,7 +64,7 @@ msgstr "CAS Feeler"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
 msgid "Cannot retrieve session data"
-msgstr ""
+msgstr "Kann d'Sessiouns Daten net ofruffen"
 
 msgid "Common name"
 msgstr "Allgemengen Numm"
@@ -74,7 +74,7 @@ msgid "Configuration error"
 msgstr "Konfiguratiounsfeeler"
 
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "An den Tëschespäicher kopéieren"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
@@ -87,7 +87,7 @@ msgid "Debug information"
 msgstr "Debug Informatiounen"
 
 msgid "Debug information to be used by your support staff"
-msgstr ""
+msgstr "Debug Informatiounen déi vun eisem Support genotzt ginn"
 
 msgid "Display name"
 msgstr "Ugewisenen Numm"
@@ -106,7 +106,7 @@ msgstr "E-mail Adress"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:260
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
-msgstr ""
+msgstr "Entweder gouf kee Benotzer mat dem Numm fonnt, oder d'Passwuert dat dir uginn hutt ass falsch. Kontrolléiert w.e.g.  de Benotzer a probéiert nach eng Kéiere"
 
 msgid "Enter your username and password"
 msgstr "Gitt w.e.g Ären Benotzernumm an d Passwuert an"
@@ -139,7 +139,7 @@ msgstr "Feeler beim Beaarbechte vun der Logout Ufro"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
 msgid "Error received from Identity Provider"
-msgstr ""
+msgstr "Feeler vum Identity Provider kritt"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
 msgid "Error when communicating with the CAS server."
@@ -152,19 +152,19 @@ msgid "Fax number"
 msgstr "Fax Nummer"
 
 msgid "Format"
-msgstr ""
+msgstr "Format"
 
 msgid "Given name"
 msgstr "Familljennumm"
 
 msgid "Hello, Untranslated World!"
-msgstr ""
+msgstr "Hallo, net iwwersate Welt"
 
 msgid "Help! I don't remember my password."
 msgstr "Hëllef! Ech hu mäi Passwuert vergiess!"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr ""
+msgstr "Hallo, dëst ass d'Status Säit vu SimpleSAMLphp. Hei kënnt Dir kucken op Är Sessioun ausgelaf ass, wéi laang se gülteg ass, an all d'Attributer déi un Ärer Sessioun hänken."
 
 msgid "Home organization domain name"
 msgstr "Eendeiteg Heemorganisatiouns ID"
@@ -186,13 +186,13 @@ msgstr "Wann Dir ons dëse Feeler matdeelt, da schéckt w.e.g och d Tracking ID
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
 msgid "Incorrect username or password"
-msgstr ""
+msgstr "Falsche Benotzernumm oder Passwuert"
 
 msgid "Incorrect username or password."
 msgstr "Falsche Benotzernumm oder Passwuert"
 
 msgid "Information about your current session"
-msgstr ""
+msgstr "Informatiounen iwwer Är aktuell Sessioun"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
@@ -214,7 +214,7 @@ msgid "Labeled URI"
 msgstr "Beschrëften URI"
 
 msgid "Language"
-msgstr ""
+msgstr "Sprooch"
 
 msgid "Local identity number"
 msgstr "Identitéitsnummer"
@@ -223,14 +223,14 @@ msgid "Locality"
 msgstr "Uertschaft"
 
 msgid "Login"
-msgstr "Login"
+msgstr "Aloggen"
 
 msgid "Logout"
-msgstr ""
+msgstr "Ausloggen"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:81
 msgid "Logout information lost"
-msgstr ""
+msgstr "Auslogg Informatioune verluer"
 
 msgid "Mail"
 msgstr "E-mail"
@@ -240,7 +240,7 @@ msgstr "Manager"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:85
 msgid "Metadata not found"
-msgstr ""
+msgstr "Metadate net fonnt"
 
 msgid "Mobile"
 msgstr "GSM Nummer"
@@ -259,7 +259,7 @@ msgstr "Keen SAML Message uginn"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
 msgid "No SAML request provided"
-msgstr ""
+msgstr "Keng SAML Ufro ginn "
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
@@ -271,10 +271,10 @@ msgstr "Keen Zougrëff"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:87
 msgid "No certificate"
-msgstr ""
+msgstr "Keen Zertifikat"
 
 msgid "No identity providers found. Cannot continue."
-msgstr ""
+msgstr "Kent Identity Provider fonnt. Ka net weiderfueren"
 
 msgid "No, cancel"
 msgstr "Nee"
@@ -303,7 +303,7 @@ msgstr "Organisatiounseenheet"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:90
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:91
 msgid "Page not found"
-msgstr ""
+msgstr "Säit net fonnt"
 
 msgid "Password"
 msgstr "Passwuert"
@@ -319,7 +319,7 @@ msgid "Person's principal name at home organization"
 msgstr "Haaptnumm bei der Heemorganisatioun"
 
 msgid "Please select the identity provider where you want to authenticate:"
-msgstr ""
+msgstr "Wielt w.e.g. den Identity Provider bei deem Dir Iech authentifizéiere wëllt:"
 
 msgid "Post office box"
 msgstr "Postschléissfach"
@@ -340,25 +340,25 @@ msgid "Remember"
 msgstr "Zoustëmmung verhalen"
 
 msgid "Remember my choice"
-msgstr ""
+msgstr "Verhal mäi Choix"
 
 msgid "Report errors"
 msgstr "Feeler matdeelen"
 
 msgid "SAML Subject"
-msgstr ""
+msgstr "SAML Sijet"
 
 msgid "Select"
-msgstr ""
+msgstr "Wielt"
 
 msgid "Select your identity provider"
-msgstr ""
+msgstr "Wielt Ären Identity Provider"
 
 msgid "Send error report"
 msgstr "Feelerbericht schécken"
 
 msgid "Sending message"
-msgstr ""
+msgstr "Schéckt Message"
 
 msgid "Service Provider"
 msgstr "Service Provider"
@@ -371,7 +371,7 @@ msgid "SimpleSAMLphp error"
 msgstr "SimpleSAMLphp Feeler"
 
 msgid "Since your browser does not support Javascript, you must press the button below to proceed."
-msgstr ""
+msgstr "Well Äre Browser kee Javascript ënnerstëtzt, musst Dir de Knäppchen hei drënner drécken"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
 msgid "State information lost"
