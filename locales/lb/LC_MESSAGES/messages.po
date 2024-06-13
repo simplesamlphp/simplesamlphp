@@ -349,7 +349,7 @@ msgid "SAML Subject"
 msgstr "SAML Sijet"
 
 msgid "Select"
-msgstr "Wielt"
+msgstr "Wielt"
 
 msgid "Select your identity provider"
 msgstr "Wielt Ären Identity Provider"
@@ -375,11 +375,11 @@ msgstr "Well Äre Browser kee Javascript ënnerstëtzt, musst Dir de Knäppchen
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
 msgid "State information lost"
-msgstr ""
+msgstr "Status Informatioune gounge verluer"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:234
 msgid "State information lost, and no way to restart the request"
-msgstr ""
+msgstr "Status Informatioune gounge verluer an et ass net méiglech d'Ufro nei ze starten"
 
 msgid "Street"
 msgstr "Strooss"
@@ -392,22 +392,22 @@ msgstr "Telefonsnummer"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
 msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
-msgstr ""
+msgstr "Den Identity Provider huet mat engem Feeler geäntwert. (De Status Code an der SAML Äntwert war keen Erfolleg)"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:259
 msgid "The authentication was aborted by the user"
-msgstr ""
+msgstr "D'Authentifikatioun gouf vum Benotzer ofgebrach"
 
 msgid "The debug information below may be of interest to the administrator / help desk:"
 msgstr "Déi Debug Informatiounen hei drënner kéinten den Administrateur interesséieren:"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:235
 msgid "The given page was not found. The URL was: %URL%"
-msgstr ""
+msgstr "D'ugi Säit gouf net fonnt. D'ULR war %URL%"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:236
 msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
-msgstr ""
+msgstr "D'ugi Säit gouf net fonnt. De Grond war %REASON% D'ULR war %URL%"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:209
 msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
@@ -427,7 +427,7 @@ msgstr "D'Passwuert an der Konfiguratioun (auth.adminpassword) ass bis elo net g
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:193
 msgid "There is an error in the request to this page. The reason was: %REASON%"
-msgstr ""
+msgstr "Et gouf e Feeler an der Ufro op dës Säit. De Grond war %REASON%"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:222
 msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
@@ -448,20 +448,20 @@ msgid "Title"
 msgstr "Zougehéiregkeet"
 
 msgid "Tracking number"
-msgstr ""
+msgstr "Tracking Nummer"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
 msgid "Unable to locate metadata for %ENTITYID%"
-msgstr ""
+msgstr "Net méiglech d'Metadate fir %ENTITYID% ze fannen"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
 msgid "Unhandled exception"
-msgstr ""
+msgstr "Unerwaart Exceptioun"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:100
 msgid "Unknown certificate"
-msgstr ""
+msgstr "Onbekannten Zertifikat"
 
 msgid "User ID"
 msgstr "Benotzer ID"
@@ -470,7 +470,7 @@ msgid "Username"
 msgstr "Benotzernumm"
 
 msgid "Warning"
-msgstr ""
+msgstr "Warnung"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
@@ -484,7 +484,7 @@ msgid "Without your username and password you cannot authenticate yourself for a
 msgstr "Ouni Äre Benotzernumm an d'Passwuert kënnt Dir Iech net authentifizéieren an op de Service zougräifen."
 
 msgid "World"
-msgstr ""
+msgstr "Welt"
 
 msgid "Yes, continue"
 msgstr "Jo"
@@ -510,19 +510,19 @@ msgid "You did not present a valid certificate."
 msgstr "Dir hutt kee gültegen Zertifikat"
 
 msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
-msgstr "Der hutt eppes un d'Login Säit geschéckt mee aus iergendengem Grond huet d Passwuert gefeelt. Probéiert w.e.g nach eng Kéier."
+msgstr "Dir hutt eppes un d'Login Säit geschéckt mee aus iergendengem Grond huet d'Passwuert gefeelt. Probéiert w.e.g nach eng Kéier."
 
 msgid "Your attributes"
-msgstr ""
+msgstr "Är Attributer"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:219
 msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
-msgstr ""
+msgstr "Är Sessioun konnt wéinst engem technesche Problem net opgeruff ginn. Probéiert w.e.g. an e puer Minutten nach eng Kéier"
 
 msgid "Your session is valid for %remaining% seconds from now."
-msgstr ""
+msgstr "Är Sessioun ass valid fir %remaining% Sekonnen ab elo"
 
 msgid "not set"
 
 
-msgstr ""
+msgstr "net gesat"
