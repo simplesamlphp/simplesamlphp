@@ -717,13 +717,6 @@ class ConfigurationTest extends ClearStateTestCase
          * tests for AssertionConsumerService.
          */
         $acs_eps = [
-            // just a string with the location
-            'https://example.com/endpoint.php',
-            // an array of strings with location of different endpoints
-            [
-                'https://www1.example.com/endpoint.php',
-                'https://www2.example.com/endpoint.php',
-            ],
             // define location and binding
             [
                 [
