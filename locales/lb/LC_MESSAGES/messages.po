@@ -3,29 +3,29 @@ msgstr ""
 "X-Domain: messages\n"
 
 msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
-msgstr "En Service huet ungefrot aerch ze authentifizéiren. Daat heescht daer musst aeren Benotzernumm an d'Passwuert an de Formulairen heidrënner angin."
+msgstr "E Service huet ugefrot Iech ze authentifizéieren. Dat heescht Dir musst Äre Benotzernumm an d'Passwuert an de Formulairen heidrënner aginn."
 
 msgid "Affiliation"
 msgstr "Zesummenschloss"
 
 msgid "Affiliation at home organization"
-msgstr "Gruppen Zougehéiregket"
+msgstr "Gruppen Zougehéiregkeet"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:196
 msgid "An error occurred when trying to create the SAML request."
-msgstr "Beim Erstellen vun der SAML Unfro as en Fehler geschitt."
+msgstr "Beim Erstellen vun der SAML Ufro ass e Feeler geschitt."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:218
 msgid "An error occurred when trying to process the Logout Request."
-msgstr "En Fehler as geschit beim Bearbeschten vun der Logout Unfro"
+msgstr "E Feeler ass geschitt beim Beaarbechte vun der Logout Ufro"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:257
 msgid "An unhandled exception was thrown."
-msgstr ""
+msgstr "Eng onerwaart Exceptioun ass opgetrueden "
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
 msgid "Authentication aborted"
-msgstr ""
+msgstr "D'Authentifikatioun gouf ofgebrach"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:191
 msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
@@ -56,32 +56,32 @@ msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:77
 msgid "Bad request to discovery service"
-msgstr "Falsch Unfro fir den Discovery Service"
+msgstr "Falsch Ufro fir den Discovery Service"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
-msgstr "CAS Fehler"
+msgstr "CAS Feeler"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
 msgid "Cannot retrieve session data"
 msgstr ""
 
 msgid "Common name"
-msgstr "Allgeméngen Numm"
+msgstr "Allgemengen Numm"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:75
 msgid "Configuration error"
-msgstr "Konfiguratiounsfehler"
+msgstr "Konfiguratiounsfeeler"
 
 msgid "Copy to clipboard"
 msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
-msgstr "Et wor net méiglech eng Authenticatiounsaentwert ze erstellen"
+msgstr "Et wor net méiglech eng Authentifikatiouns-Äntwert ze erstellen"
 
 msgid "Date of birth"
-msgstr "Gebuertsdaag"
+msgstr "Gebuertsdag"
 
 msgid "Debug information"
 msgstr "Debug Informatiounen"
@@ -109,33 +109,33 @@ msgid "Either no user with the given username could be found, or the password yo
 msgstr ""
 
 msgid "Enter your username and password"
-msgstr "Gid w.e.g Aeren Benotzernumm an d Passwuert an"
+msgstr "Gitt w.e.g Ären Benotzernumm an d Passwuert an"
 
 msgid "Entitlement regarding the service"
 msgstr "Berechtegung"
 
 msgid "Error"
-msgstr "Fehler"
+msgstr "Feeler"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:76
 msgid "Error creating request"
-msgstr "Fehler beim Erstellen vun der Unfro"
+msgstr "Feeler beim Erstellen vun der Ufro"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
 msgid "Error loading metadata"
-msgstr "Fehler beim Lueden vun den Meta Données"
+msgstr "Feeler beim Luede vun de Meta Donnéeë"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
 msgid "Error processing request from Service Provider"
-msgstr "Fehler beim Bearbeschten vun der Unfro vum Service Provider"
+msgstr "Feeler beim Beaarbechte vun der Ufro vum Service Provider"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
 msgid "Error processing response from Identity Provider"
-msgstr "Fehler beim Bearbeschten vun de Aentwert vum IdP"
+msgstr "Feeler beim Beaarbechte vun de Äntwert vum IdP"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:82
 msgid "Error processing the Logout Request"
-msgstr "Fehler beim Bearbeschten vun der Logout Unfro"
+msgstr "Feeler beim Beaarbechte vun der Logout Ufro"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
 msgid "Error received from Identity Provider"
@@ -143,10 +143,10 @@ msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
 msgid "Error when communicating with the CAS server."
-msgstr "Fehler beim Kommunizeiren mam CAS Server"
+msgstr "Feeler beim Kommunizéiere mam CAS Server"
 
 msgid "Explain what you did when this error occurred..."
-msgstr "Erklaert w.e.g genau waat dir gemaacht hud fir den Fehler auszeléisen..."
+msgstr "Erkläert w.e.g genau wat Dir gemaacht hutt fir de Feeler auszeléisen..."
 
 msgid "Fax number"
 msgstr "Fax Nummer"
@@ -155,13 +155,13 @@ msgid "Format"
 msgstr ""
 
 msgid "Given name"
-msgstr "Familliennumm"
+msgstr "Familljennumm"
 
 msgid "Hello, Untranslated World!"
 msgstr ""
 
 msgid "Help! I don't remember my password."
-msgstr "Hellef! Ech hun mäin Passwuert vergiess!"
+msgstr "Hëllef! Ech hu mäi Passwuert vergiess!"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr ""
@@ -176,20 +176,20 @@ msgid "Home telephone"
 msgstr "Haustelefon"
 
 msgid "How to get help"
-msgstr "Wéi een Hellëf kritt"
+msgstr "Wéi een Hëllef kritt"
 
 msgid "Identity number assigned by public authorities"
-msgstr "Sozialversëcherungsnummer"
+msgstr "Sozialversécherungsnummer"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "Wann dir ons dësen Fehler matdeelt, dann schéckt w.e.g och d Tracking ID mat. Dei ennerstëtzt den System Administrator aer Session an den Logs erëmzefannen:"
+msgstr "Wann Dir ons dëse Feeler matdeelt, da schéckt w.e.g och d Tracking ID mat. Déi ënnerstëtzt de System Administrateur Är Sessioun an de Logs erëmzefannen:"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
 msgid "Incorrect username or password"
 msgstr ""
 
 msgid "Incorrect username or password."
-msgstr "Falschen Benotzernumm oder Passwuert"
+msgstr "Falsche Benotzernumm oder Passwuert"
 
 msgid "Information about your current session"
 msgstr ""
@@ -200,18 +200,18 @@ msgid "Invalid certificate"
 msgstr "Ongültegen Zertifikat"
 
 msgid "JPEG Photo"
-msgstr "Photo am JPEG Format"
+msgstr "Foto am JPEG Format"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:80
 msgid "LDAP Error"
-msgstr "LDAP Fehler"
+msgstr "LDAP Feeler"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:206
 msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
-msgstr "LDAP as eng Benotzerdatenbank an wann een anloggen well gët se kontaktéiert. Dobai as des Kéier een Fehler geschitt."
+msgstr "LDAP ass eng Benotzerdatenbank a wann een alogge well geet se kontaktéiert. Dobäi ass des Kéier ee Fehler geschitt."
 
 msgid "Labeled URI"
-msgstr "Beschrëfteten URI"
+msgstr "Beschrëften URI"
 
 msgid "Language"
 msgstr ""
@@ -250,12 +250,12 @@ msgstr "Spëtznumm"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:88
 msgid "No RelayState"
-msgstr "Den ReplayState Parameter fehlt"
+msgstr "De ReplayState Parameter feelt"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:71
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
 msgid "No SAML message provided"
-msgstr "Keen SAML message unginn"
+msgstr "Keen SAML Message uginn"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
 msgid "No SAML request provided"
@@ -263,7 +263,7 @@ msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
-msgstr "Keng SAML Aentwert ungin"
+msgstr "Keng SAML Äntwert uginn"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:86
 msgid "No access"
@@ -280,7 +280,7 @@ msgid "No, cancel"
 msgstr "Nee"
 
 msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "Optionnal kennt dir aer E-mail Adress angin, fir dass den Administrator aerch fir weider Froen kontaktéieren kann:"
+msgstr "Optional kennt dir Är E-mail Adress aginn, fir dass den Administrateur Iech fir weider Froe kontaktéiere kann:"
 
 msgid "Organization"
 msgstr "Organisatioun"
@@ -292,7 +292,7 @@ msgid "Organization's legal name"
 msgstr "Numm vun der Organisatioun"
 
 msgid "Organizational homepage"
-msgstr "Organisatiouns Websait"
+msgstr "Organisatiouns Websäit"
 
 msgid "Organizational number"
 msgstr "Organisatiounsnummer"
@@ -310,7 +310,7 @@ msgstr "Passwuert"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
 msgid "Password not set"
-msgstr "Passwuert net angin"
+msgstr "Passwuert net aginn"
 
 msgid "Persistent pseudonymous ID"
 msgstr "Persistent anonym ID"
@@ -331,7 +331,7 @@ msgid "Postal code"
 msgstr "Postleitzuel"
 
 msgid "Preferred language"
-msgstr "Lieblingssprooch"
+msgstr "Liblingssprooch"
 
 msgid "Primary affiliation"
 msgstr "Haapt Zougehéiregkeet"
@@ -343,7 +343,7 @@ msgid "Remember my choice"
 msgstr ""
 
 msgid "Report errors"
-msgstr "Fehler matdeelen"
+msgstr "Feeler matdeelen"
 
 msgid "SAML Subject"
 msgstr ""
@@ -355,7 +355,7 @@ msgid "Select your identity provider"
 msgstr ""
 
 msgid "Send error report"
-msgstr "Fehlerbericht schécken"
+msgstr "Feelerbericht schécken"
 
 msgid "Sending message"
 msgstr ""
@@ -365,10 +365,10 @@ msgstr "Service Provider"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:195
 msgid "SimpleSAMLphp appears to be misconfigured."
-msgstr "SimpleSAMLphp schéint falsch konfiguréiert ze sin."
+msgstr "SimpleSAMLphp schéint falsch konfiguréiert ze sinn."
 
 msgid "SimpleSAMLphp error"
-msgstr "SimpleSAMLphp Fehler"
+msgstr "SimpleSAMLphp Feeler"
 
 msgid "Since your browser does not support Javascript, you must press the button below to proceed."
 msgstr ""
@@ -399,7 +399,7 @@ msgid "The authentication was aborted by the user"
 msgstr ""
 
 msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "Dei Debug Informatiounen hei drënner kinnten den Administrator interesséiren:"
+msgstr "Déi Debug Informatiounen hei drënner kéinten den Administrateur interesséieren:"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:235
 msgid "The given page was not found. The URL was: %URL%"
@@ -415,15 +415,15 @@ msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:231
 msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
-msgstr "Den Initiator vun der Unfro huet ken ReplayState Parameter matgeschekt."
+msgstr "Den Initiator vun der Ufro huet kee ReplayState Parameter matgeschéckt."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:197
 msgid "The parameters sent to the discovery service were not according to specifications."
-msgstr "D'Parameter fir den Disovery Service woren net korrekt par rapport zur Specifikatioun"
+msgstr "D'Parameter fir den Disovery Service waren net korrekt par Rapport zur Spezifikatioun"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
-msgstr "D'Passwuert an der Konfiguration (auth.adminpassword) as bis elo net geännertgin. W.e.g aennert daat an der Konfiguratioun."
+msgstr "D'Passwuert an der Konfiguratioun (auth.adminpassword) ass bis elo net geännert ginn. W.e.g ännert dat an der Konfiguratioun."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:193
 msgid "There is an error in the request to this page. The reason was: %REASON%"
@@ -431,18 +431,18 @@ msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:222
 msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
-msgstr "Des SimpleSAMLphp Installatioun schéint falsch konfiguréiert ze sin. Wann dir den Administrator vun dësem Service sid, dann stellt sëcher dass d Meta Données richteg angeriicht sin."
+msgstr "Des SimpleSAMLphp Installatioun schéint falsch konfiguréiert ze sinn. Wann dir den Administrateur vun dësem Service sidd, da stellt sécher dass d Meta Donnéeë richteg ageriicht sinn."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:243
 msgid "This Identity Provider received an Authentication Request from a Service Provider, but an error occurred when trying to process the request."
-msgstr "Dësen IdP kruut eng Authenticatiounsunfro vun engem Service provider, mais et gouf en Fehler wéi déi sollt bearbescht gin."
+msgstr "Dësen IdP krut eng Authentifikatiounsufro vun engem Service Provider, mee et gouf e Feeler wéi déi sollt beaarbecht ginn."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:227
 msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
-msgstr "Dësen Punkt as net aktivéiert. Verifizéiert d Optiounen an der SimpleSAMLphp Konfiguratioun."
+msgstr "Dëse Punkt ass net aktivéiert. Verifizéiert d Optiounen an der SimpleSAMLphp Konfiguratioun."
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
-msgstr "Dësen Fehler gouf wahrscheinlech duerch eng falsch Konfiguratioun vun SimpleSAMLphp ausgeléist. Kontaktéiert am beschten den Administrator vun dësem Login Service an schéckt him den Fehlerbericht"
+msgstr "Dëse Feeler gouf warscheinlech duerch eng falsch Konfiguratioun vu SimpleSAMLphp ausgeléist. Kontaktéiert am beschten den Administrateur vun dësem Login Service a schéckt him de Feelerbericht"
 
 msgid "Title"
 msgstr "Zougehéiregkeet"
@@ -474,14 +474,14 @@ msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
-msgstr "Mer konnten d Aentwert vum Identity Provider net akzeptéiren"
+msgstr "Mer konnten d'Äntwert vum Identity Provider net akzeptéieren"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:200
 msgid "When this identity provider tried to create an authentication response, an error occurred."
-msgstr "Beim Erstellen vun der Authenticatiounsaentwert as en Fehler passéiert"
+msgstr "Beim Erstellen vun der Authentifikatiouns-Äntwert ass e Feeler passéiert"
 
-msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
-msgstr "Pesch gehaat! - Ouni aeren Benotzernumm an d'Passwuert kënn der aerch net authentifizéiren an op den Service zougraiffen."
+msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help disk at your organization!"
+msgstr "Ouni Äre Benotzernumm an d'Passwuert kënnt Dir Iech net authentifizéieren an op de Service zougräifen."
 
 msgid "World"
 msgstr ""
@@ -507,10 +507,10 @@ msgstr "Der hud den SingleLogoutService accédéiert mais ken SAML LogoutRequest
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:241
 msgid "You did not present a valid certificate."
-msgstr "Dir hud keen gültegen Zertifikat"
+msgstr "Dir hutt kee gültegen Zertifikat"
 
 msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
-msgstr "Der hud eppes un d'Login Sait geschéeckt me aus iergentengem Grond huet d Passwuert gefehlt. Probéiert w.e.g nach eng Kéier."
+msgstr "Der hutt eppes un d'Login Säit geschéckt mee aus iergendengem Grond huet d Passwuert gefeelt. Probéiert w.e.g nach eng Kéier."
 
 msgid "Your attributes"
 msgstr ""
@@ -523,4 +523,6 @@ msgid "Your session is valid for %remaining% seconds from now."
 msgstr ""
 
 msgid "not set"
+
+
 msgstr ""
