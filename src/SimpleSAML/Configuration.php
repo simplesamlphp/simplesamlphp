@@ -1212,10 +1212,7 @@ class Configuration implements Utils\ClearableState
 
 
         $eps = $this->configuration[$endpointType];
-        if (is_string($eps)) {
-            // for backwards-compatibility
-            $eps = [$eps];
-        } elseif (!is_array($eps)) {
+        if (!is_array($eps)) {
             throw new Exception($loc . ': Expected array or string.');
         }
 
@@ -1223,17 +1220,7 @@ class Configuration implements Utils\ClearableState
         foreach ($eps as $i => &$ep) {
             $iloc = $loc . '[' . var_export($i, true) . ']';
 
-            if (is_string($ep)) {
-                // for backwards-compatibility
-                $ep = [
-                    'Location' => $ep,
-                    'Binding'  => $this->getDefaultBinding($endpointType),
-                ];
-                $responseLocation = $this->getOptionalString($endpointType . 'Response', null);
-                if ($responseLocation !== null) {
-                    $ep['ResponseLocation'] = $responseLocation;
-                }
-            } elseif (!is_array($ep)) {
+            if (!is_array($ep)) {
                 throw new Exception($iloc . ': Expected a string or an array.');
             }
 

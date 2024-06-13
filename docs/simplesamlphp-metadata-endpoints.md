@@ -12,32 +12,7 @@ Endpoint                       | Indexed | Default binding
 `SingleLogoutService`          | N       | HTTP-Redirect
 `SingleSignOnService`          | N       | HTTP-Redirect
 
-The various endpoints can be specified in three different ways:
-
-* A single string.
-* Array of strings.
-* Array of arrays.
-
-A single string
----------------
-
-    'AssertionConsumerService' => 'https://sp.example.org/ACS',
-
-This is the simplest endpoint format.
-It can be used when there is only a single endpoint that uses the default binding.
-
-Array of strings
-----------------
-
-    'AssertionConsumerService' => [
-        'https://site1.example.org/ACS',
-        'https://site2.example.org/ACS',
-    ],
-
-This endpoint format can be used to represent multiple endpoints, all of which use the default binding.
-
-Array of arrays
----------------
+The various endpoints can be specified in the following format:
 
     'AssertionConsumerService' => [
         [
