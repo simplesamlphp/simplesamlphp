@@ -276,7 +276,7 @@ The following options can be set:
     no effect) or a callable.  When used as a callable, the static class method must accept the
     SP metadata config as a parameter and return a boolean.
 
-### Encrypting assertions
+## Encrypting assertions
 
 It is possible to encrypt the assertions sent to a SP. Currently the
 only algorithm supported is `AES128_CBC` or `RIJNDAEL_128`.
@@ -310,7 +310,7 @@ of the SP.
 * `http://www.w3.org/2009/xmlenc11#aes192-gcm`
 * `http://www.w3.org/2009/xmlenc11#aes256-gcm`
 
-### Fields for signing and validating messages
+## Fields for signing and validating messages
 
 SimpleSAMLphp only signs authentication responses by default.
 Signing of logout requests and logout responses can be enabled by
@@ -328,24 +328,24 @@ These options overrides the options set in `saml20-idp-hosted`.
     responses received from this SP should be validated. The default is
     `FALSE`
 
-#### Example: Configuration for validating messages
+### Example: Configuration for validating messages
 
 ```php
 'redirect.validate' => true,
 'certificate' => 'example.org.crt',
 ```
 
-### Fields for scoping
+## Fields for scoping
 
-Only relevant if you are a proxy/bridge and wants to limit the idps this
-sp can use.
+Only relevant if you are a proxy/bridge and want to limit the IdPs on your proxy
+that this SP can use.
 
 `IDPList`
 : The list of scoped IdPs, i.e. the list of entityids for IdPs that are
 relevant for this SP. It will override any list set in the IdP's
 metadata.
 
-#### Example: Configuration for scoping
+### Example: Configuration for scoping
 
 ```php
 'IDPList' => ['https://idp1.wayf.dk', 'https://idp2.wayf.dk'],
