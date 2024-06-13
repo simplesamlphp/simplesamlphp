@@ -17,6 +17,10 @@ msgstr "Метаданные сервис провайдера ADFS"
 msgid "ADFS Service Provider (Remote)"
 msgstr "Сервис провайдер ADFS (удаленное размещение)"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
+msgid "Admin password not set to a hashed value"
+msgstr ""
+
 msgid "Affiliation"
 msgstr "Членство"
 
@@ -642,6 +646,10 @@ msgstr "Инициатор данного запроса не предостав
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:197
 msgid "The parameters sent to the discovery service were not according to specifications."
 msgstr "Параметры, отправленные в службу обнаружения, не соответствуют спецификации."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
+msgid "The password in the configuration (auth.adminpassword) is not a hashed value. Full details on how to fix this are supplied at https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."

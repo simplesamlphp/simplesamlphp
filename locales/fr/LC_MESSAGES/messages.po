@@ -5,6 +5,10 @@ msgstr ""
 msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
 msgstr "Un service a demandé à ce que vous vous authentifiez.  Cela signifie que vous devez entrer votre identifiant et votre mot de passe dans le formulaire ci-dessous."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
+msgid "Admin password not set to a hashed value"
+msgstr ""
+
 msgid "Affiliation"
 msgstr "Affiliation"
 
@@ -618,6 +622,10 @@ msgstr "L'émetteur de cette requête n'a pas fourni de paramètre RelayState in
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:197
 msgid "The parameters sent to the discovery service were not according to specifications."
 msgstr "Les paramètres envoyés au service de découverte automatique (discovery service) ne respectent pas les spécifications."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
+msgid "The password in the configuration (auth.adminpassword) is not a hashed value. Full details on how to fix this are supplied at https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
