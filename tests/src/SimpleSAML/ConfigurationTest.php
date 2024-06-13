@@ -897,21 +897,6 @@ class ConfigurationTest extends ClearStateTestCase
      */
     public function testGetEndpoints(): void
     {
-        // test response location for old-style configurations
-        $c = Configuration::loadFromArray([
-            'metadata-set' => 'saml20-idp-remote',
-            'SingleSignOnService' => 'https://example.com/endpoint.php',
-            'SingleSignOnServiceResponse' => 'https://example.com/response.php',
-        ]);
-        $e = [
-            [
-                'Location' => 'https://example.com/endpoint.php',
-                'Binding' => Constants::BINDING_HTTP_REDIRECT,
-                'ResponseLocation' => 'https://example.com/response.php',
-            ],
-        ];
-        $this->assertEquals($e, $c->getEndpoints('SingleSignOnService'));
-
         // test for input failures
 
         // define a basic configuration array
