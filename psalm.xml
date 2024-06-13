@@ -45,6 +45,9 @@
     </projectFiles>
 
     <issueHandlers>
+        <!-- Ignore this PHP 8.3 feature until this becomes are minimum required version -->
+        <MissingClassConstType errorLevel="info" />
+
         <LessSpecificReturnType errorLevel="info" />
 
         <!-- level 3 issues - slightly lazy code writing, but probably low false-negatives -->
