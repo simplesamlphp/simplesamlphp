@@ -57,7 +57,7 @@ function matchingKeyPair(
     string $publicKey,
     string $privateKey,
     #[\SensitiveParameter]
-    ?string $password = null
+    ?string $password = null,
 ): bool {
     return openssl_x509_check_private_key($publicKey, [$privateKey, $password]);
 }

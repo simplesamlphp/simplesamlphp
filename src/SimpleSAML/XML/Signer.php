@@ -136,7 +136,7 @@ class Signer
         string $location,
         #[\SensitiveParameter]
         ?string $pass,
-        bool $full_path = false
+        bool $full_path = false,
     ): void {
         $cryptoUtils = new Utils\Crypto();
         $keyData = $cryptoUtils->retrieveKey($location, $full_path);

@@ -157,7 +157,7 @@ class Database
         string $username = null,
         #[\SensitiveParameter]
         string $password = null,
-        array $options
+        array $options,
     ): PDO {
         try {
             $db = new PDO($dsn, $username, $password, $options);

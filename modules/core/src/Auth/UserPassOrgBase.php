@@ -242,7 +242,7 @@ abstract class UserPassOrgBase extends Auth\Source
         string $username,
         #[\SensitiveParameter]
         string $password,
-        string $organization
+        string $organization,
     ): array;
 
 
