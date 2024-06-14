@@ -15,6 +15,10 @@ Released TBD
 * Add microsecond support to the FileLoggingHandler (#2084)
 * Session ID's are now hashed when stored in a database (#2106)
 
+`consent`
+
+* Update Luxembourgish translations (v1.4.0)
+
 `sqlauth`
 
 * Add multi-query support (simplesamlphp/simplesamlphp-module-sqlauth#9) (v1.2.0)
