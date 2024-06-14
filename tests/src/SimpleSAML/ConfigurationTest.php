@@ -821,7 +821,7 @@ class ConfigurationTest extends ClearStateTestCase
             C::BINDING_HTTP_ARTIFACT,
             C::BINDING_SOAP,
         ];
-        
+
         $a = [
             'metadata-set' => 'saml20-sp-remote',
             'ArtifactResolutionService' => [[ 'Location' => 'https://example.com/ars', 'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP' ]],
@@ -841,7 +841,7 @@ class ConfigurationTest extends ClearStateTestCase
                 'AssertionConsumerService',
                 $valid_bindings,
             );
-            $this->assertEquals($acs_expected_eps[$i], $actual );
+            $this->assertEquals($acs_expected_eps[$i], $actual);
         }
 
         $a['metadata-set'] = 'saml20-idp-remote';
