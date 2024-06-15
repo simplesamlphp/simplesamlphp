@@ -1191,6 +1191,22 @@ class Configuration implements Utils\ClearableState
         }
     }
 
+    private function isValidBinding(string $binding): bool
+    {
+        if($binding == Constants::BINDING_HTTP_REDIRECT)
+            return true;
+        if($binding == Constants::BINDING_HTTP_POST)
+            return true;
+        if($binding == Constants::BINDING_SOAP)
+            return true;
+        if($binding == Constants::BINDING_HOK_SSO)
+            return true;
+        if($binding == Constants::BINDING_HTTP_ARTIFACT)
+            return true;
+
+        return false;
+    }
+
 
     /**
      * Helper function for dealing with metadata endpoints.
@@ -1216,6 +1232,7 @@ class Configuration implements Utils\ClearableState
             throw new Exception($loc . ': Expected array or string.');
         }
 
+        $eps_count = count($eps);
 
         foreach ($eps as $i => &$ep) {
             $iloc = $loc . '[' . var_export($i, true) . ']';
@@ -1238,6 +1255,16 @@ class Configuration implements Utils\ClearableState
                 throw new Exception($iloc . ': Binding must be a string.');
             }
 
+            if( $eps_count <= 1 ) {
+                $isDefault = false;
+                if( array_key_exists('isDefault', $ep) && $ep['isDefault']) {
+                    $isDefault = true;
+                } else {
+                    if( !$this->isValidBinding($ep['Binding'])) {
+                        $ep['Binding'] = $this->getDefaultBinding($endpointType);
+                    }
+                }
+            }
             if (array_key_exists('ResponseLocation', $ep)) {
                 if (!is_string($ep['ResponseLocation'])) {
                     throw new Exception($iloc . ': ResponseLocation must be a string.');
