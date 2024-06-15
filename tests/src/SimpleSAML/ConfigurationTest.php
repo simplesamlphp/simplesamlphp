@@ -818,18 +818,22 @@ class ConfigurationTest extends ClearStateTestCase
 
         $a = [
             'metadata-set' => 'saml20-sp-remote',
-            'ArtifactResolutionService' =>
-                [[
+            'ArtifactResolutionService' => [
+                [
                     'Location' => 'https://example.com/ars',
-                ]],
-            'SingleSignOnService' =>
-                [[
+                ],
+            ].
+            'SingleSignOnService' => [
+                [
                     'Location' => 'https://example.com/sso',
-                ]],
-            'SingleLogoutService' => [[
-                'Location' => 'https://example.com/slo',
-                'Binding' => 'valid_binding', // test unknown bindings if we don't specify a list of valid ones
-            ]],
+                ],
+            ],
+            'SingleLogoutService' => [
+                [
+                    'Location' => 'https://example.com/slo',
+                    'Binding' => 'valid_binding', // test unknown bindings if we don't specify a list of valid ones
+                ],
+            ],
         ];
 
 
