@@ -1232,7 +1232,7 @@ class Configuration implements Utils\ClearableState
             }
 
             if (!array_key_exists('Binding', $ep)) {
-                throw new Exception($iloc . ': Missing Binding.');
+                $ep['Binding'] = $this->getDefaultBinding($endpointType);
             }
             if (!is_string($ep['Binding'])) {
                 throw new Exception($iloc . ': Binding must be a string.');
