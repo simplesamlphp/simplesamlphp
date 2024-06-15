@@ -6,7 +6,9 @@ namespace SimpleSAML;
 
 use Exception;
 use ParseError;
-use SimpleSAML\{Error, Utils};
+use SAML2\Binding;
+use SAML2\Constants;
+use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Constants as C;
 use Symfony\Component\Filesystem\Filesystem;
@@ -1189,28 +1191,6 @@ class Configuration implements Utils\ClearableState
         }
     }
 
-    private function isValidBinding(string $binding): bool
-    {
-        if ($binding == Constants::BINDING_HTTP_REDIRECT) {
-            return true;
-        }
-        if ($binding == Constants::BINDING_HTTP_POST) {
-            return true;
-        }
-        if ($binding == Constants::BINDING_SOAP) {
-            return true;
-        }
-        if ($binding == Constants::BINDING_HOK_SSO) {
-            return true;
-        }
-        if ($binding == Constants::BINDING_HTTP_ARTIFACT) {
-            return true;
-        }
-
-        return false;
-    }
-
-
     /**
      * Helper function for dealing with metadata endpoints.
      *
@@ -1263,7 +1243,9 @@ class Configuration implements Utils\ClearableState
                 if (array_key_exists('isDefault', $ep) && $ep['isDefault']) {
                     $isDefault = true;
                 } else {
-                    if (!$this->isValidBinding($ep['Binding'])) {
+                    try {
+                        Binding::getBinding($ep['Binding']);
+                    } catch (UnsupportedBindingException $e) {
                         $ep['Binding'] = $this->getDefaultBinding($endpointType);
                     }
                 }
