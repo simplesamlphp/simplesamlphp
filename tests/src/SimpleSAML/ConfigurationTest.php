@@ -821,7 +821,7 @@ class ConfigurationTest extends ClearStateTestCase
                 [
                     'Location' => 'https://example.com/ars',
                 ],
-            ].
+            ],
             'SingleSignOnService' => [
                 [
                     'Location' => 'https://example.com/sso',
