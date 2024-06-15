@@ -1185,6 +1185,7 @@ class Configuration implements Utils\ClearableState
             case 'saml20-sp-remote:AssertionConsumerService':
                 return C::BINDING_HTTP_POST;
             case 'saml20-idp-remote:ArtifactResolutionService':
+            case 'attributeauthority-remote:AttributeService':
                 return C::BINDING_SOAP;
             default:
                 throw new Exception('Missing default binding for ' . $endpointType . ' in ' . $set);
