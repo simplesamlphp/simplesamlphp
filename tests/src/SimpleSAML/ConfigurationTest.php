@@ -717,14 +717,14 @@ class ConfigurationTest extends ClearStateTestCase
          * tests for AssertionConsumerService.
          */
         $acs_eps = [
-            // define location and binding
+            // 0. define location and binding
             [
                 [
                     'Location' => 'https://example.com/endpoint.php',
                     'Binding' => Constants::BINDING_HTTP_POST,
                 ],
             ],
-            // define the ResponseLocation too
+            // 1. define the ResponseLocation too
             [
                 [
                     'Location' => 'https://example.com/endpoint.php',
@@ -732,7 +732,7 @@ class ConfigurationTest extends ClearStateTestCase
                     'ResponseLocation' => 'https://example.com/endpoint.php',
                 ],
             ],
-            // make sure indexes are NOT taken into account (they just identify endpoints)
+            // 2. make sure indexes are NOT taken into account (they just identify endpoints)
             [
                 [
                     'index' => 1,
@@ -745,7 +745,7 @@ class ConfigurationTest extends ClearStateTestCase
                     'Binding' => Constants::BINDING_HTTP_POST,
                 ],
             ],
-            // make sure isDefault has priority over indexes
+            // 3. make sure isDefault has priority over indexes
             [
                 [
                     'index' => 1,
@@ -759,7 +759,7 @@ class ConfigurationTest extends ClearStateTestCase
                     'Binding' => Constants::BINDING_HTTP_REDIRECT,
                 ],
             ],
-            // make sure endpoints with invalid bindings are ignored and those marked as NOT default are still used
+            // 4. make sure endpoints with invalid bindings are ignored and those marked as NOT default are still used
             [
                 [
                     'index' => 1,
@@ -775,16 +775,6 @@ class ConfigurationTest extends ClearStateTestCase
             ],
         ];
         $acs_expected_eps = [
-            // output should be completed with the default binding (HTTP-POST for ACS)
-            [
-                'Location' => 'https://example.com/endpoint.php',
-                'Binding' => Constants::BINDING_HTTP_POST,
-            ],
-            // we should just get the first endpoint with the default binding
-            [
-                'Location' => 'https://www1.example.com/endpoint.php',
-                'Binding' => Constants::BINDING_HTTP_POST,
-            ],
             // if we specify the binding, we should get it back
             [
                 'Location' => 'https://example.com/endpoint.php',
@@ -818,16 +808,6 @@ class ConfigurationTest extends ClearStateTestCase
             ],
         ];
 
-        $a = [
-            'metadata-set' => 'saml20-sp-remote',
-            'ArtifactResolutionService' => 'https://example.com/ars',
-            'SingleSignOnService' => 'https://example.com/sso',
-            'SingleLogoutService' => [
-                'Location' => 'https://example.com/slo',
-                'Binding' => 'valid_binding', // test unknown bindings if we don't specify a list of valid ones
-            ],
-        ];
-
         $valid_bindings = [
             Constants::BINDING_HTTP_POST,
             Constants::BINDING_HTTP_REDIRECT,
@@ -836,14 +816,36 @@ class ConfigurationTest extends ClearStateTestCase
             Constants::BINDING_SOAP,
         ];
 
+        $a = [
+            'metadata-set' => 'saml20-sp-remote',
+            'ArtifactResolutionService' => [
+                [
+                    'Location' => 'https://example.com/ars',
+                ],
+            ],
+            'SingleSignOnService' => [
+                [
+                    'Location' => 'https://example.com/sso',
+                ],
+            ],
+            'SingleLogoutService' => [
+                [
+                    'Location' => 'https://example.com/slo',
+                    'Binding' => 'valid_binding', // test unknown bindings if we don't specify a list of valid ones
+                ],
+            ],
+        ];
+
+
         // run all general tests with AssertionConsumerService endpoint type
         foreach ($acs_eps as $i => $ep) {
             $a['AssertionConsumerService'] = $ep;
             $c = Configuration::loadFromArray($a);
-            $this->assertEquals($acs_expected_eps[$i], $c->getDefaultEndpoint(
+            $actual = $c->getDefaultEndpoint(
                 'AssertionConsumerService',
                 $valid_bindings,
-            ));
+            );
+            $this->assertEquals($acs_expected_eps[$i], $actual);
         }
 
         $a['metadata-set'] = 'saml20-idp-remote';
@@ -884,7 +886,7 @@ class ConfigurationTest extends ClearStateTestCase
         $a['metadata-set'] = 'foo';
         $c = Configuration::loadFromArray($a);
         try {
-            $c->getDefaultEndpoint('SingleSignOnService');
+            $v = $c->getDefaultEndpoint('SingleSignOnService');
             $this->fail('No valid metadata set specified.');
         } catch (Exception $e) {
             $this->assertStringStartsWith('Missing default binding for', $e->getMessage());

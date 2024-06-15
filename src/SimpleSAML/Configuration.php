@@ -6,7 +6,9 @@ namespace SimpleSAML;
 
 use Exception;
 use ParseError;
+use SAML2\Binding;
 use SAML2\Constants;
+use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
 use SimpleSAML\Utils;
@@ -1185,12 +1187,12 @@ class Configuration implements Utils\ClearableState
             case 'saml20-sp-remote:AssertionConsumerService':
                 return Constants::BINDING_HTTP_POST;
             case 'saml20-idp-remote:ArtifactResolutionService':
+            case 'attributeauthority-remote:AttributeService':
                 return Constants::BINDING_SOAP;
             default:
                 throw new Exception('Missing default binding for ' . $endpointType . ' in ' . $set);
         }
     }
-
 
     /**
      * Helper function for dealing with metadata endpoints.
@@ -1216,6 +1218,7 @@ class Configuration implements Utils\ClearableState
             throw new Exception($loc . ': Expected array or string.');
         }
 
+        $eps_count = count($eps);
 
         foreach ($eps as $i => &$ep) {
             $iloc = $loc . '[' . var_export($i, true) . ']';
@@ -1232,12 +1235,24 @@ class Configuration implements Utils\ClearableState
             }
 
             if (!array_key_exists('Binding', $ep)) {
-                throw new Exception($iloc . ': Missing Binding.');
+                $ep['Binding'] = $this->getDefaultBinding($endpointType);
             }
             if (!is_string($ep['Binding'])) {
                 throw new Exception($iloc . ': Binding must be a string.');
             }
 
+            if ($eps_count <= 1) {
+                $isDefault = false;
+                if (array_key_exists('isDefault', $ep) && $ep['isDefault']) {
+                    $isDefault = true;
+                } else {
+                    try {
+                        Binding::getBinding($ep['Binding']);
+                    } catch (UnsupportedBindingException $e) {
+                        $ep['Binding'] = $this->getDefaultBinding($endpointType);
+                    }
+                }
+            }
             if (array_key_exists('ResponseLocation', $ep)) {
                 if (!is_string($ep['ResponseLocation'])) {
                     throw new Exception($iloc . ': ResponseLocation must be a string.');
