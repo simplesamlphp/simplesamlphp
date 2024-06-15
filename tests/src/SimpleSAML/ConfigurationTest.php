@@ -716,21 +716,14 @@ class ConfigurationTest extends ClearStateTestCase
          * tests for AssertionConsumerService.
          */
         $acs_eps = [
-            // just a string with the location
-            'https://example.com/endpoint.php',
-            // an array of strings with location of different endpoints
-            [
-                'https://www1.example.com/endpoint.php',
-                'https://www2.example.com/endpoint.php',
-            ],
-            // define location and binding
+            // 0. define location and binding
             [
                 [
                     'Location' => 'https://example.com/endpoint.php',
                     'Binding' => C::BINDING_HTTP_POST,
                 ],
             ],
-            // define the ResponseLocation too
+            // 1. define the ResponseLocation too
             [
                 [
                     'Location' => 'https://example.com/endpoint.php',
@@ -738,7 +731,7 @@ class ConfigurationTest extends ClearStateTestCase
                     'ResponseLocation' => 'https://example.com/endpoint.php',
                 ],
             ],
-            // make sure indexes are NOT taken into account (they just identify endpoints)
+            // 2. make sure indexes are NOT taken into account (they just identify endpoints)
             [
                 [
                     'index' => 1,
@@ -751,7 +744,7 @@ class ConfigurationTest extends ClearStateTestCase
                     'Binding' => C::BINDING_HTTP_POST,
                 ],
             ],
-            // make sure isDefault has priority over indexes
+            // 3. make sure isDefault has priority over indexes
             [
                 [
                     'index' => 1,
@@ -765,7 +758,7 @@ class ConfigurationTest extends ClearStateTestCase
                     'Binding' => C::BINDING_HTTP_REDIRECT,
                 ],
             ],
-            // make sure endpoints with invalid bindings are ignored and those marked as NOT default are still used
+            // 4. make sure endpoints with invalid bindings are ignored and those marked as NOT default are still used
             [
                 [
                     'index' => 1,
@@ -862,7 +855,7 @@ class ConfigurationTest extends ClearStateTestCase
         $this->assertEquals(
             [
                 'Location' => 'https://example.com/slo',
-                'Binding' => 'valid_binding', // Constants::BINDING_HTTP_REDIRECT,
+                'Binding' => Constants::BINDING_HTTP_REDIRECT,
             ],
             $c->getDefaultEndpoint('SingleLogoutService'),
         );
