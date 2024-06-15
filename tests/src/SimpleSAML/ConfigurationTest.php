@@ -827,12 +827,10 @@ class ConfigurationTest extends ClearStateTestCase
             'ArtifactResolutionService' =>
                 [[
                     'Location' => 'https://example.com/ars',
-                    'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP',
                 ]],
             'SingleSignOnService' =>
                 [[
                     'Location' => 'https://example.com/sso',
-                    'Binding' => Constants::BINDING_HTTP_REDIRECT,
                 ]],
             'SingleLogoutService' => [[
                 'Location' => 'https://example.com/slo',
@@ -890,7 +888,7 @@ class ConfigurationTest extends ClearStateTestCase
         $a['metadata-set'] = 'foo';
         $c = Configuration::loadFromArray($a);
         try {
-            $c->getDefaultEndpoint('SingleSignOnService');
+            $v = $c->getDefaultEndpoint('SingleSignOnService');
             $this->fail('No valid metadata set specified.');
         } catch (Exception $e) {
             $this->assertStringStartsWith('Missing default binding for', $e->getMessage());
