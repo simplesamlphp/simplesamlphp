@@ -8,6 +8,8 @@ use Exception as BuiltinException;
 use SimpleSAML\{Auth, Configuration, Error, Module, Utils};
 use SimpleSAML\Module\core\Auth\{UserPassBase, UserPassOrgBase};
 use SimpleSAML\XHTML\Template;
+use SimpleSAML\Logger;
+
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -138,10 +140,12 @@ class Login
 
         $errorCode = null;
         $errorParams = null;
+        $codeClass = '';
 
         if (isset($state['error'])) {
             $errorCode = $state['error']['code'];
             $errorParams = $state['error']['params'];
+            $codeClass = $state['error']['codeclass'];
         }
 
         $cookies = [];
@@ -218,9 +222,12 @@ class Login
                     // Login failed. Extract error code and parameters, to display the error
                     $errorCode = $e->getErrorCode();
                     $errorParams = $e->getParameters();
+                    $codeClass = get_class($e->getErrorCodes());
+                    
                     $state['error'] = [
                         'code' => $errorCode,
                         'params' => $errorParams,
+                        'codeclass' => $codeClass,                        
                     ];
                     $authStateId = Auth\State::saveState($state, $source::STAGEID);
                 }
@@ -286,6 +293,12 @@ class Login
         $t->data['errorcodes'] = Error\ErrorCodes::getAllErrorCodeMessages();
         $t->data['errorparams'] = $errorParams;
 
+        $className = $codeClass;
+        if( $className ) {
+            $obj = new $className();
+            $t->data['errorcodes'] = $obj->getAllErrorCodeMessages();
+        }
+        
         if (isset($state['SPMetadata'])) {
             $t->data['SPMetadata'] = $state['SPMetadata'];
         } else {

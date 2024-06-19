@@ -127,7 +127,7 @@ class Error extends Exception
      *
      * @return ErrorCodes
      */
-    protected function getErrorCodes(): ErrorCodes
+    public function getErrorCodes(): ErrorCodes
     {
         return new ErrorCodes();
     }

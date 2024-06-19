@@ -10,6 +10,33 @@ use SimpleSAML\Logger;
 use SimpleSAML\Module\core\Auth\UserPassBase;
 use SimpleSAML\Utils;
 
+use SimpleSAML\Error\ErrorCodes;
+
+
+class myError extends Error\Error
+{
+    private ?ErrorCodes $ec = null;
+    
+    public function __construct(
+        string|array $errorCode,
+        Throwable $cause = null,
+                          ?int $httpCode = null,
+        ErrorCodes $errorCodes = null,
+    ) {
+        $this->ec = $errorCodes;
+        if( !$this->ec ) {
+            $this->ec = new ErrorCodes();
+        }
+        parent::__construct($errorCode, $cause, $httpCode, $errorCodes);
+    }
+    public function getErrorCodes(): ErrorCodes
+    {
+        return $this->ec;
+    }    
+};
+
+
+
 /**
  * Example authentication source - username & password.
  *
@@ -99,6 +126,29 @@ class UserPass extends UserPassBase
      */
     protected function login(string $username, string $password): array
     {
+        Logger::error("AAA login()");
+
+        $customErrorCodes = new class extends ErrorCodes
+        {
+            public const BIND_SEARCH_CONNECT_ERROR = 'BIND_SEARCH_CONNECT_ERROR';
+            public static string $customTitle = 'title for bind search error';
+            public static string $customDescription = 'description for bind search error';
+
+            public static function getCustomErrorCodeTitles(): array
+            {
+               return [self::BIND_SEARCH_CONNECT_ERROR => self::$customTitle];
+            }
+            public static function getCustomErrorCodeDescriptions(): array
+            {
+               return [self::BIND_SEARCH_CONNECT_ERROR => self::$customDescription];
+            }
+        };
+
+        throw new myError($customErrorCodes::BIND_SEARCH_CONNECT_ERROR, null, null, $customErrorCodes );
+        //throw new Error\Error(Error\ErrorCodes::WRONGUSERPASS);
+        
+
+        
         $userpass = $username . ':' . $password;
         if (!array_key_exists($userpass, $this->users)) {
             throw new Error\Error(Error\ErrorCodes::WRONGUSERPASS);
