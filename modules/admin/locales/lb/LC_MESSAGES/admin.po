@@ -51,6 +51,10 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr ""
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:430
+msgid "D'\"secretsalt\" Konfiguratiounsoptioun dierf keen `%` Zeechen enthalen."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:228
 msgid "Date/Time Extension"
 msgstr "Datum/Zäit Extensioun"
@@ -177,7 +181,7 @@ msgstr ""
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:211
 #, php-format
 msgid "PHP %minimum% or newer is needed. You are running: %current%"
-msgstr "PHP %minimum% oder méi nei ass néideg. Dir hutt: %current%""
+msgstr "PHP %minimum% oder méi nei ass néideg. Dir hutt: %current%\""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:264
 msgid "PHP intl extension"
@@ -250,7 +254,7 @@ msgid "Test Authentication Sources"
 msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:430
-msgid "D'\"secretsalt\" Konfiguratiounsoptioun dierf keen `%` Zeechen enthalen."
+msgid "The \"secretsalt\" configuration option may not contain a `%` sign."
 msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:366
