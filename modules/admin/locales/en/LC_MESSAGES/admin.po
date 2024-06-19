@@ -80,8 +80,8 @@ msgid "Hashing function"
 msgstr ""
 
 msgid ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long\n"
-"     it lasts until it times out and all the attributes that are attached to your session."
+"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long"
+" it lasts until it times out and all the attributes that are attached to your session."
 msgstr ""
 
 msgid "Hosted IdP metadata present"
