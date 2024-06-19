@@ -345,7 +345,6 @@ class SAML2
         }
 
         $authnRequestSigned = false;
-        $username = null;
 
         if ($request->query->has('spentityid') || $request->query->has('providerId')) {
             /* IdP initiated authentication. */
@@ -418,8 +417,6 @@ class SAML2
                     "Message received on authentication request endpoint wasn't an authentication request.",
                 );
             }
-
-            $username = $request->get('username', null);
 
             $issuer = $authnRequest->getIssuer();
             if ($issuer === null) {
@@ -532,7 +529,6 @@ class SAML2
             Auth\State::RESTART => $sessionLostURL,
 
             'SPMetadata'                  => $spMetadata->toArray(),
-            'core:username'               => $username,
             'saml:RelayState'             => $relayState,
             'saml:RequestId'              => $requestId,
             'saml:IDPList'                => $IDPList,
