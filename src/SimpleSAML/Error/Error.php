@@ -6,7 +6,6 @@ namespace SimpleSAML\Error;
 
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
-use SimpleSAML\Form\ErrorReport;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
@@ -285,10 +284,6 @@ class Error extends Exception
             Assert::true(false);
         } else {
             $t = new Template($config, 'error.twig');
-
-$errorReport = new ErrorReport();
-$form = $this->createForm(ErrorReportType::class, $errorReport);
-
 
             // Include translations for the module that holds the included template
             if ($this->includeTemplate !== null) {

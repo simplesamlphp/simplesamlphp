@@ -504,7 +504,6 @@ class SAML2
             Auth\State::RESTART => $sessionLostURL,
 
             'SPMetadata'                  => $spMetadata->toArray(),
-            'core:username'               => $username,
             'saml:RelayState'             => $relayState,
             'saml:RequestId'              => $requestId,
             'saml:IDPList'                => $IDPList,

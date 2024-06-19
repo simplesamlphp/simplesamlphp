@@ -9,7 +9,6 @@ use SimpleSAML\{Configuration, Error, Logger, Session, Utils};
 use SimpleSAML\Module\core\Entity;
 use SimpleSAML\Module\core\Form\ErrorReportType;
 use SimpleSAML\HTTP\RunnableResponse;
-
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
