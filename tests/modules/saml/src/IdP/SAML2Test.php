@@ -46,8 +46,7 @@ class SAML2Test extends ClearStateTestCase
         'saml:NameIDFormat' => null,
         'saml:AllowCreate' => true,
         'saml:Extensions' => null,
-        'saml:RequestedAuthnContext' => null,
-        'core:username' => null,
+        'saml:RequestedAuthnContext' => null
     ];
 
 
