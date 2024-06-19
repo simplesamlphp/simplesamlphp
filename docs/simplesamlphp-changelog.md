@@ -10,7 +10,7 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 Released TBD
 
 * Added a missing use-statement that would cause a 'class not found' exception.
-* Improved Luxembourgish (LB) translations (#2129)
+* Improved Luxembourgish (LB) translations (#2129, #2140)
 
 `adfs`
 
