@@ -11,6 +11,7 @@ Released TBD
 
 * Added a missing use-statement that would cause a 'class not found' exception.
 * Improved Luxembourgish (LB) translations (#2129, #2140)
+* Fix regression introduced in v2.2.2 regarding autofilling usernames.
 
 `adfs`
 
@@ -37,6 +38,7 @@ Released 30-04-2024
 * Add xml opening-tag to SP-metadata for consistency with IdP-metadata (#2048)
 * Fixed a PHP 8.3 compliance issue in the logout handler (#2047)
 * Improve parsing of base64-encoded strings
+* Autofill username when Entra ID hints it in the HTTP parameters
 
 `admin`
 
