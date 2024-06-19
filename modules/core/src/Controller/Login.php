@@ -241,7 +241,7 @@ class Login
         $t = new Template($this->config, 'core:loginuserpass.twig');
 
         if ($source instanceof UserPassOrgBase) {
-            $t->data['username'] = $username;
+            $t->data['username'] = $state['core:username'];
             $t->data['forceUsername'] = false;
             $t->data['rememberUsernameEnabled'] = $source->getRememberUsernameEnabled();
             $t->data['rememberUsernameChecked'] = $source->getRememberUsernameChecked();
@@ -255,7 +255,7 @@ class Login
             $t->data['rememberMeEnabled'] = $source->isRememberMeEnabled();
             $t->data['rememberMeChecked'] = $source->isRememberMeChecked();
         } else {
-            $t->data['username'] = $username;
+            $t->data['username'] = $state['core:username'];
             $t->data['forceUsername'] = false;
             $t->data['rememberUsernameEnabled'] = $source->getRememberUsernameEnabled();
             $t->data['rememberUsernameChecked'] = $source->getRememberUsernameChecked();
@@ -380,8 +380,6 @@ class Login
             && $request->cookies->has($source->getAuthId() . '-username')
         ) {
             $username = $request->cookies->get($source->getAuthId() . '-username');
-        } elseif (isset($state['core:username'])) {
-            $username = strval($state['core:username']);
         }
 
         return $username;

@@ -345,6 +345,7 @@ class SAML2
         }
 
         $authnRequestSigned = false;
+        $username = null;
 
         if ($request->query->has('spentityid') || $request->query->has('providerId')) {
             /* IdP initiated authentication. */
@@ -416,6 +417,10 @@ class SAML2
                 throw new Error\BadRequest(
                     "Message received on authentication request endpoint wasn't an authentication request.",
                 );
+            }
+
+            if (isset($_REQUEST['username'])) {
+                $username = (string) $_REQUEST['username'];
             }
 
             $issuer = $authnRequest->getIssuer();
@@ -544,6 +549,10 @@ class SAML2
             'saml:AuthnRequestReceivedAt' => microtime(true),
             'saml:RequestedAuthnContext'  => $authnContext,
         ];
+
+        if ($username !== null) {
+            $state['core:username'] = $username;
+        }
 
         return $idp->handleAuthenticationRequest($state);
     }
