@@ -116,6 +116,37 @@ class Login
 
 
     /**
+     * This page shows a username/password/organization login form, and passes information from
+     * into the \SimpleSAML\Module\core\Auth\UserPassBase class, which is a generic class for
+     * username/password/organization authentication.
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function loginuserpassorg(Request $request): Response
+    {
+        // Retrieve the authentication state
+        if (!$request->query->has('AuthState')) {
+            throw new Error\BadRequest('Missing AuthState parameter.');
+        }
+        $authStateId = $request->query->get('AuthState');
+        $this->authState::validateStateId($authStateId);
+
+        $state = $this->authState::loadState($authStateId, UserPassOrgBase::STAGEID);
+
+        /** @var \SimpleSAML\Module\core\Auth\UserPassOrgBase $source */
+        $source = $this->authSource::getById($state[UserPassOrgBase::AUTHID]);
+        if ($source === null) {
+            throw new BuiltinException(
+                'Could not find authentication source with id ' . $state[UserPassOrgBase::AUTHID],
+            );
+        }
+
+        return $this->handleLogin($request, $source, $state);
+    }
+
+
+    /**
      * This method handles the generic part for both loginuserpass and loginuserpassorg
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -146,7 +177,7 @@ class Login
         }
 
         if ($organizations === null || $organization !== '') {
-            if (!empty($username) || !empty($password)) {
+            if (!empty($password)) {
                 $cookies = [];
                 $httpUtils = new Utils\HTTP();
                 $sameSiteNone = $httpUtils->canSetSamesiteNone() ? Cookie::SAMESITE_NONE : null;
@@ -300,37 +331,6 @@ class Login
         }
 
         return $t;
-    }
-
-
-    /**
-     * This page shows a username/password/organization login form, and passes information from
-     * into the \SimpleSAML\Module\core\Auth\UserPassBase class, which is a generic class for
-     * username/password/organization authentication.
-     *
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function loginuserpassorg(Request $request): Response
-    {
-        // Retrieve the authentication state
-        if (!$request->query->has('AuthState')) {
-            throw new Error\BadRequest('Missing AuthState parameter.');
-        }
-        $authStateId = $request->query->get('AuthState');
-        $this->authState::validateStateId($authStateId);
-
-        $state = $this->authState::loadState($authStateId, UserPassOrgBase::STAGEID);
-
-        /** @var \SimpleSAML\Module\core\Auth\UserPassOrgBase $source */
-        $source = $this->authSource::getById($state[UserPassOrgBase::AUTHID]);
-        if ($source === null) {
-            throw new BuiltinException(
-                'Could not find authentication source with id ' . $state[UserPassOrgBase::AUTHID],
-            );
-        }
-
-        return $this->handleLogin($request, $source, $state);
     }
 
 
