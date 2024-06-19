@@ -5,8 +5,7 @@
 {% block content %}
     {%- include "@admin/includes/menu.twig" %}
 
-    <p>{% trans %}Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long
-     it lasts until it times out and all the attributes that are attached to your session.{% endtrans %}</p>
+    <p>{% trans %}Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session.{% endtrans %}</p>
 
     {% if remaining %}
         <p>{% trans with {
