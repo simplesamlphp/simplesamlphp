@@ -19,6 +19,10 @@ Released TBD
 
 * Update Luxembourgish translations (v1.4.0)
 
+`negotiate`
+
+* Add support for SPNEGO channel binding (v2.3.1)
+
 `sqlauth`
 
 * Add multi-query support (simplesamlphp/simplesamlphp-module-sqlauth#9) (v1.2.0)
