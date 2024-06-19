@@ -7,7 +7,6 @@ namespace SimpleSAML;
 use Exception;
 use ParseError;
 use SAML2\Binding;
-use SAML2\Constants;
 use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Constants as C;
