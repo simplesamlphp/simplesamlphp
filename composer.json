@@ -87,7 +87,7 @@
         "symfony/intl": "^6.4.0",
         "symfony/password-hasher": "^6.4.0",
         "symfony/polyfill-intl-icu": "^1.28",
-        "symfony/psr-http-message-bridge": "^6.4.0",
+        "symfony/psr-http-message-bridge": "^7.1.1",
         "symfony/routing": "^6.4.0",
         "symfony/translation-contracts": "^3.0",
         "symfony/twig-bridge": "^6.4.0",
