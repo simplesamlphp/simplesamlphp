@@ -91,7 +91,7 @@
         "symfony/routing": "^6.4",
         "symfony/translation-contracts": "^3.0",
         "symfony/twig-bridge": "^6.4",
-        "symfony/var-exporter": "^6.4",
+        "symfony/var-exporter": "^7.1",
         "twig/intl-extra": "^3.7",
         "twig/twig": "^3.5",
         "symfony/yaml": "^6.4"
