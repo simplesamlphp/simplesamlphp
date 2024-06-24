@@ -46,7 +46,7 @@ class SAML2Test extends ClearStateTestCase
         'saml:NameIDFormat' => null,
         'saml:AllowCreate' => true,
         'saml:Extensions' => null,
-        'saml:RequestedAuthnContext' => null
+        'saml:RequestedAuthnContext' => null,
     ];
 
 
@@ -708,7 +708,7 @@ EOT;
         $this->assertIsArray($contact['attributes']);
         $attrs = [
             'xmlns:remd' => 'http://refeds.org/metadata',
-            'remd:contactType' => 'http://refeds.org/metadata/contactType/security'
+            'remd:contactType' => 'http://refeds.org/metadata/contactType/security',
         ];
         $this->assertEquals($attrs, $contact['attributes']);
 

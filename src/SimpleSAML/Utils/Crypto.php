@@ -38,7 +38,7 @@ class Crypto
         $len = mb_strlen($ciphertext, '8bit');
         if ($len < 48) {
             throw new InvalidArgumentException(
-                'Input parameter "$ciphertext" must be a string with more than 48 characters.'
+                'Input parameter "$ciphertext" must be a string with more than 48 characters.',
             );
         }
 
@@ -56,7 +56,7 @@ class Crypto
                 'AES-256-CBC',
                 substr($key, 0, 64),
                 defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : 1,
-                $iv
+                $iv,
             );
 
             if ($plaintext !== false) {
@@ -121,7 +121,7 @@ class Crypto
             'AES-256-CBC',
             substr($key, 0, 64),
             defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : 1,
-            $iv
+            $iv,
         );
 
         if ($ciphertext === false) {

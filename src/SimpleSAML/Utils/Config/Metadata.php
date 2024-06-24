@@ -90,7 +90,7 @@ class Metadata
                 function ($t) {
                     return '"' . $t . '"';
                 },
-                ContactPerson::CONTACT_TYPES
+                ContactPerson::CONTACT_TYPES,
             ));
             throw new \InvalidArgumentException('"contactType" is mandatory and must be one of ' . $types . ".");
         }
@@ -154,7 +154,7 @@ class Metadata
                 || !(is_string($contact['telephoneNumber']) || is_array($contact['telephoneNumber']))
             ) {
                 throw new \InvalidArgumentException(
-                    '"telephoneNumber" must be a string or an array and cannot be empty.'
+                    '"telephoneNumber" must be a string or an array and cannot be empty.',
                 );
             }
             if (is_array($contact['telephoneNumber'])) {

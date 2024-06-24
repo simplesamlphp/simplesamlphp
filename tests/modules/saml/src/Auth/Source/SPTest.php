@@ -242,7 +242,7 @@ class SPTest extends ClearStateTestCase
         $a = $ar->getRequestedAuthnContext();
         $this->assertEquals(
             $state['saml:AuthnContextClassRef'],
-            $a['AuthnContextClassRef'][0]
+            $a['AuthnContextClassRef'][0],
         );
 
         $xml = $ar->toSignedXML();
@@ -479,12 +479,12 @@ class SPTest extends ClearStateTestCase
     public function testSPIdpListScoping(): void
     {
         $ar = $this->createAuthnRequest([
-            'IDPList' => ['https://scope.example.com']
+            'IDPList' => ['https://scope.example.com'],
         ]);
 
         $this->assertContains(
             'https://scope.example.com',
-            $ar->getIDPList()
+            $ar->getIDPList(),
         );
     }
 
@@ -499,7 +499,7 @@ class SPTest extends ClearStateTestCase
 
         $this->assertContains(
             'https://scope.example.com',
-            $ar->getIDPList()
+            $ar->getIDPList(),
         );
     }
 
@@ -524,7 +524,7 @@ class SPTest extends ClearStateTestCase
             ['ar' => $ar] = $e->getTestResult();
             $this->assertContains(
                 'https://scope.example.com',
-                $ar->getIDPList()
+                $ar->getIDPList(),
             );
         }
     }
@@ -568,7 +568,7 @@ class SPTest extends ClearStateTestCase
 
             $this->assertContains(
                 $expectedScope,
-                $ar->getIDPList()
+                $ar->getIDPList(),
             );
         }
     }
@@ -586,7 +586,7 @@ class SPTest extends ClearStateTestCase
                 'stateIdpList' => null,
                 'idpConfigArray' => ['https//scope2.example.com'],
                 'remoteMetadata' => ['https//scope3.example.com'],
-                'expectedScope' => 'https//scope3.example.com'
+                'expectedScope' => 'https//scope3.example.com',
             ],
             [
                 'stateIdpList' => null,
@@ -671,7 +671,7 @@ class SPTest extends ClearStateTestCase
         $this->assertIsArray($contact['attributes']);
         $attrs = [
             'xmlns:remd' => 'http://refeds.org/metadata',
-            'remd:contactType' => 'http://refeds.org/metadata/contactType/security'
+            'remd:contactType' => 'http://refeds.org/metadata/contactType/security',
         ];
         $this->assertEquals($attrs, $contact['attributes']);
 

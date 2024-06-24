@@ -314,7 +314,7 @@ class Federation
                         'set' => $entity['metadata-set'],
                         'entity' => $entity['metadata-index'],
                         'prefix' => $key['prefix'],
-                    ]
+                    ],
                 );
                 $key['name'] = 'idp';
                 unset($entity['metadata_array']['keys'][$kidx]['prefix']);

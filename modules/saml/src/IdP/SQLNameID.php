@@ -166,7 +166,7 @@ class SQLNameID
             $store,
             Store\SQLStore::class,
             'SQL NameID store requires SimpleSAMLphp to be configured with a SQL datastore.',
-            Error\Exception::class
+            Error\Exception::class,
         );
 
         return $store;
