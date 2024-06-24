@@ -43,7 +43,7 @@ class ErrorCodesTest extends TestCase
         $this->assertSameSize(
             ErrorCodes::defaultGetAllErrorCodeTitles(),
             ErrorCodes::defaultGetAllErrorCodeDescriptions(),
-            'Not all error codes have their title / description pair.'
+            'Not all error codes have their title / description pair.',
         );
 
         $this->assertArrayHasKey(ErrorCodes::WRONGUSERPASS, ErrorCodes::defaultGetAllErrorCodeTitles());
@@ -53,29 +53,29 @@ class ErrorCodesTest extends TestCase
 
         $this->assertSame(
             ErrorCodes::defaultGetAllErrorCodeTitles()[ErrorCodes::WRONGUSERPASS],
-            ErrorCodes::getErrorCodeTitle(ErrorCodes::WRONGUSERPASS)
+            ErrorCodes::getErrorCodeTitle(ErrorCodes::WRONGUSERPASS),
         );
         $this->assertSame(
             ErrorCodes::defaultGetAllErrorCodeDescriptions()[ErrorCodes::WRONGUSERPASS],
-            ErrorCodes::getErrorCodeDescription(ErrorCodes::WRONGUSERPASS)
+            ErrorCodes::getErrorCodeDescription(ErrorCodes::WRONGUSERPASS),
         );
 
         $this->assertSame(
             ErrorCodes::getAllErrorCodeTitles(),
-            ErrorCodes::getAllErrorCodeMessages()[ErrorCodes::KEY_TITLE]
+            ErrorCodes::getAllErrorCodeMessages()[ErrorCodes::KEY_TITLE],
         );
         $this->assertSame(
             ErrorCodes::getAllErrorCodeDescriptions(),
-            ErrorCodes::getAllErrorCodeMessages()[ErrorCodes::KEY_DESCRIPTION]
+            ErrorCodes::getAllErrorCodeMessages()[ErrorCodes::KEY_DESCRIPTION],
         );
 
         $this->assertSame(
             ErrorCodes::getErrorCodeTitle(ErrorCodes::WRONGUSERPASS),
-            ErrorCodes::getErrorCodeMessage(ErrorCodes::WRONGUSERPASS)[ErrorCodes::KEY_TITLE]
+            ErrorCodes::getErrorCodeMessage(ErrorCodes::WRONGUSERPASS)[ErrorCodes::KEY_TITLE],
         );
         $this->assertSame(
             ErrorCodes::getErrorCodeDescription(ErrorCodes::WRONGUSERPASS),
-            ErrorCodes::getErrorCodeMessage(ErrorCodes::WRONGUSERPASS)[ErrorCodes::KEY_DESCRIPTION]
+            ErrorCodes::getErrorCodeMessage(ErrorCodes::WRONGUSERPASS)[ErrorCodes::KEY_DESCRIPTION],
         );
     }
 
@@ -145,7 +145,7 @@ class ErrorCodesTest extends TestCase
         $this->assertSameSize(
             $customErrorCodes::getCustomErrorCodeTitles(),
             $customErrorCodes::getCustomErrorCodeDescriptions(),
-            'Not all custom error codes have their title / description pair.'
+            'Not all custom error codes have their title / description pair.',
         );
 
         $this->assertArrayHasKey($customErrorCodes::CUSTOMCODE, $customErrorCodes::getCustomErrorCodeTitles());
@@ -155,29 +155,29 @@ class ErrorCodesTest extends TestCase
 
         $this->assertSame(
             $customErrorCodes::getCustomErrorCodeTitles()[$customErrorCodes::CUSTOMCODE],
-            $customErrorCodes::getErrorCodeTitle($customErrorCodes::CUSTOMCODE)
+            $customErrorCodes::getErrorCodeTitle($customErrorCodes::CUSTOMCODE),
         );
         $this->assertSame(
             $customErrorCodes::getCustomErrorCodeDescriptions()[$customErrorCodes::CUSTOMCODE],
-            $customErrorCodes::getErrorCodeDescription($customErrorCodes::CUSTOMCODE)
+            $customErrorCodes::getErrorCodeDescription($customErrorCodes::CUSTOMCODE),
         );
 
         $this->assertSame(
             $customErrorCodes::getAllErrorCodeTitles(),
-            $customErrorCodes::getAllErrorCodeMessages()[ErrorCodes::KEY_TITLE]
+            $customErrorCodes::getAllErrorCodeMessages()[ErrorCodes::KEY_TITLE],
         );
         $this->assertSame(
             $customErrorCodes::getAllErrorCodeDescriptions(),
-            $customErrorCodes::getAllErrorCodeMessages()[ErrorCodes::KEY_DESCRIPTION]
+            $customErrorCodes::getAllErrorCodeMessages()[ErrorCodes::KEY_DESCRIPTION],
         );
 
         $this->assertSame(
             $customErrorCodes::getErrorCodeTitle($customErrorCodes::CUSTOMCODE),
-            $customErrorCodes::getErrorCodeMessage($customErrorCodes::CUSTOMCODE)[ErrorCodes::KEY_TITLE]
+            $customErrorCodes::getErrorCodeMessage($customErrorCodes::CUSTOMCODE)[ErrorCodes::KEY_TITLE],
         );
         $this->assertSame(
             $customErrorCodes::getErrorCodeDescription($customErrorCodes::CUSTOMCODE),
-            $customErrorCodes::getErrorCodeMessage($customErrorCodes::CUSTOMCODE)[ErrorCodes::KEY_DESCRIPTION]
+            $customErrorCodes::getErrorCodeMessage($customErrorCodes::CUSTOMCODE)[ErrorCodes::KEY_DESCRIPTION],
         );
     }
 
@@ -206,7 +206,7 @@ class ErrorCodesTest extends TestCase
         $this->assertSameSize(
             $customErrorCodes->getCustomTitles(),
             $customErrorCodes->getCustomDescriptions(),
-            'Not all custom error codes have their title / description pair.'
+            'Not all custom error codes have their title / description pair.',
         );
 
         $this->assertArrayHasKey($customErrorCodes::CUSTOMCODE, $customErrorCodes->getCustomTitles());
@@ -216,29 +216,29 @@ class ErrorCodesTest extends TestCase
 
         $this->assertSame(
             $customErrorCodes->getCustomTitles()[$customErrorCodes::CUSTOMCODE],
-            $customErrorCodes->getTitle($customErrorCodes::CUSTOMCODE)
+            $customErrorCodes->getTitle($customErrorCodes::CUSTOMCODE),
         );
         $this->assertSame(
             $customErrorCodes->getCustomDescriptions()[$customErrorCodes::CUSTOMCODE],
-            $customErrorCodes->getDescription($customErrorCodes::CUSTOMCODE)
+            $customErrorCodes->getDescription($customErrorCodes::CUSTOMCODE),
         );
 
         $this->assertSame(
             $customErrorCodes->getAllTitles(),
-            $customErrorCodes->getAllMessages()[ErrorCodes::KEY_TITLE]
+            $customErrorCodes->getAllMessages()[ErrorCodes::KEY_TITLE],
         );
         $this->assertSame(
             $customErrorCodes->getAllDescriptions(),
-            $customErrorCodes->getAllMessages()[ErrorCodes::KEY_DESCRIPTION]
+            $customErrorCodes->getAllMessages()[ErrorCodes::KEY_DESCRIPTION],
         );
 
         $this->assertSame(
             $customErrorCodes->getTitle($customErrorCodes::CUSTOMCODE),
-            $customErrorCodes->getMessage($customErrorCodes::CUSTOMCODE)[ErrorCodes::KEY_TITLE]
+            $customErrorCodes->getMessage($customErrorCodes::CUSTOMCODE)[ErrorCodes::KEY_TITLE],
         );
         $this->assertSame(
             $customErrorCodes->getDescription($customErrorCodes::CUSTOMCODE),
-            $customErrorCodes->getMessage($customErrorCodes::CUSTOMCODE)[ErrorCodes::KEY_DESCRIPTION]
+            $customErrorCodes->getMessage($customErrorCodes::CUSTOMCODE)[ErrorCodes::KEY_DESCRIPTION],
         );
     }
 }

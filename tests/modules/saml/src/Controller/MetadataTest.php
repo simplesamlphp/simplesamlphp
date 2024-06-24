@@ -102,7 +102,7 @@ class MetadataTest extends TestCase
                 'admin.protectmetadata' => false,
             ],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
         Configuration::setPreLoadedConfig($this->config, 'config.php');
 

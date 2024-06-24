@@ -908,7 +908,7 @@ class SAMLParser
                         Logger::warning(
                             'Invalid attempt to override registrationAuthority \''
                             . $ret['RegistrationInfo']['authority']
-                            . "' with '{$e->getRegistrationAuthority()}'"
+                            . "' with '{$e->getRegistrationAuthority()}'",
                         );
                     } else {
                         $ret['RegistrationInfo']['authority'] = $e->getRegistrationAuthority();

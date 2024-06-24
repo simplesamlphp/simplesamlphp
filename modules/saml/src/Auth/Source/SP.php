@@ -251,8 +251,8 @@ class SP extends \SimpleSAML\Auth\Source
                     [
                         'set' => 'saml20-sp-hosted',
                         'source' => $this->getAuthId(),
-                        'prefix' => 'new_'
-                    ]
+                        'prefix' => 'new_',
+                    ],
                 ),
                 'name' => $certInfo['name'] ?? null,
             ];
@@ -271,8 +271,8 @@ class SP extends \SimpleSAML\Auth\Source
                     [
                         'set' => 'saml20-sp-hosted',
                         'source' => $this->getAuthId(),
-                        'prefix' => ''
-                    ]
+                        'prefix' => '',
+                    ],
                 ),
                 'name' => $certInfo['name'] ?? null,
             ];
@@ -521,7 +521,7 @@ class SP extends \SimpleSAML\Auth\Source
                 // RequestedAuthnContext has been set by an SP behind the proxy so pass it to the upper IdP
                 $ar->setRequestedAuthnContext([
                     'AuthnContextClassRef' => $state['saml:RequestedAuthnContext']['AuthnContextClassRef'],
-                    'Comparison' => $state['saml:RequestedAuthnContext']['Comparison']
+                    'Comparison' => $state['saml:RequestedAuthnContext']['Comparison'],
                 ]);
             }
         }

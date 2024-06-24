@@ -79,7 +79,7 @@ class Logout
         $returnTo = $this->getReturnPath($request);
         return new RunnableResponse(
             [$auth, 'logout'],
-            [$returnTo]
+            [$returnTo],
         );
     }
 

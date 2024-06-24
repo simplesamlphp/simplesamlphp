@@ -25,7 +25,7 @@ class MetadataTest extends TestCase
     {
         // test missing type
         $contact = [
-            'name' => 'John Doe'
+            'name' => 'John Doe',
         ];
         try {
             Metadata::getContact($contact);
@@ -35,7 +35,7 @@ class MetadataTest extends TestCase
 
         // test invalid type
         $contact = [
-            'contactType' => 'invalid'
+            'contactType' => 'invalid',
         ];
         try {
             Metadata::getContact($contact);
@@ -46,7 +46,7 @@ class MetadataTest extends TestCase
         // test all valid contact types
         foreach (ContactPerson::CONTACT_TYPES as $type) {
             $contact = [
-                'contactType' => $type
+                'contactType' => $type,
             ];
             $parsed = Metadata::getContact($contact);
             $this->assertArrayHasKey('contactType', $parsed);
@@ -108,7 +108,7 @@ class MetadataTest extends TestCase
             } catch (InvalidArgumentException $e) {
                 $this->assertEquals(
                     '"emailAddress" must be a string or an array and cannot be empty.',
-                    $e->getMessage()
+                    $e->getMessage(),
                 );
             }
         }
@@ -120,7 +120,7 @@ class MetadataTest extends TestCase
             } catch (InvalidArgumentException $e) {
                 $this->assertEquals(
                     'Email addresses must be a string and cannot be empty.',
-                    $e->getMessage()
+                    $e->getMessage(),
                 );
             }
         }
@@ -143,7 +143,7 @@ class MetadataTest extends TestCase
             } catch (InvalidArgumentException $e) {
                 $this->assertEquals(
                     '"telephoneNumber" must be a string or an array and cannot be empty.',
-                    $e->getMessage()
+                    $e->getMessage(),
                 );
             }
         }
@@ -227,11 +227,11 @@ class MetadataTest extends TestCase
     {
         $nameIdPolicy = [
             'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:persistent',
-            'AllowCreate' => false
+            'AllowCreate' => false,
         ];
         $this->assertEquals([
             'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:persistent',
-            'AllowCreate' => false
+            'AllowCreate' => false,
         ], Metadata::parseNameIdPolicy($nameIdPolicy));
 
         $nameIdPolicy = [
@@ -242,7 +242,7 @@ class MetadataTest extends TestCase
         $this->assertEquals([
             'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:persistent',
             'AllowCreate' => false,
-            'SPNameQualifier' => 'TEST'
+            'SPNameQualifier' => 'TEST',
         ], Metadata::parseNameIdPolicy($nameIdPolicy));
     }
 
@@ -256,7 +256,7 @@ class MetadataTest extends TestCase
         $nameIdPolicy = null;
         $this->assertEquals([
             'Format' => Constants::NAMEID_TRANSIENT,
-            'AllowCreate' => true
+            'AllowCreate' => true,
         ], Metadata::parseNameIdPolicy($nameIdPolicy));
 
         $nameIdPolicy = [
@@ -264,7 +264,7 @@ class MetadataTest extends TestCase
         ];
         $this->assertEquals([
             'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:persistent',
-            'AllowCreate' => true
+            'AllowCreate' => true,
         ], Metadata::parseNameIdPolicy($nameIdPolicy));
 
         $nameIdPolicy = [
@@ -272,7 +272,7 @@ class MetadataTest extends TestCase
         ];
         $this->assertEquals([
             'Format' => Constants::NAMEID_TRANSIENT,
-            'AllowCreate' => false
+            'AllowCreate' => false,
         ], Metadata::parseNameIdPolicy($nameIdPolicy));
     }
 
@@ -285,7 +285,7 @@ class MetadataTest extends TestCase
         $nameIdPolicy = [];
         $this->assertEquals(
             [],
-            Metadata::parseNameIdPolicy($nameIdPolicy)
+            Metadata::parseNameIdPolicy($nameIdPolicy),
         );
     }
 }

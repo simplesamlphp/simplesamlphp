@@ -195,13 +195,13 @@ class SAMLBuilder
                 $ea->addChildren($a);
             }
             $this->entityDescriptor->setExtensions(
-                array_merge($this->entityDescriptor->getExtensions(), [$ea])
+                array_merge($this->entityDescriptor->getExtensions(), [$ea]),
             );
         }
 
         if ($metadata->hasValue('saml:Extensions')) {
             $this->entityDescriptor->setExtensions(
-                array_merge($this->entityDescriptor->getExtensions(), $metadata->getArray('saml:Extensions'))
+                array_merge($this->entityDescriptor->getExtensions(), $metadata->getArray('saml:Extensions')),
             );
         }
 
@@ -221,7 +221,7 @@ class SAMLBuilder
                 }
             }
             $this->entityDescriptor->setExtensions(
-                array_merge($this->entityDescriptor->getExtensions(), [$ri])
+                array_merge($this->entityDescriptor->getExtensions(), [$ri]),
             );
         }
 
@@ -377,7 +377,7 @@ class SAMLBuilder
                 $t->setAttributeNS(
                     Constants::NS_HOK,
                     'hoksso:ProtocolBinding',
-                    Constants::BINDING_HTTP_REDIRECT
+                    Constants::BINDING_HTTP_REDIRECT,
                 );
             }
 
@@ -559,7 +559,7 @@ class SAMLBuilder
         if ($metadata->hasValue('ArtifactResolutionService')) {
             $e->setArtifactResolutionService(self::createEndpoints(
                 $metadata->getEndpoints('ArtifactResolutionService'),
-                true
+                true,
             ));
         }
 
@@ -601,7 +601,7 @@ class SAMLBuilder
         $e->setAttributeService(self::createEndpoints($metadata->getEndpoints('AttributeService'), false));
         $e->setAssertionIDRequestService(self::createEndpoints(
             $metadata->getEndpoints('AssertionIDRequestService'),
-            false
+            false,
         ));
 
         $e->setNameIDFormat($metadata->getOptionalArrayizeString('NameIDFormat', []));

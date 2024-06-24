@@ -219,8 +219,8 @@ class ServiceProviderTest extends TestCase
             'no query params' => [
                 [], // If no query params are provided, it should default to the RelayState
                 [
-                    'ReturnTo' => self::RELAY_STATE
-                ]
+                    'ReturnTo' => self::RELAY_STATE,
+                ],
             ],
             'entityID=example.edu' => [
                 [
@@ -228,21 +228,21 @@ class ServiceProviderTest extends TestCase
                 ],
                 [
                     'ReturnTo' =>  self::RELAY_STATE,
-                    'saml:idp' => 'example.edu'
-                ]
+                    'saml:idp' => 'example.edu',
+                ],
             ],
             'entityID=example.edu&forceAuthn=false&isPassive=false' => [
                 [
                     'entityID' => 'example.edu',
                     'forceAuthn' => 'false',
-                    'isPassive' => 'false'
+                    'isPassive' => 'false',
                 ],
                 [
                     'ReturnTo' => self::RELAY_STATE,
                     'saml:idp' => 'example.edu',
                     'ForceAuthn' => false,
-                    'isPassive' => false
-                ]
+                    'isPassive' => false,
+                ],
             ],
             'entityID=other.edu' => [
                 [
@@ -250,27 +250,27 @@ class ServiceProviderTest extends TestCase
                 ],
                 [
                     'ReturnTo' =>  self::RELAY_STATE,
-                    'saml:idp' => 'other.edu'
-                ]
+                    'saml:idp' => 'other.edu',
+                ],
             ],
             'forceAuthn=true&target=/some/url' => [
                 [
                     'target' => '/some/url',
-                    'forceAuthn' => 'true'
+                    'forceAuthn' => 'true',
                 ],
                 [
                     'ReturnTo' => 'http://localhost/some/url',
-                    'ForceAuthn' => true
+                    'ForceAuthn' => true,
                 ],
-                false
+                false,
             ],
             'target=https://evil.com' => [
                 [
-                    'target' => 'https://evil.com'
+                    'target' => 'https://evil.com',
                 ],
                 [],
-                true
-            ]
+                true,
+            ],
         ];
     }
 
@@ -338,7 +338,7 @@ class ServiceProviderTest extends TestCase
                 [
                     'ReturnTo' =>  self::RELAY_STATE,
                 ],
-                false
+                false,
             ],
             'entityID=example.edu' => [
                 [
@@ -347,18 +347,18 @@ class ServiceProviderTest extends TestCase
                 [
                     'ReturnTo' =>  self::RELAY_STATE,
                 ],
-                false
+                false,
             ],
             'entityID=example.edu&forceAuthn=false&isPassive=false' => [
                 [
                     'entityID' => 'example.edu',
                     'forceAuthn' => 'false',
-                    'isPassive' => 'false'
+                    'isPassive' => 'false',
                 ],
                 [
                     'ReturnTo' =>  self::RELAY_STATE,
                 ],
-                false
+                false,
             ],
             'entityID=other.edu' => [
                 [
@@ -366,29 +366,29 @@ class ServiceProviderTest extends TestCase
                 ],
                 [
                     'ReturnTo' =>  self::RELAY_STATE,
-                    'saml:idp' => 'other.edu'
+                    'saml:idp' => 'other.edu',
                 ],
-                true
+                true,
             ],
             'forceAuthn=true&target=/some/url' => [
                 [
                     'target' => '/some/url',
-                    'forceAuthn' => 'true'
+                    'forceAuthn' => 'true',
                 ],
                 [
                     'ReturnTo' => 'http://localhost/some/url',
-                    'ForceAuthn' => true
+                    'ForceAuthn' => true,
                 ],
-                true
+                true,
             ],
             'target=https://evil.com' => [
                 [
-                    'target' => 'https://evil.com'
+                    'target' => 'https://evil.com',
                 ],
                 [],
                 false,
-                true
-            ]
+                true,
+            ],
         ];
     }
 
