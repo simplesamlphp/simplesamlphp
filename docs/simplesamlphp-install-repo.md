@@ -42,8 +42,7 @@ The default config.php has a setting `cachedir` which defaults to
 writable by the web server user. You may like to consider something
 like the ACL commands from the [Symfony
 website](https://symfony.com/doc/current/setup/file_permissions.html#1-using-acl-on-a-system-that-supports-setfacl-linux-bsd)
-to enable access to this cache directory
-
+to enable access to this cache directory.
 
 Install the external dependencies with Composer (you can refer to
 [getcomposer.org](https://getcomposer.org/) to get detailed
