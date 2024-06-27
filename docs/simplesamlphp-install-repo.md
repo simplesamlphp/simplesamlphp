@@ -60,11 +60,26 @@ Go to the root directory of your SimpleSAMLphp installation:
 cd /var/simplesamlphp
 ```
 
-Ask git to update to the latest version:
+Ask git to update to update the local repository information:
 
 ```bash
 git fetch origin
-git pull origin master
+```
+
+If you installed as described above, you will be using a
+[tag](https://github.com/simplesamlphp/simplesamlphp/tags) for a
+specific release. You can see the current tag you are using and
+checkout a newer one with the below commands:
+
+```bash
+$ git log -1
+commit 081.... (HEAD, tag: v2.2.1)
+Author: ...
+Date:   Sun Mar ....
+
+    Release v2.2.1
+
+git checkout v2.2.2
 ```
 
 Install or upgrade the external dependencies with Composer:
@@ -72,3 +87,6 @@ Install or upgrade the external dependencies with Composer:
 ```bash
 php composer.phar install
 ```
+
+When using Windows see the additional options for this composer
+command shown at the end of the installation step above.
