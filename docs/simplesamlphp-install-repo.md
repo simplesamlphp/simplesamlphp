@@ -37,6 +37,14 @@ cp metadata/saml20-idp-remote.php.dist metadata/saml20-idp-remote.php
 cp metadata/saml20-sp-remote.php.dist metadata/saml20-sp-remote.php
 ```
 
+The default config.php has a setting `cachedir` which defaults to
+`/var/cache/simplesamlphp`. This directory should exist and be
+writable by the web server user. You may like to consider something
+like the ACL commands from the [Symfony
+website](https://symfony.com/doc/current/setup/file_permissions.html#1-using-acl-on-a-system-that-supports-setfacl-linux-bsd)
+to enable access to this cache directory
+
+
 Install the external dependencies with Composer (you can refer to
 [getcomposer.org](https://getcomposer.org/) to get detailed
 instructions on how to install Composer itself):
