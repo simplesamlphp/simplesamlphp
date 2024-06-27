@@ -66,13 +66,8 @@ specific release. You can see the current tag you are using and
 checkout a newer one with the below commands:
 
 ```bash
-$ git log -1
-commit 081.... (HEAD, tag: v2.2.1)
-Author: ...
-Date:   Sun Mar ....
-
-    Release v2.2.1
-
+git branch
+* (HEAD detached at v2.2.1)
 git checkout v2.2.2
 ```
 
