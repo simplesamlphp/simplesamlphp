@@ -109,7 +109,7 @@ msgid "Either no user with the given username could be found, or the password yo
 msgstr "Entweder gouf kee Benotzer mat dem Numm fonnt, oder d'Passwuert dat dir uginn hutt ass falsch. Kontrolléiert w.e.g.  de Benotzer a probéiert nach eng Kéiere"
 
 msgid "Enter your username and password"
-msgstr "Gitt w.e.g Ären Benotzernumm an d Passwuert an"
+msgstr "Gitt w.e.g Ären Benotzernumm an d'Passwuert an"
 
 msgid "Entitlement regarding the service"
 msgstr "Berechtegung"
