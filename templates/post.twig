@@ -21,7 +21,7 @@
         {%- if value is iterable %}
           {%- for index, item in value %}
 
-      <input type="hidden" name="{{ name }}[{{ index }}]" value="{{ value }}">
+      <input type="hidden" name="{{ name }}[{{ index }}]" value="{{ item }}">
           {%- endfor %}
         {%- else %}
 
