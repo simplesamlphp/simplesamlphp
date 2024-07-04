@@ -66,6 +66,7 @@ class Configuration implements Utils\ClearableState
             "base-uri 'none'",
         'Referrer-Policy' => 'origin-when-cross-origin',
         'X-Content-Type-Options' => 'nosniff',
+        'Strict-Transport-Security' => 'max-age=63072000; includeSubDomains',
     ];
 
     /**
