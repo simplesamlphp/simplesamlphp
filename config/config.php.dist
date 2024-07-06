@@ -269,6 +269,9 @@ $config = [
 
     /*
      * Set custom security headers. The defaults can be found in \SimpleSAML\Configuration::DEFAULT_SECURITY_HEADERS
+     * and \SimpleSAML\Configuration::DEFAULT_SECURITY_HEADERS_HTTPS_MERGE.
+     * When a request is performed over https then the later is merged with
+     * DEFAULT_SECURITY_HEADERS.
      *
      * NOTE: When a header is already set on the response we will NOT overrule it and leave it untouched.
      *
@@ -287,6 +290,8 @@ $config = [
             "base-uri 'none'",
         'Referrer-Policy' => 'origin-when-cross-origin',
         'X-Content-Type-Options' => 'nosniff',
+    ],
+    'headers.security.https.merge' => [
         'Strict-Transport-Security: max-age=63072000; includeSubDomains',
     ],
      */

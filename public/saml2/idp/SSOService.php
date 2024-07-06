@@ -18,7 +18,7 @@ $config = Configuration::getInstance();
 $controller = new Controller\WebBrowserSingleSignOn($config);
 $request = Request::createFromGlobals();
 
-$headers = $config->getOptionalArray('headers.security', Configuration::DEFAULT_SECURITY_HEADERS);
+$headers = $config->getHeadersSecurity();
 
 $response = $controller->singleSignOnService($request);
 foreach ($headers as $header => $value) {

@@ -66,6 +66,8 @@ class Configuration implements Utils\ClearableState
             "base-uri 'none'",
         'Referrer-Policy' => 'origin-when-cross-origin',
         'X-Content-Type-Options' => 'nosniff',
+    ];
+    public const DEFAULT_SECURITY_HEADERS_HTTPS_MERGE = [
         'Strict-Transport-Security' => 'max-age=63072000; includeSubDomains',
     ];
 
@@ -980,6 +982,39 @@ class Configuration implements Utils\ClearableState
         return $ret;
     }
 
+
+    /**
+     * As the headers can be different for http and https requests this method should be used
+     * when reading headers.security to allow them to be augmented when https requests are in use.
+     *
+     * @return array the security headers that should be used.
+     */
+    public function getHeadersSecurity(): ?array
+    {
+        $httpUtils = new Utils\HTTP();
+        if ($httpUtils->isHTTPS()) {
+            $headers = $this->getOptionalArray(
+                'headers.security',
+                Configuration::DEFAULT_SECURITY_HEADERS,
+            );
+            $httpsheaders = $this->getOptionalArray(
+                'headers.security.https.merge',
+                Configuration::DEFAULT_SECURITY_HEADERS_HTTPS_MERGE,
+            );
+            if ($headers == null) {
+                $headers = [];
+            }
+            if ($httpsheaders == null) {
+                $httpsheaders = [];
+            }
+            return array_merge($headers, $httpsheaders);
+        }
+
+        return $this->getOptionalArray(
+            'headers.security',
+            Configuration::DEFAULT_SECURITY_HEADERS,
+        );
+    }
 
     /**
      * This function retrieves an array configuration option.

@@ -9,7 +9,7 @@ require_once('../_include.php');
 $config = Configuration::getInstance();
 $httpUtils = new Utils\HTTP();
 
-$headers = $config->getOptionalArray('headers.security', Configuration::DEFAULT_SECURITY_HEADERS);
+$headers = $config->getHeadersSecurity();
 $redirect = Module::getModuleURL('admin/');
 $response = $httpUtils->redirectTrustedURL($redirect);
 foreach ($headers as $header => $value) {

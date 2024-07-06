@@ -18,7 +18,7 @@ $request = Request::createFromGlobals();
 $config = Configuration::getInstance();
 $controller = new Controller\Metadata($config);
 
-$headers = $config->getOptionalArray('headers.security', Configuration::DEFAULT_SECURITY_HEADERS);
+$headers = $config->getHeadersSecurity();
 
 $response = $controller->metadata($request);
 foreach ($headers as $header => $value) {

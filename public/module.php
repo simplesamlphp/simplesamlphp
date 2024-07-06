@@ -12,7 +12,7 @@ namespace SimpleSAML;
 require_once('_include.php');
 
 $config = Configuration::getInstance();
-$headers = $config->getOptionalArray('headers.security', Configuration::DEFAULT_SECURITY_HEADERS);
+$headers = $config->getHeadersSecurity();
 
 $response = Module::process();
 foreach ($headers as $header => $value) {
