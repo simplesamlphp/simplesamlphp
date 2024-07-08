@@ -40,7 +40,7 @@
         <form id="f" class="pure-form pure-form-aligned" action="{{ formURL }}" method="post" name="f" spellcheck="false">
                 <div class="pure-control-group">
                     <label for="username">{{ 'Username'|trans }}</label>
-                    <input id="username" {{ forceUsername ? 'disabled' }} placeholder="{{ username }}" type="text" name="username" class="edge"
+                    <input id="username" {{ forceUsername ? 'disabled autocomplete="off"' }} placeholder="{{ username }}" type="text" name="username" class="edge"
             {%- if not forceUsername %} tabindex="1" value="{{ username }}" autocomplete="username" {% endif %}
             {%- if not forceUsername and not username %} autofocus {% endif %} >
                 {% if rememberUsernameEnabled and not forceUsername -%}
