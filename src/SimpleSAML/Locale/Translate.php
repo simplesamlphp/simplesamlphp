@@ -64,7 +64,7 @@ class Translate
 
     public static function addDefaultDomain(string $domain): void
     {
-        array_push( self::$defaultDomains, $domain );
+        array_push(self::$defaultDomains, $domain);
     }
 
     /**
@@ -85,14 +85,13 @@ class Translate
             if ($text === $original) {
                 $text = TranslatorFunctions::getTranslator()->dgettext("messages", $original);
                 if ($text === $original) {
-
-                    foreach( self::$defaultDomains as $d) { 
+                    foreach (self::$defaultDomains as $d) {
                         $text = TranslatorFunctions::getTranslator()->dgettext($d, $original);
                         if ($text != $original) {
                             return $text;
                         }
                     }
-                      
+
                     // try attributes.po
                     if ($text === $original) {
                         $text = TranslatorFunctions::getTranslator()->dgettext("", $original);
