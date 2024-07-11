@@ -393,7 +393,7 @@ class HTTP
 
         // get the white list of domains
         if ($trustedSites === null) {
-            $trustedSites = Configuration::getInstance()->getOptionalArray('trusted.url.domains', []);
+            $trustedSites = Configuration::getInstance()->getOptionalArray('trusted.url.domains', null);
         }
 
         // validates the URL's host is among those allowed
