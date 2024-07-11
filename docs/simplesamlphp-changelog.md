@@ -10,6 +10,7 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 Released TBD
 
 * Added a missing use-statement that would cause a 'class not found' exception.
+* Restore the possibility to set `trusted.url.domains` to null
 
 `adfs`
 
