@@ -16,6 +16,7 @@ use Gettext\Loader\{MoLoader, PoLoader};
 use Gettext\{Translations, Translator, TranslatorFunctions};
 use SimpleSAML\{Configuration, Logger};
 use Symfony\Component\HttpFoundation\File\File;
+use SimpleSAML\Locale\Translate;
 
 use function explode;
 use function is_dir;
@@ -141,6 +142,7 @@ class Localization
     public function defaultDomain(string $domain): self
     {
         $this->translator->defaultDomain($domain);
+        Translate::addDefaultDomain($domain);
         return $this;
     }
 

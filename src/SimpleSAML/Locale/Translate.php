@@ -30,6 +30,10 @@ class Translate
      */
     private Language $language;
 
+    /**
+     * A theme and module may exist together as dual default translation domains
+     */
+    private static array $defaultDomains = [];
 
     /**
      * Constructor
@@ -66,6 +70,10 @@ class Translate
         return $tag;
     }
 
+    public static function addDefaultDomain(string $domain): void
+    {
+        array_push(self::$defaultDomains, $domain);
+    }
 
     /**
      * Translate a singular text.
@@ -84,9 +92,18 @@ class Translate
             $text = TranslatorFunctions::getTranslator()->dgettext("core", $original);
             if ($text === $original) {
                 $text = TranslatorFunctions::getTranslator()->dgettext("messages", $original);
-                // try attributes.po
                 if ($text === $original) {
-                    $text = TranslatorFunctions::getTranslator()->dgettext("", $original);
+                    foreach (self::$defaultDomains as $d) {
+                        $text = TranslatorFunctions::getTranslator()->dgettext($d, $original);
+                        if ($text != $original) {
+                            return $text;
+                        }
+                    }
+
+                    // try attributes.po
+                    if ($text === $original) {
+                        $text = TranslatorFunctions::getTranslator()->dgettext("", $original);
+                    }
                 }
             }
         }
