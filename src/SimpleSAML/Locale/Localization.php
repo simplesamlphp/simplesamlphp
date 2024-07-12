@@ -17,6 +17,7 @@ use Gettext\Loader\PoLoader;
 use Gettext\{Translations, Translator, TranslatorFunctions};
 use SimpleSAML\{Configuration, Logger};
 use Symfony\Component\HttpFoundation\File\File;
+use SimpleSAML\Locale\Translate;
 
 class Localization
 {
@@ -137,6 +138,7 @@ class Localization
     public function defaultDomain(string $domain): self
     {
         $this->translator->defaultDomain($domain);
+        Translate::addDefaultDomain($domain);
         return $this;
     }
 
