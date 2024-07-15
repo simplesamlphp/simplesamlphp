@@ -75,7 +75,7 @@
         "simplesamlphp/simplesamlphp-assets-base": "^2.1.5",
         "simplesamlphp/simplesamlphp-module-adfs": "^2.1",
         "simplesamlphp/xml-common": "^1.13",
-        "symfony/cache": "^6.4.0",
+        "symfony/cache": "^7.1.2",
         "symfony/config": "^6.4.0",
         "symfony/console": "^6.4.0",
         "symfony/dependency-injection": "^6.4.0",
