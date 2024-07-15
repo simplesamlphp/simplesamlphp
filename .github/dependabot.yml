@@ -22,22 +22,16 @@ updates:
     allow:
       # Allow both direct and indirect updates for all packages
       - dependency-type: "all"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     groups:
       production-dependencies:
         dependency-type: "production"
         exclude-patterns:
           - "symfony/*"
-        update-types:
-          - "minor"
-          - "patch"
       development-dependencies:
         dependency-type: "development"
-        update-types:
-          - "minor"
-          - "patch"
       symfony:
         patterns:
           - "symfony/*"
-        update-types:
-          - "minor"
-          - "patch"
