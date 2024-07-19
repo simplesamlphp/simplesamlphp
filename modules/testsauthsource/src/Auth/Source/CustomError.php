@@ -31,5 +31,3 @@ class CustomError extends Error\Error
         return $this->ec;
     }
 }
-
-

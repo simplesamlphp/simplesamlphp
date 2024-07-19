@@ -9,8 +9,6 @@ use SimpleSAML\Error\ErrorCodes;
 use SimpleSAML\Module\core\Auth\UserPassBase;
 use SimpleSAML\Module\testsauthsource\Auth\Source\CustomError;
 
-
-
 /**
  * testing authentication source - can throw a variety of custom error codes
  * or a normal error code. This range is useful for the test suite and can
