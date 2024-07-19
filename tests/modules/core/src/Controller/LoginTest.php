@@ -208,10 +208,11 @@ class LoginTest extends ClearStateTestCase
 
     /**
      * Setup a testing authsource with the additional configuration given
+     * Returns a request that can be passed to loginuserpass().
      *
      * @param asConfig extra configuration array to be set inside the authSource stanza
      *
-     * @return A request that can be passed to loginuserpass()
+     * @return \Symfony\Component\HttpFoundation\Request
      */
     private function setupPrivateAuthSource(array $asConfig): Request
     {
