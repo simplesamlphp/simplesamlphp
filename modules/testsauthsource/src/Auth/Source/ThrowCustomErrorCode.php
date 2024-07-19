@@ -11,7 +11,7 @@ use SimpleSAML\Module\core\Auth\UserPassBase;
 /**
  * A custom Error class
  */
-class myError extends Error\Error
+class MyError extends Error\Error
 {
     private ?ErrorCodes $ec = null;
 
@@ -31,7 +31,7 @@ class myError extends Error\Error
     {
         return $this->ec;
     }
-};
+}
 
 
 
@@ -99,7 +99,7 @@ class ThrowCustomErrorCode extends UserPassBase
         if ($this->errorType == 'NORMAL') {
             throw new Error\Error(Error\ErrorCodes::WRONGUSERPASS);
         } else {
-            throw new myError($customErrorCodes::BIND_SEARCH_CONNECT_ERROR, null, null, $customErrorCodes);
+            throw new MyError($customErrorCodes::BIND_SEARCH_CONNECT_ERROR, null, null, $customErrorCodes);
         }
     }
 }
