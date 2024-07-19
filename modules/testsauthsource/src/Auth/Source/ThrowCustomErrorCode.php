@@ -7,31 +7,7 @@ namespace SimpleSAML\Module\testsauthsource\Auth\Source;
 use SimpleSAML\Error;
 use SimpleSAML\Error\ErrorCodes;
 use SimpleSAML\Module\core\Auth\UserPassBase;
-
-/**
- * A custom Error class
- */
-class MyError extends Error\Error
-{
-    private ?ErrorCodes $ec = null;
-
-    public function __construct(
-        string|array $errorCode,
-        Throwable $cause = null,
-        ?int $httpCode = null,
-        ErrorCodes $errorCodes = null,
-    ) {
-        $this->ec = $errorCodes;
-        if (!$this->ec) {
-            $this->ec = new ErrorCodes();
-        }
-        parent::__construct($errorCode, $cause, $httpCode, $errorCodes);
-    }
-    public function getErrorCodes(): ErrorCodes
-    {
-        return $this->ec;
-    }
-}
+use SimpleSAML\Module\testsauthsource\Auth\Source\CustomError;
 
 
 
@@ -99,7 +75,7 @@ class ThrowCustomErrorCode extends UserPassBase
         if ($this->errorType == 'NORMAL') {
             throw new Error\Error(Error\ErrorCodes::WRONGUSERPASS);
         } else {
-            throw new MyError($customErrorCodes::BIND_SEARCH_CONNECT_ERROR, null, null, $customErrorCodes);
+            throw new CustomError($customErrorCodes::BIND_SEARCH_CONNECT_ERROR, null, null, $customErrorCodes);
         }
     }
 }
