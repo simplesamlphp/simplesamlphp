@@ -229,7 +229,7 @@ class LoginTest extends ClearStateTestCase
 
         // Get the default authsources and add a specific configuration
         // of testsauthsource:ThrowCustomErrorCode for this test
-        $config = Configuration::getConfig('authsources.php')->toArray();
+        $config = array();
         $config['testsauthsource-ThrowCustomErrorCode'] =  array_merge(
             ['testsauthsource:ThrowCustomErrorCode'],
             $asConfig,
