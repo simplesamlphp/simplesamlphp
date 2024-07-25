@@ -145,6 +145,7 @@ class LoginTest extends ClearStateTestCase
         );
 
         $c = new Controller\Login($this->config);
+        $c = new Controller\Login($this->config);
 
         $this->expectException(Error\BadRequest::class);
 
