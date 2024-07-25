@@ -456,6 +456,15 @@ class Module
         }
 
         if ($subclass !== null && !is_subclass_of($className, $subclass)) {
+            // If it is not a subclass check if it even exists to give a better
+            // error message.
+            if (!class_exists($className, true)) {
+                throw new Exception(
+                    'Could not resolve \'' . $id . '\': The class \'' . $className
+                    . '\' does not exist.',
+                );
+            }
+
             throw new Exception(
                 'Could not resolve \'' . $id . '\': The class \'' . $className
                 . '\' isn\'t a subclass of \'' . $subclass . '\'.',
