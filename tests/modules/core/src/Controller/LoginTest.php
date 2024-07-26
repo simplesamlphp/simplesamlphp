@@ -11,7 +11,6 @@ use SimpleSAML\Module\core\Auth\UserPassBase;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
-use SimpleSAML\Module;
 
 /**
  * Set of tests for the controllers in the "core" module.
