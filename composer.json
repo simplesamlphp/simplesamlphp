@@ -27,8 +27,8 @@
             "SimpleSAML\\Module\\cron\\": "modules/cron/src",
             "SimpleSAML\\Module\\exampleauth\\": "modules/exampleauth/src",
             "SimpleSAML\\Module\\multiauth\\": "modules/multiauth/src",
-            "SimpleSAML\\Module\\saml\\": "modules/saml/src"
-            "SimpleSAML\\Module\\testsauthsource\\": ["modules/testsauthsource/src"]
+            "SimpleSAML\\Module\\saml\\": "modules/saml/src",
+            "SimpleSAML\\Module\\testsauthsource\\": "modules/testsauthsource/src"
         },
         "files": ["src/_autoload_modules.php"]
     },
