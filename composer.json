@@ -27,8 +27,7 @@
             "SimpleSAML\\Module\\cron\\": "modules/cron/src",
             "SimpleSAML\\Module\\exampleauth\\": "modules/exampleauth/src",
             "SimpleSAML\\Module\\multiauth\\": "modules/multiauth/src",
-            "SimpleSAML\\Module\\saml\\": "modules/saml/src",
-            "SimpleSAML\\Module\\testsauthsource\\": "modules/testsauthsource/src"
+            "SimpleSAML\\Module\\saml\\": "modules/saml/src"
         },
         "files": ["src/_autoload_modules.php"]
     },
@@ -40,8 +39,7 @@
             "SimpleSAML\\Test\\Module\\cron\\": ["tests/modules/cron/src"],
             "SimpleSAML\\Test\\Module\\exampleauth\\": ["tests/modules/exampleauth/src"],
             "SimpleSAML\\Test\\Module\\multiauth\\": ["tests/modules/multiauth/src"],
-            "SimpleSAML\\Test\\Module\\saml\\": ["tests/modules/saml/src"],
-            "SimpleSAML\\Module\\testsauthsource\\": ["modules/testsauthsource/src"]
+            "SimpleSAML\\Test\\Module\\saml\\": ["tests/modules/saml/src"]
         },
         "files": ["tests/_autoload_modules.php"]
     },
