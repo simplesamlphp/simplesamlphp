@@ -11,6 +11,7 @@ use SimpleSAML\Module\core\Auth\UserPassBase;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
+use SimpleSAML\Logger;
 
 /**
  * Set of tests for the controllers in the "core" module.
@@ -50,7 +51,7 @@ class LoginTest extends ClearStateTestCase
 
 
         $v = \SimpleSAML\Module::isModuleEnabled('testsauthsource');
-        echo "in setup() have module v $v \n";
+        Logger::info("in setup() have module v $v ");
 
 /*
         $core_modules = [
