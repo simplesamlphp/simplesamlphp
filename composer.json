@@ -39,7 +39,8 @@
             "SimpleSAML\\Test\\Module\\cron\\": ["tests/modules/cron/src"],
             "SimpleSAML\\Test\\Module\\exampleauth\\": ["tests/modules/exampleauth/src"],
             "SimpleSAML\\Test\\Module\\multiauth\\": ["tests/modules/multiauth/src"],
-            "SimpleSAML\\Test\\Module\\saml\\": ["tests/modules/saml/src"]
+            "SimpleSAML\\Test\\Module\\saml\\": ["tests/modules/saml/src"],
+            "SimpleSAML\\Module\\testsauthsource\\": ["modules/testsauthsource/src"]
         },
         "files": ["tests/_autoload_modules.php"]
     },
