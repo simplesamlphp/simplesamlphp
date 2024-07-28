@@ -455,6 +455,17 @@ class Module
             $className = 'SimpleSAML\\Module\\' . $tmp[0] . $type . $tmp[1];
         }
 
+        // Check if the class exists to give a more informative error
+        // for cases where modules might have been moved or renamed.
+        // Otherwise a not subclass of error would be thrown for a class
+        // that does not exist.
+        if (!class_exists($className, true)) {
+            throw new Exception(
+                'Could not resolve \'' . $id . '\': The class \'' . $className
+                . '\' does not exist.',
+            );
+        }
+
         if ($subclass !== null && !is_subclass_of($className, $subclass)) {
             throw new Exception(
                 'Could not resolve \'' . $id . '\': The class \'' . $className
