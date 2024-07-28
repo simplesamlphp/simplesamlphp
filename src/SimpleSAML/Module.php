@@ -462,10 +462,10 @@ class Module
         if (!class_exists($className, true)) {
             throw new Exception(
                 'Could not resolve \'' . $id . '\': The class \'' . $className
-              . '\' does not exist.',
+                . '\' does not exist.',
             );
         }
-        
+
         if ($subclass !== null && !is_subclass_of($className, $subclass)) {
             throw new Exception(
                 'Could not resolve \'' . $id . '\': The class \'' . $className
