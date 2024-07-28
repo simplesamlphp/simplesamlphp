@@ -469,7 +469,7 @@ class Module
         if ($subclass !== null && !is_subclass_of($className, $subclass)) {
             throw new Exception(
                 'Could not resolve \'' . $id . '\': The class \'' . $className
-              . '\' isn\'t a subclass of \'' . $subclass . '\'.',
+                . '\' isn\'t a subclass of \'' . $subclass . '\'.',
             );
         }
 
