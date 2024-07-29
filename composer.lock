@@ -76,16 +76,16 @@
         },
         {
             "name": "gettext/gettext",
-            "version": "v5.7.0",
+            "version": "v5.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-gettext/Gettext.git",
-                "reference": "8657e580747bb3baacccdcebe69cac094661e404"
+                "reference": "a9f89e0cc9d9a67b422632b594b5f1afb16eccfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-gettext/Gettext/zipball/8657e580747bb3baacccdcebe69cac094661e404",
-                "reference": "8657e580747bb3baacccdcebe69cac094661e404",
+                "url": "https://api.github.com/repos/php-gettext/Gettext/zipball/a9f89e0cc9d9a67b422632b594b5f1afb16eccfc",
+                "reference": "a9f89e0cc9d9a67b422632b594b5f1afb16eccfc",
                 "shasum": ""
             },
             "require": {
@@ -130,7 +130,7 @@
             "support": {
                 "email": "oom@oscarotero.com",
                 "issues": "https://github.com/php-gettext/Gettext/issues",
-                "source": "https://github.com/php-gettext/Gettext/tree/v5.7.0"
+                "source": "https://github.com/php-gettext/Gettext/tree/v5.7.1"
             },
             "funding": [
                 {
@@ -146,7 +146,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-07-27T19:54:55+00:00"
+            "time": "2024-07-24T22:05:18+00:00"
         },
         {
             "name": "gettext/languages",
@@ -295,6 +295,90 @@
                 }
             ],
             "time": "2023-11-06T15:42:03+00:00"
+        },
+        {
+            "name": "league/uri-interfaces",
+            "version": "7.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/uri-interfaces.git",
+                "reference": "8d43ef5c841032c87e2de015972c06f3865ef718"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/uri-interfaces/zipball/8d43ef5c841032c87e2de015972c06f3865ef718",
+                "reference": "8d43ef5c841032c87e2de015972c06f3865ef718",
+                "shasum": ""
+            },
+            "require": {
+                "ext-filter": "*",
+                "php": "^8.1",
+                "psr/http-factory": "^1",
+                "psr/http-message": "^1.1 || ^2.0"
+            },
+            "suggest": {
+                "ext-bcmath": "to improve IPV4 host parsing",
+                "ext-gmp": "to improve IPV4 host parsing",
+                "ext-intl": "to handle IDN host with the best performance",
+                "php-64bit": "to improve IPV4 host parsing",
+                "symfony/polyfill-intl-idn": "to handle IDN host via the Symfony polyfill if ext-intl is not present"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "7.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Uri\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ignace Nyamagana Butera",
+                    "email": "nyamsprod@gmail.com",
+                    "homepage": "https://nyamsprod.com"
+                }
+            ],
+            "description": "Common interfaces and classes for URI representation and interaction",
+            "homepage": "https://uri.thephpleague.com",
+            "keywords": [
+                "data-uri",
+                "file-uri",
+                "ftp",
+                "hostname",
+                "http",
+                "https",
+                "parse_str",
+                "parse_url",
+                "psr-7",
+                "query-string",
+                "querystring",
+                "rfc3986",
+                "rfc3987",
+                "rfc6570",
+                "uri",
+                "url",
+                "ws"
+            ],
+            "support": {
+                "docs": "https://uri.thephpleague.com",
+                "forum": "https://thephpleague.slack.com",
+                "issues": "https://github.com/thephpleague/uri-src/issues",
+                "source": "https://github.com/thephpleague/uri-interfaces/tree/7.4.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/nyamsprod",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-03-23T07:42:40+00:00"
         },
         {
             "name": "nyholm/psr7",
@@ -857,16 +941,16 @@
         },
         {
             "name": "simplesamlphp/assert",
-            "version": "v1.1.9",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/assert.git",
-                "reference": "73d281893937de36d0efda7ad89fa4905aaa7642"
+                "reference": "bc80f10858179af2516b48643f3ec43ae7a36937"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/assert/zipball/73d281893937de36d0efda7ad89fa4905aaa7642",
-                "reference": "73d281893937de36d0efda7ad89fa4905aaa7642",
+                "url": "https://api.github.com/repos/simplesamlphp/assert/zipball/bc80f10858179af2516b48643f3ec43ae7a36937",
+                "reference": "bc80f10858179af2516b48643f3ec43ae7a36937",
                 "shasum": ""
             },
             "require": {
@@ -874,11 +958,12 @@
                 "ext-filter": "*",
                 "ext-pcre": "*",
                 "ext-spl": "*",
+                "league/uri-interfaces": "^7.4",
                 "php": "^8.1",
                 "webmozart/assert": "^1.11"
             },
             "require-dev": {
-                "simplesamlphp/simplesamlphp-test-framework": "^1.5.5"
+                "simplesamlphp/simplesamlphp-test-framework": "^1.7"
             },
             "type": "library",
             "extra": {
@@ -908,9 +993,9 @@
             "description": "A wrapper around webmozart/assert to make it useful beyond checking method arguments",
             "support": {
                 "issues": "https://github.com/simplesamlphp/assert/issues",
-                "source": "https://github.com/simplesamlphp/assert/tree/v1.1.9"
+                "source": "https://github.com/simplesamlphp/assert/tree/v1.2.1"
             },
-            "time": "2024-07-05T21:27:56+00:00"
+            "time": "2024-07-23T14:28:59+00:00"
         },
         {
             "name": "simplesamlphp/composer-module-installer",
@@ -1080,16 +1165,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
-            "version": "v2.2.5",
+            "version": "v2.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-assets-base.git",
-                "reference": "f48377e3ce2dbe4f535da4d9bbe088df77c04074"
+                "reference": "6364ca58d3b36dee02f99ca22f467924837bf33f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/f48377e3ce2dbe4f535da4d9bbe088df77c04074",
-                "reference": "f48377e3ce2dbe4f535da4d9bbe088df77c04074",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/6364ca58d3b36dee02f99ca22f467924837bf33f",
+                "reference": "6364ca58d3b36dee02f99ca22f467924837bf33f",
                 "shasum": ""
             },
             "require": {
@@ -1110,9 +1195,9 @@
             "description": "Assets for the SimpleSAMLphp main repository",
             "support": {
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-assets-base/issues",
-                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.2.5"
+                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.2.6"
             },
-            "time": "2024-07-14T01:06:27+00:00"
+            "time": "2024-07-28T01:07:13+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-adfs",
@@ -1172,16 +1257,16 @@
         },
         {
             "name": "simplesamlphp/xml-common",
-            "version": "v1.16.1",
+            "version": "v1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-common.git",
-                "reference": "a3c4c548ebd9783c3833c13ea7c01b010b0a1239"
+                "reference": "d06e0c6b4f42048181aec575211ff0ac171b0ec1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/a3c4c548ebd9783c3833c13ea7c01b010b0a1239",
-                "reference": "a3c4c548ebd9783c3833c13ea7c01b010b0a1239",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/d06e0c6b4f42048181aec575211ff0ac171b0ec1",
+                "reference": "d06e0c6b4f42048181aec575211ff0ac171b0ec1",
                 "shasum": ""
             },
             "require": {
@@ -1192,10 +1277,10 @@
                 "ext-spl": "*",
                 "ext-xmlreader": "*",
                 "php": "^8.1",
-                "simplesamlphp/assert": "^1.1"
+                "simplesamlphp/assert": "^1.2"
             },
             "require-dev": {
-                "simplesamlphp/simplesamlphp-test-framework": "^1.6"
+                "simplesamlphp/simplesamlphp-test-framework": "^1.7"
             },
             "type": "project",
             "autoload": {
@@ -1227,20 +1312,20 @@
                 "issues": "https://github.com/simplesamlphp/xml-common/issues",
                 "source": "https://github.com/simplesamlphp/xml-common"
             },
-            "time": "2024-03-19T22:04:20+00:00"
+            "time": "2024-07-25T08:25:58+00:00"
         },
         {
             "name": "simplesamlphp/xml-security",
-            "version": "v1.7.3",
+            "version": "v1.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-security.git",
-                "reference": "a4ac02019379ea41925bcf690f3d2a6b6e0c14a1"
+                "reference": "ad6282d8638d7d1a55efa7b0edd5d5af697339e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/a4ac02019379ea41925bcf690f3d2a6b6e0c14a1",
-                "reference": "a4ac02019379ea41925bcf690f3d2a6b6e0c14a1",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/ad6282d8638d7d1a55efa7b0edd5d5af697339e2",
+                "reference": "ad6282d8638d7d1a55efa7b0edd5d5af697339e2",
                 "shasum": ""
             },
             "require": {
@@ -1289,9 +1374,9 @@
             ],
             "support": {
                 "issues": "https://github.com/simplesamlphp/xml-security/issues",
-                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.7.3"
+                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.8.3"
             },
-            "time": "2024-05-10T10:02:40+00:00"
+            "time": "2024-07-29T09:24:34+00:00"
         },
         {
             "name": "simplesamlphp/xml-soap",
