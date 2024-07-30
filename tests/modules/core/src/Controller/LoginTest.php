@@ -41,7 +41,7 @@ class LoginTest extends ClearStateTestCase
         $this->config = Configuration::loadFromArray(
             [
                 'baseurlpath' => 'https://example.org/simplesaml',
-                'module.enable' => ['exampleauth' => true, 'testsauthsource' => true ],
+                'module.enable' => ['exampleauth' => true, 'testauthsource' => true ],
             ],
             '[ARRAY]',
             'simplesaml',
@@ -50,7 +50,7 @@ class LoginTest extends ClearStateTestCase
         Configuration::setPreLoadedConfig($this->config, 'config.php');
 
 
-        $v = \SimpleSAML\Module::isModuleEnabled('testsauthsource');
+        $v = \SimpleSAML\Module::isModuleEnabled('testauthsource');
         Logger::info("in setup() have module v $v ");
 
 /*
@@ -59,7 +59,7 @@ class LoginTest extends ClearStateTestCase
             'saml' => true,
         ];
         $config = new Configuration([], "config.php");
-        $module = 'testsauthsource';
+        $module = 'testauthsource';
 //        $v = \SimpleSAML\Module::isModuleEnabledWithConf($module, $config->getOptionalArray('module.enable', $core_modules));
  */
     }
@@ -236,17 +236,17 @@ class LoginTest extends ClearStateTestCase
             'GET',
             ['AuthState' => '_abc123'],
         );
-        $_SERVER['REQUEST_URI']  = 'https://example.com/simplesaml/module.php/testsauthsource/nothing';
+        $_SERVER['REQUEST_URI']  = 'https://example.com/simplesaml/module.php/testauthsource/nothing';
 
         // things really don't like it without a username
         $request->request->set('username', 'x');
 
 
         // Get the default authsources and add a specific configuration
-        // of testsauthsource:ThrowCustomErrorCode for this test
+        // of testauthsource:ThrowCustomErrorCode for this test
         $config = [];
-        $config['testsauthsource-ThrowCustomErrorCode'] =  array_merge(
-            ['testsauthsource:ThrowCustomErrorCode'],
+        $config['testauthsource-ThrowCustomErrorCode'] =  array_merge(
+            ['testauthsource:ThrowCustomErrorCode'],
             $asConfig,
         );
         Configuration::setPreLoadedConfig(new Configuration($config, "authsources.php"), "authsources.php");
@@ -254,7 +254,7 @@ class LoginTest extends ClearStateTestCase
         // prepare the AuthState that might have been saved
         // in Auth\Source::authenticate()
         $as = [];
-        $as[UserPassBase::AUTHID] = 'testsauthsource-ThrowCustomErrorCode';
+        $as[UserPassBase::AUTHID] = 'testauthsource-ThrowCustomErrorCode';
         $as['\SimpleSAML\Auth\State.id'] = '_abc123';
         // Save the $state-array, so that we can restore it after a redirect
         $id = Auth\State::saveState($as, UserPassBase::STAGEID);
