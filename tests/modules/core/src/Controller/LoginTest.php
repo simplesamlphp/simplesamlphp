@@ -40,7 +40,7 @@ class LoginTest extends ClearStateTestCase
         $this->config = Configuration::loadFromArray(
             [
                 'baseurlpath' => 'https://example.org/simplesaml',
-                'module.enable' => ['exampleauth' => true, 'testauthsource' => true ],
+                'module.enable' => ['exampleauth' => true ],
             ],
             '[ARRAY]',
             'simplesaml',
