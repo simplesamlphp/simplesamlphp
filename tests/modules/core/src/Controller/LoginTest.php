@@ -56,6 +56,7 @@ class LoginTest extends ClearStateTestCase
     public function testWelcome(): void
     {
         $c = new Controller\Login($this->config);
+        $c = new Controller\Login($this->config);
 
         $response = $c->welcome();
 
