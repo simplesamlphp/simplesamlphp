@@ -145,6 +145,8 @@ class Configuration implements Utils\ClearableState
     private static function loadFromFile(string $filename, bool $required): Configuration
     {
         if (array_key_exists($filename, self::$loadedConfigs)) {
+            Logger::error("loadFromFile(have already) $filename");
+            
             return self::$loadedConfigs[$filename];
         }
 
@@ -319,6 +321,7 @@ class Configuration implements Utils\ClearableState
 
         $dir = self::$configDirs[$configSet];
         $filePath = $dir . '/' . $filename;
+        Logger::error("getOptionalConfig() calling loadFromFile $filePath");
         return self::loadFromFile($filePath, false);
     }
 

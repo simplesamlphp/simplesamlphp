@@ -356,6 +356,7 @@ class Module
      */
     private static function isModuleEnabledWithConf(string $module, array $mod_config): bool
     {
+        Logger::error("isModuleEnabledWithConf(1) $module");
         if (isset(self::$module_info[$module]['enabled'])) {
             return self::$module_info[$module]['enabled'];
         }
@@ -363,6 +364,7 @@ class Module
         if (!empty(self::$modules) && !in_array($module, self::$modules, true)) {
             return false;
         }
+        Logger::error("isModuleEnabledWithConf(2)");
 
         $moduleDir = self::getModuleDir($module);
 
@@ -370,15 +372,18 @@ class Module
             self::$module_info[$module]['enabled'] = false;
             return false;
         }
+        Logger::error("isModuleEnabledWithConf(3)");
 
         if (isset($mod_config[$module])) {
             if (is_bool($mod_config[$module])) {
                 self::$module_info[$module]['enabled'] = $mod_config[$module];
+                Logger::error("isModuleEnabledWithConf(found)");
                 return $mod_config[$module];
             }
 
             throw new Exception("Invalid module.enable value for the '$module' module.");
         }
+        Logger::error("isModuleEnabledWithConf(4)");
 
         $core_module = array_key_exists($module, self::$core_modules) ? true : false;
 
