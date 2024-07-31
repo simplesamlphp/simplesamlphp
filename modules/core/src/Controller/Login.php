@@ -38,6 +38,12 @@ class Login
      */
     protected $authState = Auth\State::class;
 
+    /**
+     * These are all the subclass instances of ErrorCodes which have been created
+     */
+    protected static array $registeredErrorCodeClasses = [];
+
+
 
     /**
      * Controller constructor.
@@ -116,6 +122,21 @@ class Login
 
 
     /**
+     * Called by the constructor in ErrorCode to register subclasses with us
+     * so we can track which subclasses are valid names in order to limit
+     * which classes we might recreate
+     *
+     * @para object ecc an instance of an ErrorCode or subclass
+     */
+    public static function registerErrorCodeClass(\SimpleSAML\Error\ErrorCodes $ecc): void
+    {
+        if (is_subclass_of($ecc, \SimpleSAML\Error\ErrorCodes::class, false)) {
+            $className = get_class($ecc);
+            self::$registeredErrorCodeClasses[] = $className;
+        }
+    }
+
+    /**
      * This method handles the generic part for both loginuserpass and loginuserpassorg
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -138,10 +159,12 @@ class Login
 
         $errorCode = null;
         $errorParams = null;
+        $codeClass = '';
 
         if (isset($state['error'])) {
             $errorCode = $state['error']['code'];
             $errorParams = $state['error']['params'];
+            $codeClass = $state['error']['codeclass'];
         }
 
         $cookies = [];
@@ -218,9 +241,12 @@ class Login
                     // Login failed. Extract error code and parameters, to display the error
                     $errorCode = $e->getErrorCode();
                     $errorParams = $e->getParameters();
+                    $codeClass = get_class($e->getErrorCodes());
+
                     $state['error'] = [
                         'code' => $errorCode,
                         'params' => $errorParams,
+                        'codeclass' => $codeClass,
                     ];
                     $authStateId = Auth\State::saveState($state, $source::STAGEID);
                 }
@@ -285,6 +311,21 @@ class Login
         $t->data['errorcode'] = $errorCode;
         $t->data['errorcodes'] = Error\ErrorCodes::getAllErrorCodeMessages();
         $t->data['errorparams'] = $errorParams;
+
+        $className = $codeClass;
+        if ($className) {
+            if (in_array($className, self::$registeredErrorCodeClasses)) {
+                $className = Module::resolveNonModuleClass($className, \SimpleSAML\Error\ErrorCodes::class);
+                $obj = Module::createObject($className, \SimpleSAML\Error\ErrorCodes::class);
+                $t->data['errorcodes'] = $obj->getAllErrorCodeMessages();
+            } else {
+                if ($className != \SimpleSAML\Error\ErrorCodes::class) {
+                    throw new BuiltinException(
+                        'The desired error code class is not found or of the wrong type ' . $className,
+                    );
+                }
+            }
+        }
 
         if (isset($state['SPMetadata'])) {
             $t->data['SPMetadata'] = $state['SPMetadata'];
