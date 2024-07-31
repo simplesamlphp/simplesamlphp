@@ -11,6 +11,7 @@ use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use SimpleSAML\Error\ErrorCodes;
 
 use function array_key_exists;
 use function substr;
@@ -128,9 +129,9 @@ class Login
      *
      * @para object ecc an instance of an ErrorCode or subclass
      */
-    public static function registerErrorCodeClass(\SimpleSAML\Error\ErrorCodes $ecc): void
+    public static function registerErrorCodeClass(ErrorCodes $ecc): void
     {
-        if (is_subclass_of($ecc, \SimpleSAML\Error\ErrorCodes::class, false)) {
+        if (is_subclass_of($ecc, ErrorCodes::class, false)) {
             $className = get_class($ecc);
             self::$registeredErrorCodeClasses[] = $className;
         }
@@ -309,7 +310,7 @@ class Login
         }
 
         $t->data['errorcode'] = $errorCode;
-        $t->data['errorcodes'] = Error\ErrorCodes::getAllErrorCodeMessages();
+        $t->data['errorcodes'] = ErrorCodes::getAllErrorCodeMessages();
         $t->data['errorparams'] = $errorParams;
 
         $className = $codeClass;
@@ -319,17 +320,17 @@ class Login
                     throw new Exception("Could not resolve error class. no class named '$className'.");
                 }
 
-                if (!is_subclass_of($className, \SimpleSAML\Error\ErrorCodes::class)) {
+                if (!is_subclass_of($className, ErrorCodes::class)) {
                     throw new Exception(
                         'Could not resolve error class: The class \'' . $className
-                        . '\' isn\'t a subclass of \'' . \SimpleSAML\Error\ErrorCodes::class . '\'.',
+                        . '\' isn\'t a subclass of \'' . ErrorCodes::class . '\'.',
                     );
                 }
 
-                $obj = Module::createObject($className, \SimpleSAML\Error\ErrorCodes::class);
+                $obj = Module::createObject($className, ErrorCodes::class);
                 $t->data['errorcodes'] = $obj->getAllErrorCodeMessages();
             } else {
-                if ($className != \SimpleSAML\Error\ErrorCodes::class) {
+                if ($className != ErrorCodes::class) {
                     throw new BuiltinException(
                         'The desired error code class is not found or of the wrong type ' . $className,
                     );
