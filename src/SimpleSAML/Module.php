@@ -387,10 +387,17 @@ class Module
             throw new Exception("Invalid module.enable value for the '$module' module.");
         }
         Logger::error("isModuleEnabledWithConf(4)");
-
+        if ($module == "testauthsource") {
+            Logger::error("isModuleEnabledWithConf(4) testauthsource");
+        }
         $core_module = array_key_exists($module, self::$core_modules) ? true : false;
 
         self::$module_info[$module]['enabled'] = $core_module ? true : false;
+        if ($module == "testauthsource") {
+            $ret = $core_module ? true : false;
+            Logger::error("isModuleEnabledWithConf(5) testauthsource ret $ret ");
+        }
+        
         return $core_module ? true : false;
     }
 
