@@ -397,7 +397,7 @@ class Module
             $ret = $core_module ? true : false;
             Logger::error("isModuleEnabledWithConf(5) testauthsource ret $ret ");
         }
-        
+
         return $core_module ? true : false;
     }
 
