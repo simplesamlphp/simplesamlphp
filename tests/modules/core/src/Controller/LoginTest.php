@@ -205,4 +205,88 @@ class LoginTest extends ClearStateTestCase
         $this->assertEquals('core:loginuserpass.twig', $response->getTemplateName());
     }
      */
+
+    /**
+     * Setup a testing authsource with the additional configuration given
+     * Returns a request that can be passed to loginuserpass().
+     *
+     * @param asConfig extra configuration array to be set inside the authSource stanza
+     *
+     * @return \Symfony\Component\HttpFoundation\Request
+     */
+    private function setupPrivateAuthSource(array $asConfig): Request
+    {
+        $request = Request::create(
+            '/loginuserpass',
+            'GET',
+            ['AuthState' => '_abc123'],
+        );
+        $_SERVER['REQUEST_URI']  = 'https://example.com/simplesaml/module.php/testauthsource/nothing';
+
+        // things really don't like it without a username
+        $request->request->set('username', 'x');
+
+
+        // Get the default authsources and add a specific configuration
+        // of testauthsource:ThrowCustomErrorCode for this test
+        $config = [];
+        $config['testauthsource-ThrowCustomErrorCode'] =  array_merge(
+            ['testauthsource:ThrowCustomErrorCode'],
+            $asConfig,
+        );
+        Configuration::setPreLoadedConfig(new Configuration($config, "authsources.php"), "authsources.php");
+
+        Configuration::setPreLoadedConfig(
+            Configuration::loadFromArray(
+                [
+                    'admin' => ['core:AdminPassword'],
+                    'testauthsource-ThrowCustomErrorCode' => array_merge(
+                        ['testauthsource:ThrowCustomErrorCode'],
+                        $asConfig,
+                    )
+                ],
+                '[ARRAY]',
+                'simplesaml',
+            ),
+            'authsources.php',
+            'simplesaml',
+        );
+
+
+        // prepare the AuthState that might have been saved
+        // in Auth\Source::authenticate()
+        $as = [];
+        $as[UserPassBase::AUTHID] = 'testauthsource-ThrowCustomErrorCode';
+        $as['\SimpleSAML\Auth\State.id'] = '_abc123';
+        // Save the $state-array, so that we can restore it after a redirect
+        $id = Auth\State::saveState($as, UserPassBase::STAGEID);
+
+        return $request;
+    }
+
+
+    /**
+     * Perform a login with loginuserpass and check that a normal error code related
+     * error message is shown on the resulting screen.
+     */
+    public function testLoginTestAuthSourceNormalError(): void
+    {
+        // We want a normal error from our auth source
+        $asConfig =  ['errorType' => 'NORMAL'];
+        $request = $this->setupPrivateAuthSource($asConfig);
+        $c = new Controller\Login($this->config);
+
+        // This relies on setupPrivateAuthSource doing a saveState() and will
+        // find the Auth\Source because we preloaded an authsources.php config
+        $response = $c->loginuserpass($request);
+
+        $this->assertInstanceOf(Template::class, $response);
+        $this->assertTrue($response->isSuccessful());
+        $this->assertEquals('core:loginuserpass.twig', $response->getTemplateName());
+        $this->assertStringContainsString(
+            "Incorrect username or password",
+            $response->getContents(),
+            "response page does not contain the expected normal error message",
+        );
+    }
 }
