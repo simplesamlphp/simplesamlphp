@@ -47,21 +47,6 @@ class LoginTest extends ClearStateTestCase
         );
 
         Configuration::setPreLoadedConfig($this->config, 'config.php');
-
-/*
-        $v = \SimpleSAML\Module::isModuleEnabled('testauthsource');
-        Logger::info("in setup() have module v $v ");
- */
-
-/*
-        $core_modules = [
-            'core' => true,
-            'saml' => true,
-        ];
-        $config = new Configuration([], "config.php");
-        $module = 'testauthsource';
-//        $v = \SimpleSAML\Module::isModuleEnabledWithConf($module, $config->getOptionalArray('module.enable', $core_modules));
- */
     }
 
 
@@ -83,7 +68,7 @@ class LoginTest extends ClearStateTestCase
     /**
      * FIXME this seems to give some XML on scren and an incomplete result?
      */
-    public function xtestClearDiscoChoicesReturnToDisallowedUrlRejected(): void
+    public function testClearDiscoChoicesReturnToDisallowedUrlRejected(): void
     {
         $request = Request::create(
             '/cleardiscochoices',
