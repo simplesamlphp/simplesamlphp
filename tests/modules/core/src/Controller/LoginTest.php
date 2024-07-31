@@ -297,6 +297,7 @@ class LoginTest extends ClearStateTestCase
      */
     public function testLoginTestAuthSourceCustomError(): void
     {
+        Logger::error("testLoginTestAuthSourceCustomError(CALLED)");
         // We want a custom error from our auth source
         $asConfig =  ['errorType' => ''];
         $request = $this->setupPrivateAuthSource($asConfig);
@@ -314,5 +315,6 @@ class LoginTest extends ClearStateTestCase
             $response->getContents(),
             "response page does not contain the expected custom error message",
         );
+        Logger::error("testLoginTestAuthSourceCustomError(ENDING)");
     }
 }
