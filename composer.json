@@ -94,6 +94,7 @@
         "mikey179/vfsstream": "~1.6",
         "predis/predis": "^2.2",
         "simplesamlphp/simplesamlphp-module-adfs": "^2.1",
+        "simplesamlphpmiq/simplesamlphp-module-testauthsource": "dev-master",
         "simplesamlphp/simplesamlphp-test-framework": "^1.5.4",
         "symfony/translation": "^6.4"
     },
