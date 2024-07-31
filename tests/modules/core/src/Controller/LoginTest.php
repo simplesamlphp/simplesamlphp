@@ -289,4 +289,30 @@ class LoginTest extends ClearStateTestCase
             "response page does not contain the expected normal error message",
         );
     }
+
+
+    /**
+     * Perform a login with loginuserpass and check that a custom error code related
+     * error message is shown on the resulting screen.
+     */
+    public function testLoginTestAuthSourceCustomError(): void
+    {
+        // We want a custom error from our auth source
+        $asConfig =  ['errorType' => ''];
+        $request = $this->setupPrivateAuthSource($asConfig);
+        $c = new Controller\Login($this->config);
+
+        // This relies on setupPrivateAuthSource doing a saveState() and will
+        // find the Auth\Source because we preloaded an authsources.php config
+        $response = $c->loginuserpass($request);
+
+        $this->assertInstanceOf(Template::class, $response);
+        $this->assertTrue($response->isSuccessful());
+        $this->assertEquals('core:loginuserpass.twig', $response->getTemplateName());
+        $this->assertStringContainsString(
+            "ThrowCustomErrorCode: title for bind search error",
+            $response->getContents(),
+            "response page does not contain the expected custom error message",
+        );
+    }
 }
