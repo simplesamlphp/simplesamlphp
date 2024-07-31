@@ -112,7 +112,7 @@ class ErrorTest extends TestCase
 
         $customError = new class ($customErrorCode) extends Error
         {
-            protected function getErrorCodes(): ErrorCodes
+            public function getErrorCodes(): ErrorCodes
             {
                 return new class extends ErrorCodes
                 {
