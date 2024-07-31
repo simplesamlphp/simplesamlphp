@@ -315,7 +315,17 @@ class Login
         $className = $codeClass;
         if ($className) {
             if (in_array($className, self::$registeredErrorCodeClasses)) {
-                $className = Module::resolveNonModuleClass($className, \SimpleSAML\Error\ErrorCodes::class);
+                if (!class_exists($className)) {
+                    throw new Exception("Could not resolve error class. no class named '$className'.");
+                }
+
+                if (!is_subclass_of($className, \SimpleSAML\Error\ErrorCodes::class)) {
+                    throw new Exception(
+                        'Could not resolve error class: The class \'' . $className
+                        . '\' isn\'t a subclass of \'' . \SimpleSAML\Error\ErrorCodes::class . '\'.',
+                    );
+                }
+
                 $obj = Module::createObject($className, \SimpleSAML\Error\ErrorCodes::class);
                 $t->data['errorcodes'] = $obj->getAllErrorCodeMessages();
             } else {

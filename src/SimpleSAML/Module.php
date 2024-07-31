@@ -478,45 +478,6 @@ class Module
 
 
     /**
-     * Resolve non module class.
-     *
-     * This function takes a string on the form "<className>" and converts it to a class
-     * name. Note that the <className> might also include line number offsets after a colon character.
-     * The method can also check that the given class is a subclass of a specific class.
-     *
-     * This method can resolve classnames for local classes with a specific file offset in them.
-     * The file offset with append something like :43$f to the class name and thus will conflict
-     * if passed to resolveClass() because resolveClass() will interpret the string as
-     * module:class rather than class:offset
-     *
-     * Although fairly simple, this method was created to make a central location for such lookups.
-     *
-     * An exception will be thrown if the class can't be resolved.
-     *
-     * @param string      $id The string we should resolve.
-     * @param string|null $subclass The class should be a subclass of this class. Optional.
-     *
-     * @return string The classname.
-     *
-     * @throws \Exception If the class cannot be resolved.
-     */
-    public static function resolveNonModuleClass(string $className, ?string $subclass = null): string
-    {
-        if (!class_exists($className)) {
-            throw new Exception("Could not resolve '$id': no class named '$className'.");
-        }
-
-        if ($subclass !== null && !is_subclass_of($className, $subclass)) {
-            throw new Exception(
-                'Could not resolve \'' . $id . '\': The class \'' . $className
-                . '\' isn\'t a subclass of \'' . $subclass . '\'.',
-            );
-        }
-
-        return $className;
-    }
-
-    /**
      * Create an object of a class returned by resolveNonModuleClass() or resolveClass().
      *
      * @param string The classname.
