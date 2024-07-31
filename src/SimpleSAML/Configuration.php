@@ -149,6 +149,7 @@ class Configuration implements Utils\ClearableState
 
             return self::$loadedConfigs[$filename];
         }
+        Logger::error("loadFromFile(looking) $filename");
 
         $fileSystem = new Filesystem();
         if ($fileSystem->exists($filename)) {
@@ -263,6 +264,7 @@ class Configuration implements Utils\ClearableState
         $dir = self::$configDirs[$configSet];
         $filePath = $dir . '/' . $filename;
 
+        Logger::error("setPreLoadedConfig() $filePath ");
         self::$loadedConfigs[$filePath] = $config;
     }
 
