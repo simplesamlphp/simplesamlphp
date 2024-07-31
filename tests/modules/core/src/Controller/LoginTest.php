@@ -69,7 +69,7 @@ class LoginTest extends ClearStateTestCase
     /**
      * FIXME this seems to give some XML on scren and an incomplete result?
      */
-    public function xtestClearDiscoChoicesReturnToDisallowedUrlRejected(): void
+    public function testClearDiscoChoicesReturnToDisallowedUrlRejected(): void
     {
         $request = Request::create(
             '/cleardiscochoices',
