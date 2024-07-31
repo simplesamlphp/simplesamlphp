@@ -357,7 +357,7 @@ class Module
     private static function isModuleEnabledWithConf(string $module, array $mod_config): bool
     {
         Logger::error("isModuleEnabledWithConf(1)");
-        if($module=="testauthsource") {
+        if ($module == "testauthsource") {
             Logger::error("isModuleEnabledWithConf(1) testauthsource");
         }
         if (isset(self::$module_info[$module]['enabled'])) {

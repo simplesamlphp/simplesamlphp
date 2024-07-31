@@ -146,7 +146,7 @@ class Configuration implements Utils\ClearableState
     {
         if (array_key_exists($filename, self::$loadedConfigs)) {
             Logger::error("loadFromFile(have already) $filename");
-            
+
             return self::$loadedConfigs[$filename];
         }
 
