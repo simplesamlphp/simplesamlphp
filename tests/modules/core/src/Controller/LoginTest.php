@@ -11,7 +11,6 @@ use SimpleSAML\Module\core\Auth\UserPassBase;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
-use SimpleSAML\Logger;
 
 /**
  * Set of tests for the controllers in the "core" module.
@@ -53,7 +52,7 @@ class LoginTest extends ClearStateTestCase
         $v = \SimpleSAML\Module::isModuleEnabled('testauthsource');
         Logger::info("in setup() have module v $v ");
  */
-        
+
 /*
         $core_modules = [
             'core' => true,
@@ -221,6 +220,4 @@ class LoginTest extends ClearStateTestCase
         $this->assertEquals('core:loginuserpass.twig', $response->getTemplateName());
     }
      */
-
-    
 }
