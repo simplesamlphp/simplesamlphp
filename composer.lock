@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8952ca20dc3522c35373953f9571f295",
+    "content-hash": "a54661ba80602c6fe957b3b0955b86bb",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -869,6 +869,58 @@
                 "source": "https://github.com/simplesamlphp/xml-security/tree/v1.7.3"
             },
             "time": "2024-05-10T10:02:40+00:00"
+        },
+        {
+            "name": "simplesamlphpmiq/simplesamlphp-module-testauthsource",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/simplesamlphp/simplesamlphp-module-testauthsource.git",
+                "reference": "2c10d7ac23566670182f765b873c13f1d1c18828"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-testauthsource/zipball/2c10d7ac23566670182f765b873c13f1d1c18828",
+                "reference": "2c10d7ac23566670182f765b873c13f1d1c18828",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pdo": "*",
+                "php": "^8.1",
+                "simplesamlphp/assert": "^1.1.0",
+                "simplesamlphp/composer-module-installer": "^1.3.4",
+                "simplesamlphp/simplesamlphp": "^2.2"
+            },
+            "require-dev": {
+                "simplesamlphp/simplesamlphp-test-framework": "^1.6.0"
+            },
+            "default-branch": true,
+            "type": "simplesamlphp-module",
+            "autoload": {
+                "psr-4": {
+                    "SimpleSAML\\Module\\testauthsource\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Martin",
+                    "email": "monkeyiq@gmail.com"
+                }
+            ],
+            "description": "This is a authentication module used by the test suite",
+            "keywords": [
+                "simplesamlphp",
+                "testauthsource"
+            ],
+            "support": {
+                "issues": "https://github.com/simplesamlphp/simplesamlphp-module-testauthsource/issues",
+                "source": "https://github.com/simplesamlphp/simplesamlphp-module-testauthsource"
+            },
+            "time": "2024-07-30T23:53:11+00:00"
         },
         {
             "name": "symfony/cache",
@@ -5981,7 +6033,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "simplesamlphpmiq/simplesamlphp-module-testauthsource": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
