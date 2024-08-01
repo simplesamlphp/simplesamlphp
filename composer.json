@@ -115,7 +115,8 @@
             "composer/package-versions-deprecated": true,
             "simplesamlphp/composer-module-installer": true,
             "muglug/package-versions-56": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true
         }
     },
     "extra": {
