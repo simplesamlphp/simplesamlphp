@@ -478,6 +478,28 @@ class Module
 
 
     /**
+     * Create an object of a class returned by resolveNonModuleClass() or resolveClass().
+     *
+     * @param string The classname.
+     * @param string|null $subclass The class should be a subclass of this class. Optional.
+     *
+     * @return the new object
+     */
+    public static function createObject(string $className, ?string $subclass = null): object
+    {
+        $obj = new $className();
+        if ($subclass) {
+            if (!is_subclass_of($obj, $subclass, false)) {
+                throw new Exception(
+                    'Could not instantiate \'' . $className . '\': The class \'' . $className
+                    . '\' isn\'t a subclass of \'' . $subclass . '\'.',
+                );
+            }
+        }
+        return $obj;
+    }
+
+    /**
      * Get absolute URL to a specified module resource.
      *
      * This function creates an absolute URL to a resource stored under ".../modules/<module>/public/".

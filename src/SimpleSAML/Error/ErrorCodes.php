@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Error;
 
 use SimpleSAML\Locale\Translate;
+use SimpleSAML\Module\core\Controller\Login;
 
 use function array_merge;
 
@@ -15,6 +16,13 @@ use function array_merge;
  */
 class ErrorCodes
 {
+    public function __construct()
+    {
+        // Automatically register instances of subclasses with Login to allow
+        // custom ErrorCodes to work in a redirect environment
+        Login::registerErrorCodeClass($this);
+    }
+
     // TODO PHPv8.1 - Consider moving to final consts for these default error codes to prevent overrides.
     public const ACSPARAMS = 'ACSPARAMS';
     public const ARSPARAMS = 'ARSPARAMS';
