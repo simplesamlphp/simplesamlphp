@@ -19,6 +19,10 @@ Released TBD
 * Fixed metadata download to become a proper xml-file
 * Prevent metadata-download from ever being cached
 
+`authorize`
+
+* Fixed logout button (simplesamlphp/simplesamlphp-module-authorize#16)
+
 `ldap`
 
 * Fixed a bug that would throw an unhandled exception to the user if they would enter
