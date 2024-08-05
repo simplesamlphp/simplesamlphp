@@ -1316,16 +1316,16 @@
         },
         {
             "name": "simplesamlphp/xml-security",
-            "version": "v1.8.3",
+            "version": "v1.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-security.git",
-                "reference": "ad6282d8638d7d1a55efa7b0edd5d5af697339e2"
+                "reference": "a2ac09c77c68833b3530c3c49ff0e248f0f5b077"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/ad6282d8638d7d1a55efa7b0edd5d5af697339e2",
-                "reference": "ad6282d8638d7d1a55efa7b0edd5d5af697339e2",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/a2ac09c77c68833b3530c3c49ff0e248f0f5b077",
+                "reference": "a2ac09c77c68833b3530c3c49ff0e248f0f5b077",
                 "shasum": ""
             },
             "require": {
@@ -1374,9 +1374,9 @@
             ],
             "support": {
                 "issues": "https://github.com/simplesamlphp/xml-security/issues",
-                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.8.3"
+                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.8.5"
             },
-            "time": "2024-07-29T09:24:34+00:00"
+            "time": "2024-07-30T09:38:52+00:00"
         },
         {
             "name": "simplesamlphp/xml-soap",
