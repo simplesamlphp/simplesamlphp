@@ -41,6 +41,7 @@ class LoginTest extends ClearStateTestCase
             [
                 'baseurlpath' => 'https://example.org/simplesaml',
                 'module.enable' => ['exampleauth' => true],
+                'trusted.url.domains' => [],
             ],
             '[ARRAY]',
             'simplesaml',
@@ -67,7 +68,7 @@ class LoginTest extends ClearStateTestCase
 
     /**
      */
-    public function disabledTestClearDiscoChoicesReturnToDisallowedUrlRejected(): void
+    public function testClearDiscoChoicesReturnToDisallowedUrlRejected(): void
     {
         $request = Request::create(
             '/cleardiscochoices',
