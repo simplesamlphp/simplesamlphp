@@ -12,6 +12,10 @@ on:  # yamllint disable-line rule:truthy
     paths-ignore:
       - '**.md'
 
+#      
+# Note that coverage data is generated on the php 8.1 ubuntu run.
+#
+      
 jobs:
   linter:
     name: Linter
