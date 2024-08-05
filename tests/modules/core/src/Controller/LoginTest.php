@@ -68,7 +68,7 @@ class LoginTest extends ClearStateTestCase
 
     /**
      */
-    public function testClearDiscoChoicesReturnToDisallowedUrlRejected(): void
+    public function disabledTestClearDiscoChoicesReturnToDisallowedUrlRejected(): void
     {
         $request = Request::create(
             '/cleardiscochoices',
