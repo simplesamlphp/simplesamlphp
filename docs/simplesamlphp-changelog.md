@@ -16,6 +16,10 @@ Released TBD
 * Session ID's are now hashed when stored in a database (#2106)
 * Improved HTML 5 compatibility (#2162)
 
+`authorize`
+
+* Add feature to allow a user to reauthenticate with a different account (simplesamlphp/simplesamlphp-module-authorize#17) (v1.5.0)
+
 `consent`
 
 * Update Luxembourgish translations (v1.4.0)
