@@ -125,6 +125,7 @@ class Module
     public static function getModuleDir(string $module): string
     {
         $baseDir = dirname(__FILE__, 3) . '/modules';
+        $baseDir = dirname(__FILE__, 3) . '/modules';
         $moduleDir = $baseDir . '/' . $module;
 
         return $moduleDir;
