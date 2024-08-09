@@ -218,8 +218,8 @@ class MDQ extends MetaDataStorageSource
 
         Logger::debug(sprintf('%s: Writing cache [%s] => [%s]', __CLASS__, $entityId, $cacheFileName));
 
-        /** @psalm-suppress TooManyArguments */
-        $this->fileSystem->appendToFile($cacheFileName, json_encode($data), true);
+        // using dumpFile instead of appendToFile here to replace any existing cache data
+        $this->fileSystem->dumpFile($cacheFileName, json_encode($data));
     }
 
 
