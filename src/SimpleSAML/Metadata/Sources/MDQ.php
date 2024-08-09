@@ -183,7 +183,8 @@ class MDQ extends MetaDataStorageSource
             ));
         }
 
-        $data = json_decode($rawData);
+        // ensure json is decoded as an associative array not an object
+        $data = json_decode($rawData, true);
         if ($data === false) {
             throw new Exception(
                 sprintf('%s: error unserializing cached data from file "%s".', __CLASS__, strval($file)),
