@@ -130,7 +130,7 @@ class MDQ extends MetaDataStorageSource
         }
 
         $cachekey = sha1($entityId);
-        return $this->cacheDir . '/' . $set . '-' . $cachekey . '.cached.xml';
+        return $this->cacheDir . '/' . $set . '-' . $cachekey . '.cached.json';
     }
 
 
@@ -183,7 +183,8 @@ class MDQ extends MetaDataStorageSource
             ));
         }
 
-        $data = json_decode($rawData);
+        // ensure json is decoded as an associative array not an object
+        $data = json_decode($rawData, true);
         if ($data === false) {
             throw new Exception(
                 sprintf('%s: error unserializing cached data from file "%s".', __CLASS__, strval($file)),
@@ -217,8 +218,8 @@ class MDQ extends MetaDataStorageSource
 
         Logger::debug(sprintf('%s: Writing cache [%s] => [%s]', __CLASS__, $entityId, $cacheFileName));
 
-        /** @psalm-suppress TooManyArguments */
-        $this->fileSystem->appendToFile($cacheFileName, json_encode($data), true);
+        // using dumpFile instead of appendToFile here to replace any existing cache data
+        $this->fileSystem->dumpFile($cacheFileName, json_encode($data));
     }
 
 
