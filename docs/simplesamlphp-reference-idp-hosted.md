@@ -190,6 +190,10 @@ The following SAML 2.0 options are available:
     any value in the SP-remote metadata overrides the one configured
     in the IdP metadata.
 
+`encryption.optional`
+:   Whether or not we may continue to sent an unencrypted assertion if the SP has no encryption certificate.
+    The default value is `FALSE`.
+
 `encryption.blacklisted-algorithms`
 :   Blacklisted encryption algorithms. This is an array containing the algorithm identifiers.
 
