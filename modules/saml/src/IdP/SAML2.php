@@ -1453,11 +1453,8 @@ class SAML2
                 $key = new XMLSecurityKey(XMLSecurityKey::RSA_OAEP_MGF1P, ['type' => 'public']);
                 $key->loadKey($pemKey);
             } else {
-                throw new Error\ConfigurationError(
-                    'Missing encryption key for entity `' . $spMetadata->getString('entityid') . '`',
-                    $spMetadata->getString('metadata-set') . '.php',
-                    null,
-                );
+                // Our policy is to encrypt assertions, but without a key it cannot be done.
+                return $assertion;
             }
         }
 
