@@ -187,7 +187,7 @@ class MDQ extends MetaDataStorageSource
         }
 
         // ensure json is decoded as an associative array not an object
-        $data = json_decode($rawData, true);
+        $data = json_decode($rawData, true, 512, JSON_THROW_ON_ERROR);
         if ($data === false) {
             throw new Exception(
                 sprintf('%s: error unserializing cached data from file "%s".', __CLASS__, strval($file)),
@@ -221,8 +221,7 @@ class MDQ extends MetaDataStorageSource
 
         Logger::debug(sprintf('%s: Writing cache [%s] => [%s]', __CLASS__, $entityId, $cacheFileName));
 
-        // using dumpFile instead of appendToFile here to replace any existing cache data
-        $this->fileSystem->dumpFile($cacheFileName, json_encode($data));
+        $this->fileSystem->dumpFile($cacheFileName, json_encode($data, JSON_THROW_ON_ERROR));
     }
 
 
