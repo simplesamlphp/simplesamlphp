@@ -170,9 +170,10 @@ class Template extends Response
      * the original file.
      * @param string $asset
      * @param string|null $module
+     * @param bool $tag
      * @return string
      */
-    public function asset(string $asset, string $module = null): string
+    public function asset(string $asset, string $module = null, bool $tag = true): string
     {
         $baseDir = $this->configuration->getBaseDir();
         $basePath = $this->configuration->getBasePath();
@@ -190,7 +191,10 @@ class Template extends Response
         if (!$this->fileSystem->exists($file)) {
             // don't be too harsh if an asset is missing, just pretend it's there...
             return $path;
+        } elseif ($tag === false) {
+            return $path;
         }
+
         $file = new File($file);
 
         $tag = $this->configuration->getVersion();
