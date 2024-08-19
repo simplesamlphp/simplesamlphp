@@ -12,6 +12,7 @@ metadata/*
 phpunit.xml.bak
 .phive
 **.mo
+/super-linter-output/
 
 # https://www.gitignore.io/api/osx,windows,linux,netbeans,sublimetext,composer,phpstorm,vagrant
 # Created by https://www.gitignore.io

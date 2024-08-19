@@ -28,6 +28,7 @@ jobs:
       - name: Lint Code Base
         uses: super-linter/super-linter/slim@v6.7.0
         env:
+          SAVE_SUPER_LINTER_OUTPUT: false
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LINTER_RULES_PATH: 'tools/linters'
