@@ -191,7 +191,10 @@ class Template extends Response
         if (!$this->fileSystem->exists($file)) {
             // don't be too harsh if an asset is missing, just pretend it's there...
             return $path;
-        } elseif ($tag === false) {
+        }
+        
+        if ($tag === false) {
+            // The asset is requested without a tag
             return $path;
         }
 
