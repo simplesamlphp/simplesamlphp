@@ -6,9 +6,10 @@
     <meta name="viewport" content="initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <title>{{ pagetitle }}</title>
-    <link rel="preload" href="{{ asset('fonts/fa-solid-900.woff2') }}" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="{{ asset("css/stylesheet.css") }}">
     <link rel="icon" href="{{ asset("icons/favicon.ico") }}">
+    {# Preloading must be done after referencing the resource #}
+    <link rel="preload" href="{{ asset('fonts/fa-solid-900.woff2', null, false) }}" as="font" type="font/woff2" crossorigin>
     <meta name="robots" content="noindex, nofollow">
     {{ include('_head.twig', ignore_missing = true) }}
     {% block preload %}{% endblock %}
