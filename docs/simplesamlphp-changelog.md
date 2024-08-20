@@ -5,14 +5,21 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.2.3
+## Version 2.2.4
 
 Released TBD
+
+## Version 2.2.3
+
+Released 2024-08-20
 
 * Added a missing use-statement that would cause a 'class not found' exception.
 * Improved Luxembourgish (LB) translations (#2129, #2140)
 * Fix regression introduced in v2.2.2 regarding autofilling usernames.
 * Restore the possibility to set `trusted.url.domains` to null
+* Improved documentation on cachedir-setting (#2153)
+* Fix bug in post.twig (#2161)
+* Fix MDQ cache file bugs (#2200)
 
 `adfs`
 
@@ -21,12 +28,20 @@ Released TBD
 
 `authorize`
 
-* Fixed logout button (simplesamlphp/simplesamlphp-module-authorize#16)
+* Fixed logout button (simplesamlphp/simplesamlphp-module-authorize#16) (v1.4.1)
 
 `ldap`
 
 * Fixed a bug that would throw an unhandled exception to the user if they would enter
   a non-existing organization and `username_organization_method` is set to `allow` or `force` (v2.3.6).
+
+`metarefresh`
+
+* Fixed incorrect parsing of configuration (v1.2.2)
+
+`radius`
+
+* Fixed security bug known as Blast-Radius (CVE-2024-3596) (simplesamlphp/simplesamlphp-module-radius#10) (v2.0.2)
 
 ## Version 2.2.2
 
@@ -35,7 +50,7 @@ Released TBD
 Due to a mistake, this bugfix-release can turn out to become a backwards-incompatibility for those who override the loginuserpass.twig in their custom theme.
 Please update your theme to reflect the changes in [this commit](https://github.com/simplesamlphp/simplesamlphp/pull/2022/commits/691199e9b963a2861d731e6583555c7a8df39992) before updating.
 
-Released 30-04-2024
+Released 2024-04-30
 
 * Fix regression when setting the host-variable in `saml20-idp-hosted` (was #1922)
 * Fix posting the form to the incorrect endpoint when using an authsource based on UserPassOrgBase (#2022)
