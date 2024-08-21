@@ -1,6 +1,6 @@
 # SimpleSAMLphp
 
-![Build Status](https://github.com/simplesamlphp/simplesamlphp/workflows/CI/badge.svg?branch=master)
+![Build Status](https://github.com/simplesamlphp/simplesamlphp/actions/workflows/php.yml/badge.svg)
 [![Coverage Status](https://codecov.io/gh/simplesamlphp/simplesamlphp/branch/master/graph/badge.svg)](https://codecov.io/gh/simplesamlphp/simplesamlphp)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/simplesamlphp/simplesamlphp/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/simplesamlphp/simplesamlphp/?branch=master)
 [![Type coverage](https://shepherd.dev/github/simplesamlphp/simplesamlphp/coverage.svg)](https://shepherd.dev/github/simplesamlphp/simplesamlphp)
