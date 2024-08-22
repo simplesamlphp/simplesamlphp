@@ -534,7 +534,7 @@ class IdPDisco
                     . $this->returnIdParam . ')',
                 );
                 return new RunnableResponse(
-                    [$httpUtils, 'redirectTrustedURL']
+                    [$httpUtils, 'redirectTrustedURL'],
                     [$this->returnURL, [$this->returnIdParam => $idp]],
                 );
             }
