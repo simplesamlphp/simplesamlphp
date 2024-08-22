@@ -12,6 +12,7 @@ use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
+use Symfony\Component\HttpFoundation\Response;
 
 use function array_fill_keys;
 use function array_intersect;
@@ -557,7 +558,7 @@ class IdPDisco
      *
      * The IdP disco parameters should be set before calling this function.
      */
-    public function handleRequest(): RunnableResponse|Template
+    public function handleRequest(): Response
     {
         $result = $this->start();
         if ($result !== null) {
