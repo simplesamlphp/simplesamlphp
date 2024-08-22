@@ -16,6 +16,7 @@ Released 2024-08-20
 * Session ID's are now hashed when stored in a database (#2106)
 * Improved HTML 5 compatibility (#2162)
 * Fix: preloaded resource not used (#2207)
+* BC-break (unintentional): plain-text admin-password are no longer allowed (#2113)
 
 `authorize`
 
