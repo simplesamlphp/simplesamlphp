@@ -1414,7 +1414,7 @@ class SAML2
         Configuration $idpMetadata,
         Configuration $spMetadata,
         Assertion $assertion,
-    ) {
+    ): Assertion|EncryptedAssertion {
         $encryptAssertion = $spMetadata->getOptionalBoolean('assertion.encryption', null);
         if ($encryptAssertion === null) {
             $encryptAssertion = $idpMetadata->getOptionalBoolean('assertion.encryption', false);
@@ -1452,6 +1452,8 @@ class SAML2
                 // extract the public key from the certificate for encryption
                 $key = new XMLSecurityKey(XMLSecurityKey::RSA_OAEP_MGF1P, ['type' => 'public']);
                 $key->loadKey($pemKey);
+            } elseif ($idpMetadata->getOptionalBoolean('encryption.optional', false) === true) {
+                return $assertion;
             } else {
                 throw new Error\ConfigurationError(
                     'Missing encryption key for entity `' . $spMetadata->getString('entityid') . '`',

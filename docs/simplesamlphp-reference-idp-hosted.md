@@ -142,9 +142,12 @@ The following SAML 2.0 options are available:
 
 `assertion.encryption`
 :   Whether assertions sent from this IdP should be encrypted. The default
-    value is `FALSE`.
+    value is `FALSE`. When set to `TRUE` encryption will be enforced for all
+    remote SP's and an exception is thrown if encryption fails.
 
 :   Note that this option can be set for each SP in the SP-remote metadata.
+
+:   Note that enforcement can be disabled by setting `encryption.optional` to `TRUE`.
 
 `attributeencodings`
 :   What encoding should be used for the different attributes. This is
@@ -189,6 +192,10 @@ The following SAML 2.0 options are available:
 :   Note that this option also exists in the SP-remote metadata, and
     any value in the SP-remote metadata overrides the one configured
     in the IdP metadata.
+
+`encryption.optional`
+:   Whether or not we may continue to send an unencrypted assertion if the SP has no encryption certificate.
+    The default value is `FALSE`.
 
 `encryption.blacklisted-algorithms`
 :   Blacklisted encryption algorithms. This is an array containing the algorithm identifiers.
