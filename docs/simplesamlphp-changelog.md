@@ -9,6 +9,9 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+* Added a new feature flag `encryption.optional` to allow unencrypted assertions if the SP does
+  not provide an encryption certificate (#2208)
+
 ## Version 2.3.0
 
 Released 2024-08-20
