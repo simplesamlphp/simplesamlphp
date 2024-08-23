@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Locale;
 
 use SimpleSAML\{Configuration, Logger, Utils};
-use Symfony\Component\Intl\Languages;
+use Symfony\Component\Intl\Locales;
 
 use function array_fill_keys;
 use function array_key_exists;
@@ -114,7 +114,7 @@ class Language
     /**
      * Filter configured (available) languages against installed languages.
      *
-     * @return string[] The set of languages both in 'language.available' and  Languages::getNames().
+     * @return string[] The set of languages both in 'language.available' and  Locales::getNames().
      */
     private function getInstalledLanguages(): array
     {
@@ -124,7 +124,7 @@ class Language
         );
         $availableLanguages = [];
         foreach ($configuredAvailableLanguages as $code) {
-            if (Languages::exists($code)) {
+            if (Locales::exists($code)) {
                 $availableLanguages[] = $code;
             } else {
                 Logger::error("Language \"$code\" not installed. Check config.");
@@ -219,8 +219,8 @@ class Language
      */
     public function getLanguageLocalizedName(string $code): ?string
     {
-        if (Languages::exists($code)) {
-            return Languages::getName($code);
+        if (Locales::exists($code)) {
+            return Locales::getName($code);
         }
         Logger::error("Name for language \"$code\" not found. Check config.");
         return null;
