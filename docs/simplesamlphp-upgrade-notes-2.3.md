@@ -32,5 +32,8 @@ The following properties were marked `deprecated` and will be removed in a next 
 
 ## BC break
 
-Plain-text admin-passwords are no longer allowed.
-Please use the `bin/pwgen.php` script to generate a secure password hash.
+- Plain-text admin-passwords are no longer allowed.
+  Please use the `bin/pwgen.php` script to generate a secure password hash.
+
+- The language codes `pt-br` and `zh-tw` have been renamed to `pt_BR` and `zh_TW`.
+  Please update your configuration to match the new names.
