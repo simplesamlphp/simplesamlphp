@@ -122,6 +122,23 @@ class Language
             'language.available',
             [self::FALLBACKLANGUAGE],
         );
+
+        // @deprecated - remove entire if-block in a new major release
+        if (array_intersect(['pt-br', 'zh-tw'], $configuredAvailableLanguages)) {
+            Logger::warning(
+                "Deprecated locales found in `language.available`. "
+                . "Please replace 'pt-br' with 'pt_BR' and 'zh-tw' with 'zh_TW'.",
+            );
+
+            if (($i = array_search('pt-br', $configuredAvailableLanguages)) !== false) {
+                $configuredAvailableLanguages[$i] = 'pt_BR';
+            }
+
+            if (($i = array_search('zh-tw', $configuredAvailableLanguages)) !== false) {
+                $configuredAvailableLanguages[$i] = 'zh_TW';
+            }
+        }
+
         $availableLanguages = [];
         foreach ($configuredAvailableLanguages as $code) {
             if (Locales::exists($code)) {

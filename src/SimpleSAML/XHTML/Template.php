@@ -35,7 +35,6 @@ use function is_null;
 use function key;
 use function ksort;
 use function strripos;
-use function strtolower;
 use function strval;
 use function substr;
 
@@ -465,7 +464,6 @@ class Template extends Response
             $parameterName = $this->getTranslator()->getLanguage()->getLanguageParameterName();
             $langmap = [];
             foreach ($languages as $lang => $current) {
-                $lang = strtolower($lang);
                 $langname = $this->translator->getLanguage()->getLanguageLocalizedName($lang);
                 $url = false;
                 if (!$current) {
