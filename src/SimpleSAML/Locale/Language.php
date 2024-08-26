@@ -224,17 +224,6 @@ class Language
      */
     public function setLanguage(string $language, bool $setLanguageCookie = true): void
     {
-        $language = strtolower($language);
-
-        // @deprecated support these older names for now.
-        // @deprecated - remove entire if-block in a new major release
-        if ($language == 'pt_br') {
-            $language = 'pt_BR';
-        }
-        if ($language == 'zh_tw') {
-            $language = 'zh_TW';
-        }
-
         if (in_array($language, $this->availableLanguages, true)) {
             $this->language = $language;
             if ($setLanguageCookie === true) {
