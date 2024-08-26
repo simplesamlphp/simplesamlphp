@@ -9,6 +9,8 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+* Run ob_end_clean() on configuration file parsing error (#2219)
+
 ## Version 2.2.3
 
 Released 2024-08-20
