@@ -1067,6 +1067,10 @@ class ConfigurationTest extends ClearStateTestCase
     }
 
 
+    /**
+     * @return void
+     * @throws Exception
+     */
     public function testCanLoadDefinedConfigFromFile(): void
     {
         $testConfigDir = dirname(__FILE__, 3) . DIRECTORY_SEPARATOR . 'config';
@@ -1077,6 +1081,10 @@ class ConfigurationTest extends ClearStateTestCase
     }
 
 
+    /**
+     * @return void
+     * @throws Exception
+     */
     public function testCanLoadReturnedConfigFromFile(): void
     {
         $testConfigDir = dirname(__FILE__, 3) . DIRECTORY_SEPARATOR . 'config';
@@ -1084,6 +1092,25 @@ class ConfigurationTest extends ClearStateTestCase
 
         $config = Configuration::getConfig('returned_config.php');
         $this->assertArrayHasKey('returned', $config->toArray());
+    }
+
+    /**
+     * @return void
+     * @throws Exception
+     */
+    public function testLoadFromFileConfigurationError(): void
+    {
+        $virtualFile = 'nonexistent-preload.php';
+        $tmpfname = tempnam('/tmp', $virtualFile);
+
+        $handle = fopen($tmpfname, 'wb');
+        fwrite($handle, 'writing to tempfile');
+        fclose($handle);
+
+        $this->expectException(Error\ConfigurationError::class);
+        Configuration::getConfig($tmpfname);
+
+        unlink($tmpfname);
     }
 
 
