@@ -420,7 +420,7 @@ class Language
         $name = $config->getOptionalString('language.cookie.name', 'language');
 
         if (isset($_COOKIE[$name])) {
-            $language = strtolower($_COOKIE[$name]);
+            $language = $_COOKIE[$name];
             if (in_array($language, $availableLanguages, true)) {
                 return $language;
             }
