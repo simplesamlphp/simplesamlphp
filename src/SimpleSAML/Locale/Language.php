@@ -224,7 +224,6 @@ class Language
      */
     public function setLanguage(string $language, bool $setLanguageCookie = true): void
     {
-        $language = strtolower($language);
         if (in_array($language, $this->availableLanguages, true)) {
             $this->language = $language;
             if ($setLanguageCookie === true) {
