@@ -153,7 +153,6 @@ class Configuration implements Utils\ClearableState
             try {
                 ob_start();
                 $returnedConfig = require($filename);
-                var_export($returnedConfig, true);
                 $spurious_output = ob_get_length() > 0;
             } catch (ParseError $e) {
                 self::$loadedConfigs[$filename] = self::loadFromArray([], '[ARRAY]', 'simplesaml');
