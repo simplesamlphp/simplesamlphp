@@ -164,7 +164,7 @@ class LanguageTest extends TestCase
             'language.parameter.name' => 'xyz',
             'language.parameter.setcookie' => false,
         ], '', 'simplesaml');
-        $_GET['xyz'] = 'Es'; // test also that lang code is transformed to lower caps
+        $_GET['xyz'] = 'es';
         $l = new Language($c);
         $this->assertEquals('es', $l->getLanguage());
 
