@@ -224,7 +224,6 @@ class Language
      */
     public function setLanguage(string $language, bool $setLanguageCookie = true): void
     {
-        $language = strtolower($language);
         if (in_array($language, $this->availableLanguages, true)) {
             $this->language = $language;
             if ($setLanguageCookie === true) {
@@ -421,7 +420,7 @@ class Language
         $name = $config->getOptionalString('language.cookie.name', 'language');
 
         if (isset($_COOKIE[$name])) {
-            $language = strtolower($_COOKIE[$name]);
+            $language = $_COOKIE[$name];
             if (in_array($language, $availableLanguages, true)) {
                 return $language;
             }
