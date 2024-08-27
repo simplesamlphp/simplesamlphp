@@ -61,6 +61,12 @@ class AdminPassword extends UserPassBase
 
         $pwinfo = password_get_info($adminPassword);
         if ($pwinfo['algo'] === null) {
+            // @deprecated: remove this in the future.
+            // Continue to allow admin login when the config contains
+            // a password that is not hashed
+            if ($adminPassword === $password) {
+                return ['user' => ['admin']];
+            }
             throw new Error\Error(Error\ErrorCodes::ADMINNOTHASHED);
         }
 
