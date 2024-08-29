@@ -43,7 +43,9 @@ An example configuration would look like this:
                 ],
             ],
 
-            'default' => 'yubikey',
+            'default' => [
+                'source' => 'yubikey',
+            ],
         ],
     ],
 ```

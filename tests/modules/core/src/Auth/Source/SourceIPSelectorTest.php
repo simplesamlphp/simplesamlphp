@@ -59,7 +59,9 @@ class SourceIPSelectorTest extends TestCase
                         ],
                     ],
 
-                    'default' => 'external',
+                    'default' => [
+                        'source' => 'external',
+                    ],
                 ],
             ],
 
@@ -159,6 +161,7 @@ class SourceIPSelectorTest extends TestCase
 
         $state = [];
         $source = $selector->selectAuthSource($state);
+
         $this->assertEquals($expected, $source);
     }
 
@@ -179,7 +182,9 @@ class SourceIPSelectorTest extends TestCase
                         ],
                     ],
 
-                    'default' => 'external',
+                    'default' => [
+                        'source' => 'external',
+                    ],
                 ],
             ],
         ]);
@@ -209,7 +214,9 @@ class SourceIPSelectorTest extends TestCase
                         'source' => 'internal',
                     ],
 
-                    'default' => 'external',
+                    'default' => [
+                        'source' => 'external',
+                    ],
                 ],
             ],
         ]);

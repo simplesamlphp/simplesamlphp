@@ -35,9 +35,9 @@ class SourceIPSelector extends AbstractSourceSelector
     public const SOURCESID = '\SimpleSAML\Module\core\Auth\Source\SourceIPSelector.SourceId';
 
     /**
-     * @param string|null  The default authentication source to use when none of the zones match
+     * @param array|null  The default authentication source to use when none of the zones match
      */
-    protected ?string $defaultSource;
+    protected ?array $default;
 
     /**
      * @param array  An array of zones. Each zone requires two keys;
@@ -60,18 +60,17 @@ class SourceIPSelector extends AbstractSourceSelector
 
         Assert::keyExists($config, 'zones');
         Assert::keyExists($config['zones'], 'default');
-        Assert::nullOrStringNotEmpty($config['zones']['default']);
-        $this->defaultSource = $config['zones']['default'];
-
+        Assert::nullOrIsArray($config['zones']['default']);
+        $this->default = $config['zones']['default'];
         unset($config['zones']['default']);
-        $zones = $config['zones'];
 
+        $zones = $config['zones'];
         foreach ($zones as $key => $zone) {
             if (!array_key_exists('source', $zone)) {
                 throw new Error\Exception(
                     sprintf("Incomplete zone-configuration '%s' due to missing `source` key.", $key),
                 );
-            } elseif (!array_key_exists('subnet', $zone)) {
+            } elseif (!array_key_exists('subnet', $zone) && $key !== 'default') {
                 throw new Error\Exception(
                     sprintf("Incomplete zone-configuration '%s' due to missing `subnet` key.", $key),
                 );
@@ -88,12 +87,12 @@ class SourceIPSelector extends AbstractSourceSelector
      * @param array &$state Information about the current authentication.
      * @return string
      */
-    protected function selectAuthSource(/** @scrutinizer ignore-unused */ array &$state): string
+    protected function selectAuthSource(array &$state): string
     {
         $ip = Request::createFromGlobals()->getClientIp();
         Assert::notNull($ip, "Unable to determine client IP.");
 
-        $source = $this->defaultSource;
+        $source = $this->default['source'];
         foreach ($this->zones as $name => $zone) {
             foreach ($zone['subnet'] as $subnet) {
                 if (IpUtils::checkIp($ip, $subnet)) {
@@ -104,17 +103,17 @@ class SourceIPSelector extends AbstractSourceSelector
                         $ip,
                     ));
                     $source = $zone['source'];
+                    $state['sourceIPSelector:zone'] = $name;
                     break 2;
                 }
             }
         }
 
-        if ($source === null) {
-            throw new Error\NotFound();
-        }
-
-        if ($source === $this->defaultSource) {
+        if ($source === $this->default['source']) {
             Logger::info("core:SourceIPSelector:  no match on client IP; selecting default zone");
+            $state['sourceIPSelector:zone'] = 'default';
+        } elseif ($source === null) {
+            throw new Error\NotFound();
         }
 
         return $source;
