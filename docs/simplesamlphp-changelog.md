@@ -13,6 +13,10 @@ Released TBD
 * Fixed accidental backwards incompatibility concerning the `pt-br` and `zh-tw` locales (#2216)
 * Run ob_end_clean() on configuration file parsing error (#2219)
 
+`admin`
+
+* Fix metadata-viewer to output a valid PHP array
+
 ## Version 2.3.0
 
 Released 2024-08-20
