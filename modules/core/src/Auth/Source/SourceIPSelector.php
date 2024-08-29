@@ -104,7 +104,7 @@ class SourceIPSelector extends AbstractSourceSelector
                         $ip,
                     ));
                     $source = $zone['source'];
-                    break;
+                    break 2;
                 }
             }
         }
