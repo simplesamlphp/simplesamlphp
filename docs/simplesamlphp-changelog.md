@@ -17,6 +17,10 @@ Released TBD
 * Fixed metadata download to become a proper xml-file
 * Prevent metadata-download from ever being cached
 
+`admin`
+
+* Fix metadata-viewer to output a valid PHP array
+
 `ldap`
 
 * Fixed a bug that would throw an unhandled exception to the user if they would enter
