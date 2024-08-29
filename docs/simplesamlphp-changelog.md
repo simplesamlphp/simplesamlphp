@@ -9,6 +9,10 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+`admin`
+
+* Fix metadata-viewer to output a valid PHP array
+
 ## Version 2.0.13
 
 Released 2024-06-12
