@@ -11,6 +11,10 @@ Released TBD
 
 * Run ob_end_clean() on configuration file parsing error (#2219)
 
+`admin`
+
+* Fix metadata-viewer to output a valid PHP array
+
 ## Version 2.2.3
 
 Released 2024-08-20
