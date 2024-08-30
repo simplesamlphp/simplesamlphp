@@ -6,6 +6,7 @@ namespace SimpleSAML\Module\core\Auth\Source;
 
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
+use SimpleSAML\Logger;
 use SimpleSAML\Module\core\Auth\UserPassBase;
 use Symfony\Component\PasswordHasher\Hasher\NativePasswordHasher;
 
@@ -65,6 +66,9 @@ class AdminPassword extends UserPassBase
             // Continue to allow admin login when the config contains
             // a password that is not hashed
             if ($adminPassword === $password) {
+                Logger::deprecated('Please consider hashing the admin password stored in auth.adminpassword'
+                                 . ' in config.php. Using a plain text password in that config setting'
+                                 . ' will be removed in the future.');
                 return ['user' => ['admin']];
             }
             throw new Error\Error(Error\ErrorCodes::ADMINNOTHASHED);
