@@ -438,7 +438,6 @@ class Language
      */
     public static function setLanguageCookie(string $language): void
     {
-        $language = strtolower($language);
         $config = Configuration::getInstance();
         $availableLanguages = $config->getOptionalArray('language.available', [self::FALLBACKLANGUAGE]);
 
