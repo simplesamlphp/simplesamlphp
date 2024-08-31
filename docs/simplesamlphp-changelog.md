@@ -10,7 +10,7 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 Released TBD
 
 * Fixed accidental backwards incompatibility for plain-text admin passwords (#2212)
-* Fixed accidental backwards incompatibility concerning the `pt-br` and `zh-tw` locales (#2216)
+* Fixed support for `pt-br` and `zh-tw` dialects (#2216)
 * Run ob_end_clean() on configuration file parsing error (#2219)
 
 `admin`
