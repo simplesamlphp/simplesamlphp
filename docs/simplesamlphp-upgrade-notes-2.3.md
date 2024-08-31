@@ -30,14 +30,9 @@ The following properties were marked `deprecated` and will be removed in a next 
 
 - SimpleSAML\Locale\Language::$language_names - Use \Symfony\Component\Intl\Languages::getNames() instead
 
+The use of plain-text admin-passwords has been deprecated. Generate a secure hash using the `bin/pwgen.php` script instead.
+
 ## BC break
-
-- As of 2.3.1+ Plain-text admin-passwords are allowed again.
-  No change is needed to auth.adminpassword to upgrade from 2.2 to 2.3.1+.
-  In 2.3.0 only Plain-text admin-passwords were not allowed.
-
-  In either case you might like to use the `bin/pwgen.php` script to
-  generate a secure password hash for auth.adminpassword.
 
 - The language codes `pt-br` and `zh-tw` have been renamed to `pt_BR` and `zh_TW`.
   Please update your configuration to match the new names.
