@@ -16,12 +16,7 @@
   <logging/>
   <source>
     <include>
-      <directory suffix=".php">./modules/admin/src</directory>
-      <directory suffix=".php">./modules/core/src</directory>
-      <directory suffix=".php">./modules/cron/src</directory>
-      <directory suffix=".php">./modules/exampleauth/src</directory>
-      <directory suffix=".php">./modules/multiauth/src</directory>
-      <directory suffix=".php">./modules/saml/src</directory>
+      <directory suffix=".php">./modules/*/src</directory>
       <directory suffix=".php">./src</directory>
     </include>
     <exclude>
