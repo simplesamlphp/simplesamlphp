@@ -40,8 +40,8 @@
                 <i class="fa fa-copy"></i>
             </button>
         </div>
-        <div class="code-box-content">
-            <pre id="metadata{{ loop.index }}">{{ text|escape }}</pre>
+        <div id="metadata{{ loop.index }}" class="code-box-content">
+          {{- text|escape -}}
         </div>
     </div>
             <br><br>
