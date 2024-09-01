@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "282e14b6588f9aae2d41c3260e038b24",
+    "content-hash": "53746289447f722242945111590006df",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -6409,7 +6409,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "simplesamlphp/saml2": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
