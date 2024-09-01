@@ -16,6 +16,11 @@ Released TBD
 `admin`
 
 * Fix metadata-viewer to output a valid PHP array
+* Fix text-overflow of the metadata-converter output-box
+
+Chores:
+
+* Solved deprecation notices in CI regarding the use of the Twig spaceless-filter (#2229)
 
 ## Version 2.3.0
 
