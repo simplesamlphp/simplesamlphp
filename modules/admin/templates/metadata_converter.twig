@@ -33,8 +33,6 @@
     <h2 id="converted">{{ 'Converted metadata'|trans }}</h2>
         {% for type, text in output -%}
             {%- if text -%}
-{# spaceless is to work around a clipboard.js bug that would add extra whitespace #}
-{% apply spaceless %}
     <div class="code-box">
         <div class="code-box-title">
             <h3>{{ type }}</h3>
@@ -42,11 +40,10 @@
                 <i class="fa fa-copy"></i>
             </button>
         </div>
-        <div class="code-box-content">
-            <pre id="metadata{{ loop.index }}">{{ text|escape }}</pre>
+        <div id="metadata{{ loop.index }}" class="code-box-content">
+          {{- text|escape -}}
         </div>
     </div>
-{% endapply %}
             <br><br>
             {%- set i=i+1 %}
             {%- endif -%}
