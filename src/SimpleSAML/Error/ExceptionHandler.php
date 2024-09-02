@@ -29,7 +29,7 @@ class ExceptionHandler
 
         if ($exception instanceof MethodNotAllowedHttpException) {
             $e = new Error\MethodNotAllowed($exception);
-            $e->show(Logger::DEBUG);
+            $e->show(Logger::DEBUG, true);
         } elseif ($exception instanceof Error) {
             $exception->show();
         } elseif ($exception instanceof BuiltinException) {
