@@ -4,28 +4,29 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
+use Exception;
+
 /**
  * Error for method not allowed.
  *
  * @package SimpleSAMLphp
  */
-
 class MethodNotAllowed extends Error
 {
     /**
      * Create the error
      *
-     * @param string $message The message coming from Symfony, caught by the ExceptionHandler.
+     * @param \Exception $cause The exception caught by the ExceptionHandler.
      */
-    public function __construct(string $message)
+    public function __construct(Exception $cause)
     {
         $this->includeTemplate = 'core:method_not_allowed.twig';
         parent::__construct(
             [
                 ErrorCodes::METHODNOTALLOWED,
-                '%MESSAGE%' => $message,
+                '%MESSAGE%' => $cause->getMessage(),
             ],
-            null,
+            $cause,
             405,
         );
     }

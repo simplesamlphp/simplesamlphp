@@ -5,11 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Error;
 
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
-use SimpleSAML\Module;
-use SimpleSAML\Session;
-use SimpleSAML\Utils;
+use SimpleSAML\{Configuration, Logger, Module, Session, Utils};
 use SimpleSAML\XHTML\Template;
 use Throwable;
 
@@ -238,11 +234,13 @@ class Error extends Exception
      * Display this error.
      *
      * This method displays a standard SimpleSAMLphp error page and exits.
+     *
+     * @param int $logLevel  The log-level for this exception
      */
-    public function show(): void
+    public function show(int $logLevel = Logger::ERR): void
     {
         // log the error message
-        $this->logError();
+        $this->log($logLevel);
 
         $errorData = $this->saveError();
         $config = Configuration::getInstance();
