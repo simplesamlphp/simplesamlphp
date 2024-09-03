@@ -960,7 +960,7 @@ class ConfigurationTest extends ClearStateTestCase
 
         // define a set of exception messages to expect
         $msgs = [
-            'Expected array or string.',
+            'The configuration is invalid: Expected an array. Got: integer',
             'Expected a string or an array.',
             'Missing Location.',
             'Location must be a string.',
