@@ -1206,9 +1206,7 @@ class Configuration implements Utils\ClearableState
 
 
         $eps = $this->configuration[$endpointType];
-        if (!is_array($eps)) {
-            throw new Exception($loc . ': Expected array or string.');
-        }
+        Assert::isArray($eps, Error\CriticalConfigurationError::class);
 
         $eps_count = count($eps);
 
