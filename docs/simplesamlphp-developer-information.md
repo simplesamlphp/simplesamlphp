@@ -55,6 +55,17 @@ of the git repository. If you would like your simpler issues to be
 solved for you execute `phpcbf` which will update the code to remedy
 as many issues as it can.
 
+## CSS and common asset setup
+
+The common assets such as CSS in SimpleSAMLphp, for example, that
+stored in public/assets/base/css/stylesheet.css comes from the
+[simplesamlphp-assets-base](https://github.com/simplesamlphp/simplesamlphp-assets-base)
+package.
+
+The dependencies are updated using github actions in
+simplesamlphp-assets-base. Select a recent branch such as release-2.2
+and dig into the .github directory for details.
+
 ## Following a simple login
 
 The `SimpleSAML\Auth\Simple` class takes the authentication_source
