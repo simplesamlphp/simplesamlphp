@@ -33,6 +33,7 @@ class ErrorCodes
     final public const MEMCACHEDOWN = 'MEMCACHEDOWN';
     final public const METADATA = 'METADATA';
     final public const METADATANOTFOUND = 'METADATANOTFOUND';
+    final public const METHODNOTALLOWED = 'METHODNOTALLOWED';
     final public const NOACCESS = 'NOACCESS';
     final public const NOCERT = 'NOCERT';
     final public const NORELAYSTATE = 'NORELAYSTATE';
