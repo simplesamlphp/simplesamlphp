@@ -23,7 +23,7 @@ msgstr "Arazoak bere horretan badirau, sistemaren administratzaileei berri eman 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Hasiera-bakarreko sistema bat zabaltzen ari zaren garatzaile bat bazara, arazo bat duzu zure metadatuen kongigurazioarekin. Egiazta ezazu metadatuak zuzen konfiguratuak daudela identitate hornitzailean eta zerbitzu hornitzailean."
 
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgid "If you are a user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "Gune bateko lotura bat jarraituz errore hau jasotzen duen erabiltzaile bat bazara,  guneko jabeari eman behar diozu errorearen berri."
 
 msgid "Missing cookie"

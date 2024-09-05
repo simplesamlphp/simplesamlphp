@@ -23,7 +23,7 @@ msgstr "Ja problēma atkārtojas, varat ziņot sistēmas administratoriem."
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Ja Jūs esat vienotas pieslēgšanās risinājuma izstrādātājs, Jūsu metadatu konfigurācijā ir kļūda. Pārbaudiet tos gan pie identitātes piegādātāja, gan pie servisa piegādātāja."
 
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgid "If you are a user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "Ja Jūs esat lietotājs un saņemat šo kļūdu, sekojot saitei kādā interneta lapā, Jums jāziņo par šo kļūdu lapas īpašniekam."
 
 msgid "Missing cookie"
