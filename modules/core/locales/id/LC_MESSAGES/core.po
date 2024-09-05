@@ -47,6 +47,9 @@ msgstr "Jika masalah ini tetap terjadi, anda dapat melaporkannnya ke system admi
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Jika anda adalah pengembang yang mendeploy solusi sing-on, anda memiliki masalah dengan konfigurasi metadata.  Periksalah kalau metadata telah dikonfigurasi dengan benar baik pada sisi identity provider dan pada sisi service provider."
 
+msgid "If you are a developer who is deploying a single sign-on solution, you have are trying to reach an endpoint using the wrong HTTP-method."
+msgstr ""
+
 msgid "If you are a user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "Jika adalah user yang menerika error ini setelah mengklik link pada sebuah situs, anda harus melaporkan error ini kepada pemilik situs tersebut"
 

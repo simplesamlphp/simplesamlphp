@@ -47,6 +47,9 @@ msgstr "如果这个错误再次出现，你可以向你的系统管理员报告
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "如果你是部署这个单点登录系统的开发人员，那么你的配置文件存在问题，验证服务提供者和身份提供者是否配置正确"
 
+msgid "If you are a developer who is deploying a single sign-on solution, you have are trying to reach an endpoint using the wrong HTTP-method."
+msgstr ""
+
 msgid "If you are a user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "如果你是点击一个网站上的链接后收到该错误的用户，你应该报告这个错误给站点所有人"
 

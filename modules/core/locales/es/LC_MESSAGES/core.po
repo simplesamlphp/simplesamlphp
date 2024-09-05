@@ -47,6 +47,9 @@ msgstr "Si el problema persiste, puede reportarlo a los administradores del sist
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Si usted es un desarrollador que está desplegando una solución de inicio único, tiene un problema con la configuración de sus metadatos. Verifique que los metadatos están configurados correctamente en el proveedor de identidad y en el proveedor de servicios"
 
+msgid "If you are a developer who is deploying a single sign-on solution, you have are trying to reach an endpoint using the wrong HTTP-method."
+msgstr ""
+
 msgid "If you are a user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "Si usted es un usuario que recibe este error luego de seguir un vínculo en un sitio, debe reportar el error al dueño del sitio."
 

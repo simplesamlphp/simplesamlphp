@@ -44,6 +44,12 @@ msgstr "Metadane - Lokalny Shibboleth 1.3 Dostawca Serwisu (generowane automatyc
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr ""
 
+msgid "If you are a developer who is deploying a single sign-on solution, you have are trying to reach an endpoint using the wrong HTTP-method."
+msgstr ""
+
+msgid "If you are a user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr ""
+
 msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr ""
 

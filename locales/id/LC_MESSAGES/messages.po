@@ -2,6 +2,10 @@ msgid ""
 msgstr ""
 "X-Domain: messages\n"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:189
+msgid "%MESSAGE%"
+msgstr ""
+
 msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
 msgstr "Sebuah layanan telah meminta Anda untuk melakukan autentifikasi. Silahkan masukkan username dan password Anda pada form dibawah"
 
@@ -335,6 +339,10 @@ msgstr "Metadata tidak ditemukan"
 
 msgid "Metadata overview"
 msgstr "Ikhtisar Metadata"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:90
+msgid "Method not allowed"
+msgstr ""
 
 msgid "Mobile"
 msgstr "Handphone"

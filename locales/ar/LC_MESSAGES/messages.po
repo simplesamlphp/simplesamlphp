@@ -2,6 +2,10 @@ msgid ""
 msgstr ""
 "X-Domain: messages\n"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:189
+msgid "%MESSAGE%"
+msgstr ""
+
 msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
 msgstr "طلبت احدي الخدمات ان توثق انك انت. رجاءاً قم بإدراج اسم المستخدم و كلمة السر خاصتك بالاستمارة أدناه"
 
@@ -335,6 +339,10 @@ msgstr "الميتاداتا مفقودة"
 
 msgid "Metadata overview"
 msgstr "نظرة عامة للبيانات الوصفية/ الميتاداتا"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:90
+msgid "Method not allowed"
+msgstr ""
 
 msgid "Mobile"
 msgstr "رقم الهاتف السيار"
