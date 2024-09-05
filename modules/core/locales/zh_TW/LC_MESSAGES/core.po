@@ -23,7 +23,7 @@ msgstr "如果這個錯誤持續存在，您可以將它回報系統管理者。
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "若您是單一簽入程式開發人員，您的詮釋資料設定可能有問題。請確認服務提供者或驗證提供者之詮釋資料設定檔是否正確。"
 
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgid "If you are a user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "若您是個使用者，而您於此網站收到下列連結，請反映此錯誤給此站管理員。"
 
 msgid "Missing cookie"

@@ -6,7 +6,8 @@ namespace SimpleSAML\Error;
 
 use Error as BuiltinError;
 use Exception as BuiltinException;
-use SimpleSAML\Module;
+use SimpleSAML\{Logger, Module};
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Throwable;
 
 use function class_exists;
@@ -26,7 +27,10 @@ class ExceptionHandler
     {
         Module::callHooks('exception_handler', $exception);
 
-        if ($exception instanceof Error) {
+        if ($exception instanceof MethodNotAllowedHttpException) {
+            $e = new MethodNotAllowed($exception);
+            $e->show(Logger::DEBUG, true);
+        } elseif ($exception instanceof Error) {
             $exception->show();
         } elseif ($exception instanceof BuiltinException) {
             $e = new Error(ErrorCodes::UNHANDLEDEXCEPTION, $exception);

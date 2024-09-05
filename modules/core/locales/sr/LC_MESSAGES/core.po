@@ -23,7 +23,7 @@ msgstr "Ako se ova greška bude i dalje pojavljivala, možete je prijaviti admin
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Postoji greška sa podešavanjima metapodataka. Ukoliko ste administrator sistema, proverite da li metapodaci ispravno uneseni na strani davaoca servisa i davaoca identiteta."
 
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgid "If you are a user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "Ukoliko se ova greška pojavila nakon što ste sledili link na nekoj web stranici, onda biste grešku trebali prijaviti vlasniku navedene stranice."
 
 msgid "Missing cookie"
