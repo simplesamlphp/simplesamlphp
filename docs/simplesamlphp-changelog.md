@@ -13,6 +13,7 @@ Released TBD
 * Fixed support for `pt-br` and `zh-tw` dialects (#2216)
 * Run ob_end_clean() on configuration file parsing error (#2219)
 * Fixed an incorrect exception message when string-style endpoints are used.
+* Reduced all of the overhead logging related to HEAD/OPTIONS requests (#2234).
 
 `admin`
 
