@@ -5,14 +5,19 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.3.1
+## Version 2.3.2
 
 Released TBD
+
+## Version 2.3.1
+
+Released 2024-09-05
 
 * Fixed accidental backwards incompatibility for plain-text admin passwords (#2212)
 * Fixed support for `pt-br` and `zh-tw` dialects (#2216)
 * Run ob_end_clean() on configuration file parsing error (#2219)
 * Fixed an incorrect exception message when string-style endpoints are used.
+* Reduced all of the overhead logging related to HEAD/OPTIONS requests (#2234).
 
 `admin`
 
