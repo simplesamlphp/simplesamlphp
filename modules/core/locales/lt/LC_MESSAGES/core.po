@@ -47,7 +47,7 @@ msgstr "Jei ši problema išliks, galite pranešti apie tai sistemos administrat
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Jei Jūs esate kūrėjas, kuris diegiate SSO sprendimą, Jums iškilo problema susijusi su metaduomenų konfigūracija. Patikrinkite, ar metaduomenys teisingai sukonfigūruoti tiek tapatybių teikėjo, tiek paslaugos teikėjo pusėse."
 
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgid "If you are a user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "Jei Jūs esate naudotojas, kuris gavote šią klaidą spragtelėjęs nuorodą tinklapyje, Jūs turėtumėte informuoti tinklapio administratorių apie šią klaidą."
 
 msgid "If you are the administrator of this installation, please refer to the <a href=\"https://simplesamlphp.org/docs/\">SimpleSAMLphp documentation</a> for how to configure and interact with the software."

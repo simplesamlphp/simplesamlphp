@@ -47,7 +47,7 @@ msgstr "Dacă problema persistă, anunțați administratorii de sistem."
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Dacă sunteți dezvoltator care implementează o soluție <i>single sign-on</i>, aveți o problemă la configurarea metadatelor. Vă rugăm să verificați configurarea corectă a metadatelor, atât la furnizorul de identitate cât și la furnizorul de servicii."
 
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgid "If you are a user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "Dacă sunteți un utilizator care a primit acest mesaj de eroare în urma utilizării unui link din alt sit, vă rugăm să anunțați această eroare deținătorului sitului respectiv."
 
 msgid "If you are the administrator of this installation, please refer to the <a href=\"https://simplesamlphp.org/docs/\">SimpleSAMLphp documentation</a> for how to configure and interact with the software."

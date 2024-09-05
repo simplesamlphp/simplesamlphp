@@ -47,8 +47,8 @@ msgstr "If this problem persists, you can report it to the system administrators
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgid "If you are a user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "If you are a user who received this error after following a link on a site, you should report this error to the owner of that site."
 
 msgid "If you are the administrator of this installation, please refer to the <a href=\"https://simplesamlphp.org/docs/\">SimpleSAMLphp documentation</a> for how to configure and interact with the software."
 msgstr ""

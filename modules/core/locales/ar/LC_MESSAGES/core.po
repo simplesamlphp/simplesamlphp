@@ -47,7 +47,7 @@ msgstr "اذا استمرت هذه المشكلة بالحدوث، رجاءا ب
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr " و كانت (Single Sign-On) ان كنت مبرمجاً تعمل علي توفير حل  لتوثيق دخول لمرة واحدة  لديك مشكلة بادخال البيانات الوصفية, تأكد من أن أدخال البيانات الوصفية صحيح بكل من محدد الهوية و المخدم  "
 
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgid "If you are a user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "ان تعرضت لهذا الاشكال بعيد اتباعك  لرابط بموقع ما, ينبغي عليك الابلاغ عن هذا الاشكال لمالك  الموقع المعني"
 
 msgid "If you are the administrator of this installation, please refer to the <a href=\"https://simplesamlphp.org/docs/\">SimpleSAMLphp documentation</a> for how to configure and interact with the software."

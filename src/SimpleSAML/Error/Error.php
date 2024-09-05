@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
-use SimpleSAML\{Configuration, Logger, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\{Configuration, Logger, Module, Session, Utils};
 use SimpleSAML\XHTML\Template;
 use Throwable;
 
@@ -213,7 +213,6 @@ class Error extends Exception
         $etrace = implode("\n", $data);
 
         $reportId = bin2hex(openssl_random_pseudo_bytes(4));
-        Logger::error('Error report with id ' . $reportId . ' generated.');
 
         $config = Configuration::getInstance();
         $session = Session::getSessionFromRequest();
@@ -248,13 +247,16 @@ class Error extends Exception
      * Display this error.
      *
      * This method displays a standard SimpleSAMLphp error page and exits.
+     *
+     * @param int $logLevel  The log-level for this exception
+     * @param bool $suppressReport  Whether or not sending an error report is an option
      */
-    public function show(): void
+    public function show(int $logLevel = Logger::ERR, bool $suppressReport = false): void
     {
         // log the error message
-        $this->logError();
-
+        $this->log($logLevel);
         $errorData = $this->saveError();
+
         $config = Configuration::getInstance();
 
         $data = [];
@@ -270,11 +272,13 @@ class Error extends Exception
 
         // check if there is a valid technical contact email address
         if (
-            $config->getOptionalBoolean('errorreporting', true)
+            $suppressReport === false
+            && $config->getOptionalBoolean('errorreporting', true)
             && $config->getOptionalString('technicalcontact_email', 'na@example.org') !== 'na@example.org'
         ) {
             // enable error reporting
             $data['errorReportAddress'] = Module::getModuleURL('core/errorReport');
+            Logger::error('Error report with id ' . $errorData['reportId'] . ' generated.');
         }
 
         $data['email'] = '';

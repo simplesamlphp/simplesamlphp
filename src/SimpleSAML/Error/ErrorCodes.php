@@ -87,6 +87,7 @@ class ErrorCodes
             self::MEMCACHEDOWN => Translate::noop('Cannot retrieve session data'),
             self::METADATA => Translate::noop('Error loading metadata'),
             self::METADATANOTFOUND => Translate::noop('Metadata not found'),
+            self::METHODNOTALLOWED => Translate::noop('Method not allowed'),
             self::NOACCESS => Translate::noop('No access'),
             self::NOCERT => Translate::noop('No certificate'),
             self::NORELAYSTATE => Translate::noop('No RelayState'),
@@ -185,6 +186,7 @@ class ErrorCodes
                 " are the administrator of this service, you should make sure your " .
                 "metadata configuration is correctly setup."),
             self::METADATANOTFOUND => Translate::noop('Unable to locate metadata for %ENTITYID%'),
+            self::METHODNOTALLOWED => Translate::noop('%MESSAGE%'),
             self::NOACCESS => Translate::noop("" .
                 "This endpoint is not enabled. Check the enable options in your " .
                 "configuration of SimpleSAMLphp."),

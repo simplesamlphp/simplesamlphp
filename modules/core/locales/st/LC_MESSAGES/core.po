@@ -41,7 +41,7 @@ msgstr "Haeba bothata bona bo phehella, o ka bo tlaleha ho batsamaisi ba sistimi
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Haeba o mohlahisi ya sebedisang tharollo ya ho saena hang, o na le bothata ka phetolo ya metadata. Netefatsa hore metadata e hlophiswe ka ho nepahala ho bobedi mofani wa boitsebiso le mofani wa tshebeletso."
 
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgid "If you are a user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "Haeba o le mosebedisi ya fumaneng phoso ena kamora ho latela lehokela le setsing, o tlameha ho tlaleha phoso ena ho monga setsi."
 
 msgid "If you are the administrator of this installation, please refer to the <a href=\"https://simplesamlphp.org/docs/\">SimpleSAMLphp documentation</a> for how to configure and interact with the software."

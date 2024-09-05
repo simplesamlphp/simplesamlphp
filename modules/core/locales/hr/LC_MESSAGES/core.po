@@ -47,7 +47,7 @@ msgstr "Ako se ova greška bude i dalje pojavljivala, možete ju prijaviti admin
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Ako ste programer koji postavlja sustav jedinstvene autentifikacije (Single Sign-On sustav), tada imate problema s konfiguracijom metapodataka. Provjerite jesu li metapodaci ispravno uneseni i na strani davatelja usluge i u konfiguraciji autentifikacijskog servisa."
 
-msgid "If you are an user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgid "If you are a user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "Ako se ova greška pojavila nakon što ste slijedili poveznicu na nekoj web stranici, onda biste grešku trebali prijaviti vlasniku navedene stranice."
 
 msgid "If you are the administrator of this installation, please refer to the <a href=\"https://simplesamlphp.org/docs/\">SimpleSAMLphp documentation</a> for how to configure and interact with the software."
