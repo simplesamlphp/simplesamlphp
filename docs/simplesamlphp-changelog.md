@@ -12,6 +12,10 @@ Released TBD
 * Fixed a regression that led to fonts & icons not being loaded correctly (#2237)
 * Fixed a regression that caused the languages in the language-bar to be all in English.
 
+`admin`
+
+* Only load metadata-converter.js when file-upload is enabled.
+
 ## Version 2.3.1
 
 Released 2024-09-05
