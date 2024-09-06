@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c0b6d5f21924e1ec7135582a2a76cb5",
+    "content-hash": "d85de1625e5eca8c5283affbad72e94a",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -907,16 +907,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
-            "version": "v2.2.8",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-assets-base.git",
-                "reference": "939224aa1ebdfa4207e257f37cfe453e90eccbc8"
+                "reference": "c6396600f0929dde7b78de41e6841251a3467063"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/939224aa1ebdfa4207e257f37cfe453e90eccbc8",
-                "reference": "939224aa1ebdfa4207e257f37cfe453e90eccbc8",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/c6396600f0929dde7b78de41e6841251a3467063",
+                "reference": "c6396600f0929dde7b78de41e6841251a3467063",
                 "shasum": ""
             },
             "require": {
@@ -937,9 +937,9 @@
             "description": "Assets for the SimpleSAMLphp main repository",
             "support": {
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-assets-base/issues",
-                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.2.8"
+                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.3.0"
             },
-            "time": "2024-09-01T19:55:36+00:00"
+            "time": "2024-09-06T16:21:56+00:00"
         },
         {
             "name": "simplesamlphp/xml-common",

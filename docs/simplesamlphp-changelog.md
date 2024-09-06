@@ -9,6 +9,8 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+* Fixed a regression that led to fonts & icons not being loaded correctly (#2237)
+
 ## Version 2.3.1
 
 Released 2024-09-05
