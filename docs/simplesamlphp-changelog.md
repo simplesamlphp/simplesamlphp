@@ -5,9 +5,13 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.3.2
+## Version 2.3.3
 
 Released TBD
+
+## Version 2.3.2
+
+Released 2024-09-06
 
 * Fixed a regression that led to fonts & icons not being loaded correctly (#2237)
 * Fixed a regression that caused the languages in the language-bar to be all in English.
