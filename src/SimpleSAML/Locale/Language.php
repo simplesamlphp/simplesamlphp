@@ -284,7 +284,7 @@ class Language
     public function getLanguageLocalizedName(string $code): ?string
     {
         if (Locales::exists($code)) {
-            return Locales::getName($code);
+            return Locales::getName($code, $code);
         }
         Logger::error("Name for language \"$code\" not found. Check config.");
         return null;

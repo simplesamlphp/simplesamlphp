@@ -10,6 +10,7 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 Released TBD
 
 * Fixed a regression that led to fonts & icons not being loaded correctly (#2237)
+* Fixed a regression that caused the languages in the language-bar to be all in English.
 
 ## Version 2.3.1
 
