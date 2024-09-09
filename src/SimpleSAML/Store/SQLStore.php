@@ -133,9 +133,20 @@ class SQLStore implements StoreInterface
                      *       schema.
                      */
                     $update = [
-                        'ALTER TABLE ' . $this->prefix . '_tableVersion DROP INDEX IF EXISTS SELECT CONSTRAINT_NAME ' .
-                          'FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_NAME=' . $this->prefix . '_tableVersion',
-                        'ALTER TABLE ' . $this->prefix . '_tableVersion ADD CONSTRAINT _name PRIMARY KEY CLUSTERED (_name)',
+                        // Use dynamic SQL to drop the existing unique constraint
+                        'DECLARE @constraintName NVARCHAR(128); ' .
+                        'SELECT @constraintName = CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS ' .
+                        'WHERE TABLE_NAME = \'' . $this->prefix . '_tableVersion\' AND CONSTRAINT_TYPE = \'UNIQUE\'; ' .
+                        'IF @constraintName IS NOT NULL ' .
+                        'BEGIN ' .
+                            'EXEC(\'ALTER TABLE ' . $this->prefix . '_tableVersion ' .
+                                  ' DROP CONSTRAINT \' + @constraintName); ' .
+                        'END;',
+
+                        // Add the new primary key constraint
+                        'ALTER TABLE ' . $this->prefix . '_tableVersion ' .
+                        '  ADD CONSTRAINT PK_' . $this->prefix . '_tableVersion ' .
+                        '      PRIMARY KEY CLUSTERED (_name);',
                     ];
                     break;
                 case 'sqlite':
