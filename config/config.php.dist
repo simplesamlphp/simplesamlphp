@@ -196,6 +196,10 @@ $config = [
      * This password will give access to the installation page of SimpleSAMLphp with
      * metadata listing and diagnostics pages.
      * You can also put a hash here; run "bin/pwgen.php" to generate one.
+     *
+     * If you are using Ansible you might like to use
+     * ansible.builtin.password_hash(hashtype='blowfish', ident='2y', rounds=13)
+     * to generate this hashed value.
      */
     'auth.adminpassword' => '123',
 
