@@ -849,16 +849,16 @@
         },
         {
             "name": "psr/log",
-            "version": "3.0.1",
+            "version": "3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "79dff0b268932c640297f5208d6298f71855c03e"
+                "reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/79dff0b268932c640297f5208d6298f71855c03e",
-                "reference": "79dff0b268932c640297f5208d6298f71855c03e",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
+                "reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
                 "shasum": ""
             },
             "require": {
@@ -893,9 +893,9 @@
                 "psr-3"
             ],
             "support": {
-                "source": "https://github.com/php-fig/log/tree/3.0.1"
+                "source": "https://github.com/php-fig/log/tree/3.0.2"
             },
-            "time": "2024-08-21T13:31:24+00:00"
+            "time": "2024-09-11T13:17:53+00:00"
         },
         {
             "name": "robrichards/xmlseclibs",
@@ -1040,6 +1040,48 @@
                 "source": "https://github.com/simplesamlphp/composer-module-installer/tree/v1.3.4"
             },
             "time": "2023-03-08T20:58:22+00:00"
+        },
+        {
+            "name": "simplesamlphp/composer-xmlprovider-installer",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/simplesamlphp/composer-xmlprovider-installer.git",
+                "reference": "ce09a877a1de9469f1a872f04703d75d6bafcdc6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/simplesamlphp/composer-xmlprovider-installer/zipball/ce09a877a1de9469f1a872f04703d75d6bafcdc6",
+                "reference": "ce09a877a1de9469f1a872f04703d75d6bafcdc6",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^2.0",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "composer/composer": "^2.4",
+                "simplesamlphp/simplesamlphp-test-framework": "^1.5.4"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "SimpleSAML\\Composer\\XMLProvider\\XMLProviderInstallerPlugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "SimpleSAML\\Composer\\XMLProvider\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1-only"
+            ],
+            "description": "A composer plugin that will auto-generate a classmap with all classes that implement SerializableElementInterface.",
+            "support": {
+                "issues": "https://github.com/simplesamlphp/composer-xmlprovider-installer/issues",
+                "source": "https://github.com/simplesamlphp/composer-xmlprovider-installer/tree/v1.0.1"
+            },
+            "time": "2024-09-15T22:34:50+00:00"
         },
         {
             "name": "simplesamlphp/saml2",
@@ -1266,16 +1308,16 @@
         },
         {
             "name": "simplesamlphp/xml-common",
-            "version": "v1.17.3",
+            "version": "v1.18.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-common.git",
-                "reference": "900bfedebfcbdd87b1fd19aa80e658c916d9c61a"
+                "reference": "66e3dd22c53e396920e677f3f78b0be665752b73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/900bfedebfcbdd87b1fd19aa80e658c916d9c61a",
-                "reference": "900bfedebfcbdd87b1fd19aa80e658c916d9c61a",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/66e3dd22c53e396920e677f3f78b0be665752b73",
+                "reference": "66e3dd22c53e396920e677f3f78b0be665752b73",
                 "shasum": ""
             },
             "require": {
@@ -1286,12 +1328,14 @@
                 "ext-spl": "*",
                 "ext-xmlreader": "*",
                 "php": "^8.1",
-                "simplesamlphp/assert": "^1.2"
+                "simplesamlphp/assert": "^1.2",
+                "simplesamlphp/composer-xmlprovider-installer": "~1.0.0",
+                "symfony/finder": "^6.4"
             },
             "require-dev": {
                 "simplesamlphp/simplesamlphp-test-framework": "^1.7"
             },
-            "type": "project",
+            "type": "simplesamlphp-xmlprovider",
             "autoload": {
                 "psr-4": {
                     "SimpleSAML\\XML\\": "src/"
@@ -1321,20 +1365,20 @@
                 "issues": "https://github.com/simplesamlphp/xml-common/issues",
                 "source": "https://github.com/simplesamlphp/xml-common"
             },
-            "time": "2024-09-06T20:26:50+00:00"
+            "time": "2024-09-15T22:41:49+00:00"
         },
         {
             "name": "simplesamlphp/xml-security",
-            "version": "v1.8.7",
+            "version": "v1.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-security.git",
-                "reference": "10071025f286b49edd7f30a12ab216515c170925"
+                "reference": "9401bacb6378ef72a8076cb45b45f27e91826a68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/10071025f286b49edd7f30a12ab216515c170925",
-                "reference": "10071025f286b49edd7f30a12ab216515c170925",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/9401bacb6378ef72a8076cb45b45f27e91826a68",
+                "reference": "9401bacb6378ef72a8076cb45b45f27e91826a68",
                 "shasum": ""
             },
             "require": {
@@ -1345,11 +1389,11 @@
                 "ext-pcre": "*",
                 "ext-spl": "*",
                 "php": "^8.1",
-                "simplesamlphp/assert": "^1.1",
-                "simplesamlphp/xml-common": "^1.15"
+                "simplesamlphp/assert": "^1.3",
+                "simplesamlphp/xml-common": "^1.18"
             },
             "require-dev": {
-                "simplesamlphp/simplesamlphp-test-framework": "^1.5"
+                "simplesamlphp/simplesamlphp-test-framework": "^1.7"
             },
             "type": "library",
             "autoload": {
@@ -1383,35 +1427,36 @@
             ],
             "support": {
                 "issues": "https://github.com/simplesamlphp/xml-security/issues",
-                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.8.7"
+                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.9.1"
             },
-            "time": "2024-09-03T18:57:31+00:00"
+            "time": "2024-09-15T09:27:39+00:00"
         },
         {
             "name": "simplesamlphp/xml-soap",
-            "version": "v1.4.0",
+            "version": "v1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-soap.git",
-                "reference": "4a773cb58a634f4bdbf2cefa633631d0668bfa0a"
+                "reference": "17767167de36558c4048f7341042c444a2040a57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-soap/zipball/4a773cb58a634f4bdbf2cefa633631d0668bfa0a",
-                "reference": "4a773cb58a634f4bdbf2cefa633631d0668bfa0a",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-soap/zipball/17767167de36558c4048f7341042c444a2040a57",
+                "reference": "17767167de36558c4048f7341042c444a2040a57",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "ext-pcre": "*",
                 "php": "^8.1",
-                "simplesamlphp/assert": "^1.0",
-                "simplesamlphp/xml-common": "^1.13"
+                "simplesamlphp/assert": "^1.3",
+                "simplesamlphp/composer-xmlprovider-installer": "~1.0.0",
+                "simplesamlphp/xml-common": "~1.18.0"
             },
             "require-dev": {
-                "simplesamlphp/simplesamlphp-test-framework": "^1.5"
+                "simplesamlphp/simplesamlphp-test-framework": "^1.7"
             },
-            "type": "library",
+            "type": "simplesamlphp-xmlprovider",
             "extra": {
                 "branch-alias": {
                     "dev-master": "v2.0.x-dev"
@@ -1419,9 +1464,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "SimpleSAML\\SOAP\\": "src/",
-                    "SimpleSAML\\SOAP11\\": "src/SOAP11/",
-                    "SimpleSAML\\SOAP12\\": "src/SOAP12/"
+                    "SimpleSAML\\SOAP\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1437,9 +1480,9 @@
             "description": "SimpleSAMLphp library for XML SOAP",
             "support": {
                 "issues": "https://github.com/simplesamlphp/xml-soap/issues",
-                "source": "https://github.com/simplesamlphp/xml-soap/tree/v1.4.0"
+                "source": "https://github.com/simplesamlphp/xml-soap/tree/v1.5.1"
             },
-            "time": "2023-12-13T23:01:48+00:00"
+            "time": "2024-09-15T09:30:27+00:00"
         },
         {
             "name": "symfony/cache",
