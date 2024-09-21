@@ -9,6 +9,8 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+* Fix regression in metadata converter clipboard-button (#2253)
+
 ## Version 2.3.2
 
 Released 2024-09-06
