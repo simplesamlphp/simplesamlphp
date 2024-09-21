@@ -1364,7 +1364,7 @@ class SAML2
             $key = new XMLSecurityKey($algo);
             $key->loadKey($sharedKey);
         } else {
-            $keys = $spMetadata->getPublicKeys('encryption', true);
+            $keys = $spMetadata->getPublicKeys('encryption');
             if (!empty($keys)) {
                 $key = $keys[0];
                 switch ($key['type']) {
