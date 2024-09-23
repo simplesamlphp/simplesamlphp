@@ -49,7 +49,7 @@ jobs:
         with:
           php-version: '8.3'
           tools: composer, phpcs, psalm
-          extensions: mbstring, xml
+          extensions: mbstring, soap, xml
           coverage: none
 
       - name: Setup problem matchers for PHP
@@ -113,7 +113,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
-          extensions: mbstring, xml
+          extensions: mbstring, soap, xml
           tools: composer:v2
           coverage: none
 
@@ -160,7 +160,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: intl, mbstring, mysql, pdo, pdo_sqlite, xml
+          extensions: intl, mbstring, mysql, pdo, pdo_sqlite, soap, xml
           tools: composer:v2
           ini-values: error_reporting=E_ALL
           coverage: xdebug
@@ -222,7 +222,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: intl, mbstring, mysql, pdo, pdo_sqlite, xml
+          extensions: intl, mbstring, mysql, pdo, pdo_sqlite, soap, xml
           tools: composer:v2
           ini-values: error_reporting=E_ALL
           coverage: none
