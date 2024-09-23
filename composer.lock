@@ -941,16 +941,16 @@
         },
         {
             "name": "simplesamlphp/assert",
-            "version": "v1.3.0",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/assert.git",
-                "reference": "7b7ef2a68eb0e36e67915ebd802e1bb29483d7d9"
+                "reference": "384be054001819fe31fdc33d67dd1c0828521d39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/assert/zipball/7b7ef2a68eb0e36e67915ebd802e1bb29483d7d9",
-                "reference": "7b7ef2a68eb0e36e67915ebd802e1bb29483d7d9",
+                "url": "https://api.github.com/repos/simplesamlphp/assert/zipball/384be054001819fe31fdc33d67dd1c0828521d39",
+                "reference": "384be054001819fe31fdc33d67dd1c0828521d39",
                 "shasum": ""
             },
             "require": {
@@ -994,9 +994,9 @@
             "description": "A wrapper around webmozart/assert to make it useful beyond checking method arguments",
             "support": {
                 "issues": "https://github.com/simplesamlphp/assert/issues",
-                "source": "https://github.com/simplesamlphp/assert/tree/v1.3.0"
+                "source": "https://github.com/simplesamlphp/assert/tree/v1.3.1"
             },
-            "time": "2024-07-26T11:30:06+00:00"
+            "time": "2024-09-12T09:51:39+00:00"
         },
         {
             "name": "simplesamlphp/composer-module-installer",
@@ -1308,16 +1308,16 @@
         },
         {
             "name": "simplesamlphp/xml-common",
-            "version": "v1.18.3",
+            "version": "v1.18.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-common.git",
-                "reference": "66e3dd22c53e396920e677f3f78b0be665752b73"
+                "reference": "28e447e0f10fa3b0a3c3d069d49c4036e15c95a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/66e3dd22c53e396920e677f3f78b0be665752b73",
-                "reference": "66e3dd22c53e396920e677f3f78b0be665752b73",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/28e447e0f10fa3b0a3c3d069d49c4036e15c95a1",
+                "reference": "28e447e0f10fa3b0a3c3d069d49c4036e15c95a1",
                 "shasum": ""
             },
             "require": {
@@ -1365,20 +1365,20 @@
                 "issues": "https://github.com/simplesamlphp/xml-common/issues",
                 "source": "https://github.com/simplesamlphp/xml-common"
             },
-            "time": "2024-09-15T22:41:49+00:00"
+            "time": "2024-09-16T16:12:12+00:00"
         },
         {
             "name": "simplesamlphp/xml-security",
-            "version": "v1.9.1",
+            "version": "v1.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-security.git",
-                "reference": "9401bacb6378ef72a8076cb45b45f27e91826a68"
+                "reference": "91e31f5930305e84ad92d573faf817abc8ad09c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/9401bacb6378ef72a8076cb45b45f27e91826a68",
-                "reference": "9401bacb6378ef72a8076cb45b45f27e91826a68",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/91e31f5930305e84ad92d573faf817abc8ad09c9",
+                "reference": "91e31f5930305e84ad92d573faf817abc8ad09c9",
                 "shasum": ""
             },
             "require": {
@@ -1395,7 +1395,7 @@
             "require-dev": {
                 "simplesamlphp/simplesamlphp-test-framework": "^1.7"
             },
-            "type": "library",
+            "type": "simplesamlphp-xmlprovider",
             "autoload": {
                 "psr-4": {
                     "SimpleSAML\\XMLSecurity\\": "src/"
@@ -1427,22 +1427,22 @@
             ],
             "support": {
                 "issues": "https://github.com/simplesamlphp/xml-security/issues",
-                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.9.1"
+                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.9.5"
             },
-            "time": "2024-09-15T09:27:39+00:00"
+            "time": "2024-09-16T21:10:04+00:00"
         },
         {
             "name": "simplesamlphp/xml-soap",
-            "version": "v1.5.1",
+            "version": "v1.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-soap.git",
-                "reference": "17767167de36558c4048f7341042c444a2040a57"
+                "reference": "f041bb5757ae6fa6588c3d12debcda406c9c0b78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-soap/zipball/17767167de36558c4048f7341042c444a2040a57",
-                "reference": "17767167de36558c4048f7341042c444a2040a57",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-soap/zipball/f041bb5757ae6fa6588c3d12debcda406c9c0b78",
+                "reference": "f041bb5757ae6fa6588c3d12debcda406c9c0b78",
                 "shasum": ""
             },
             "require": {
@@ -1480,9 +1480,9 @@
             "description": "SimpleSAMLphp library for XML SOAP",
             "support": {
                 "issues": "https://github.com/simplesamlphp/xml-soap/issues",
-                "source": "https://github.com/simplesamlphp/xml-soap/tree/v1.5.1"
+                "source": "https://github.com/simplesamlphp/xml-soap/tree/v1.5.3"
             },
-            "time": "2024-09-15T09:30:27+00:00"
+            "time": "2024-09-16T12:32:43+00:00"
         },
         {
             "name": "symfony/cache",
