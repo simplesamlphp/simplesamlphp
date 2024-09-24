@@ -42,7 +42,10 @@
         <form action="{{ errorReportAddress }}" class="pure-form" method="post">
             <p>{{ 'Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:' | trans }}</p>
             <label for="email">{{ 'E-mail address:' | trans }}</label>
-                <input type="email" name="email" id="email" class="edge" size="50" value="{{ email }}">
+            <input type="email" name="email" id="email" class="edge" size="50" value="{{ email }}">
+
+            {# spam protection honeypot #}
+            <input type="text" name="name" style="display:none !important" tabindex="-1" autocomplete="off" value="">
 
             <textarea class="text-area edge" name="text" rows="6" cols="50" placeholder="{{ 'Explain what you did when this error occurred...' | trans }}" required></textarea>
         <p class="center">
