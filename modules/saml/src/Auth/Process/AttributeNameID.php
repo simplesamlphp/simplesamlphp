@@ -21,11 +21,13 @@ use function var_export;
 class AttributeNameID extends BaseNameIDGenerator
 {
     /**
-     * The attribute we should use as the NameID.
+     * A list of possible attributes we can use as the NameID.
+     * The first one found in the attributes being released to the SP
+     * will be used.
      *
-     * @var string
+     * @var array
      */
-    private string $identifyingAttribute;
+    private array $identifyingAttributes;
 
 
     /**
@@ -34,7 +36,8 @@ class AttributeNameID extends BaseNameIDGenerator
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
      *
-     * @throws \SimpleSAML\Error\Exception If the required options 'Format' or 'identifyingAttribute' are missing.
+     * @throws \SimpleSAML\Error\Exception If the required options 'Format' or both 'identifyingAttribute'
+     *  and 'identifyingAttributes' are missing.
      */
     public function __construct(array $config, $reserved)
     {
@@ -45,10 +48,16 @@ class AttributeNameID extends BaseNameIDGenerator
         }
         $this->format = (string) $config['Format'];
 
-        if (!isset($config['identifyingAttribute'])) {
-            throw new Error\Exception("AttributeNameID: Missing required option 'identifyingAttribute'.");
+        if (!isset($config['identifyingAttribute']) && !isset($config['identifyingAttributes'])) {
+            throw new Error\Exception("AttributeNameID: Missing required option one of 'identifyingAttribute' or 'identifyingAttributes'.");
         }
-        $this->identifyingAttribute = (string) $config['identifyingAttribute'];
+
+        if (isset($config['identifyingAttribute'])) {
+            $this->identifyingAttributes[0] = (string) $config['identifyingAttribute'];
+        }
+        else {
+            $this->identifyingAttributes = (array) $config['identifyingAttributes'];
+        }
     }
 
 
@@ -60,35 +69,43 @@ class AttributeNameID extends BaseNameIDGenerator
      */
     protected function getValue(array &$state): ?string
     {
-        if (
-            !isset($state['Attributes'][$this->identifyingAttribute])
-            || count($state['Attributes'][$this->identifyingAttribute]) === 0
-        ) {
-            Logger::warning(
-                'Missing attribute ' . var_export($this->identifyingAttribute, true) .
-                ' on user - not generating attribute NameID.',
-            );
-            return null;
-        }
-        if (count($state['Attributes'][$this->identifyingAttribute]) > 1) {
-            Logger::warning(
-                'More than one value in attribute ' . var_export($this->identifyingAttribute, true) .
-                ' on user - not generating attribute NameID.',
-            );
-            return null;
-        }
-        // just in case the first index is no longer 0
-        $value = array_values($state['Attributes'][$this->identifyingAttribute]);
-        $value = strval($value[0]);
+        foreach ($this->identifyingAttributes as $attr) {
+            if (
+                !isset($state['Attributes'][$attr])
+                || count($state['Attributes'][$attr]) === 0
+            ) {
+                Logger::warning(
+                    'Missing attribute ' . var_export($attr, true) .
+                    ' on user - not using for attribute NameID.',
+                );
+                continue;
+            }
+            if (count($state['Attributes'][$attr]) > 1) {
+                Logger::warning(
+                    'More than one value in attribute ' . var_export($attr, true) .
+                    ' on user - not using for attribute NameID.',
+                );
+                continue;
+            }
+            // just in case the first index is no longer 0
+            $value = array_values($state['Attributes'][$attr]);
+            $value = strval($value[0]);
 
-        if (empty($value)) {
-            Logger::warning(
-                'Empty value in attribute ' . var_export($this->identifyingAttribute, true) .
-                ' on user - not generating attribute NameID.',
-            );
+            if (empty($value)) {
+                Logger::warning(
+                    'Empty value in attribute ' . var_export($attr, true) .
+                    ' on user - not using for attribute NameID.',
+                );
+                continue;
+            }
+            // If we're still here, we found an attribute value for NameID
+            break;
+        }
+        unset($attr);
+
+        if (!isset($value)) {
             return null;
         }
-
         return $value;
     }
 }
