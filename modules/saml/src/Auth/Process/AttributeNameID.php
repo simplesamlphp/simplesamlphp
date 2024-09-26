@@ -36,8 +36,8 @@ class AttributeNameID extends BaseNameIDGenerator
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
      *
-     * @throws \SimpleSAML\Error\Exception If the required options 'Format' or both 'identifyingAttribute'
-     *  and 'identifyingAttributes' are missing.
+     * @throws \SimpleSAML\Error\Exception If the required options 'Format' or 'identifyingAttribute'
+     *  and 'identifyingAttributes' are either both missing or both set.
      */
     public function __construct(array $config, $reserved)
     {
@@ -49,13 +49,17 @@ class AttributeNameID extends BaseNameIDGenerator
         $this->format = (string) $config['Format'];
 
         if (!isset($config['identifyingAttribute']) && !isset($config['identifyingAttributes'])) {
-            throw new Error\Exception("AttributeNameID: Missing required option one of 'identifyingAttribute' or 'identifyingAttributes'.");
+            throw new Error\Exception("AttributeNameID: Missing required " .
+            "option one of 'identifyingAttribute' or 'identifyingAttributes'.");
+        } elseif (isset($config['identifyingAttribute']) && isset($config['identifyingAttributes'])) {
+            throw new Error\Exception("AttributeNameID: Options " .
+            "'identifyingAttribute' and 'identifyingAttributes' are mutually " .
+            "exclusive but both were provided.");
         }
 
         if (isset($config['identifyingAttribute'])) {
             $this->identifyingAttributes[0] = (string) $config['identifyingAttribute'];
-        }
-        else {
+        } else {
             $this->identifyingAttributes = (array) $config['identifyingAttributes'];
         }
     }
