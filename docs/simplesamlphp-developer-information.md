@@ -152,7 +152,5 @@ and apply it before pushing documentation changes to github.
 
 ## Making a release
 
-The release process is documented on the wiki 
+The release process is documented on the wiki
 <https://github.com/simplesamlphp/simplesamlphp/wiki/Release-process>.
-
-
