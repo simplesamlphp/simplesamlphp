@@ -149,3 +149,10 @@ cd ./node_modules/.bin
 
 You will probably want to make a script or alias to the above command
 and apply it before pushing documentation changes to github.
+
+## Making a release
+
+The release process is documented on the wiki 
+<https://github.com/simplesamlphp/simplesamlphp/wiki/Release-process>.
+
+
