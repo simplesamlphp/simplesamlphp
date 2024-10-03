@@ -90,9 +90,20 @@ metadata file:
 ```php
 <?php
 $metadata['https://example.org/saml-idp'] = [
-    'SingleSignOnService'  => 'https://example.org/simplesaml/module.php/saml/idp/singleSignOnService',
-    'SingleLogoutService'  => 'https://example.org/simplesaml/module.php/saml/idp/singleLogout',
-    'certificate'          => 'example.pem',
+    'SingleSignOnService' => [
+        [
+          'Location' => 'https://example.org/simplesaml/module.php/saml/idp/singleSignOnService',
+          'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+        ],
+    ],
+    'SingleLogoutService' => [
+        [
+          'Location' => 'https://example.org/simplesaml/module.php/saml/idp/singleLogout',
+          'ResponseLocation' => 'https://sp.example.org/LogoutResponse',
+          'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+        ],
+    ],
+    'certificate' => 'example.pem',
 ];
 ```
 
