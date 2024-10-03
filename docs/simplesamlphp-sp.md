@@ -96,13 +96,14 @@ $metadata['https://example.org/saml-idp'] = [
           'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
         ],
     ],
-    'SingleLogoutService'  => [
+    'SingleLogoutService' => [
         [
           'Location' => 'https://example.org/simplesaml/saml2/idp/SingleLogoutService.php',
           'ResponseLocation' => 'https://sp.example.org/LogoutResponse',
           'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
         ],
-  ],
+    ],
+    'certificate' => 'example.pem',
 ];
 ```
 
