@@ -92,7 +92,7 @@ metadata file:
 $metadata['https://example.org/saml-idp'] = [
     'SingleSignOnService' => [
         [
-          'Location' => ''https://example.org/simplesaml/saml2/idp/SSOService.php',
+          'Location' => 'https://example.org/simplesaml/saml2/idp/SSOService.php',
           'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
         ],
     ],
