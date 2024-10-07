@@ -71,7 +71,6 @@
             <errorLevel type="suppress">
                 <directory name="config" />
                 <directory name="metadata" />
-                <directory name="modules/adfs/metadata" />
             </errorLevel>
         </PossiblyUndefinedGlobalVariable>
     </issueHandlers>

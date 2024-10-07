@@ -28,7 +28,6 @@ use SAML2\XML\saml\AttributeValue;
 use SAML2\XML\shibmd\Scope;
 use SimpleSAML\{Configuration, Module, Logger, Utils};
 use SimpleSAML\Assert\{Assert, AssertionFailedException};
-use SimpleSAML\Module\adfs\SAML2\XML\fed\SecurityTokenServiceType;
 
 /**
  * Class for generating SAML 2.0 metadata from SimpleSAMLphp metadata arrays.
@@ -120,28 +119,6 @@ class SAMLBuilder
         $xml->ownerDocument->encoding = "utf-8";
 
         return $xml->ownerDocument->saveXML();
-    }
-
-
-    /**
-     * Add a SecurityTokenServiceType for ADFS metadata.
-     *
-     * @param array $metadata The metadata with the information about the SecurityTokenServiceType.
-     */
-    public function addSecurityTokenServiceType(array $metadata): void
-    {
-        Assert::notNull($metadata['entityid']);
-        Assert::notNull($metadata['metadata-set']);
-
-        $metadata = Configuration::loadFromArray($metadata, $metadata['entityid']);
-        $defaultEndpoint = $metadata->getDefaultEndpoint('SingleSignOnService');
-
-        $e = new SecurityTokenServiceType();
-        $e->setLocation($defaultEndpoint['Location']);
-
-        $this->addCertificate($e, $metadata);
-
-        $this->entityDescriptor->addRoleDescriptor($e);
     }
 
 
