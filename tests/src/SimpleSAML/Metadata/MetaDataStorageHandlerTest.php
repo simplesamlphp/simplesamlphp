@@ -161,4 +161,79 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         $this->expectExceptionMessageMatches('/entityID/');
         $this->getHandler()->getMetaDataCurrent('saml20-idp-hosted');
     }
+
+    public function testCanHaveMultipleHostedIdps(): void
+    {
+        $config = [
+            'metadata.sources' => [
+                ['type' => 'flatfile', 'directory' => __DIR__ . '/test-metadata/source3'],
+            ],
+        ];
+
+        $handler = $this->getHandler($config);
+        $idps = $handler->getList('saml20-idp-hosted');
+
+        $this->assertCount(2, $idps);
+    }
+
+    public function testCanGetDefaultHostedIdpInCaseOfMultipleHostedIdps(): void
+    {
+        $config = [
+            'metadata.sources' => [
+                ['type' => 'flatfile', 'directory' => __DIR__ . '/test-metadata/source3'],
+            ],
+        ];
+
+        $handler = $this->getHandler($config);
+        $defaultIdp = $handler->getMetaDataCurrent('saml20-idp-hosted');
+
+        $this->assertSame('urn:x-simplesamlphp:example-idp-1', $defaultIdp['entityid']);
+    }
+
+    public function testCanGetParticularIdpInCaseOfMultipleHostedIdps(): void
+    {
+        $config = [
+            'metadata.sources' => [
+                ['type' => 'flatfile', 'directory' => __DIR__ . '/test-metadata/source3'],
+            ],
+        ];
+
+        $handler = $this->getHandler($config);
+        $particularIdp = $handler->getMetaData('urn:x-simplesamlphp:example-idp-2', 'saml20-idp-hosted');
+
+        $this->assertSame('urn:x-simplesamlphp:example-idp-2', $particularIdp['entityid']);
+    }
+
+    public function testCanOverrideHostedIdpOptionsInCaseOfMultipleHostedIdps(): void
+    {
+        $config = [
+            'metadata.sources' => [
+                ['type' => 'flatfile', 'directory' => __DIR__ . '/test-metadata/source3'],
+            ],
+        ];
+
+        $handler = $this->getHandler($config);
+
+        // Dirty, but since I can't mock it, make lib/SimpleSAML/Utils/HTTP::getSelfURL() work... :(((
+        global $_SERVER;
+        $_SERVER['REQUEST_URI'] = '/';
+
+        // Can get property value for default hosted IdP.
+        $this->assertStringContainsString(
+            'singleSignOnService',
+            $handler->getGenerated('SingleSignOnService', 'saml20-idp-hosted')
+        );
+
+        // Can override host for default hosted IdP.
+        $this->assertStringContainsString(
+            'override-host.org',
+            $handler->getGenerated('SingleSignOnService', 'saml20-idp-hosted', 'override-host.org')
+        );
+
+        // Can override property value in configuration for particular hosted IdP (second one).
+        $this->assertSame(
+            'https://idp.example.org/ssos',
+            $handler->getGenerated('SingleSignOnService', 'saml20-idp-hosted', null, 'urn:x-simplesamlphp:example-idp-2' ),
+        );
+    }
 }
