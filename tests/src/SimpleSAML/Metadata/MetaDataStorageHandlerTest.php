@@ -221,19 +221,24 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         // Can get property value for default hosted IdP.
         $this->assertStringContainsString(
             'singleSignOnService',
-            $handler->getGenerated('SingleSignOnService', 'saml20-idp-hosted')
+            $handler->getGenerated('SingleSignOnService', 'saml20-idp-hosted'),
         );
 
         // Can override host for default hosted IdP.
         $this->assertStringContainsString(
             'override-host.org',
-            $handler->getGenerated('SingleSignOnService', 'saml20-idp-hosted', 'override-host.org')
+            $handler->getGenerated('SingleSignOnService', 'saml20-idp-hosted', 'override-host.org'),
         );
 
         // Can override property value in configuration for particular hosted IdP (second one).
         $this->assertSame(
             'https://idp.example.org/ssos',
-            $handler->getGenerated('SingleSignOnService', 'saml20-idp-hosted', null, 'urn:x-simplesamlphp:example-idp-2' ),
+            $handler->getGenerated(
+                'SingleSignOnService',
+                'saml20-idp-hosted',
+                null,
+                'urn:x-simplesamlphp:example-idp-2',
+            ),
         );
     }
 }
