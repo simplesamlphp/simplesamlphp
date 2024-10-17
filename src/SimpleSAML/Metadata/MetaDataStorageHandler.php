@@ -90,7 +90,7 @@ class MetaDataStorageHandler implements ClearableState
         string $property,
         string $set,
         string $overrideHost = null,
-        ?string $entityId = null
+        ?string $entityId = null,
     ): string|array {
         // first we check if the user has overridden this property in the metadata
         try {
