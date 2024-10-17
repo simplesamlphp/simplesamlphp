@@ -13,18 +13,16 @@ use SimpleSAML\TestUtils\ClearStateTestCase;
 
 class MetaDataStorageHandlerTest extends ClearStateTestCase
 {
-    protected MetadataStorageHandler $handler;
-
-    public function setUp(): void
+    protected function getHandler(?array $config = null): MetaDataStorageHandler
     {
-        $c = [
+        $config ??= [
             'metadata.sources' => [
                 ['type' => 'flatfile', 'directory' => __DIR__ . '/test-metadata/source1'],
                 ['type' => 'serialize', 'directory' => __DIR__ . '/test-metadata/source2'],
             ],
         ];
-        Configuration::loadFromArray($c, '', 'simplesaml');
-        $this->handler = MetaDataStorageHandler::getMetadataHandler();
+        Configuration::loadFromArray($config, '', 'simplesaml');
+        return MetaDataStorageHandler::getMetadataHandler();
     }
 
     /**
@@ -32,7 +30,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
      */
     public function testLoadEntities(): void
     {
-        $entities = $this->handler->getMetaDataForEntities([
+        $entities = $this->getHandler()->getMetaDataForEntities([
             'entityA',
             'entityB',
             'nosuchEntity',
@@ -61,7 +59,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
      */
     public function testLoadMetadataSet(): void
     {
-        $entities = $this->handler->getList('saml20-sp-remote');
+        $entities = $this->getHandler()->getList('saml20-sp-remote');
 
         $this->assertCount(5, $entities);
         $this->assertEquals('entityA SP from source1', $entities['entityA']['name']['en']);
@@ -85,7 +83,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
      */
     public function testLoadMetadataSetEmpty(): void
     {
-        $entities = $this->handler->getList('saml20-idp-remote');
+        $entities = $this->getHandler()->getList('saml20-idp-remote');
 
         $this->assertCount(0, $entities);
     }
@@ -95,7 +93,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
      */
     public function testGetMetadataCurrent(): void
     {
-        $entity = $this->handler->getMetaDataCurrent('saml20-sp-remote');
+        $entity = $this->getHandler()->getMetaDataCurrent('saml20-sp-remote');
 
         $this->assertEquals('http://localhost/simplesaml', $entity['entityid']);
     }
@@ -105,7 +103,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
      */
     public function testGetMetadataConfig(): void
     {
-        $entity = $this->handler->getMetaDataConfig('entityA', 'saml20-sp-remote');
+        $entity = $this->getHandler()->getMetaDataConfig('entityA', 'saml20-sp-remote');
 
         $this->assertInstanceOf(Configuration::class, $entity);
         $this->assertEquals('entityA', $entity->getValue('entityid'));
@@ -117,7 +115,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
     public function testGetMetadataConfigForSha1(): void
     {
         $hash = sha1('entityB');
-        $entity = $this->handler->getMetaDataConfigForSha1($hash, 'saml20-sp-remote');
+        $entity = $this->getHandler()->getMetaDataConfigForSha1($hash, 'saml20-sp-remote');
 
         $this->assertInstanceOf(Configuration::class, $entity);
         $this->assertEquals('entityB', $entity->getValue('entityid'));
@@ -129,7 +127,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
     public function testGetMetadataConfigForSha1NotFoundReturnsNull(): void
     {
         $hash = sha1('entitynotexist');
-        $entity = $this->handler->getMetaDataConfigForSha1($hash, 'saml20-sp-remote');
+        $entity = $this->getHandler()->getMetaDataConfigForSha1($hash, 'saml20-sp-remote');
 
         $this->assertNull($entity);
     }
@@ -141,7 +139,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('Could not find any default metadata');
-        $this->handler->getMetaDataCurrent('saml20-idp-remote');
+        $this->getHandler()->getMetaDataCurrent('saml20-idp-remote');
     }
 
     /**
@@ -151,7 +149,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
     {
         $this->expectException(MetadataNotFound::class);
         $this->expectExceptionMessage("METADATANOTFOUND('%ENTITYID%' => 'doesnotexist')");
-        $this->handler->getMetaData('doesnotexist', 'saml20-sp-remote');
+        $this->getHandler()->getMetaData('doesnotexist', 'saml20-sp-remote');
     }
 
     /*
@@ -161,6 +159,6 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
     {
         $this->expectException(AssertionFailedException::class);
         $this->expectExceptionMessageMatches('/entityID/');
-        $this->handler->getMetaDataCurrent('saml20-idp-hosted');
+        $this->getHandler()->getMetaDataCurrent('saml20-idp-hosted');
     }
 }
