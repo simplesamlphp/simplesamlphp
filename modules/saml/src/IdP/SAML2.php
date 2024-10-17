@@ -781,10 +781,10 @@ class SAML2
         $host = $host === '__DEFAULT__' ? null : $host;
 
         // configure endpoints
-        $ssob = $handler->getGenerated('SingleSignOnServiceBinding', 'saml20-idp-hosted', $host);
-        $slob = $handler->getGenerated('SingleLogoutServiceBinding', 'saml20-idp-hosted', $host);
-        $ssol = $handler->getGenerated('SingleSignOnService', 'saml20-idp-hosted', $host);
-        $slol = $handler->getGenerated('SingleLogoutService', 'saml20-idp-hosted', $host);
+        $ssob = $handler->getGenerated('SingleSignOnServiceBinding', 'saml20-idp-hosted', $host, $entityid);
+        $slob = $handler->getGenerated('SingleLogoutServiceBinding', 'saml20-idp-hosted', $host, $entityid);
+        $ssol = $handler->getGenerated('SingleSignOnService', 'saml20-idp-hosted', $host, $entityid);
+        $slol = $handler->getGenerated('SingleLogoutService', 'saml20-idp-hosted', $host, $entityid);
 
         $sso = [];
         if (is_array($ssob)) {
