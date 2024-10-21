@@ -11,6 +11,7 @@ Released TBD
 
 * Added a missing use-statement that would cause a 'class not found' exception.
 * Restore the possibility to set `trusted.url.domains` to null
+* Fix typo that caused the metadata file-upload to be hidden (#2271)
 
 `adfs`
 
