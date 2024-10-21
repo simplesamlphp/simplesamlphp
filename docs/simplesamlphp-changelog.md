@@ -10,6 +10,7 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 Released TBD
 
 * Fix regression in metadata converter clipboard-button (#2253)
+* Fix typo that caused the metadata file-upload to be hidden (#2271)
 
 ## Version 2.3.2
 
