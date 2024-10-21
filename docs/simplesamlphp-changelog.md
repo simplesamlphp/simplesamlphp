@@ -10,6 +10,7 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 Released TBD
 
 * Run ob_end_clean() on configuration file parsing error (#2219)
+* Fix typo that caused the metadata file-upload to be hidden (#2271)
 
 `admin`
 
