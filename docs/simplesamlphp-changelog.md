@@ -12,6 +12,7 @@ Released TBD
 `admin`
 
 * Fix metadata-viewer to output a valid PHP array
+* Fix typo that caused the metadata file-upload to be hidden (#2271)
 
 ## Version 2.0.13
 

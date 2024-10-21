@@ -484,7 +484,7 @@ class Federation
             'xmldata' => $xmldata,
             'output' => $output,
             'error' => $error,
-            'upload' => boolval(ini_get('file_upload')),
+            'upload' => boolval(ini_get('file_uploads')),
         ];
 
         $this->menu->addOption('logout', $t->data['logouturl'], Translate::noop('Log out'));
