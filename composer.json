@@ -123,12 +123,12 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.4.0.x-dev"
+            "dev-master": "2.5.0.x-dev"
         }
     },
     "scripts": {
         "translations:unused": "php bin/translations translations:unused",
         "translations:update:translatable": "php bin/translations translations:update:translatable"
     },
-    "version": "v2.3.2"
+    "version": "v2.4.0"
 }
