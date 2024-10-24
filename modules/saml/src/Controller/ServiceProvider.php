@@ -584,7 +584,7 @@ class ServiceProvider
             $session = Session::getSessionFromRequest();
             $session->updateSessionCookies(['expire' => TRUE]);
 
-	    return $source::completeLogout($state);
+	        return $source::completeLogout($state);
         } elseif ($message instanceof LogoutRequest) {
             Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
             Logger::stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
