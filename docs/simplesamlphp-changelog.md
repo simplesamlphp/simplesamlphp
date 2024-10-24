@@ -12,6 +12,11 @@ Released TBD
 * Added a new feature flag `encryption.optional` to allow unencrypted assertions if the SP does
   not provide an encryption certificate (#2208)
 
+`adfs`
+
+* The ADFS-module has been disconnected from the SSP release. To continue to use it, the module has to be manually installed.
+* The ADFS-module was completely rewritten and now uses our own XML-libraries for building, signing and encrypting XML (v3.0.0)
+
 ## Version 2.3.0
 
 Released 2024-08-20
@@ -23,6 +28,7 @@ Released 2024-08-20
 * Session ID's are now hashed when stored in a database (#2106)
 * Improved HTML 5 compatibility (#2162)
 * Fix: preloaded resource not used (#2207)
+* BC-break (unintentional): plain-text admin-password are no longer allowed (#2113)
 
 `authorize`
 
