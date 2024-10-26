@@ -11,8 +11,14 @@ msgstr ""
 msgid "Check that the link you used to access the web site is correct."
 msgstr ""
 
+msgid "Close the web browser, and try again."
+msgstr "Kwala sebadi sa webe, ebe o leka hape."
+
 msgid "Continue"
 msgstr ""
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "Dikhuki di ka nna tsa kwalwa sebading sa webe."
 
 msgid "Do you want to logout from all the services above?"
 msgstr ""
@@ -23,17 +29,11 @@ msgstr ""
 msgid "Error report sent"
 msgstr ""
 
-msgid "Help! I don't remember my password."
-msgstr ""
-
-msgid "Close the web browser, and try again."
-msgstr "Kwala sebadi sa webe, ebe o leka hape."
-
-msgid "Cookies may be disabled in the web browser."
-msgstr "Dikhuki di ka nna tsa kwalwa sebading sa webe."
-
 msgid "Go back to the previous page and try again."
 msgstr "Kgutlela leqepheng le fetileng ebe o leka hape."
+
+msgid "Help! I don't remember my password."
+msgstr ""
 
 msgid "If this problem persists, you can report it to the system administrators."
 msgstr "Haeba bothata bona bo phehella, o ka bo tlaleha ho batsamaisi ba sistimi."
