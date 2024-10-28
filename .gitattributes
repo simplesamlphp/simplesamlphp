@@ -21,3 +21,4 @@ phpunit.xml export-ignore
 .markdownlintignore export-ignore
 .markdownlint.yml export-ignore
 .markdownlintrc export-ignore
+*.php.dist linguist-language=php
