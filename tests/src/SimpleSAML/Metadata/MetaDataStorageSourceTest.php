@@ -77,18 +77,18 @@ class MetaDataStorageSourceTest extends TestCase
         $xml2
         </EntitiesDescriptor>
         ";
-        $source = MetaDataStorageSource::getSource(["type" => "xml", "xml" => $strTestXML]);
+        $source = MetaDataStorageSource::getSource(['type' => 'xml', 'xml' => $strTestXML]);
         // search that is a single entity
-        $entities = $source->getMetaDataForEntities([$entityId2], "saml20-idp-remote");
+        $entities = $source->getMetaDataForEntities(array_flip([$entityId2]), 'saml20-idp-remote');
         $this->assertCount(1, $entities, 'Only 1 entity loaded');
         $this->assertArrayHasKey($entityId2, $entities);
         // search for multiple entities
-        $entities = $source->getMetaDataForEntities([$entityId1, 'no-such-entity', $entityId2], "saml20-idp-remote");
+        $entities = $source->getMetaDataForEntities(array_flip([$entityId1, 'no-such-entity', $entityId2]), "saml20-idp-remote");
         $this->assertCount(2, $entities, 'Only 2 of the entities are found');
         $this->assertArrayHasKey($entityId1, $entities);
         $this->assertArrayHasKey($entityId2, $entities);
         // search for non-existent entities
-        $entities = $source->getMetaDataForEntities(['no-such-entity'], "saml20-idp-remote");
+        $entities = $source->getMetaDataForEntities(array_flip(['no-such-entity']), 'saml20-idp-remote');
         $this->assertCount(0, $entities, 'no matches expected');
     }
 

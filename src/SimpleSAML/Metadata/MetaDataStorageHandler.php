@@ -264,31 +264,45 @@ class MetaDataStorageHandler implements ClearableState
      */
     public function getMetaDataForEntities(array $entityIds, string $set): array
     {
+        $startTime = microtime(true);
         $result = [];
+        // We are flipping the entityIds array in order to avoid constant iteration over it.
+        // Even if it becomes smaller over time.
+        // Still, after flipping all actions will be O(1)
+        $entityIdsFlipped = array_flip($entityIds);
         $timeUtils = new Utils\Time();
+
         foreach ($this->sources as $source) {
-            $srcList = $source->getMetaDataForEntities($entityIds, $set);
+            // Break iteration if the entityID List is empty
+            if (empty($entityIdsFlipped)) {
+                break;
+            }
+
+            $srcList = $source->getMetaDataForEntities($entityIdsFlipped, $set);
             foreach ($srcList as $key => $le) {
-                if (array_key_exists('expire', $le)) {
-                    if ($le['expire'] < time()) {
-                        unset($srcList[$key]);
-                        Logger::warning(
-                            "Dropping metadata entity " . var_export($key, true) . ", expired " .
-                            $timeUtils->generateTimestamp($le['expire']) . ".",
-                        );
-                        continue;
-                    }
+                if (!empty($le['expire']) && $le['expire'] < time()) {
+                    unset($srcList[$key]);
+                    Logger::warning(
+                        'Dropping metadata entity ' . var_export($key, true) . ', expired ' .
+                        $timeUtils->generateTimestamp($le['expire']) . '.',
+                    );
+                    continue;
                 }
                 // We found the entity id so remove it from the list that needs resolving
                 /** @psalm-suppress PossiblyInvalidArrayOffset */
-                unset($entityIds[array_search($key, $entityIds)]);
+                unset($entityIdsFlipped[$key]);
+                // Add the key to the result set
+                $result[$key] = $le;
             }
-            $result = array_merge($srcList, $result);
         }
+
+        $endTime = microtime(true);
+        $executionTime = $endTime - $startTime;
+        $formattedTime = number_format($executionTime, 6, '.', '');
+        Logger::info(__METHOD__ . "Execution time: $formattedTime seconds");
 
         return $result;
     }
-
 
     /**
      * This function looks up the metadata for the given entity id in the given set. It will throw an
