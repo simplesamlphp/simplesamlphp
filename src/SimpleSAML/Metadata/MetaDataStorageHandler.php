@@ -274,11 +274,11 @@ class MetaDataStorageHandler implements ClearableState
 
         foreach ($this->sources as $source) {
             // Break iteration if the entityID List is empty
-            if (empty($entityIdsFlipped)) {
+            if (empty($entityIds)) {
                 break;
             }
 
-            $srcList = $source->getMetaDataForEntities($entityIdsFlipped, $set);
+            $srcList = $source->getMetaDataForEntities($entityIds, $set);
             foreach ($srcList as $key => $le) {
                 if (!empty($le['expire']) && $le['expire'] < time()) {
                     unset($srcList[$key]);
@@ -290,7 +290,7 @@ class MetaDataStorageHandler implements ClearableState
                 }
                 // We found the entity id so remove it from the list that needs resolving
                 /** @psalm-suppress PossiblyInvalidArrayOffset */
-                unset($entityIdsFlipped[$key]);
+                unset($entityIds[$entityIdsFlipped[$key]]);
                 // Add the key to the result set
                 $result[$key] = $le;
             }
@@ -299,7 +299,7 @@ class MetaDataStorageHandler implements ClearableState
         $endTime = microtime(true);
         $executionTime = $endTime - $startTime;
         $formattedTime = number_format($executionTime, 6, '.', '');
-        Logger::info(__METHOD__ . "Execution time: $formattedTime seconds");
+        Logger::debug(__METHOD__ . "Execution time: $formattedTime seconds");
 
         return $result;
     }

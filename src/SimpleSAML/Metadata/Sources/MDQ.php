@@ -353,9 +353,8 @@ class MDQ extends MetaDataStorageSource
     /**
      * This function loads the metadata for entity IDs in $entityIds. It is returned as an associative array
      * where the key is the entity id. An empty array may be returned if no matching entities were found
-     *
-     * @param  array<string, int> $entityIds The entity ids to load
-     * @param  string $set The set we want to get metadata from.
+     * @param string[] $entityIds The entity ids to load
+     * @param string $set The set we want to get metadata from.
      * @return array An associative array with the metadata for the requested entities, if found.
      */
     public function getMetaDataForEntities(array $entityIds, string $set): array
