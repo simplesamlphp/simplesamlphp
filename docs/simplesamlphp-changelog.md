@@ -7,7 +7,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 2.0.14
 
-Released TBD
+Released 2024-10-30
 
 `admin`
 
