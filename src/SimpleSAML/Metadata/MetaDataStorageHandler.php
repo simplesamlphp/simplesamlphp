@@ -264,7 +264,6 @@ class MetaDataStorageHandler implements ClearableState
      */
     public function getMetaDataForEntities(array $entityIds, string $set): array
     {
-        $startTime = microtime(true);
         $result = [];
         // We are flipping the entityIds array in order to avoid constant iteration over it.
         // Even if it becomes smaller over time.
@@ -295,11 +294,6 @@ class MetaDataStorageHandler implements ClearableState
                 $result[$key] = $le;
             }
         }
-
-        $endTime = microtime(true);
-        $executionTime = $endTime - $startTime;
-        $formattedTime = number_format($executionTime, 6, '.', '');
-        Logger::debug(__METHOD__ . "Execution time: $formattedTime seconds");
 
         return $result;
     }
