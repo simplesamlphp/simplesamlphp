@@ -154,3 +154,11 @@ and apply it before pushing documentation changes to github.
 
 The release process is documented on the wiki
 <https://github.com/simplesamlphp/simplesamlphp/wiki/Release-process>.
+
+## Dependbot
+
+The dependbot 
+<https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/configuring-dependabot-security-updates> runs on the master branch
+and creates pull requests with recommended updates.
+
+The release branches are updated automatically as part of the release process.
