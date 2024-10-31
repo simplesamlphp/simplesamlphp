@@ -14,18 +14,16 @@ use SimpleSAML\TestUtils\ClearStateTestCase;
 
 class MetaDataStorageHandlerTest extends ClearStateTestCase
 {
-    protected MetadataStorageHandler $handler;
-
-    public function setUp(): void
+    protected function getHandler(?array $c = null): MetaDataStorageHandler
     {
-        $c = [
+        $c ??= [
             'metadata.sources' => [
                 ['type' => 'flatfile', 'directory' => __DIR__ . '/test-metadata/source1'],
                 ['type' => 'serialize', 'directory' => __DIR__ . '/test-metadata/source2'],
             ],
         ];
         $config = Configuration::loadFromArray($c, '', 'simplesaml');
-        $this->handler = MetaDataStorageHandler::getMetadataHandler($config);
+        return MetaDataStorageHandler::getMetadataHandler($config);
     }
 
     public static function entityIDsList(): array
@@ -49,7 +47,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
     #[DataProvider('entityIDsList')]
     public function testLoadEntities(array $entityIDs): void
     {
-        $entities = $this->handler->getMetaDataForEntities($entityIDs, 'saml20-sp-remote');
+        $entities = $this->getHandler()->getMetaDataForEntities($entityIDs, 'saml20-sp-remote');
         if (count($entityIDs) > 0) {
             $this->assertCount(4, $entities);
             $this->assertEquals('entityA SP from source1', $entities['entityA']['name']['en']);
@@ -76,7 +74,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
      */
     public function testLoadMetadataSet(): void
     {
-        $entities = $this->handler->getList('saml20-sp-remote');
+        $entities = $this->getHandler()->getList('saml20-sp-remote');
 
         $this->assertCount(5, $entities);
         $this->assertEquals('entityA SP from source1', $entities['entityA']['name']['en']);
@@ -100,8 +98,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
      */
     public function testLoadMetadataSetEmpty(): void
     {
-        $entities = $this->handler->getList('something stupid');
-
+        $entities = $this->getHandler()->getList('something stupid');
         $this->assertCount(0, $entities);
     }
 
@@ -110,7 +107,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
      */
     public function testGetMetadataCurrent(): void
     {
-        $entity = $this->handler->getMetaDataCurrent('saml20-sp-remote');
+        $entity = $this->getHandler()->getMetaDataCurrent('saml20-sp-remote');
 
         $this->assertEquals('http://localhost/simplesaml', $entity['entityid']);
     }
@@ -120,7 +117,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
      */
     public function testGetMetadataConfig(): void
     {
-        $entity = $this->handler->getMetaDataConfig('entityA', 'saml20-sp-remote');
+        $entity = $this->getHandler()->getMetaDataConfig('entityA', 'saml20-sp-remote');
 
         $this->assertInstanceOf(Configuration::class, $entity);
         $this->assertEquals('entityA', $entity->getValue('entityid'));
@@ -132,7 +129,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
     public function testGetMetadataConfigForSha1(): void
     {
         $hash = sha1('entityB');
-        $entity = $this->handler->getMetaDataConfigForSha1($hash, 'saml20-sp-remote');
+        $entity = $this->getHandler()->getMetaDataConfigForSha1($hash, 'saml20-sp-remote');
 
         $this->assertInstanceOf(Configuration::class, $entity);
         $this->assertEquals('entityB', $entity->getValue('entityid'));
@@ -144,7 +141,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
     public function testGetMetadataConfigForSha1NotFoundReturnsNull(): void
     {
         $hash = sha1('entitynotexist');
-        $entity = $this->handler->getMetaDataConfigForSha1($hash, 'saml20-sp-remote');
+        $entity = $this->getHandler()->getMetaDataConfigForSha1($hash, 'saml20-sp-remote');
 
         $this->assertNull($entity);
     }
@@ -156,7 +153,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('Could not find any default metadata');
-        $this->handler->getMetaDataCurrent('saml20-idp-remote');
+        $this->getHandler()->getMetaDataCurrent('saml20-idp-remote');
     }
 
     /**
@@ -166,7 +163,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
     {
         $this->expectException(MetadataNotFound::class);
         $this->expectExceptionMessage("METADATANOTFOUND('%ENTITYID%' => 'doesnotexist')");
-        $this->handler->getMetaData('doesnotexist', 'saml20-sp-remote');
+        $this->getHandler()->getMetaData('doesnotexist', 'saml20-sp-remote');
     }
 
     /*
@@ -187,6 +184,86 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
 
         $this->expectException(AssertionFailedException::class);
         $this->expectExceptionMessageMatches('/Please set a valid and unique entityID/');
-        $this->handler->getMetaDataCurrent('saml20-idp-hosted');
+        $this->getHandler()->getMetaDataCurrent('saml20-idp-hosted');
+    }
+
+    public function testCanHaveMultipleHostedIdps(): void
+    {
+        $config = [
+            'metadata.sources' => [
+                ['type' => 'flatfile', 'directory' => __DIR__ . '/test-metadata/source3'],
+            ],
+        ];
+
+        $handler = $this->getHandler($config);
+        $idps = $handler->getList('saml20-idp-hosted');
+
+        $this->assertCount(2, $idps);
+    }
+
+    public function testCanGetDefaultHostedIdpInCaseOfMultipleHostedIdps(): void
+    {
+        $config = [
+            'metadata.sources' => [
+                ['type' => 'flatfile', 'directory' => __DIR__ . '/test-metadata/source3'],
+            ],
+        ];
+
+        $handler = $this->getHandler($config);
+        $defaultIdp = $handler->getMetaDataCurrent('saml20-idp-hosted');
+
+        $this->assertSame('urn:x-simplesamlphp:example-idp-1', $defaultIdp['entityid']);
+    }
+
+    public function testCanGetParticularIdpInCaseOfMultipleHostedIdps(): void
+    {
+        $config = [
+            'metadata.sources' => [
+                ['type' => 'flatfile', 'directory' => __DIR__ . '/test-metadata/source3'],
+            ],
+        ];
+
+        $handler = $this->getHandler($config);
+        $particularIdp = $handler->getMetaData('urn:x-simplesamlphp:example-idp-2', 'saml20-idp-hosted');
+
+        $this->assertSame('urn:x-simplesamlphp:example-idp-2', $particularIdp['entityid']);
+    }
+
+    public function testCanOverrideHostedIdpOptionsInCaseOfMultipleHostedIdps(): void
+    {
+        $config = [
+            'metadata.sources' => [
+                ['type' => 'flatfile', 'directory' => __DIR__ . '/test-metadata/source3'],
+            ],
+        ];
+
+        $handler = $this->getHandler($config);
+
+        // Dirty, but since I can't mock it, make lib/SimpleSAML/Utils/HTTP::getSelfURL() work... :(((
+        global $_SERVER;
+        $_SERVER['REQUEST_URI'] = '/';
+
+        // Can get property value for default hosted IdP.
+        $this->assertStringContainsString(
+            'singleSignOnService',
+            $handler->getGenerated('SingleSignOnService', 'saml20-idp-hosted'),
+        );
+
+        // Can override host for default hosted IdP.
+        $this->assertStringContainsString(
+            'override-host.org',
+            $handler->getGenerated('SingleSignOnService', 'saml20-idp-hosted', 'override-host.org'),
+        );
+
+        // Can override property value in configuration for particular hosted IdP (second one).
+        $this->assertSame(
+            'https://idp.example.org/ssos',
+            $handler->getGenerated(
+                'SingleSignOnService',
+                'saml20-idp-hosted',
+                null,
+                'urn:x-simplesamlphp:example-idp-2',
+            ),
+        );
     }
 }
