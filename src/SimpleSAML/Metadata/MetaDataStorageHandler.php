@@ -272,7 +272,7 @@ class MetaDataStorageHandler implements ClearableState
         $timeUtils = new Utils\Time();
 
         foreach ($this->sources as $source) {
-            // Break iteration if the entityID List is empty
+            // entityIds may be reduced to being empty in this loop or already empty
             if (empty($entityIds)) {
                 break;
             }
