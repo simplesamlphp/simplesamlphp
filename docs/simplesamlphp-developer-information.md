@@ -157,7 +157,7 @@ The release process is documented on the wiki
 
 ## Dependbot
 
-The dependbot 
+The dependbot
 <https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/configuring-dependabot-security-updates> runs on the master branch
 and creates pull requests with recommended updates.
 
