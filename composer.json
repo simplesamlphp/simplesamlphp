@@ -63,7 +63,8 @@
         "psr/log": "^3.0",
         "simplesamlphp/assert": "^1.1",
         "simplesamlphp/composer-module-installer": "^1.3",
-        "simplesamlphp/saml2": "^4.6",
+        "simplesamlphp/saml2": "^5@dev",
+        "simplesamlphp/saml2-legacy": "^4.6",
         "simplesamlphp/simplesamlphp-assets-base": "~2.3.0",
         "simplesamlphp/xml-security": "^1.7",
         "symfony/cache": "^6.4",
@@ -93,7 +94,6 @@
         "gettext/php-scanner": "1.3.1",
         "mikey179/vfsstream": "~1.6",
         "predis/predis": "^2.2",
-        "simplesamlphp/simplesamlphp-module-adfs": "^2.1",
         "simplesamlphp/simplesamlphp-test-framework": "^1.5.4",
         "symfony/translation": "^6.4"
     },
@@ -123,12 +123,12 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.4.0.x-dev"
+            "dev-master": "2.5.0.x-dev"
         }
     },
     "scripts": {
         "translations:unused": "php bin/translations translations:unused",
         "translations:update:translatable": "php bin/translations translations:update:translatable"
     },
-    "version": "v2.3.2"
+    "version": "v2.4.0"
 }

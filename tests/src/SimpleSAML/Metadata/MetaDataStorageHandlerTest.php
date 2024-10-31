@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Metadata;
 
 use Exception;
+use PHPUnit\Framework\Attributes\DataProvider;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\MetadataNotFound;
@@ -25,33 +26,47 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         return MetaDataStorageHandler::getMetadataHandler();
     }
 
-    /**
-     * Test that loading specific entities works, and that metadata source precedence is followed
-     */
-    public function testLoadEntities(): void
+    public static function entityIDsList(): array
     {
-        $entities = $this->getHandler()->getMetaDataForEntities([
-            'entityA',
-            'entityB',
-            'nosuchEntity',
-            'entityInBoth',
-            'expiredInSrc1InSrc2',
-        ], 'saml20-sp-remote');
-        $this->assertCount(4, $entities);
-        $this->assertEquals('entityA SP from source1', $entities['entityA']['name']['en']);
-        $this->assertEquals('entityB SP from source2', $entities['entityB']['name']['en']);
-        $this->assertEquals(
-            'entityInBoth SP from source1',
-            $entities['entityInBoth']['name']['en'],
-            "Entity is in both sources, but should get loaded from the first",
-        );
-        $this->assertEquals(
-            'expiredInSrc1InSrc2 SP from source2',
-            $entities['expiredInSrc1InSrc2']['name']['en'],
-            "Entity is in both sources, expired in src1 and available from src2",
-        );
-        // Did not ask for this one, which is in source1
-        $this->assertArrayNotHasKey('http://localhost/simplesaml', $entities);
+        return [
+            'list with entityIDs' => [
+                [
+                    'entityA',
+                    'entityB',
+                    'nosuchEntity',
+                    'entityInBoth',
+                    'expiredInSrc1InSrc2',
+                ],
+            ],
+            'empty list' => [[]],
+        ];
+    }
+    /**
+     * Test that loading specific entities work, and that metadata source precedence is followed
+     */
+    #[DataProvider('entityIDsList')]
+    public function testLoadEntities(array $entityIDs): void
+    {
+        $entities = $this->getHandler()->getMetaDataForEntities($entityIDs, 'saml20-sp-remote');
+        if (count($entityIDs) > 0) {
+            $this->assertCount(4, $entities);
+            $this->assertEquals('entityA SP from source1', $entities['entityA']['name']['en']);
+            $this->assertEquals('entityB SP from source2', $entities['entityB']['name']['en']);
+            $this->assertEquals(
+                'entityInBoth SP from source1',
+                $entities['entityInBoth']['name']['en'],
+                'Entity is in both sources, but should get loaded from the first',
+            );
+            $this->assertEquals(
+                'expiredInSrc1InSrc2 SP from source2',
+                $entities['expiredInSrc1InSrc2']['name']['en'],
+                'Entity is in both sources, expired in src1 and available from src2',
+            );
+            // Did not ask for this one, which is in source1
+            $this->assertArrayNotHasKey('http://localhost/simplesaml', $entities);
+        } else {
+            $this->assertCount(0, $entities);
+        }
     }
 
     /**

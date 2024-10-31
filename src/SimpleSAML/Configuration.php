@@ -41,7 +41,7 @@ class Configuration implements Utils\ClearableState
     /**
      * The release version of this package
      */
-    public const VERSION = '2.3.2';
+    public const VERSION = '2.4.0';
 
     /**
      * A default value which means that the given option is required.
@@ -1418,7 +1418,9 @@ class Configuration implements Utils\ClearableState
                 }
                 $ret[] = $key;
             }
-            return $ret;
+            if (!empty($ret)) {
+                return $ret;
+            }
         } elseif ($this->hasValue($prefix . 'certData')) {
             $certData = $this->getString($prefix . 'certData');
             $certData = preg_replace('/\s+/', '', $certData);
@@ -1463,7 +1465,10 @@ class Configuration implements Utils\ClearableState
                     'X509Certificate' => $certData,
                 ],
             ];
-        } elseif ($required === true) {
+        }
+
+        // If still here, we didn't find a certificate of the requested use
+        if ($required === true) {
             throw new Error\Exception($this->location . ': Missing certificate in metadata.');
         } else {
             return [];

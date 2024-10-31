@@ -266,6 +266,9 @@ abstract class MetaDataStorageSource
      */
     public function getMetaDataForEntities(array $entityIds, string $set): array
     {
+        if (empty($entityIds)) {
+            return [];
+        }
         if (count($entityIds) === 1) {
             return $this->getMetaDataForEntitiesIndividually($entityIds, $set);
         }
