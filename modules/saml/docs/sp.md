@@ -97,9 +97,9 @@ The following attributes are available:
 :   Note that this option can be overridden for a specific IdP in saml20-idp-remote.
 
 `AssertionConsumerService`
-:   List of Assertion Consumer Services in the generated metadata. Specified in the array of
-    arrays format as seen in the [Metadata endpoints](../simplesamlphp-metadata-endpoints)
-    documentation. Note that this list is taken at face value, so it's not useful to list
+:   List of Assertion Consumer Services in the generated metadata. Specified in the format detailed in the
+    [Metadata endpoints](./simplesamlphp-metadata-endpoints) documentation. 
+    Note that this list is taken at face value, so it's not useful to list
     anything here that the SP auth source does not actually support (unless the URLs point
     externally).
 
