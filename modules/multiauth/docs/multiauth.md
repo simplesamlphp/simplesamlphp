@@ -2,7 +2,7 @@ MultiAuth module
 ================
 
 The MultiAuth module provides a method for users to choose between
-a list of authentication sources. 
+a list of authentication sources.
 
 If you are looking to have your web application offer multiple
 identity providers during login this is not the module you should be
