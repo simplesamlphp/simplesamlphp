@@ -89,7 +89,7 @@ The following options can be set:
     This option is required - without it you will not be able to send
     responses back to the SP.
 
-:   The value of this option is specified in one of several [endpoint formats](./simplesamlphp-metadata-endpoints).
+:   The value of this option is specified the format detailed in [endpoint format](./simplesamlphp-metadata-endpoints).
 
 `attributeencodings`
 :   What encoding should be used for the different attributes. This is
@@ -241,7 +241,7 @@ The following options can be set:
     this SP. If the option isn't specified, this SP will not be logged
     out automatically when a single logout operation is initialized.
 
-:   The value of this option is specified in one of several [endpoint formats](./simplesamlphp-metadata-endpoints).
+:   The value of this option is specified in the format detailed in [endpoint format](./simplesamlphp-metadata-endpoints).
 
 `SingleLogoutServiceResponse`
 :   The URL logout responses to this SP should be sent. If this option
