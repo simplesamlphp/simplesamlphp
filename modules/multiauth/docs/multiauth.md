@@ -2,8 +2,18 @@ MultiAuth module
 ================
 
 The MultiAuth module provides a method for users to choose between
-a list of authentication sources. There is only one authentication
-module:
+a list of authentication sources.
+
+If you are looking to have your web application offer multiple
+identity providers during login this is not the module you should be
+using. For that case you should setup a single saml:SP authsource that
+you can call from `\SimpleSAML\Auth\Simple`. If you have multiple
+remote IdP's the discovery service will ask you which one to use.
+
+`multiauth` is meant to be used as a selector for different
+authentication methods.
+
+There is only one authentication module:
 
 `multiauth:MultiAuth`
 : Authenticate the user against a list of authentication sources.
