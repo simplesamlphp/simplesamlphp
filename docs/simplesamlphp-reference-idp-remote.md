@@ -182,7 +182,7 @@ $metadata['entity-id-2'] = [
 `SingleLogoutService`
 :   Endpoint URL for logout requests and responses. You should obtain this from the IdP. Users who log out from your service is redirected to this URL with the LogoutRequest using HTTP-REDIRECT.
 
-:   The value of this option is specified in one of several [endpoint formats](./simplesamlphp-metadata-endpoints).
+:   The value of this option is specified in the format shown in [endpoint format](./simplesamlphp-metadata-endpoints).
 
 `SingleLogoutServiceResponse`
 :   Endpoint URL for logout responses. Overrides the `SingleLogoutService`-option for responses.
@@ -190,7 +190,7 @@ $metadata['entity-id-2'] = [
 `SingleSignOnService`
 :   Endpoint URL for sign on. You should obtain this from the IdP. For SAML 2.0, SimpleSAMLphp will use the HTTP-Redirect binding when contacting this endpoint.
 
-:   The value of this option is specified in one of several [endpoint formats](./simplesamlphp-metadata-endpoints).
+:   The value of this option is specified in the format shown in [endpoint format](./simplesamlphp-metadata-endpoints).
 
 `SPNameQualifier`
 :   This corresponds to the SPNameQualifier in the SAML 2.0 specification. It allows to give subjects a SP specific namespace. This option is rarely used, so if you don't need it, leave it out. When left out, SimpleSAMLphp assumes the entityID of your SP as the SPNameQualifier.
