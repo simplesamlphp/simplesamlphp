@@ -12,7 +12,6 @@ use SimpleSAML\Utils\ClearableState;
 
 use function array_key_exists;
 use function array_merge;
-use function array_search;
 use function sha1;
 use function str_replace;
 use function time;
