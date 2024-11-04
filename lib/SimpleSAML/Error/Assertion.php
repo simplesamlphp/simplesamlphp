@@ -59,15 +59,11 @@ class Assertion extends Exception
      */
     public static function installHandler()
     {
-
-        assert_options(ASSERT_WARNING, 0);
+        ini_set('assert.warning', '0');
         if (version_compare(PHP_VERSION, '8.0.0', '<')) {
-            assert_options(ASSERT_QUIET_EVAL, 0);
-        } else {
-            ini_set('assert.exception', '0');
-            ini_set('assert.warning', '1');
+            ini_set('assert.quiet_eval', '0');
         }
-        assert_options(ASSERT_CALLBACK, [Assertion::class, 'onAssertion']);
+        ini_set('assert.callback', 'Assertion::onAssertion');
     }
 
 

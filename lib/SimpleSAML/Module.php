@@ -346,7 +346,7 @@ class Module
         }
 
         if (
-            assert_options(ASSERT_ACTIVE)
+            ini_get('assert.active')
             && !file_exists($moduleDir . '/default-enable')
             && !file_exists($moduleDir . '/default-disable')
         ) {
