@@ -74,36 +74,34 @@ class AttributeNameID extends BaseNameIDGenerator
     protected function getValue(array &$state): ?string
     {
         foreach ($this->identifyingAttributes as $attr) {
-            if (
-                !isset($state['Attributes'][$attr])
-                || count($state['Attributes'][$attr]) === 0
-            ) {
+            if (isset($state['Attributes'][$attr])) {
+                if (count($state['Attributes'][$attr]) === 1) {
+                    // just in case the first index is no longer 0
+                    $value = array_values($state['Attributes'][$attr]);
+                    $value = strval($value[0]);
+
+                    if (!empty($value)) {
+                        // Found the attribute
+                        break;
+                    } else { // empty value
+                        unset($value);
+                        Logger::warning(
+                            'Empty value in attribute ' . var_export($attr, true) .
+                            ' on user - not using for attribute NameID.',
+                        );
+                    }
+                } else { // multi-valued attribute
+                    Logger::warning(
+                        'More than one value in attribute ' . var_export($attr, true) .
+                        ' on user - not using for attribute NameID.',
+                    );
+                }
+            } else { // attribute not returned
                 Logger::warning(
                     'Missing attribute ' . var_export($attr, true) .
                     ' on user - not using for attribute NameID.',
                 );
-                continue;
             }
-            if (count($state['Attributes'][$attr]) > 1) {
-                Logger::warning(
-                    'More than one value in attribute ' . var_export($attr, true) .
-                    ' on user - not using for attribute NameID.',
-                );
-                continue;
-            }
-            // just in case the first index is no longer 0
-            $value = array_values($state['Attributes'][$attr]);
-            $value = strval($value[0]);
-
-            if (empty($value)) {
-                Logger::warning(
-                    'Empty value in attribute ' . var_export($attr, true) .
-                    ' on user - not using for attribute NameID.',
-                );
-                continue;
-            }
-            // If we're still here, we found an attribute value for NameID
-            break;
         }
         unset($attr);
 
