@@ -1308,16 +1308,16 @@
         },
         {
             "name": "simplesamlphp/xml-common",
-            "version": "v1.18.4",
+            "version": "v1.18.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-common.git",
-                "reference": "28e447e0f10fa3b0a3c3d069d49c4036e15c95a1"
+                "reference": "daed5738bc22067c9b0abec2d2b877dc8a1d7647"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/28e447e0f10fa3b0a3c3d069d49c4036e15c95a1",
-                "reference": "28e447e0f10fa3b0a3c3d069d49c4036e15c95a1",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/daed5738bc22067c9b0abec2d2b877dc8a1d7647",
+                "reference": "daed5738bc22067c9b0abec2d2b877dc8a1d7647",
                 "shasum": ""
             },
             "require": {
@@ -1365,7 +1365,7 @@
                 "issues": "https://github.com/simplesamlphp/xml-common/issues",
                 "source": "https://github.com/simplesamlphp/xml-common"
             },
-            "time": "2024-09-16T16:12:12+00:00"
+            "time": "2024-11-06T09:36:15+00:00"
         },
         {
             "name": "simplesamlphp/xml-security",
@@ -4205,16 +4205,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.14.1",
+            "version": "v3.14.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "f405356d20fb43603bcadc8b09bfb676cb04a379"
+                "reference": "0b6f9d8370bb3b7f1ce5313ed8feb0fafd6e399a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/f405356d20fb43603bcadc8b09bfb676cb04a379",
-                "reference": "f405356d20fb43603bcadc8b09bfb676cb04a379",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/0b6f9d8370bb3b7f1ce5313ed8feb0fafd6e399a",
+                "reference": "0b6f9d8370bb3b7f1ce5313ed8feb0fafd6e399a",
                 "shasum": ""
             },
             "require": {
@@ -4268,7 +4268,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.14.1"
+                "source": "https://github.com/twigphp/Twig/tree/v3.14.2"
             },
             "funding": [
                 {
@@ -4280,7 +4280,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-11-06T18:17:38+00:00"
+            "time": "2024-11-07T12:36:22+00:00"
         },
         {
             "name": "webmozart/assert",
