@@ -176,16 +176,11 @@ class Language
             Logger::warning(
                 "Deprecated locales found in `language.available`. "
                 . "Please replace 'pt-br' with 'pt_BR',"
-                . " and 'st' with 'en_LS',"
                 . " and 'zh-tw' with 'zh_TW'.",
             );
 
             if (($i = array_search('pt-br', $configuredAvailableLanguages)) !== false) {
                 $configuredAvailableLanguages[$i] = 'pt_BR';
-            }
-
-            if (($i = array_search('st', $configuredAvailableLanguages)) !== false) {
-                $configuredAvailableLanguages[$i] = 'en_LS';
             }
 
             if (($i = array_search('zh-tw', $configuredAvailableLanguages)) !== false) {
