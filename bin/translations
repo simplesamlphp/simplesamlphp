@@ -8,7 +8,11 @@ use Symfony\Component\Console\Application;
 umask(000);
 set_time_limit(0);
 
-require __DIR__.'/../vendor/autoload.php';
+if (str_ends_with(__DIR__, '/vendor/simplesamlphp/simplesamlphp/bin')) {
+    require __DIR__.'/../../../autoload.php';
+} else {
+    require __DIR__.'/../vendor/autoload.php';
+}
 
 $application = new Application();
 $application->add(new UnusedTranslatableStringsCommand());
