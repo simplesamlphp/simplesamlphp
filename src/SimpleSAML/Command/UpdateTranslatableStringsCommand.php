@@ -26,6 +26,7 @@ use function array_intersect;
 use function array_key_exists;
 use function array_key_first;
 use function array_merge;
+use function basename;
 use function dirname;
 use function in_array;
 use function ksort;
@@ -195,6 +196,13 @@ class UpdateTranslatableStringsCommand extends Command
                         $iter,
                     );
 
+                    $language = basename(dirname($poFile->getPath()));
+                    $merged->getHeaders()
+                        ->set('Project-Id-Version', 'SimpleSAMLphp')
+                        ->set('MIME-Version', '1.0')
+                        ->set('Content-Type', 'text/plain; charset=UTF-8')
+                        ->set('Content-Transfer-Encoding', '8bit')
+                        ->setLanguage($language);
                     $poGenerator->generateFile($merged, $poFile->getPathName());
                 }
             }
