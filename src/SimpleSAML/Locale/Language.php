@@ -144,7 +144,8 @@ class Language
             if (Locales::exists($code)) {
                 $availableLanguages[] = $code;
             } else {
-                Logger::error("Language \"$code\" not installed. Check config.");
+                /* The configured language code can't be found in Symfony's list of known locales */
+                Logger::error("Locale \"$code\" is not known to the translation system. Check language settings in your config.");
             }
         }
 
