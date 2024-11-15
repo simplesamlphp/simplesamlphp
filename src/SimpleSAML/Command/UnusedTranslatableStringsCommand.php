@@ -55,6 +55,13 @@ class UnusedTranslatableStringsCommand extends Command
             InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
             'Which modules to perform this action on',
         );
+        $this->addOption(
+            'themes',
+            null,
+            InputOption::VALUE_NEGATABLE,
+            'Include/exclude templates from themes directories of modules (default --themes)',
+            true, /* safe default, so we don't lose translations */
+        );
     }
 
 
@@ -110,7 +117,10 @@ class UnusedTranslatableStringsCommand extends Command
             $phpScanner = $translationUtils->getTranslationsFromPhp($module, $phpScanner);
 
             // Scan Twig-templates
-            $twigTranslations = array_merge($twigTranslations, $translationUtils->getTranslationsFromTwig($module));
+            $twigTranslations = array_merge(
+                $twigTranslations,
+                $translationUtils->getTranslationsFromTwig($module, $input->getOption('themes')),
+            );
         }
 
         // The catalogue returns an array with strings, while the php-scanner returns Translations-objects.
