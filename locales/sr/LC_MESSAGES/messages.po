@@ -1,9 +1,22 @@
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
 "X-Domain: messages\n"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
+msgid "%MESSAGE%"
+msgstr ""
 
 msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
 msgstr "Servis zahteva od vas da se autentifikujete. Unesite vaše korisničko ime i lozinku u dole navedena polja."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:103
+msgid "Admin password not set to a hashed value"
+msgstr ""
 
 msgid "Affiliation"
 msgstr "Povezanost sa institucijom"
@@ -50,6 +63,9 @@ msgstr "Neuspešna autentifikacija: vaš web pretraživač nije poslao digitalni
 msgid "Authentication source error"
 msgstr "Greška u autentifikacionom modulu"
 
+msgid "Authentication status"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "Dobijeni zahtev nije ispravan"
@@ -61,6 +77,10 @@ msgstr "Servisu za lociranje poslat je neispravan zahtev"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "CAS greška"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
+msgid "Cannot retrieve session data"
+msgstr ""
 
 msgid "Certificates"
 msgstr "Sertifikati"
@@ -93,6 +113,9 @@ msgstr "Kontakt podaci:"
 msgid "Converted metadata"
 msgstr "Konvertovani metapodaci"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Autentifikacioni odgovor nije mogao biti kreiran"
@@ -102,6 +125,9 @@ msgstr "Datum rođenja"
 
 msgid "Debug information"
 msgstr "Informacije o greški"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Display name"
 msgstr "Ime za prikaz"
@@ -180,6 +206,9 @@ msgstr "Opišite šta ste radili kada se ova greška desila..."
 msgid "Fax number"
 msgstr "Fax broj"
 
+msgid "Format"
+msgstr ""
+
 msgid "Given name"
 msgstr "Ime"
 
@@ -188,6 +217,9 @@ msgstr "Natrag na početnu stranicu SimpleSAMLphp instalacije"
 
 msgid "Go back to the file list"
 msgstr "Vrati se natrag na listu fajlova"
+
+msgid "Hello, Untranslated World!"
+msgstr ""
 
 msgid "Help desk homepage"
 msgstr "Stranice službe za podršku korisnicima"
@@ -235,6 +267,9 @@ msgstr "Neispravno korisničko ime ili lozinka"
 msgid "Incorrect username or password."
 msgstr "Neispravno korisničko ime ili lozinka."
 
+msgid "Information about your current session"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
@@ -253,6 +288,9 @@ msgstr "Podaci o korisničkim nalozima čuvaju se u LDAP bazi, a kada pokušate 
 
 msgid "Labeled URI"
 msgstr "URI adresa"
+
+msgid "Language"
+msgstr ""
 
 msgid "Legal name"
 msgstr "Pravno ime"
@@ -307,6 +345,10 @@ msgstr "Metapodaci nisu pronađeni"
 msgid "Metadata overview"
 msgstr "Pregled metapodataka"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
+msgid "Method not allowed"
+msgstr ""
+
 msgid "Mobile"
 msgstr "Broj mobilnog telefona"
 
@@ -328,6 +370,10 @@ msgstr "Parametar RelayState nije zadan"
 msgid "No SAML message provided"
 msgstr "Nije dostavljena SAML poruka"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:109
+msgid "No SAML request provided"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
 msgstr "Nije dostavljen SAML odgovor"
@@ -342,6 +388,9 @@ msgstr "Nema digitalnog sertifikata"
 
 msgid "No errors found."
 msgstr "Nije pronađena nijedna greška."
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "Ne"
@@ -457,6 +506,9 @@ msgstr "SAML 2.0 SP metapodaci"
 msgid "SAML 2.0 Service Provider (Hosted)"
 msgstr "SAML 2.0 Davalac Servisa (lokalni)"
 
+msgid "SAML Subject"
+msgstr ""
+
 msgid "Select"
 msgstr "Odaberi"
 
@@ -511,6 +563,9 @@ msgstr "Izgleda da postoji greška u podešavanjima SimpleSAMLphp-a."
 
 msgid "SimpleSAMLphp error"
 msgstr "SimpleSAMLphp greška"
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
 
 msgid "Some error occurred"
 msgstr "Desila se greška"
@@ -581,6 +636,10 @@ msgstr "Servis koji je inicirao ovaj zahtjev nije poslao RelayState parametar ko
 msgid "The parameters sent to the discovery service were not according to specifications."
 msgstr "Parametri poslati servisu za lociranje nisu u ispravnom formatu."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:253
+msgid "The password in the configuration (auth.adminpassword) is not a hashed value. Full details on how to fix this are supplied at https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "Administratorska lozinka u podešavanjima(parametar <i>auth.adminpassword</i>) i dalje ima izvornu vrednost. Molimo Vas izmenite konfiguracioni fajl."
@@ -609,6 +668,9 @@ msgstr "Zvanje"
 
 msgid "To look at the details for an SAML entity, click on the SAML entity header."
 msgstr "Da biste videli detalje o SAML entitetu, kliknite na njegovo zaglavlje."
+
+msgid "Tracking number"
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
@@ -644,6 +706,9 @@ msgstr "WS-Federation Davalac Servisa (udaljeni)"
 msgid "WS-Federation Service Provider (Hosted)"
 msgstr "WS-Federation Davalac Servisa (lokalni)"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Odgovor koji je poslao Davalac Identiteta nije prihvaćen."
@@ -655,6 +720,9 @@ msgstr "Desila se greška prilikom kreiranja autentifikacionog odgovora od stran
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "Šteta! - Bez ispravnog korisničkog imena i lozinke ne možete pristupiti servisu. Da biste saznali vaše korisničko ime i lozinku obratite se vašoj matičnoj instituciji."
 
+msgid "World"
+msgstr ""
+
 msgid "XML metadata"
 msgstr "Metapodaci u XML formatu"
 
@@ -664,9 +732,17 @@ msgstr "Da, iz svih servisa"
 msgid "Yes, continue"
 msgstr "Da, nastavi"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:198
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Pristupili ste sistemu za obradu SAML potvrda, ali niste dostavili SAML autentikacioni odgovor."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:272
+msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
@@ -715,8 +791,15 @@ msgstr "Iz nekog razloga autentifikacionom servisu nije prosleđena vaša lozink
 msgid "Your attributes"
 msgstr "Vaši atributi"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr ""
+
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Vaša sesija će biti validna još %remaining% sekundi."
 
 msgid "[Preferred choice]"
 msgstr "[Preferirani izbor]"
+
+msgid "not set"
+msgstr ""

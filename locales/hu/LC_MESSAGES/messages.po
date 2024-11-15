@@ -1,9 +1,22 @@
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
 "X-Domain: messages\n"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
+msgid "%MESSAGE%"
+msgstr ""
 
 msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
 msgstr "Ez a szolgáltatás megköveteli, hogy azonosítsa magát. Kérjük, adja meg felhasználónevét és jelszavát az alábbi űrlapon."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:103
+msgid "Admin password not set to a hashed value"
+msgstr ""
 
 msgid "Affiliation"
 msgstr "Viszony"
@@ -50,6 +63,9 @@ msgstr "Azonosítási hiba: a böngésző nem küldött tanúsítványt."
 msgid "Authentication source error"
 msgstr "Azonosítási forrás hiba"
 
+msgid "Authentication status"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "Hibás kérés"
@@ -61,6 +77,10 @@ msgstr "Érvénytelen kérés érkezett a felfedező szolgáltatáshoz (discover
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "CAS hiba"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
+msgid "Cannot retrieve session data"
+msgstr ""
 
 msgid "Certificates"
 msgstr "Tanúsítványok."
@@ -93,6 +113,9 @@ msgstr "Elérési információk"
 msgid "Converted metadata"
 msgstr "Konvertált metaadatok"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Nem lehet az azonosítást végrehajtani"
@@ -102,6 +125,9 @@ msgstr "Születési dátum"
 
 msgid "Debug information"
 msgstr "Bővebb információ a hibáról"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Display name"
 msgstr "Megjeleníthető név"
@@ -180,6 +206,9 @@ msgstr "Írja le milyen lépéseket hajtott végre, aminek végén hiba történ
 msgid "Fax number"
 msgstr "Fax"
 
+msgid "Format"
+msgstr ""
+
 msgid "Given name"
 msgstr "Keresztnév"
 
@@ -188,6 +217,9 @@ msgstr "Vissza a SimpleSAMLphp telepítő oldalára"
 
 msgid "Go back to the file list"
 msgstr "Vissza az fájlok listájához"
+
+msgid "Hello, Untranslated World!"
+msgstr ""
 
 msgid "Help desk homepage"
 msgstr "Ügyfélszolgálat weboldala"
@@ -232,6 +264,9 @@ msgstr "Hibás felhasználónév vagy jelszó"
 msgid "Incorrect username or password."
 msgstr "Hibás felhasználói név vagy jelszó!"
 
+msgid "Information about your current session"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
@@ -250,6 +285,9 @@ msgstr "A felhasználói adatbázis LDAP alapú, ezért bejelentkezéshez szüks
 
 msgid "Labeled URI"
 msgstr "Honlap cím"
+
+msgid "Language"
+msgstr ""
 
 msgid "Legal name"
 msgstr "Hivatalos név (noreduperson)"
@@ -304,6 +342,10 @@ msgstr "Metadata nem található"
 msgid "Metadata overview"
 msgstr "Metaadat áttekintés"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
+msgid "Method not allowed"
+msgstr ""
+
 msgid "Mobile"
 msgstr "Mobil"
 
@@ -325,6 +367,10 @@ msgstr "Nincs RelayState paraméter"
 msgid "No SAML message provided"
 msgstr "Hiányzó SAML üzenet"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:109
+msgid "No SAML request provided"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
 msgstr "Nincs SAML válasz"
@@ -339,6 +385,9 @@ msgstr "Hiányzó tanúsítvány."
 
 msgid "No errors found."
 msgstr "Nincs hiba."
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "Nem"
@@ -460,6 +509,9 @@ msgstr "SAML 2.0 SP Metaadatok"
 msgid "SAML 2.0 Service Provider (Hosted)"
 msgstr "SAML 2.0 alkalmazásszolgáltató (helyi)"
 
+msgid "SAML Subject"
+msgstr ""
+
 msgid "Select"
 msgstr "Választ"
 
@@ -514,6 +566,9 @@ msgstr "Valószínűleg helytelenül lett konfigurálva a SimpleSAMLphp"
 
 msgid "SimpleSAMLphp error"
 msgstr "SimpleSAMLphp hiba"
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
 
 msgid "Some error occurred"
 msgstr "Hiba történt"
@@ -584,6 +639,10 @@ msgstr "A kérés összeállítója nem adta meg a RelayState paramétert, amely
 msgid "The parameters sent to the discovery service were not according to specifications."
 msgstr "A felfedező szolgáltatás (discovery service) olyan paramétereket kapott, amelyek nem felelnek meg a specifikációnak."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:253
+msgid "The password in the configuration (auth.adminpassword) is not a hashed value. Full details on how to fix this are supplied at https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "Még nem lett megváltoztatva a karbantartói jelszó (auth.adminpassword) a konfigurációs fájlban, kérjük, változtassa meg most! "
@@ -612,6 +671,9 @@ msgstr "Cím"
 
 msgid "To look at the details for an SAML entity, click on the SAML entity header."
 msgstr "A SAML entitások részleteiért kattintson a SAML entitás fejlécére"
+
+msgid "Tracking number"
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
@@ -647,6 +709,9 @@ msgstr "WS-Federation alkalmazásszolgáltató (távoli)"
 msgid "WS-Federation Service Provider (Hosted)"
 msgstr "WS-Federation alkalmazásszolgáltató (helyi)"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Nem fogadtuk el a személyazonosság-szolgáltató (IdP) által küldött válaszüzenetet."
@@ -658,6 +723,9 @@ msgstr "Hiba történt az azonosítási válaszüzenet összeállítása során.
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "Ajaj! - Felhasználói neve és jelszava nélkül nem tudja azonosítani magát, így nem férhet hozzá a szolgáltatáshoz. Biztosan van valaki, aki tud önnek segíteni. Vegye fel a kapcsolatot az ügyfélszolgálattal!"
 
+msgid "World"
+msgstr ""
+
 msgid "XML metadata"
 msgstr "XML metaadat"
 
@@ -667,9 +735,17 @@ msgstr "Igen, minden alkalmazásból"
 msgid "Yes, continue"
 msgstr "Igen, elfogadom"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:198
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Az Assertion Consumer Service interfészen SAML Authentication Response üzenetet kell megadni."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:272
+msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
@@ -718,8 +794,15 @@ msgstr "Valamilyen oknál fogva a jelszó nem olvasható. Kérjük, próbálja �
 msgid "Your attributes"
 msgstr "Az ön attribútumai"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr ""
+
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Az ön munkamenete még %remaining% másodpercig érvényes"
 
 msgid "[Preferred choice]"
 msgstr "[Kívánt választás]"
+
+msgid "not set"
+msgstr ""

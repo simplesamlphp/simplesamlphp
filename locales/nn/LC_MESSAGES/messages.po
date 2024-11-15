@@ -1,9 +1,22 @@
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: nn\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
 "X-Domain: messages\n"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
+msgid "%MESSAGE%"
+msgstr ""
 
 msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
 msgstr "Ei webteneste har spurt etter autentisering av deg. Skriv inn brukarnamnet ditt og passordet ditt for å autentisera deg."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:103
+msgid "Admin password not set to a hashed value"
+msgstr ""
 
 msgid "Affiliation"
 msgstr "Rolle ved organisasjonen"
@@ -50,6 +63,9 @@ msgstr "Feil autentisering: din browser sender ikkje sertifikat"
 msgid "Authentication source error"
 msgstr "Innloggingsfeil: autentisering"
 
+msgid "Authentication status"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "Feil spørsmål mottatt"
@@ -61,6 +77,10 @@ msgstr "Feilforma spørsmål til Discovery Service"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "CAS-feil"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
+msgid "Cannot retrieve session data"
+msgstr ""
 
 msgid "Certificates"
 msgstr "Sertifikat"
@@ -93,6 +113,9 @@ msgstr "Kontaktinformasjon:"
 msgid "Converted metadata"
 msgstr "Konverterte metadata"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Kunne ikkje laga svar på autentiseringsspørsmål"
@@ -102,6 +125,9 @@ msgstr "Fødselsdato"
 
 msgid "Debug information"
 msgstr "Detaljar for feilsøking"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Display name"
 msgstr "Namn slik det normalt blir vist fram"
@@ -180,6 +206,9 @@ msgstr "Forklar kva du gjorde og korleis feilen oppsto..."
 msgid "Fax number"
 msgstr "Faksnummer"
 
+msgid "Format"
+msgstr ""
+
 msgid "Given name"
 msgstr "Fornamn"
 
@@ -241,6 +270,9 @@ msgstr "Feil brukarnamn eller passord"
 msgid "Incorrect username or password."
 msgstr "Feil brukarnamn eller passord."
 
+msgid "Information about your current session"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
@@ -259,6 +291,9 @@ msgstr "LDAP er brukardatabase din.  Når du prøver å logga inn må vi kontakt
 
 msgid "Labeled URI"
 msgstr "URI med valfri tilleggskommentar"
+
+msgid "Language"
+msgstr ""
 
 msgid "Legal name"
 msgstr "Namn registrert i Folkeregisteret"
@@ -313,6 +348,10 @@ msgstr "Finn ikkje metadata"
 msgid "Metadata overview"
 msgstr "Oversikt over metadata"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
+msgid "Method not allowed"
+msgstr ""
+
 msgid "Mobile"
 msgstr "Mobiltelefon"
 
@@ -334,6 +373,10 @@ msgstr "Ingen RelayState"
 msgid "No SAML message provided"
 msgstr "Fann ikkje SAML-melding"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:109
+msgid "No SAML request provided"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
 msgstr "Fann ikkje SAML-svar"
@@ -348,6 +391,9 @@ msgstr "Manglar sertifikat"
 
 msgid "No errors found."
 msgstr "Fann ingen feil"
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "Nei"
@@ -463,6 +509,9 @@ msgstr "SAML 2.0 Service Provider (Hosted)"
 msgid "SAML 2.0 Service Provider (Remote)"
 msgstr "SAML 2.0 Service Provider (Remote)"
 
+msgid "SAML Subject"
+msgstr ""
+
 msgid "Select"
 msgstr "Vel"
 
@@ -517,6 +566,9 @@ msgstr "SimpleSAMLphp ser ut til å vera feilkonfigurert"
 
 msgid "SimpleSAMLphp error"
 msgstr "SimpleSAMLphp feil"
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
 
 msgid "Some error occurred"
 msgstr "Ein feilsituasjon oppsto"
@@ -587,6 +639,10 @@ msgstr "Opphavsmann til denne meldinga har ikkje sendt med RelayState-parameter.
 msgid "The parameters sent to the discovery service were not according to specifications."
 msgstr "Parameter sendt til Discovery Service er ikkje i samsvar med spesifikasjon."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:253
+msgid "The password in the configuration (auth.adminpassword) is not a hashed value. Full details on how to fix this are supplied at https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "Passordet i konfigurasjonen din (auth.adminpassword) er ikkje endra frå opprinneleg verdi, dette er usikkert.  Gå inn i konfigurasjonen og bytt passord."
@@ -615,6 +671,9 @@ msgstr "Tittel"
 
 msgid "To look at the details for an SAML entity, click on the SAML entity header."
 msgstr "For å sjå på detaljane for ein SAML entitet, klikk på SAML entitet"
+
+msgid "Tracking number"
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
@@ -650,6 +709,9 @@ msgstr "WS-Federation Identity Provider (Remote)"
 msgid "WS-Federation Service Provider (Hosted)"
 msgstr "WS-Federation Service Provider (Hosted)"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Svaret frå IdP var ikkje akseptabelt for oss"
@@ -673,9 +735,17 @@ msgstr "Ja, logg ut frå alle"
 msgid "Yes, continue"
 msgstr "Ja, fortsett"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:198
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Du har brukt grensesnittet for mottak av meldingar (Assertion Consumer Service), men utan å senda SAML autentiseringssvar (Authentication Response)"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:272
+msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
@@ -724,8 +794,15 @@ msgstr "Passordet blei ikkje sendt. Prøv på nytt."
 msgid "Your attributes"
 msgstr "Dine attributtar"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr ""
+
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Din sesjon er gyldig i %remaining% sekund frå no."
 
 msgid "[Preferred choice]"
 msgstr "Beste val"
+
+msgid "not set"
+msgstr ""

@@ -1,5 +1,10 @@
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: lb\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
 "X-Domain: admin\n"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:411
@@ -51,6 +56,10 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr ""
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:430
+msgid "D'\"secretsalt\" Konfiguratiounsoptioun dierf keen `%` Zeechen enthalen."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:217
 msgid "Date/Time Extension"
 msgstr "Datum/Zäit Extensioun"
@@ -84,9 +93,7 @@ msgstr "Zeréck op d'SimpleSAMLphp Installatiouns-Säit"
 msgid "Hashing function"
 msgstr "Hash-Funktioun"
 
-msgid ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long"
-" it lasts until it times out and all the attributes that are attached to your session."
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr ""
 
 msgid "Hosted IdP metadata present"
@@ -180,7 +187,11 @@ msgstr ""
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:200
 #, php-format
 msgid "PHP %minimum% or newer is needed. You are running: %current%"
-msgstr "PHP %minimum% oder méi nei ass néideg. Dir hutt: %current%""
+msgstr "PHP %minimum% oder méi nei ass néideg. Dir hutt: %current%\""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:259
+msgid "PHP intl extension"
+msgstr ""
 
 msgid "Parse"
 msgstr ""
@@ -248,8 +259,8 @@ msgstr "Test"
 msgid "Test Authentication Sources"
 msgstr ""
 
-#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:430
-msgid "D'\"secretsalt\" Konfiguratiounsoptioun dierf keen `%` Zeechen enthalen."
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:425
+msgid "The \"secretsalt\" configuration option may not contain a `%` sign."
 msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:366
@@ -301,6 +312,9 @@ msgid "You have been logged out."
 msgstr "Dir gouft ausgeloggt"
 
 msgid "You have the following modules installed"
+msgstr ""
+
+msgid "Your PHP installation"
 msgstr ""
 
 msgid "Your attributes"

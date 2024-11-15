@@ -1,5 +1,10 @@
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ur\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
 "X-Domain: admin\n"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:422
@@ -79,9 +84,7 @@ msgstr ""
 msgid "Hashing function"
 msgstr ""
 
-msgid ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long"
-" it lasts until it times out and all the attributes that are attached to your session."
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr ""
 
 msgid "Hosted entities"
@@ -281,6 +284,9 @@ msgid "You have been logged out."
 msgstr ""
 
 msgid "You have the following modules installed"
+msgstr ""
+
+msgid "Your PHP installation"
 msgstr ""
 
 msgid "Your attributes"

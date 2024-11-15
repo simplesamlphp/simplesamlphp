@@ -1,8 +1,16 @@
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
 "X-Domain: core\n"
 
 msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
+msgstr ""
+
+msgid "An error has occurred"
 msgstr ""
 
 msgid "Check that the link you used to access the web site is correct."
@@ -44,8 +52,14 @@ msgstr "If this problem persists, you can report it to the system administrators
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 
+msgid "If you are a developer who is deploying a single sign-on solution, you have are trying to reach an endpoint using the wrong HTTP-method."
+msgstr ""
+
 msgid "If you are a user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "If you are a user who received this error after following a link on a site, you should report this error to the owner of that site."
+
+msgid "If you are the administrator of this installation, please refer to the <a href=\"https://simplesamlphp.org/docs/\">SimpleSAMLphp documentation</a> for how to configure and interact with the software."
+msgstr ""
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
 msgstr ""
@@ -116,7 +130,16 @@ msgstr "State information lost"
 msgid "Suggestions for resolving this problem:"
 msgstr "Suggestions for resolving this problem:"
 
+msgid "The authentication procesd has failed."
+msgstr ""
+
+msgid "The authorization procesd has failed."
+msgstr ""
+
 msgid "The error report has been sent to the administrators."
+msgstr ""
+
+msgid "The identification procesd has failed."
 msgstr ""
 
 msgid "The link used to get here was bad, perhaps a bookmark."
@@ -125,11 +148,17 @@ msgstr ""
 msgid "The problematic attribute(s) are:"
 msgstr ""
 
+msgid "There was an issue while signing you in."
+msgstr ""
+
 msgid "This error may be caused by:"
 msgstr "This error may be caused by:"
 
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "This is most likely a configuration problem on either the service provider or identity provider."
+
+msgid "This is the front page of the SimpleSAMLphp authentication software. There's not much to see here."
+msgstr ""
 
 msgid "Too short interval between single sign on events."
 msgstr "Too short interval between single sign on events."

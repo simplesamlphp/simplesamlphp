@@ -1,5 +1,10 @@
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
 "X-Domain: admin\n"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:411
@@ -55,6 +60,9 @@ msgstr "Date/Time-extensie"
 msgid "Deprecated"
 msgstr "Verouderd"
 
+msgid "Details"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:130
 msgid "Diagnostics on hostname, port and protocol"
 msgstr "Inspectie op hostnaam, poort en protocol"
@@ -69,13 +77,14 @@ msgstr "Federatie"
 msgid "Format"
 msgstr "Formaat"
 
+msgid "Go back to SimpleSAMLphp installation page"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:223
 msgid "Hashing function"
 msgstr "Hashfunctie"
 
-msgid ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long"
-" it lasts until it times out and all the attributes that are attached to your session."
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr "Hallo, dit is de statuspagina van SimpleSAMLphp. Hier kunt u zien of uw sessie verlopen is, hoe lang het nog duurt totdat die verloopt en alle attributen die met uw sessie verbonden zijn."
 
 msgid "Hosted IdP metadata present"
@@ -111,6 +120,9 @@ msgstr "LDAP-extensie (vereist als een LDAP-backend wordt gebruikt)"
 msgid "Log out"
 msgstr "Log uit"
 
+msgid "Logged out"
+msgstr ""
+
 msgid "Logout"
 msgstr "Afmelden"
 
@@ -140,6 +152,9 @@ msgstr "Metadata"
 msgid "Metadata parser"
 msgstr "Metadata parser"
 
+msgid "Modules"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:271
 msgid "Multibyte String extension"
 msgstr "Multibye String-extensie"
@@ -163,6 +178,10 @@ msgstr "PDO-extensie"
 #, php-format
 msgid "PHP %minimum% or newer is needed. You are running: %current%"
 msgstr "PHP %minimum% of hoger is benodigd. U heeft: %current%"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:259
+msgid "PHP intl extension"
+msgstr ""
 
 msgid "Parse"
 msgstr "Converteer"
@@ -230,6 +249,10 @@ msgstr "Test"
 msgid "Test Authentication Sources"
 msgstr "Test Authentication Sources"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:425
+msgid "The \"secretsalt\" configuration option may not contain a `%` sign."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:355
 msgid "The <code>technicalcontact_email</code> configuration option should be set"
 msgstr "Het instellen van de optie <code>technicalcontact_email</code> wordt aangeraden"
@@ -275,6 +298,15 @@ msgstr "U draait versie <kbd>%version%</kbd>."
 msgid "You can get the metadata XML on a dedicated URL:"
 msgstr "U kunt de metadata-XML opvragen via deze URL:"
 
+msgid "You have been logged out."
+msgstr ""
+
+msgid "You have the following modules installed"
+msgstr ""
+
+msgid "Your PHP installation"
+msgstr ""
+
 msgid "Your attributes"
 msgstr "Uw attributen"
 
@@ -293,11 +325,23 @@ msgstr "cURL (kan nodig zijn voor bepaalde modules)"
 msgid "cURL (required if automatic version checks are used, also by some modules)"
 msgstr "cURL (vereist als automatische versiechecks ingeschakeld zijn, eveneens voor bepaalde modules)"
 
+msgid "default"
+msgstr ""
+
+msgid "disabled"
+msgstr ""
+
+msgid "enabled"
+msgstr ""
+
 msgid "expired"
 msgstr "verlopen"
 
 msgid "expires"
 msgstr "verloopt"
+
+msgid "means the module is not enabled"
+msgstr ""
 
 msgid "new"
 msgstr "nieuw"

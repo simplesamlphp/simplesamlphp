@@ -1,9 +1,22 @@
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
 "X-Domain: messages\n"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
+msgid "%MESSAGE%"
+msgstr ""
 
 msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
 msgstr "Zerbitzu batek kautotu zaitezen eskatzen du. Mesedez, zure erabiltzaile-izena eta pasahitza honako formulario honetan sartu itzazu."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:103
+msgid "Admin password not set to a hashed value"
+msgstr ""
 
 msgid "Affiliation"
 msgstr "Afiliazioa"
@@ -50,6 +63,9 @@ msgstr "Kautotze okerra: zure nabigatzaileak ez du bidali ziurtagiririk "
 msgid "Authentication source error"
 msgstr "Errorea kautotze jatorrian"
 
+msgid "Authentication status"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "Eskaera oker bat jaso da."
@@ -61,6 +77,10 @@ msgstr "Eskaera okerra aurkikuntza zerbitzuari"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "CAS Errorea"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
+msgid "Cannot retrieve session data"
+msgstr ""
 
 msgid "Certificates"
 msgstr "Ziurtagiriak"
@@ -93,6 +113,9 @@ msgstr "Harremanetarako informazioa:"
 msgid "Converted metadata"
 msgstr "Bihurtutako metadatuak"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Ezin izan da kautotze erantzuna sortu"
@@ -102,6 +125,9 @@ msgstr "Jaioteguna"
 
 msgid "Debug information"
 msgstr "Arazketa informazioa"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Display name"
 msgstr "Bistaratzeko izena"
@@ -180,6 +206,9 @@ msgstr "Azal ezazu zer egin duzun errore honetara iristeko..."
 msgid "Fax number"
 msgstr "Fax-zenbakia"
 
+msgid "Format"
+msgstr ""
+
 msgid "Given name"
 msgstr "Izena"
 
@@ -188,6 +217,9 @@ msgstr "Itzuli SimpleSAMLphp instalazio orrira "
 
 msgid "Go back to the file list"
 msgstr "Itzuli fitxategien zerrendara"
+
+msgid "Hello, Untranslated World!"
+msgstr ""
 
 msgid "Help desk homepage"
 msgstr "Laguntza teknikoaren orria "
@@ -235,6 +267,9 @@ msgstr "Erabiltzaile-izena edo pasahitz okerra"
 msgid "Incorrect username or password."
 msgstr "Erabiltzaile-izena edo pasahitza okerra"
 
+msgid "Information about your current session"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
@@ -253,6 +288,9 @@ msgstr "LDAP erabiltzaileen datu basea da, eta sartzea erabakitzen duzunean beha
 
 msgid "Labeled URI"
 msgstr "URI etiketatua"
+
+msgid "Language"
+msgstr ""
 
 msgid "Legal name"
 msgstr "Izen legala"
@@ -307,6 +345,10 @@ msgstr "Ez dira metadatuak aurkitu"
 msgid "Metadata overview"
 msgstr "Ikusi metadatuak"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
+msgid "Method not allowed"
+msgstr ""
+
 msgid "Mobile"
 msgstr "Mugikorra"
 
@@ -328,6 +370,10 @@ msgstr "RelayState zehaztu gabe"
 msgid "No SAML message provided"
 msgstr "SAML mezua falta da"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:109
+msgid "No SAML request provided"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
 msgstr "SAML erantzuna falta da"
@@ -342,6 +388,9 @@ msgstr "Ziurtagiri gabe"
 
 msgid "No errors found."
 msgstr "Ez da errorerik aurkitu"
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "Ez"
@@ -454,6 +503,9 @@ msgstr "SAML 2.0 SP Adibidea"
 msgid "SAML 2.0 Service Provider (Hosted)"
 msgstr "SAML 2.0 Zerbitzu hornitzailea (Anfitrioia)"
 
+msgid "SAML Subject"
+msgstr ""
+
 msgid "Select"
 msgstr "Hautatu"
 
@@ -508,6 +560,9 @@ msgstr "Badirudi errore bat jazo dela SimpleSAMLphp-en konfigurazioan"
 
 msgid "SimpleSAMLphp error"
 msgstr "SimpleSAMLphp-en errorea"
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
 
 msgid "Some error occurred"
 msgstr "Errore bat jazo da"
@@ -578,6 +633,10 @@ msgstr "Eskaera honen abiarazleak ez du ematen ondoren nora joan adierazten duen
 msgid "The parameters sent to the discovery service were not according to specifications."
 msgstr "Aurkikuntza zerbitzuari bidalitako prametroak ez dira zehaztapenera doitzen."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:253
+msgid "The password in the configuration (auth.adminpassword) is not a hashed value. Full details on how to fix this are supplied at https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "Ez da aldatu konfigurazio fitxategiaren pasahitzaren (auth.adminpassword) balio lehenetsia. Mesedez, edita ezazu fitxategia"
@@ -606,6 +665,9 @@ msgstr "Tratamendua"
 
 msgid "To look at the details for an SAML entity, click on the SAML entity header."
 msgstr "SAML entitate baten xehetasunak ikusteko, klikatu entitatearen goiburua."
+
+msgid "Tracking number"
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
@@ -641,6 +703,9 @@ msgstr "WS-Federation Identitate hornitzailea (Urrunekoa)"
 msgid "WS-Federation Service Provider (Hosted)"
 msgstr "WS-Federation Zerbitzu hornitzailea (Anfitrioia)"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Ezin izan da identitatearen hornitzaileak bidalitako erantzuna onartu."
@@ -652,6 +717,9 @@ msgstr "Identitatearen hornitzaileak errore bat antzeman du kautotze erantzuna s
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "Zeinen txarto! - Zure erabiltziale-izena eta pasahitza gabe ezin zara identifikatu ezta zerbitzuan sartu ere. Agian bada norbait lagun diezazukeena. Jar zaitez harremanetan erakundeko laguntza zentroarekin!"
 
+msgid "World"
+msgstr ""
+
 msgid "XML metadata"
 msgstr "XML metadatuak"
 
@@ -661,9 +729,17 @@ msgstr "Bai, zerbitzu guztiak"
 msgid "Yes, continue"
 msgstr "Bai, jarraitu"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:198
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Baieztapen kontsumitzailearen interfazera sartu zara baina ez duzu SAML kautotze erantzun bat erantsi."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:272
+msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
@@ -712,8 +788,15 @@ msgstr "Sarrera orrira zerbait bidali duzu baina, arrazoiren bategatik, pasahitz
 msgid "Your attributes"
 msgstr "Atributuak"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr ""
+
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Zure saioa %remaining% segundoz izango da baliagarri."
 
 msgid "[Preferred choice]"
 msgstr "[Aukera gogokoena]"
+
+msgid "not set"
+msgstr ""

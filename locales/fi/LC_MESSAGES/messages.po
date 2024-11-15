@@ -1,9 +1,22 @@
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
 "X-Domain: messages\n"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
+msgid "%MESSAGE%"
+msgstr ""
 
 msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
 msgstr "Palvelu on pyytänyt kirjautumista. Ole hyvä ja syötä tunnuksesi ja salasanasi alla olevaan kaavakkeeseen."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:103
+msgid "Admin password not set to a hashed value"
+msgstr ""
 
 msgid "Affiliation"
 msgstr "Suhde organisaatioon"
@@ -23,6 +36,33 @@ msgstr "Uloskirjautumispyynnön käsittelyn yrityksessä tapahtui virhe"
 msgid "An unhandled exception was thrown."
 msgstr "Käsittelemätön poikkeus heitetty"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:112
+msgid "Authentication aborted"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:202
+msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:214
+msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:277
+msgid "Authentication failed: the certificate your browser sent is unknown"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
+msgid "Authentication failed: your browser did not send any certificate"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:81
+msgid "Authentication source error"
+msgstr ""
+
+msgid "Authentication status"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "Vääränlainen pyyntö vastaanotettu"
@@ -34,6 +74,10 @@ msgstr "Vääränlainen pyynti discovery-palveluun"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "CAS virhe"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
+msgid "Cannot retrieve session data"
+msgstr ""
 
 msgid "Change your home organization"
 msgstr "Muuta kotiorganisaatiotasi"
@@ -57,6 +101,9 @@ msgstr "Virhe asetuksissa"
 msgid "Contact information:"
 msgstr "Yhteystiedot"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Autentikointivastauksen luonti epäonnistui"
@@ -66,6 +113,9 @@ msgstr "Syntymäaika"
 
 msgid "Debug information"
 msgstr "Virheenetsintätietoja"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Display name"
 msgstr "Näyttönimi"
@@ -84,6 +134,10 @@ msgstr "Domain-osio"
 
 msgid "E-mail address:"
 msgstr "sähköpostiosoite:"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:279
+msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
+msgstr ""
 
 msgid "Enter your username and password"
 msgstr "Syötä tunnuksesi ja salasanasi"
@@ -131,6 +185,9 @@ msgstr "Kerro mitä teit kun virhe ilmeni:"
 msgid "Fax number"
 msgstr "Faksinumero"
 
+msgid "Format"
+msgstr ""
+
 msgid "Given name"
 msgstr "Etunimet"
 
@@ -139,6 +196,9 @@ msgstr "Palaa SimpleSAMLphp asennussivulle"
 
 msgid "Group membership"
 msgstr "Ryhmän jäsenyys"
+
+msgid "Hello, Untranslated World!"
+msgstr ""
 
 msgid "Help desk homepage"
 msgstr "Helpdeskin kotisivu"
@@ -174,6 +234,9 @@ msgstr "Virheellinen käyttäjätunnus tai salasana"
 msgid "Incorrect username or password."
 msgstr "Väärä tunnus tai salasana."
 
+msgid "Information about your current session"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
@@ -192,6 +255,9 @@ msgstr "LDAP on käyttäjätietokanta, ja kirjautuessassi tarvitsemme yhteyden L
 
 msgid "Labeled URI"
 msgstr "Kotisivu"
+
+msgid "Language"
+msgstr ""
 
 msgid "Legal name"
 msgstr "Virallinen nimi"
@@ -233,6 +299,14 @@ msgstr "Sähköposti"
 msgid "Manager"
 msgstr "Manager"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
+msgid "Metadata not found"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
+msgid "Method not allowed"
+msgstr ""
+
 msgid "Mobile"
 msgstr "Kännykkä"
 
@@ -254,6 +328,10 @@ msgstr "Ei RelayState "
 msgid "No SAML message provided"
 msgstr "SAML-viesti puuttui"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:109
+msgid "No SAML request provided"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
 msgstr "SAML-vastaus puuttuu"
@@ -265,6 +343,9 @@ msgstr "Ei oikeutta"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:87
 msgid "No certificate"
 msgstr "Ei sertifikaattia"
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "ei"
@@ -353,6 +434,9 @@ msgstr "Palaa palveluun"
 msgid "SAML 2.0 SP Demo Example"
 msgstr "SAML 2.0 SP esimerkki"
 
+msgid "SAML Subject"
+msgstr ""
+
 msgid "Select"
 msgstr "Valitse"
 
@@ -364,6 +448,9 @@ msgstr "Lähetä sähköposti helpdeskille."
 
 msgid "Send error report"
 msgstr "Lähetä virheraportti"
+
+msgid "Sending message"
+msgstr ""
 
 msgid "Service Provider"
 msgstr "Palveluntarjoaja"
@@ -384,8 +471,19 @@ msgstr "Vaikuttaa siltä, että SimpleSAMLphp:na asetuksissa on virhe."
 msgid "SimpleSAMLphp error"
 msgstr "SimpleSAMLphp virhe"
 
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
+
 msgid "Some error occurred"
 msgstr "Virhe"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
+msgid "State information lost"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
+msgid "State information lost, and no way to restart the request"
+msgstr ""
 
 msgid "Street"
 msgstr "Katu"
@@ -399,6 +497,10 @@ msgstr "Puhelinnumero"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
 msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
 msgstr "Identiteetintarjoaja vastasi virheellä. ( Tilakoodi SAML vastauksessa oli epäonnistunut)"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:278
+msgid "The authentication was aborted by the user"
+msgstr ""
 
 msgid "The debug information below may be of interest to the administrator / help desk:"
 msgstr "Alla olevat virheenetsintätiedot voivat kiinnostaa ylläpitäjäää tai helpdeskiä:"
@@ -426,9 +528,17 @@ msgstr "Pyynnön luoja ei tarjonnut RelayState arvoa, joka ilmaisisi minne jatka
 msgid "The parameters sent to the discovery service were not according to specifications."
 msgstr "Discovery-palveluun lähetetyt tiedot eivät vastanneet määräyksiä."
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:253
+msgid "The password in the configuration (auth.adminpassword) is not a hashed value. Full details on how to fix this are supplied at https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "Ylläpitäjän salasanaa (auth.adminpassword) ei ole vaihtunut oletusarvosta. Ole hyvä ja muokkaa asetustiedostoa."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:204
+msgid "There is an error in the request to this page. The reason was: %REASON%"
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:222
 msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
@@ -447,6 +557,14 @@ msgstr "Tämä virhe on todennäköisestä oireena SimpleSAMLphp:n vääristä a
 
 msgid "Title"
 msgstr "Titteli"
+
+msgid "Tracking number"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:237
+#, php-format
+msgid "Unable to locate metadata for %ENTITYID%"
+msgstr ""
 
 msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
 msgstr "Uloskirjautuminen yhdestä tai useammasta palvelusta epäonnistui. <i>Sulje web-selaimesi</i> varmistaaksesi, että kaikki istuntosi sulkeutuvat."
@@ -471,6 +589,9 @@ msgstr "Tunnus"
 msgid "WS-Fed SP Demo Example"
 msgstr "WS-FED SP esimerkki"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Emme hyväksyneet identiteetintarjoajan vastausta."
@@ -482,15 +603,26 @@ msgstr "Virhe tapahtui kun identiteetintarjoaja pyrki luomaan vastauksen tunnist
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "Pahus! - Ilman tunnusta ja salasanaa et voi kirjautua palveluun. Voi olla, että joku voi auttaa sinua. Ole hyvä ja ota yhteyttä korkeakoulusi tukeen!"
 
+msgid "World"
+msgstr ""
+
 msgid "Yes, all services"
 msgstr "Kyllä, kaikista palveluista"
 
 msgid "Yes, continue"
 msgstr "Kyllä"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:198
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Yritit Assertion Consumer Service-liittymään, mutta et tarjonnut SAML tunnistautumisvastausta."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:272
+msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
@@ -527,8 +659,15 @@ msgstr "Lähetit jotain kirjautumissivulle, mutta jostain syystä salasanaa ei l
 msgid "Your attributes"
 msgstr "Attribuuttisi"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr ""
+
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Istuntosi on vielä voimassa %remaining% sekuntia"
 
 msgid "[Preferred choice]"
 msgstr "[Oletusvalinta]"
+
+msgid "not set"
+msgstr ""

@@ -1,6 +1,15 @@
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
 "X-Domain: messages\n"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
+msgid "%MESSAGE%"
+msgstr ""
 
 msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
 msgstr "En web-tjeneste har bedt om at tilkendegive dig. Det betyder, at du skal indtaste dit brugernavn og kodeord herunder."
@@ -16,6 +25,10 @@ msgstr "ADFS tjenesteudbyder metadata"
 
 msgid "ADFS Service Provider (Remote)"
 msgstr "ADFS tjenesteudbyder (remote)"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:103
+msgid "Admin password not set to a hashed value"
+msgstr ""
 
 msgid "Affiliation"
 msgstr "Brugerens tilknytning til hjemmeorganisationen"
@@ -62,6 +75,9 @@ msgstr "Login fejlede - din browser sendte ikke noget certifikat"
 msgid "Authentication source error"
 msgstr "Authentication source fejl"
 
+msgid "Authentication status"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
 msgstr "Fejlagtig forespørgsel"
@@ -73,6 +89,10 @@ msgstr "Fejlagtig forespørgsel til Discovery Service"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
 msgstr "CAS fejl"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
+msgid "Cannot retrieve session data"
+msgstr ""
 
 msgid "Certificates"
 msgstr "Certifikater"
@@ -105,6 +125,9 @@ msgstr "Kontaktoplysninger"
 msgid "Converted metadata"
 msgstr "Konverteret metadata"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
 msgstr "Kunne ikke generere single sign-on svar"
@@ -114,6 +137,9 @@ msgstr "Fødselsdato"
 
 msgid "Debug information"
 msgstr "Detaljer til fejlsøgning"
+
+msgid "Debug information to be used by your support staff"
+msgstr ""
 
 msgid "Display name"
 msgstr "Visningsnavn"
@@ -207,6 +233,9 @@ msgstr "Tilbage til listen over filer"
 msgid "Group membership"
 msgstr "Gruppemedlemsskab"
 
+msgid "Hello, Untranslated World!"
+msgstr ""
+
 msgid "Help desk homepage"
 msgstr "Servicedesk"
 
@@ -253,6 +282,9 @@ msgstr "Forkert brugernavn eller kodeord"
 msgid "Incorrect username or password."
 msgstr "Forkert brugernavn eller kodeord."
 
+msgid "Information about your current session"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
@@ -271,6 +303,9 @@ msgstr "Der opstod en fejl i kommunikationen med LDAP databasen under login."
 
 msgid "Labeled URI"
 msgstr "Labeled URI"
+
+msgid "Language"
+msgstr ""
 
 msgid "Legal name"
 msgstr "Officielt navn"
@@ -325,6 +360,10 @@ msgstr "Metadata ikke fundet"
 msgid "Metadata overview"
 msgstr "Metadataoversigt"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
+msgid "Method not allowed"
+msgstr ""
+
 msgid "Mobile"
 msgstr "Telefonnummer (mobil)"
 
@@ -346,6 +385,10 @@ msgstr "RelayState mangler"
 msgid "No SAML message provided"
 msgstr "Ingen SAML besked"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:109
+msgid "No SAML request provided"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
 msgstr "SAML response mangler"
@@ -360,6 +403,9 @@ msgstr "Intet certifikat"
 
 msgid "No errors found."
 msgstr "Ingen fejl"
+
+msgid "No identity providers found. Cannot continue."
+msgstr ""
 
 msgid "No, cancel"
 msgstr "Nej"
@@ -542,6 +588,9 @@ msgstr "SimpleSAMLphp er tilsyneladende ikke Konfigureret korrekt"
 msgid "SimpleSAMLphp error"
 msgstr "SimpleSAMLphp fejl"
 
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr ""
+
 msgid "Some error occurred"
 msgstr "En fejl opstod."
 
@@ -611,6 +660,10 @@ msgstr "Afsenderen af denne forespørgelse har ikke angivet en RelayStay paramet
 msgid "The parameters sent to the discovery service were not according to specifications."
 msgstr "De afsendte værdier overholder ikke Discovery Servicens' krav"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:253
+msgid "The password in the configuration (auth.adminpassword) is not a hashed value. Full details on how to fix this are supplied at https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
 msgstr "Der er ikke konfigureret et password til administrationsgrænsefladen (auth.adminpassword). Opdater konfigurationen med et nyt password, der er forskelligt fra stadardpasswordet."
@@ -639,6 +692,9 @@ msgstr "Titel"
 
 msgid "To look at the details for an SAML entity, click on the SAML entity header."
 msgstr "For at se detaljer vedrørende SAML-entiteten, klik på entitets-headeren"
+
+msgid "Tracking number"
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
@@ -674,6 +730,9 @@ msgstr "WS-Federation identitetsudbyder (remote)"
 msgid "WS-Federation Service Provider (Hosted)"
 msgstr "WS-Federation tjenesteudbyder (hosted)"
 
+msgid "Warning"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Svaret fra Identitetsudbydere kunne ikke accepteres"
@@ -685,6 +744,9 @@ msgstr "En fejl opstod da denne identitetsudbyder forsøgte at sende svar"
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 msgstr "Desværre, uden korrekt brugernavn og kodeord kan du ikke få adgang til tjenesten. Måske kan help-desk på din hjemmeinstitution hjælpe dig!"
 
+msgid "World"
+msgstr ""
+
 msgid "XML metadata"
 msgstr "XML metadata"
 
@@ -694,9 +756,17 @@ msgstr "Ja, alle services"
 msgid "Yes, continue"
 msgstr "Ja, jeg accepterer"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:198
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
 msgstr "Du forsøger at tilgå Assertion Consumer Service grænsefladen uden at sende et SAML Authentication Response"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:272
+msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
@@ -744,6 +814,10 @@ msgstr "Dit kodeord blev ikke sendt - prøv igen."
 
 msgid "Your attributes"
 msgstr "Dine oplysninger"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr ""
 
 msgid "Your session is valid for %remaining% seconds from now."
 msgstr "Du har %remaining% tilbage af din session"

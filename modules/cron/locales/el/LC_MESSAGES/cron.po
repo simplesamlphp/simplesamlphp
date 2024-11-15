@@ -1,5 +1,10 @@
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
 "X-Domain: cron\n"
 
 msgid "Click here to run the cron jobs:"
@@ -7,6 +12,10 @@ msgstr "Κάντε κλικ εδώ για να εκτελέσετε τις ερ�
 
 msgid "Cron is a way to run things regularly on unix systems."
 msgstr "Το cron επιτρέπει την εκτέλεση εργασιών ανά τακτά διαστήματα σε συστήματα UNIX."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/cron/hooks/hook_configpage.php:18
+msgid "Cron module information page"
+msgstr ""
 
 msgid "Cron ran at"
 msgstr "Ημερομηνία και ώρα εκτέλεσης cron:"

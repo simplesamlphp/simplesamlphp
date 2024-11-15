@@ -1,5 +1,10 @@
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
 "X-Domain: admin\n"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:411
@@ -75,13 +80,14 @@ msgstr "Federácia"
 msgid "Format"
 msgstr "Formát"
 
+msgid "Go back to SimpleSAMLphp installation page"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:223
 msgid "Hashing function"
 msgstr "Hashovacia funkcia"
 
-msgid ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long"
-" it lasts until it times out and all the attributes that are attached to your session."
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr ""
 
 msgid "Hosted IdP metadata present"
@@ -116,6 +122,9 @@ msgstr "rozšírenie LDAP (vyžadované, ak je využívaný LDAP backend)"
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:146
 msgid "Log out"
 msgstr "Odhlásiť sa"
+
+msgid "Logged out"
+msgstr ""
 
 msgid "Logout"
 msgstr "Odhlásenie"
@@ -243,6 +252,10 @@ msgstr "Test"
 msgid "Test Authentication Sources"
 msgstr "Test zdrojov autentifikácie"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:425
+msgid "The \"secretsalt\" configuration option may not contain a `%` sign."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:355
 msgid "The <code>technicalcontact_email</code> configuration option should be set"
 msgstr "Možnosť <code>technicalcontact_email</code> by mala byť nastavená"
@@ -288,8 +301,14 @@ msgstr "Vaša verzia: <kbd>%version%</kbd>."
 msgid "You can get the metadata XML on a dedicated URL:"
 msgstr "Môžete získať XML metadát na samostatnom odkaze:"
 
+msgid "You have been logged out."
+msgstr ""
+
 msgid "You have the following modules installed"
 msgstr "Nasledujúce moduly sú nainštalované"
+
+msgid "Your PHP installation"
+msgstr ""
 
 msgid "Your attributes"
 msgstr "Vaše atribúty"
@@ -308,6 +327,9 @@ msgstr "cURL (môže byť vyžadované niektorými modulmi)"
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:280
 msgid "cURL (required if automatic version checks are used, also by some modules)"
 msgstr "cURL (vyžadované, ak sú povolené kontroly aktualizácií, taktiež niektorými modulmi)"
+
+msgid "default"
+msgstr ""
 
 msgid "disabled"
 msgstr "vypnuté"

@@ -1,15 +1,44 @@
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
 "X-Domain: core\n"
+
+msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
+msgstr ""
+
+msgid "An error has occurred"
+msgstr ""
+
+msgid "Check that the link you used to access the web site is correct."
+msgstr ""
 
 msgid "Close the web browser, and try again."
 msgstr "Κλείστε το πρόγραμμα περιήγησης ιστού (web browser) και προσπαθήστε ξανά"
 
+msgid "Continue"
+msgstr ""
+
 msgid "Cookies may be disabled in the web browser."
 msgstr "Η λειτουργία cookie είναι απενεργοποιημένη στο πρόγραμμα περιήγησης ιστού."
 
+msgid "Do you want to logout from all the services above?"
+msgstr ""
+
+msgid "Enter your username and password"
+msgstr ""
+
+msgid "Error report sent"
+msgstr ""
+
 msgid "Go back to the previous page and try again."
 msgstr "Επιστρέψτε στην προηγούμενη σελίδα και προσπαθήστε ξανά."
+
+msgid "Help! I don't remember my password."
+msgstr ""
 
 msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
 msgstr "Μεταδεδομένα φιλοξενούμενου Παρόχου Ταυτότητας Shibboleth 1.3 (παράγονται αυτόματα)"
@@ -23,14 +52,62 @@ msgstr "Αν το πρόβλημα εξακολουθεί να υφίστατα�
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
 msgstr "Εάν είστε διαχειριστής της υπηρεσίας ταυτοποίησης και εξουσιοδότησης, τότε αντιμετωπίζετε κάποιο πρόβλημα με τη διαμόρφωση των μεταδεδομένων. Βεβαιωθείτε ότι τα μεταδεδομένα έχουν ρυθμιστεί σωστά τόσο στον πάροχο ταυτότητας όσο και στον πάροχο υπηρεσιών."
 
+msgid "If you are a developer who is deploying a single sign-on solution, you have are trying to reach an endpoint using the wrong HTTP-method."
+msgstr ""
+
 msgid "If you are a user who received this error after following a link on a site, you should report this error to the owner of that site."
 msgstr "Αν λάβατε αυτό το σφάλμα ακολουθώντας έναν σύνδεσμο σε κάποιον ιστότοπο, θα πρέπει να το αναφέρετε στον ιδιοκτήτη του εν λόγω ιστότοπου."
+
+msgid "If you are the administrator of this installation, please refer to the <a href=\"https://simplesamlphp.org/docs/\">SimpleSAMLphp documentation</a> for how to configure and interact with the software."
+msgstr ""
+
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr ""
+
+msgid "Incorrect Attributes"
+msgstr ""
+
+msgid "Logging out..."
+msgstr ""
+
+msgid "Login"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
 
 msgid "Missing cookie"
 msgstr "Πρόβλημα λειτουργίας cookie"
 
+msgid "No"
+msgstr ""
+
+msgid "No, only %SP%"
+msgstr ""
+
+msgid "One or more of the attributes supplied by your identity provider did not contain the expected number of values."
+msgstr ""
+
 msgid "Opened the web browser with tabs saved from the previous session."
 msgstr "Ανοίξατε το πρόγραμμα περιήγησης ιστού και επαναφέρατε καρτέλες προηγούμενης συνεδρίας."
+
+msgid "Organization"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Processing..."
+msgstr ""
+
+msgid "Remember me"
+msgstr ""
+
+msgid "Remember my organization"
+msgstr ""
+
+msgid "Remember my username"
+msgstr ""
 
 msgid "Report this error"
 msgstr "Αναφορά σφάλματος"
@@ -44,11 +121,35 @@ msgstr "Επανάληψη σύνδεσης"
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Παράδειγμα Παρόχου Υπηρεσιών Shibboleth 1.3 - δοκιμή εισόδου μέσω Παρόχου Ταυτότητας Shibboleth 1.3"
 
+msgid "SimpleSAMLphp"
+msgstr ""
+
 msgid "State information lost"
 msgstr "Δεν βρέθηκαν πληροφορίες κατάστασης"
 
 msgid "Suggestions for resolving this problem:"
 msgstr "Προτάσεις για την επίλυση αυτού του προβλήματος:"
+
+msgid "The authentication procesd has failed."
+msgstr ""
+
+msgid "The authorization procesd has failed."
+msgstr ""
+
+msgid "The error report has been sent to the administrators."
+msgstr ""
+
+msgid "The identification procesd has failed."
+msgstr ""
+
+msgid "The link used to get here was bad, perhaps a bookmark."
+msgstr ""
+
+msgid "The problematic attribute(s) are:"
+msgstr ""
+
+msgid "There was an issue while signing you in."
+msgstr ""
 
 msgid "This error may be caused by:"
 msgstr "Αυτό το σφάλμα μπορεί να προκύψει, εάν:"
@@ -56,8 +157,17 @@ msgstr "Αυτό το σφάλμα μπορεί να προκύψει, εάν:"
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
 msgstr "Αυτό υποδεικνύει πρόβλημα με τις ρυθμίσεις είτε του παρόχου υπηρεσιών είτε του παρόχου ταυτότητας."
 
+msgid "This is the front page of the SimpleSAMLphp authentication software. There's not much to see here."
+msgstr ""
+
 msgid "Too short interval between single sign on events."
 msgstr "Σύντομο χρονικό διάστημα μεταξύ διαδοχικών συνδέσεων."
+
+msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr ""
+
+msgid "Username"
+msgstr ""
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Μεταβήκατε πίσω και εμπρός στο ιστορικό του προγράμματος περιήγησης ιστού."
@@ -71,5 +181,26 @@ msgstr "Δεν ήταν δυνατό να εντοπιστούν πληροφο�
 msgid "Welcome"
 msgstr "Καλώς ορίσατε"
 
+msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
+msgstr ""
+
+msgid "Yes, all services"
+msgstr ""
+
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "Ενδέχεται τα cookie του προγράμματος περιήγησής σας να έχουν απενεργοποιηθεί. Παρακαλούμε ελέγξτε τις σχετικές ρυθμίσεις και και δοκιμάστε ξανά."
+
+msgid "You are also logged in on these services:"
+msgstr ""
+
+msgid "You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+
+msgid "You are now successfully logged out from %SP%."
+msgstr ""
+
+msgid "got %got% values, want %want%"
+msgstr ""
+
+msgid "logout is not supported"
+msgstr ""

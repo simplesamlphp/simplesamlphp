@@ -1,5 +1,10 @@
 msgid ""
 msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
 "X-Domain: admin\n"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:411
@@ -75,13 +80,14 @@ msgstr "Federation"
 msgid "Format"
 msgstr ""
 
+msgid "Go back to SimpleSAMLphp installation page"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:223
 msgid "Hashing function"
 msgstr ""
 
-msgid ""
-"Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long"
-" it lasts until it times out and all the attributes that are attached to your session."
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
 msgstr ""
 
 msgid "Hosted IdP metadata present"
@@ -115,6 +121,9 @@ msgstr ""
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:106
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:146
 msgid "Log out"
+msgstr ""
+
+msgid "Logged out"
 msgstr ""
 
 msgid "Logout"
@@ -243,6 +252,10 @@ msgstr ""
 msgid "Test Authentication Sources"
 msgstr ""
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:425
+msgid "The \"secretsalt\" configuration option may not contain a `%` sign."
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:355
 msgid "The <code>technicalcontact_email</code> configuration option should be set"
 msgstr ""
@@ -288,7 +301,13 @@ msgstr ""
 msgid "You can get the metadata XML on a dedicated URL:"
 msgstr ""
 
+msgid "You have been logged out."
+msgstr ""
+
 msgid "You have the following modules installed"
+msgstr ""
+
+msgid "Your PHP installation"
 msgstr ""
 
 msgid "Your attributes"
@@ -307,6 +326,9 @@ msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:280
 msgid "cURL (required if automatic version checks are used, also by some modules)"
+msgstr ""
+
+msgid "default"
 msgstr ""
 
 msgid "disabled"
