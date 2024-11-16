@@ -17,6 +17,10 @@ Released TBD
 * The ADFS-module has been disconnected from the SSP release. To continue to use it, the module has to be manually installed.
 * The ADFS-module was completely rewritten and now uses our own XML-libraries for building, signing and encrypting XML (v3.0.0)
 
+`ldap`
+
+* Add SASL-support (v2.4.0). Note that this required a newer version of symfony/ldap than the one packaged (v2.4.3)
+
 ## Version 2.3.0
 
 Released 2024-08-20
