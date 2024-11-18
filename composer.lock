@@ -1000,16 +1000,16 @@
         },
         {
             "name": "simplesamlphp/composer-module-installer",
-            "version": "v1.3.4",
+            "version": "v1.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/composer-module-installer.git",
-                "reference": "36508ed9580a30c4d5ab0bb3c25c00d0b5d42946"
+                "reference": "7bf413c2d28e48dff6755d74a7e45087cf144604"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/composer-module-installer/zipball/36508ed9580a30c4d5ab0bb3c25c00d0b5d42946",
-                "reference": "36508ed9580a30c4d5ab0bb3c25c00d0b5d42946",
+                "url": "https://api.github.com/repos/simplesamlphp/composer-module-installer/zipball/7bf413c2d28e48dff6755d74a7e45087cf144604",
+                "reference": "7bf413c2d28e48dff6755d74a7e45087cf144604",
                 "shasum": ""
             },
             "require": {
@@ -1037,9 +1037,9 @@
             "description": "A Composer plugin that allows installing SimpleSAMLphp modules through Composer.",
             "support": {
                 "issues": "https://github.com/simplesamlphp/composer-module-installer/issues",
-                "source": "https://github.com/simplesamlphp/composer-module-installer/tree/v1.3.4"
+                "source": "https://github.com/simplesamlphp/composer-module-installer/tree/v1.3.5"
             },
-            "time": "2023-03-08T20:58:22+00:00"
+            "time": "2024-11-16T09:42:27+00:00"
         },
         {
             "name": "simplesamlphp/composer-xmlprovider-installer",
@@ -1369,16 +1369,16 @@
         },
         {
             "name": "simplesamlphp/xml-security",
-            "version": "v1.9.5",
+            "version": "v1.9.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-security.git",
-                "reference": "91e31f5930305e84ad92d573faf817abc8ad09c9"
+                "reference": "a5ea684702b3a5e3c1ec255f727b7313a913bb4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/91e31f5930305e84ad92d573faf817abc8ad09c9",
-                "reference": "91e31f5930305e84ad92d573faf817abc8ad09c9",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-security/zipball/a5ea684702b3a5e3c1ec255f727b7313a913bb4e",
+                "reference": "a5ea684702b3a5e3c1ec255f727b7313a913bb4e",
                 "shasum": ""
             },
             "require": {
@@ -1390,7 +1390,7 @@
                 "ext-spl": "*",
                 "php": "^8.1",
                 "simplesamlphp/assert": "^1.3",
-                "simplesamlphp/xml-common": "^1.18"
+                "simplesamlphp/xml-common": "^1.18.5"
             },
             "require-dev": {
                 "simplesamlphp/simplesamlphp-test-framework": "^1.7"
@@ -1427,9 +1427,9 @@
             ],
             "support": {
                 "issues": "https://github.com/simplesamlphp/xml-security/issues",
-                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.9.5"
+                "source": "https://github.com/simplesamlphp/xml-security/tree/v1.9.6"
             },
-            "time": "2024-09-16T21:10:04+00:00"
+            "time": "2024-11-16T12:11:55+00:00"
         },
         {
             "name": "simplesamlphp/xml-soap",
@@ -2676,16 +2676,16 @@
         },
         {
             "name": "symfony/intl",
-            "version": "v6.4.14",
+            "version": "v6.4.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/intl.git",
-                "reference": "4e852ff0b0f9851a7ca543ff731686d9a46574d1"
+                "reference": "b1d5e8d82615b60f229216edfee0b59e2ef66da6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/intl/zipball/4e852ff0b0f9851a7ca543ff731686d9a46574d1",
-                "reference": "4e852ff0b0f9851a7ca543ff731686d9a46574d1",
+                "url": "https://api.github.com/repos/symfony/intl/zipball/b1d5e8d82615b60f229216edfee0b59e2ef66da6",
+                "reference": "b1d5e8d82615b60f229216edfee0b59e2ef66da6",
                 "shasum": ""
             },
             "require": {
@@ -2739,7 +2739,7 @@
                 "localization"
             ],
             "support": {
-                "source": "https://github.com/symfony/intl/tree/v6.4.14"
+                "source": "https://github.com/symfony/intl/tree/v6.4.15"
             },
             "funding": [
                 {
@@ -2755,7 +2755,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-11-05T15:34:40+00:00"
+            "time": "2024-11-08T15:28:48+00:00"
         },
         {
             "name": "symfony/password-hasher",
@@ -4141,16 +4141,16 @@
         },
         {
             "name": "twig/intl-extra",
-            "version": "v3.13.0",
+            "version": "v3.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/intl-extra.git",
-                "reference": "1b8d78c5db08bdc61015fd55009d2e84b3aa7e38"
+                "reference": "92a127a58857597acc6eca2e34d5ef90057dcc59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/intl-extra/zipball/1b8d78c5db08bdc61015fd55009d2e84b3aa7e38",
-                "reference": "1b8d78c5db08bdc61015fd55009d2e84b3aa7e38",
+                "url": "https://api.github.com/repos/twigphp/intl-extra/zipball/92a127a58857597acc6eca2e34d5ef90057dcc59",
+                "reference": "92a127a58857597acc6eca2e34d5ef90057dcc59",
                 "shasum": ""
             },
             "require": {
@@ -4189,7 +4189,7 @@
                 "twig"
             ],
             "support": {
-                "source": "https://github.com/twigphp/intl-extra/tree/v3.13.0"
+                "source": "https://github.com/twigphp/intl-extra/tree/v3.15.0"
             },
             "funding": [
                 {
@@ -4201,20 +4201,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-03T13:08:40+00:00"
+            "time": "2024-09-16T10:21:35+00:00"
         },
         {
             "name": "twig/twig",
-            "version": "v3.14.2",
+            "version": "v3.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "0b6f9d8370bb3b7f1ce5313ed8feb0fafd6e399a"
+                "reference": "2d5b3964cc21d0188633d7ddce732dc8e874db02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/0b6f9d8370bb3b7f1ce5313ed8feb0fafd6e399a",
-                "reference": "0b6f9d8370bb3b7f1ce5313ed8feb0fafd6e399a",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/2d5b3964cc21d0188633d7ddce732dc8e874db02",
+                "reference": "2d5b3964cc21d0188633d7ddce732dc8e874db02",
                 "shasum": ""
             },
             "require": {
@@ -4268,7 +4268,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.14.2"
+                "source": "https://github.com/twigphp/Twig/tree/v3.15.0"
             },
             "funding": [
                 {
@@ -4280,7 +4280,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-11-07T12:36:22+00:00"
+            "time": "2024-11-17T15:59:19+00:00"
         },
         {
             "name": "webmozart/assert",
