@@ -172,7 +172,7 @@ class Language
         );
 
         // @deprecated - remove entire if-block in a new major release
-        if (array_intersect(['pt-br', 'st', 'zh-tw'], $configuredAvailableLanguages)) {
+        if (array_intersect(['pt-br', 'zh-tw'], $configuredAvailableLanguages)) {
             Logger::warning(
                 "Deprecated locales found in `language.available`. "
                 . "Please replace 'pt-br' with 'pt_BR',"
