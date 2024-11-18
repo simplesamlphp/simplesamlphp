@@ -18,7 +18,7 @@ $metadata['https://saml2sp.example.org'] = [
             'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
         ],
     ],
-    'SingleLogoutService' =>  => [
+    'SingleLogoutService' => [
         [
             'Location' => 'https://saml2sp.example.org/module.php/saml/sp/saml2-logout.php/default-sp',
             'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
@@ -55,7 +55,7 @@ $metadata['google.com'] = [
 
 
 $metadata['https://legacy.example.edu'] = [
-    'AssertionConsumerService' =>  => [
+    'AssertionConsumerService' => [
         [
             'index' => 1,
             'isDefault' => true,
