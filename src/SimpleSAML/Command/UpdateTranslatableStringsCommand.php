@@ -70,6 +70,12 @@ class UpdateTranslatableStringsCommand extends Command
             'Include/exclude templates from themes directories of modules (default --no-themes)',
             false,
         );
+        $this->addOption(
+            'theme-controller',
+            null,
+            InputOption::VALUE_REQUIRED,
+            'Specify a custom TemplateControllerInterface class (usually for use with themes)',
+        );
     }
 
     /**
@@ -133,6 +139,17 @@ class UpdateTranslatableStringsCommand extends Command
 
         $phpScanner = new PhpScanner(...$translationDomains);
         $phpScanner->setFunctions(['trans' => 'gettext', 'noop' => 'gettext']);
+
+        if ($input->getOption('theme-controller') !== null) {
+            Configuration::setPreLoadedConfig(
+                Configuration::loadFromArray(
+                    array_merge(
+                        Configuration::getInstance()->toArray(),
+                        ['theme.controller' => $input->getOption('theme-controller'),],
+                    ),
+                ),
+            );
+        }
 
         $translationUtils = new Utils\Translate(Configuration::getInstance());
         $twigTranslations = [];
