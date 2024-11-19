@@ -22,6 +22,10 @@ Released TBD
 
 * Add SASL-support (v2.4.0). Note that this required a newer version of symfony/ldap than the one packaged (v2.4.3)
 
+`saml`
+
+* Stricter regexp to verify SubjectID/PairwiseID: disallow trailing spaces.
+
 ## Version 2.3.0
 
 Released 2024-08-20
