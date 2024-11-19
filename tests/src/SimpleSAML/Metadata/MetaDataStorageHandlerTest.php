@@ -223,7 +223,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
     {
         $config = [
             'metadata.sources' => [
-                ['type' => 'flatfile', 'directory' => __DIR__ . '/test-metadata/source3'],
+                ['type' => 'flatfile', 'directory' => __DIR__ . '/test-metadata/source4'],
             ],
         ];
 
