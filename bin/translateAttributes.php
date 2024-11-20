@@ -121,5 +121,6 @@ foreach (array_keys($languages) as $language) {
 
     $strings->setLanguage($language);
     echo "Saving translations to " . $base . "locales/" . $language . "/LC_MESSAGES/attributes.po\n";
+    $strings->setDomain("attributes");
     Gettext\Generators\Po::toFile($strings, $base . 'locales/' . $language . '/LC_MESSAGES/attributes.po');
 }
