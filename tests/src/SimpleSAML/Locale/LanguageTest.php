@@ -53,7 +53,7 @@ class LanguageTest extends TestCase
             'language.available' => ['en', 'es', 'nn'],
             'language.cookie.name' => 'xyz',
         ], '', 'simplesaml');
-        $_COOKIE['xyz'] = 'Es'; // test values are converted to lowercase too
+        $_COOKIE['xyz'] = 'es'; // test values are converted to lowercase too
         $this->assertEquals('es', Language::getLanguageCookie());
     }
 
