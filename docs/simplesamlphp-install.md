@@ -181,6 +181,7 @@ look like this:
 server {
     listen 443 ssl;
     server_name idp.example.com;
+    index index.php;
 
     ssl_certificate        /etc/pki/tls/certs/idp.example.com.crt;
     ssl_certificate_key    /etc/pki/tls/private/idp.example.com.key;
