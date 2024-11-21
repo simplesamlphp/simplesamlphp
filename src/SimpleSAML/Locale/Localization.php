@@ -12,7 +12,6 @@ namespace SimpleSAML\Locale;
 
 use Exception;
 use Gettext\Generator\ArrayGenerator;
-use Gettext\Loader\MoLoader;
 use Gettext\Loader\PoLoader;
 use Gettext\{Translations, Translator, TranslatorFunctions};
 use SimpleSAML\{Configuration, Logger};
