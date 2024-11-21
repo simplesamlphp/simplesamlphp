@@ -250,29 +250,20 @@ class Localization
             }
         }
 
-        $file = new File($langPath . $domain . '.mo', false);
+        $file = new File($langPath . $domain . '.po', false);
         if ($file->getRealPath() !== false && $file->isReadable()) {
-            $translations = (new MoLoader())->loadFile($file->getRealPath());
+            $translations = (new PoLoader())->loadFile($file->getRealPath());
             $arrayGenerator = new ArrayGenerator();
             $this->translator->addTranslations(
                 $arrayGenerator->generateArray($translations),
             );
         } else {
-            $file = new File($langPath . $domain . '.po', false);
-            if ($file->getRealPath() !== false && $file->isReadable()) {
-                $translations = (new PoLoader())->loadFile($file->getRealPath());
-                $arrayGenerator = new ArrayGenerator();
-                $this->translator->addTranslations(
-                    $arrayGenerator->generateArray($translations),
-                );
-            } else {
-                Logger::debug(sprintf(
-                    "%s - Localization file '%s' not found or not readable in '%s', falling back to default",
-                    $_SERVER['PHP_SELF'],
-                    $file->getfileName(),
-                    $langPath,
-                ));
-            }
+            Logger::debug(sprintf(
+                "%s - Localization file '%s' not found or not readable in '%s', falling back to default",
+                $_SERVER['PHP_SELF'],
+                $file->getfileName(),
+                $langPath,
+            ));
         }
     }
 
