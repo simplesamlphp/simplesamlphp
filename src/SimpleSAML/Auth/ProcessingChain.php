@@ -69,7 +69,7 @@ class ProcessingChain
      * @param array $spMetadata  The metadata for the SP.
      * @param string $mode
      */
-    public function __construct(array $idpMetadata, array $spMetadata, string $mode = 'idp')
+    public function __construct(array $idpMetadata, array $spMetadata, string $mode = 'idp', array $extraAuthprocs = null)
     {
         $config = Configuration::getInstance();
         $configauthproc = $config->getOptionalArray('authproc.' . $mode, null);
@@ -87,6 +87,11 @@ class ProcessingChain
         if (array_key_exists('authproc', $spMetadata)) {
             $spFilters = self::parseFilterList($spMetadata['authproc']);
             self::addFilters($this->filters, $spFilters);
+        }
+
+        if (($extraAuthprocs !== null) && array_key_exists('authproc', $extraAuthprocs)) {
+            $extraFilters = self::parseFilterList($extraAuthprocs['authproc']);
+            self::addFilters($this->filters, $extraFilters);
         }
 
         Logger::debug('Filter config for ' . $idpMetadata['entityid'] . '->' .
