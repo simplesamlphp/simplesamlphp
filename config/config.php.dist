@@ -1131,6 +1131,21 @@ $config = [
      *     ['type' => 'xml', 'file' => 'idp.example.org-idpMeta.xml'],
      * ],
      *
+     * This example defines a remote xml-file with optional connection context.
+     * See PHP documentation for possible context options: https://www.php.net/manual/en/context.php
+     *
+     * 'metadata.sources' => [
+     *     [
+     *         'type' => 'xml',
+     *         'url' => 'https://example.org/idp.example.org-idpMeta.xml',
+     *         'context' => [
+     *             'ssl' => [
+     *                 'verify_peer' => true,
+     *             ],
+     *         ],
+     *     ],
+     * ],
+     *
      * This example defines an mdq source.
      * 'metadata.sources' => [
      *      [

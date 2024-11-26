@@ -300,11 +300,12 @@ class SAMLParser
      * instance.
      *
      * @param string $file The path to the file which contains the EntityDescriptor or EntitiesDescriptor element.
+     * @param array $context The connection context to pass to file_get_contents()
      *
      * @return SAMLParser[] An array of SAMLParser instances.
      * @throws \Exception If the file does not parse as XML.
      */
-    public static function parseDescriptorsFile(string $file): array
+    public static function parseDescriptorsFile(string $file, array $context = []): array
     {
         if (empty($file)) {
             throw new Exception('Cannot open file; file name not specified.');
@@ -312,7 +313,7 @@ class SAMLParser
 
         /** @var string $data */
         $httpUtils = new Utils\HTTP();
-        $data = $httpUtils->fetch($file);
+        $data = $httpUtils->fetch($file, $context);
 
         try {
             $doc = DOMDocumentFactory::fromString($data);
