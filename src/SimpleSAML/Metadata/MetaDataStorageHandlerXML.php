@@ -43,11 +43,16 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
         parent::__construct();
 
         $src = $srcXml = null;
+        $context = [];
         if (array_key_exists('file', $config)) {
             // get the configuration
             $src = $globalConfig->resolvePath($config['file']);
         } elseif (array_key_exists('url', $config)) {
             $src = $config['url'];
+            if (array_key_exists('context', $config)) {
+                Assert::isArray($config['context']);
+                $context = $config['context'];
+            }
         } elseif (array_key_exists('xml', $config)) {
             $srcXml = $config['xml'];
         } else {
@@ -60,7 +65,7 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
         $AAD = [];
 
         if (isset($src)) {
-            $entities = SAMLParser::parseDescriptorsFile($src);
+            $entities = SAMLParser::parseDescriptorsFile($src, $context);
         } elseif (isset($srcXml)) {
             $entities = SAMLParser::parseDescriptorsString($srcXml);
         } else {
