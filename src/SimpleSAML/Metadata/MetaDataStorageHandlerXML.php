@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata;
 
 use Exception;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 
 use function array_key_exists;
