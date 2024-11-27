@@ -1207,9 +1207,14 @@ class Configuration implements Utils\ClearableState
             return [];
         }
 
-
         $eps = $this->configuration[$endpointType];
-        Assert::isArray($eps, Error\CriticalConfigurationError::class);
+        if (!is_array($eps)) {
+            $filename = explode('/', $loc)[0];
+            throw new Error\CriticalConfigurationError(
+                "Endpoint of type $endpointType is not an array in $loc.",
+                $filename
+            );
+        }
 
         $eps_count = count($eps);
 
