@@ -1212,7 +1212,7 @@ class Configuration implements Utils\ClearableState
             $filename = explode('/', $loc)[0];
             throw new Error\CriticalConfigurationError(
                 "Endpoint of type $endpointType is not an array in $loc.",
-                $filename
+                $filename,
             );
         }
 
