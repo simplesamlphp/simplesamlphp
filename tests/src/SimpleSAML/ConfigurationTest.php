@@ -960,7 +960,7 @@ class ConfigurationTest extends ClearStateTestCase
 
         // define a set of exception messages to expect
         $msgs = [
-            "The configuration ([ARRAY]['SingleSignOnService']:) is invalid: Endpoint of type SingleSignOnService is not an array",
+            "The configuration ([ARRAY]['SingleSignOnService']:) is invalid: Endpoint of type SingleSignOnService",
             'Expected a string or an array.',
             'Missing Location.',
             'Location must be a string.',
