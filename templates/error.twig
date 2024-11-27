@@ -29,10 +29,8 @@
     {% if showerrors -%}
         <h2>{{'Debug information' | trans}}</h2>
         <p>{{'The debug information below may be of interest to the administrator / help desk:' | trans}}</p>
-        <div class="code-box code-box-content">
-            <pre>{{ error.exceptionMsg }}<br />{{ error.exceptionTrace }}
-            </pre>
-        </div>
+        <p class="message-box error"><tt>{{ error.exceptionMsg }}</tt></p>
+        <div class="code-box code-box-content"><pre>{{ error.exceptionTrace }}</pre></div>
     {%- endif %}
 
     {# Add error report submit section if we have a valid technical contact. 'errorreportaddress' will only be set if
