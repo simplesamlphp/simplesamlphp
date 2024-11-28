@@ -582,6 +582,8 @@ class SP extends \SimpleSAML\Auth\Source
         if ($this->disable_scoping !== true && $idpMetadata->getOptionalBoolean('disable_scoping', false) !== true) {
             if (isset($state['IDPList'])) {
                 $ar->setIDPList($state['IDPList']);
+            } elseif (isset($state['saml:IDPList'])) {
+                $ar->setIDPList($state['saml:IDPList']);
             } elseif (!empty($this->metadata->getOptionalArray('IDPList', []))) {
                 $ar->setIDPList($this->metadata->getArray('IDPList'));
             } elseif (!empty($idpMetadata->getOptionalArray('IDPList', []))) {
