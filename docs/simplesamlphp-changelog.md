@@ -10,7 +10,7 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 Released TBD
 
 * Attributes translations are now in the "attributes" domain (#2328).
-* Add `index` directive to Nginx example configration (#2329).
+* Add `index` directive to Nginx example configuration (#2329).
 * Better error message when using legacy endpoints format (#2335).
 * Some minor improvements to the changes in 2.3.3.
 
