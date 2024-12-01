@@ -476,7 +476,7 @@ class SPTest extends ClearStateTestCase
     public function testSPIdpListScoping(): void
     {
         $ar = $this->createAuthnRequest([
-            'IDPList' => ['https://scope.example.com'],
+            'saml:IDPList' => ['https://scope.example.com'],
         ]);
 
         $this->assertContains(
@@ -542,7 +542,7 @@ class SPTest extends ClearStateTestCase
         $info = ['AuthId' => 'default-sp'];
         $state = [];
         if (isset($stateIdpList)) {
-            $state['IDPList'] = $stateIdpList;
+            $state['saml:IDPList'] = $stateIdpList;
         }
 
         $config = ['entityID' => 'urn:x-simplesamlphp:example-sp'];

@@ -5,9 +5,20 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.3.4
+## Version 2.3.5
 
 Released TBD
+
+## Version 2.3.4
+
+Released 2024-12-02
+
+`Security`
+
+* A security bug was patched in the `saml2-library` that allowed for XXE during the parsing
+  of SAML2-messages (CVE-2024-52596)
+
+`Other fixes`
 
 * Attributes translations are now in the "attributes" domain (#2328).
 * Add `index` directive to Nginx example configuration (#2329).

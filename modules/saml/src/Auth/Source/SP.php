@@ -580,8 +580,8 @@ class SP extends \SimpleSAML\Auth\Source
 
         /* Only check for real info for Scoping element if we are going to send Scoping element */
         if ($this->disable_scoping !== true && $idpMetadata->getOptionalBoolean('disable_scoping', false) !== true) {
-            if (isset($state['IDPList'])) {
-                $ar->setIDPList($state['IDPList']);
+            if (isset($state['saml:IDPList'])) {
+                $ar->setIDPList($state['saml:IDPList']);
             } elseif (!empty($this->metadata->getOptionalArray('IDPList', []))) {
                 $ar->setIDPList($this->metadata->getArray('IDPList'));
             } elseif (!empty($idpMetadata->getOptionalArray('IDPList', []))) {
