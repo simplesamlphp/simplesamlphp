@@ -98,7 +98,7 @@ The following attributes are available:
 
 `AssertionConsumerService`
 :   List of Assertion Consumer Services in the generated metadata. Specified in the format detailed in the
-    [Metadata endpoints](./simplesamlphp-metadata-endpoints) documentation. 
+    [Metadata endpoints](./simplesamlphp-metadata-endpoints) documentation.
     Note that this list is taken at face value, so it's not useful to list
     anything here that the SP auth source does not actually support (unless the URLs point
     externally).
