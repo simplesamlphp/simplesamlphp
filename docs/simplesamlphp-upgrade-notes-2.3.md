@@ -32,7 +32,7 @@ The use of plain-text admin-passwords has been deprecated. Generate a secure has
 - The language codes `pt-br` and `zh-tw` have been renamed to `pt_BR` and `zh_TW`.
   Please update your configuration to match the new names.
 
-- Endpoints are now only accepted in array-style. The old string-style was deprecated for 9 yrs
-  already and was broken anyway. See [endpoints]
+- Endpoints in metadata (e.g. "SingleSignOnLocation" and "AssertionCosumerService") can no longer be simple strings and are now only accepted in array-style. The old string-style was deprecated for 9 yrs
+  already and was broken anyway. See [endpoints] for the current format.
 
 [endpoints]: https://simplesamlphp.org/docs/stable/simplesamlphp-metadata-endpoints.html
