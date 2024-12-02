@@ -5,6 +5,13 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 2.0.15
+
+Released 2024-12-02
+
+* A security bug was patched in the `saml2-library` that allowed for XXE during the parsing
+  of SAML2-messages (CVE-2024-52596)
+
 ## Version 2.0.14
 
 Released 2024-10-30

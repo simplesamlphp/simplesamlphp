@@ -113,5 +113,5 @@
             "phpstan/extension-installer": true
         }
     },
-    "version": "v2.0.14"
+    "version": "v2.0.15"
 }
