@@ -5,9 +5,15 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.3.5
+## Version 2.3.6
 
 Released TBD
+
+## Version 2.3.5
+
+Released 2024-12-02
+
+* Fix a regression that would cause the translations for modules to revert to English
 
 ## Version 2.3.4
 
