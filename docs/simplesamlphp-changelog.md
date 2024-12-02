@@ -12,6 +12,7 @@ Released TBD
 * Added a new feature flag `encryption.optional` to allow unencrypted assertions if the SP does
   not provide an encryption certificate (#2208)
 * Make translations tool theme-aware (#2315)
+* Fixed build-workflow to only re-build the website once
 
 `adfs`
 
