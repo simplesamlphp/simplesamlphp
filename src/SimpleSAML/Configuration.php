@@ -1315,7 +1315,7 @@ class Configuration implements Utils\ClearableState
      */
     public function getDefaultEndpoint(
         string $endpointType,
-        array $bindings = null,
+        ?array $bindings = null,
         mixed $default = self::REQUIRED_OPTION,
     ): mixed {
         $endpoints = $this->getEndpoints($endpointType);

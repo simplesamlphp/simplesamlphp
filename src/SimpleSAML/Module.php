@@ -156,7 +156,7 @@ class Module
      * @throws Error\BadRequest In case the request URI is malformed.
      * @throws Error\NotFound In case the request URI is invalid or the resource it points to cannot be found.
      */
-    public static function process(Request $request = null): Response
+    public static function process(?Request $request = null): Response
     {
         if ($request === null) {
             $request = Request::createFromGlobals();
