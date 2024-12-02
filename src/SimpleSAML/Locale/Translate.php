@@ -94,7 +94,7 @@ class Translate
 
                     // try attributes.po
                     if ($text === $original) {
-                        $text = TranslatorFunctions::getTranslator()->dgettext("attributes", $original);
+                        $text = TranslatorFunctions::getTranslator()->dgettext("", $original);
                     }
                 }
             }

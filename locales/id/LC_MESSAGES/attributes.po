@@ -9,7 +9,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Domain: attributes\n"
 
 msgid "aRecord"
 msgstr "aRecord"
