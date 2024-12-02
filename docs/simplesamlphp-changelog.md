@@ -9,6 +9,7 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+* PHP 8.4 support
 * Added a new feature flag `encryption.optional` to allow unencrypted assertions if the SP does
   not provide an encryption certificate (#2208)
 * Make translations tool theme-aware (#2315)
@@ -16,8 +17,13 @@ Released TBD
 
 `adfs`
 
+* PHP 8.4 support
 * The ADFS-module has been disconnected from the SSP release. To continue to use it, the module has to be manually installed.
 * The ADFS-module was completely rewritten and now uses our own XML-libraries for building, signing and encrypting XML (v3.0.0)
+
+`authcrypt`
+
+* PHP 8.4 support
 
 `ldap`
 
