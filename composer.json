@@ -114,7 +114,9 @@
             "composer/package-versions-deprecated": true,
             "simplesamlphp/composer-module-installer": true,
             "muglug/package-versions-56": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "simplesamlphp/composer-xmlprovider-installer": true,
+            "phpstan/extension-installer": true
         }
     },
     "extra": {
@@ -133,5 +135,5 @@
             "php bin/translations translations:update:binary"
         ]
     },
-    "version": "v2.1.6"
+    "version": "v2.1.7"
 }

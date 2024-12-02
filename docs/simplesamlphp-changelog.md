@@ -9,6 +9,17 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+## Version 2.1.6
+
+Released 2024-12-02
+
+`Security`
+
+* A security bug was patched in the `saml2-library` that allowed for XXE during the parsing
+  of SAML2-messages (CVE-2024-52596)
+
+`Other fixes`
+
 * Added a missing use-statement that would cause a 'class not found' exception.
 * Restore the possibility to set `trusted.url.domains` to null
 * Fix typo that caused the metadata file-upload to be hidden (#2271)
