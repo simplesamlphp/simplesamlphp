@@ -122,8 +122,8 @@ class Localization
      * (We're assuming that each domain only exists in one place)
      *
      * @param string $module Module name
-     * @param string $localeDir Absolute path if the module is housed elsewhere
-     * @param string $domain Translation domain within module; defaults to module name
+     * @param string|null $localeDir Absolute path if the module is housed elsewhere
+     * @param string|null $domain Translation domain within module; defaults to module name
      */
     public function addModuleDomain(string $module, ?string $localeDir = null, ?string $domain = null): void
     {

@@ -156,7 +156,7 @@ class Module
      * configuration and the actual request, it will run a PHP script and exit, or return a Response produced either
      * by another controller or by a static file.
      *
-     * @param Request|null $request The request to process. Defaults to the current one.
+     * @param \Symfony\Component\HttpFoundation\Request|null $request The request to process. Defaults to the current one.
      *
      * @return Response|BinaryFileResponse Returns a Response object that can be sent to the browser.
      * @throws Error\BadRequest In case the request URI is malformed.

@@ -357,7 +357,7 @@ class HTTP
      * Check if a URL is valid and is in our list of allowed URLs.
      *
      * @param string $url The URL to check.
-     * @param string[] $trustedSites An optional white list of domains. If none specified, the 'trusted.url.domains'
+     * @param string[]|null $trustedSites An optional white list of domains. If none specified, the 'trusted.url.domains'
      * configuration directive will be used.
      *
      * @return string The normalized URL itself if it is allowed. An empty string if the $url parameter is empty as
@@ -998,7 +998,7 @@ class HTTP
      * - The rest: Relative to the base path.
      *
      * @param string $url The relative URL.
-     * @param string $base The base URL. Defaults to the base URL of this installation of SimpleSAMLphp.
+     * @param string|null $base The base URL. Defaults to the base URL of this installation of SimpleSAMLphp.
      *
      * @return string An absolute URL for the given relative URL.
      * @throws \InvalidArgumentException If the base URL cannot be parsed into a valid URL, or the given parameters
@@ -1071,8 +1071,8 @@ class HTTP
      * Set a cookie.
      *
      * @param string      $name The name of the cookie.
-     * @param string|NULL $value The value of the cookie. Set to NULL to delete the cookie.
-     * @param array|NULL  $params Cookie parameters.
+     * @param string|null $value The value of the cookie. Set to NULL to delete the cookie.
+     * @param array|null  $params Cookie parameters.
      * @param bool        $throw Whether to throw exception if setcookie() fails.
      *
      * @throws \InvalidArgumentException If any parameter has an incorrect type.
