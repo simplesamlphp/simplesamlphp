@@ -2,7 +2,6 @@
 <?php
 
 use SimpleSAML\Command\UnusedTranslatableStringsCommand;
-use SimpleSAML\Command\UpdateBinaryTranslationsCommand;
 use SimpleSAML\Command\UpdateTranslatableStringsCommand;
 use Symfony\Component\Console\Application;
 
@@ -17,6 +16,5 @@ if (str_ends_with(__DIR__, '/vendor/simplesamlphp/simplesamlphp/bin')) {
 
 $application = new Application();
 $application->add(new UnusedTranslatableStringsCommand());
-$application->add(new UpdateBinaryTranslationsCommand());
 $application->add(new UpdateTranslatableStringsCommand());
 $application->run();
