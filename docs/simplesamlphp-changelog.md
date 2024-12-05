@@ -25,6 +25,10 @@ Released TBD
 
 * PHP 8.4 support
 
+`discopower`
+
+*  Hide tab list when there's only one tab (simplesamlphp/simplesamlphp-module-discopower#27) (v1.5.0)
+
 `ldap`
 
 * Add SASL-support (v2.4.0). Note that this required a newer version of symfony/ldap than the one packaged (v2.4.3)
