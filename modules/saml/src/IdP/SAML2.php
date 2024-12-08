@@ -1206,6 +1206,11 @@ class SAML2
         $audiences = array_map(fn($audience): Audience => new Audience($audience), $audiences);
         $a->setValidAudiences($audiences);
 
+        $issuer = new Issuer();
+        $issuer->setValue($state['IdPMetadata']['entityid']);
+        $issuer->setFormat(Constants::NAMEID_ENTITY);
+        $a->setIssuer($issuer);
+
         $a->setNotBefore(time() - 30);
 
         $assertionLifetime = $spMetadata->getOptionalInteger('assertion.lifetime', null);
