@@ -1141,7 +1141,7 @@ class SAML2
         }
 
         $issuer = new Issuer();
-        $issuer->setValue($idpMetadata->getString('entityid'));
+        $issuer->setValue($state['IdPMetadata']['entityid']);
         $issuer->setFormat(Constants::NAMEID_ENTITY);
         $a->setIssuer($issuer);
 
