@@ -14,6 +14,7 @@ Released TBD
   not provide an encryption certificate (#2208)
 * Make translations tool theme-aware (#2315)
 * Fixed build-workflow to only re-build the website once
+* Bugfix: Use entityID from state to allow overriding the issuer (#2345)
 
 `adfs`
 
@@ -37,6 +38,7 @@ Released TBD
 `saml`
 
 * Stricter regexp to verify SubjectID/PairwiseID: disallow trailing spaces.
+* Feature: Add authproc-filter to be able to manipulate the Assertion's Issuer (#2346)
 
 ## Version 2.3.0
 
