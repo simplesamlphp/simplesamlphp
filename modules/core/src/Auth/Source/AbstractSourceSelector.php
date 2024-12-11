@@ -73,7 +73,7 @@ abstract class AbstractSourceSelector extends Auth\Source
      * @param \SimpleSAML\Auth\Source $as
      * @param array $state
      */
-    public static function doAuthentication(Request $request, Auth\Source $as, array $state): ?Response
+    public static function doAuthentication(Request $request, Auth\Source $as, array &$state): ?Response
     {
         try {
             $response = $as->authenticate($request, $state);
