@@ -71,7 +71,7 @@ abstract class AbstractSourceSelector extends Auth\Source
      * @param array $state
      * @return void
      */
-    public static function doAuthentication(Auth\Source $as, array $state): void
+    public static function doAuthentication(Auth\Source $as, &array $state): void
     {
         try {
             $as->authenticate($state);

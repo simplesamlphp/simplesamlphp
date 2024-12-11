@@ -93,6 +93,7 @@ class SourceIPSelector extends AbstractSourceSelector
         $ip = Request::createFromGlobals()->getClientIp();
         Assert::notNull($ip, "Unable to determine client IP.");
 
+        $state['sourceIPSelector:zone'] = 'default';
         $source = $this->defaultSource;
         foreach ($this->zones as $name => $zone) {
             foreach ($zone['subnet'] as $subnet) {
