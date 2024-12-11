@@ -6,10 +6,8 @@ namespace SimpleSAML\Test\Module\saml\Auth\Process;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Error;
 use SimpleSAML\Module\saml\Auth\Process\AttributeNameID;
 use SimpleSAML\SAML2\Constants as C;
-use SimpleSAML\SAML2\XML\saml\NameID;
 
 /**
  * Test for the AttributeNameID filter.
@@ -65,7 +63,7 @@ class AttributeNameIDTest extends TestCase
         $this->assertNotNull($result['saml:NameID']);
         $resultNameId = $result['saml:NameID'][C::NAMEID_PERSISTENT];
         $this->assertNotNull($resultNameId);
-        $this->assertEquals($expectedEmail,$resultNameId->toArray()['value']);
+        $this->assertEquals($expectedEmail, $resultNameId->toArray()['value']);
     }
 
 
@@ -100,7 +98,7 @@ class AttributeNameIDTest extends TestCase
         $this->assertNotNull($result['saml:NameID']);
         $resultNameId = $result['saml:NameID'][C::NAMEID_PERSISTENT];
         $this->assertNotNull($resultNameId);
-        $this->assertEquals($expectedEmail,$resultNameId->toArray()['value']);
+        $this->assertEquals($expectedEmail, $resultNameId->toArray()['value']);
     }
 
 
@@ -134,5 +132,4 @@ class AttributeNameIDTest extends TestCase
         $result = $this->processFilter($config, $request);
         $this->assertNull($result['saml:NameID']);
     }
-
 }
