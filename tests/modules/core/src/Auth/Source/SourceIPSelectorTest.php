@@ -118,7 +118,7 @@ class SourceIPSelectorTest extends TestCase
              * @param array $state
              * @return \Symfony\Component\HttpFoundation\Response|null
              */
-            public static function doAuthentication(Request $request, Auth\Source $as, array $state): ?Response
+            public static function doAuthentication(Request $request, Auth\Source $as, array &$state): ?Response
             {
                 // Dummy
                 return null;
