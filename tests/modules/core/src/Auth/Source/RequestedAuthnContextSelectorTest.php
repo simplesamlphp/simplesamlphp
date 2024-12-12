@@ -94,7 +94,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
              * @param array $state
              * @return void
              */
-            public static function doAuthentication(Auth\Source $as, array $state): void
+            public static function doAuthentication(Auth\Source $as, array &$state): void
             {
                 // Dummy
             }
@@ -120,7 +120,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
              * @param array $state
              * @return void
              */
-            public static function doAuthentication(Auth\Source $as, array $state): void
+            public static function doAuthentication(Auth\Source $as, array &$state): void
             {
                 // Dummy
             }
@@ -147,7 +147,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
              * @param array $state
              * @return void
              */
-            public static function doAuthentication(Auth\Source $as, array $state): void
+            public static function doAuthentication(Auth\Source $as, array &$state): void
             {
                 // Dummy
             }
@@ -202,7 +202,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
              * @param array $state
              * @return void
              */
-            public static function doAuthentication(Auth\Source $as, array $state): void
+            public static function doAuthentication(Auth\Source $as, array &$state): void
             {
                 // Dummy
             }
