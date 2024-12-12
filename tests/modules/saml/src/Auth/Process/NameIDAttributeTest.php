@@ -40,8 +40,8 @@ class NameIDAttributeTest extends TestCase
     public function testMinimalConfig(): void
     {
         $config = [];
-        $spId = 'eugene:SP';
-        $idpId = 'eugene:IdP';
+        $spId = 'urn:x-simplesamlphp:sp';
+        $idpId = 'urn:x-simplesamlphp:idp';
 
 
         $nameId = new NameID(
@@ -72,8 +72,8 @@ class NameIDAttributeTest extends TestCase
     {
         $attributeName = 'eugeneNameIDAttribute';
         $config = ['attribute' => $attributeName];
-        $spId = 'eugene:SP';
-        $idpId = 'eugene:IdP';
+        $spId = 'urn:x-simplesamlphp:sp';
+        $idpId = 'urn:x-simplesamlphp:idp';
 
         $nameId = new NameID(
             value: 'eugene@oombaas',
@@ -103,8 +103,8 @@ class NameIDAttributeTest extends TestCase
     public function testFormat(): void
     {
         $config = ['format' => '%V!%%'];
-        $spId = 'eugene:SP';
-        $idpId = 'eugene:IdP';
+        $spId = 'urn:x-simplesamlphp:sp';
+        $idpId = 'urn:x-simplesamlphp:idp';
 
         $nameId = new NameID(
             value: 'eugene@oombaas',
@@ -133,8 +133,8 @@ class NameIDAttributeTest extends TestCase
     public function testInvalidFormatThrowsException(): void
     {
         $config = ['format' => '%X'];
-        $spId = 'eugene:SP';
-        $idpId = 'eugene:IdP';
+        $spId = 'urn:x-simplesamlphp:sp';
+        $idpId = 'urn:x-simplesamlphp:idp';
 
         $nameId = new NameID('eugene@oombaas');
 
@@ -161,8 +161,8 @@ class NameIDAttributeTest extends TestCase
     public function testInvalidRequestLeavesStateUntouched(): void
     {
         $config = ['format' => '%V!%F'];
-        $spId = 'eugene:SP';
-        $idpId = 'eugene:IdP';
+        $spId = 'urn:x-simplesamlphp:sp';
+        $idpId = 'urn:x-simplesamlphp:idp';
 
         $request = [
             'Source'     => [
@@ -186,8 +186,8 @@ class NameIDAttributeTest extends TestCase
     {
         $attributeName = 'eugeneNameIDAttribute';
         $config = ['attribute' => $attributeName, 'format' => '%V'];
-        $spId = 'eugene:SP';
-        $idpId = 'eugene:IdP';
+        $spId = 'urn:x-simplesamlphp:sp';
+        $idpId = 'urn:x-simplesamlphp:idp';
 
         $nameId = new NameID(
             value: 'eugene@oombaas',
@@ -216,8 +216,8 @@ class NameIDAttributeTest extends TestCase
      */
     public function testOverrideNameID(): void
     {
-        $spId = 'eugene:SP';
-        $idpId = 'eugene:IdP';
+        $spId = 'urn:x-simplesamlphp:sp';
+        $idpId = 'urn:x-simplesamlphp:idp';
 
         $nameId = new NameID('eugene@oombaas');
 
