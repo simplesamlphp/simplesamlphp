@@ -24,7 +24,12 @@ $metadata['urn:x-simplesamlphp:example-idp'] = [
      */
     'auth' => 'example-userpass',
 
-    /* Uncomment the following to use the uri NameFormat on attributes. */
+    /* The default attribute NameFormat is the uri NameFormat.
+       To convert friendly names to urn, uncomment the below authproc.
+
+       Refer to https://simplesamlphp.org/docs/stable/simplesamlphp-reference-idp-hosted.html
+       for other NameFormat options.
+    */
     /*
     'attributes.NameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
     'authproc' => [
