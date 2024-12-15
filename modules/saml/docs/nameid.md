@@ -32,7 +32,8 @@ Uses the value of an attribute to generate a NameID.
 `identifyingAttributes`
 :   An array of attribute names to consider for the unique user ID.
 :   The first attribute found in this array that's being released to the SP
-:   will be used.
+:   will be used. Note that using this option means you must not also use 
+:   identifyingAttribute.
 
 `Format`
 :   The `Format` attribute of the generated NameID.
