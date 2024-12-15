@@ -38,8 +38,8 @@ class AttributeNameIDTest extends TestCase
     public function testMinimalConfig(): void
     {
         $config = [];
-        $spId = 'eugen:sp';
-        $idpId = 'eugene:idp';
+        $spId = 'urn:x-simplesamlphp:sp';
+        $idpId = 'urn:x-simplesamlphp:idp';
         $expectedEmail = 'foo@there';
 
         $config = [
@@ -73,8 +73,8 @@ class AttributeNameIDTest extends TestCase
     public function testSuccessInThirdElement(): void
     {
         $config = [];
-        $spId = 'eugen:sp';
-        $idpId = 'eugene:idp';
+        $spId = 'urn:x-simplesamlphp:sp';
+        $idpId = 'urn:x-simplesamlphp:idp';
         $expectedEmail = 'foo@there';
 
         $config = [
@@ -108,8 +108,8 @@ class AttributeNameIDTest extends TestCase
     public function testNotFound(): void
     {
         $config = [];
-        $spId = 'eugen:sp';
-        $idpId = 'eugene:idp';
+        $spId = 'urn:x-simplesamlphp:sp';
+        $idpId = 'urn:x-simplesamlphp:idp';
         $expectedEmail = 'foo@there';
 
         $config = [
