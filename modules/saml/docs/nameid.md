@@ -29,6 +29,12 @@ Uses the value of an attribute to generate a NameID.
 `identifyingAttribute`
 :   The name of the attribute we should use as the unique user ID.
 
+`identifyingAttributes`
+:   An array of attribute names to consider for the unique user ID.
+:   The first attribute found in this array that's being released to the SP
+:   will be used. Note that using this option means you must not also use
+:   identifyingAttribute.
+
 `Format`
 :   The `Format` attribute of the generated NameID.
 
@@ -113,7 +119,7 @@ This example makes three NameIDs available:
         ],
         3 => [
             'class' => 'saml:AttributeNameID',
-            'identifyingAttribute' => 'mail',
+            'identifyingAttributes' => ['mail','eduPersonPrincipalName'],
             'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
         ],
     ],
