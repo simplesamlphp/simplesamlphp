@@ -15,6 +15,7 @@ use function array_fill_keys;
 use function array_intersect;
 use function array_intersect_key;
 use function array_key_exists;
+use function array_key_first;
 use function array_keys;
 use function array_merge;
 use function preg_match;
@@ -556,17 +557,17 @@ class IdPDisco
             $idpList = array_intersect_key($idpList, array_fill_keys($idpintersection, null));
         }
 
-        $idpintersection = array_values($idpintersection);
         $httpUtils = new Utils\HTTP();
 
-        if (sizeof($idpintersection) == 1) {
+        if (sizeof($idpList) === 1) {
+            $selectedIdP = array_key_first($idpList);
             $this->log(
-                'Choice made [' . $idpintersection[0] . '] (Redirecting the user back. returnIDParam=' .
+                'One candidate IdP, not showing discovery [' . $selectedIdP . '] (Redirecting the user back. returnIDParam=' .
                 $this->returnIdParam . ')',
             );
             $httpUtils->redirectTrustedURL(
                 $this->returnURL,
-                [$this->returnIdParam => $idpintersection[0]],
+                [$this->returnIdParam => $selectedIdP],
             );
         }
 
