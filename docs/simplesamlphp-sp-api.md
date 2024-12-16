@@ -35,7 +35,7 @@ source that should be used. This authentication source must exist in
 authentication methods such as `ldap:Ldap` and `sqlauth` are defined
 in `config/authsources.php` but those are only to be used by an IdP.
 A normal setup would have your application talking to an SP, that SP
-talking with an IdP, and that IdP using an authentication method to 
+talking with an IdP, and that IdP using an authentication method to
 authenticate the user.
 
 `Example`:
