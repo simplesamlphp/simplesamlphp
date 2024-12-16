@@ -29,8 +29,14 @@ The constructor initializes a \SimpleSAML\Auth\Simple object.
 
 `Parameters`:
 
-It has a single parameter, which is the ID of the authentication source that should be used.
-This authentication source must exist in `config/authsources.php`.
+It has a single parameter, which is the ID of the authentication
+source that should be used. This authentication source must exist in
+`config/authsources.php` and be of type saml:SP. Note that
+authentication methods such as `ldap:Ldap` and `sqlauth` are defined
+in `config/authsources.php` but those are only to be used by an IdP.
+A normal setup would have your application talking to an SP, that SP
+talking with an IdP, and that IdP using an authentication method to
+authenticate the user.
 
 `Example`:
 
