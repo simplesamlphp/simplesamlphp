@@ -63,7 +63,7 @@ class AttributeNameIDTest extends TestCase
         $this->assertNotNull($result['saml:NameID']);
         $resultNameId = $result['saml:NameID'][C::NAMEID_PERSISTENT];
         $this->assertNotNull($resultNameId);
-        $this->assertEquals($expectedEmail, $resultNameId->toArray()['value']);
+        $this->assertEquals($expectedEmail, $resultNameId->getValue());
     }
 
 
@@ -98,7 +98,7 @@ class AttributeNameIDTest extends TestCase
         $this->assertNotNull($result['saml:NameID']);
         $resultNameId = $result['saml:NameID'][C::NAMEID_PERSISTENT];
         $this->assertNotNull($resultNameId);
-        $this->assertEquals($expectedEmail, $resultNameId->toArray()['value']);
+        $this->assertEquals($expectedEmail, $resultNameId->getValue());
     }
 
 
