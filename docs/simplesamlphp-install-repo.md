@@ -3,6 +3,11 @@ Installing SimpleSAMLphp from the repository
 
 These are some notes about running SimpleSAMLphp from the repository.
 
+Prerequisites
+-------------
+
+Review the [prerequisites](simplesamlphp-install) from the main installation guide.
+
 Installing from git
 -------------------
 
