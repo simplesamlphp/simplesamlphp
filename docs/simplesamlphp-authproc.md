@@ -23,6 +23,7 @@ Examples of neat things to do using Authentication Processing Filters:
 * On the SP: Specific for only one remote IdP in `saml20-idp-remote`
 * On the IdP: Specific for only one hosted IdP in `saml20-idp-hosted`
 * On the IdP: Specific for only one remote SP in `saml20-sp-remote`
+* On the IDP: Specific for only one IdP authentication source in `authsources.php`
 
 *Note*: An Auth Proc Filter will not work in the "Test authentication sources" option in the web UI of a SimpleSAMLphp IdP. It will only be triggered in conjunction with an actual SP. So you need to set up an IdP *and* and SP when testing your filter.
 
