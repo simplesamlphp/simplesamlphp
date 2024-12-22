@@ -442,6 +442,9 @@ class Language
         $config = Configuration::getInstance();
         $availableLanguages = $config->getOptionalArray('language.available', [self::FALLBACKLANGUAGE]);
 
+        // sanitize the langugage code
+        $language = \Locale::canonicalize($language);
+
         if (!in_array($language, $availableLanguages, true) || headers_sent()) {
             return;
         }
