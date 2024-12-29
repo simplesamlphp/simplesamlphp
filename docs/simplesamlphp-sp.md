@@ -8,7 +8,29 @@ described in the [SimpleSAMLphp installation instructions](simplesamlphp-install
 
 ## Configuring the SP
 
-The SP is configured by an entry in `config/authsources.php`.
+The SP can be configured in either the `metadata/saml20-sp-hosted.php`
+or by adding an entry in `config/authsources.php`. The
+`saml20-sp-hosted.php` file method was added in SSP 2.4 to simplify
+where a hosted SP is configured. Using `saml20-sp-hosted.php` keeps
+the SP definitions and the authentication methods that are defined in
+`authsources.php` separate. The new system in 2.4 also uses the same
+metadata loading system as other files in metadata giving you more
+flexibility in how you define your configuration.
+
+The formats for defining a SP in `saml20-sp-hosted.php` and `authsources.php`
+are very similar. The main differences are that hte former uses `$metadata`
+and the later a subelement in `$config`.
+
+This is a minimal `metadata/saml20-sp-hosted.php` for a SP:
+
+```php
+<?php 
+
+$metadata['default-sp'] = [
+        // The entity ID of this SP.
+        'entityID' => 'https://myapp.example.org/',
+];
+```
 
 This is a minimal `authsources.php` for a SP:
 
@@ -38,9 +60,22 @@ on the matter.
 For more information about additional options available for the SP,
 see the [`saml:SP` reference](./saml:sp).
 
-If you want multiple Service Providers in the same site and installation,
-you can add more entries in the `authsources.php` configuration. If so
-remember to set the EntityID explicitly. Here is an example:
+If you want multiple Service Providers in the same site and
+installation, you can add more entries in the
+`metadata/saml20-sp-hosted.php` or `authsources.php` configuration. If
+so remember to set the EntityID explicitly. 
+
+Here is an example for `metadata/saml20-sp-hosted.php`:
+```php
+$metadata['sp1'] = [
+        'entityID' => 'https://myapp.example.org/',
+];
+$metadata['sp2'] = [
+        'entityID' => 'https://myotherapp.example.org/',
+];
+```
+
+Here is an example for `authsources.php`:
 
 ```php
     'sp1' => [
@@ -67,7 +102,22 @@ cd cert
 openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out saml.crt -keyout saml.pem
 ```
 
-Then edit your `authsources.php` entry, and add references to your certificate:
+Then edit your configuration, either `metadata/saml20-sp-hosted.php`
+or `authsources.php` entry, and add references to your certificate:
+
+For `metadata/saml20-sp-hosted.php`:
+
+```php
+<?php 
+
+$metadata['default-sp'] = [
+        'entityID' => 'https://myapp.example.org/',
+        'privatekey' => 'saml.pem',
+        'certificate' => 'saml.crt',
+];
+```
+
+Or for an `authsources.php` entry, and add references to your certificate:
 
 ```php
     'default-sp' => [
@@ -125,6 +175,23 @@ You should remove all IdPs that you don't use.
 
 An option in the authentication source allows you to configure which IdP should
 be used. This is the `idp` option.
+
+For `metadata/saml20-sp-hosted.php`:
+
+```php
+<?php 
+
+$metadata['default-sp'] = [
+        'entityID' => 'https://myapp.example.org/',
+        /*
+         * The entity ID of the IdP this should SP should contact.
+         * Can be NULL/unset, in which case the user will be shown a list of available IdPs.
+         */
+        'idp' => 'https://example.org/saml-idp',
+];
+```
+
+Or for `authsources.php`:
 
 ```php
 <?php
