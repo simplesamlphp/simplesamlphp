@@ -6,6 +6,7 @@ namespace SimpleSAML\Metadata;
 
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
 
 /**
  * This class implements a metadata source which loads metadata from XML files.
@@ -67,10 +68,15 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
         } else {
             throw new \Exception("Neither source file path/URI nor string data provided");
         }
+
+        Logger::error("MDXML ");
         foreach ($entities as $entityId => $entity) {
+            Logger::error("MDXML $entityId ");
             $md = $entity->getMetadata20SP();
             if ($md !== null) {
+                Logger::error("MDXML have 20sp");
                 $SP20[$entityId] = $md;
+//                $SP20Hosted[$entityId] = $md;
             }
 
             $md = $entity->getMetadata20IdP();
@@ -85,6 +91,7 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
         }
 
         $this->metadata = [
+//            'saml20-sp-hosted'          => $SP20Hosted,
             'saml20-sp-remote'          => $SP20,
             'saml20-idp-remote'         => $IdP20,
             'attributeauthority-remote' => $AAD,

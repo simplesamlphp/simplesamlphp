@@ -59,9 +59,9 @@ abstract class Source
      * @throws \Exception If the authentication source is invalid.
      */
     public static function getSourcesOfType(string $type): array
-    {        
+    {
         return self::getAuthSourcesFromConfig(
-            function($id, $source) use ($type)
+            function($id, $source, $authid) use ($type)
             {
                 if ($source[0] !== $type) {
                     return false;
@@ -332,15 +332,15 @@ abstract class Source
     public static function getById(string $authId, ?string $type = null): ?Source
     {
         $a = self::getAuthSourcesFromConfig(
-            function($id, $source)
+            function($id, $source, $authid)
             use( $authId, $type )
             {
-                if ($id !== $authId) {
+                if ($authid !== $authId) {
                     return false;
                 }
                 return true;
             },
-            function($id, $source, $obj )
+            function($id, $source, $authid, $obj )
             use( $authId, $type )
             {
                 if ($type === null || $obj instanceof $type) {
@@ -516,13 +516,13 @@ abstract class Source
 
         // default filtering accepts everything
         if( !$filter ) {
-            $filter = function($id, $source)
+            $filter = function($id, $source, $authid)
             {
                 return true;
             };
         }
         if( !$postfilter ) {
-            $postfilter = function($id, $source, $obj )
+            $postfilter = function($id, $source, $authid, $obj )
             {
                 return true;
             };
@@ -533,8 +533,15 @@ abstract class Source
         $sources = $config->getOptions();
         foreach ($sources as $id) {
             $source = $config->getArray($id);
-            $source['entityid'] = $id;
-            $source['entityID'] = $id;
+            $entityid = $id;
+            if( array_key_exists('entityid', $source )) {
+                $entityid = $source['entityid'];
+            }
+            if( array_key_exists('entityID', $source )) {
+                $entityid = $source['entityID'];
+            }
+            $source['entityid'] = $entityid;
+            $source['entityID'] = $entityid;
             $allConfig[$id] = $source;
         }
 
@@ -543,40 +550,53 @@ abstract class Source
         // same format as the authsources data.
         $metadata = MetaDataStorageHandler::getMetadataHandler();
         $spConfig = $metadata->getList( 'saml20-sp-hosted' );
-        
-        // There is no leading 'saml:SP' for elements in sp-hosted 
-        // as they are SP type automatically. So we force that here.
+
+        // There is a little massage of data that is needed to make this work
+        // with the old format used in authsources.php
+        //
+        // * Move entityID into an array key
+        // * Move element to have a simple name (if provided)
+        // * Add 'saml:SP'
         foreach ($spConfig as $k => $source) {
             
-            // These should have entityID explicitly defined
-            Assert::true(
-                array_key_exists('entityID', $source ),
-                "For your SP $k defined in your saml20-sp-hosted there is no entityID. This is an error."
-            );
+            $authid = $k;
+            if(array_key_exists('authid',$source)) {
+                $authid = $spConfig[$k]['authid'];
+            }
             
-            // We make sure this is of type 'saml:SP'
-            array_unshift($spConfig[$k], 'saml:SP');
-        }
+            $spConfig[$k]['entityid'] = $k;
+            $spConfig[$k]['entityID'] = $k;
 
+            // There is no leading 'saml:SP' for elements in sp-hosted 
+            // as they are SP type automatically. So we force that here.
+            array_unshift($spConfig[$k], 'saml:SP');
+
+            // Give this a sumple name if the user has provided one.
+            if( $authid != $k ) {
+                $spConfig[$authid] = $spConfig[$k];
+                unset($spConfig[$k]);
+            }
+        }
+        
         // Put these two sources of metadata together
         $allConfig = array_merge( $allConfig, $spConfig );
 
         // loop everything and filter out undesired items.
-        foreach ($allConfig as $source) {
+        foreach ($allConfig as $authid => $source) {
 
             $id = $source['entityid'];
             
             self::validateSource($source, $id);
 
             // maybe visit / skip item here.
-            if( false === $filter($id, $source)) {
+            if( false === $filter($id, $source, $authid)) {
                 continue;
             }
 
             $obj = self::parseAuthSource($id, $source);
 
             // this filter needs the object too
-            if( false === $postfilter($id, $source, $obj )) {
+            if( false === $postfilter($id, $source, $authid, $obj )) {
                 continue;
             }
 

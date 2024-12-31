@@ -13,6 +13,7 @@ use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Auth\Source;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
+use SimpleSAML\Logger;
 
 /**
  * Tests for \SimpleSAML\Auth\Source
@@ -139,6 +140,44 @@ class SourceTest extends ClearStateTestCase
 
     }
     
+
+/*
+    public function testMetadataXML(): void
+    {
+        Logger::error("CCCCC top");
+        
+        $mddir = __DIR__ . '/test-metadata/source2/metadata';
+        $config = [
+            'metadata.sources' => [
+                ['type' => 'xml',
+                 'file' => $mddir . "/saml20-sp-hosted.xml"
+                ],
+            ],
+            'metadatadir' => $mddir,
+        ];
+        Configuration::loadFromArray($config, '', 'simplesaml');
+        $handler = MetaDataStorageHandler::getMetadataHandler();
+
+        Logger::error("CCCCC xml file " . $mddir . "/saml20-sp-hosted.xml" );
+
+        $v = $handler->getList('saml20-sp-hosted');
+        $this->assertEquals(1, count($v));
+
+//        $a = Auth\Source::getById('spxml');
+//        $this->assertNotNull($a);
+//        $this->assertInstanceOf(Source::class, $a);
+
+
+//        $a = Auth\Source::getById('spxml', Auth\Source::class);
+//        $this->assertNotNull($a);
+//        $this->assertInstanceOf(Source::class, $a);
+        
+
+//        $a = Auth\Source::getById('sp2-nothing');
+//        $this->assertNull($a);
+        
+    }
+ */
     
     
 }
