@@ -26,9 +26,9 @@ This is a minimal `metadata/saml20-sp-hosted.php` for a SP:
 ```php
 <?php 
 
-$metadata['default-sp'] = [
-        // The entity ID of this SP.
-        'entityID' => 'https://myapp.example.org/',
+$metadata['https://myapp.example.org/'] = [
+    // simple name for this in the UI
+    'authid' => 'default-sp' 
 ];
 ```
 
@@ -67,11 +67,11 @@ so remember to set the EntityID explicitly.
 
 Here is an example for `metadata/saml20-sp-hosted.php`:
 ```php
-$metadata['sp1'] = [
-        'entityID' => 'https://myapp.example.org/',
+$metadata['https://myapp.example.org/'] = [
+    'authid' => 'sp1',
 ];
-$metadata['sp2'] = [
-        'entityID' => 'https://myotherapp.example.org/',
+$metadata['https://myotherapp.example.org/'] = [
+    'authid' => 'sp2',
 ];
 ```
 
@@ -110,8 +110,8 @@ For `metadata/saml20-sp-hosted.php`:
 ```php
 <?php 
 
-$metadata['default-sp'] = [
-        'entityID' => 'https://myapp.example.org/',
+$metadata['https://myapp.example.org/'] = [
+        'authid' => 'default-sp',
         'privatekey' => 'saml.pem',
         'certificate' => 'saml.crt',
 ];
@@ -181,8 +181,8 @@ For `metadata/saml20-sp-hosted.php`:
 ```php
 <?php 
 
-$metadata['default-sp'] = [
-        'entityID' => 'https://myapp.example.org/',
+$metadata['https://myapp.example.org/'] = [
+        'authid' => 'default-sp',
         /*
          * The entity ID of the IdP this should SP should contact.
          * Can be NULL/unset, in which case the user will be shown a list of available IdPs.
