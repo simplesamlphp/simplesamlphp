@@ -63,9 +63,10 @@ see the [`saml:SP` reference](./saml:sp).
 If you want multiple Service Providers in the same site and
 installation, you can add more entries in the
 `metadata/saml20-sp-hosted.php` or `authsources.php` configuration. If
-so remember to set the EntityID explicitly. 
+so remember to set the EntityID explicitly.
 
 Here is an example for `metadata/saml20-sp-hosted.php`:
+
 ```php
 $metadata['https://myapp.example.org/'] = [
     'authid' => 'sp1',
