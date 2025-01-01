@@ -18,7 +18,7 @@ metadata loading system as other files in metadata giving you more
 flexibility in how you define your configuration.
 
 The formats for defining a SP in `saml20-sp-hosted.php` and `authsources.php`
-are very similar. The main differences are that hte former uses `$metadata`
+are very similar. The main differences are that the former uses `$metadata`
 and the later a subelement in `$config`.
 
 This is a minimal `metadata/saml20-sp-hosted.php` for a SP:
