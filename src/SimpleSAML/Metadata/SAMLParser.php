@@ -537,14 +537,11 @@ class SAMLParser
         $ret = $this->getMetadataCommon();
         $ret['metadata-set'] = 'saml20-sp-remote';
 
-        Logger::error("SAMLP 1");
         // find SP information which supports the SAML 2.0 protocol
         $spd = $this->getSPDescriptors(self::$SAML20Protocols);
         if (count($spd) === 0) {
-        Logger::error("SAMLP EEE");
             return null;
         }
-        Logger::error("SAMLP 2");
 
         // we currently only look at the first SPDescriptor which supports SAML 2.0
         $spd = $spd[0];

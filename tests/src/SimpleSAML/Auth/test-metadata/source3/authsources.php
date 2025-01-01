@@ -16,11 +16,11 @@ $config = [
         'ForceAuthn' => true,
         'certificate' => 'nothing',
         'privatekey' => 'example.key',
-        'privatekey_pass' => 'secretpassword',        
+        'privatekey_pass' => 'secretpassword',
         'description' => [
             'en' => 'A service',
             'no' => 'En tjeneste',
-        ],        
+        ],
         'contacts' => [
             [
                 'contactType'       => 'support',

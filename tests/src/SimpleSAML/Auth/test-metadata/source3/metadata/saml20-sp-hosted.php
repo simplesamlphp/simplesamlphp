@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 
 // A hosted SP
 $metadata['urn:x-simplesamlphp:sp2'] = [
@@ -13,11 +12,11 @@ $metadata['urn:x-simplesamlphp:sp2'] = [
     'ForceAuthn' => true,
     'certificate' => 'nothing',
     'privatekey' => 'example.key',
-    'privatekey_pass' => 'secretpassword',        
+    'privatekey_pass' => 'secretpassword',
     'description' => [
         'en' => 'A service',
         'no' => 'En tjeneste',
-    ],        
+    ],
     'contacts' => [
         [
             'contactType'       => 'support',

@@ -7,13 +7,12 @@ namespace SimpleSAML\Test\Auth;
 use PHPUnit\Framework\Attributes\CoversClass;
 use ReflectionClass;
 use SimpleSAML\Auth;
+use SimpleSAML\Auth\Source;
+use SimpleSAML\Configuration;
+use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Test\Utils\TestAuthSource;
 use SimpleSAML\Test\Utils\TestAuthSourceFactory;
 use SimpleSAML\TestUtils\ClearStateTestCase;
-use SimpleSAML\Configuration;
-use SimpleSAML\Auth\Source;
-use SimpleSAML\Metadata\MetaDataStorageHandler;
-use SimpleSAML\Logger;
 
 /**
  * Tests for \SimpleSAML\Auth\Source
@@ -38,7 +37,7 @@ class SourceTest extends ClearStateTestCase
         $this->assertInstanceOf(TestAuthSource::class, $authSource);
     }
 
-    
+
     public function testgetSourcesOfTypeBasic(): void
     {
         $config = Configuration::loadFromArray([
@@ -53,8 +52,8 @@ class SourceTest extends ClearStateTestCase
             ],
         ]);
         Configuration::setPreLoadedConfig($config, 'authsources.php');
-        
-        
+
+
         $a = Auth\Source::getSourcesOfType("saml:SP");
         $this->assertEquals(1, count($a));
         $this->assertInstanceOf(Source::class, $a[0]);
@@ -65,7 +64,6 @@ class SourceTest extends ClearStateTestCase
 
         $a = Auth\Source::getSourcesOfType("nothing");
         $this->assertEquals(0, count($a));
-        
     }
 
 
@@ -86,7 +84,6 @@ class SourceTest extends ClearStateTestCase
         $a = Auth\Source::getSourcesOfType("saml:SP");
         $this->assertEquals(3, count($a));
         $this->assertInstanceOf(Source::class, $a[0]);
-        
     }
 
 
@@ -112,11 +109,10 @@ class SourceTest extends ClearStateTestCase
         $a = Auth\Source::getById('sp2', Auth\Source::class);
         $this->assertNotNull($a);
         $this->assertInstanceOf(Source::class, $a);
-        
+
 
         $a = Auth\Source::getById('sp2-nothing');
         $this->assertNull($a);
-        
     }
 
 
@@ -137,11 +133,10 @@ class SourceTest extends ClearStateTestCase
 
         $a = Auth\Source::getSources();
         $this->assertEquals(7, count($a));
-
     }
 
 
-    private function testAuthSourcesAndMetadataSource( $a ): void
+    private function testAuthSourcesAndMetadataSource($a): void
     {
         $contacts = [
             'contactType'       => 'support',
@@ -156,14 +151,14 @@ class SourceTest extends ClearStateTestCase
         $this->assertInstanceOf(Source::class, $a);
         $cfg = $a->getMetadata();
         $this->assertTrue($cfg->getValue('ForceAuthn'));
-        $this->assertEquals('nothing',$cfg->getValue('certificate'));
-        $this->assertEquals('example.key',$cfg->getValue('privatekey'));
-        $this->assertEquals('secretpassword',$cfg->getValue('privatekey_pass'));
-        $this->assertEquals('A service',$cfg->getValue('description')['en']);
-        $this->assertEquals('A service name',$cfg->getValue('name')['en']);
+        $this->assertEquals('nothing', $cfg->getValue('certificate'));
+        $this->assertEquals('example.key', $cfg->getValue('privatekey'));
+        $this->assertEquals('secretpassword', $cfg->getValue('privatekey_pass'));
+        $this->assertEquals('A service', $cfg->getValue('description')['en']);
+        $this->assertEquals('A service name', $cfg->getValue('name')['en']);
         $this->assertEquals('http://www.w3.org/2001/04/xmldsig-more#rsa-sha512', $cfg->getValue('signature.algorithm'));
 
-        
+
         //
         // FIXME something like a trusted assertEqualsCanonicalizing might be used here
         //
@@ -172,7 +167,7 @@ class SourceTest extends ClearStateTestCase
         $this->assertEquals($contacts['telephoneNumber'], $cfg->getValue('contacts')[0]['telephoneNumber']);
     }
 
-    
+
     //
     // Make sure that an SP loaded from both
     // authsources and saml20-sp-hosted.php
@@ -182,11 +177,11 @@ class SourceTest extends ClearStateTestCase
     {
         $mddir = __DIR__ . '/test-metadata/source3/';
 
-        Configuration::setConfigDir($mddir,'test');
-        $authsources = Configuration::getConfig("authsources.php",'test');
+        Configuration::setConfigDir($mddir, 'test');
+        $authsources = Configuration::getConfig("authsources.php", 'test');
         Configuration::setPreLoadedConfig($authsources, 'authsources.php');
-        
-        
+
+
         $config = [
             'metadata.sources' => [
                 ['type' => 'flatfile', 'directory' => $mddir . '/metadata'],
@@ -204,19 +199,18 @@ class SourceTest extends ClearStateTestCase
 
 
         $a = Auth\Source::getById('sp1');
-        $this->testAuthSourcesAndMetadataSource( $a );
-        
+        $this->testAuthSourcesAndMetadataSource($a);
+
         $a = Auth\Source::getById('sp2');
-        $this->testAuthSourcesAndMetadataSource( $a );
-        
+        $this->testAuthSourcesAndMetadataSource($a);
     }
-    
+
 
 /*
     public function testMetadataXML(): void
     {
         Logger::error("CCCCC top");
-        
+
         $mddir = __DIR__ . '/test-metadata/source2/metadata';
         $config = [
             'metadata.sources' => [
@@ -242,14 +236,11 @@ class SourceTest extends ClearStateTestCase
 //        $a = Auth\Source::getById('spxml', Auth\Source::class);
 //        $this->assertNotNull($a);
 //        $this->assertInstanceOf(Source::class, $a);
-        
+
 
 //        $a = Auth\Source::getById('sp2-nothing');
 //        $this->assertNull($a);
-        
+
     }
  */
-    
-
-    
 }

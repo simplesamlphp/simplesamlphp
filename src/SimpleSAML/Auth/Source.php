@@ -8,10 +8,10 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
+use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
-use SimpleSAML\Metadata\MetaDataStorageHandler;
 
 /**
  * This class defines a base class for authentication source.
@@ -505,7 +505,8 @@ abstract class Source
      * the data is needed in order to filter the object.
      *
      * @param function fitler If this function is supplied and returns false then the auth source is not considered
-     * @param function postfitler Once the authsource is created this filter function can cause it not to be returned if it returns false.
+     * @param function postfitler Once the authsource is created this
+     *                        filter function can cause it not to be returned if it returns false.
      * 
      * @return Source[]  Array of \SimpleSAML\Auth\Source objects
      */
