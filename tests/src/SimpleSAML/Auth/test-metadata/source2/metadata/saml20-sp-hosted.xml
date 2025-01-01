@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="spxml">
+  <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://sam/sspdev/module.php/saml/sp/saml2-logout.php/spxml"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://sam/sspdev/module.php/saml/sp/saml2-acs.php/spxml" index="0"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://sam/sspdev/module.php/saml/sp/saml2-acs.php/spxml" index="1"/>
+  </md:SPSSODescriptor>
+</md:EntityDescriptor>
