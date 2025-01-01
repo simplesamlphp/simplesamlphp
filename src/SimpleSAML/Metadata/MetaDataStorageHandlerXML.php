@@ -67,7 +67,6 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
         } else {
             throw new \Exception("Neither source file path/URI nor string data provided");
         }
-
         foreach ($entities as $entityId => $entity) {
             $md = $entity->getMetadata20SP();
             if ($md !== null) {
