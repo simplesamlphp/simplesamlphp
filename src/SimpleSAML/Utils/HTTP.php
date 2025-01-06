@@ -366,7 +366,7 @@ class HTTP
      * @throws Error\Exception If the URL is not allowed by configuration.
      *
      */
-    public function checkURLAllowed(string $url, array $trustedSites = null): string
+    public function checkURLAllowed(string $url, ?array $trustedSites = null): string
     {
         if (empty($url)) {
             return '';
@@ -1005,7 +1005,7 @@ class HTTP
      *     are not strings.
      *
      */
-    public function resolveURL(string $url, string $base = null): string
+    public function resolveURL(string $url, ?string $base = null): string
     {
         if ($base === null) {
             $base = $this->getBaseURL();
@@ -1080,7 +1080,7 @@ class HTTP
      *
      *
      */
-    public function setCookie(string $name, ?string $value, array $params = null, bool $throw = true): void
+    public function setCookie(string $name, ?string $value, ?array $params = null, bool $throw = true): void
     {
         $default_params = [
             'lifetime' => 0,

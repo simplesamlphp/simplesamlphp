@@ -9,6 +9,8 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+* Fixed PHP 8.4 deprecation notices
+
 ## Version 2.3.5
 
 Released 2024-12-02

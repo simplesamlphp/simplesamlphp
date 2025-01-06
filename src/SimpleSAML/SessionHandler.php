@@ -120,7 +120,7 @@ abstract class SessionHandler
      *
      * @throws \SimpleSAML\Error\CannotSetCookie If we can't set the cookie.
      */
-    abstract public function setCookie(string $sessionName, ?string $sessionID, array $cookieParams = null): void;
+    abstract public function setCookie(string $sessionName, ?string $sessionID, ?array $cookieParams = null): void;
 
 
     /**
