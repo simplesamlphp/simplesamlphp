@@ -53,7 +53,7 @@ class Exception extends \Exception
      * @param int            $code Error code
      * @param \Throwable|null $cause The cause of this exception.
      */
-    public function __construct(string $message, int $code = 0, Throwable $cause = null)
+    public function __construct(string $message, int $code = 0, ?Throwable $cause = null)
     {
         parent::__construct($message, $code);
 
