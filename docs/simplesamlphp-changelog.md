@@ -5,13 +5,13 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.1.7
+## Version 2.1.8
 
 Released TBD
 
 * Fixed PHP 8.4 deprecation notices
 
-## Version 2.1.6
+## Version 2.1.7
 
 Released 2024-12-02
 
