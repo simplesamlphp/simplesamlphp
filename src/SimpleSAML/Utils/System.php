@@ -121,7 +121,7 @@ class System
      * @return string An absolute path referring to $path.
      *
      */
-    public function resolvePath(string $path, string $base = null): string
+    public function resolvePath(string $path, ?string $base = null): string
     {
         if ($base === null) {
             $config = Configuration::getInstance();
