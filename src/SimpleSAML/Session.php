@@ -327,7 +327,7 @@ class Session implements Utils\ClearableState
      * @return \SimpleSAML\Session|null The session that is stored in the session handler,
      *   or null if the session wasn't found.
      */
-    public static function getSession(string $sessionId = null): ?Session
+    public static function getSession(?string $sessionId = null): ?Session
     {
         $sh = SessionHandler::getSessionHandler();
 
@@ -570,7 +570,7 @@ class Session implements Utils\ClearableState
      *
      * @param int $lifetime Number of seconds after when remember me session cookies expire.
      */
-    public function setRememberMeExpire(int $lifetime = null): void
+    public function setRememberMeExpire(?int $lifetime = null): void
     {
         if ($lifetime === null) {
             $lifetime = self::$config->getOptionalInteger('session.rememberme.lifetime', 14 * 86400);
@@ -800,7 +800,7 @@ class Session implements Utils\ClearableState
      * @param string $authority The authentication source we are setting expire time for.
      * @param int    $expire The number of seconds authentication source is valid.
      */
-    public function setAuthorityExpire(string $authority, int $expire = null): void
+    public function setAuthorityExpire(string $authority, ?int $expire = null): void
     {
         $this->markDirty();
 

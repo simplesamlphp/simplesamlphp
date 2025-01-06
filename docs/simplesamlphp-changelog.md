@@ -9,7 +9,7 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
-* PHP 8.4 support
+* Fixed PHP 8.4 deprecation notices
 * Added a new feature flag `encryption.optional` to allow unencrypted assertions if the SP does
   not provide an encryption certificate (#2208)
 * Make translations tool theme-aware (#2315)
