@@ -231,7 +231,7 @@ class SessionHandlerPHP extends SessionHandler
      * @throws \SimpleSAML\Error\Exception If it wasn't possible to disable session cookies or we are trying to load a
      * PHP session with a specific identifier and it doesn't match with the current session identifier.
      */
-    public function loadSession(string $sessionId = null): ?Session
+    public function loadSession(?string $sessionId = null): ?Session
     {
         if ($sessionId !== session_id()) {
             throw new Error\Exception('Cannot load PHP session with a specific ID.');
@@ -308,7 +308,7 @@ class SessionHandlerPHP extends SessionHandler
      *
      * @throws \SimpleSAML\Error\CannotSetCookie If we can't set the cookie.
      */
-    public function setCookie(string $sessionName, ?string $sessionID, array $cookieParams = null): void
+    public function setCookie(string $sessionName, ?string $sessionID, ?array $cookieParams = null): void
     {
         if ($cookieParams === null) {
             $cookieParams = session_get_cookie_params();

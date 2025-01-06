@@ -124,7 +124,7 @@ class Localization
      * @param string $localeDir Absolute path if the module is housed elsewhere
      * @param string $domain Translation domain within module; defaults to module name
      */
-    public function addModuleDomain(string $module, string $localeDir = null, string $domain = null): void
+    public function addModuleDomain(string $module, ?string $localeDir = null, ?string $domain = null): void
     {
         if (!$localeDir) {
             $localeDir = $this->getDomainLocaleDir($module);

@@ -81,7 +81,7 @@ class Error extends Exception
      * @param \Throwable   $cause The exception which caused this fatal error (if any). Optional.
      * @param int|null     $httpCode The HTTP response code to use. Optional.
      */
-    public function __construct(string|array $errorCode, Throwable $cause = null, ?int $httpCode = null)
+    public function __construct(string|array $errorCode, ?Throwable $cause = null, ?int $httpCode = null)
     {
         if (is_array($errorCode)) {
             $this->parameters = $errorCode;
