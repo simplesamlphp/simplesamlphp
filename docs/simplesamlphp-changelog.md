@@ -10,6 +10,7 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 Released TBD
 
 * Fixed PHP 8.4 deprecation notices
+* Fixed infinite recursion (#2367)
 
 ## Version 2.3.5
 
