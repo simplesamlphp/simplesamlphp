@@ -10,6 +10,7 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 Released TBD
 
 * Fixed PHP 8.4 deprecation notices
+* Fixed infinite recursion (#2367)
 * Added a new feature flag `encryption.optional` to allow unencrypted assertions if the SP does
   not provide an encryption certificate (#2208)
 * Make translations tool theme-aware (#2315)
