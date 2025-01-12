@@ -12,7 +12,6 @@ use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
-use Symfony\Component\VarExporter\VarExporter;
 
 use function array_key_exists;
 use function array_shift;
@@ -89,9 +88,9 @@ class ProcessingChain
             self::addFilters($this->filters, $spFilters);
         }
 
-        if( Logger::debugActive()) {
+        if (Logger::debugActive()) {
             Logger::debug('Filter config for ' . $idpMetadata['entityid'] . '->' .
-                          $spMetadata['entityid'] . ': ' . str_replace("\n", '', print_r($this->filters,true)));
+                          $spMetadata['entityid'] . ': ' . str_replace("\n", '', print_r($this->filters, true)));
         }
     }
 
