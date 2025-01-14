@@ -87,7 +87,7 @@ class ProcessingChain
         }
 
         Logger::debug('Filter config for ' . $idpMetadata['entityid'] . '->' .
-            $spMetadata['entityid'] . ': ' . str_replace("\n", '', VarExporter::export($this->filters)));
+                      $spMetadata['entityid'] . ': ' . str_replace("\n", '', print_r($this->filters, true)));
     }
 
 
