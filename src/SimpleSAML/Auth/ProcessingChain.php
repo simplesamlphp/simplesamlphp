@@ -12,7 +12,6 @@ use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
-use Symfony\Component\VarExporter\VarExporter;
 
 use function array_key_exists;
 use function array_shift;
@@ -90,7 +89,7 @@ class ProcessingChain
         }
 
         Logger::debug('Filter config for ' . $idpMetadata['entityid'] . '->' .
-            $spMetadata['entityid'] . ': ' . str_replace("\n", '', VarExporter::export($this->filters)));
+                      $spMetadata['entityid'] . ': ' . str_replace("\n", '', print_r($this->filters, true)));
     }
 
 
