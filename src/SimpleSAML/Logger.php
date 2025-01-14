@@ -555,18 +555,4 @@ class Logger
             self::$loggingHandler->log($level, $string);
         }
     }
-
-    /**
-     * Is logging enabled for this level?
-     *
-     * @param int $level The desired log level
-     */
-    public static function isActiveFor(int $level): bool
-    {
-        return self::$logLevel >= $level;
-    }
-    public static function debugActive(): bool
-    {
-        return self::isActiveFor(self::DEBUG);
-    }
 }
