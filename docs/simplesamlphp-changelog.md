@@ -11,6 +11,7 @@ Released TBD
 
 * Fixed PHP 8.4 deprecation notices
 * Fixed infinite recursion (#2367)
+* Fixed "Undefined array key" warning in RequestedAuthnContextSelector if no RAC is present in the request
 
 ## Version 2.2.4
 
