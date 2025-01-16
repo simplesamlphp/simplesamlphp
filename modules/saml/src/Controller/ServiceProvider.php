@@ -579,6 +579,10 @@ class ServiceProvider
 
             $state = $this->authState::loadState($relayState, 'saml:slosent');
             $state['saml:sp:LogoutStatus'] = $message->getStatus();
+
+            // Destroy session cookies.
+            $this->session->updateSessionCookies(['expire' => true]);
+
             return $source::completeLogout($state);
         } elseif ($message instanceof LogoutRequest) {
             Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
