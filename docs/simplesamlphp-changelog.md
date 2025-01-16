@@ -17,6 +17,7 @@ Released TBD
 * Fixed build-workflow to only re-build the website once
 * Bugfix: Use entityID from state to allow overriding the issuer (#2345)
 * When only a single IdP is in scope, skip discovery screen (#2355)
+* Fixed "Undefined array key" warning in RequestedAuthnContextSelector if no RAC is present in the request
 
 `adfs`
 
