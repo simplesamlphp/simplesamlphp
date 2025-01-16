@@ -581,8 +581,7 @@ class ServiceProvider
             $state['saml:sp:LogoutStatus'] = $message->getStatus();
 
             // Destroy session cookies.
-            $session = Session::getSessionFromRequest();
-            $session->updateSessionCookies(['expire' => TRUE]);
+            $this->session->updateSessionCookies(['expire' => TRUE]);
 
 	        return $source::completeLogout($state);
         } elseif ($message instanceof LogoutRequest) {
