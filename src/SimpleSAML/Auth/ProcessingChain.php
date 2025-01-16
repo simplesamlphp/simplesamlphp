@@ -9,7 +9,6 @@ use SimpleSAML\{Configuration, Error, Logger, Module, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Exception\Protocol\NoPassiveException;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\VarExporter\VarExporter;
 
 use function array_key_exists;
 use function array_shift;
