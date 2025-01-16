@@ -107,7 +107,7 @@ class RequestedAuthnContextSelector extends AbstractSourceSelector
      */
     protected function selectAuthSource(array &$state): string
     {
-        $requestedContexts = $state['saml:RequestedAuthnContext'];
+        $requestedContexts = $state['saml:RequestedAuthnContext'] ?? null;
         if (
             $requestedContexts === null
             || !array_key_exists('AuthnContextClassRef', $requestedContexts)
