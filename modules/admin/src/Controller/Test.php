@@ -101,19 +101,34 @@ class Test
      */
     public function main(Request $request, string $as = null): Response
     {
-        $response = $this->authUtils->requireAdmin();
-        if ($response instanceof Response) {
-            return $response;
-        }
-
         if (is_null($as)) {
             $t = new Template($this->config, 'admin:authsource_list.twig');
-            $t->data = [
-                'sources' => Auth\Source::getSources(),
-            ];
+            if ($this->authUtils->isAdmin()) {
+                $t->data = [
+                    'sources' => Auth\Source::getSources(),
+                ];
+            } elseif ($this->config->getValue('sp.public.test')) {
+
+                $samlSpSources = Auth\Source::getSourcesOfType('saml:SP');
+                $flattenedSources = [];
+                foreach ($samlSpSources as $source) {
+                    $flattenedSources[] = $source->getAuthId();
+                }
+
+                $t->data = [
+                    'sources' => $flattenedSources,
+                ];
+            }
         } else {
             /** @psalm-suppress UndefinedClass */
             $authsource = new $this->authSimple($as);
+
+            if ($this->config->getValue('sp.public.test') != true || ! $authsource->getAuthSource() instanceof Module\saml\Auth\Source\SP) {
+                $response = $this->authUtils->requireAdmin();
+                if ($response instanceof Response) {
+                    return $response;
+                }
+            }
 
             if (!is_null($request->query->get('logout'))) {
                 return $authsource->logout(Module::getModuleURL('admin/logout'));
