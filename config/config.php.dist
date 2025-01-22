@@ -294,12 +294,6 @@ $config = [
     ],
      */
 
-    /*
-     * Allow public access to the admin module "Test Authentication Sources"
-     * with only saml:SP authsources listed.
-     */
-    'sp.public.test' => false,
-
 
     /************************
      | ERRORS AND DEBUGGING |

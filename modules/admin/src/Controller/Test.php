@@ -103,12 +103,12 @@ class Test
     {
         if (is_null($as)) {
             $t = new Template($this->config, 'admin:authsource_list.twig');
+
             if ($this->authUtils->isAdmin()) {
                 $t->data = [
                     'sources' => Auth\Source::getSources(),
                 ];
-            } elseif ($this->config->getValue('sp.public.test')) {
-
+            } else {
                 $samlSpSources = Auth\Source::getSourcesOfType('saml:SP');
                 $flattenedSources = [];
                 foreach ($samlSpSources as $source) {
@@ -123,7 +123,7 @@ class Test
             /** @psalm-suppress UndefinedClass */
             $authsource = new $this->authSimple($as);
 
-            if ($this->config->getValue('sp.public.test') != true || ! $authsource->getAuthSource() instanceof Module\saml\Auth\Source\SP) {
+            if (! $authsource->getAuthSource() instanceof Module\saml\Auth\Source\SP) {
                 $response = $this->authUtils->requireAdmin();
                 if ($response instanceof Response) {
                     return $response;
