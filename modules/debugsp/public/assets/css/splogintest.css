@@ -1,0 +1,56 @@
+.enablebox table {
+  border: 1px solid #eee;
+  margin-left: 1em;
+}
+
+.enablebox.mini table {
+  float: right;
+}
+
+.enablebox tr td {
+  padding: 0.5px 1em 1px 0.5em;
+  margin: 0;
+}
+
+.enablebox {
+  font-size: 85%;
+}
+
+.enablebox tr.enabled td {
+  background: #eee;
+}
+
+.enablebox tr.disabled td {
+  background: #ccc;
+}
+
+fieldset.fancyfieldset {
+  padding-left: 1.5em;
+}
+
+fieldset.fancyfieldset legend {
+  padding: 3px 2em 3px 0;
+  width: 100%;
+}
+
+dt {
+  font-weight: bold;
+}
+
+.entity-name,
+.entity-deprecated,
+.entity-expired {
+  font-weight: bold;
+}
+
+.entity-expired {
+  color: #500;
+}
+
+ul.modulelist {
+  column-count: 3;
+}
+
+div.code-box-content {
+  padding: 0;
+}
