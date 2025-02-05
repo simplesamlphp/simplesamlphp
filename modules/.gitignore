@@ -6,6 +6,7 @@
 !/admin/
 !/core/
 !/cron/
+!/debugsp/
 !/exampleauth/
 !/multiauth/
 !/saml/
