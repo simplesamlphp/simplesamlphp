@@ -7,12 +7,11 @@ namespace SimpleSAML\Module\debugsp\Controller;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
-use SimpleSAML\Locale\Translate;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
-use SimpleSAML\Error;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -74,7 +73,7 @@ class Test
 
     /**
      * Create a page listing the SPs that can be tested
-     * 
+     *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string|null $as
      * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
@@ -87,11 +86,11 @@ class Test
         foreach ($samlSpSources as $source) {
             $flattenedSources[] = $source->getAuthId();
         }
-        
+
         $t->data = [
             'sources' => $flattenedSources,
         ];
-        
+
         return $t;
     }
 
@@ -105,25 +104,24 @@ class Test
     public function main(Request $request, string $as = null): Response
     {
         if (is_null($as)) {
-            $t = $this->makeSPList( $request, $as );
-            
+            $t = $this->makeSPList($request, $as);
         } else {
             /** @psalm-suppress UndefinedClass */
             $authsource = new $this->authSimple($as);
 
             try {
                 $authsource->getAuthSource();
-            } catch( Error\AuthSource $e ) {
+            } catch (Error\AuthSource $e) {
                 // no authsource, user might be probing to find non Source\SP?
-                $t = $this->makeSPList( $request, $as );
-                return $t;                
+                $t = $this->makeSPList($request, $as);
+                return $t;
             }
 
             // make sure we are only talking about an SP
             if (! $authsource->getAuthSource() instanceof Module\saml\Auth\Source\SP) {
-                $t = $this->makeSPList( $request, $as );
+                $t = $this->makeSPList($request, $as);
                 return $t;
-            }            
+            }
 
             if (!is_null($request->query->get('logout'))) {
                 return new RunnableResponse([$authsource, 'logout'], [Module::getModuleURL('debugsp/logout')]);
