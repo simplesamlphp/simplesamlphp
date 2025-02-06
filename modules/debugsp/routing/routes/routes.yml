@@ -1,6 +1,5 @@
 ---
 
-
 debugsp-test:
   path: /test/{as}
   defaults: {
@@ -15,4 +14,3 @@ core-logout:
     _controller: 'SimpleSAML\Module\debugsp\Controller\Test::logout'
   }
   methods: [GET]
-
