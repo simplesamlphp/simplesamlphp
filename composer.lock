@@ -1219,16 +1219,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
-            "version": "v2.3.5",
+            "version": "v2.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-assets-base.git",
-                "reference": "d2be59175e13841628e8f09e5be010512663fd29"
+                "reference": "23235665a66c42133af67807b1d4f4be5d454d63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/d2be59175e13841628e8f09e5be010512663fd29",
-                "reference": "d2be59175e13841628e8f09e5be010512663fd29",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/23235665a66c42133af67807b1d4f4be5d454d63",
+                "reference": "23235665a66c42133af67807b1d4f4be5d454d63",
                 "shasum": ""
             },
             "require": {
@@ -1249,9 +1249,9 @@
             "description": "Assets for the SimpleSAMLphp main repository",
             "support": {
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-assets-base/issues",
-                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.3.5"
+                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.3.7"
             },
-            "time": "2025-01-05T01:17:03+00:00"
+            "time": "2025-02-05T20:24:36+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-adfs",
