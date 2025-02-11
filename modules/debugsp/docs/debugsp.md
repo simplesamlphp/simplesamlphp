@@ -9,7 +9,6 @@ This is similar to the functionality on the admin/test page but using debugsp do
 require you to login as the admin user. This can be useful if an IdP you are talking to
 wishes to verify that a login session can be created using your SP and their IdP.
 
-
 ## Preparations
 
 You need to enable the module in `config.php`
