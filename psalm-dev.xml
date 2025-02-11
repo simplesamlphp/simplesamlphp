@@ -59,6 +59,12 @@
                 <directory name="tests" />
             </errorLevel>
         </UnsafeInstantiation>
+
+        <PossiblyUnusedProperty>
+            <errorLevel type="suppress">
+                <file name="tests/SigningTestCase.php" />
+            </errorLevel>
+        </PossiblyUnusedProperty>
     </issueHandlers>
 
     <stubs>
