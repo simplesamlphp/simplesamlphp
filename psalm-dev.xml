@@ -81,12 +81,14 @@
                 <file name="tests/modules/core/src/Controller/LogoutTest.php" />
                 <file name="tests/modules/saml/src/Auth/Source/SPTest.php" />
                 <file name="tests/modules/saml/src/Controller/MetadataTest.php" />
+                <file name="tests/src/SimpleSAML/Store/RedisStoreTest.php" />
             </errorLevel>
         </UnusedVariable>
-
+        
         <PossiblyUnusedMethod>
             <errorLevel type="suppress">
-                <file name="tests/modules/admin/src/Controller/FederationTest.php" />
+              <file name="tests/modules/admin/src/Controller/FederationTest.php" />
+              <file name="tests/src/SimpleSAML/Store/RedisStoreTest.php" />              
             </errorLevel>
         </PossiblyUnusedMethod>
 
@@ -104,7 +106,9 @@
 
         <PossiblyNullPropertyFetch>
             <errorLevel type="suppress">
-                <file name="tests/modules/saml/src/Auth/Source/SPTest.php" />
+              <file name="tests/modules/saml/src/Auth/Source/SPTest.php" />
+              <file name="tests/src/SimpleSAML/Metadata/SAMLBuilderTest.php" />
+              
             </errorLevel>
         </PossiblyNullPropertyFetch>
 
@@ -113,6 +117,7 @@
               <file name="tests/modules/saml/src/Controller/MetadataTest.php" />
               <file name="tests/modules/saml/src/Controller/ServiceProviderTest.php" />
               <file name="tests/src/SimpleSAML/ConfigurationTest.php" />
+              <file name="tests/src/SimpleSAML/Utils/TimeTest.php" />
             </errorLevel>
         </PossiblyFalseArgument>
 
@@ -122,7 +127,7 @@
               <file name="tests/modules/saml/src/Controller/ServiceProviderTest.php" />
             </errorLevel>
         </MissingClassConstType>
-        
+
     </issueHandlers>
 
     
