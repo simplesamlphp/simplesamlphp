@@ -88,9 +88,9 @@
         
         <PossiblyUnusedMethod>
             <errorLevel type="suppress">
+              <directory name="tests/src/SimpleSAML/Metadata" />
               <file name="tests/modules/admin/src/Controller/FederationTest.php" />
               <file name="tests/src/SimpleSAML/Store/RedisStoreTest.php" />
-              <directory name="tests/src/SimpleSAML/Metadata" />
             </errorLevel>
         </PossiblyUnusedMethod>
 
@@ -131,12 +131,6 @@
             </errorLevel>
         </MissingClassConstType>
 
-        <DeprecatedMethod>
-            <errorLevel type="suppress">
-              <directory name="tests/src/SimpleSAML/Utils" />
-              <file name="tests/src/SimpleSAML/Error/ErrorCodesTest.php" />
-            </errorLevel>
-        </DeprecatedMethod>
 
         <PossiblyNullReference>
           <file name="tests/src/SimpleSAML/Error/ErrorTest.php" />
