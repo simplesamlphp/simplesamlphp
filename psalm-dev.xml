@@ -63,10 +63,69 @@
         <PossiblyUnusedProperty>
             <errorLevel type="suppress">
                 <file name="tests/SigningTestCase.php" />
+                <file name="tests/modules/admin/src/Controller/FederationTest.php" />
             </errorLevel>
         </PossiblyUnusedProperty>
+
+        <UnusedMethodCall>
+            <errorLevel type="suppress">
+              <file name="tests/SigningTestCase.php" />
+              <file name="tests/src/SimpleSAML/DatabaseTest.php" />
+            </errorLevel>
+        </UnusedMethodCall>
+
+        <UnusedVariable>
+            <errorLevel type="suppress">
+                <directory name="tests/config" />
+                <file name="tests/modules/core/src/Auth/Process/AttributeAlterTest.php" />
+                <file name="tests/modules/core/src/Controller/LogoutTest.php" />
+                <file name="tests/modules/saml/src/Auth/Source/SPTest.php" />
+                <file name="tests/modules/saml/src/Controller/MetadataTest.php" />
+            </errorLevel>
+        </UnusedVariable>
+
+        <PossiblyUnusedMethod>
+            <errorLevel type="suppress">
+                <file name="tests/modules/admin/src/Controller/FederationTest.php" />
+            </errorLevel>
+        </PossiblyUnusedMethod>
+
+        <PossiblyInvalidArgument>
+            <errorLevel type="suppress">
+                <file name="tests/modules/core/src/Auth/Process/AttributeLimitTest.php" />
+            </errorLevel>
+        </PossiblyInvalidArgument>
+
+        <UnevaluatedCode>
+            <errorLevel type="suppress">
+                <file name="tests/modules/exampleauth/src/Controller/ExampleAuthTest.php" />
+            </errorLevel>
+        </UnevaluatedCode>
+
+        <PossiblyNullPropertyFetch>
+            <errorLevel type="suppress">
+                <file name="tests/modules/saml/src/Auth/Source/SPTest.php" />
+            </errorLevel>
+        </PossiblyNullPropertyFetch>
+
+        <PossiblyFalseArgument>
+            <errorLevel type="suppress">
+              <file name="tests/modules/saml/src/Controller/MetadataTest.php" />
+              <file name="tests/modules/saml/src/Controller/ServiceProviderTest.php" />
+              <file name="tests/src/SimpleSAML/ConfigurationTest.php" />
+            </errorLevel>
+        </PossiblyFalseArgument>
+
+        <MissingClassConstType>
+            <errorLevel type="suppress">
+              <file name="tests/modules/saml/src/IdP/SAML2Test.php" />
+              <file name="tests/modules/saml/src/Controller/ServiceProviderTest.php" />
+            </errorLevel>
+        </MissingClassConstType>
+        
     </issueHandlers>
 
+    
     <stubs>
         <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/krb5.php" />
         <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/memcache.php" />
