@@ -2,7 +2,7 @@
 <psalm
     name="SimpleSAMLphp testsuite"
     useDocblockTypes="true"
-    errorLevel="4"
+    errorLevel="3"
     reportMixedIssues="false"
     hideExternalErrors="true"
     allowStringToStandInForClass="true"
@@ -45,6 +45,13 @@
                 <directory name="tests" />
             </errorLevel>
         </InternalMethod>
+
+        <!-- Suppress PHPunit-issue -->
+        <UnusedClass>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </UnusedClass>
 
         <!-- Suppress Psalm-issue - We should be able to fix this with the static return-type in PHP 8.0 -->
         <UnsafeInstantiation>
