@@ -133,8 +133,8 @@
 
         <DeprecatedMethod>
             <errorLevel type="suppress">
-              <file name="tests/src/SimpleSAML/Error/ErrorCodesTest.php" />
               <directory name="tests/src/SimpleSAML/Utils" />
+              <file name="tests/src/SimpleSAML/Error/ErrorCodesTest.php" />
             </errorLevel>
         </DeprecatedMethod>
 
