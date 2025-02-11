@@ -90,7 +90,7 @@
             <errorLevel type="suppress">
               <file name="tests/modules/admin/src/Controller/FederationTest.php" />
               <file name="tests/src/SimpleSAML/Store/RedisStoreTest.php" />
-              <dir name="tests/src/SimpleSAML/Metadata" />
+              <directory name="tests/src/SimpleSAML/Metadata" />
             </errorLevel>
         </PossiblyUnusedMethod>
 
@@ -134,7 +134,7 @@
         <DeprecatedMethod>
             <errorLevel type="suppress">
               <file name="tests/src/SimpleSAML/Error/ErrorCodesTest.php" />
-              <dir name="tests/src/SimpleSAML/Utils" />
+              <directory name="tests/src/SimpleSAML/Utils" />
             </errorLevel>
         </DeprecatedMethod>
 
