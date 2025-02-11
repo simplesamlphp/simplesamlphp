@@ -547,6 +547,7 @@ class IdP
      */
     public static function finishLogoutRedirect(IdP $idp, array $state): void
     {
+        // code dummy change
         Assert::notNull($state['core:Logout:URL']);
 
         $httpUtils = new Utils\HTTP();
