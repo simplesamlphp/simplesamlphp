@@ -53,6 +53,12 @@
             </errorLevel>
         </UnusedClass>
 
+tests/src/SimpleSAML/Error/ErrorTest.php:93:32: PossiblyNullReference: Cannot call method expects on possibly null value (see https://psalm.dev/083)
+Error: tests/src/SimpleSAML/Error/ErrorTest.php:93:32: PossiblyUndefinedMethod: Method SimpleSAML\Error\ErrorCodes::expects does not exist (see https://psalm.dev/108)
+Error: tests/src/SimpleSAML/Error/ErrorTest.php:98:32: PossiblyNullReference: Cannot call method expects on possibly null value (see https://psalm.dev/083)
+Error: tests/src/SimpleSAML/Error/ErrorTest.php:98:32: PossiblyUndefinedMethod: Method SimpleSAML\Error\ErrorCodes::expects does not exist (see https://psalm.dev/108)
+Error: tests/src/SimpleSAML/Error/ErrorTest.php:119:34: MissingClassConstType: Class constant
+
         <!-- Suppress Psalm-issue - We should be able to fix this with the static return-type in PHP 8.0 -->
         <UnsafeInstantiation>
             <errorLevel type="suppress">
@@ -88,7 +94,8 @@
         <PossiblyUnusedMethod>
             <errorLevel type="suppress">
               <file name="tests/modules/admin/src/Controller/FederationTest.php" />
-              <file name="tests/src/SimpleSAML/Store/RedisStoreTest.php" />              
+              <file name="tests/src/SimpleSAML/Store/RedisStoreTest.php" />
+              <dir name="tests/src/SimpleSAML/Metadata" />
             </errorLevel>
         </PossiblyUnusedMethod>
 
@@ -125,14 +132,27 @@
             <errorLevel type="suppress">
               <file name="tests/modules/saml/src/IdP/SAML2Test.php" />
               <file name="tests/modules/saml/src/Controller/ServiceProviderTest.php" />
+              <file name="tests/SigningTestCase.php" />
             </errorLevel>
         </MissingClassConstType>
 
         <DeprecatedMethod>
             <errorLevel type="suppress">
               <file name="tests/src/SimpleSAML/Error/ErrorCodesTest.php" />
+              <dir name="tests/src/SimpleSAML/Utils" />
             </errorLevel>
         </DeprecatedMethod>
+
+        <PossiblyNullReference>
+          <file name="tests/src/SimpleSAML/Error/ErrorTest.php" />
+        </PossiblyNullReference>
+
+        <PossiblyUndefinedMethod>
+          <file name="tests/src/SimpleSAML/Error/ErrorTest.php" />
+        </PossiblyUndefinedMethod>
+
+
+        
     </issueHandlers>
 
     
