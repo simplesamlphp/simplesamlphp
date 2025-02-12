@@ -59,6 +59,103 @@
                 <directory name="tests" />
             </errorLevel>
         </UnsafeInstantiation>
+
+        <UnusedVariable>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </UnusedVariable>
+
+        <UnusedMethodCall>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </UnusedMethodCall>
+        
+        <UnusedFunctionCall>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </UnusedFunctionCall>
+
+        <PossiblyFalseArgument>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </PossiblyFalseArgument>          
+
+        <PossiblyFalseOperand>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </PossiblyFalseOperand>      
+
+        <PossiblyUnusedMethod>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </PossiblyUnusedMethod>
+
+        <PossiblyNullPropertyFetch>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </PossiblyNullPropertyFetch>
+        
+        <PossiblyNullArgument>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </PossiblyNullArgument>
+
+        <PossiblyUnusedParam>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </PossiblyUnusedParam>
+        
+        <PossiblyNullReference>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </PossiblyNullReference>
+
+        <PossiblyUndefinedMethod>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </PossiblyUndefinedMethod>
+
+        <UnusedParam>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </UnusedParam>
+
+        <PossiblyInvalidArgument>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </PossiblyInvalidArgument>
+
+        <UnevaluatedCode>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </UnevaluatedCode>
+
+        <UnusedProperty>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </UnusedProperty>
+        
+        <PossiblyUnusedProperty>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </PossiblyUnusedProperty>
+        
     </issueHandlers>
 
     <stubs>
