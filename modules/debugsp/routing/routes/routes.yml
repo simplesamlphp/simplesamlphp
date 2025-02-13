@@ -1,0 +1,16 @@
+---
+
+debugsp-test:
+  path: /test/{as}
+  defaults: {
+    _controller: 'SimpleSAML\Module\debugsp\Controller\Test::main',
+    as: null
+  }
+  methods: [GET]
+
+core-logout:
+  path: /logout
+  defaults: {
+    _controller: 'SimpleSAML\Module\debugsp\Controller\Test::logout'
+  }
+  methods: [GET]

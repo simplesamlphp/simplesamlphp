@@ -43,6 +43,12 @@ Released TBD
 * Stricter regexp to verify SubjectID/PairwiseID: disallow trailing spaces.
 * Feature: Add authproc-filter to be able to manipulate the Assertion's Issuer (#2346)
 
+`debugsp`
+
+* Added module to allow testing the SP you have in your installation without needing admin login
+  This is similar to the admin/test page but can more easily be used by an IdP who may not have admin
+  privileges on your site.
+
 ## Version 2.3.0
 
 Released 2024-08-20

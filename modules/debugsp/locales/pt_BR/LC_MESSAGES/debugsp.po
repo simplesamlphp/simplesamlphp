@@ -1,0 +1,23 @@
+msgid ""
+msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
+"X-Domain: debugsp\n"
+
+msgid "Logged out"
+msgstr ""
+
+msgid "SimpleSAMLphp installation page"
+msgstr ""
+
+msgid "Test SP login"
+msgstr ""
+
+msgid "Test another SP login for this site"
+msgstr ""
+
+msgid "You have been logged out."
+msgstr ""

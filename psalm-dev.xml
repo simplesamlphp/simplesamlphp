@@ -155,7 +155,13 @@
                 <directory name="tests" />
             </errorLevel>
         </PossiblyUnusedProperty>
-        
+
+        <PossiblyInvalidCast>
+            <errorLevel type="suppress">
+                <file name="tests/src/SimpleSAML/Metadata/MetaDataStorageHandlerTest.php" />
+            </errorLevel>
+        </PossiblyInvalidCast>
+
     </issueHandlers>
 
     <stubs>

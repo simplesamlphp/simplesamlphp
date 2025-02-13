@@ -1,0 +1,12 @@
+{% set pagetitle = 'Test SP login'|trans %}
+{% set frontpage_section = 'test' %}
+{% extends "base.twig" %}
+
+{% block content %}
+    <h2>{{ pagetitle }} </h2>
+    <ul>
+    {% for key, name in sources %}
+        <li><a href="{{ moduleURL('debugsp/test/' ~ name|escape('url')) }}">{{ name }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}
