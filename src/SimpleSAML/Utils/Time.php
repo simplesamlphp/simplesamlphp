@@ -13,7 +13,7 @@ namespace SimpleSAML\Utils;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
-use SimpleSAML\XML\Assert;
+use SimpleSAML\XML\Assert\Assert;
 
 class Time
 {
