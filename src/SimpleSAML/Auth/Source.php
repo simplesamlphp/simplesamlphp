@@ -8,6 +8,7 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
+use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
@@ -48,6 +49,7 @@ abstract class Source
     }
 
 
+    
     /**
      * Get sources of a specific type.
      *
@@ -58,24 +60,14 @@ abstract class Source
      */
     public static function getSourcesOfType(string $type): array
     {
-        $config = Configuration::getConfig('authsources.php');
-
-        $ret = [];
-
-        $sources = $config->getOptions();
-        foreach ($sources as $id) {
-            $source = $config->getArray($id);
-
-            self::validateSource($source, $id);
-
-            if ($source[0] !== $type) {
-                continue;
-            }
-
-            $ret[] = self::parseAuthSource($id, $source);
-        }
-
-        return $ret;
+        return self::getAuthSourcesFromConfig(
+            function($id, $source, $authid) use ($type)
+            {
+                if ($source[0] !== $type) {
+                    return false;
+                }
+                return true;
+            });
     }
 
 
@@ -339,31 +331,32 @@ abstract class Source
      */
     public static function getById(string $authId, ?string $type = null): ?Source
     {
-        // for now - load and parse config file
-        $config = Configuration::getConfig('authsources.php');
+        $a = self::getAuthSourcesFromConfig(
+            function($id, $source, $authid)
+            use( $authId, $type )
+            {
+                if ($authid !== $authId) {
+                    return false;
+                }
+                return true;
+            },
+            function($id, $source, $authid, $obj )
+            use( $authId, $type )
+            {
+                if ($type === null || $obj instanceof $type) {
+                    return true;
+                }
+                return false;
+            });
 
-        $authConfig = $config->getOptionalArray($authId, null);
-        if ($authConfig === null) {
-            if ($type !== null) {
-                throw new Error\Exception(
-                    'No authentication source with id ' . var_export($authId, true) . ' found.',
-                );
-            }
+        if( count($a) == 0 ) {
             return null;
         }
-
-        $ret = self::parseAuthSource($authId, $authConfig);
-
-        if ($type === null || $ret instanceof $type) {
-            return $ret;
+        if( count($a) == 1 ) {
+            return $a[0];
         }
 
-        // the authentication source doesn't have the correct type
-        throw new Error\Exception(
-            'Invalid type of authentication source ' .
-            var_export($authId, true) . '. Was ' . var_export(get_class($ret), true) .
-            ', should be ' . var_export($type, true) . '.',
-        );
+        return null;        
     }
 
 
@@ -476,9 +469,12 @@ abstract class Source
      */
     public static function getSources(): array
     {
-        $config = Configuration::getOptionalConfig('authsources.php');
-
-        return $config->getOptions();
+        $authSources = self::getAuthSourcesFromConfig();
+        $ret = [];
+        foreach( $authSources as $as ) {
+            $ret[] = $as->authId;
+        }
+        return $ret;
     }
 
 
@@ -499,4 +495,117 @@ abstract class Source
             );
         }
     }
+
+    /**
+     * Get all the auth sources from authsources.php and saml20-sp-hosted metadata
+     * files
+     *
+     * The filter functions return `false` to remove an auth source from the return array. Use the
+     * postfilter is there if the authsource object is needed, the filter is more efficient if only
+     * the data is needed in order to filter the object.
+     *
+     * @param function fitler If this function is supplied and returns false then the auth source is not considered
+     * @param function postfitler Once the authsource is created this
+     *                        filter function can cause it not to be returned if it returns false.
+     * 
+     * @return Source[]  Array of \SimpleSAML\Auth\Source objects
+     */
+    public static function getAuthSourcesFromConfig( $filter = null, $postfilter = null ): array
+    {
+        $ret = [];
+        $allConfig = [];
+
+        // default filtering accepts everything
+        if( !$filter ) {
+            $filter = function($id, $source, $authid)
+            {
+                return true;
+            };
+        }
+        if( !$postfilter ) {
+            $postfilter = function($id, $source, $authid, $obj )
+            {
+                return true;
+            };
+        }
+        
+        // get sources from authsources.php
+        $config = Configuration::getConfig('authsources.php');
+        $sources = $config->getOptions();
+        foreach ($sources as $id) {
+            $source = $config->getArray($id);
+            $entityid = $id;
+            if( array_key_exists('entityid', $source )) {
+                $entityid = $source['entityid'];
+            }
+            if( array_key_exists('entityID', $source )) {
+                $entityid = $source['entityID'];
+            }
+            $source['entityid'] = $entityid;
+            $source['entityID'] = $entityid;
+            $allConfig[$id] = $source;
+        }
+
+        // load hsoted SP from saml20-sp-hosted.php as well
+        // note that we unshift the object type to make it the
+        // same format as the authsources data.
+        $metadata = MetaDataStorageHandler::getMetadataHandler();
+        $spConfig = $metadata->getList( 'saml20-sp-hosted' );
+
+        // There is a little massage of data that is needed to make this work
+        // with the old format used in authsources.php
+        //
+        // * Move entityID into an array key
+        // * Move element to have a simple name (if provided)
+        // * Add 'saml:SP'
+        foreach ($spConfig as $k => $source) {
+            
+            $authid = $k;
+            if(array_key_exists('authid',$source)) {
+                $authid = $spConfig[$k]['authid'];
+            }
+            
+            $spConfig[$k]['entityid'] = $k;
+            $spConfig[$k]['entityID'] = $k;
+
+            // There is no leading 'saml:SP' for elements in sp-hosted 
+            // as they are SP type automatically. So we force that here.
+            array_unshift($spConfig[$k], 'saml:SP');
+
+            // Give this a sumple name if the user has provided one.
+            if( $authid != $k ) {
+                $spConfig[$authid] = $spConfig[$k];
+                unset($spConfig[$k]);
+            }
+        }
+        
+        // Put these two sources of metadata together
+        $allConfig = array_merge( $allConfig, $spConfig );
+
+        // loop everything and filter out undesired items.
+        foreach ($allConfig as $authid => $source) {
+
+            $id = $source['entityid'];
+            
+            self::validateSource($source, $id);
+
+            // maybe visit / skip item here.
+            if( false === $filter($id, $source, $authid)) {
+                continue;
+            }
+
+            $obj = self::parseAuthSource($id, $source);
+
+            // this filter needs the object too
+            if( false === $postfilter($id, $source, $authid, $obj )) {
+                continue;
+            }
+
+            // not filtered, return this element in the end
+            $ret[] = $obj;
+        }
+        
+        return $ret;
+    }
+    
 }
