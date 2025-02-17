@@ -18,6 +18,7 @@ Released 2025-02-17
 * Fixed "Undefined array key" warning in RequestedAuthnContextSelector if no RAC is present in the request
 * Fixed an unintended BC-break in `simplesamlphp/assert` that caused composer dependency issues
 * Updated several dependencies
+* Started testing on PHP 8.4
 
 `ldap`
 
