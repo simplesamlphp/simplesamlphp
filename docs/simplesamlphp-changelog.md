@@ -18,6 +18,7 @@ Released TBD
 * Bugfix: Use entityID from state to allow overriding the issuer (#2345)
 * When only a single IdP is in scope, skip discovery screen (#2355)
 * Fixed "Undefined array key" warning in RequestedAuthnContextSelector if no RAC is present in the request
+* SimpleSAMLAuthToken cookie is now removed during an SLO
 
 `adfs`
 
