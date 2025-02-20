@@ -9,6 +9,8 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+* Fixed loading translations for themes where there is no explicit X-Domain set in the po file.
+
 ## Version 2.3.6
 
 Released 2025-02-17
