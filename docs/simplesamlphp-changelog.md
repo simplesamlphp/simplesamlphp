@@ -9,6 +9,16 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+## Version 2.3.7
+
+Released TBD
+
+* Fixed loading translations for themes where there is no explicit X-Domain set in the po file.
+
+## Version 2.3.6
+
+Released 2025-02-17
+
 * Fixed PHP 8.4 deprecation notices
 * Fixed infinite recursion (#2367)
 * Added a new feature flag `encryption.optional` to allow unencrypted assertions if the SP does
