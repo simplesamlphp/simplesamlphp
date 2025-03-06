@@ -179,7 +179,7 @@ class Template extends Response
      * @param bool $tag
      * @return string
      */
-    public function asset(string $asset, string $module = null, bool $tag = true): string
+    public function asset(string $asset, ?string $module = null, bool $tag = true): string
     {
         $baseDir = $this->configuration->getBaseDir();
         $basePath = $this->configuration->getBasePath();
