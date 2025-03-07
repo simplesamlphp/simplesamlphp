@@ -7,11 +7,12 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 ## Version 2.1.8
 
-Released TBD
+Released 2025-03-07
 
 * Fixed PHP 8.4 deprecation notices
 * Fixed infinite recursion (#2367)
 * Fixed "Undefined array key" warning in RequestedAuthnContextSelector if no RAC is present in the request
+* Bumped dependencies
 
 ## Version 2.1.7
 
