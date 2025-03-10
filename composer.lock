@@ -4791,16 +4791,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.12.19",
+            "version": "1.12.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "c42ba9bab7a940ed00092ecb1c77bad98896d789"
+                "reference": "14276fdef70575106a3392a4ed553c06a984df28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/c42ba9bab7a940ed00092ecb1c77bad98896d789",
-                "reference": "c42ba9bab7a940ed00092ecb1c77bad98896d789",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/14276fdef70575106a3392a4ed553c06a984df28",
+                "reference": "14276fdef70575106a3392a4ed553c06a984df28",
                 "shasum": ""
             },
             "require": {
@@ -4845,7 +4845,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-19T15:42:21+00:00"
+            "time": "2025-03-09T09:24:50+00:00"
         },
         {
             "name": "phpstan/phpstan-mockery",
@@ -6298,16 +6298,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
-            "version": "v1.8.0",
+            "version": "v1.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-test-framework.git",
-                "reference": "9bf90987925240de593afb1f929a9d373de86a13"
+                "reference": "49b1315cfbb1579f4ffecd3f3fd017be216d9fc5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/9bf90987925240de593afb1f929a9d373de86a13",
-                "reference": "9bf90987925240de593afb1f929a9d373de86a13",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/49b1315cfbb1579f4ffecd3f3fd017be216d9fc5",
+                "reference": "49b1315cfbb1579f4ffecd3f3fd017be216d9fc5",
                 "shasum": ""
             },
             "require": {
@@ -6348,7 +6348,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-test-framework"
             },
-            "time": "2024-12-02T22:00:54+00:00"
+            "time": "2025-03-06T20:42:53+00:00"
         },
         {
             "name": "slevomat/coding-standard",
