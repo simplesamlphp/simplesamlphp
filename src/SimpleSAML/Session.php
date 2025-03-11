@@ -965,7 +965,12 @@ class Session implements Utils\ClearableState
             return null;
         }
 
-        if (!$allowExpired && $this->dataStore[$type][$id]['expires'] < time()) {
+        if (
+            !$allowExpired
+            // If 'expire' is a string then it will last for the entire Session.
+            && !is_string($this->dataStore[$type][$id]['expires'])
+            && $this->dataStore[$type][$id]['expires'] < time()
+        ) {
             return null;
         }
 
