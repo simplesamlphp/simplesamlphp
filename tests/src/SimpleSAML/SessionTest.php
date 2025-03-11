@@ -85,6 +85,10 @@ class SessionTest extends ClearStateTestCase
                 true,
                 Session::DATA_TIMEOUT_SESSION_END,
             ],
+            'Enabled Expired with Not Expiring Data' => [
+                true,
+                60,
+            ],
             'Disable Expired with Expired Entries' => [
                 false,
                 -3600,
@@ -92,6 +96,10 @@ class SessionTest extends ClearStateTestCase
             'Disable Expired with Never Expiring Entries' => [
                 false,
                 Session::DATA_TIMEOUT_SESSION_END,
+            ],
+            'Disable Expired with Not Expiring Entries' => [
+                false,
+                60,
             ],
         ];
     }
@@ -106,7 +114,11 @@ class SessionTest extends ClearStateTestCase
         // Set expiration of the testKey in the past
         $this->session->setData('testType', 'testKey', 'data', $timeout);
         $fetchedData = $this->session->getData('testType', 'testKey', $allowedExpired);
-        if ($allowedExpired || $timeout === Session::DATA_TIMEOUT_SESSION_END) {
+        if (
+            $allowedExpired
+            || $timeout === Session::DATA_TIMEOUT_SESSION_END
+            || (is_int($timeout) && $timeout > 0)
+        ) {
             $this->assertEquals('data', $fetchedData);
         } else {
             $this->assertNull($fetchedData);
