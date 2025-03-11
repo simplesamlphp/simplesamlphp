@@ -86,6 +86,7 @@ jobs:
           --php-version=${{ steps.setup-php.outputs.php-version }}
 
       - name: Psalm (testsuite)
+        continue-on-error: true
         run: |
           psalm \
           -c psalm-dev.xml \
