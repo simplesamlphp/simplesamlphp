@@ -947,10 +947,11 @@ class Session implements Utils\ClearableState
      *
      * @param string      $type The type of the data. This must match the type used when adding the data.
      * @param string|null $id The identifier of the data. Can be null, in which case null will be returned.
+     * @param bool        $allowExpired Whether to fetch or not an expired Session entry. Default's to everything.
      *
      * @return mixed The data of the given type with the given id or null if the data doesn't exist in the data store.
      */
-    public function getData(string $type, ?string $id): mixed
+    public function getData(string $type, ?string $id, bool $allowExpired = true): mixed
     {
         if ($id === null) {
             return null;
@@ -961,6 +962,10 @@ class Session implements Utils\ClearableState
         }
 
         if (!array_key_exists($id, $this->dataStore[$type])) {
+            return null;
+        }
+
+        if (!$allowExpired && $this->dataStore[$type][$id]['expires'] < time()) {
             return null;
         }
 
