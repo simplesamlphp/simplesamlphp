@@ -5,13 +5,18 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.2.5
+## Version 2.2.6
 
 Released TBD
+
+## Version 2.2.5
+
+Released 2025-03-11
 
 * Fixed PHP 8.4 deprecation notices
 * Fixed infinite recursion (#2367)
 * Fixed "Undefined array key" warning in RequestedAuthnContextSelector if no RAC is present in the request
+* Bumped vulnerable saml2-library to v4.17.0
 
 ## Version 2.2.4
 
