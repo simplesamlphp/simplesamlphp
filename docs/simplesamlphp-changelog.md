@@ -5,11 +5,16 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.3.7
+## Version 2.3.8
 
 Released TBD
 
+## Version 2.3.7
+
+Released 2025-03-11
+
 * Fixed loading translations for themes where there is no explicit X-Domain set in the po file.
+* Bumped vulnerable saml2-library to v4.17.0
 
 ## Version 2.3.6
 
