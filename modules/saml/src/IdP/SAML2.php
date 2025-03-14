@@ -949,9 +949,12 @@ class SAML2
             $metadata['saml:Extensions'] = $config->getArray('saml:Extensions');
         }
 
-
         if ($config->hasValue('UIInfo')) {
             $metadata['UIInfo'] = $config->getArray('UIInfo');
+        }
+
+        if ($config->hasValue('DiscoveryResponse'])) {
+            $metadata['DiscoveryResponse'] = $config->getArray('DiscoveryResponse');
         }
 
         if ($config->hasValue('DiscoHints')) {
