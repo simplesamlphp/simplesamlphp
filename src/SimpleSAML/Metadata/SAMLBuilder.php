@@ -6,6 +6,7 @@ namespace SimpleSAML\Metadata;
 
 use DOMElement;
 use SAML2\Constants;
+use SAML2\XML\idpdisc\DiscoveryResponse;
 use SAML2\XML\md\AttributeAuthorityDescriptor;
 use SAML2\XML\md\AttributeConsumingService;
 use SAML2\XML\md\ContactPerson;
@@ -202,6 +203,14 @@ class SAMLBuilder
             );
         }
 
+        if ($metadata->hasValue('DiscoveryResponse')) {
+            $discoResponse = self::createEndpoints($metadata->getArray('DiscoveryResponse'), true);
+
+            $e->setExtensions(
+                array_merge($e->getExtensions(), $discoResponse),
+            );
+        }
+
         if ($metadata->hasValue('UIInfo')) {
             $ui = new UIInfo();
             foreach ($metadata->getArray('UIInfo') as $uiName => $uiValues) {
@@ -323,7 +332,12 @@ class SAMLBuilder
 
         foreach ($endpoints as &$ep) {
             if ($indexed) {
-                $t = new IndexedEndpointType();
+                if ($ep['Binding'] === Constants::NS_IDPDISC) {
+                    $t = new DiscoveryResponse();
+                } else {
+                    $t = new IndexedEndpointType();
+                }
+
                 if (!isset($ep['index'])) {
                     // Find the maximum index
                     $maxIndex = -1;
