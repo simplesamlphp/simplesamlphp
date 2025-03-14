@@ -6,6 +6,7 @@ namespace SimpleSAML\Metadata;
 
 use DOMElement;
 use SAML2\Constants;
+use SAML2\XML\idpdisc\DiscoveryResponse;
 use SAML2\XML\md\AttributeAuthorityDescriptor;
 use SAML2\XML\md\AttributeConsumingService;
 use SAML2\XML\md\ContactPerson;
@@ -199,6 +200,29 @@ class SAMLBuilder
             }
             $this->entityDescriptor->setExtensions(
                 array_merge($this->entityDescriptor->getExtensions(), [$ri]),
+            );
+        }
+
+        if ($metadata->hasValue('DiscoveryResponse')) {
+            $discoResponse = new DiscoveryResponse();
+            foreach ($metadata->getArray('DiscoveryResponse') as $drName => $drValues) {
+                switch ($uiName) {
+                    case 'index':
+                        $discoResponse->setIndex($drValues);
+                        break;
+                    case 'Binding':
+                        $discoResponse->setBinding($drValues);
+                        break;
+                    case 'Location':
+                        $discoResponse->setLocation($drValues);
+                        break;
+                    case 'isDefault':
+                        $discoResponse->setIsDefault($drValues);
+                        break;
+                }
+            }
+            $this->entityDescriptor->setExtensions(
+                array_merge($this->entityDescriptor->getExtensions(), [$discoResponse]),
             );
         }
 

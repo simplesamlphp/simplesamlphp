@@ -283,6 +283,11 @@ class SP extends \SimpleSAML\Auth\Source
             $metadata['EntityAttributes'] = $this->metadata->getArray('EntityAttributes');
         }
 
+        // add DiscoveryResponse extension
+        if ($this->metadata->hasValue('DiscoveryResponse')) {
+            $metadata['DiscoveryResponse'] = $this->metadata->getArray('DiscoveryResponse']);
+        }
+
         // add UIInfo extension
         if ($this->metadata->hasValue('UIInfo')) {
             $metadata['UIInfo'] = $this->metadata->getArray('UIInfo');
