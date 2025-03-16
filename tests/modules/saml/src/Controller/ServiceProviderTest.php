@@ -144,6 +144,26 @@ class ServiceProviderTest extends TestCase
         $c->login($request, 'phpunit');
     }
 
+    /**
+     * Test that accessing the login-endpoint with empty ReturnTo parameter leads to an exception
+     *
+     * @return void
+     */
+    public function testLoginEmptyReturnTo(): void
+    {
+        $request = Request::create(
+            '/sp/login/phpunit',
+            'GET',
+            ['ReturnTo' => ''],
+        );
+
+        $c = new Controller\ServiceProvider($this->config, $this->session);
+
+        $this->expectException(Error\BadRequest::class);
+        $this->expectExceptionMessage('Empty ReturnTo parameter specified.');
+        $c->login($request, 'phpunit');
+    }
+
 
     /**
      * @TODO: This cannot be tested until we are PSR-7 compliant
