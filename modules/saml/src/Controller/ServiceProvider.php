@@ -165,6 +165,13 @@ class ServiceProvider
         ) {
             throw new Error\BadRequest('Missing ReturnTo parameter.');
         }
+        if (
+            $request->query->has('ReturnTo') &&
+            $request->query->getString('ReturnTo') === ""
+        ) {
+            throw new Error\BadRequest('Empty ReturnTo parameter specified.');
+        }
+
         if (!isset($options['ReturnTo'])) {
             $options['ReturnTo'] = $httpUtils->checkURLAllowed(
                 $request->query->get('ReturnTo') ?? $spSource->getMetadata()->getString('RelayState'),
