@@ -10,6 +10,7 @@ use SimpleSAML\Assert\{Assert, AssertionFailedException};
 use SimpleSAML\Module\adfs\SAML2\XML\fed\SecurityTokenServiceType;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
+use SimpleSAML\SAML2\XML\idpdisc\DiscoveryResponse;
 use SimpleSAML\SAML2\XML\md\{AbstractIndexedEndpointType, ContactPerson, Extensions, KeyDescriptor, NameIDFormat};
 use SimpleSAML\SAML2\XML\md\{ArtifactResolutionService, AssertionConsumerService, AssertionIDRequestService};
 use SimpleSAML\SAML2\XML\md\{AttributeConsumingService, AttributeService, SingleLogoutService, SingleSignOnService};

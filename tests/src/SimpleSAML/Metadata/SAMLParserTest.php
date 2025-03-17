@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\Metadata;
 
 use DOMDocument;
 use PHPUnit\Framework\Attributes\CoversClass;
+use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Metadata\SAMLParser;
 use SimpleSAML\Test\SigningTestCase;
 use SimpleSAML\XML\{DOMDocumentFactory, Signer};
@@ -16,6 +17,41 @@ use SimpleSAML\XML\{DOMDocumentFactory, Signer};
 #[CoversClass(SAMLParser::class)]
 class SAMLParserTest extends SigningTestCase
 {
+    /**
+     * Test that DiscoveryResponse is parsed
+     */
+    public function testDiscoveryResponse(): void
+    {
+        $expected = [
+            0 => [
+                'index' => 43,
+                'Binding' => C::NS_IDPDISC,
+                'Location' => 'https://simplesamlphp.org/some/endpoint',
+                'isDefault' => false,
+            ],
+        ];
+
+        $document = DOMDocumentFactory::fromString(
+            <<<XML
+<EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" entityID="theEntityID">
+  <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <Extensions>
+      <idpdisc:DiscoveryResponse xmlns:idpdisc="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://simplesamlphp.org/some/endpoint" index="43" isDefault="false" />
+    </Extensions>
+  </SPSSODescriptor>
+</EntityDescriptor>
+XML,
+        );
+
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
+        $this->assertArrayHasKey('theEntityID', $entities);
+        // DiscoveryResponse is accessible in the SP metadata accessors
+        /** @var array $metadata */
+        $metadata = $entities['theEntityID']->getMetadata20SP();
+        $this->assertEquals($expected, $metadata['DiscoveryResponse']);
+    }
+
+
     /**
      * Test Registration Info is parsed
      */

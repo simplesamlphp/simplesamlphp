@@ -8,11 +8,10 @@ use DOMDocument;
 use DOMElement;
 use Exception;
 use RobRichards\XMLSecLibs\{XMLSecurityDSig, XMLSecurityKey};
-use SAML2\SignedElementHelper;
-use SAML2\XML\md\{EntitiesDescriptor, EntityDescriptor};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\{Logger, Utils};
 use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\XML\idpdisc\DiscoveryResponse;
 use SimpleSAML\SAML2\XML\md\{AttributeAuthorityDescriptor, IDPSSODescriptor};
 use SimpleSAML\SAML2\XML\md\{AttributeConsumingService, ContactPerson, AbstractEndpointType, KeyDescriptor};
 use SimpleSAML\SAML2\XML\md\{Organization, RoleDescriptor, SPSSODescriptor, SSODescriptorType};
@@ -498,6 +497,10 @@ class SAMLParser
             }
         }
 
+        if (!empty($roleDescriptor['DiscoveryResponse'])) {
+            $metadata['DiscoveryResponse'] = $roleDescriptor['DiscoveryResponse'];
+        }
+
         if (!empty($roleDescriptor['UIInfo'])) {
             $metadata['UIInfo'] = $roleDescriptor['UIInfo'];
         }
@@ -728,6 +731,7 @@ class SAMLParser
         $ext = self::processExtensions($element);
         $ret['scope'] = $ext['scope'];
         $ret['EntityAttributes'] = $ext['EntityAttributes'];
+        $ret['DiscoveryResponse'] = $ext['DiscoveryResponse'];
         $ret['UIInfo'] = $ext['UIInfo'];
         $ret['DiscoHints'] = $ext['DiscoHints'];
 
@@ -864,11 +868,12 @@ class SAMLParser
     private static function processExtensions(mixed $element, array $parentExtensions = []): array
     {
         $ret = [
-            'scope'            => [],
-            'EntityAttributes' => [],
-            'RegistrationInfo' => [],
-            'UIInfo'           => [],
-            'DiscoHints'       => [],
+            'scope'             => [],
+            'EntityAttributes'  => [],
+            'RegistrationInfo'  => [],
+            'DiscoveryResponse' => [],
+            'UIInfo'            => [],
+            'DiscoHints'        => [],
         ];
 
         // Some extensions may get inherited from a parent element
@@ -937,6 +942,13 @@ class SAMLParser
                             $ret['EntityAttributes'][$name] = $values;
                         }
                     }
+                }
+            }
+
+            // DiscoveryResponse elements only make sense at SPSSODescriptor level extensions
+            if ($element instanceof SPSSODescriptor) {
+                if ($e instanceof DiscoveryResponse) {
+                    $ret['DiscoveryResponse'] = array_merge($ret['DiscoveryResponse'], self::extractEndpoints([$e]));
                 }
             }
 

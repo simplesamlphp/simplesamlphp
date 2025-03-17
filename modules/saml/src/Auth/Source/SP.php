@@ -185,6 +185,7 @@ class SP extends Auth\Source
             'metadata-set' => 'saml20-sp-remote',
             'SingleLogoutService' => $this->getSLOEndpoints(),
             'AssertionConsumerService' => $this->getACSEndpoints(),
+            'DiscoveryResponse' => $this->getDiscoveryResponseEndpoints(),
         ];
 
         // add NameIDPolicy
@@ -458,6 +459,19 @@ class SP extends Auth\Source
             ];
         }
         return $endpoints;
+    }
+
+    /**
+     * Get the DiscoveryResponse endpoint available for a given local SP.
+     */
+    private function getDiscoveryResponseEndpoints(): array
+    {
+        $location = Module::getModuleURL('saml/sp/discoResponse/' . $this->getAuthId());
+
+        return [ 0 => [
+                'Binding' => Constants::NS_IDPDISC,
+                'Location' => $location,
+        ] ];
     }
 
     /**

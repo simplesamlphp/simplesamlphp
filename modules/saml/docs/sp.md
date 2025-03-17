@@ -12,6 +12,7 @@ and with entity attributes. See the documentation for those extensions for more 
 * [MDUI extension](../simplesamlphp-metadata-extensions-ui)
 * [MDRPI extension](../simplesamlphp-metadata-extensions-rpi)
 * [Attributes extension](../simplesamlphp-metadata-extensions-attributes)
+* [DiscoveryResponse extension](../simplesamlphp-metadata-extensions-idpdisc)
 
 **Parameters**:
 

@@ -993,7 +993,6 @@ class SAML2
             $metadata['saml:Extensions'] = $config->getArray('saml:Extensions');
         }
 
-
         if ($config->hasValue('UIInfo')) {
             $metadata['UIInfo'] = $config->getArray('UIInfo');
         }
