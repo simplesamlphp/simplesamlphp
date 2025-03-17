@@ -64,7 +64,7 @@
         "simplesamlphp/assert": "^1.1",
         "simplesamlphp/composer-module-installer": "^1.3",
         "simplesamlphp/saml2": "^5@dev",
-        "simplesamlphp/saml2-legacy": "^4.17",
+        "simplesamlphp/saml2-legacy": "^4.18.1",
         "simplesamlphp/simplesamlphp-assets-base": "~2.3.0",
         "simplesamlphp/xml-security": "^1.7",
         "symfony/cache": "^6.4",
