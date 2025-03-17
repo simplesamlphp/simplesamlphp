@@ -596,6 +596,8 @@ class SP extends Auth\Source
             $idpEntry = [];
             if (isset($state['IDPList'])) {
                 $idpList = $state['IDPList'];
+            } elseif (isset($state['saml:IDPList'])) {
+                $idpList = $state['saml:IDPList'];
             } elseif (!empty($this->metadata->getOptionalArray('IDPList', []))) {
                 foreach ($this->metadata->getArray('IDPList') as $entry) {
                     $idpEntry[] = new IDPEntry($entry);
