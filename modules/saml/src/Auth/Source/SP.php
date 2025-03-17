@@ -9,6 +9,7 @@ use SimpleSAML\{Auth, Configuration, Error, IdP, Logger, Module, Session, Store,
 use SimpleSAML\Assert\{Assert, AssertionFailedException};
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
+use SimpleSAML\SAML2\XML\Comparison;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\Exception\Protocol\{
@@ -469,7 +470,7 @@ class SP extends Auth\Source
         $location = Module::getModuleURL('saml/sp/discoResponse/' . $this->getAuthId());
 
         return [ 0 => [
-                'Binding' => Constants::NS_IDPDISC,
+                'Binding' => C::NS_IDPDISC,
                 'Location' => $location,
         ] ];
     }
@@ -519,16 +520,16 @@ class SP extends Auth\Source
         }
 
         if ($accr !== null) {
-            $comp = C::COMPARISON_EXACT;
+            $comp = Comparison::EXACT;
             if ($idpMetadata->getOptionalString('AuthnContextComparison', null) !== null) {
                 $comp = $idpMetadata->getString('AuthnContextComparison');
             } elseif (
                 isset($state['saml:AuthnContextComparison'])
                 && in_array($state['saml:AuthnContextComparison'], [
-                    C::COMPARISON_EXACT,
-                    C::COMPARISON_MINIMUM,
-                    C::COMPARISON_MAXIMUM,
-                    C::COMPARISON_BETTER,
+                    Comparison::EXACT,
+                    Comparison::MINIMUM,
+                    Comparison::MAXIMUM,
+                    Comparison::BETTER,
                 ], true)
             ) {
                 $comp = $state['saml:AuthnContextComparison'];
@@ -545,10 +546,10 @@ class SP extends Auth\Source
                 && in_array(
                     $state['saml:RequestedAuthnContext']['Comparison'],
                     [
-                        C::COMPARISON_EXACT,
-                        C::COMPARISON_MINIMUM,
-                        C::COMPARISON_MAXIMUM,
-                        C::COMPARISON_BETTER,
+                        Comparison::EXACT,
+                        Comparison::MINIMUM,
+                        Comparison::MAXIMUM,
+                        Comparison::BETTER,
                     ],
                     true,
                 )
@@ -931,7 +932,7 @@ class SP extends Auth\Source
         if (
             $this->passAuthnContextClassRef
             && isset($state['saml:RequestedAuthnContext'])
-            && $state['saml:RequestedAuthnContext']['Comparison'] === Constants::COMPARISON_EXACT
+            && $state['saml:RequestedAuthnContext']['Comparison'] === Comparison::EXACT
             && isset($data['saml:sp:AuthnContext'])
             && $state['saml:RequestedAuthnContext']['AuthnContextClassRef'][0] !== $data['saml:sp:AuthnContext']
         ) {
@@ -1009,7 +1010,7 @@ class SP extends Auth\Source
         if (isset($state['isPassive']) && (bool) $state['isPassive']) {
             // passive request, we cannot authenticate the user
             throw new NoPassiveException(
-                Constants::STATUS_REQUESTER . ':  Reauthentication required',
+                C::STATUS_REQUESTER . ':  Reauthentication required',
             );
         }
 
