@@ -155,6 +155,12 @@
                 <directory name="tests" />
             </errorLevel>
         </PossiblyUnusedProperty>
+        
+        <MissingOverrideAttribute>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </MissingOverrideAttribute>
 
         <PossiblyInvalidCast>
             <errorLevel type="suppress">
