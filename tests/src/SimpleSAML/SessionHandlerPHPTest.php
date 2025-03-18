@@ -72,6 +72,10 @@ class SessionHandlerPHPTest extends ClearStateTestCase
     #[RunInSeparateProcess]
     public function testSetCookie(): void
     {
+        if (!in_array('develop', xdebug_info( 'mode' ))) {
+            $this->markTestSkipped('xdebug.mode != develop');
+        }
+
         Configuration::loadFromArray($this->sessionConfig, '[ARRAY]', 'simplesaml');
         $sh = SessionHandlerPHP::getSessionHandler();
         $sh->setCookie('SimpleSAMLSessionID', '1');
@@ -95,6 +99,10 @@ class SessionHandlerPHPTest extends ClearStateTestCase
     #[RunInSeparateProcess]
     public function testSetCookieSameSiteNone(): void
     {
+        if (!in_array('develop', xdebug_info( 'mode' ))) {
+            $this->markTestSkipped('xdebug.mode != develop');
+        }
+
         Configuration::loadFromArray(
             array_merge($this->sessionConfig, ['session.cookie.samesite' => 'None']),
             '[ARRAY]',
@@ -115,6 +123,10 @@ class SessionHandlerPHPTest extends ClearStateTestCase
     #[RunInSeparateProcess]
     public function testSetCookieSameSiteLax(): void
     {
+        if (!in_array('develop', xdebug_info( 'mode' ))) {
+            $this->markTestSkipped('xdebug.mode != develop');
+        }
+
         Configuration::loadFromArray(
             array_merge($this->sessionConfig, ['session.cookie.samesite' => 'Lax']),
             '[ARRAY]',
@@ -135,6 +147,10 @@ class SessionHandlerPHPTest extends ClearStateTestCase
     #[RunInSeparateProcess]
     public function testSetCookieSameSiteStrict(): void
     {
+        if (!in_array('develop', xdebug_info( 'mode' ))) {
+            $this->markTestSkipped('xdebug.mode != develop');
+        }
+
         Configuration::loadFromArray(
             array_merge($this->sessionConfig, ['session.cookie.samesite' => 'Strict']),
             '[ARRAY]',
@@ -155,6 +171,10 @@ class SessionHandlerPHPTest extends ClearStateTestCase
     #[RunInSeparateProcess]
     public function testRestorePrevious(): void
     {
+        if (!in_array('develop', xdebug_info( 'mode' ))) {
+            $this->markTestSkipped('xdebug.mode != develop');
+        }
+
         session_name('PHPSESSID');
         $sid = session_id();
         session_start();

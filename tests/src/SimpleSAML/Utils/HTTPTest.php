@@ -454,6 +454,10 @@ class HTTPTest extends ClearStateTestCase
     #[RunInSeparateProcess]
     public function testSetCookie(): void
     {
+        if (!in_array('develop', xdebug_info( 'mode' ))) {
+            $this->markTestSkipped('xdebug.mode != develop');
+        }
+
         $original = $_SERVER;
         $httpUtils = new Utils\HTTP();
 
@@ -530,12 +534,14 @@ class HTTPTest extends ClearStateTestCase
     }
 
 
-    /**
-     */
     #[RequiresPhpExtension('xdebug')]
     #[RunInSeparateProcess]
     public function testSetCookieSameSite(): void
     {
+        if (!in_array('develop', xdebug_info( 'mode' ))) {
+            $this->markTestSkipped('xdebug.mode != develop');
+        }
+
         $httpUtils = new Utils\HTTP();
         $httpUtils->setCookie('SSNull', 'value', ['samesite' => null]);
         $httpUtils->setCookie('SSNone', 'value', ['samesite' => 'None']);
