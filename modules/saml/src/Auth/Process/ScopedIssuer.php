@@ -106,14 +106,14 @@ class ScopedIssuer extends Auth\ProcessingFilter
         );
         Assert::notWhitespaceOnly(
             $value,
-            $message ?: '%s is not a SAML2-compliant URI',
+            '%s is not a SAML2-compliant URI',
             ProtocolViolationException::class,
         );
         // If it doesn't have a scheme, it's not an absolute URI
         Assert::regex(
             $value,
             '/^([a-z][a-z0-9\+\-\.]+[:])/i',
-            $message ?: '%s is not a SAML2-compliant URI',
+            '%s is not a SAML2-compliant URI',
             ProtocolViolationException::class,
         );
 

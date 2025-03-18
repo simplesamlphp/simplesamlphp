@@ -130,6 +130,6 @@ class AttributeNameIDTest extends TestCase
             ],
         ];
         $result = $this->processFilter($config, $request);
-        $this->assertNull($result['saml:NameID']);
+        $this->assertArrayNotHasKey('saml:NameID', $result);
     }
 }
