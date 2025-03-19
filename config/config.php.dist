@@ -901,6 +901,14 @@ $config = [
      */
     'template.auto_reload' => false,
 
+
+    /*
+     * Set the 'template.debug' to true to enable debugging for Twig templates.
+     * This is useful during development as it provides better error messages.
+     * Defaults to false.
+     */
+    //'template.debug' => false,
+
     /*
      * Set this option to true to indicate that your installation of SimpleSAMLphp
      * is running in a production environment. This will affect the way resources
