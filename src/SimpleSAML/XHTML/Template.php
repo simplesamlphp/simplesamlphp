@@ -27,6 +27,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 use Twig\Error\RuntimeError;
+use Twig\Extension\DebugExtension;
 use Twig\Extra\Intl\IntlExtension;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFilter;
@@ -295,6 +296,7 @@ class Template extends Response
     {
         $auto_reload = $this->configuration->getOptionalBoolean('template.auto_reload', true);
         $cache = $this->configuration->getOptionalString('template.cache', null);
+        $templateDebug = $this->configuration->getOptionalBoolean('template.debug', false);
 
         // set up template paths
         $loader = $this->setupTwigTemplatepaths();
@@ -321,10 +323,17 @@ class Template extends Response
             'strict_variables' => true,
         ];
 
+        if ($templateDebug) {
+            $options['debug'] = true;
+        }
+
         $twig = new Environment($loader, $options);
         $twigTranslator = new TwigTranslator([Translate::class, 'translateSingularGettext']);
         $twig->addExtension(new TranslationExtension($twigTranslator));
         $twig->addExtension(new IntlExtension());
+        if ($templateDebug) {
+            $twig->addExtension(new DebugExtension());
+        }
 
         $twig->addFunction(new TwigFunction('moduleURL', [Module::class, 'getModuleURL']));
 
