@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\XHTML;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\XHTML\Template;
@@ -35,6 +36,29 @@ class TemplateTest extends TestCase
         $c = Configuration::loadFromArray([], '', 'simplesaml');
         $t = new Template($c, 'core:welcome');
         $this->assertEquals('core:welcome.twig', $t->getTemplateName());
+    }
+
+    public static function debugModeProvider(): array
+    {
+        return [
+            'on' => [true],
+            'off' => [false],
+        ];
+    }
+
+    #[DataProvider('debugModeProvider')]
+    public function testTemplateDebugMode(bool $debugMode): void
+    {
+        $c = Configuration::loadFromArray(['template.debug' => $debugMode]);
+        $t = new Template($c, self::TEMPLATE);
+        $extensionsEnabled = array_keys($t->getTwig()->getExtensions());
+        if ($debugMode) {
+            $this->assertContains('Twig\Extension\DebugExtension', $extensionsEnabled);
+            $this->assertTrue($t->getTwig()->isDebug());
+        } else {
+            $this->assertNotContains('Twig\Extension\DebugExtension', $extensionsEnabled);
+            $this->assertFalse($t->getTwig()->isDebug());
+        }
     }
 
     public function testGetEntityDisplayNameBasic(): void
