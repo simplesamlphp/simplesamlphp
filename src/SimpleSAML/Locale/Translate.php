@@ -114,6 +114,7 @@ class Translate
         }
 
         $args = array_slice(func_get_args(), 1);
+
         return strtr($text, is_array($args[0]) ? $args[0] : $args);
     }
 
