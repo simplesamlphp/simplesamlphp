@@ -317,7 +317,11 @@ class IdP
 
         $idpMetadata = $idp->getConfig()->toArray();
 
-        $pc = new Auth\ProcessingChain($idpMetadata, $spMetadata, 'idp');
+        // Add in authprocs defined in authsources.php
+        $asArray = Configuration::getConfig('authsources.php')->getArray($idp->authSource->getAuthSource()->getAuthId());
+        $asAuthproc = array_key_exists('authproc', $asArray) ? ['authproc' => $asArray['authproc']] : null;
+
+        $pc = new Auth\ProcessingChain($idpMetadata, $spMetadata, 'idp', $asAuthproc);
 
         $state['ReturnCall'] = ['\SimpleSAML\IdP', 'postAuthProc'];
         $state['Destination'] = $spMetadata;
