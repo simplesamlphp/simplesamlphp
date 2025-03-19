@@ -9,6 +9,9 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+* Downgrade simplesamlphp/composer-module-installer to 1.3.x to keep things working with older (OS-supplied)
+  versions of composer
+
 ## Version 2.3.7
 
 Released 2025-03-11
