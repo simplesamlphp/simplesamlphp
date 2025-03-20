@@ -80,6 +80,16 @@ class Translate
      *
      * @param string|null $original The string before translation.
      *
+     *
+     * NOTE: This may be called from TwigTranslator::trans()
+     * which will pass the following arguments.
+     * The $id will match $original above but there are other arguments which may also be used in this method.
+     *
+     * @param string $id
+     * @param array $parameters
+     * @param string|null $domain
+     * @param string|null $locale
+     *
      * @return string The translated string.
      */
     public static function translateSingularGettext(?string $original): string
@@ -96,7 +106,7 @@ class Translate
                     foreach (self::$defaultDomains as $d) {
                         $text = TranslatorFunctions::getTranslator()->dgettext($d, $original);
                         if ($text != $original) {
-                            return $text;
+                            break;
                         }
                     }
 
