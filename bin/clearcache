@@ -16,9 +16,7 @@ use SimpleSAML\Utils\Config;
 
 class ClearCache
 {
-    private bool $isProduction;
-    private string $environment = 'Production';
-    private string $cacheDir;
+    private array $enabledModules;
 
     public function __construct() {
         // Initialize the configuration
@@ -29,23 +27,18 @@ class ClearCache
 
 
     /**
-     * Initialize the cache clearing process.
+     * Initialize the class and configurations.
      *
-     * This method sets up the cache directory and determines
-     * the environment (Production or Development) based on the current
-     * configuration settings. It catches configuration errors and displays
-     * an error message if the necessary configuration file is unavailable.
+     * This method is used to set up the enabled modules configuration
+     * and to ensure proper initialization of the environment before
+     * performing any cache-clear operations.
      *
      * @return void
      */
     private function init(): void
     {
         try {
-            $this->cacheDir = Configuration::getInstance()->getString('cachedir');
-            $this->isProduction = Configuration::getInstance()->getBoolean('production');
-            if (!$this->isProduction) {
-                $this->environment = 'Development';
-            }
+            $this->enabledModules = Configuration::getInstance()->getArray('module.enable');
         } catch (CriticalConfigurationError $e) {
             print "Error:configuration file not found" .  PHP_EOL;
             exit;
@@ -54,88 +47,34 @@ class ClearCache
 
 
     /**
-     * Clears the cache by deleting all files and directories
-     * within the cache directory.
+     * Clear the cache for enabled modules.
      *
-     * This method iterates over the contents of the cache directory,
-     * removing each file and directory it encounters. It ensures that
-     * the cache is fully cleared and displays a confirmation message
-     * indicating the successful operation.
+     * This method iterates through the enabled modules and clears their cache
+     * using the Symfony console command. If the command fails for any module,
+     * an exception is thrown. A message is printed for every module whose
+     * cache was successfully cleared.
+     *
+     * @throws \RuntimeException If cache clearing fails for any module.
      *
      * @return void
-     * @throws \RuntimeException If an error occurs during cache clearing.
      */
     public function clear(): void
     {
         $this->init();
-        $iterator = new \FilesystemIterator($this->cacheDir, \FilesystemIterator::SKIP_DOTS);
-        print "Cache directory: $this->cacheDir" . PHP_EOL;
-        foreach ($iterator as $file) {
-            if ($file->isDir()) {
-                $directory = $file->getPathname();
-                $recursiveIterator = new \RecursiveIteratorIterator(
-                    new \RecursiveDirectoryIterator($directory, \FilesystemIterator::SKIP_DOTS),
-                    \RecursiveIteratorIterator::CHILD_FIRST
-                );
+        foreach ($this->enabledModules as $module => $enabled) {
+            if ($enabled) {
+                $command = "php bin/console cache:clear --no-warmup -m " . escapeshellarg($module);
+                exec($command, $output, $returnVar);
 
-                foreach ($recursiveIterator as $item) {
-                    if ($item->isDir()) {
-                        rmdir($item->getPathname());
-                    } else {
-                        unlink($item->getPathname());
-                    }
+                if ($returnVar !== 0) {
+                    throw new \RuntimeException(sprintf('Failed to clear cache for module "%s".', $module));
                 }
 
-                rmdir($directory);
+                printf("Cache cleared for module: %s\n", $module);
             }
-        }
 
-        $message = "[OK] Cache for the '$this->environment' environment (configuration:production="
-            . var_export($this->isProduction, true) . ") was successfully cleared";
-        $this->printSuccessMessage($message);
+        }
     }
-
-
-    /**
-     * Prints a green banner message with the provided text.
-     *
-     * The banner is styled with green background and black text,
-     * and includes padding around the message.
-     *
-     * @param string $message The message to display inside the green banner.
-     */
-    public function printSuccessMessage(string $message): void
-    {
-        // Define the padding for the message (simulated spacing)
-        $paddingHorizontal = 1; // Approximation for 0.5 em horizontally
-        $paddingVertical = 1;   // Approximation for 0.5 em vertically
-
-        // Get terminal width, fallback to 80 if unavailable
-        $terminalWidth = (int) exec('tput cols') ?: 80;
-
-        // Correct calculation for remaining spaces
-        $contentWidth = strlen($message) + ($paddingHorizontal * 2); // Total content width
-        $rightPaddingWidth = max(0, $terminalWidth - $contentWidth); // Dynamic padding for the right-hand side
-
-        // Print the green "banner" with black text
-        // Top padding
-        for ($i = 0; $i < $paddingVertical; $i++) {
-            echo "\033[42m\033[30m" . str_repeat(' ', $terminalWidth) . "\033[0m\n";
-        }
-
-        // Message line with horizontal padding
-        echo "\033[42m\033[30m"; // Start green background
-        echo str_repeat(' ', $paddingHorizontal); // Left padding
-        echo $message; // Black text message
-        echo str_repeat(' ', $paddingHorizontal + $rightPaddingWidth) . "\033[0m\n"; // Fill remaining space to the right
-
-        // Bottom padding
-        for ($i = 0; $i < $paddingVertical; $i++) {
-            echo "\033[42m\033[30m" . str_repeat(' ', $terminalWidth) . "\033[0m\n";
-        }
-
-    }
-
 }
 
 $clearCache = new ClearCache();
