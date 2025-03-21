@@ -264,6 +264,14 @@ class Localization
                 if (empty($translations->getDomain())) {
                     $translations->setDomain($domain);
                 }
+                if ($domain != $translations->getDomain()) {
+                    Logger::warning(sprintf(
+                        "The translation file at %s has domain %s but is expected to have a domain %s",
+                        $file->getPath(),
+                        $translations->getDomain(),
+                        $domain,
+                    ));
+                }
 
                 $arrayGenerator = new ArrayGenerator();
                 $this->translator->addTranslations(
