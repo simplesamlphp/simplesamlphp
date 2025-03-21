@@ -61,7 +61,7 @@ jobs:
         run: cp config/config.php.dist config/config.php
 
       - name: Create SimpleSAMLphp cache directory
-        run: sudo mkdir -p /var/cache/simplesamlphp && chmod 777 /var/cache/simplesamlphp
+        run: sudo mkdir -p /var/cache/simplesamlphp && sudo chmod 777 /var/cache/simplesamlphp
 
       - name: Get composer cache directory
         run: echo COMPOSER_CACHE="$(composer config cache-files-dir)" >> "$GITHUB_ENV"
@@ -133,7 +133,7 @@ jobs:
         run: cp config/config.php.dist config/config.php
 
       - name: Create SimpleSAMLphp cache directory
-        run: sudo mkdir -p /var/cache/simplesamlphp && chmod 777 /var/cache/simplesamlphp
+        run: sudo mkdir -p /var/cache/simplesamlphp && sudo chmod 777 /var/cache/simplesamlphp
 
       - name: Get composer cache directory
         run: echo COMPOSER_CACHE="$(composer config cache-files-dir)" >> "$GITHUB_ENV"
@@ -195,7 +195,7 @@ jobs:
         run: cp config/config.php.dist config/config.php
 
       - name: Create SimpleSAMLphp cache directory
-        run: sudo mkdir -p /var/cache/simplesamlphp && chmod 777 /var/cache/simplesamlphp
+        run: sudo mkdir -p /var/cache/simplesamlphp && sudo chmod 777 /var/cache/simplesamlphp
 
       - name: Get composer cache directory
         run: echo COMPOSER_CACHE="$(composer config cache-files-dir)" >> "$GITHUB_ENV"
