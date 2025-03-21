@@ -6,7 +6,7 @@ services:
     public: false
 
   SimpleSAML\Command\SspCacheClearCommand:
-      tags: ['console.command']
-      arguments:
-        $cacheClearer: '@cache_clearer'
-        $filesystem: '@filesystem'
+    tags: ['console.command']
+    arguments:
+      $cacheClearer: '@cache_clearer'
+      $filesystem: '@filesystem'
