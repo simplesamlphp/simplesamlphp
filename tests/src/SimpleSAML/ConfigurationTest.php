@@ -35,7 +35,10 @@ class ConfigurationTest extends ClearStateTestCase
     {
         $this->expectException(Error\CriticalConfigurationError::class);
         Configuration::loadFromArray(['key' => 'value'], '', 'dummy');
+        // Point to a directory that will have no Configuration file
+        putenv('SIMPLESAMLPHP_CONFIG_DIR=/var/cache/simplesamlphp');
         Configuration::getInstance();
+        putenv('SIMPLESAMLPHP_CONFIG_DIR');
     }
 
 
@@ -45,6 +48,8 @@ class ConfigurationTest extends ClearStateTestCase
      */
     public function testCriticalConfigurationError(): void
     {
+        // Do not rely on the default directory. Target another directory.
+        putenv('SIMPLESAMLPHP_CONFIG_DIR=/var/cache/simplesamlphp');
         try {
             Configuration::getInstance();
             $this->fail('Exception expected');
@@ -52,11 +57,12 @@ class ConfigurationTest extends ClearStateTestCase
             // This exception is expected.
         }
         /*
-         * After the above failure an emergency configuration is create to allow core SSP components to function and
+         * After the above failure an emergency configuration is created to allow core SSP components to function and
          * possibly log/display the error.
          */
         $c = Configuration::getInstance();
         $this->assertNotEmpty($c->toArray());
+        putenv('SIMPLESAMLPHP_CONFIG_DIR');
     }
 
 
