@@ -130,7 +130,7 @@
         "translations:unused": "php bin/translations translations:unused",
         "translations:update:translatable": "php bin/translations translations:update:translatable",
         "clear-cache": [
-            "php bin/clearcache"
+            "php bin/console ssp-cache:clear --no-warmup"
         ],
         "post-update-cmd": [
             "@clear-cache",
