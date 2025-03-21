@@ -21,6 +21,7 @@
     </include>
     <exclude>
       <directory>./tests</directory>
+      <directory>./config</directory>
     </exclude>
   </source>
 </phpunit>
