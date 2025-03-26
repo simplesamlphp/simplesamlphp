@@ -12,6 +12,10 @@ Released TBD
 * Downgrade simplesamlphp/composer-module-installer to 1.3.x to keep things working with older (OS-supplied)
   versions of composer
 
+`metarefresh`
+
+* Fixed parsing of large metadata files (v1.2.4)
+
 ## Version 2.3.7
 
 Released 2025-03-11
