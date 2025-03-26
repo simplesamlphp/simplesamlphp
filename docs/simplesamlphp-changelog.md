@@ -9,6 +9,10 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+`metarefresh`
+
+* Fixed parsing of large metadata files (v1.2.4)
+
 ## Version 2.2.5
 
 Released 2025-03-11

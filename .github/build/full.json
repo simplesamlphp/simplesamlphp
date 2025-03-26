@@ -22,7 +22,7 @@
     },
     "metarefresh": {
       "repository": "simplesamlphp/simplesamlphp-module-metarefresh",
-      "version": "~1.2.0"
+      "version": "~1.2.4"
     },
     "radius": {
       "repository": "simplesamlphp/simplesamlphp-module-radius",
