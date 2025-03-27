@@ -129,15 +129,16 @@
     "scripts": {
         "translations:unused": "php bin/translations translations:unused",
         "translations:update:translatable": "php bin/translations translations:update:translatable",
-        "clear-cache": [
+        "clear-symfony-cache": [
+            "php bin/console     cache:clear --no-warmup",
             "php bin/console ssp-cache:clear --no-warmup"
         ],
         "post-update-cmd": [
-            "@clear-cache",
+            "@clear-symfony-cache",
             "echo 'Post-update tasks completed!'"
         ],
         "post-install-cmd": [
-            "@clear-cache",
+            "@clear-symfony-cache",
             "echo 'Post-install tasks completed!'"
         ]
     },
