@@ -6,6 +6,8 @@
         By default it is less stringent about long lines than other coding standards
     </description>
 
+    <arg name="extensions" value="php,php.dist,js,css" />
+
     <file>bin</file>
     <file>config</file>
     <file>metadata</file>
@@ -16,7 +18,6 @@
 
     <exclude-pattern>modules/adfs/*</exclude-pattern>
     <exclude-pattern>public/assets/*</exclude-pattern>
-    <exclude-pattern>config/*</exclude-pattern>
 
     <!-- This is the rule we inherit from. If you want to exclude some specific rules, see the docs on how to do that -->
     <rule ref="PSR12"/>
