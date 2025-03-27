@@ -6,11 +6,7 @@
         By default it is less stringent about long lines than other coding standards
     </description>
 
-    <arg name="extensions" value="php,php.dist,js,css" />
-
     <file>bin</file>
-    <file>config</file>
-    <file>metadata</file>
     <file>modules</file>
     <file>public</file>
     <file>src</file>
