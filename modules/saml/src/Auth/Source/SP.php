@@ -659,14 +659,6 @@ class SP extends \SimpleSAML\Auth\Source
                     Constants::BINDING_HOK_SSO,
                 ],
             );
-        } elseif ($ar->getProtocolBinding() === Constants::BINDING_HTTP_ARTIFACT) {
-            /** @var array $dst */
-            $dst = $idpMetadata->getDefaultEndpoint(
-                'SingleSignOnService',
-                [
-                    Constants::BINDING_HTTP_ARTIFACT,
-                ],
-            );
         } else {
             /** @var array $dst */
             $dst = $idpMetadata->getEndpointPrioritizedByBinding(
