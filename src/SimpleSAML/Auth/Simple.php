@@ -40,8 +40,8 @@ class Simple
      */
     public function __construct(
         protected string $authSource,
-        Configuration $config = null,
-        Session $session = null,
+        ?Configuration $config = null,
+        ?Session $session = null,
     ) {
         if ($config === null) {
             $config = Configuration::getInstance();

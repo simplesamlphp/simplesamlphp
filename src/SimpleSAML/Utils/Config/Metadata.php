@@ -58,12 +58,12 @@ class Metadata
      * Find the default endpoint in an endpoint array.
      *
      * @param array $endpoints An array with endpoints.
-     * @param array $bindings An array with acceptable bindings. Can be null if any binding is allowed.
+     * @param array|null $bindings An array with acceptable bindings. Can be null if any binding is allowed.
      *
      * @return array|NULL The default endpoint, or null if no acceptable endpoints are used.
      *
      */
-    public static function getDefaultEndpoint(array $endpoints, array $bindings = null): ?array
+    public static function getDefaultEndpoint(array $endpoints, ?array $bindings = null): ?array
     {
         $firstNotFalse = null;
         $firstAllowed = null;
@@ -129,7 +129,7 @@ class Metadata
     /**
      * This method parses the different possible values of the NameIDPolicy metadata configuration.
      */
-    public static function parseNameIdPolicy(array $nameIdPolicy = null): ?NameIDPolicy
+    public static function parseNameIdPolicy(?array $nameIdPolicy = null): ?NameIDPolicy
     {
         if ($nameIdPolicy === null) {
             // when NameIDPolicy is unset or set to null, default to transient

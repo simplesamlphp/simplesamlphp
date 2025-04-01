@@ -99,7 +99,7 @@ class Test
      * @param string|null $as
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function main(Request $request, string $as = null): Response
+    public function main(Request $request, ?string $as = null): Response
     {
         $response = $this->authUtils->requireAdmin();
         if ($response instanceof Response) {
