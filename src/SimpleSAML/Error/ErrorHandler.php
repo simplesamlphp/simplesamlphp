@@ -46,8 +46,8 @@ class ErrorHandler
             E_USER_DEPRECATED => 'User Deprecated',
             E_NOTICE => 'Notice',
             E_USER_NOTICE => 'User Notice',
-            // E_STRICT has become deprecated in PHP 8.4
-            E_STRICT => 'Runtime Notice',
+            // E_STRICT (2048) has become deprecated in PHP 8.4
+            2048 => 'Runtime Notice',
             E_WARNING => 'Warning',
             E_USER_WARNING => 'User Warning',
             E_COMPILE_WARNING => 'Compile Warning',
