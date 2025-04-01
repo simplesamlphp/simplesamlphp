@@ -42,7 +42,7 @@ class EMail
      * @throws \PHPMailer\PHPMailer\Exception
      */
     public function __construct(
-        string  $subject,
+        string $subject,
         ?string $from = null,
         ?string $to = null,
         private string $txt_template = 'mailtxt.twig',
