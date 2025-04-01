@@ -96,7 +96,7 @@ class SspContainer extends AbstractContainer
      * @param string $date
      * @param int|null $mode
      */
-    public function writeFile(string $filename, string $data, int $mode = null): void
+    public function writeFile(string $filename, string $data, ?int $mode = null): void
     {
         $sysUtils = new Utils\System();
 

@@ -28,11 +28,11 @@ class Time
     /**
      * This function generates a timestamp on the form used by the SAML protocols.
      *
-     * @param int $instant The time the timestamp should represent. Defaults to current time.
+     * @param int|null $instant The time the timestamp should represent. Defaults to current time.
      *
      * @return string The timestamp.
      */
-    public function generateTimestamp(int $instant = null): string
+    public function generateTimestamp(?int $instant = null): string
     {
         if ($instant === null) {
             $instant = time();
@@ -82,14 +82,14 @@ class Time
      * durations specified in the formats PYYYYMMDDThhmmss nor P[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].
      *
      * @param string $duration The duration, as a string.
-     * @param int    $timestamp The unix timestamp we should apply the duration to. Optional, default to the current
+     * @param int|null $timestamp The unix timestamp we should apply the duration to. Optional, default to the current
      *     time.
      *
      * @return int The new timestamp, after the duration is applied.
      * @throws \InvalidArgumentException If $duration is not a valid ISO 8601 duration or if the input parameters do
      *     not have the right data types.
      */
-    public function parseDuration(string $duration, int $timestamp = null): int
+    public function parseDuration(string $duration, ?int $timestamp = null): int
     {
         Assert::validDuration($duration);
 

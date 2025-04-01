@@ -26,7 +26,7 @@ class Cron
      * @param \SimpleSAML\Configuration $cronconfig The cron configuration to use. If not specified defaults
      * to `config/module_cron.php`
      */
-    public function __construct(Configuration $cronconfig = null)
+    public function __construct(?Configuration $cronconfig = null)
     {
         if ($cronconfig == null) {
             $cronconfig = Configuration::getConfig('module_cron.php');

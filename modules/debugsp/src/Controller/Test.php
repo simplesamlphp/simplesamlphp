@@ -78,7 +78,7 @@ class Test
      * @param string|null $as
      * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
      */
-    private function makeSPList(Request $request, string $as = null): Response
+    private function makeSPList(Request $request, ?string $as = null): Response
     {
         $t = new Template($this->config, 'debugsp:authsource_list.twig');
         $samlSpSources = Auth\Source::getSourcesOfType('saml:SP');
@@ -101,7 +101,7 @@ class Test
      * @param string|null $as
      * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
      */
-    public function main(Request $request, string $as = null): Response
+    public function main(Request $request, ?string $as = null): Response
     {
         if (is_null($as)) {
             $t = $this->makeSPList($request, $as);

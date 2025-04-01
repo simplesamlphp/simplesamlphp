@@ -44,9 +44,9 @@ class CardinalitySingle extends Auth\ProcessingFilter
      *
      * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
-     * @param \SimpleSAML\Utils\HTTP $httpUtils  HTTP utility service (handles redirects).
+     * @param \SimpleSAML\Utils\HTTP|null $httpUtils  HTTP utility service (handles redirects).
      */
-    public function __construct(array &$config, $reserved, Utils\HTTP $httpUtils = null)
+    public function __construct(array &$config, $reserved, ?Utils\HTTP $httpUtils = null)
     {
         parent::__construct($config, $reserved);
 

@@ -360,7 +360,7 @@ class SAMLParser
      *     be the entity id.
      * @throws \Exception if the document is empty or the root is an unexpected node.
      */
-    public static function parseDescriptorsElement(DOMElement $element = null): array
+    public static function parseDescriptorsElement(?DOMElement $element = null): array
     {
         if ($element === null) {
             throw new Exception('Document was empty.');
