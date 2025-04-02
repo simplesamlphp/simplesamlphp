@@ -29,7 +29,7 @@ class SQLPermanentStorage
      * @param \SimpleSAML\Configuration|null $config
      * @throws \Exception
      */
-    public function __construct(string $name, Configuration $config = null)
+    public function __construct(string $name, ?Configuration $config = null)
     {
         if (is_null($config)) {
             $config = Configuration::getInstance();
@@ -81,7 +81,7 @@ class SQLPermanentStorage
      * @param string $value
      * @param int|null $duration
      */
-    public function set(string $type, string $key1, string $key2, string $value, int $duration = null): void
+    public function set(string $type, string $key1, string $key2, string $value, ?int $duration = null): void
     {
         if ($this->exists($type, $key1, $key2)) {
             $this->update($type, $key1, $key2, $value, $duration);
@@ -99,7 +99,7 @@ class SQLPermanentStorage
      * @param int|null $duration
      * @return array
      */
-    private function insert(string $type, string $key1, string $key2, string $value, int $duration = null): array
+    private function insert(string $type, string $key1, string $key2, string $value, ?int $duration = null): array
     {
         $expire = is_null($duration) ? null : (time() + $duration);
 
@@ -125,7 +125,7 @@ class SQLPermanentStorage
      * @param int|null $duration
      * @return array
      */
-    private function update(string $type, string $key1, string $key2, string $value, int $duration = null): array
+    private function update(string $type, string $key1, string $key2, string $value, ?int $duration = null): array
     {
         $expire = is_null($duration) ? null : (time() + $duration);
 
@@ -148,7 +148,7 @@ class SQLPermanentStorage
      * @param string|null $key2
      * @return array|null
      */
-    public function get(string $type = null, string $key1 = null, string $key2 = null): ?array
+    public function get(?string $type = null, ?string $key1 = null, ?string $key2 = null): ?array
     {
         $conditions = $this->getCondition($type, $key1, $key2);
         $query = 'SELECT * FROM data WHERE ' . $conditions;
@@ -173,7 +173,7 @@ class SQLPermanentStorage
      * @param string|null $key2
      * @return string|null
      */
-    public function getValue(string $type = null, string $key1 = null, string $key2 = null): ?string
+    public function getValue(?string $type = null, ?string $key1 = null, ?string $key2 = null): ?string
     {
         $res = $this->get($type, $key1, $key2);
         if ($res === null) {
@@ -206,7 +206,7 @@ class SQLPermanentStorage
      * @param string|null $key2
      * @return array|false
      */
-    public function getList(string $type = null, string $key1 = null, string $key2 = null)
+    public function getList(?string $type = null, ?string $key1 = null, ?string $key2 = null)
     {
         $conditions = $this->getCondition($type, $key1, $key2);
         $query = 'SELECT * FROM data WHERE ' . $conditions;
@@ -234,9 +234,9 @@ class SQLPermanentStorage
      * @return array|null
      */
     public function getKeys(
-        string $type = null,
-        string $key1 = null,
-        string $key2 = null,
+        ?string $type = null,
+        ?string $key1 = null,
+        ?string $key2 = null,
         string $whichKey = 'type',
     ): ?array {
         if (!in_array($whichKey, ['key1', 'key2', 'type'], true)) {
@@ -299,7 +299,7 @@ class SQLPermanentStorage
      * @param string|null $key2
      * @return string
      */
-    private function getCondition(string $type = null, string $key1 = null, string $key2 = null): string
+    private function getCondition(?string $type = null, ?string $key1 = null, ?string $key2 = null): string
     {
         $conditions = [];
         if (!is_null($type)) {

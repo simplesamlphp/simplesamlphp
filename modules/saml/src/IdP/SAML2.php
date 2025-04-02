@@ -198,9 +198,9 @@ class SAML2
     private static function getAssertionConsumerService(
         array $supportedBindings,
         Configuration $spMetadata,
-        string $AssertionConsumerServiceURL = null,
-        string $ProtocolBinding = null,
-        int $AssertionConsumerServiceIndex = null,
+        ?string $AssertionConsumerServiceURL = null,
+        ?string $ProtocolBinding = null,
+        ?int $AssertionConsumerServiceIndex = null,
         bool $authnRequestSigned = false,
     ): ?array {
         /* We want to pick the best matching endpoint in the case where for example
@@ -533,9 +533,9 @@ class SAML2
      *
      * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
      * @param array           $association The association that should be terminated.
-     * @param string|null     $relayState An id that should be carried across the logout.
+     * @param string|null $relayState An id that should be carried across the logout.
      */
-    public static function sendLogoutRequest(IdP $idp, array $association, string $relayState = null): void
+    public static function sendLogoutRequest(IdP $idp, array $association, ?string $relayState = null): void
     {
         Logger::info('Sending SAML 2.0 LogoutRequest to: ' . var_export($association['saml:entityID'], true));
 
@@ -702,11 +702,11 @@ class SAML2
      *
      * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
      * @param array           $association The association that should be terminated.
-     * @param string|NULL     $relayState An id that should be carried across the logout.
+     * @param string|NULL $relayState An id that should be carried across the logout.
      *
      * @return string The logout URL.
      */
-    public static function getLogoutURL(IdP $idp, array $association, string $relayState = null): string
+    public static function getLogoutURL(IdP $idp, array $association, ?string $relayState = null): string
     {
         Logger::info('Sending SAML 2.0 LogoutRequest to: ' . var_export($association['saml:entityID'], true));
 
@@ -761,7 +761,7 @@ class SAML2
      * Retrieve the metadata of a hosted SAML 2 IdP.
      *
      * @param string $entityid The entity ID of the hosted SAML 2 IdP whose metadata we want.
-     * @param MetaDataStorageHandler $handler Optionally the metadata storage to use,
+     * @param MetaDataStorageHandler|null $handler Optionally the metadata storage to use,
      *        if omitted the configured handler will be used.
      *
      * @return array
@@ -769,7 +769,7 @@ class SAML2
      * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\MetadataNotFound
      */
-    public static function getHostedMetadata(string $entityid, MetaDataStorageHandler $handler = null): array
+    public static function getHostedMetadata(string $entityid, ?MetaDataStorageHandler $handler = null): array
     {
         $globalConfig = Configuration::getInstance();
         if ($handler === null) {
@@ -1409,7 +1409,7 @@ class SAML2
         Configuration $idpMetadata,
         Configuration $spMetadata,
         array $association,
-        string $relayState = null,
+        ?string $relayState = null,
     ): LogoutRequest {
         $lr = Message::buildLogoutRequest($idpMetadata, $spMetadata);
         $lr->setRelayState($relayState);

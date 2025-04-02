@@ -29,7 +29,7 @@ class Error extends \SimpleSAML\Error\Exception
         private string $status,
         private ?string $subStatus = null,
         private ?string $statusMessage = null,
-        Throwable $cause = null,
+        ?Throwable $cause = null,
     ) {
         $st = self::shortStatus($status);
         if ($subStatus !== null) {

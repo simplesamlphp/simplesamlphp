@@ -57,11 +57,11 @@ class Database
     /**
      * Retrieves the current database instance. Will create a new one if there isn't an existing connection.
      *
-     * @param \SimpleSAML\Configuration $altConfig Optional: Instance of a \SimpleSAML\Configuration class
+     * @param \SimpleSAML\Configuration|null $altConfig Optional: Instance of a \SimpleSAML\Configuration class
      *
      * @return \SimpleSAML\Database The shared database connection.
      */
-    public static function getInstance(Configuration $altConfig = null): Database
+    public static function getInstance(?Configuration $altConfig = null): Database
     {
         $config = ($altConfig) ? $altConfig : Configuration::getInstance();
         $instanceId = self::generateInstanceId($config);
@@ -159,12 +159,12 @@ class Database
      * @param string $dsn Database connection string
      * @param string|null $username SQL user
      * @param string|null $password SQL password
-     * @param array  $options PDO options
+     * @param array $options PDO options
      *
      * @throws \Exception If an error happens while trying to connect to the database.
      * @return \PDO object
      */
-    private function connect(string $dsn, string $username = null, string $password = null, array $options): PDO
+    private function connect(string $dsn, ?string $username = null, ?string $password = null, array $options = []): PDO
     {
         try {
             $db = new PDO($dsn, $username, $password, $options);

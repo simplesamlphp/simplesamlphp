@@ -74,7 +74,7 @@ class Crypto
      * Decrypt data using AES-256-CBC and the system-wide secret salt as key.
      *
      * @param string $ciphertext The HMAC of the encrypted data, the IV used and the encrypted data, concatenated.
-     * @param string $secret The secret to use to decrypt the data.
+     * @param string|null $secret The secret to use to decrypt the data.
      *                       If not provided, the secret salt from the configuration will be used
      *
      * @return string The decrypted data.
@@ -83,7 +83,7 @@ class Crypto
      *
      * @deprecated - Possibly use xml-security library
      */
-    public function aesDecrypt(string $ciphertext, string $secret = null): string
+    public function aesDecrypt(string $ciphertext, ?string $secret = null): string
     {
         if ($secret === null) {
             $configUtils = new Config();
@@ -140,7 +140,7 @@ class Crypto
      * Encrypt data using AES-256-CBC and the system-wide secret salt as key.
      *
      * @param string $data The data to encrypt.
-     * @param string $secret The secret to use to decrypt the data.
+     * @param string|null $secret The secret to use to decrypt the data.
      *                       If not provided, the secret salt from the configuration will be used
      *
      * @return string An HMAC of the encrypted data, the IV and the encrypted data, concatenated.
@@ -149,7 +149,7 @@ class Crypto
      *
      * @deprecated - Possibly use xml-security library
      */
-    public function aesEncrypt(string $data, string $secret = null): string
+    public function aesEncrypt(string $data, ?string $secret = null): string
     {
         if ($secret === null) {
             $configUtils = new Config();
