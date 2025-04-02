@@ -159,12 +159,12 @@ class Database
      * @param string $dsn Database connection string
      * @param string|null $username SQL user
      * @param string|null $password SQL password
-     * @param array  $options PDO options
+     * @param array $options PDO options
      *
      * @throws \Exception If an error happens while trying to connect to the database.
      * @return \PDO object
      */
-    private function connect(string $dsn, ?string $username = null, ?string $password = null, array $options): PDO
+    private function connect(string $dsn, ?string $username = null, ?string $password = null, array $options = []): PDO
     {
         try {
             $db = new PDO($dsn, $username, $password, $options);
