@@ -101,7 +101,7 @@ class Test
      * @param string|null $as
      * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
      */
-    public function main(Request $request, string $as = null): Response
+    public function main(Request $request, ?string $as = null): Response
     {
         $this->authUtils->requireAdmin();
         if (is_null($as)) {

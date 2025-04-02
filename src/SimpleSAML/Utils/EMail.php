@@ -34,8 +34,8 @@ class EMail
      * from the configuration is used.
      *
      * @param string $subject The subject of the e-mail
-     * @param string $from The from-address (both envelope and header)
-     * @param string $to The recipient
+     * @param string|null $from The from-address (both envelope and header)
+     * @param string|null $to The recipient
      * @param string $txt_template The template to use for plain text messages
      * @param string $html_template The template to use for html messages
      *
@@ -43,8 +43,8 @@ class EMail
      */
     public function __construct(
         string $subject,
-        string $from = null,
-        string $to = null,
+        ?string $from = null,
+        ?string $to = null,
         private string $txt_template = 'mailtxt.twig',
         private string $html_template = 'mailhtml.twig',
     ) {
