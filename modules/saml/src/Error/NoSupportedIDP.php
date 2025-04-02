@@ -23,7 +23,7 @@ class NoSupportedIDP extends \SimpleSAML\Module\saml\Error
      * @param string|null $message A short message explaining why this error happened.
      * @param \Throwable|null $cause An exception that caused this error.
      */
-    public function __construct(string $responsible, string $message = null, Throwable $cause = null)
+    public function __construct(string $responsible, ?string $message = null, ?Throwable $cause = null)
     {
         parent::__construct($responsible, C::STATUS_NO_SUPPORTED_IDP, $message, $cause);
     }

@@ -88,7 +88,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      *
      * @throws \SimpleSAML\Error\Exception If the RelayState was lost during logout.
      */
-    public function onResponse(string $assocId, ?string $relayState, Error\Exception $error = null): Response
+    public function onResponse(string $assocId, ?string $relayState, ?Error\Exception $error = null): Response
     {
         if ($relayState === null) {
             throw new Error\Exception('RelayState lost during logout.');

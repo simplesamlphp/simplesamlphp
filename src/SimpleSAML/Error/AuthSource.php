@@ -25,7 +25,7 @@ class AuthSource extends Error
     public function __construct(
         private string $authsource,
         private string $reason,
-        Throwable $cause = null,
+        ?Throwable $cause = null,
     ) {
         $this->authsource = $authsource;
         $this->reason = $reason;

@@ -28,7 +28,7 @@ class RedisStore implements StoreInterface
      * Initialize the Redis data store.
      * @param \Predis\Client|null $redis
      */
-    public function __construct(Client $redis = null)
+    public function __construct(?Client $redis = null)
     {
         if (!class_exists(Client::class)) {
             throw new Error\CriticalConfigurationError('predis/predis is not available.');

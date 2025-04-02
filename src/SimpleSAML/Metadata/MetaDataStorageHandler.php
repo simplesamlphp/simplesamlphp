@@ -91,7 +91,7 @@ class MetaDataStorageHandler implements ClearableState
      *
      * @param string $property The metadata property which should be auto-generated.
      * @param string $set The set we the property comes from.
-     * @param string $overrideHost Hostname to use in the URLs
+     * @param string|null $overrideHost Hostname to use in the URLs
      *
      * @return string|array The auto-generated metadata property.
      * @throws \Exception If the metadata cannot be generated automatically.
@@ -99,7 +99,7 @@ class MetaDataStorageHandler implements ClearableState
     public function getGenerated(
         string $property,
         string $set,
-        string $overrideHost = null,
+        ?string $overrideHost = null,
         ?string $entityId = null,
     ): string|array {
         // first we check if the user has overridden this property in the metadata

@@ -93,9 +93,9 @@ class Error extends Exception
      */
     public function __construct(
         string|array $errorCode,
-        Throwable $cause = null,
+        ?Throwable $cause = null,
         ?int $httpCode = null,
-        ErrorCodes $errorCodes = null,
+        ?ErrorCodes $errorCodes = null,
     ) {
         if (is_array($errorCode)) {
             $this->parameters = $errorCode;
