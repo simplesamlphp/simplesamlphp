@@ -7,8 +7,6 @@
     </description>
 
     <file>bin</file>
-    <file>config</file>
-    <file>metadata</file>
     <file>modules</file>
     <file>public</file>
     <file>src</file>

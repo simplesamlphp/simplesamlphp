@@ -58,7 +58,7 @@ $config = [
     /*
      * The following settings are *filesystem paths* which define where
      * SimpleSAMLphp can find or write the following things:
-     * - 'cachedir': Where SimpleSAMLphp can write its cache. 
+     * - 'cachedir': Where SimpleSAMLphp can write its cache.
      * - 'loggingdir': Where to write logs. MUST be set to NULL when using a logging
      *                 handler other than `file`.
      * - 'datadir': Storage of general data.
@@ -564,7 +564,7 @@ $config = [
         'exampleauth' => false,
         'core' => true,
         'admin' => true,
-        'saml' => true
+        'saml' => true,
     ],
 
 
@@ -826,7 +826,7 @@ $config = [
     'language.available' => [
         'en', 'no', 'nn', 'se', 'da', 'de', 'sv', 'fi', 'es', 'ca', 'fr', 'it', 'nl', 'lb',
         'cs', 'sk', 'sl', 'lt', 'hr', 'hu', 'pl', 'pt', 'pt_BR', 'tr', 'ja', 'zh', 'zh_TW',
-        'ru', 'et', 'he', 'id', 'sr', 'lv', 'ro', 'eu', 'el', 'af', 'zu', 'xh', 'st'
+        'ru', 'et', 'he', 'id', 'sr', 'lv', 'ro', 'eu', 'el', 'af', 'zu', 'xh', 'st',
     ],
     'language.rtl' => ['ar', 'dv', 'fa', 'ur', 'he'],
     'language.default' => 'en',
