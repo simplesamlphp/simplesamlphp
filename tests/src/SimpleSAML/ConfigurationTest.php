@@ -35,7 +35,11 @@ class ConfigurationTest extends ClearStateTestCase
     {
         $this->expectException(Error\CriticalConfigurationError::class);
         Configuration::loadFromArray(['key' => 'value'], '', 'dummy');
+
+        // Point to a directory that will have no Configuration file
+        putenv('SIMPLESAMLPHP_CONFIG_DIR=/');
         Configuration::getInstance();
+        putenv('SIMPLESAMLPHP_CONFIG_DIR');
     }
 
 
@@ -45,6 +49,8 @@ class ConfigurationTest extends ClearStateTestCase
      */
     public function testCriticalConfigurationError(): void
     {
+        // Do not rely on the default directory. Target another directory.
+        putenv('SIMPLESAMLPHP_CONFIG_DIR=/');
         try {
             Configuration::getInstance();
             $this->fail('Exception expected');
@@ -57,6 +63,7 @@ class ConfigurationTest extends ClearStateTestCase
          */
         $c = Configuration::getInstance();
         $this->assertNotEmpty($c->toArray());
+        putenv('SIMPLESAMLPHP_CONFIG_DIR');
     }
 
 
