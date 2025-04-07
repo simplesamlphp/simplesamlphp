@@ -104,7 +104,7 @@
         "gettext/php-scanner": "2.0.1",
         "mikey179/vfsstream": "~1.6",
         "predis/predis": "^2.2",
-        "simplesamlphp/simplesamlphp-test-framework": "^1.5",
+        "simplesamlphp/simplesamlphp-test-framework": "^1.9.2",
         "simplesamlphp/xml-security": "^1.6.12",
         "symfony/translation": "^6.4"
     },
@@ -151,5 +151,5 @@
             "@clear-symfony-cache",
             "echo 'Post-install tasks completed!'"
         ]
-    },
+    }
 }

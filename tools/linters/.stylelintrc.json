@@ -1,8 +1,4 @@
 {
-  "extends": [
-    "stylelint-config-standard-scss",
-    "stylelint-config-recommended-scss"
-  ],
   "overrides": [
     {
       "files": ["*.scss", "**/*.scss"],
