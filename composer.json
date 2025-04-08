@@ -134,11 +134,9 @@
             "php bin/console ssp-cache:clear --no-warmup"
         ],
         "post-update-cmd": [
-            "@clear-symfony-cache",
             "echo 'Post-update tasks completed!'"
         ],
         "post-install-cmd": [
-            "@clear-symfony-cache",
             "echo 'Post-install tasks completed!'"
         ]
     },
