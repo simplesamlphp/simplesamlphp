@@ -137,11 +137,11 @@
         }
     },
     "scripts": {
-        "translations:unused": "php bin/translations translations:unused",
-        "translations:update:translatable": "php bin/translations translations:update:translatable",
+        "translations:unused": "./bin/translations translations:unused",
+        "translations:update:translatable": "./bin/translations translations:update:translatable",
         "clear-symfony-cache": [
-            "php bin/console     cache:clear --no-warmup",
-            "php bin/console ssp-cache:clear --no-warmup"
+            "./bin/console     cache:clear --no-warmup",
+            "./bin/console ssp-cache:clear --no-warmup"
         ],
         "post-update-cmd": [
             "@clear-symfony-cache",
