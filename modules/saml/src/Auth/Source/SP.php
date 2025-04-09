@@ -469,10 +469,12 @@ class SP extends Auth\Source
     {
         $location = Module::getModuleURL('saml/sp/discoResponse/' . $this->getAuthId());
 
-        return [ 0 => [
+        return [
+            0 => [
                 'Binding' => C::NS_IDPDISC,
                 'Location' => $location,
-        ] ];
+            ]
+        ];
     }
 
     /**
