@@ -67,7 +67,7 @@ All these parameters override the equivalent option from the configuration.
 ## Authentication data
 
 Some SAML-specific attributes are available to the application after authentication.
-To retrieve these attributes, the application can use the `getAuthData()`-function from the [SP API](./simplesamlphp-sp-api).
+To retrieve these attributes, the application can use the `getAuthData()`-function from the [SP API](../simplesamlphp-sp-api).
 The following attributes are available:
 
 `saml:sp:IdP`
@@ -98,7 +98,7 @@ The following attributes are available:
 
 `AssertionConsumerService`
 :   List of Assertion Consumer Services in the generated metadata. Specified in the array of
-    arrays format as seen in the [Metadata endpoints](./simplesamlphp-metadata-endpoints)
+    arrays format as seen in the [Metadata endpoints](../simplesamlphp-metadata-endpoints)
     documentation. Note that this list is taken at face value, so it's not useful to list
     anything here that the SP auth source does not actually support (unless the URLs point
     externally).
