@@ -6,6 +6,8 @@ namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use SimpleSAML\{Configuration, Error, Utils};
@@ -446,7 +448,19 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      */
+    #[DoesNotPerformAssertions]
     #[RequiresPhpExtension('xdebug')]
+    public function testXdebugMode(): void
+    {
+        if (!in_array('develop', xdebug_info('mode'))) {
+            $this->markTestSkipped('xdebug.mode != develop');
+        }
+    }
+
+
+    /**
+     */
+    #[Depends('testXdebugMode')]
     #[RunInSeparateProcess]
     public function testSetCookie(): void
     {
@@ -528,7 +542,7 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      */
-    #[RequiresPhpExtension('xdebug')]
+    #[Depends('testXdebugMode')]
     #[RunInSeparateProcess]
     public function testSetCookieSameSite(): void
     {

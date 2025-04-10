@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\Test;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use SimpleSAML\{Configuration, SessionHandlerPHP};
@@ -52,6 +54,18 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
     /**
      */
+    #[DoesNotPerformAssertions]
+    #[RequiresPhpExtension('xdebug')]
+    public function testXdebugMode(): void
+    {
+        if (!in_array('develop', xdebug_info('mode'))) {
+            $this->markTestSkipped('xdebug.mode != develop');
+        }
+    }
+
+
+    /**
+     */
     public function testGetSessionHandler(): void
     {
         Configuration::loadFromArray($this->sessionConfig, '[ARRAY]', 'simplesaml');
@@ -62,7 +76,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
     /**
      */
-    #[RequiresPhpExtension('xdebug')]
+    #[Depends('testXdebugMode')]
     #[RunInSeparateProcess]
     public function testSetCookie(): void
     {
@@ -85,7 +99,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
     /**
      */
-    #[RequiresPhpExtension('xdebug')]
+    #[Depends('testXdebugMode')]
     #[RunInSeparateProcess]
     public function testSetCookieSameSiteNone(): void
     {
@@ -105,7 +119,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
     /**
      */
-    #[RequiresPhpExtension('xdebug')]
+    #[Depends('testXdebugMode')]
     #[RunInSeparateProcess]
     public function testSetCookieSameSiteLax(): void
     {
@@ -125,7 +139,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
     /**
      */
-    #[RequiresPhpExtension('xdebug')]
+    #[Depends('testXdebugMode')]
     #[RunInSeparateProcess]
     public function testSetCookieSameSiteStrict(): void
     {
@@ -145,7 +159,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
     /**
      */
-    #[RequiresPhpExtension('xdebug')]
+    #[Depends('testXdebugMode')]
     #[RunInSeparateProcess]
     public function testRestorePrevious(): void
     {
