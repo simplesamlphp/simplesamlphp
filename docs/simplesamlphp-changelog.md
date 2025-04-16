@@ -7,14 +7,55 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 ## Version 2.4.0
 
-Released TBD
+Released 2025-04-16
 
+* Added a new feature flag `encryption.optional` to allow unencrypted assertions if the SP does
+  not provide an encryption certificate (#2208)
+* Make translations tool theme-aware (#2315)
+* Fix deprecation of Twig spaceless-filter (#2229)
+* Add possibility to provide connection context to XML storage-handler (#2332)
+* Throw user-friendly exception with the proper HTTP statuscode for incorrect HTTP-method (#2234)
+* Fixed build-workflow to only re-build the website once
+* Bugfix: Use entityID from state to allow overriding the issuer (#2345)
+* When only a single IdP is in scope, skip discovery screen (#2355)
 * Downgrade simplesamlphp/composer-module-installer to 1.3.x to keep things working with older (OS-supplied)
   versions of composer
+* Skip test if xdebug.mode does not contain develop (#2419)
+* Add a console-script to clear cache (#2410)
+* PHP 8.4 Deprecation fixes (#2413)
+* Warn if a module has an unexpected translation-domain in its po file.
+* Add configuration that enables/disables twig template debug mode (#2406)
+* Add support for IDP Discovery protocol (#2402)
+* Destroy session cookies on logout (#2278)
+* A new module to allow debugging SP logins (#2381)
+* When only a single IdP is in scope, skip discovery screen (#2355)
+* Add authproc-filter to manipulate the Assertion's Issuer (#2346)
+* Many improvements to docs and translations
+* Updated dependencies
+
+`adfs`
+
+* The ADFS-module has been disconnected from the SSP release. To continue to use it, the module has to be manually installed.
+* The ADFS-module was completely rewritten and now uses our own XML-libraries for building, signing and encrypting XML (v3.0.0)
+
+`discopower`
+
+* Create discopower.po for italian locale (#22)
+* Hide tab list when there's only one tab
+* Fix for tags containing uppercase letters
+* Updated jQuery
+
+`ldap`
+
+* Add SASL-support (v2.4.0). Note that this required a newer version of symfony/ldap than the one packaged (v2.4.3)
 
 `metarefresh`
 
 * Fixed parsing of large metadata files (v1.2.4)
+
+`saml`
+
+* Stricter regexp to verify SubjectID/PairwiseID: disallow trailing spaces.
 
 ## Version 2.3.7
 

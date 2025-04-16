@@ -7,12 +7,5 @@ The following changes are relevant for installers and/or developers.
   This means that endpoints such as SingleSignOnService values will be taken from the
   entityId block in saml20-idp-hosted.php. See (<https://github.com/simplesamlphp/simplesamlphp/pull/2270>) for details.
 
-## Deprecations
-
-The following classes were marked `deprecated` and will be removed in a next major release.
-
-- fixme
-
-## BC break
-
-- fixme
+- The `statistics` module has been removed from the release, because the Charts API it depends on has been discontinued
+  by Google, rendering the module useless.

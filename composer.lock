@@ -4661,16 +4661,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.12.23",
+            "version": "1.12.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "29201e7a743a6ab36f91394eab51889a82631428"
+                "reference": "338b92068f58d9f8035b76aed6cf2b9e5624c025"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/29201e7a743a6ab36f91394eab51889a82631428",
-                "reference": "29201e7a743a6ab36f91394eab51889a82631428",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/338b92068f58d9f8035b76aed6cf2b9e5624c025",
+                "reference": "338b92068f58d9f8035b76aed6cf2b9e5624c025",
                 "shasum": ""
             },
             "require": {
@@ -4715,7 +4715,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-23T14:57:32+00:00"
+            "time": "2025-04-16T13:01:53+00:00"
         },
         {
             "name": "phpstan/phpstan-mockery",
@@ -6222,23 +6222,23 @@
         },
         {
             "name": "slevomat/coding-standard",
-            "version": "8.16.2",
+            "version": "8.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slevomat/coding-standard.git",
-                "reference": "8bf0408a9cf30687d87957d364de9a3d5d00d948"
+                "reference": "ace04a4e2e20c9bc26ad14d6c4c737cde6056ec0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/8bf0408a9cf30687d87957d364de9a3d5d00d948",
-                "reference": "8bf0408a9cf30687d87957d364de9a3d5d00d948",
+                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/ace04a4e2e20c9bc26ad14d6c4c737cde6056ec0",
+                "reference": "ace04a4e2e20c9bc26ad14d6c4c737cde6056ec0",
                 "shasum": ""
             },
             "require": {
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.6.2 || ^0.7 || ^1.0",
                 "php": "^7.4 || ^8.0",
                 "phpstan/phpdoc-parser": "^2.1.0",
-                "squizlabs/php_codesniffer": "^3.11.3"
+                "squizlabs/php_codesniffer": "^3.12.1"
             },
             "require-dev": {
                 "phing/phing": "3.0.1",
@@ -6247,7 +6247,7 @@
                 "phpstan/phpstan-deprecation-rules": "2.0.1",
                 "phpstan/phpstan-phpunit": "2.0.6",
                 "phpstan/phpstan-strict-rules": "2.0.4",
-                "phpunit/phpunit": "9.6.8|10.5.45|11.4.4|11.5.15|12.0.10"
+                "phpunit/phpunit": "9.6.8|10.5.45|11.4.4|11.5.17|12.1.2"
             },
             "type": "phpcodesniffer-standard",
             "extra": {
@@ -6271,7 +6271,7 @@
             ],
             "support": {
                 "issues": "https://github.com/slevomat/coding-standard/issues",
-                "source": "https://github.com/slevomat/coding-standard/tree/8.16.2"
+                "source": "https://github.com/slevomat/coding-standard/tree/8.17.0"
             },
             "funding": [
                 {
@@ -6283,20 +6283,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-03-27T19:37:58+00:00"
+            "time": "2025-04-10T06:06:16+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.12.1",
+            "version": "3.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
-                "reference": "ea16a1f3719783345febd3aab41beb55c8c84bfd"
+                "reference": "6d4cf6032d4b718f168c90a96e36c7d0eaacb2aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/ea16a1f3719783345febd3aab41beb55c8c84bfd",
-                "reference": "ea16a1f3719783345febd3aab41beb55c8c84bfd",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/6d4cf6032d4b718f168c90a96e36c7d0eaacb2aa",
+                "reference": "6d4cf6032d4b718f168c90a96e36c7d0eaacb2aa",
                 "shasum": ""
             },
             "require": {
@@ -6367,7 +6367,7 @@
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2025-04-04T12:57:55+00:00"
+            "time": "2025-04-13T04:10:18+00:00"
         },
         {
             "name": "symfony/phpunit-bridge",
