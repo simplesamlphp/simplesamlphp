@@ -150,9 +150,9 @@ class HTTP
      */
     private function getServerHost(): string
     {
-        if (array_key_exists('HTTP_HOST', $_SERVER) && !empty($_SERVER['HTTP_HOST'])) {
+        if (!empty($_SERVER['HTTP_HOST'])) {
             $current = $_SERVER['HTTP_HOST'];
-        } elseif (array_key_exists('SERVER_NAME', $_SERVER) && !empty($_SERVER['SERVER_NAME'])) {
+        } elseif (!empty($_SERVER['SERVER_NAME'])) {
             $current = $_SERVER['SERVER_NAME'];
         } else {
             // almost certainly not what you want, but...
