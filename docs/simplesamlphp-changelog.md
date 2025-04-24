@@ -11,10 +11,15 @@ Released TBD
 
 * Downgrade simplesamlphp/composer-module-installer to 1.3.x to keep things working with older (OS-supplied)
   versions of composer
+* Fixed one more PHP 8.4 deprecation notice
 
 `metarefresh`
 
 * Fixed parsing of large metadata files (v1.2.4)
+
+`negotiate`
+
+* Fixed logout state reference (v2.3.2)
 
 ## Version 2.3.7
 
