@@ -342,7 +342,7 @@ class SessionHandlerPHP extends SessionHandler
         }
 
         if (array_key_exists('expire', $cookieParams)) {
-            // Simiar to the Util\HTTP::setCookie()
+            // Similar to the Utils\HTTP::setCookie()
             if (isset($cookieParams['expire'])) {
                 $expire = intval($cookieParams['expire']);
                 $cookieParams['lifetime'] = $expire;
