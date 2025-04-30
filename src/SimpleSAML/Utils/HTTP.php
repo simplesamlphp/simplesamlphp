@@ -150,12 +150,15 @@ class HTTP
      */
     private function getServerHost(): string
     {
-        if (!empty($_SERVER['HTTP_HOST'])) {
+        if (array_key_exists('HTTP_HOST', $_SERVER)) {
             $current = $_SERVER['HTTP_HOST'];
-        } elseif (!empty($_SERVER['SERVER_NAME'])) {
+        } elseif (array_key_exists('SERVER_NAME', $_SERVER)) {
             $current = $_SERVER['SERVER_NAME'];
         } else {
             // almost certainly not what you want, but...
+            $current = 'localhost';
+        }
+        if (is_null($current)) {
             $current = 'localhost';
         }
 
@@ -204,7 +207,7 @@ class HTTP
     public function getServerPort(): string
     {
         $default_port = $this->getServerHTTPS() ? '443' : '80';
-        $port = !empty($_SERVER['SERVER_PORT']) ? $_SERVER['SERVER_PORT'] : $default_port;
+        $port = isset($_SERVER['SERVER_PORT']) ? $_SERVER['SERVER_PORT'] : $default_port;
 
         // Take care of edge-case where SERVER_PORT is an integer
         $port = strval($port);
@@ -557,7 +560,7 @@ class HTTP
      */
     public function getAcceptLanguage(): array
     {
-        if (empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+        if (!array_key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER)) {
             // no Accept-Language header, return an empty set
             return [];
         }
@@ -621,7 +624,7 @@ class HTTP
      */
     public function guessBasePath(): string
     {
-        if (empty($_SERVER['REQUEST_URI']) || empty($_SERVER['SCRIPT_FILENAME'])) {
+        if (!array_key_exists('REQUEST_URI', $_SERVER) || !array_key_exists('SCRIPT_FILENAME', $_SERVER)) {
             return '/';
         }
         // get the name of the current script
@@ -792,7 +795,7 @@ class HTTP
     {
         $cfg = Configuration::getInstance();
         $baseDir = $cfg->getBaseDir();
-        $cur_path = realpath($_SERVER['SCRIPT_FILENAME'] ?? '');
+        $cur_path = realpath($_SERVER['SCRIPT_FILENAME']);
         // make sure we got a string from realpath()
         $cur_path = is_string($cur_path) ? $cur_path : '';
         // find the path to the current script relative to the public/ directory of SimpleSAMLphp
@@ -834,10 +837,10 @@ class HTTP
                 $hostname = $this->getServerHost();
                 $port = $this->getServerPort();
             }
-            return $protocol . '://' . $hostname . $port . ($_SERVER['REQUEST_URI'] ?? '');
+            return $protocol . '://' . $hostname . $port . $_SERVER['REQUEST_URI'];
         }
 
-        return $this->getBaseURL() . $url_path . substr(($_SERVER['REQUEST_URI'] ?? ''), $uri_pos + strlen($url_path));
+        return $this->getBaseURL() . $url_path . substr($_SERVER['REQUEST_URI'], $uri_pos + strlen($url_path));
     }
 
 
