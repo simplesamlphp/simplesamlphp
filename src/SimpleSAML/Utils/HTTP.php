@@ -150,15 +150,15 @@ class HTTP
      */
     private function getServerHost(): string
     {
+        $current = null;
         if (array_key_exists('HTTP_HOST', $_SERVER)) {
             $current = $_SERVER['HTTP_HOST'];
         } elseif (array_key_exists('SERVER_NAME', $_SERVER)) {
             $current = $_SERVER['SERVER_NAME'];
-        } else {
-            // almost certainly not what you want, but...
-            $current = 'localhost';
         }
+
         if (is_null($current)) {
+            // almost certainly not what you want, but...
             $current = 'localhost';
         }
 
