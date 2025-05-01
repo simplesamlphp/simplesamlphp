@@ -281,12 +281,12 @@ The following options can be set:
 It is possible to encrypt the assertions sent to a SP. Currently the
 following algorithms are supported:
 
-- `AES128_CBC`
-- `AES192_CBC`
-- `AES256_CBC`
-- `AES128_GCM`
-- `AES192_GCM`
-- `AES256_GCM`
+* `AES128_CBC`
+* `AES192_CBC`
+* `AES256_CBC`
+* `AES128_GCM`
+* `AES192_GCM`
+* `AES256_GCM`
 
 There are two modes of encryption supported by SimpleSAMLphp. One is
 symmetric encryption, in which case both the SP and the IdP needs to
