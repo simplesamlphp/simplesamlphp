@@ -33,7 +33,7 @@ class SspCacheClearCommand extends Command
 
     private array $enabledModules;
 
-    public function __construct(CacheClearerInterface $cacheClearer, Filesystem $filesystem = null)
+    public function __construct(CacheClearerInterface $cacheClearer, ?Filesystem $filesystem = null)
     {
         parent::__construct();
 
