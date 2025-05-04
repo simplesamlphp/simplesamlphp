@@ -278,12 +278,9 @@ The following options can be set:
 
 ## Encrypting assertions
 
-It is possible to encrypt the assertions sent to a SP. Currently the
-only algorithm supported is `AES128_CBC` or `RIJNDAEL_128`.
-
-There are two modes of encryption supported by SimpleSAMLphp. One is
-symmetric encryption, in which case both the SP and the IdP needs to
-share a key. The other mode is the use of public key encryption. In
+It is possible to encrypt the assertions sent to a SP. There are two modes of encryption
+supported by SimpleSAMLphp. One is symmetric encryption, in which case both the SP and
+the IdP needs to share a key. The other mode is the use of public key encryption. In
 that mode, the public key of the SP is extracted from the certificate
 of the SP.
 
