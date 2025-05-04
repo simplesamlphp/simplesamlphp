@@ -203,7 +203,7 @@ $metadata['entity-id-2'] = [
 
 ### Decrypting assertions
 
-It is possible to decrypt the assertions received from an IdP. Currently the only algorithm supported is `AES128_CBC` or `RIJNDAEL_128`.
+It is possible to decrypt the assertions received from an IdP. The supported algorithms are listed in `sharedkey_algorithm` below.
 
 There are two modes of encryption supported by SimpleSAMLphp. One is symmetric encryption, in which case both the SP and the IdP needs to share a key. The other mode is the use of public key encryption. In that mode, the public key of the SP is extracted from the certificate of the SP.
 
