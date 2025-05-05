@@ -76,10 +76,10 @@ class HTTPTest extends ClearStateTestCase
         $this->assertEquals($url . '&bar=foo', $httpUtils->addURLParameters($url, $params));
     }
 
-    private function makeNativePath( $s )
+    private function makeNativePath($s)
     {
-        if( DIRECTORY_SEPARATOR == '\\' ) {
-            $s = str_replace("/","\\",$s );
+        if (DIRECTORY_SEPARATOR == '\\') {
+            $s = str_replace("/", "\\", $s);
         }
         return $s;
     }
