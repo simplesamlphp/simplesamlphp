@@ -611,7 +611,7 @@ class HTTP
             return '/';
         }
         // get the name of the current script
-        $path = explode('/', $_SERVER['SCRIPT_FILENAME']);
+        $path = explode(DIRECTORY_SEPARATOR, $_SERVER['SCRIPT_FILENAME']);
         $script = array_pop($path);
 
         // get the portion of the URI up to the script, i.e.: /simplesaml/some/directory/script.php
@@ -619,7 +619,7 @@ class HTTP
             return '/';
         }
         $uri_s = explode('/', $matches[0]);
-        $file_s = explode('/', $_SERVER['SCRIPT_FILENAME']);
+        $file_s = explode(DIRECTORY_SEPARATOR, $_SERVER['SCRIPT_FILENAME']);
 
         // compare both arrays from the end, popping elements matching out of them
         while ($uri_s[count($uri_s) - 1] === $file_s[count($file_s) - 1]) {
