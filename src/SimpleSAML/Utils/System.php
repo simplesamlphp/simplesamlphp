@@ -6,6 +6,7 @@ namespace SimpleSAML\Utils;
 
 use SimpleSAML\{Configuration, Error};
 
+use Random\RandomException;
 use function chmod;
 use function dirname;
 use function error_get_last;
@@ -89,6 +90,7 @@ class System
      *
      * @return string Path to a temporary directory, without a trailing directory separator.
      * @throws Error\Exception If the temporary directory cannot be created or it exists and cannot be written
+     * @throws \Exception
      * to by the current user.
      *
      */
@@ -142,6 +144,7 @@ class System
      *
      * @return string An absolute path referring to $path.
      *
+     * @throws \Exception
      */
     public function resolvePath(string $path, ?string $base = null): string
     {
@@ -204,6 +207,7 @@ class System
      *
      * @throws \InvalidArgumentException If any of the input parameters doesn't have the proper types.
      * @throws Error\Exception If the file cannot be saved, permissions cannot be changed or it is not
+     * @throws RandomException
      *     possible to write to the target file.
      *
      */

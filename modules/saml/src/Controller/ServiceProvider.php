@@ -6,7 +6,7 @@ namespace SimpleSAML\Module\saml\Controller;
 
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
-use SimpleSAML\{Auth, Configuration, Error, Logger, Metadata, Module, Session, Utils};
+use SimpleSAML\{Auth, Configuration, Error, Error\AuthSource, Error\BadRequest, Error\ConfigurationError, Error\CriticalConfigurationError, Error\NoState, Logger, Metadata, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\SAML2\{Assertion, Binding, HTTPArtifact, HTTPRedirect, LogoutRequest, LogoutResponse, SOAP};
@@ -95,6 +95,8 @@ class ServiceProvider
      * @param string $sourceId
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws Error\Exception
+     * @throws Exception
+     * @throws \Throwable
      */
     public function login(Request $request, string $sourceId): RedirectResponse
     {
@@ -121,6 +123,7 @@ class ServiceProvider
      * @return string
      * @throws BadRequest
      * @throws Error\Exception
+     * @throws \Throwable
      */
     protected function loginHandler(
         Request $request,
@@ -201,6 +204,11 @@ class ServiceProvider
      * Handler for response from IdP discovery service.
      *
      * @param \Symfony\Component\HttpFoundation\Request|null $request
+     * @throws Error\Exception
+     * @throws Exception
+     * @throws NoState
+     * @throws BadRequest
+     * @throws \Throwable
      */
     public function discoResponse(Request $request): ?Response
     {
@@ -235,6 +243,8 @@ class ServiceProvider
 
     /**
      * @return \SimpleSAML\XHTML\Template
+     * @throws ConfigurationError
+     * @throws \Exception
      */
     public function wrongAuthnContextClassRef(): Template
     {
@@ -248,6 +258,12 @@ class ServiceProvider
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $sourceId
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws Error\Exception
+     * @throws CriticalConfigurationError
+     * @throws BadRequest
+     * @throws Exception
+     * @throws Error\Error
+     * @throws \Throwable
      */
     public function assertionConsumerService(Request $request, string $sourceId): Response
     {
@@ -523,6 +539,12 @@ class ServiceProvider
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $sourceId
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws BadRequest
+     * @throws Exception
+     * @throws Error\Exception
+     * @throws NoState
+     * @throws Error\Error
+     * @throws \Throwable
      */
     public function singleLogoutService(Request $request, string $sourceId): Response
     {
@@ -674,6 +696,10 @@ class ServiceProvider
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $sourceId
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws Exception
+     * @throws Error\Exception
+     * @throws AuthSource
+     * @throws \Throwable
      */
     public function metadata(Request $request, string $sourceId): Response
     {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
-use SimpleSAML\{Configuration, Logger, Utils};
+use SimpleSAML\{Configuration, Error\CriticalConfigurationError, Logger, Utils};
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\Finder\Finder;
@@ -49,6 +49,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      * Parses configuration.
      *
      * @param array $config The configuration for this metadata handler.
+     * @throws \Exception
      */
     public function __construct(Configuration $globalConfig, array $config)
     {
@@ -83,6 +84,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      * Retrieve a list of all available metadata sets.
      *
      * @return array An array with the available sets.
+     * @throws \Exception
      */
     public function getMetadataSets(): array
     {
@@ -114,6 +116,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      * @param string $set The set we are looking for metadata in.
      *
      * @return array An associative array with all the metadata for the given set.
+     * @throws \Exception
      */
     public function getMetadataSet(string $set): array
     {
@@ -156,6 +159,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      *
      * @return array|null An associative array with metadata for the given entity, or NULL if we are unable to
      *         locate the entity.
+     * @throws \Exception
      */
     public function getMetaData(string $entityId, string $set): ?array
     {
@@ -195,6 +199,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      * @param array $metadata The metadata.
      *
      * @return bool True if successfully saved, false otherwise.
+     * @throws \Exception
      */
     public function saveMetadata(string $entityId, string $set, array $metadata): bool
     {
@@ -241,6 +246,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      *
      * @param string $entityId The entityId of the metadata entry.
      * @param string $set The metadata set this metadata entry belongs to.
+     * @throws \Exception
      */
     public function deleteMetadata(string $entityId, string $set): void
     {
@@ -272,6 +278,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      * @param array $entityIds The entity ids to load
      * @param string $set The set we want to get metadata from.
      * @return array An associative array with the metadata for the requested entities, if found.
+     * @throws CriticalConfigurationError
      */
     public function getMetaDataForEntities(array $entityIds, string $set): array
     {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Controller;
 
-use SimpleSAML\{Configuration, Error, IdP, Logger, Module, Utils};
+use SimpleSAML\{Configuration, Error, Error\BadRequest, Error\Exception, IdP, Logger, Module, Utils};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
 use Symfony\Component\HttpFoundation\{Request, Response};
@@ -34,6 +34,7 @@ class SingleLogout
      * It initializes the global configuration for the controllers implemented here.
      *
      * @param \SimpleSAML\Configuration $config The configuration to use by the controllers.
+     * @throws \Exception
      */
     public function __construct(
         protected Configuration $config,
@@ -69,6 +70,11 @@ class SingleLogout
      * and LogoutRequests and also receive LogoutResponses. It is implementing SLO at the SAML 2.0 IdP.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
+     * @throws Error\Error
+     * @throws BadRequest
+     * @throws Exception
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function singleLogout(Request $request): Response
     {
@@ -104,6 +110,10 @@ class SingleLogout
      * This endpoint will initialize the SLO flow at the SAML 2.0 IdP.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
+     * @throws Exception
+     * @throws Error\Error
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function initSingleLogout(Request $request): Response
     {

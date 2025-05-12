@@ -29,6 +29,8 @@ class AuthenticationFactory
      * file.
      *
      * @return \SimpleSAML\Auth\Simple
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function create(string $as): Simple
     {

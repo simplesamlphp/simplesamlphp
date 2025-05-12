@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Auth;
 
-use SimpleSAML\{Configuration, Error, Logger, Module, Session, Utils};
+use SimpleSAML\{Configuration, Error, Error\CannotSetCookie, Error\Exception, Error\NoState, Logger, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
 use Symfony\Component\HttpFoundation\{Request, Response};
 
@@ -120,6 +120,9 @@ abstract class Source
      * interact with the user even in the case when the user is already authenticated.
      *
      * @param array &$state Information about the current authentication.
+     * @throws NoState
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function reauthenticate(array &$state): void
     {
@@ -146,6 +149,8 @@ abstract class Source
      * but should instead be passed to the top-level exception handler.
      *
      * @param array &$state Information about the current authentication.
+     * @throws \Exception
+     * @throws \Throwable
      */
     public static function completeAuth(array &$state): Response
     {
@@ -172,6 +177,8 @@ abstract class Source
      * check it by calling \SimpleSAML\Utils\HTTP::checkURLAllowed().
      * @param array $params Extra information about the login. Different authentication requestors may provide different
      * information. Optional, will default to an empty array.
+     * @throws Exception
+     * @throws \Throwable
      */
     public function initLogin(string|array $return, ?string $errorURL = null, array $params = []): Response
     {
@@ -214,6 +221,9 @@ abstract class Source
      * Called when a login operation has finished.
      *
      * @param array $state The state after the login has completed.
+     * @throws CannotSetCookie
+     * @throws \Exception
+     * @throws \Throwable
      */
     public static function loginCompleted(array $state): Response
     {
@@ -269,6 +279,8 @@ abstract class Source
      * but should instead be passed to the top-level exception handler.
      *
      * @param array &$state Information about the current authentication.
+     * @throws \Exception
+     * @throws \Throwable
      */
     public static function completeLogout(array &$state): Response
     {
@@ -346,6 +358,7 @@ abstract class Source
      * @return \SimpleSAML\Auth\Source|null The AuthSource object, or NULL if no authentication
      *     source with the given identifier is found.
      * @throws \SimpleSAML\Error\Exception If no such authentication source is found or it is invalid.
+     * @throws \Exception
      */
     public static function getById(string $authId, ?string $type = null): ?Source
     {
@@ -381,6 +394,8 @@ abstract class Source
      * Called when the authentication source receives an external logout request.
      *
      * @param array $state State array for the logout operation.
+     * @throws \Exception
+     * @throws \Throwable
      */
     public static function logoutCallback(array $state): void
     {
@@ -411,6 +426,8 @@ abstract class Source
      *
      * @param string $assoc The identifier for this logout association.
      * @param array  $state The state array passed to the authenticate-function.
+     * @throws \Exception
+     * @throws \Throwable
      */
     protected function addLogoutCallback(string $assoc, array $state): void
     {
@@ -452,6 +469,8 @@ abstract class Source
      * This function always returns.
      *
      * @param string $assoc The logout association which should be called.
+     * @throws \Exception
+     * @throws \Throwable
      */
     protected function callLogoutCallback(string $assoc): ?Response
     {
@@ -485,6 +504,7 @@ abstract class Source
      * Retrieve list of authentication sources.
      *
      * @return array The id of all authentication sources.
+     * @throws \Exception
      */
     public static function getSources(): array
     {

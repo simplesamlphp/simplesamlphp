@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SimpleSAML\{Auth, Logger, Utils};
+use SimpleSAML\{Auth, Error\CriticalConfigurationError, Logger, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ProtocolViolationException;
@@ -136,6 +136,8 @@ class SubjectID extends Auth\ProcessingFilter
      * Apply filter to add the subject ID.
      *
      * @param array &$state  The current state.
+     * @throws CriticalConfigurationError
+     * @throws \Exception
      */
     public function process(array &$state): void
     {
@@ -165,6 +167,7 @@ class SubjectID extends Auth\ProcessingFilter
      * @param array $state
      * @return string|null
      * @throws \SimpleSAML\Assert\AssertionFailedException if the pre-conditions are not met
+     * @throws \Exception
      */
     protected function getIdentifyingAttribute(array $state): ?string
     {
@@ -197,6 +200,7 @@ class SubjectID extends Auth\ProcessingFilter
      * @return string|null
      * @throws \SimpleSAML\Assert\AssertionFailedException if the scope is an empty string
      * @throws \SimpleSAML\SAML2\Exception\ProtocolViolationException if the pre-conditions are not met
+     * @throws \Exception
      */
     protected function getScopeAttribute(array $state): ?string
     {
@@ -235,6 +239,7 @@ class SubjectID extends Auth\ProcessingFilter
      * @param string $value
      * @return void
      * @throws \SimpleSAML\SAML2\Exception\ProtocolViolationException if the post-conditions are not met
+     * @throws \Exception
      */
     protected function validateGeneratedIdentifier(string $value): void
     {
@@ -255,6 +260,9 @@ class SubjectID extends Auth\ProcessingFilter
 
     /**
      * Calculate the hash for the unique part of the identifier.
+     * @throws CriticalConfigurationError
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     protected function calculateHash(string $input): string
     {

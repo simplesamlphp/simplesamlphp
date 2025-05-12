@@ -23,6 +23,8 @@ use SimpleSAML\Store\StoreFactory;
 class StoreFactoryTest extends TestCase
 {
     /**
+     * @throws CriticalConfigurationError
+     * @throws \Exception
      */
     public function testDefaultStore(): void
     {
@@ -37,6 +39,8 @@ class StoreFactoryTest extends TestCase
 
 
     /**
+     * @throws CriticalConfigurationError
+     * @throws \Exception
      */
     public function testPhpSessionStore(): void
     {
@@ -53,6 +57,8 @@ class StoreFactoryTest extends TestCase
 
 
     /**
+     * @throws CriticalConfigurationError
+     * @throws \Exception
      */
     public function testMemcacheStore(): void
     {
@@ -70,6 +76,8 @@ class StoreFactoryTest extends TestCase
 
 
     /**
+     * @throws CriticalConfigurationError
+     * @throws \Exception
      */
     public function testRedisStore(): void
     {
@@ -90,6 +98,8 @@ class StoreFactoryTest extends TestCase
 
 
     /**
+     * @throws CriticalConfigurationError
+     * @throws \Exception
      */
     public function testSqlStore(): void
     {
@@ -109,6 +119,8 @@ class StoreFactoryTest extends TestCase
 
 
     /**
+     * @throws CriticalConfigurationError
+     * @throws \Exception
      */
     public function testPathStore(): void
     {
@@ -128,6 +140,7 @@ class StoreFactoryTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public function testNotFoundStoreException(): void
     {
@@ -146,6 +159,8 @@ class StoreFactoryTest extends TestCase
 
 
     /**
+     * @throws CriticalConfigurationError
+     * @throws \Exception
      */
     protected function tearDown(): void
     {
@@ -163,6 +178,7 @@ class StoreFactoryTest extends TestCase
     /**
      * @param \SimpleSAML\Configuration|\SimpleSAML\Store\StoreInterface $service
      * @param class-string $className
+     * @throws \ReflectionException
      */
     protected function clearInstance($service, string $className): void
     {

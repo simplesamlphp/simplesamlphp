@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\cron\Controller;
 
 use PHPMailer\PHPMailer\Exception as PHPMailerException;
-use SimpleSAML\{Auth, Configuration, Error, Logger, Module, Session, Utils};
+use SimpleSAML\{Auth, Configuration, Error, Error\ConfigurationError, Error\Exception, Logger, Module, Session, Utils};
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 
@@ -66,6 +66,9 @@ class Cron
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response|\SimpleSAML\XHTML\Template
      *   An HTML template or a redirection if we are not authenticated.
+     * @throws ConfigurationError
+     * @throws Exception
+     * @throws \Throwable
      */
     public function info(/** @scrutinizer ignore-unused */Request $request): Response|Template
     {
@@ -113,6 +116,7 @@ class Cron
      * @return \SimpleSAML\XHTML\Template An HTML template.
      *
      * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function run(
         /** @scrutinizer ignore-unused */Request $request,

@@ -50,6 +50,7 @@ class File extends Stats\Output
      * Initialize the output.
      *
      * @param \SimpleSAML\Configuration $config  The configuration for this output.
+     * @throws Exception
      */
     public function __construct(Configuration $config)
     {
@@ -68,6 +69,7 @@ class File extends Stats\Output
      * Open a log file.
      *
      * @param string $date  The date for the log file.
+     * @throws Error\Exception
      */
     private function openLog(string $date): void
     {
@@ -94,6 +96,7 @@ class File extends Stats\Output
      * Write a stats event.
      *
      * @param array $data  The event.
+     * @throws Error\Exception
      */
     public function emit(array $data): void
     {

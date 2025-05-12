@@ -46,6 +46,8 @@ class Message
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @param \SimpleSAML\SAML2\SignedElement $element The element we should add the data to.
+     * @throws Exception
+     * @throws SSP_Error\Exception
      */
     public static function addSign(
         Configuration $srcMetadata,
@@ -98,6 +100,9 @@ class Message
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @param \SAML2\Message $message The message we should add the data to.
+     * @throws SSP_Error\Exception
+     * @throws \SimpleSAML\Assert\AssertionFailedException
+     * @throws \Exception
      */
     private static function addRedirectSign(
         Configuration $srcMetadata,
@@ -205,6 +210,8 @@ class Message
      * @return bool Whether or not the message was validated.
      *
      * @throws \SimpleSAML\Error\Exception if message validation is enabled, but there is no signature in the message.
+     * @throws \Exception
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     public static function validateMessage(
         Configuration $srcMetadata,
@@ -258,6 +265,8 @@ class Message
      *   The EncryptionMethod from the assertion.
      *
      * @return array Array of decryption keys.
+     * @throws Exception
+     * @throws SSP_Error\Exception
      */
     public static function getDecryptionKeys(
         Configuration $srcMetadata,
@@ -327,6 +336,8 @@ class Message
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      *
      * @return array  Array of blacklisted algorithms.
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     public static function getBlacklistedAlgorithms(
         Configuration $srcMetadata,
@@ -416,6 +427,7 @@ class Message
      *
      *
      * @throws \SimpleSAML\Error\Exception if we cannot get the decryption keys or decryption fails.
+     * @throws Exception
      */
     private static function decryptAttributes(
         Configuration $srcMetadata,
@@ -486,6 +498,7 @@ class Message
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the service provider.
      * @param \SimpleSAML\Configuration $idpMetadata The metadata of the identity provider.
      * @return \SimpleSAML\SAML2\AuthnRequest An authentication request object.
+     * @throws SSP_Error\Exception
      */
     public static function buildAuthnRequest(
         Configuration $spMetadata,
@@ -555,6 +568,7 @@ class Message
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @return \SimpleSAML\SAML2\LogoutRequest A logout request object.
+     * @throws SSP_Error\Exception
      */
     public static function buildLogoutRequest(
         Configuration $srcMetadata,
@@ -578,6 +592,7 @@ class Message
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @return \SimpleSAML\SAML2\LogoutResponse A logout response object.
+     * @throws SSP_Error\Exception
      */
     public static function buildLogoutResponse(
         Configuration $srcMetadata,
@@ -895,6 +910,7 @@ class Message
      * @return \RobRichards\XMLSecLibs\XMLSecurityKey  The encryption key.
      *
      * @throws \SimpleSAML\Error\Exception if there is no supported encryption key in the metadata of this entity.
+     * @throws Exception
      */
     public static function getEncryptionKey(Configuration $metadata): XMLSecurityKey
     {

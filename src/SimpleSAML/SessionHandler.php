@@ -153,6 +153,7 @@ abstract class SessionHandler
      * Get the cookie parameters that should be used for session cookies.
      *
      * @return array An array with the cookie parameters.
+     * @throws \Exception
      * @link http://www.php.net/manual/en/function.session-get-cookie-params.php
      */
     public function getCookieParams(): array

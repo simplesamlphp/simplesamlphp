@@ -30,6 +30,7 @@ class StaticSource extends Auth\Source
      *
      * @param array $info  Information about this authentication source.
      * @param array $config  Configuration.
+     * @throws Exception
      */
     public function __construct(array $info, array $config)
     {

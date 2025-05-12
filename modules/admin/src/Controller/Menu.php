@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\admin\Controller;
 
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Error\CriticalConfigurationError;
+use SimpleSAML\Error\Exception;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Module;
 use SimpleSAML\XHTML\Template;
@@ -24,6 +26,9 @@ final class Menu
      * Menu constructor.
      *
      * Initialize the menu with some default admin options, and call a hook for anyone willing to extend it.
+     * @throws CriticalConfigurationError
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     public function __construct()
     {
@@ -83,6 +88,8 @@ final class Menu
      * @param \SimpleSAML\XHTML\Template $template The template we should insert this menu into.
      *
      * @return \SimpleSAML\XHTML\Template The template with the added menu.
+     * @throws Exception
+     * @throws \Exception
      */
     public function insert(Template $template): Template
     {

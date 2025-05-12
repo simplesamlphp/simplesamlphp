@@ -7,7 +7,7 @@ namespace SimpleSAML\Test;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use SimpleSAML\TestUtils\ClearStateTestCase;
-use SimpleSAML\{Configuration, Session};
+use SimpleSAML\{Configuration, Error\CannotSetCookie, Session};
 
 use function time;
 
@@ -20,6 +20,8 @@ class SessionTest extends ClearStateTestCase
     protected Session $session;
 
     /**
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function setUp(): void
     {
@@ -29,6 +31,7 @@ class SessionTest extends ClearStateTestCase
     }
 
     /**
+     * @throws CannotSetCookie
      */
     public function testSetRememberMeExpireDefaults(): void
     {
@@ -42,6 +45,7 @@ class SessionTest extends ClearStateTestCase
     }
 
     /**
+     * @throws CannotSetCookie
      */
     public function testSetRememberMeExpireExplicit(): void
     {

@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\{Auth, Configuration};
+use SimpleSAML\{Auth, Configuration, Error\NotFound};
 use SimpleSAML\Error\Exception;
 use SimpleSAML\Module\core\Auth\Source\AbstractSourceSelector;
 use SimpleSAML\Module\core\Auth\Source\SourceIPSelector;
@@ -28,6 +28,7 @@ class SourceIPSelectorTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public function setUp(): void
     {
@@ -80,6 +81,8 @@ class SourceIPSelectorTest extends TestCase
 
 
     /**
+     * @throws Exception
+     * @throws \Exception
      */
     public function testDefaultZoneIsRequired(): void
     {
@@ -102,6 +105,8 @@ class SourceIPSelectorTest extends TestCase
 
 
     /**
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testAuthentication(): void
     {
@@ -145,6 +150,7 @@ class SourceIPSelectorTest extends TestCase
     /**
      * @param string $ip  The client IP
      * @param string $expected  The expected authsource
+     * @throws NotFound
      */
     #[DataProvider('provideClientIP')]
     public function testSelectAuthSource(string $ip, string $expected): void
@@ -168,6 +174,7 @@ class SourceIPSelectorTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public function testIncompleteConfigurationThrowsExceptionVariant1(): void
     {
@@ -201,6 +208,7 @@ class SourceIPSelectorTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public function testIncompleteConfigurationThrowsExceptionVariant2(): void
     {

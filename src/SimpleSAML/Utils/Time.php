@@ -54,6 +54,7 @@ class Time
      *
      *
      * @throws \SimpleSAML\Error\Exception If the timezone set in the configuration is invalid.
+     * @throws \Exception
      */
     public function initTimezone(): void
     {

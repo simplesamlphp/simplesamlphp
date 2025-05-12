@@ -66,6 +66,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      * - 'password':                Password for the database user.
      *
      * @param array $config An associative array with the configuration for this handler.
+     * @throws Exception
      */
     public function __construct(
         /** @scrutinizer ignore-unused */ Configuration $globalConfig,
@@ -127,6 +128,8 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      * @param string $set The set we are looking for metadata in.
      *
      * @return array $metadata An associative array with all the metadata for the given set.
+     * @throws Error\Exception
+     * @throws \Exception
      */
     public function getMetadataSet(string $set): array
     {
@@ -156,6 +159,8 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      *
      * @return array|null An associative array with metadata for the given entity, or NULL if we are unable to
      *         locate the entity.
+     * @throws Error\Exception
+     * @throws Exception
      */
     public function getMetaData(string $entityId, string $set): ?array
     {
@@ -215,6 +220,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      * @param array  $entityData Metadata
      *
      * @return bool True/False if entry was successfully added
+     * @throws Exception
      */
     public function addEntry(string $index, string $set, array $entityData): bool
     {
@@ -261,6 +267,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      * @param string $set The set to remove the metadata from.
      *
      * @return bool True/False if entry was successfully deleted
+     * @throws Exception
      */
     public function removeEntry(string $entityId, string $set): bool
     {
@@ -297,6 +304,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      * Initialize the configured database
      *
      * @return int|false The number of SQL statements successfully executed, false if some error occurred.
+     * @throws Exception
      */
     public function initDatabase(): int|false
     {

@@ -27,6 +27,8 @@ class CardinalityTest extends TestCase
      * @param  array $config The filter configuration.
      * @param  array $request The request state.
      * @return array  The state array after processing.
+     * @throws SspException
+     * @throws \Throwable
      */
     private function processFilter(array $config, array $request): array
     {
@@ -53,6 +55,8 @@ class CardinalityTest extends TestCase
 
     /**
      * Test where a minimum is set but no maximum
+     * @throws SspException
+     * @throws \Throwable
      */
     public function testMinNoMax(): void
     {
@@ -73,6 +77,8 @@ class CardinalityTest extends TestCase
 
     /**
      * Test where a maximum is set but no minimum
+     * @throws SspException
+     * @throws \Throwable
      */
     public function testMaxNoMin(): void
     {
@@ -93,6 +99,8 @@ class CardinalityTest extends TestCase
 
     /**
      * Test in bounds within a maximum an minimum
+     * @throws SspException
+     * @throws \Throwable
      */
     public function testMaxMin(): void
     {
@@ -113,6 +121,8 @@ class CardinalityTest extends TestCase
 
     /**
      * Test maximum is out of bounds results in redirect
+     * @throws SspException
+     * @throws \Throwable
      */
     #[DoesNotPerformAssertions]
     public function testMaxOutOfBounds(): void
@@ -136,6 +146,8 @@ class CardinalityTest extends TestCase
 
     /**
      * Test minimum is out of bounds results in redirect
+     * @throws SspException
+     * @throws \Throwable
      */
     #[DoesNotPerformAssertions]
     public function testMinOutOfBounds(): void
@@ -159,6 +171,8 @@ class CardinalityTest extends TestCase
 
     /**
      * Test missing attribute results in redirect
+     * @throws SspException
+     * @throws \Throwable
      */
     #[DoesNotPerformAssertions]
     public function testMissingAttribute(): void
@@ -185,6 +199,7 @@ class CardinalityTest extends TestCase
 
     /**
      * Test invalid minimum values
+     * @throws \Throwable
      */
     public function testMinInvalid(): void
     {
@@ -204,6 +219,7 @@ class CardinalityTest extends TestCase
 
     /**
      * Test invalid minimum values
+     * @throws \Throwable
      */
     public function testMinNegative(): void
     {
@@ -223,6 +239,7 @@ class CardinalityTest extends TestCase
 
     /**
      * Test invalid maximum values
+     * @throws \Throwable
      */
     public function testMaxInvalid(): void
     {
@@ -242,6 +259,7 @@ class CardinalityTest extends TestCase
 
     /**
      * Test maximum < minimum
+     * @throws \Throwable
      */
     public function testMinGreaterThanMax(): void
     {
@@ -261,6 +279,7 @@ class CardinalityTest extends TestCase
 
     /**
      * Test invalid attribute name
+     * @throws \Throwable
      */
     public function testInvalidAttributeName(): void
     {

@@ -59,6 +59,7 @@ class AttributeValueMap extends Auth\ProcessingFilter
      * @param array &$config Configuration information about this filter.
      * @param mixed $reserved For future use.
      * @throws \SimpleSAML\Error\Exception If the configuration is not valid.
+     * @throws \Exception
      */
     public function __construct(array &$config, $reserved)
     {
@@ -114,6 +115,7 @@ class AttributeValueMap extends Auth\ProcessingFilter
      * Apply filter.
      *
      * @param array &$state The current request
+     * @throws \Exception
      */
     public function process(array &$state): void
     {

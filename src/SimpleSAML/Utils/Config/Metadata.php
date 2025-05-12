@@ -128,6 +128,8 @@ class Metadata
 
     /**
      * This method parses the different possible values of the NameIDPolicy metadata configuration.
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     public static function parseNameIdPolicy(?array $nameIdPolicy = null): ?NameIDPolicy
     {

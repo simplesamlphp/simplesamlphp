@@ -39,6 +39,7 @@ class UserPass extends UserPassBase
      *
      * @param array $info  Information about this authentication source.
      * @param array $config  Configuration.
+     * @throws Exception
      */
     public function __construct(array $info, array $config)
     {
@@ -92,6 +93,7 @@ class UserPass extends UserPassBase
      * @param string $username  The username the user wrote.
      * @param string $password  The password the user wrote.
      * @return array  Associative array with the users attributes.
+     * @throws Error\Error
      */
     protected function login(
         string $username,

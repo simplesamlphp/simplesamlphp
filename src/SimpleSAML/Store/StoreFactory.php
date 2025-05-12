@@ -31,6 +31,7 @@ abstract class StoreFactory implements Utils\ClearableState
      * @return \SimpleSAML\Store\StoreInterface|false The data store, or false if it isn't enabled.
      *
      * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws Exception
      */
     public static function getInstance(string $storeType)
     {

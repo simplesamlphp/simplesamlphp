@@ -59,6 +59,7 @@ class PersistentNameID2TargetedID extends Auth\ProcessingFilter
      * Store a NameID to attribute.
      *
      * @param array &$state The request state.
+     * @throws \Exception
      */
     public function process(array &$state): void
     {

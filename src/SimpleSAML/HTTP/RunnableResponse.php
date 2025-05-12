@@ -25,6 +25,7 @@ class RunnableResponse extends Response
      *
      * @param callable $callable A callable that we should run as part of this response.
      * @param array $args An array of arguments to be passed to the callable. Note that each element of the array
+     * @throws \InvalidArgumentException
      */
     public function __construct(
         callable $callable,

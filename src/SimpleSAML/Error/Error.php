@@ -205,6 +205,8 @@ class Error extends Exception
      * Save an error report.
      *
      * @return array  The array with the error report data.
+     * @throws \Exception
+     * @throws Throwable
      */
     protected function saveError(): array
     {
@@ -250,6 +252,9 @@ class Error extends Exception
      *
      * @param int $logLevel  The log-level for this exception
      * @param bool $suppressReport  Whether or not sending an error report is an option
+     * @throws \Exception
+     * @throws ConfigurationError
+     * @throws Throwable
      */
     public function show(int $logLevel = Logger::ERR, bool $suppressReport = false): void
     {

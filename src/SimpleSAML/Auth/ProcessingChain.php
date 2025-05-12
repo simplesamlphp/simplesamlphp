@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Auth;
 
 use Exception;
-use SimpleSAML\{Configuration, Error, Logger, Module, Utils};
+use SimpleSAML\{Configuration, Error, Error\NoState, Logger, Module, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Exception\Protocol\NoPassiveException;
 use Symfony\Component\HttpFoundation\Response;
@@ -64,6 +64,7 @@ class ProcessingChain
      * @param array $idpMetadata  The metadata for the IdP.
      * @param array $spMetadata  The metadata for the SP.
      * @param string $mode
+     * @throws Exception
      */
     public function __construct(array $idpMetadata, array $spMetadata, string $mode = 'idp')
     {
@@ -121,6 +122,7 @@ class ProcessingChain
      *
      * @param array $filterSrc  Array with filter configuration.
      * @return array  Array of ProcessingFilter objects.
+     * @throws Exception
      */
     private static function parseFilterList(array $filterSrc): array
     {
@@ -152,6 +154,7 @@ class ProcessingChain
      * @param int $priority      The priority of the current filter, (not included in the filter
      *                           definition.)
      * @return \SimpleSAML\Auth\ProcessingFilter  The parsed filter.
+     * @throws Exception
      */
     private static function parseFilter(array $config, int $priority): ProcessingFilter
     {
@@ -233,6 +236,9 @@ class ProcessingChain
      * to whatever exception handler is defined in the state array.
      *
      * @param array $state  The state we are processing.
+     * @throws Error\Exception
+     * @throws Exception
+     * @throws \Throwable
      */
     public static function resumeProcessing(array $state): Response
     {
@@ -316,8 +322,10 @@ class ProcessingChain
      * Retrieve a state which has finished processing.
      *
      * @param string $id The state identifier.
-     * @see State::parseStateID()
      * @return array|null The state referenced by the $id parameter.
+     * @throws NoState
+     * @throws \Throwable
+     * @see State::parseStateID()
      */
     public static function fetchProcessedState(string $id): ?array
     {
@@ -329,6 +337,7 @@ class ProcessingChain
      * @param array $state
      * @psalm-param array{"\\\SimpleSAML\\\Auth\\\ProcessingChain.filters": array} $state
      * @param ProcessingFilter[] $authProcs
+     * @throws Exception
      */
     public static function insertFilters(array &$state, array $authProcs): void
     {
@@ -351,6 +360,7 @@ class ProcessingChain
      * @psalm-param array{"\\\SimpleSAML\\\Auth\\\ProcessingChain.filters": array} $state
      * @param array $authProcConfigs
      * @return \SimpleSAML\Auth\ProcessingFilter[]
+     * @throws Exception
      */
     public static function createAndInsertFilters(array &$state, array $authProcConfigs): array
     {

@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Utils;
 
+use Random\RandomException;
 use org\bovigo\vfs\{vfsStream, vfsStreamDirectory};
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use SimpleSAML\{Configuration, Error, Utils};
+use SimpleSAML\{Configuration, Error, Error\Exception, Utils};
 
 use function chmod;
 use function file_get_contents;
@@ -60,6 +61,7 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public function testResolvePathRemoveTrailingSlashes(): void
     {
@@ -74,6 +76,7 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public function testResolvePathPreferAbsolutePathToBase(): void
     {
@@ -88,6 +91,7 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public function testResolvePathCurDirPath(): void
     {
@@ -102,6 +106,7 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public function testResolvePathParentPath(): void
     {
@@ -116,6 +121,7 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public function testResolvePathAllowsStreamWrappers(): void
     {
@@ -130,6 +136,7 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public function testResolvePathAllowsAwsS3StreamWrappers(): void
     {
@@ -144,6 +151,9 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws Exception
+     * @throws \ReflectionException
+     * @throws RandomException
      */
     public function testWriteFileBasic(): void
     {
@@ -161,6 +171,9 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws Exception
+     * @throws \ReflectionException
+     * @throws RandomException
      */
     public function testWriteFileContents(): void
     {
@@ -182,6 +195,9 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws Exception
+     * @throws \ReflectionException
+     * @throws RandomException
      */
     public function testWriteFileMode(): void
     {
@@ -203,6 +219,8 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws Exception
+     * @throws \ReflectionException
      */
     public function testGetTempDirBasic(): void
     {
@@ -220,6 +238,8 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws Exception
+     * @throws \ReflectionException
      */
     public function testGetTempDirNonExistent(): void
     {
@@ -237,6 +257,7 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws \ReflectionException
      */
     public function testGetTempDirBadPermissions(): void
     {
@@ -269,6 +290,7 @@ class SystemTest extends TestCase
     /**
      * @param \SimpleSAML\Configuration $service
      * @param class-string $className
+     * @throws \ReflectionException
      */
     protected function clearInstance(Configuration $service, string $className): void
     {

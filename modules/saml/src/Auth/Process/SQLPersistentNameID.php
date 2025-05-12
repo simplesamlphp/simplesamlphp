@@ -107,6 +107,7 @@ class SQLPersistentNameID extends BaseNameIDGenerator
      * @return string|null The NameID value.
      *
      * @throws \SimpleSAML\Module\saml\Error if the NameID creation policy is invalid.
+     * @throws \Exception
      */
     protected function getValue(array &$state): ?string
     {

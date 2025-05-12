@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
-use SimpleSAML\{Auth as Authentication, Error, Module, Session};
+use SimpleSAML\{Auth as Authentication, Error, Error\CriticalConfigurationError, Module, Session};
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -21,6 +21,9 @@ class Auth
      *
      * @return string A URL which can be used for logging out.
      * @throws \InvalidArgumentException If $returnTo is neither a string nor null.
+     * @throws CriticalConfigurationError
+     * @throws \Throwable
+     * @throws \Exception
      */
     public function getAdminLogoutURL(?string $returnTo = null): string
     {
@@ -34,6 +37,8 @@ class Auth
      *
      * @return boolean True if the current user is an admin user, false otherwise.
      *
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function isAdmin(): bool
     {
@@ -49,6 +54,8 @@ class Auth
      * a login page if the current user doesn't have admin access.
      *
      * @throws \SimpleSAML\Error\Exception If no "admin" authentication source was configured.
+     * @throws \Exception
+     * @throws \Throwable
      *
      */
     public function requireAdmin(): ?Response

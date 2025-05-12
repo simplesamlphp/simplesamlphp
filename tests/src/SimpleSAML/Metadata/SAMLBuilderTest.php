@@ -7,6 +7,8 @@ namespace SimpleSAML\Test\Metadata;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error\CriticalConfigurationError;
+use SimpleSAML\Error\Exception;
 use SimpleSAML\Metadata\SAMLBuilder;
 use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
@@ -37,6 +39,7 @@ class SAMLBuilderTest extends TestCase
 
     /**
      * Test the requested attributes are valued correctly.
+     * @throws \Exception
      */
     public function testAttributes(): void
     {
@@ -117,6 +120,7 @@ class SAMLBuilderTest extends TestCase
 
     /**
      * Test the working of the isDefault config option
+     * @throws \Exception
      */
     public function testAttributeConsumingServiceDefault(): void
     {
@@ -172,6 +176,7 @@ class SAMLBuilderTest extends TestCase
 
     /**
      * Test the index option is used correctly.
+     * @throws \Exception
      */
     public function testAttributeConsumingServiceIndex(): void
     {
@@ -216,6 +221,7 @@ class SAMLBuilderTest extends TestCase
 
     /**
      * Test the required protocolSupportEnumeration in AttributeAuthorityDescriptor
+     * @throws \Exception
      */
     public function testProtocolSupportEnumeration(): void
     {
@@ -265,6 +271,8 @@ class SAMLBuilderTest extends TestCase
 
     /**
      * Test custom metadata extension (saml:Extensions).
+     * @throws \DOMException
+     * @throws \Exception
      */
     public function testCustomMetadataExtension(): void
     {
@@ -305,6 +313,7 @@ class SAMLBuilderTest extends TestCase
 
     /**
      * Test adding contacts to metadata
+     * @throws \Exception
      */
     public function testContacts(): void
     {
@@ -399,6 +408,11 @@ class SAMLBuilderTest extends TestCase
 
     /*
      * Test certificate data.
+     */
+    /**
+     * @throws CriticalConfigurationError
+     * @throws Exception
+     * @throws \Exception
      */
     public function testCertificateData(): void
     {

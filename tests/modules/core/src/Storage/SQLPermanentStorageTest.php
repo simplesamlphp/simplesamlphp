@@ -25,6 +25,7 @@ class SQLPermanentStorageTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public static function setUpBeforeClass(): void
     {
@@ -46,6 +47,7 @@ class SQLPermanentStorageTest extends TestCase
 
     /**
      *
+     * @throws \Exception
      */
     public function testMissingDatadirThrowsException(): void
     {

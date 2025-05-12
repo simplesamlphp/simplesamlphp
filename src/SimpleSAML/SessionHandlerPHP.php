@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
-use SimpleSAML\{Error, Utils};
+use SimpleSAML\{Error, Error\CriticalConfigurationError, Error\Exception, Utils};
 use SimpleSAML\Assert\Assert;
 
 use function array_key_exists;
@@ -57,6 +57,8 @@ class SessionHandlerPHP extends SessionHandler
     /**
      * Initialize the PHP session handling. This constructor is protected because it should only be called from
      * \SimpleSAML\SessionHandler::createSessionHandler(...).
+     * @throws Exception
+     * @throws \Exception
      */
     protected function __construct()
     {
@@ -154,6 +156,7 @@ class SessionHandlerPHP extends SessionHandler
      * Create a new session id.
      *
      * @return string The new session id.
+     * @throws \Exception
      */
     public function newSessionId(): string
     {
@@ -245,6 +248,7 @@ class SessionHandlerPHP extends SessionHandler
      * @return \SimpleSAML\Session|null The session object, or null if it doesn't exist.
      *
      * @throws \SimpleSAML\Error\Exception If it wasn't possible to disable session cookies or we are trying to load a
+     * @throws \Exception
      * PHP session with a specific identifier and it doesn't match with the current session identifier.
      */
     public function loadSession(?string $sessionId = null): ?Session
@@ -297,7 +301,8 @@ class SessionHandlerPHP extends SessionHandler
      * @link http://www.php.net/manual/en/function.session-get-cookie-params.php
      *
      * @throws \SimpleSAML\Error\Exception If both 'session.phpsession.limitedpath' and 'session.cookie.path' options
-     * are set at the same time in the configuration.
+     *  are set at the same time in the configuration.
+     * @throws \Exception
      */
     public function getCookieParams(): array
     {
@@ -330,6 +335,7 @@ class SessionHandlerPHP extends SessionHandler
      * @param array|null $cookieParams Additional parameters to use for the session cookie.
      *
      * @throws \SimpleSAML\Error\CannotSetCookie If we can't set the cookie.
+     * @throws CriticalConfigurationError
      */
     public function setCookie(string $sessionName, ?string $sessionID, ?array $cookieParams = null): void
     {

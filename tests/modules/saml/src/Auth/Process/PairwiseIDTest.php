@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use RuntimeException;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ProtocolViolationException;
-use SimpleSAML\{Configuration, Logger, Utils};
+use SimpleSAML\{Configuration, Error\CriticalConfigurationError, Logger, Utils};
 use SimpleSAML\Module\saml\Auth\Process\PairwiseID;
 
 /**
@@ -59,6 +59,7 @@ class PairwiseIDTest extends TestCase
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
      * @return array  The state array after processing.
+     * @throws CriticalConfigurationError
      */
     private static function processFilter(array $config, array $request): array
     {
@@ -72,6 +73,7 @@ class PairwiseIDTest extends TestCase
 
     /**
      * Test the most basic functionality
+     * @throws CriticalConfigurationError
      */
     public function testBasic(): void
     {
@@ -96,6 +98,7 @@ class PairwiseIDTest extends TestCase
 
     /**
      * Test the most basic functionality, but with a scoped scope-attribute
+     * @throws CriticalConfigurationError
      */
     public function testBasicScopedScope(): void
     {
@@ -120,6 +123,7 @@ class PairwiseIDTest extends TestCase
 
     /**
      * Test the most basic functionality on proxied request
+     * @throws CriticalConfigurationError
      */
     public function testBasicProxiedRequest(): void
     {
@@ -144,6 +148,7 @@ class PairwiseIDTest extends TestCase
 
     /**
      * Test the proxied request with multiple hops
+     * @throws CriticalConfigurationError
      */
     public function testProxiedRequestMultipleHops(): void
     {
@@ -168,6 +173,7 @@ class PairwiseIDTest extends TestCase
 
     /**
      * Test that illegal characters in scope throws an exception.
+     * @throws CriticalConfigurationError
      */
     public function testScopeIllegalCharacterThrowsException(): void
     {
@@ -184,6 +190,7 @@ class PairwiseIDTest extends TestCase
 
     /**
      * Test that generated ID's for the same user, but different SP's are NOT equal
+     * @throws CriticalConfigurationError
      */
     public function testUniqueIdentifierPerSPSameUser(): void
     {
@@ -214,6 +221,7 @@ class PairwiseIDTest extends TestCase
 
     /**
      * Test that generated ID's for different users, but the same SP's are NOT equal
+     * @throws CriticalConfigurationError
      */
     public function testUniqueIdentifierPerUserSameSP(): void
     {
@@ -244,6 +252,7 @@ class PairwiseIDTest extends TestCase
 
     /**
      * Test that generated ID's for the same user and same SP, but with a different salt are NOT equal
+     * @throws CriticalConfigurationError
      */
     public function testUniqueIdentifierDifferentSalts(): void
     {
@@ -280,6 +289,7 @@ class PairwiseIDTest extends TestCase
 
     /**
      * Test that generated ID's for the same user and same SP, but with a different scope are NOT equal
+     * @throws CriticalConfigurationError
      */
     public function testUniqueIdentifierDifferentScopes(): void
     {
@@ -319,6 +329,7 @@ class PairwiseIDTest extends TestCase
 
     /**
      * Test that weak identifiers log a warning
+     * @throws CriticalConfigurationError
      */
     public function testWeakIdentifierLogsWarning(): void
     {

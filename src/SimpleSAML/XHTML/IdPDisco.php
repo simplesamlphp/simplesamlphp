@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\XHTML;
 
 use Exception;
-use SimpleSAML\{Configuration, Logger, Session, Utils};
+use SimpleSAML\{Configuration, Error\CannotSetCookie, Error\ConfigurationError, Error\CriticalConfigurationError, Logger, Session, Utils};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use Symfony\Component\HttpFoundation\{Request, Response};
 
@@ -110,6 +110,7 @@ class IdPDisco
      * @param string $instance The name of this instance of the discovery service.
      *
      * @throws \Exception If the request is invalid.
+     * @throws \Throwable
      */
     public function __construct(
         protected Request $request,
@@ -175,6 +176,7 @@ class IdPDisco
      * discovery service type.
      *
      * @param string $message The message which should be logged.
+     * @throws Exception
      */
     protected function log(string $message): void
     {
@@ -211,6 +213,10 @@ class IdPDisco
      *
      * @param string $name The name of the cookie.
      * @param string $value The value of the cookie.
+     * @throws CannotSetCookie
+     * @throws CriticalConfigurationError
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     protected function setCookie(string $name, string $value): void
     {
@@ -238,6 +244,7 @@ class IdPDisco
      * @param string|null $idp The entity id we want to validate. This can be null, in which case we will return null.
      *
      * @return string|null The entity id if it is valid, null if not.
+     * @throws Exception
      */
     protected function validateIdP(?string $idp): ?string
     {
@@ -271,6 +278,7 @@ class IdPDisco
      * This function finds out which IdP the user has manually chosen, if any.
      *
      * @return string|null The entity id of the IdP the user has chosen, or null if the user has made no choice.
+     * @throws Exception
      */
     protected function getSelectedIdP(): ?string
     {
@@ -307,6 +315,7 @@ class IdPDisco
      * Retrieve the users saved choice of IdP.
      *
      * @return string|null The entity id of the IdP the user has saved, or null if the user hasn't saved any choice.
+     * @throws Exception
      */
     protected function getSavedIdP(): ?string
     {
@@ -333,6 +342,7 @@ class IdPDisco
      * Retrieve the previous IdP the user used.
      *
      * @return string|null The entity id of the previous IdP the user used, or null if this is the first time.
+     * @throws Exception
      */
     protected function getPreviousIdP(): ?string
     {
@@ -369,6 +379,7 @@ class IdPDisco
      * hasn't chosen an IdP before, it will look at the IP address.
      *
      * @return string|null The entity id of the IdP the user should most likely use.
+     * @throws Exception
      */
     protected function getRecommendedIdP(): ?string
     {
@@ -393,6 +404,7 @@ class IdPDisco
      * Save the current IdP choice to a cookie.
      *
      * @param string $idp The entityID of the IdP.
+     * @throws Exception
      */
     protected function setPreviousIdP(string $idp): void
     {
@@ -405,6 +417,7 @@ class IdPDisco
      * Determine whether the choice of IdP should be saved.
      *
      * @return boolean True if the choice should be saved, false otherwise.
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     protected function saveIdP(): bool
     {
@@ -425,6 +438,7 @@ class IdPDisco
      * Determine which IdP the user should go to, if any.
      *
      * @return string|null The entity id of the IdP the user should be sent to, or null if the user should choose.
+     * @throws Exception
      */
     protected function getTargetIdP(): ?string
     {
@@ -461,6 +475,7 @@ class IdPDisco
      * Retrieve the list of IdPs which are stored in the metadata.
      *
      * @return array An array with entityid => metadata mappings.
+     * @throws Exception
      */
     protected function getIdPList(): array
     {
@@ -512,6 +527,8 @@ class IdPDisco
 
     /**
      * Check if an IdP is set or if the request is passive, and redirect accordingly.
+     * @throws \SimpleSAML\Error\Exception
+     * @throws Exception
      */
     protected function start(): ?Response
     {
@@ -551,6 +568,8 @@ class IdPDisco
      * Handles a request to this discovery service.
      *
      * The IdP disco parameters should be set before calling this function.
+     * @throws ConfigurationError
+     * @throws Exception
      */
     public function handleRequest(): Response
     {

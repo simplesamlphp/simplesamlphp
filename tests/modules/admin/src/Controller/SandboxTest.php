@@ -6,7 +6,7 @@ namespace SimpleSAML\Test\Module\admin\Controller;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Configuration, Session};
+use SimpleSAML\{Configuration, Error\ConfigurationError, Session};
 use SimpleSAML\Module\admin\Controller;
 use SimpleSAML\XHTML\Template;
 
@@ -27,6 +27,8 @@ class SandboxTest extends TestCase
 
     /**
      * Set up for each test.
+     * @throws \Exception
+     * @throws \Throwable
      */
     protected function setUp(): void
     {
@@ -45,6 +47,7 @@ class SandboxTest extends TestCase
 
 
     /**
+     * @throws ConfigurationError
      */
     public function testSandbox(): void
     {

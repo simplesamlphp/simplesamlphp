@@ -14,6 +14,7 @@ declare(strict_types=1);
  * Autoload function for SimpleSAMLphp modules following PSR-4.
  *
  * @param string $className Name of the class.
+ * @throws Exception
  */
 function sspmodAutoloadPSR4(string $className): void
 {

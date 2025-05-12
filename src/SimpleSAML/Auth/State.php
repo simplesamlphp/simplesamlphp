@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Auth;
 
 use Exception;
-use SimpleSAML\{Configuration, Error, Logger, Session, Utils};
+use SimpleSAML\{Configuration, Error, Error\NoState, Logger, Session, Utils};
 use SimpleSAML\Assert\Assert;
 
 use function array_key_exists;
@@ -192,6 +192,7 @@ class State
      * Retrieve state timeout.
      *
      * @return integer  State timeout.
+     * @throws Exception
      */
     private static function getStateTimeout(): int
     {
@@ -215,6 +216,8 @@ class State
      * @param bool   $rawId Return a raw ID, without a restart URL.
      *
      * @return string  Identifier which can be used to retrieve the state later.
+     * @throws Exception
+     * @throws \Throwable
      */
     public static function saveState(array &$state, string $stage, bool $rawId = false): string
     {
@@ -243,6 +246,7 @@ class State
      * @param array $state The original request state.
      *
      * @return array  Cloned state data.
+     * @throws Exception
      */
     public static function cloneState(array $state): array
     {
@@ -274,6 +278,7 @@ class State
      *
      * @throws \SimpleSAML\Error\NoState If we couldn't find the state and there's no URL defined to redirect to.
      * @throws \Exception If the stage of the state is invalid and there's no URL defined to redirect to.
+     * @throws \Throwable
      *
      * @return array|null  State information, or NULL if the state is missing and $allowMissing is true.
      * @psalm-return ($allowMissing is true ? array|null : array)
@@ -337,6 +342,8 @@ class State
      * This function deletes the given state to prevent the user from reusing it later.
      *
      * @param array &$state The state which should be deleted.
+     * @throws Exception
+     * @throws \Throwable
      */
     public static function deleteState(array &$state): void
     {
@@ -359,6 +366,8 @@ class State
      * @param \SimpleSAML\Error\Exception $exception The exception.
      *
      * @throws \SimpleSAML\Error\Exception If there is no exception handler defined, it will just throw the $exception.
+     * @throws Exception
+     * @throws \Throwable
      */
     public static function throwException(array $state, Error\Exception $exception): void
     {
@@ -397,6 +406,8 @@ class State
      * @param string|null $id The exception id. Can be NULL, in which case it will be retrieved from the request.
      *
      * @return array|null  The state array with the exception, or NULL if no exception was thrown.
+     * @throws NoState
+     * @throws \Throwable
      */
     public static function loadExceptionState(?string $id = null): ?array
     {

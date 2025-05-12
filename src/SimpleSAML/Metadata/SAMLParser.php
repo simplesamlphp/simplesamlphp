@@ -161,6 +161,7 @@ class SAMLParser
      *     NULL if unknown.
      * @param array                         $validators An array of parent elements that may validate this element.
      * @param array                         $parentExtensions An optional array of extensions from the parent element.
+     * @throws Exception
      */
     private function __construct(
         EntityDescriptor $entityElement,
@@ -257,6 +258,7 @@ class SAMLParser
      * @param \DOMDocument $document The \DOMDocument which contains the EntityDescriptor element.
      *
      * @return SAMLParser An instance of this class with the metadata loaded.
+     * @throws Exception
      */
     public static function parseDocument(DOMDocument $document): SAMLParser
     {
@@ -274,6 +276,7 @@ class SAMLParser
      *   object which represents a EntityDescriptor element.
      *
      * @return SAMLParser An instance of this class with the metadata loaded.
+     * @throws Exception
      */
     public static function parseElement(EntityDescriptor $entityElement): SAMLParser
     {
@@ -373,6 +376,7 @@ class SAMLParser
      * @param array                 $parentExtensions An optional array of extensions from the parent element.
      *
      * @return SAMLParser[] Array of SAMLParser instances.
+     * @throws Exception
      */
     private static function processDescriptorsElement(
         SignedElementHelper $element,
@@ -705,6 +709,7 @@ class SAMLParser
      *                             NULL if unknown.
      *
      * @return array An associative array with metadata we have extracted from this element.
+     * @throws Exception
      */
     private static function parseRoleDescriptorType(RoleDescriptor $element, ?int $expireTime): array
     {
@@ -754,6 +759,7 @@ class SAMLParser
      *                             NULL if unknown.
      *
      * @return array An associative array with metadata we have extracted from this element.
+     * @throws Exception
      */
     private static function parseSSODescriptor(SSODescriptorType $element, ?int $expireTime): array
     {
@@ -781,6 +787,7 @@ class SAMLParser
      * @param \SimpleSAML\SAML2\XML\md\SPSSODescriptor $element The element which should be parsed.
      * @param int|null                     $expireTime The unix timestamp for when this element should expire, or
      *                             NULL if unknown.
+     * @throws Exception
      */
     private function processSPSSODescriptor(SPSSODescriptor $element, ?int $expireTime): void
     {
@@ -815,6 +822,7 @@ class SAMLParser
      * @param \SimpleSAML\SAML2\XML\md\IDPSSODescriptor $element The element which should be parsed.
      * @param int|null                      $expireTime The unix timestamp for when this element should expire, or
      *                             NULL if unknown.
+     * @throws Exception
      */
     private function processIDPSSODescriptor(IDPSSODescriptor $element, ?int $expireTime): void
     {
@@ -839,6 +847,7 @@ class SAMLParser
      * @param \SimpleSAML\SAML2\XML\md\AttributeAuthorityDescriptor $element The element which should be parsed.
      * @param int|null                                  $expireTime The unix timestamp for when this element should
      *     expire, or NULL if unknown.
+     * @throws Exception
      */
     private function processAttributeAuthorityDescriptor(
         AttributeAuthorityDescriptor $element,
@@ -864,6 +873,7 @@ class SAMLParser
      * @param array $parentExtensions An optional array of extensions from the parent element.
      *
      * @return array An associative array with the extensions parsed.
+     * @throws Exception
      */
     private static function processExtensions(mixed $element, array $parentExtensions = []): array
     {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Controller;
 
-use SimpleSAML\{Auth, Configuration, Error, Module, Utils};
+use SimpleSAML\{Auth, Configuration, Error, Error\BadRequest, Error\CannotSetCookie, Error\ConfigurationError, Error\CriticalConfigurationError, Error\Exception, Error\NoState, Module, Utils};
 use SimpleSAML\Module\core\Auth\{UserPassBase, UserPassOrgBase};
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{Cookie, RedirectResponse, Request, Response};
@@ -83,6 +83,8 @@ class Login
 
     /**
      * @return \SimpleSAML\XHTML\Template
+     * @throws ConfigurationError
+     * @throws \Exception
      */
     public function welcome(): Template
     {
@@ -97,6 +99,11 @@ class Login
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws Exception
+     * @throws NoState
+     * @throws \Exception
+     * @throws BadRequest
+     * @throws \Throwable
      */
     public function loginuserpass(Request $request): Response
     {
@@ -143,6 +150,10 @@ class Login
      * @param \SimpleSAML\Module\core\Auth\UserPassBase|\SimpleSAML\Module\core\Auth\UserPassOrgBase $source
      * @param array $state
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws Exception
+     * @throws \Exception
+     * @throws ConfigurationError
+     * @throws \Throwable
      */
     private function handleLogin(Request $request, UserPassBase|UserPassOrgBase $source, array $state): Response
     {
@@ -361,6 +372,11 @@ class Login
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws Exception
+     * @throws NoState
+     * @throws \Exception
+     * @throws BadRequest
+     * @throws \Throwable
      */
     public function loginuserpassorg(Request $request): Response
     {
@@ -396,6 +412,7 @@ class Login
      * @param bool $raw        Whether this cookie must be sent without urlencoding
      * @param string $sameSite The value for the sameSite-flag
      * @return \Symfony\Component\HttpFoundation\Cookie
+     * @throws \InvalidArgumentException
      */
     private function renderCookie(
         string $name,
@@ -485,6 +502,10 @@ class Login
     /**
      * Searches for a valid and allowed ReturnTo URL parameter,
      * otherwise give the base installation page as a return point.
+     * @throws CriticalConfigurationError
+     * @throws Exception
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     private function getReturnPath(Request $request): string
     {
@@ -505,6 +526,12 @@ class Login
      * This clears the user's IdP discovery choices.
      *
      * @param Request $request The request that lead to this login operation.
+     * @throws CannotSetCookie
+     * @throws CriticalConfigurationError
+     * @throws Exception
+     * @throws \SimpleSAML\Assert\AssertionFailedException
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     public function cleardiscochoices(Request $request): RedirectResponse
     {

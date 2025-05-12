@@ -40,6 +40,7 @@ XML;
 
 
     /**
+     * @throws Exception
      */
     public function testGetValue(): void
     {
@@ -52,6 +53,7 @@ XML;
 
 
     /**
+     * @throws Exception
      */
     public function testGetEmptyValue(): void
     {
@@ -73,6 +75,7 @@ XML;
 
 
     /**
+     * @throws Exception
      */
     public function testGetDefaultValue(): void
     {
@@ -85,6 +88,7 @@ XML;
 
 
     /**
+     * @throws Exception
      */
     public function testGetValueAlternatives(): void
     {
@@ -104,6 +108,7 @@ XML;
 
 
     /**
+     * @throws Exception
      */
     public function testGetEmptyValueAlternatives(): void
     {

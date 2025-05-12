@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\{Configuration, Error, Utils};
+use SimpleSAML\{Configuration, Error, Error\Exception, Utils};
 
 use function date_default_timezone_get;
 use function gmmktime;
@@ -39,6 +39,8 @@ class TimeTest extends TestCase
 
     /**
      * Test the SimpleSAML\Utils\Time::initTimezone() method.
+     * @throws Exception
+     * @throws \Exception
      */
     public function testInitTimezone(): void
     {

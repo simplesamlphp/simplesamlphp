@@ -6,7 +6,7 @@ namespace SimpleSAML\Module\saml\SP;
 
 use Exception;
 use PDO;
-use SimpleSAML\{Configuration, Logger, Session, Utils};
+use SimpleSAML\{Configuration, Error\CriticalConfigurationError, Logger, Session, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\Store\{SQLStore, StoreFactory, StoreInterface};
@@ -29,6 +29,7 @@ class LogoutStore
      * Create logout table in SQL, if it is missing.
      *
      * @param \SimpleSAML\Store\SQLStore $store  The datastore.
+     * @throws Exception
      */
     private static function createLogoutTable(SQLStore $store): void
     {
@@ -147,6 +148,7 @@ class LogoutStore
      * Clean the logout table of expired entries.
      *
      * @param \SimpleSAML\Store\SQLStore $store  The datastore.
+     * @throws Exception
      */
     private static function cleanLogoutStore(SQLStore $store): void
     {
@@ -169,6 +171,7 @@ class LogoutStore
      * @param string $sessionIndex  The SessionIndex of the user.
      * @param int $expire Unix timestamp when this session expires.
      * @param string $sessionId
+     * @throws Exception
      */
     private static function addSessionSQL(
         SQLStore $store,
@@ -206,6 +209,7 @@ class LogoutStore
      * @param string $authId  The authsource ID.
      * @param string $nameId  The hash of the users NameID.
      * @return array  Associative array of SessionIndex =>  SessionId.
+     * @throws Exception
      */
     private static function getSessionsSQL(SQLStore $store, string $authId, string $nameId): array
     {
@@ -267,6 +271,9 @@ class LogoutStore
      * @param \SimpleSAML\SAML2\XML\saml\NameID $nameId The NameID of the user.
      * @param string|null $sessionIndex  The SessionIndex of the user.
      * @param int $expire  Unix timestamp when this session expires.
+     * @throws CriticalConfigurationError
+     * @throws Exception
+     * @throws \Throwable
      */
     public static function addSession(string $authId, NameID $nameId, ?string $sessionIndex, int $expire): void
     {
@@ -322,6 +329,8 @@ class LogoutStore
      * @param \SimpleSAML\SAML2\XML\saml\NameID $nameId The NameID of the user.
      * @param array $sessionIndexes  The SessionIndexes we should log out of. Logs out of all if this is empty.
      * @return int|false  Number of sessions logged out, or FALSE if not supported.
+     * @throws CriticalConfigurationError
+     * @throws Exception
      */
     public static function logoutSessions(string $authId, NameID $nameId, array $sessionIndexes)
     {

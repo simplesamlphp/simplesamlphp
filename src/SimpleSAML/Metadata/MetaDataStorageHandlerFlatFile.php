@@ -54,6 +54,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      * - 'file': full path to load metadata from. This is used by the MetaDataStorageHandlerDirectory class.
      *
      * @param array $config An associative array with the configuration for this handler.
+     * @throws Exception
      */
     protected function __construct(Configuration $globalConfig, array $config)
     {
@@ -122,6 +123,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      *
      * @return array An associative array with the metadata. Each element in the array is an entity, and the
      *         key is the entity id.
+     * @throws Exception
      */
     public function getMetadataSet(string $set): array
     {

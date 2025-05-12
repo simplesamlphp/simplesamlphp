@@ -66,6 +66,7 @@ class Crypto
      * @return array|NULL Extracted private key, or NULL if no private key is present.
      * @throws \InvalidArgumentException If $required is not boolean or $prefix is not a string.
      * @throws Error\Exception If no private key is found in the metadata, or it was not possible to load
+     * @throws Exception
      *     it.
      *
      */
@@ -124,7 +125,7 @@ class Crypto
      *     boolean or $prefix is not a string.
      * @throws Error\Exception If no public key is found in the metadata, or it was not possible to load
      *     it.
-     *
+     * @throws Exception
      */
     public function loadPublicKey(Configuration $metadata, bool $required = false, string $prefix = ''): ?array
     {
@@ -203,6 +204,7 @@ class Crypto
      *
      * @return string The certificate or private key, or null if not found
      *
+     * @throws Exception
      */
     private function retrieveCertOrKey(string $data_type, string $location, bool $full_path): ?string
     {
@@ -279,6 +281,7 @@ class Crypto
      *
      * @return string The certificate or null if not found
      *
+     * @throws Exception
      */
     public function retrieveCertificate(string $location, bool $full_path = false): ?string
     {
@@ -295,6 +298,7 @@ class Crypto
      *
      * @return string The private key or null if not found
      *
+     * @throws Exception
      */
     public function retrieveKey(string $location, bool $full_path = false): ?string
     {

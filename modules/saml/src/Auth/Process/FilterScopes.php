@@ -49,6 +49,7 @@ class FilterScopes extends Auth\ProcessingFilter
      * This method applies the filter, removing any values
      *
      * @param array &$state the current request
+     * @throws \Exception
      */
     public function process(array &$state): void
     {

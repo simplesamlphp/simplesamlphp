@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata;
 
 use DOMElement;
-use SimpleSAML\{Configuration, Module, Logger, Utils};
+use SimpleSAML\{Configuration, Error\Exception, Module, Logger, Utils};
 use SimpleSAML\Assert\{Assert, AssertionFailedException};
 use SimpleSAML\Module\adfs\SAML2\XML\fed\SecurityTokenServiceType;
 use SimpleSAML\SAML2\Constants as C;
@@ -60,6 +60,7 @@ class SAMLBuilder
      * @param int|null $maxCache The maximum time in seconds the metadata should be cached. Defaults to null
      * @param int|null $maxDuration The maximum time in seconds this metadata should be considered valid. Defaults
      * to null.
+     * @throws \Exception
      */
     public function __construct(
         string $entityId,
@@ -95,6 +96,7 @@ class SAMLBuilder
      * Retrieve the EntityDescriptor element which is generated for this entity.
      *
      * @return \DOMElement The EntityDescriptor element of this entity.
+     * @throws \Exception
      */
     public function getEntityDescriptor(): DOMElement
     {
@@ -113,6 +115,7 @@ class SAMLBuilder
      * @param bool $formatted Whether the returned EntityDescriptor should be formatted first.
      *
      * @return string The serialized EntityDescriptor.
+     * @throws \Exception
      */
     public function getEntityDescriptorText(bool $formatted = true): string
     {
@@ -132,6 +135,7 @@ class SAMLBuilder
      * Add a SecurityTokenServiceType for ADFS metadata.
      *
      * @param array $metadata The metadata with the information about the SecurityTokenServiceType.
+     * @throws \Exception
      */
     public function addSecurityTokenServiceType(array $metadata): void
     {
@@ -156,6 +160,7 @@ class SAMLBuilder
      * @param \SimpleSAML\Configuration    $metadata The metadata to get extensions from.
      * @param \SimpleSAML\SAML2\XML\md\RoleDescriptor $e Reference to the element where the
      *   Extensions element should be included.
+     * @throws \Exception
      */
     private function addExtensions(Configuration $metadata, RoleDescriptor $e): void
     {
@@ -233,6 +238,7 @@ class SAMLBuilder
      * Add an Organization element based on metadata array.
      *
      * @param array $metadata The metadata we should extract the organization information from.
+     * @throws \Exception
      */
     public function addOrganizationInfo(array $metadata): void
     {
@@ -310,6 +316,7 @@ class SAMLBuilder
      *
      * @param \SimpleSAML\SAML2\XML\md\SPSSODescriptor $spDesc The SPSSODescriptor element.
      * @param \SimpleSAML\Configuration     $metadata The metadata.
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     private function addAttributeConsumingService(
         SPSSODescriptor $spDesc,
@@ -372,6 +379,7 @@ class SAMLBuilder
      *
      * @param string $set The metadata set this metadata comes from.
      * @param array  $metadata The metadata.
+     * @throws \Exception
      */
     public function addMetadata(string $set, array $metadata): void
     {
@@ -398,6 +406,7 @@ class SAMLBuilder
      *
      * @param array $metadata The metadata.
      * @param string[] $protocols The protocols supported. Defaults to \SimpleSAML\SAML2\Constants::NS_SAMLP.
+     * @throws \Exception
      */
     public function addMetadataSP20(array $metadata, array $protocols = [C::NS_SAMLP]): void
     {
@@ -459,6 +468,7 @@ class SAMLBuilder
      * Add metadata of a SAML 2.0 identity provider.
      *
      * @param array $metadata The metadata.
+     * @throws \Exception
      */
     public function addMetadataIdP20(array $metadata): void
     {
@@ -531,6 +541,7 @@ class SAMLBuilder
      *
      * @param array $metadata The AttributeAuthorityDescriptor, in the format returned by
      * \SimpleSAML\Metadata\SAMLParser.
+     * @throws \Exception
      */
     public function addAttributeAuthority(array $metadata): void
     {
@@ -614,6 +625,7 @@ class SAMLBuilder
      *
      * @param \SimpleSAML\SAML2\XML\md\RoleDescriptor $rd The RoleDescriptor the certificate should be added to.
      * @param \SimpleSAML\Configuration    $metadata The metadata of the entity.
+     * @throws Exception
      */
     private function addCertificate(RoleDescriptor $rd, Configuration $metadata): void
     {

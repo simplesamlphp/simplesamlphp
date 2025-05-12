@@ -7,12 +7,14 @@ namespace SimpleSAML\Test\XHTML;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error\ConfigurationError;
+use SimpleSAML\Error\CriticalConfigurationError;
 use SimpleSAML\Locale\{Translate, TwigTranslator};
 use SimpleSAML\Module;
 use SimpleSAML\XHTML\Template;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Component\Finder\{Finder, SplFileInfo};
-use Twig\{Environment, TwigFilter, TwigFunction};
+use Twig\{Environment, Error\LoaderError, Error\RuntimeError, Error\SyntaxError, TwigFilter, TwigFunction};
 use Twig\Extra\Intl\IntlExtension;
 use Twig\Loader\FilesystemLoader;
 
@@ -21,6 +23,10 @@ use Twig\Loader\FilesystemLoader;
 #[CoversClass(Template::class)]
 class TemplateTranslationTest extends TestCase
 {
+    /**
+     * @throws ConfigurationError
+     * @throws CriticalConfigurationError
+     */
     public function testCoreCardinalityErrorTemplate(): void
     {
         $c = Configuration::loadFromArray([], '', 'simplesaml');
@@ -41,6 +47,10 @@ class TemplateTranslationTest extends TestCase
         $this->assertStringContainsString('got 1 values, want 2', $html);
     }
 
+    /**
+     * @throws ConfigurationError
+     * @throws CriticalConfigurationError
+     */
     public function testCoreLoginUserPassTemplate(): void
     {
         $c = Configuration::loadFromArray([], '', 'simplesaml');
@@ -64,6 +74,10 @@ class TemplateTranslationTest extends TestCase
         $this->assertStringContainsString('value="h.c oersted"', $html);
     }
 
+    /**
+     * @throws ConfigurationError
+     * @throws CriticalConfigurationError
+     */
     public function testCoreLogoutIframeTemplate(): void
     {
         $c = Configuration::loadFromArray([], '', 'simplesaml');
@@ -99,6 +113,10 @@ class TemplateTranslationTest extends TestCase
         $this->assertStringContainsString('ze missing service', $html);
     }
 
+    /**
+     * @throws ConfigurationError
+     * @throws CriticalConfigurationError
+     */
     public function testAuthStatusTemplate(): void
     {
         $c = Configuration::loadFromArray([], '', 'simplesaml');
@@ -122,6 +140,11 @@ class TemplateTranslationTest extends TestCase
         );
     }
 
+    /**
+     * @throws SyntaxError
+     * @throws RuntimeError
+     * @throws LoaderError
+     */
     public function testValidateTwigFiles(): void
     {
         $root = dirname(__DIR__, 4);

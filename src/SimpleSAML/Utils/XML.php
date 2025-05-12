@@ -47,6 +47,7 @@ class XML
      * @throws \InvalidArgumentException If $message is not a string or $type is not a string containing one of the
      *     values allowed.
      * @throws \SimpleSAML\Error\Exception If $message contains a doctype declaration.
+     * @throws Exception
      *
      *
      */
@@ -99,6 +100,8 @@ class XML
      *      - 'encrypt': for encrypted messages.
      *
      * @throws \InvalidArgumentException If $type is not a string or $message is neither a string nor a \DOMElement.
+     * @throws DOMException
+     * @throws Exception
      *
      *
      */
@@ -323,6 +326,7 @@ class XML
      *
      * @return bool|string Returns a string with errors found if validation fails. True if validation passes ok.
      * @throws \InvalidArgumentException If $schema is not a string, or $xml is neither a string nor a \DOMDocument.
+     * @throws Exception
      *
      */
     public function isValid(string|DOMDocument $xml, string $schema)

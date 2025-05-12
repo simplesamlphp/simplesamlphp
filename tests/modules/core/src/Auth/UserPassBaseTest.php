@@ -8,6 +8,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Error\Error as SspError;
 use SimpleSAML\Error\ErrorCodes;
+use SimpleSAML\Error\Exception;
 use SimpleSAML\Module\core\Auth\UserPassBase;
 use SimpleSAML\SAML2\Constants as C;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,6 +19,9 @@ use Symfony\Component\HttpFoundation\Request;
 class UserPassBaseTest extends TestCase
 {
     /**
+     * @throws SspError
+     * @throws Exception
+     * @throws \Throwable
      */
     public function testAuthenticateECPCallsLoginAndSetsAttributes(): void
     {
@@ -48,6 +52,8 @@ class UserPassBaseTest extends TestCase
 
 
     /**
+     * @throws Exception
+     * @throws \Throwable
      */
     public function testAuthenticateECPMissingUsername(): void
     {
@@ -72,6 +78,8 @@ class UserPassBaseTest extends TestCase
 
 
     /**
+     * @throws Exception
+     * @throws \Throwable
      */
     public function testAuthenticateECPMissingPassword(): void
     {
@@ -96,6 +104,9 @@ class UserPassBaseTest extends TestCase
 
 
     /**
+     * @throws SspError
+     * @throws Exception
+     * @throws \Throwable
      */
     public function testAuthenticateECPCallsLoginWithForcedUsername(): void
     {

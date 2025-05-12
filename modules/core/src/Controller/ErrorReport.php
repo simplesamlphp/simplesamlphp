@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Controller;
 
 use Exception as BuiltinException;
-use SimpleSAML\{Configuration, Error, Logger, Session, Utils};
+use SimpleSAML\{Configuration, Error, Error\ConfigurationError, Logger, Session, Utils};
+use PHPMailer\PHPMailer\Exception;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 
@@ -42,6 +43,10 @@ class ErrorReport
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws Exception
+     * @throws Error\Exception
+     * @throws ConfigurationError
+     * @throws BuiltinException
      */
     public function main(Request $request): RedirectResponse|Template
     {

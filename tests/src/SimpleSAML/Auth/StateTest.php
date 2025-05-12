@@ -89,6 +89,9 @@ class StateTest extends TestCase
     }
 
 
+    /**
+     * @throws Exception
+     */
     public function testValidateStateIdSimple(): void
     {
         Auth\State::validateStateId('_aaabb');
@@ -98,6 +101,9 @@ class StateTest extends TestCase
     }
 
 
+    /**
+     * @throws Exception
+     */
     public function testValidateStateIdWithReturnURL(): void
     {
         Auth\State::validateStateId('_aaabb:https://loeki.tv/wp-login.php?example=testsomething&urn=urn:example:org');

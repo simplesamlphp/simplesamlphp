@@ -48,6 +48,7 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
      * ErrorLogLoggingHandler constructor.
      *
      * @param \SimpleSAML\Configuration $config The configuration object for this handler.
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     public function __construct(Configuration $config)
     {

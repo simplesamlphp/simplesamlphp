@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use Exception;
-use SimpleSAML\{Kernel, Utils};
+use SimpleSAML\{Error\CriticalConfigurationError, Kernel, Utils};
 use SimpleSAML\Assert\Assert;
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
 use Symfony\Component\Filesystem\{Filesystem, Path};
@@ -155,6 +155,8 @@ class Module
      * @return Response|BinaryFileResponse Returns a Response object that can be sent to the browser.
      * @throws Error\BadRequest In case the request URI is malformed.
      * @throws Error\NotFound In case the request URI is invalid or the resource it points to cannot be found.
+     * @throws Exception
+     * @throws CriticalConfigurationError
      */
     public static function process(?Request $request = null): Response
     {
@@ -347,6 +349,7 @@ class Module
      * @param string $module
      * @param array $mod_config
      * @return bool
+     * @throws Exception
      */
     private static function isModuleEnabledWithConf(string $module, array $mod_config): bool
     {
@@ -478,6 +481,7 @@ class Module
      * @param string|null $subclass The class should be a subclass of this class. Optional.
      *
      * @return the new object
+     * @throws Exception
      */
     public static function createObject(string $className, ?string $subclass = null): object
     {
@@ -502,6 +506,9 @@ class Module
      * @param array  $parameters Extra parameters which should be added to the URL. Optional.
      *
      * @return string The absolute URL to the given resource.
+     * @throws CriticalConfigurationError
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     public static function getModuleURL(string $resource, array $parameters = []): string
     {
@@ -524,6 +531,9 @@ class Module
      * @return array An array with the hooks available for this module. Each element is an array with two keys: 'file'
      * points to the file that contains the hook, and 'func' contains the name of the function implementing that hook.
      * When there are no hooks defined, an empty array is returned.
+     *
+     * @throws \Symfony\Component\Finder\Exception\DirectoryNotFoundException
+     * @throws \LogicException
      */
     public static function getModuleHooks(string $module): array
     {
@@ -559,6 +569,7 @@ class Module
      * @param mixed  &$data The data which should be passed to each hook. Will be passed as a reference.
      *
      * @throws \SimpleSAML\Error\Exception If an invalid hook is found in a module.
+     * @throws Exception
      */
     public static function callHooks(string $hook, mixed &$data = null): void
     {
@@ -601,6 +612,8 @@ class Module
      * @param Request $request The request to process by this controller method.
      *
      * @return RedirectResponse A redirection to the URI specified in the request, but with a trailing slash.
+     *
+     * @throws \InvalidArgumentException
      */
     public static function addTrailingSlash(Request $request): RedirectResponse
     {
@@ -618,6 +631,8 @@ class Module
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      *   A redirection to the URI specified in the request, but without the trailing slash.
+     *
+     * @throws \InvalidArgumentException
      */
     public static function removeTrailingSlash(Request $request): RedirectResponse
     {

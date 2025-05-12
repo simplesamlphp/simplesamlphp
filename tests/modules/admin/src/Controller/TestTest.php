@@ -6,7 +6,7 @@ namespace SimpleSAML\Test\Module\admin\Controller;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Auth, Configuration, Error, Session, Utils};
+use SimpleSAML\{Auth, Configuration, Error, Error\ConfigurationError, Session, Utils};
 use SimpleSAML\Module\admin\Controller\Test as TestController;
 use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\XHTML\Template;
@@ -32,6 +32,8 @@ class TestTest extends TestCase
 
     /**
      * Set up for each test.
+     * @throws \Exception
+     * @throws \Throwable
      */
     protected function setUp(): void
     {
@@ -110,6 +112,7 @@ class TestTest extends TestCase
 
 
     /**
+     * @throws ConfigurationError
      */
     public function testLogoutReturnsTemplate(): void
     {

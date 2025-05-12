@@ -19,6 +19,7 @@ class SAMLParserTest extends SigningTestCase
 {
     /**
      * Test that DiscoveryResponse is parsed
+     * @throws \Exception
      */
     public function testDiscoveryResponse(): void
     {
@@ -54,6 +55,7 @@ XML,
 
     /**
      * Test Registration Info is parsed
+     * @throws \Exception
      */
     public function testRegistrationInfo(): void
     {
@@ -86,6 +88,7 @@ XML,
     /**
      * Test RegistrationInfo is inherited correctly from parent EntitiesDescriptor.
      * According to the spec overriding RegistrationInfo is not valid. We ignore attempts to override
+     * @throws \Exception
      */
     public function testRegistrationInfoInheritance(): void
     {
@@ -137,6 +140,7 @@ XML,
 
     /**
      * Test Registration Info is parsed
+     * @throws \Exception
      */
     public function testRegistrationPolicy(): void
     {
@@ -171,6 +175,7 @@ XML,
 
     /**
      * Test Registration Info is parsed
+     * @throws \Exception
      */
     public function testRegistrationInstant(): void
     {
@@ -203,6 +208,7 @@ XML,
 
     /**
      * Test AttributeConsumingService is parsed
+     * @throws \Exception
      */
     public function testAttributeConsumingServiceParsing(): void
     {
@@ -251,6 +257,7 @@ XML,
 
     /**
      * @return \DOMDocument
+     * @throws \Exception
      */
     public function makeTestDocument(): DOMDocument
     {
@@ -277,6 +284,7 @@ XML,
 
     /**
      * Test RoleDescriptor/Extensions is parsed
+     * @throws \Exception
      */
     public function testRoleDescriptorExtensions(): void
     {
@@ -368,6 +376,7 @@ XML,
 
     /**
      * Test entity category hidden from discovery is parsed
+     * @throws \Exception
      */
     public function testHiddenFromDiscovery(): void
     {
@@ -400,6 +409,7 @@ XML,
 
     /**
      * Test entity category hidden from discovery is not returned when not present
+     * @throws \Exception
      */
     public function testHiddenFromDiscoveryNotHidden(): void
     {
@@ -431,6 +441,7 @@ XML,
 
     /**
      * Test entity category hidden from discovery is not returned when no mace dir entity categories present
+     * @throws \Exception
      */
     public function testHiddenFromDiscoveryNotHiddenNoMaceDirEC(): void
     {
