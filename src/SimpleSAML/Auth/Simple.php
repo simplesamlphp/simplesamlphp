@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Auth;
 
-use SimpleSAML\{Configuration, Error, Module, Session, Utils};
+use SimpleSAML\{Configuration, Error, Error\AuthSource, Error\CriticalConfigurationError, Error\Exception, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -37,6 +37,8 @@ class Simple
      * @param string $authSource The id of the authentication source.
      * @param \SimpleSAML\Configuration|null $config Optional configuration to use.
      * @param \SimpleSAML\Session|null $session Optional session to use.
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function __construct(
         protected string $authSource,
@@ -61,6 +63,8 @@ class Simple
      * @return \SimpleSAML\Auth\Source The authentication source.
      *
      * @throws \SimpleSAML\Error\AuthSource If the requested auth source is unknown.
+     * @throws Exception
+     * @throws \Exception
      */
     public function getAuthSource(): Source
     {
@@ -79,6 +83,7 @@ class Simple
      * 'default-authsource' option in 'config.php'.
      *
      * @return bool True if the user is authenticated, false if not.
+     * @throws \Exception
      */
     public function isAuthenticated(): bool
     {
@@ -98,6 +103,9 @@ class Simple
      * method for a description.
      *
      * @param array $params Various options to the authentication request. See the documentation.
+     * @throws AuthSource
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function requireAuth(array $params = []): ?Response
     {
@@ -121,6 +129,10 @@ class Simple
      *  - 'ReturnCallback': The function we should call after the user has finished authentication.
      *
      * @param array $params Various options to the authentication request.
+     * @throws AuthSource
+     * @throws Exception
+     * @throws CriticalConfigurationError
+     * @throws \Throwable
      */
     public function login(array $params = []): Response
     {
@@ -184,6 +196,9 @@ class Simple
      *
      * @param string|array|null $params Either the URL the user should be redirected to after logging out, or an array
      * with parameters for the logout. If this parameter is null, we will return to the current page.
+     * @throws Exception
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function logout(string|array|null $params = null): Response
     {
@@ -234,6 +249,9 @@ class Simple
      * This function never returns.
      *
      * @param array $state The state after the logout.
+     * @throws Exception
+     * @throws \Exception
+     * @throws \Throwable
      */
     public static function logoutCompleted(array $state): Response
     {
@@ -264,6 +282,7 @@ class Simple
      * authenticated, it will return an empty array.
      *
      * @return array The users attributes.
+     * @throws \Exception
      */
     public function getAttributes(): array
     {
@@ -283,6 +302,7 @@ class Simple
      * @param string $name The name of the parameter, e.g. 'Attributes', 'Expire' or 'saml:sp:IdP'.
      *
      * @return mixed|null The value of the parameter, or null if it isn't found or we are unauthenticated.
+     * @throws \Exception
      */
     public function getAuthData(string $name): mixed
     {
@@ -298,6 +318,7 @@ class Simple
      * Retrieve all authentication data.
      *
      * @return array|null All persistent authentication data, or null if we aren't authenticated.
+     * @throws \Exception
      */
     public function getAuthDataArray(): ?array
     {
@@ -316,6 +337,9 @@ class Simple
      * user will be returned to the current page.
      *
      * @return string A URL which is suitable for use in link-elements.
+     * @throws CriticalConfigurationError
+     * @throws \Exception
+     * @throws \InvalidArgumentException
      */
     public function getLoginURL(?string $returnTo = null): string
     {
@@ -339,6 +363,9 @@ class Simple
      * user will be returned to the current page.
      *
      * @return string A URL which is suitable for use in link-elements.
+     * @throws CriticalConfigurationError
+     * @throws \Exception
+     * @throws \InvalidArgumentException
      */
     public function getLogoutURL(?string $returnTo = null): string
     {
@@ -364,6 +391,9 @@ class Simple
      * server.
      *
      * @return string The URL modified according to the precedence rules.
+     * @throws CriticalConfigurationError
+     * @throws \Exception
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     protected function getProcessedURL(?string $url = null): string
     {

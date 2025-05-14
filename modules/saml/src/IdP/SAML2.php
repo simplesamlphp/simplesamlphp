@@ -11,7 +11,7 @@ use DOMNodeList;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
-use SimpleSAML\{Auth, Configuration, Error, IdP, Logger, Module, Stats, Utils};
+use SimpleSAML\{Auth, Configuration, Error, Error\MetadataNotFound, IdP, Logger, Module, Stats, Utils};
 use SimpleSAML\Assert\{Assert, AssertionFailedException};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Message;
@@ -62,6 +62,9 @@ class SAML2
      * Send a response to the SP.
      *
      * @param array $state The authentication state.
+     * @throws Error\Exception
+     * @throws Exception
+     * @throws \Throwable
      */
     public static function sendResponse(array $state): Response
     {
@@ -138,6 +141,8 @@ class SAML2
      * \SimpleSAML\Error\Exception $exception  The exception.
      *
      * @param array $state The error state.
+     * @throws Exception
+     * @throws \Throwable
      */
     public static function handleAuthError(Error\Exception $exception, array $state): Response
     {
@@ -218,6 +223,7 @@ class SAML2
      * @param bool                      $authnRequestSigned Whether or not the authn request was signed.
      *
      * @return array|null  Array with the Location and Binding we should use for the response.
+     * @throws Exception
      */
     private static function getAssertionConsumerService(
         array $supportedBindings,
@@ -326,6 +332,10 @@ class SAML2
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs when trying to receive the request.
+     * @throws Exception
+     * @throws Error\Exception
+     * @throws MetadataNotFound
+     * @throws \Throwable
      */
     public static function receiveAuthnRequest(Request $request, IdP $idp): Response
     {
@@ -564,6 +574,8 @@ class SAML2
      * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
      * @param array           $association The association that should be terminated.
      * @param string|null     $relayState An id that should be carried across the logout.
+     * @throws Exception
+     * @throws MetadataNotFound
      */
     public static function sendLogoutRequest(IdP $idp, array $association, ?string $relayState = null): Response
     {
@@ -603,6 +615,8 @@ class SAML2
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
      * @param array           &$state The logout state array.
+     * @throws Exception
+     * @throws MetadataNotFound
      */
     public static function sendLogoutResponse(Request $request, IdP $idp, array $state): Response
     {
@@ -669,6 +683,10 @@ class SAML2
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs while trying to receive the logout message.
+     * @throws Error\Exception
+     * @throws MetadataNotFound
+     * @throws Exception
+     * @throws \Throwable
      */
     public static function receiveLogoutMessage(Request $request, IdP $idp): Response
     {
@@ -749,6 +767,8 @@ class SAML2
      * @param string|NULL     $relayState An id that should be carried across the logout.
      *
      * @return string The logout URL.
+     * @throws Exception
+     * @throws MetadataNotFound
      */
     public static function getLogoutURL(IdP $idp, array $association, ?string $relayState = null): string
     {
@@ -789,6 +809,7 @@ class SAML2
      * @param array           $association The SP association.
      *
      * @return \SimpleSAML\Configuration  Configuration object for the SP metadata.
+     * @throws Exception
      */
     public static function getAssociationConfig(IdP $idp, array $association): Configuration
     {
@@ -812,6 +833,7 @@ class SAML2
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\MetadataNotFound
+     * @throws Exception
      */
     public static function getHostedMetadata(string $entityid, ?MetaDataStorageHandler $handler = null): array
     {
@@ -1056,6 +1078,7 @@ class SAML2
      * @return array  The encoded attributes.
      *
      * @throws \SimpleSAML\Error\Exception In case an unsupported encoding is specified by configuration.
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     private static function encodeAttributes(
         Configuration $idpMetadata,
@@ -1129,6 +1152,8 @@ class SAML2
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
      *
      * @return string  The NameFormat.
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     private static function getAttributeNameFormat(
         Configuration $idpMetadata,
@@ -1169,6 +1194,7 @@ class SAML2
      * @return \SimpleSAML\SAML2\Assertion  The assertion.
      *
      * @throws \SimpleSAML\Error\Exception In case an error occurs when creating a holder-of-key assertion.
+     * @throws Exception
      */
     private static function buildAssertion(
         Configuration $idpMetadata,
@@ -1340,6 +1366,7 @@ class SAML2
 
     /**
      * Helper for buildAssertion to decide on an NameID to set
+     * @throws Exception
      */
     private static function generateNameId(
         Configuration $idpMetadata,
@@ -1413,6 +1440,7 @@ class SAML2
      * @return \SimpleSAML\SAML2\Assertion|\SimpleSAML\SAML2\EncryptedAssertion  The assertion.
      *
      * @throws \SimpleSAML\Error\Exception In case the encryption key type is not supported.
+     * @throws Exception
      */
     private static function encryptAssertion(
         Configuration $idpMetadata,
@@ -1482,6 +1510,8 @@ class SAML2
      * @param string|null $relayState An id that should be carried across the logout.
      *
      * @return \SimpleSAML\SAML2\LogoutRequest The corresponding SAML2 logout request.
+     * @throws Error\Exception
+     * @throws Exception
      */
     private static function buildLogoutRequest(
         Configuration $idpMetadata,
@@ -1520,6 +1550,7 @@ class SAML2
      * @param string                    $consumerURL The Destination URL of the response.
      *
      * @return \SimpleSAML\SAML2\Response The SAML2 Response corresponding to the given data.
+     * @throws Exception
      */
     private static function buildResponse(
         Configuration $idpMetadata,

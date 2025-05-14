@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
-use SimpleSAML\{Configuration, Error};
+use SimpleSAML\{Configuration, Error, Error\CriticalConfigurationError};
 
 use function dirname;
 use function getenv;
@@ -25,6 +25,7 @@ class Config
      *
      * @return string  The file path.
      * @throws \InvalidArgumentException If $path is not a string.
+     * @throws \Exception
      *
      */
     public function getCertPath(string $path): string
@@ -48,6 +49,8 @@ class Config
      *
      * @return string The secret salt.
      * @throws \InvalidArgumentException If the secret salt hasn't been configured.
+     * @throws CriticalConfigurationError
+     * @throws \Exception
      *
      */
     public function getSecretSalt(): string
@@ -74,6 +77,7 @@ class Config
      * $simplesamldir/config directory.
      *
      * @return string The path to the configuration directory.
+     * @throws CriticalConfigurationError
      */
     public function getConfigDir(): string
     {

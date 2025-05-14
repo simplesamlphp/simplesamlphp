@@ -6,7 +6,7 @@ namespace SimpleSAML\Module\multiauth\Auth\Source;
 
 use SimpleSAML\SAML2\Exception\Protocol\NoAuthnContextException;
 use Exception;
-use SimpleSAML\{Auth, Configuration, Error, Module, Session, Utils};
+use SimpleSAML\{Auth, Configuration, Error, Error\CannotSetCookie, Error\CriticalConfigurationError, Module, Session, Utils};
 use Symfony\Component\HttpFoundation\{Request, Response};
 
 use function array_intersect;
@@ -62,6 +62,7 @@ class MultiAuth extends Auth\Source
      *
      * @param array $info Information about this authentication source.
      * @param array $config Configuration.
+     * @throws Exception
      */
     public function __construct(array $info, array $config)
     {
@@ -95,6 +96,8 @@ class MultiAuth extends Auth\Source
      *
      * @param \Symfony\Component\HttpFoundation\Request $request  The current request
      * @param array &$state Information about the current authentication.
+     * @throws Exception
+     * @throws \Throwable
      */
     public function authenticate(Request $request, array &$state): Response
     {
@@ -160,6 +163,7 @@ class MultiAuth extends Auth\Source
      * @param string $authId Selected authentication source
      * @param array $state Information about the current authentication.
      * @throws \Exception
+     * @throws \Throwable
      */
     public static function delegateAuthentication(string $authId, array $state): Response
     {
@@ -184,6 +188,9 @@ class MultiAuth extends Auth\Source
     /**
      * @param \SimpleSAML\Auth\Source $as
      * @param array $state
+     * @throws Error\Exception
+     * @throws Exception
+     * @throws \Throwable
      */
     public static function doAuthentication(Auth\Source $as, array $state): Response
     {
@@ -211,6 +218,9 @@ class MultiAuth extends Auth\Source
      * session and then call the logout method on it.
      *
      * @param array &$state Information about the current logout operation.
+     * @throws Exception
+     * @throws Error\Exception
+     * @throws \Throwable
      */
     public function logout(array &$state): ?Response
     {
@@ -235,6 +245,9 @@ class MultiAuth extends Auth\Source
      * by storing its name in a cookie.
      *
      * @param string $source Name of the authentication source the user selected.
+     * @throws CannotSetCookie
+     * @throws CriticalConfigurationError
+     * @throws Exception
      */
     public function setPreviousSource(string $source): void
     {

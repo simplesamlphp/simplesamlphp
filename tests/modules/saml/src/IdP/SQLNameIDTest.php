@@ -7,7 +7,7 @@ namespace SimpleSAML\Test\Module\saml\IdP;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use SimpleSAML\{Configuration, Error, Store};
+use SimpleSAML\{Configuration, Error, Error\CriticalConfigurationError, Store};
 use SimpleSAML\Module\saml\IdP\SQLNameID;
 use SimpleSAML\Store\StoreFactory;
 
@@ -21,6 +21,7 @@ class SQLNameIDTest extends TestCase
 {
     /**
      * @param array $config
+     * @throws CriticalConfigurationError
      */
     private function addGetDelete(array $config = []): void
     {
@@ -33,6 +34,8 @@ class SQLNameIDTest extends TestCase
 
     /**
      * Test Store.
+     * @throws CriticalConfigurationError
+     * @throws \Exception
      */
     public function testSQLStore(): void
     {
@@ -53,6 +56,8 @@ class SQLNameIDTest extends TestCase
 
     /**
      * Test incompatible Store.
+     * @throws CriticalConfigurationError
+     * @throws \Exception
      */
     public function testIncompatibleStore(): void
     {
@@ -76,6 +81,7 @@ class SQLNameIDTest extends TestCase
 
     /**
      * Test Database.
+     * @throws CriticalConfigurationError
      */
     public function testDatabase(): void
     {
@@ -100,6 +106,7 @@ class SQLNameIDTest extends TestCase
     /**
      * @param \SimpleSAML\Configuration|\SimpleSAML\Store\StoreInterface $service
      * @param class-string $className
+     * @throws \ReflectionException
      */
     protected function clearInstance($service, string $className): void
     {

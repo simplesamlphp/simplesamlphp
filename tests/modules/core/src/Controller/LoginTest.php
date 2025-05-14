@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Controller;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use SimpleSAML\{Auth, Configuration, Error};
+use SimpleSAML\{Auth, Configuration, Error, Error\Exception};
 use SimpleSAML\Module\core\Controller;
 use SimpleSAML\Module\core\Auth\{UserPassBase, UserPassOrgBase};
 use SimpleSAML\TestUtils\ClearStateTestCase;
@@ -32,6 +32,7 @@ class LoginTest extends ClearStateTestCase
 
     /**
      * Set up for each test.
+     * @throws \Exception
      */
     protected function setUp(): void
     {
@@ -53,6 +54,7 @@ class LoginTest extends ClearStateTestCase
 
     /**
      * Test that we are presented with a regular page if we go to the landing page.
+     * @throws \Exception
      */
     public function testWelcome(): void
     {
@@ -67,6 +69,7 @@ class LoginTest extends ClearStateTestCase
 
 
     /**
+     * @throws \Exception
      */
     public function testClearDiscoChoicesReturnToDisallowedUrlRejected(): void
     {
@@ -87,6 +90,8 @@ class LoginTest extends ClearStateTestCase
 
 
     /**
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testLoginUserPass(): void
     {
@@ -137,6 +142,9 @@ class LoginTest extends ClearStateTestCase
 
 
     /**
+     * @throws Exception
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testLoginUserPassOrgNoState(): void
     {

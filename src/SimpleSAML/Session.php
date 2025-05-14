@@ -6,7 +6,7 @@ namespace SimpleSAML;
 
 use DOMNodeList;
 use Exception;
-use SimpleSAML\{Error, Utils};
+use SimpleSAML\{Error, Error\CannotSetCookie, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\XML\saml\AttributeValue;
 
@@ -166,6 +166,8 @@ class Session implements Utils\ClearableState
      * getSession() for a specific one.
      *
      * @param boolean $transient Whether to create a transient session or not.
+     * @throws CannotSetCookie
+     * @throws Exception
      */
     private function __construct(bool $transient = false)
     {
@@ -235,6 +237,7 @@ class Session implements Utils\ClearableState
      * be serializable in its original form (e.g.: DOM objects).
      *
      * @param array $serialized The serialized representation of a session that we want to restore.
+     * @throws Exception
      */
     public function __unserialize($serialized): void
     {
@@ -265,6 +268,7 @@ class Session implements Utils\ClearableState
      *
      * @return \SimpleSAML\Session The current session.
      * @throws \Exception When session couldn't be initialized and the session fallback is disabled by configuration.
+     * @throws \Throwable
      */
     public static function getSessionFromRequest(): Session
     {
@@ -343,6 +347,7 @@ class Session implements Utils\ClearableState
      *
      * @return \SimpleSAML\Session|null The session that is stored in the session handler,
      *   or null if the session wasn't found.
+     * @throws Exception
      */
     public static function getSession(?string $sessionId = null): ?Session
     {
@@ -411,6 +416,7 @@ class Session implements Utils\ClearableState
      *
      * @param \SimpleSAML\Session $session The session to load.
      * @return \SimpleSAML\Session The session we just loaded, just for convenience.
+     * @throws Exception
      */
     private static function load(Session $session): Session
     {
@@ -426,6 +432,7 @@ class Session implements Utils\ClearableState
      * Create a session that should not be saved at the end of the request.
      * Subsequent calls to getInstance() will return this transient session.
      *
+     * @throws Exception
      */
     public static function useTransientSession(): void
     {
@@ -458,6 +465,7 @@ class Session implements Utils\ClearableState
      * WARNING: please do not use this method directly unless you really need to and know what you are doing. Use
      * markDirty() instead.
      *
+     * @throws Exception
      */
     public function save(): void
     {
@@ -492,6 +500,7 @@ class Session implements Utils\ClearableState
      * Use this method if you are using PHP sessions in your application *and* in SimpleSAMLphp, *after* you are done
      * using SimpleSAMLphp and before trying to access your application's session again.
      *
+     * @throws Exception
      */
     public function cleanup(): void
     {
@@ -530,6 +539,7 @@ class Session implements Utils\ClearableState
      *
      * Destructor for this class. It will save the session to the session handler
      * in case the session has been marked as dirty. Do nothing otherwise.
+     * @throws Exception
      */
     public function __destruct()
     {
@@ -586,6 +596,9 @@ class Session implements Utils\ClearableState
      * Set remember me expire time.
      *
      * @param int $lifetime Number of seconds after when remember me session cookies expire.
+     * @throws CannotSetCookie
+     * @throws \Exception
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     public function setRememberMeExpire(?int $lifetime = null): void
     {
@@ -608,6 +621,7 @@ class Session implements Utils\ClearableState
      * @param array      $data The authentication data for this authority.
      *
      * @throws Error\CannotSetCookie If the authentication token cannot be set for some reason.
+     * @throws Exception
      */
     public function doLogin(string $authority, array $data = []): void
     {
@@ -700,6 +714,7 @@ class Session implements Utils\ClearableState
      * This function will call any registered logout handlers before marking the user as logged out.
      *
      * @param string $authority The authentication source we are logging out of.
+     * @throws Exception
      */
     public function doLogout(string $authority): void
     {
@@ -764,6 +779,7 @@ class Session implements Utils\ClearableState
      * @param string $authority The authentication source that the user should be authenticated with.
      *
      * @return bool True if the user has a valid session, false if not.
+     * @throws Exception
      */
     public function isValid(string $authority): bool
     {
@@ -790,6 +806,8 @@ class Session implements Utils\ClearableState
      * Update session cookies.
      *
      * @param array $params The parameters for the cookies.
+     * @throws CannotSetCookie
+     * @throws Exception
      */
     public function updateSessionCookies(array $params = []): void
     {
@@ -816,6 +834,7 @@ class Session implements Utils\ClearableState
      *
      * @param string $authority The authentication source we are setting expire time for.
      * @param int    $expire The number of seconds authentication source is valid.
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     public function setAuthorityExpire(string $authority, ?int $expire = null): void
     {
@@ -1046,6 +1065,7 @@ class Session implements Utils\ClearableState
      * This function will only return false if is is certain that the cookie isn't set.
      *
      * @return bool  true if it was set, false if not.
+     * @throws Exception
      */
     public function hasSessionCookie(): bool
     {
@@ -1161,6 +1181,7 @@ class Session implements Utils\ClearableState
      * this session.
      *
      * @return string[] An array containing every authority currently valid. Empty if none available.
+     * @throws Exception
      */
     public function getAuthorities(): array
     {

@@ -8,7 +8,7 @@ use Exception;
 use PDO;
 use PDOException;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\{Configuration, Logger, Utils};
+use SimpleSAML\{Configuration, Error\CriticalConfigurationError, Logger, Utils};
 
 use function array_keys;
 use function count;
@@ -62,6 +62,7 @@ class SQLStore implements StoreInterface
 
     /**
      * Initialize the SQL data store.
+     * @throws Exception
      */
     public function __construct()
     {
@@ -92,6 +93,7 @@ class SQLStore implements StoreInterface
 
     /**
      * Initialize the table-version table.
+     * @throws Exception
      */
     private function initTableVersionTable(): void
     {
@@ -198,6 +200,7 @@ class SQLStore implements StoreInterface
 
     /**
      * Initialize key-value table.
+     * @throws Exception
      */
     private function initKVTable(): void
     {
@@ -335,6 +338,7 @@ class SQLStore implements StoreInterface
 
     /**
      * Clean the key-value table of expired entries.
+     * @throws Exception
      */
     private function cleanKVStore(): void
     {
@@ -355,6 +359,9 @@ class SQLStore implements StoreInterface
      * @param string $key The key to retrieve.
      *
      * @return mixed|null The value associated with that key, or null if there's no such key.
+     * @throws CriticalConfigurationError
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     public function get(string $type, string $key): mixed
     {
@@ -399,6 +406,8 @@ class SQLStore implements StoreInterface
      * @param string $key The key to insert.
      * @param mixed $value The value itself.
      * @param int|null $expire The expiration time (unix timestamp), or null if it never expires.
+     * @throws CriticalConfigurationError
+     * @throws Exception
      */
     public function set(string $type, string $key, mixed $value, ?int $expire = null): void
     {
@@ -439,6 +448,9 @@ class SQLStore implements StoreInterface
      *
      * @param string $type The type of the data
      * @param string $key The key to delete.
+     * @throws CriticalConfigurationError
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     public function delete(string $type, string $key): void
     {
@@ -466,6 +478,9 @@ class SQLStore implements StoreInterface
      *
      * @param string $data
      * @return string The hashed data.
+     * @throws CriticalConfigurationError
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     private function hashData(string $data): string
     {

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata;
 
 use Exception;
-use SimpleSAML\{Configuration, Error, Module, Utils};
+use SimpleSAML\{Configuration, Error, Error\CriticalConfigurationError, Module, Utils};
 use Symfony\Component\Filesystem\Filesystem;
 
 use function array_flip;
@@ -247,6 +247,8 @@ abstract class MetaDataStorageSource
      *
      * @return array|null An associative array with metadata for the given entity, or NULL if we are unable to
      *         locate the entity.
+     * @throws CriticalConfigurationError
+     * @throws \Exception
      */
     public function getMetaData(string $entityId, string $set): ?array
     {
@@ -269,6 +271,7 @@ abstract class MetaDataStorageSource
      * @param string[] $entityIds The entity ids to load
      * @param string $set The set we want to get metadata from.
      * @return array An associative array with the metadata for the requested entities, if found.
+     * @throws CriticalConfigurationError
      */
     public function getMetaDataForEntities(array $entityIds, string $set): array
     {
@@ -290,6 +293,8 @@ abstract class MetaDataStorageSource
      * @param string[] $entityIds The entity ids to load
      * @param string $set The set we want to get metadata from.
      * @return array An associative array with the metadata for the requested entities, if found.
+     * @throws CriticalConfigurationError
+     * @see MetaDataStorageSource::getMetaDataForEntities()
      */
     protected function getMetaDataForEntitiesIndividually(array $entityIds, string $set): array
     {
@@ -311,6 +316,8 @@ abstract class MetaDataStorageSource
      * @param string $entityId
      * @param array $metadataSet the already loaded metadata set
      * @return mixed|null
+     * @throws CriticalConfigurationError
+     * @throws \Exception
      */
     protected function lookupIndexFromEntityId(string $entityId, array $metadataSet): mixed
     {

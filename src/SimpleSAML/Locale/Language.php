@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Locale;
 
-use SimpleSAML\{Configuration, Logger, Utils};
+use SimpleSAML\{Configuration, Error\CannotSetCookie, Logger, Utils};
 use Symfony\Component\Intl\Locales;
 
 use function array_fill_keys;
@@ -92,6 +92,8 @@ class Language
      * Constructor
      *
      * @param \SimpleSAML\Configuration $configuration Configuration object
+     * @throws CannotSetCookie
+     * @throws \Exception
      */
     public function __construct(
         private Configuration $configuration,
@@ -114,6 +116,7 @@ class Language
      * Filter configured (available) languages against installed languages.
      *
      * @return string[] The set of languages both in 'language.available' and  Locales::getNames().
+     * @throws \Exception
      */
     private function getInstalledLanguages(): array
     {
@@ -174,6 +177,8 @@ class Language
      *
      * @param string  $language Language code for the language to set.
      * @param boolean $setLanguageCookie Whether to set the language cookie or not. Defaults to true.
+     * @throws CannotSetCookie
+     * @throws \Exception
      */
     public function setLanguage(string $language, bool $setLanguageCookie = true): void
     {
@@ -193,6 +198,7 @@ class Language
      *
      * @return string The language selected by the user according to the processing rules specified, or the default
      * language in any other case.
+     * @throws \Exception
      */
     public function getLanguage(): string
     {
@@ -233,6 +239,7 @@ class Language
      * @param string $code The ISO 639-2 code of the language.
      *
      * @return string|null The localized name of the language.
+     * @throws \Exception
      */
     public function getLanguageLocalizedName(string $code): ?string
     {
@@ -330,6 +337,7 @@ class Language
      *
      * @return array An array holding all the languages available as the keys of the array. The value for each key is
      * true in case that the language specified by that key is currently active, or false otherwise.
+     * @throws \Exception
      */
     public function getLanguageList(): array
     {
@@ -344,6 +352,7 @@ class Language
      * Check whether a language is written from the right to the left or not.
      *
      * @return boolean True if the language is right-to-left, false otherwise.
+     * @throws \Exception
      */
     public function isLanguageRTL(): bool
     {
@@ -354,6 +363,7 @@ class Language
      * Returns the list of languages in order of preference. This is useful
      * to search e.g. an array of entity names for first the current language,
      * if not present the default language, if not present the fallback language.
+     * @throws \Exception
      */
     public function getPreferredLanguages(): array
     {
@@ -365,6 +375,7 @@ class Language
      * Retrieve the user-selected language from a cookie.
      *
      * @return string|null The selected language or null if unset.
+     * @throws \Exception
      */
     public static function getLanguageCookie(): ?string
     {
@@ -387,6 +398,8 @@ class Language
      * specified is not in the list of available languages, or the headers have already been sent to the browser.
      *
      * @param string $language The language set by the user.
+     * @throws CannotSetCookie
+     * @throws \Exception
      */
     public static function setLanguageCookie(string $language): void
     {

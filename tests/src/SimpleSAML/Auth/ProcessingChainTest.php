@@ -7,6 +7,7 @@ namespace Test\SimpleSAML\Auth;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Auth\ProcessingChain;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error\Exception;
 use SimpleSAML\Module\core\Auth\Process\AttributeAdd;
 use SimpleSAML\Module\core\Auth\Process\AttributeLimit;
 use SimpleSAML\Module\core\Auth\Process\AttributeMap;
@@ -21,6 +22,10 @@ class ProcessingChainTest extends TestCase
     }
 
 
+    /**
+     * @throws Exception
+     * @throws \Exception
+     */
     public function testInsertAuthProcs(): void
     {
         $config = [];
@@ -44,6 +49,10 @@ class ProcessingChainTest extends TestCase
         $this->assertInstanceOf(AttributeLimit::class, $filterInChain[2]);
     }
 
+    /**
+     * @throws Exception
+     * @throws \Exception
+     */
     public function testInsertAuthFromConfigs(): void
     {
         $config = [];

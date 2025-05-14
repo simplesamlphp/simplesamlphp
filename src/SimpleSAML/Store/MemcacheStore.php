@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Store;
 
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\{Configuration, Memcache};
+use SimpleSAML\{Configuration, Error\Exception, Memcache};
 
 /**
  * A memcache based data store.
@@ -24,6 +24,7 @@ class MemcacheStore implements StoreInterface
 
     /**
      * This function implements the constructor for this class. It loads the Memcache configuration.
+     * @throws \Exception
      */
     public function __construct()
     {
@@ -38,6 +39,8 @@ class MemcacheStore implements StoreInterface
      * @param string $type The data type.
      * @param string $key The key.
      * @return mixed|null The value.
+     * @throws Exception
+     * @throws \Exception
      */
     public function get(string $type, string $key): mixed
     {
@@ -52,6 +55,7 @@ class MemcacheStore implements StoreInterface
      * @param string $key The key.
      * @param mixed $value The value.
      * @param int|null $expire The expiration time (unix timestamp), or NULL if it never expires.
+     * @throws \Exception
      */
     public function set(string $type, string $key, mixed $value, ?int $expire = null): void
     {
@@ -70,6 +74,7 @@ class MemcacheStore implements StoreInterface
      *
      * @param string $type The data type.
      * @param string $key The key.
+     * @throws \Exception
      */
     public function delete(string $type, string $key): void
     {

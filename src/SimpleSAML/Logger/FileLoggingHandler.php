@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Logger;
 
 use DateTimeImmutable;
-use SimpleSAML\{Configuration, Logger, Utils};
+use SimpleSAML\{Configuration, Error\Exception, Logger, Utils};
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\Exception\CannotWriteFileException;
 use Symfony\Component\HttpFoundation\File\File;
@@ -63,6 +63,8 @@ class FileLoggingHandler implements LoggingHandlerInterface
     /**
      * Build a new logging handler based on files.
      * @param \SimpleSAML\Configuration $config
+     * @throws Exception
+     * @throws \Exception
      */
     public function __construct(Configuration $config)
     {
@@ -111,6 +113,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
      *
      * @param int    $level The log level.
      * @param string $string The formatted message to log.
+     * @throws \Symfony\Component\Filesystem\Exception\IOException
      */
     public function log(int $level, string $string): void
     {

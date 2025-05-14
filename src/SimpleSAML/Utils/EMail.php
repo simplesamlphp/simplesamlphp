@@ -7,7 +7,7 @@ namespace SimpleSAML\Utils;
 use Exception;
 use InvalidArgumentException;
 use PHPMailer\PHPMailer\PHPMailer;
-use SimpleSAML\{Configuration, Logger};
+use SimpleSAML\{Configuration, Error\ConfigurationError, Logger};
 use SimpleSAML\XHTML\Template;
 
 use function array_map;
@@ -47,6 +47,7 @@ class EMail
      * @param string $html_template The template to use for html messages
      *
      * @throws \PHPMailer\PHPMailer\Exception
+     * @throws Exception
      */
     public function __construct(
         string $subject,
@@ -73,6 +74,7 @@ class EMail
      * which is na@example.org.
      *
      * @return string Default mail address
+     * @throws Exception
      */
     public function getDefaultMailAddress(): string
     {
@@ -126,6 +128,7 @@ class EMail
      * Add a Reply-To address to the mail
      *
      * @param string $address Reply-To e-mail address
+     * @throws \PHPMailer\PHPMailer\Exception
      */
     public function addReplyTo(string $address): void
     {
@@ -139,6 +142,8 @@ class EMail
      * @param bool $plainTextOnly Do not send HTML payload
      *
      * @throws \PHPMailer\PHPMailer\Exception
+     * @throws ConfigurationError
+     * @throws Exception
      */
     public function send(bool $plainTextOnly = false): void
     {
@@ -259,6 +264,8 @@ class EMail
      * @param string $template The name of the template to use
      *
      * @return string The body of the e-mail
+     * @throws Exception
+     * @throws ConfigurationError
      */
     public function generateBody(string $template): string
     {

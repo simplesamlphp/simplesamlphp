@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\admin\Controller;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\{Configuration, Session, Utils};
 use SimpleSAML\Module\admin\Controller;
@@ -30,6 +31,8 @@ class ConfigTest extends TestCase
 
     /**
      * Set up for each test.
+     * @throws Exception
+     * @throws \Exception
      */
     protected function setUp(): void
     {
@@ -110,6 +113,8 @@ class ConfigTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function testPhpinfo(): void
     {

@@ -6,7 +6,7 @@ namespace SimpleSAML\Test\Module\saml\IdP;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\{Configuration, IdP};
+use SimpleSAML\{Configuration, Error\BadRequest, IdP};
 use SimpleSAML\Error\Exception;
 use SimpleSAML\Metadata\{MetaDataStorageHandler, MetaDataStorageHandlerSerialize};
 use SimpleSAML\Module\saml\IdP\SAML2;
@@ -55,6 +55,7 @@ class SAML2Test extends ClearStateTestCase
 
     /**
      * Test that invoking the idp initiated endpoint with the minimum necessary parameters works.
+     * @throws BadRequest
      */
     public function testIdPInitiatedLoginMinimumParams(): void
     {
@@ -79,6 +80,7 @@ class SAML2Test extends ClearStateTestCase
 
     /**
      * Test that invoking the idp initiated endpoint with the optional parameters works.
+     * @throws BadRequest
      */
     public function testIdPInitiatedLoginOptionalParams(): void
     {
@@ -113,6 +115,7 @@ class SAML2Test extends ClearStateTestCase
 
     /**
      * Test that invoking the idp initiated endpoint using minimum shib params works
+     * @throws BadRequest
      */
     public function testIdPInitShibCompatyMinimumParams(): void
     {
@@ -139,6 +142,7 @@ class SAML2Test extends ClearStateTestCase
 
     /**
      * Test that invoking the idp initiated endpoint using minimum shib params works
+     * @throws BadRequest
      */
     public function testIdPInitShibCompatOptionalParams(): void
     {
@@ -174,6 +178,7 @@ class SAML2Test extends ClearStateTestCase
      *
      * @param array $queryParams
      * @return array The state array used for handling the authentication request.
+     * @throws BadRequest
      */
     private function idpInitiatedHelper(array $queryParams): array
     {
@@ -242,6 +247,7 @@ EOT;
      * @param array $metadata IdP metadata entry as found in saml20-idp-hosted
      * @param array $extraconfig Additional SimpleSAML global config to load
      * @return array Output of the getHostedMetadata() method
+     * @throws \Exception
      */
     private function idpMetadataHandlerHelper(array $metadata, array $extraconfig = []): array
     {
@@ -265,6 +271,7 @@ EOT;
 
     /**
      * A minimally configured hosted IdP has all default fields with expected values.
+     * @throws \Exception
      */
     public function testIdPGetHostedMetadataMinimal(): void
     {
@@ -422,6 +429,7 @@ EOT;
 
     /**
      * NameIDFormat option can be specified as string or array
+     * @throws \Exception
      */
     public function testIdPGetHostedNameIdFormat(): void
     {
@@ -467,6 +475,7 @@ EOT;
 
     /**
      * IdP config option Organization* are reflected in metadata
+     * @throws \Exception
      */
     public function testMetadataHostedOrganizationData(): void
     {
@@ -493,6 +502,7 @@ EOT;
 
     /**
      * IdP config option Organization* without explicit DisplayName are reflected in metadata
+     * @throws \Exception
      */
     public function testMetadataHostedOrganizationDataDefaultForDisplayNameIsName(): void
     {
@@ -513,6 +523,7 @@ EOT;
 
     /**
      * IdP config option Organization* without URL is rejected with an Exception
+     * @throws \Exception
      */
     public function testMetadataHostedOrganizationURLMissingRaisesException(): void
     {
@@ -532,6 +543,7 @@ EOT;
 
     /**
      * IdP config option for entity attributes is reflected in metadata
+     * @throws \Exception
      */
     public function testMetadataHostedEntityAttributes(): void
     {
@@ -560,6 +572,8 @@ EOT;
 
     /**
      * IdP config option for entity attribute extensions is reflected in metadata
+     * @throws \DOMException
+     * @throws \Exception
      */
     public function testMetadataHostedEntityExtensions(): void
     {
@@ -589,6 +603,7 @@ EOT;
 
     /**
      * IdP config option for UIInfo is reflected in metadata
+     * @throws \Exception
      */
     public function testMetadataHostedUIInfo(): void
     {
@@ -628,6 +643,7 @@ EOT;
 
     /**
      * IdP config option RegistrationInfo is reflected in metadata
+     * @throws \Exception
      */
     public function testMetadataHostedContainsRegistrationInfo(): void
     {
@@ -655,6 +671,7 @@ EOT;
 
     /**
      * IdP config options wrt signing are reflected in metadata
+     * @throws \Exception
      */
     public function testMetadataHostedSigning(): void
     {
@@ -673,6 +690,7 @@ EOT;
 
     /**
      * Contacts in IdP hosted config appear in metadata
+     * @throws \Exception
      */
     public function testMetadataHostedContacts(): void
     {
@@ -734,6 +752,7 @@ EOT;
 
     /**
      * A globally set tech contact also appears in IdP hosted metadata
+     * @throws \Exception
      */
     public function testMetadataHostedContactsIncludesGlobalTechContact(): void
     {
@@ -773,6 +792,7 @@ EOT;
 
     /**
      * The special value na@example.org global tech contact is not included in IdP metadata
+     * @throws \Exception
      */
     public function testMetadataHostedContactsSkipsNAGlobalTechContact(): void
     {
@@ -798,6 +818,7 @@ EOT;
 
     /**
      * Contacts in IdP hosted of unknown type throws Exceptiona
+     * @throws \Exception
      */
     public function testMetadataHostedContactsUnknownTypeThrowsException(): void
     {

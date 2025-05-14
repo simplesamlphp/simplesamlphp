@@ -29,6 +29,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public function setUp(): void
     {
@@ -82,6 +83,9 @@ class RequestedAuthnContextSelectorTest extends TestCase
 
     /**
      * No RequestedAuthnContext
+     * @throws \Exception
+     * @throws Exception
+     * @throws \Throwable
      */
     public function testAuthenticationVariant1(): void
     {
@@ -99,6 +103,9 @@ class RequestedAuthnContextSelectorTest extends TestCase
 
     /**
      * Specific RequestedAuthnContext
+     * @throws \Exception
+     * @throws Exception
+     * @throws \Throwable
      */
     public function testAuthenticationVariant2(): void
     {
@@ -117,6 +124,9 @@ class RequestedAuthnContextSelectorTest extends TestCase
 
     /**
      * Specific RequestedAuthnContext with comparison=exact
+     * @throws \Exception
+     * @throws Exception
+     * @throws \Throwable
      */
     public function testAuthenticationVariant3(): void
     {
@@ -140,6 +150,8 @@ class RequestedAuthnContextSelectorTest extends TestCase
 
     /**
      * Array-syntax
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testArraySyntaxWorks(): void
     {
@@ -199,6 +211,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
 
     /**
      * Missing source
+     * @throws \Exception
      */
     public function testIncompleteConfigurationThrowsExceptionVariant1(): void
     {
@@ -229,6 +242,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
 
     /**
      * Missing identifier
+     * @throws \Exception
      */
     public function testIncompleteConfigurationThrowsExceptionVariant2(): void
     {
@@ -259,6 +273,8 @@ class RequestedAuthnContextSelectorTest extends TestCase
 
     /**
      * Missing default
+     * @throws Exception
+     * @throws \Exception
      */
     public function testIncompleteConfigurationThrowsExceptionVariant3(): void
     {
@@ -289,6 +305,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
     /**
      * @param array $requestedAuthnContext  The RequestedAuthnContext
      * @param string $expected  The expected authsource
+     * @throws \Exception
      */
     #[DataProvider('provideRequestedAuthnContext')]
     public function testSelectAuthSource(array $requestedAuthnContext, string $expected): void

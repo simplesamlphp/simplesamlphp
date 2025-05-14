@@ -11,6 +11,7 @@ use Gettext\Scanner\PhpScanner;
 use Gettext\Translation;
 use Gettext\Translations;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error\Exception;
 use SimpleSAML\Module;
 use SimpleSAML\TestUtils\ArrayLogger;
 use SimpleSAML\Utils;
@@ -41,6 +42,7 @@ class UpdateTranslatableStringsCommand extends Command
 
 
     /**
+     * @throws \Exception
      */
     protected function configure(): void
     {
@@ -103,6 +105,8 @@ class UpdateTranslatableStringsCommand extends Command
      * @param \Symfony\Component\Console\Input\InputInterface $input
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      * @return int
+     * @throws \Exception
+     * @throws Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {

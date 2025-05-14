@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata;
 
 use Exception;
-use SimpleSAML\{Configuration, Error, Logger, Utils};
+use SimpleSAML\{Configuration, Error, Error\MetadataNotFound, Logger, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Utils\ClearableState;
@@ -55,6 +55,7 @@ class MetaDataStorageHandler implements ClearableState
      * to this function.
      *
      * @return MetaDataStorageHandler The current metadata handler instance.
+     * @throws Exception
      */
     public static function getMetadataHandler(Configuration $config): MetaDataStorageHandler
     {
@@ -69,6 +70,7 @@ class MetaDataStorageHandler implements ClearableState
     /**
      * This constructor initializes this metadata storage handler. It will load and
      * parse the configuration, and initialize the metadata source list.
+     * @throws Exception
      */
     protected function __construct(Configuration $globalConfig)
     {
@@ -151,6 +153,7 @@ class MetaDataStorageHandler implements ClearableState
      * @param bool $showExpired A boolean specifying whether expired entities should be returned
      *
      * @return array An associative array with the metadata from from the given set.
+     * @throws Exception
      */
     public function getList(string $set = 'saml20-idp-remote', bool $showExpired = false): array
     {
@@ -189,6 +192,8 @@ class MetaDataStorageHandler implements ClearableState
      * @param string $set The set we want metadata from.
      *
      * @return array An associative array with the metadata.
+     * @throws MetadataNotFound
+     * @throws \Exception
      */
     public function getMetaDataCurrent(string $set): array
     {
@@ -274,6 +279,7 @@ class MetaDataStorageHandler implements ClearableState
      * @param string[] $entityIds The entity ids to load
      * @param string $set The set we want to get metadata from.
      * @return array An associative array with the metadata for the requested entities, if found.
+     * @throws Exception
      */
     public function getMetaDataForEntities(array $entityIds, string $set): array
     {
@@ -363,6 +369,7 @@ class MetaDataStorageHandler implements ClearableState
      *
      * @return \SimpleSAML\Configuration The configuration object representing the metadata.
      * @throws \SimpleSAML\Error\MetadataNotFound If no metadata for the entity specified can be found.
+     * @throws \Exception
      */
     public function getMetaDataConfig(string $entityId, string $set): Configuration
     {

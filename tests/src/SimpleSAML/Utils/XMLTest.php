@@ -11,7 +11,7 @@ use DOMText;
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Configuration, Error, Utils};
+use SimpleSAML\{Configuration, Error, Error\Exception, Utils};
 use SimpleSAML\XML\DOMDocumentFactory;
 
 /**
@@ -23,6 +23,7 @@ class XMLTest extends TestCase
     private const FRAMEWORK = 'vendor/simplesamlphp/saml2/tests/resources/xml';
 
     /**
+     * @throws DOMException
      */
     public function testIsDomNodeOfTypeBasic(): void
     {
@@ -39,6 +40,7 @@ class XMLTest extends TestCase
 
 
     /**
+     * @throws DOMException
      */
     public function testIsDomNodeOfTypeMissingNamespace(): void
     {
@@ -54,6 +56,7 @@ class XMLTest extends TestCase
 
 
     /**
+     * @throws DOMException
      */
     public function testIsDomNodeOfTypeEmpty(): void
     {
@@ -70,6 +73,7 @@ class XMLTest extends TestCase
 
 
     /**
+     * @throws DOMException
      */
     public function testIsDomNodeOfTypeShortcut(): void
     {
@@ -87,6 +91,7 @@ class XMLTest extends TestCase
 
 
     /**
+     * @throws DOMException
      */
     public function testIsDomNodeOfTypeIncorrectName(): void
     {
@@ -104,6 +109,7 @@ class XMLTest extends TestCase
 
 
     /**
+     * @throws DOMException
      */
     public function testIsDomNodeOfTypeIncorrectNamespace(): void
     {
@@ -223,6 +229,7 @@ HEREDOC;
 
 
     /**
+     * @throws DOMException
      */
     public function testFormatXmlStringBasic(): void
     {
@@ -255,6 +262,7 @@ NOWDOC;
 
 
     /**
+     * @throws \Exception
      */
     public function testIsValidMalformedXml(): void
     {
@@ -271,6 +279,7 @@ NOWDOC;
 
 
     /**
+     * @throws \Exception
      */
     public function testIsValidMetadata(): void
     {
@@ -286,6 +295,7 @@ NOWDOC;
     }
 
     /**
+     * @throws Exception
      */
     public function testCheckSAMLMessageInvalidType(): void
     {

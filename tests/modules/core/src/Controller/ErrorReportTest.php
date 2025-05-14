@@ -6,7 +6,7 @@ namespace SimpleSAML\Test\Module\core\Controller;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Configuration, Error, Session};
+use SimpleSAML\{Configuration, Error, Error\Exception, Session};
 use SimpleSAML\Module\core\Controller;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request};
@@ -28,6 +28,8 @@ class ErrorReportTest extends TestCase
 
     /**
      * Set up for each test.
+     * @throws \Exception
+     * @throws \Throwable
      */
     protected function setUp(): void
     {
@@ -50,6 +52,8 @@ class ErrorReportTest extends TestCase
 
     /**
      * Test that we are presented with an 'error was reported' page
+     * @throws Exception
+     * @throws \PHPMailer\PHPMailer\Exception
      */
     public function testErrorReportSent(): void
     {
@@ -90,6 +94,8 @@ class ErrorReportTest extends TestCase
 
     /**
      * Test that we are presented with an 'error was reported' page
+     * @throws Exception
+     * @throws \PHPMailer\PHPMailer\Exception
      */
     public function testErrorReport(): void
     {

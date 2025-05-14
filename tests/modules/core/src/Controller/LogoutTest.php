@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Controller;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use SimpleSAML\{Auth, Configuration, Error};
+use SimpleSAML\{Auth, Configuration, Error, Error\CriticalConfigurationError, Error\Exception};
 use SimpleSAML\Module\core\Controller;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request};
@@ -30,6 +30,7 @@ class LogoutTest extends ClearStateTestCase
 
     /**
      * Set up for each test.
+     * @throws \Exception
      */
     protected function setUp(): void
     {
@@ -51,6 +52,9 @@ class LogoutTest extends ClearStateTestCase
     /**
      * Test basic operation of the logout controller.
      * @TODO check if the passed auth source is correctly used
+     * @throws CriticalConfigurationError
+     * @throws Exception
+     * @throws \Throwable
      */
     public function testLogout(): void
     {

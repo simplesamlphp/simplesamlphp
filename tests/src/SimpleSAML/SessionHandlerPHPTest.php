@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
-use SimpleSAML\{Configuration, SessionHandlerPHP};
+use SimpleSAML\{Configuration, Error\CannotSetCookie, SessionHandlerPHP};
 use SimpleSAML\TestUtils\ClearStateTestCase;
 
 use function array_merge;
@@ -71,6 +71,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
 
     /**
+     * @throws \Exception
      */
     public function testGetSessionHandler(): void
     {
@@ -81,6 +82,8 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
 
     /**
+     * @throws CannotSetCookie
+     * @throws \Exception
      */
     #[Depends('testXdebugMode')]
     #[RunInSeparateProcess]
@@ -104,6 +107,8 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
 
     /**
+     * @throws CannotSetCookie
+     * @throws \Exception
      */
     #[Depends('testXdebugMode')]
     #[RunInSeparateProcess]
@@ -124,6 +129,8 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
 
     /**
+     * @throws CannotSetCookie
+     * @throws \Exception
      */
     #[Depends('testXdebugMode')]
     #[RunInSeparateProcess]
@@ -144,6 +151,8 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
 
     /**
+     * @throws CannotSetCookie
+     * @throws \Exception
      */
     #[Depends('testXdebugMode')]
     #[RunInSeparateProcess]
@@ -164,6 +173,8 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
 
     /**
+     * @throws CannotSetCookie
+     * @throws \Exception
      */
     #[Depends('testXdebugMode')]
     #[RunInSeparateProcess]
@@ -188,6 +199,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
 
 
     /**
+     * @throws \Exception
      */
     public function testNewSessionId(): void
     {

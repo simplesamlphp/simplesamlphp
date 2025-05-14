@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Controller;
 
 use Exception as BuiltinException;
-use SimpleSAML\{Auth, Configuration, Error, IdP, Logger, Stats, Utils};
+use SimpleSAML\{Auth, Configuration, Error, Error\BadRequest, Error\ConfigurationError, Error\CriticalConfigurationError, Error\Exception, Error\MetadataNotFound, Error\NoState, IdP, Logger, Stats, Utils};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Message;
 use SimpleSAML\SAML2\Binding;
@@ -72,6 +72,9 @@ class Logout
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws Exception
+     * @throws BuiltinException
+     * @throws \Throwable
      */
     public function logout(Request $request, string $as): Response
     {
@@ -84,6 +87,11 @@ class Logout
     /**
      * Searches for a valid and allowed ReturnTo URL parameter,
      * otherwise give the base installation page as a return point.
+     * @throws CriticalConfigurationError
+     * @throws Exception
+     * @throws \InvalidArgumentException
+     * @throws \Exception
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     private function getReturnPath(Request $request): string
     {
@@ -105,6 +113,10 @@ class Logout
     /**
      * @param Request $request The request that lead to this logout operation.
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws NoState
+     * @throws BadRequest
+     * @throws BuiltinException
+     * @throws \Throwable
      */
     public function logoutIframeDone(Request $request): Response
     {
@@ -172,6 +184,11 @@ class Logout
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this logout operation.
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws BuiltinException
+     * @throws Exception
+     * @throws MetadataNotFound
+     * @throws BadRequest
+     * @throws \Throwable
      */
     public function logoutIframePost(Request $request): Response
     {
@@ -240,6 +257,12 @@ class Logout
     /**
      * @param Request $request The request that lead to this logout operation.
      * @return \SimpleSAML\XHTML\Template
+     * @throws ConfigurationError
+     * @throws MetadataNotFound
+     * @throws NoState
+     * @throws BadRequest
+     * @throws BuiltinException
+     * @throws \Throwable
      */
     public function logoutIframe(Request $request): Template
     {
@@ -385,6 +408,10 @@ class Logout
 
     /**
      * @param Request $request The request that lead to this logout operation.
+     * @throws BuiltinException
+     * @throws NoState
+     * @throws BadRequest
+     * @throws \Throwable
      */
     public function resumeLogout(Request $request): Response
     {

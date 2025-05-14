@@ -8,6 +8,8 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error\ConfigurationError;
+use SimpleSAML\Error\CriticalConfigurationError;
 use SimpleSAML\XHTML\Template;
 
 /**
@@ -17,6 +19,10 @@ class TemplateTest extends TestCase
 {
     private const TEMPLATE = 'sandbox.twig';
 
+    /**
+     * @throws ConfigurationError
+     * @throws CriticalConfigurationError
+     */
     public function testSetup(): void
     {
         $c = Configuration::loadFromArray([], '', 'simplesaml');
@@ -24,6 +30,10 @@ class TemplateTest extends TestCase
         $this->assertEquals(self::TEMPLATE, $t->getTemplateName());
     }
 
+    /**
+     * @throws ConfigurationError
+     * @throws CriticalConfigurationError
+     */
     public function testNormalizeName(): void
     {
         $c = Configuration::loadFromArray([], '', 'simplesaml');
@@ -31,6 +41,10 @@ class TemplateTest extends TestCase
         $this->assertEquals(self::TEMPLATE, $t->getTemplateName());
     }
 
+    /**
+     * @throws ConfigurationError
+     * @throws CriticalConfigurationError
+     */
     public function testTemplateModuleNamespace(): void
     {
         $c = Configuration::loadFromArray([], '', 'simplesaml');
@@ -46,6 +60,10 @@ class TemplateTest extends TestCase
         ];
     }
 
+    /**
+     * @throws ConfigurationError
+     * @throws CriticalConfigurationError
+     */
     #[DataProvider('debugModeProvider')]
     public function testTemplateDebugMode(bool $debugMode): void
     {
@@ -61,6 +79,11 @@ class TemplateTest extends TestCase
         }
     }
 
+    /**
+     * @throws ConfigurationError
+     * @throws CriticalConfigurationError
+     * @throws \Exception
+     */
     public function testGetEntityDisplayNameBasic(): void
     {
         $c = Configuration::loadFromArray([], '', 'simplesaml');
@@ -79,6 +102,11 @@ class TemplateTest extends TestCase
         $this->assertEquals('Something', $name);
     }
 
+    /**
+     * @throws ConfigurationError
+     * @throws CriticalConfigurationError
+     * @throws \Exception
+     */
     public function testGetEntityDisplayNamePriorities(): void
     {
         $c = Configuration::loadFromArray([], '', 'simplesaml');
@@ -112,6 +140,11 @@ class TemplateTest extends TestCase
         $this->assertEquals('UIname NL', $name);
     }
 
+    /**
+     * @throws ConfigurationError
+     * @throws CriticalConfigurationError
+     * @throws \Exception
+     */
     public function testGetEntityPropertyTranslation(): void
     {
         $c = Configuration::loadFromArray([], '', 'simplesaml');

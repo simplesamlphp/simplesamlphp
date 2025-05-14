@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\multiauth\Controller;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Configuration, Error, Session};
+use SimpleSAML\{Configuration, Error, Error\BadRequest, Session};
 use SimpleSAML\Auth\{Source, State};
 use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
 use SimpleSAML\Module\multiauth\Controller;
@@ -32,6 +32,8 @@ class DiscoControllerTest extends TestCase
     /**
      * Set up for each test.
      * @return void
+     * @throws \Exception
+     * @throws \Throwable
      */
     protected function setUp(): void
     {
@@ -86,6 +88,8 @@ class DiscoControllerTest extends TestCase
      * Test that a missing AuthState results in a BadRequest-error
      * @return void
      * @throws \SimpleSAML\Error\BadRequest
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testDiscoveryMissingState(): void
     {
@@ -106,6 +110,9 @@ class DiscoControllerTest extends TestCase
     /**
      * Test that a valid requests results in a Twig template
      * @return void
+     * @throws BadRequest
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testDiscoveryFallthru(): void
     {
@@ -144,6 +151,9 @@ class DiscoControllerTest extends TestCase
     /**
      * Test that a valid requests results in a Twig template
      * @return void
+     * @throws BadRequest
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testDiscoveryFallthruWithSource(): void
     {
@@ -183,6 +193,9 @@ class DiscoControllerTest extends TestCase
     /**
      * Test that a valid requests results in a RedirectResponse
      * @return void
+     * @throws BadRequest
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testDiscoveryDelegateAuth1(): void
     {
@@ -224,6 +237,9 @@ class DiscoControllerTest extends TestCase
     /**
      * Test that a valid request results in a RedirectResponse
      * @return void
+     * @throws BadRequest
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testDiscoveryDelegateAuth1WithPreviousSource(): void
     {
@@ -265,6 +281,9 @@ class DiscoControllerTest extends TestCase
     /**
      * Test that a valid request results in a RedirectResponse
      * @return void
+     * @throws BadRequest
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testDiscoveryDelegateAuth2(): void
     {

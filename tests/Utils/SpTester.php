@@ -20,6 +20,7 @@ class SpTester extends SP
     /**
      * @param array $info
      * @param array $config
+     * @throws \Exception
      */
     public function __construct(array $info, array $config)
     {
@@ -28,6 +29,7 @@ class SpTester extends SP
 
 
     /**
+     * @throws \ReflectionException
      */
     public function startSSO2Test(Configuration $idpMetadata, array $state): void
     {
@@ -40,6 +42,7 @@ class SpTester extends SP
 
     /**
      * override the method that sends the request to avoid sending anything
+     * @throws ExitTestException
      */
     public function sendSAML2AuthnRequest(Binding $binding, AuthnRequest $ar): Response
     {
@@ -55,6 +58,7 @@ class SpTester extends SP
 
     /**
      * override the method that sends the request to avoid sending anything
+     * @throws ExitTestException
      */
     public function sendSAML2LogoutRequest(Binding $binding, LogoutRequest $lr): Response
     {

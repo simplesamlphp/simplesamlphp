@@ -87,6 +87,8 @@ class ScopedIssuer extends Auth\ProcessingFilter
      * Apply filter to dynamically set the saml:Issuer.
      *
      * @param array &$state  The current state.
+     * @throws \SimpleSAML\Assert\AssertionFailedException
+     * @throws \SAML2\Exception\ProtocolViolationException
      */
     public function process(array &$state): void
     {

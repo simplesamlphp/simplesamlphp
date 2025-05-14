@@ -34,6 +34,7 @@ class Metadata
      * It initializes the global configuration for the controllers implemented here.
      *
      * @param \SimpleSAML\Configuration $config The configuration to use by the controllers.
+     * @throws Exception
      */
     public function __construct(
         protected Configuration $config,
@@ -65,6 +66,10 @@ class Metadata
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws Error\Error
+     * @throws Error\Exception
+     * @throws Exception
+     * @throws \Throwable
      */
     public function metadata(Request $request): Response
     {

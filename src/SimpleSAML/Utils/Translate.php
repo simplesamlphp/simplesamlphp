@@ -6,6 +6,8 @@ namespace SimpleSAML\Utils;
 
 use Gettext\Scanner\PhpScanner;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error\ConfigurationError;
+use SimpleSAML\Error\CriticalConfigurationError;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\Module;
 use SimpleSAML\XHTML\Template;
@@ -28,13 +30,19 @@ class Translate
     protected string $baseDir;
 
 
+    /**
+     * @throws \SimpleSAML\Assert\AssertionFailedException
+     */
     public function __construct(
         protected Configuration $configuration,
     ) {
         $this->baseDir = $configuration->getBaseDir();
     }
 
-
+    /**
+     * @throws \LogicException
+     * @throws \Symfony\Component\Finder\Exception\DirectoryNotFoundException
+     */
     public function getTranslationsFromPhp(string $module, PhpScanner $phpScanner): PhpScanner
     {
         $moduleDir = $this->baseDir . ($module === '' ? '' : 'modules/' . $module . '/');
@@ -54,6 +62,12 @@ class Translate
     }
 
 
+    /**
+     * @throws ConfigurationError
+     * @throws CriticalConfigurationError
+     * @throws Exception
+     * @throws \Exception
+     */
     public function getTranslationsFromTwig(string $module, bool $includeThemes = false): array
     {
         $twigTranslations = [];

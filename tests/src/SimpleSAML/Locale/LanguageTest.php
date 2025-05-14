@@ -7,6 +7,7 @@ namespace SimpleSAML\Test\Locale;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error\CannotSetCookie;
 use SimpleSAML\Locale\Language;
 
 /**
@@ -16,6 +17,7 @@ class LanguageTest extends TestCase
 {
     /**
      * Test SimpleSAML\Locale\Language::getDefaultLanguage().
+     * @throws CannotSetCookie
      */
     public function testGetDefaultLanguage(): void
     {
@@ -36,6 +38,7 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::getLanguageCookie().
+     * @throws \Exception
      */
     public function testGetLanguageCookie(): void
     {
@@ -60,6 +63,8 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::getLanguageList().
+     * @throws CannotSetCookie
+     * @throws \Exception
      */
     public function testGetLanguageListNoConfig(): void
     {
@@ -73,6 +78,8 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::getLanguageList().
+     * @throws CannotSetCookie
+     * @throws \Exception
      */
     public function testGetLanguageListCorrectConfig(): void
     {
@@ -91,6 +98,8 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::getLanguageList().
+     * @throws CannotSetCookie
+     * @throws \Exception
      */
     public function testGetLanguageListIncorrectConfig(): void
     {
@@ -106,6 +115,7 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::getLanguageParameterName().
+     * @throws CannotSetCookie
      */
     public function testGetLanguageParameterName(): void
     {
@@ -125,6 +135,8 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::isLanguageRTL().
+     * @throws CannotSetCookie
+     * @throws \Exception
      */
     public function testIsLanguageRTL(): void
     {
@@ -155,6 +167,7 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::setLanguage().
+     * @throws \Exception
      */
     public function testSetLanguage(): void
     {
@@ -174,6 +187,10 @@ class LanguageTest extends TestCase
         $this->assertEquals('en', $l->getLanguage());
     }
 
+    /**
+     * @throws CannotSetCookie
+     * @throws \Exception
+     */
     public function testGetPreferredLanguages(): void
     {
         // test defaults

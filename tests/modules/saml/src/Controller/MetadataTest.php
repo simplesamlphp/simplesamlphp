@@ -7,7 +7,7 @@ namespace SimpleSAML\Test\Module\saml\Controller;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Configuration, Error, Session, Utils};
+use SimpleSAML\{Configuration, Error, Error\Exception, Session, Utils};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Controller;
 use Symfony\Component\HttpFoundation\{Request, Response};
@@ -27,8 +27,10 @@ class MetadataTest extends TestCase
     protected Utils\Auth $authUtils;
 
     protected MetaDataStorageHandler $mdh;
+
     /**
      * Set up for each test.
+     * @throws \Exception
      */
     protected function setUp(): void
     {
@@ -131,6 +133,9 @@ class MetadataTest extends TestCase
     /**
      * Test that accessing the metadata-endpoint with or without authentication
      * and admin.protectmetadata set to true or false is handled properly
+     * @throws Error\Error
+     * @throws \Exception
+     * @throws \Throwable
      */
     #[DataProvider('provideMetadataAccess')]
     public function testMetadataAccess(bool $authenticated, bool $protected): void
@@ -183,6 +188,8 @@ class MetadataTest extends TestCase
 
     /**
      * Test that saml20-idp setting disabled disables access
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testDisabledSAML20IDPReturnsNoAccess(): void
     {
@@ -210,6 +217,9 @@ class MetadataTest extends TestCase
 
     /**
      * Test that requesting a non-existing entityID throws an exception
+     * @throws Exception
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testMetadataUnknownEntityThrowsError(): void
     {
@@ -228,6 +238,10 @@ class MetadataTest extends TestCase
 
     /**
      * Basic smoke test of generated metadata
+     * @throws Error\Error
+     * @throws Exception
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testMetadataYieldsContent(): void
     {
@@ -253,6 +267,10 @@ class MetadataTest extends TestCase
 
     /**
      * Test not specifying explict entityID falls back to a default
+     * @throws Error\Error
+     * @throws Exception
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testMetadataDefaultIdPYieldsContent(): void
     {
@@ -278,6 +296,10 @@ class MetadataTest extends TestCase
 
     /**
      * Check if caching headers are set
+     * @throws Error\Error
+     * @throws Exception
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testMetadataCachingHeaders(): void
     {

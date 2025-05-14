@@ -70,6 +70,7 @@ class AttributeNameID extends BaseNameIDGenerator
      *
      * @param array $state The state array.
      * @return string|null The NameID value.
+     * @throws \Exception
      */
     protected function getValue(array &$state): ?string
     {

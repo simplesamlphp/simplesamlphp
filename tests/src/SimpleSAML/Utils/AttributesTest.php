@@ -8,6 +8,7 @@ use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Error;
+use SimpleSAML\Error\Exception;
 use SimpleSAML\Utils\Attributes;
 
 /**
@@ -34,6 +35,7 @@ class AttributesTest extends TestCase
 
     /**
      * Test the getExpectedAttributeMethod() method with a non-normalized attributes array.
+     * @throws Exception
      */
     public function testGetExpectedAttributeNonNormalizedArray(): void
     {
@@ -105,6 +107,7 @@ class AttributesTest extends TestCase
 
     /**
      * Test that the getExpectedAttribute() method successfully obtains values from the attributes array.
+     * @throws Exception
      */
     public function testGetExpectedAttribute(): void
     {
