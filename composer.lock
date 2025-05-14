@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c2876b374da026381edf01e7e6a141cb",
+    "content-hash": "7d5d6ca38b0348969ebbb5e22613b0b6",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -1094,16 +1094,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v5.0.0",
+            "version": "v5.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "c5afe836888890b859ae7b224619c380bb87349d"
+                "reference": "9c0040881eec1d9447dcc5a043d91450e62f81f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/c5afe836888890b859ae7b224619c380bb87349d",
-                "reference": "c5afe836888890b859ae7b224619c380bb87349d",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/9c0040881eec1d9447dcc5a043d91450e62f81f4",
+                "reference": "9c0040881eec1d9447dcc5a043d91450e62f81f4",
                 "shasum": ""
             },
             "require": {
@@ -1113,7 +1113,6 @@
                 "ext-libxml": "*",
                 "ext-openssl": "*",
                 "ext-pcre": "*",
-                "ext-soap": "*",
                 "ext-zlib": "*",
                 "nyholm/psr7": "^1.8",
                 "php": "^8.1",
@@ -1130,6 +1129,9 @@
                 "icanhazstring/composer-unused": "^0.9.3",
                 "mockery/mockery": "^1.6",
                 "simplesamlphp/simplesamlphp-test-framework": "^1.5"
+            },
+            "suggest": {
+                "ext-soap": "*"
             },
             "type": "library",
             "extra": {
@@ -1155,9 +1157,9 @@
             "description": "SAML2 PHP library from SimpleSAMLphp",
             "support": {
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
-                "source": "https://github.com/simplesamlphp/saml2/tree/v5.0.0"
+                "source": "https://github.com/simplesamlphp/saml2/tree/v5.0.1"
             },
-            "time": "2025-05-06T19:31:20+00:00"
+            "time": "2025-05-13T18:12:37+00:00"
         },
         {
             "name": "simplesamlphp/saml2-legacy",
@@ -4653,16 +4655,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.12.25",
+            "version": "1.12.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "e310849a19e02b8bfcbb63147f495d8f872dd96f"
+                "reference": "84cbf8f018e01834b9b1ac3dacf3b9780e209e53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/e310849a19e02b8bfcbb63147f495d8f872dd96f",
-                "reference": "e310849a19e02b8bfcbb63147f495d8f872dd96f",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/84cbf8f018e01834b9b1ac3dacf3b9780e209e53",
+                "reference": "84cbf8f018e01834b9b1ac3dacf3b9780e209e53",
                 "shasum": ""
             },
             "require": {
@@ -4707,7 +4709,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-04-27T12:20:45+00:00"
+            "time": "2025-05-14T11:08:32+00:00"
         },
         {
             "name": "phpstan/phpstan-mockery",
@@ -6288,16 +6290,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.12.2",
+            "version": "3.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
-                "reference": "6d4cf6032d4b718f168c90a96e36c7d0eaacb2aa"
+                "reference": "65ff2489553b83b4597e89c3b8b721487011d186"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/6d4cf6032d4b718f168c90a96e36c7d0eaacb2aa",
-                "reference": "6d4cf6032d4b718f168c90a96e36c7d0eaacb2aa",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/65ff2489553b83b4597e89c3b8b721487011d186",
+                "reference": "65ff2489553b83b4597e89c3b8b721487011d186",
                 "shasum": ""
             },
             "require": {
@@ -6368,7 +6370,7 @@
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2025-04-13T04:10:18+00:00"
+            "time": "2025-05-11T03:36:00+00:00"
         },
         {
             "name": "symfony/phpunit-bridge",

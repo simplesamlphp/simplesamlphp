@@ -5,6 +5,13 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
+## Version 2.4.1
+
+Released 2025-05-14
+
+* Reverted #2278 because of a regression in SLO when using SSP as a bridge (#2436)
+* Fixed a dependency on a dev-version of the saml2-library
+
 ## Version 2.4.0
 
 Released 2025-04-16
