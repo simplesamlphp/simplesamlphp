@@ -5,6 +5,18 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
+## Version 2.4.2
+
+Released TBD
+
+`memcacheMonitor`
+
+* Fixed an issue that prevented the latest version of this module from being installed on SSP 2.4.x
+
+`negotiate`
+
+* Fixed an issue that prevented the latest version of this module from being installed on SSP 2.4.x
+
 ## Version 2.4.1
 
 Released 2025-05-14
