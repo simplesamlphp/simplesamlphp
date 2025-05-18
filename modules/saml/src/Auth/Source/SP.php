@@ -40,49 +40,49 @@ class SP extends \SimpleSAML\Auth\Source
      *
      * @var \SimpleSAML\Configuration
      */
-    private Configuration $metadata;
+    protected Configuration $metadata;
 
     /**
      * The IdP the user is allowed to log into.
      *
      * @var string|null  The IdP the user can log into, or null if the user can log into all IdPs.
      */
-    private ?string $idp;
+    protected ?string $idp;
 
     /**
      * URL to discovery service.
      *
      * @var string|null
      */
-    private ?string $discoURL;
+    protected ?string $discoURL;
 
     /**
      * Flag to indicate whether to disable sending the Scoping element.
      *
      * @var bool
      */
-    private bool $disable_scoping;
+    protected bool $disable_scoping;
 
     /**
      * If pass AuthnContextClassRef back to the IdPs in front of the SP/IdP Proxy.
      *
      * @var bool
      */
-    private bool $passAuthnContextClassRef;
+    protected bool $passAuthnContextClassRef;
 
     /**
      * A list of supported protocols.
      *
      * @var string[]
      */
-    private array $protocols = [Constants::NS_SAMLP];
+    protected array $protocols = [Constants::NS_SAMLP];
 
     /**
      * Flag to indicate whether to disable sending the Scoping element.
      *
      * @var bool
      */
-    private bool $requestInitiation;
+    protected bool $requestInitiation;
 
 
     /**
@@ -355,7 +355,7 @@ class SP extends \SimpleSAML\Auth\Source
      * @return array
      * @throws \Exception
      */
-    private function getACSEndpoints(): array
+    protected function getACSEndpoints(): array
     {
         // If a list of endpoints is specified in config, take that at face value
         if ($this->metadata->hasValue('AssertionConsumerService')) {
@@ -412,7 +412,7 @@ class SP extends \SimpleSAML\Auth\Source
      * @return array
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
-    private function getSLOEndpoints(): array
+    protected function getSLOEndpoints(): array
     {
         $config = Configuration::getInstance();
         $storeType = $config->getOptionalString('store.type', 'phpsession');
@@ -445,7 +445,7 @@ class SP extends \SimpleSAML\Auth\Source
     /**
      * Get the DiscoveryResponse endpoint available for a given local SP.
      */
-    private function getDiscoveryResponseEndpoints(): array
+    protected function getDiscoveryResponseEndpoints(): array
     {
         $location = Module::getModuleURL('saml/sp/discoResponse/' . $this->getAuthId());
 
@@ -472,7 +472,7 @@ class SP extends \SimpleSAML\Auth\Source
      * @param \SimpleSAML\Configuration $idpMetadata  The metadata of the IdP.
      * @param array $state  The state array for the current authentication.
      */
-    private function startSSO2(Configuration $idpMetadata, array $state): void
+    protected function startSSO2(Configuration $idpMetadata, array $state): void
     {
         if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] < 0) {
             Auth\State::throwException(
@@ -740,7 +740,7 @@ class SP extends \SimpleSAML\Auth\Source
      *
      * @param array $state  The state array.
      */
-    private function startDisco(array $state): void
+    protected function startDisco(array $state): void
     {
         $id = Auth\State::saveState($state, 'saml:sp:sso');
 
@@ -1266,5 +1266,12 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         Auth\Source::completeAuth($state);
+    }
+
+    public function onLogoutCompleted(array &$state): void
+    {
+        // Delete the cookie on SP logout.
+        $session =  Session::getSessionFromRequest();
+        $session->updateSessionCookies(['expire' => true]);
     }
 }

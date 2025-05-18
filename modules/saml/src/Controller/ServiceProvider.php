@@ -586,6 +586,10 @@ class ServiceProvider
             $state = $this->authState::loadState($relayState, 'saml:slosent');
             $state['saml:sp:LogoutStatus'] = $message->getStatus();
 
+            // allow possible cookie deletion
+            // depending on if we are on a bridge.
+            $source->onLogoutCompleted($state);
+
             return new RunnableResponse([Auth\Source::class, 'completeLogout'], [&$state]);
         } elseif ($message instanceof LogoutRequest) {
             Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId);

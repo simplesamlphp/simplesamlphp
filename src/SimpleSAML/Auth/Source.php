@@ -251,6 +251,12 @@ abstract class Source
         // default logout handler which doesn't do anything
     }
 
+    public function onLogoutCompleted(array &$state): void
+    {
+        // empty.
+        // Some subclasses may want to delete some state here.
+        // This will be called from ServiceProvider
+    }
 
     /**
      * Complete logout.

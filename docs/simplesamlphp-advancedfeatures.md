@@ -18,7 +18,22 @@ A bridge between two protocols is built using both an IdP and an SP, connected t
 To let a SAML 2.0 SP talk to a SAML 1.1 IdP, you build a SimpleSAMLphp bridge from a SAML 2.0 IdP and a SAML 1.1 SP.
 The SAML 2.0 SP talks to the SAML 2.0 IdP, which hands the request over to the SAML 1.1 SP, which forwards it to the SAML 1.1 IdP.
 
-If you have followed the instructions for setting up an SP, and have configured an authentication source, all you need to do is to add that authentication source to the IdP.
+If you have followed the instructions for setting up an SP, and have
+configured an authentication source, you have a configuration that is
+close to being able to be used with the IdP. Instead of directly using
+the authentication source with the IdP you might like to clone that
+configuration and use the the saml:SPBridge type. This subclass of
+saml:SP is close but does not try to delete the cookie on SP logout.
+As the IdP that is running the bridge and the SP are running on the
+same instance of SSP this would cause an issue where the same cookie
+is shared and should not be deleted by the SP prior to the IdP
+deleting it.
+
+The saml:SPBridge class will leave the cookie active and when the IdP
+that is bridging to that SP is then logged out the IdP can then
+cleanly delete the session cookie and does not get into a state where
+it is expecting a cookie to exist but it has already been deleted due
+to the bridge configuration.
 
 ### Example of bridge configuration
 
@@ -32,7 +47,7 @@ In `config/authsources.php`:
 
 ```php
 'default-sp' => [
-    'saml:SP',
+    'saml:SPBridge',
 ],
 ```
 

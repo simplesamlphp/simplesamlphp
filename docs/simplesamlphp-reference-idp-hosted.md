@@ -92,6 +92,11 @@ entry matches.
     set to `__DEFAULT__`, and that IdP will be used when no other
     entries in the metadata matches.
 
+`logout_delete_session_cookie`
+:   Delete the SAMLAuthToken cookie on logout from the IdP. `true` is the defualt. You may consdier
+    setting this option to `false` if you wish to have a degenerate installation with the SP and IdP
+    on the same install instance.
+
 `logouttype`
 :   The logout handler to use. Either `iframe` or `traditional`. `traditional` is the default.
 
