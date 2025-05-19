@@ -93,7 +93,7 @@ entry matches.
     entries in the metadata matches.
 
 `logout_delete_session_cookie`
-:   Delete the SAMLAuthToken cookie on logout from the IdP. `true` is the defualt. You may consdier
+:   Delete the SAMLAuthToken cookie on logout from the IdP. `true` is the default. You may consider
     setting this option to `false` if you wish to have a degenerate installation with the SP and IdP
     on the same install instance.
 
