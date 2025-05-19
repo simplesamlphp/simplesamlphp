@@ -425,7 +425,7 @@ class IdP
     public function getLogoutHandler(): LogoutHandlerInterface
     {
         // Destroy session cookies.
-        if($this->getConfig()->getOptionalBoolean('logout_delete_session_cookie', true)) {
+        if ($this->getConfig()->getOptionalBoolean('logout_delete_session_cookie', true)) {
             $session = Session::getSessionFromRequest();
             $session->updateSessionCookies(['expire' => true]);
         }
