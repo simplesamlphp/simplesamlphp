@@ -88,7 +88,7 @@ class System
      * This function retrieves the path to a directory where temporary files can be saved.
      *
      * @return string Path to a temporary directory, without a trailing directory separator.
-     * @throws \SimpleSAML\Utils\Error\Exception If the temporary directory cannot be created or it exists and cannot be written
+     * @throws \SimpleSAML\Error\Exception If the temporary directory cannot be created or it exists and cannot be written
      * @throws \Exception
      * to by the current user.
      *
@@ -205,7 +205,7 @@ class System
      *
      *
      * @throws \InvalidArgumentException If any of the input parameters doesn't have the proper types.
-     * @throws \SimpleSAML\Utils\Error\Exception If the file cannot be saved, permissions cannot be changed or it is not
+     * @throws \SimpleSAML\Error\Exception If the file cannot be saved, permissions cannot be changed or it is not
      * @throws \Random\RandomException
      *     possible to write to the target file.
      *

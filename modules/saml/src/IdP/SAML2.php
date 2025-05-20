@@ -62,7 +62,7 @@ class SAML2
      * Send a response to the SP.
      *
      * @param array $state The authentication state.
-     * @throws \SimpleSAML\Module\saml\IdP\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable
      */
@@ -333,7 +333,7 @@ class SAML2
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs when trying to receive the request.
      * @throws \Exception
-     * @throws \SimpleSAML\Module\saml\IdP\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\MetadataNotFound
      * @throws \Throwable
      */
@@ -683,7 +683,7 @@ class SAML2
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs while trying to receive the logout message.
-     * @throws \SimpleSAML\Module\saml\IdP\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\MetadataNotFound
      * @throws \Exception
      * @throws \Throwable
@@ -1510,7 +1510,7 @@ class SAML2
      * @param string|null $relayState An id that should be carried across the logout.
      *
      * @return \SimpleSAML\SAML2\LogoutRequest The corresponding SAML2 logout request.
-     * @throws \SimpleSAML\Module\saml\IdP\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      */
     private static function buildLogoutRequest(

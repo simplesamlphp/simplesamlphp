@@ -45,7 +45,7 @@ class WebBrowserSingleSignOn
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @throws \SimpleSAML\Error\MetadataNotFound
      * @throws \Exception
-     * @throws \SimpleSAML\Module\saml\Controller\Error\Error
+     * @throws \SimpleSAML\Error\Error
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function artifactResolutionService(Request $request): Response
@@ -117,7 +117,7 @@ class WebBrowserSingleSignOn
      * to the SP with an Authentication Response.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @throws \SimpleSAML\Module\saml\Controller\Error\Error
+     * @throws \SimpleSAML\Error\Error
      * @throws \SimpleSAML\Error\BadRequest
      * @throws \Exception
      * @throws \Throwable

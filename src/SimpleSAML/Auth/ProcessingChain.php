@@ -236,7 +236,7 @@ class ProcessingChain
      * to whatever exception handler is defined in the state array.
      *
      * @param array $state  The state we are processing.
-     * @throws \SimpleSAML\Auth\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable
      */

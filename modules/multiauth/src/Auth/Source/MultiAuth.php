@@ -188,7 +188,7 @@ class MultiAuth extends Auth\Source
     /**
      * @param \SimpleSAML\Auth\Source $as
      * @param array $state
-     * @throws \SimpleSAML\Module\multiauth\Auth\Source\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable
      */
@@ -219,7 +219,7 @@ class MultiAuth extends Auth\Source
      *
      * @param array &$state Information about the current logout operation.
      * @throws \Exception
-     * @throws \SimpleSAML\Module\multiauth\Auth\Source\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function logout(array &$state): ?Response

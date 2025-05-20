@@ -208,7 +208,7 @@ abstract class UserPassOrgBase extends Auth\Source
      *
      * @param \Symfony\Component\HttpFoundation\Request $request  The current request
      * @param array &$state  Information about the current authentication.
-     * @throws \SimpleSAML\Module\core\Auth\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      * @throws \Throwable
@@ -275,8 +275,8 @@ abstract class UserPassOrgBase extends Auth\Source
      * @param string $password  The password the user wrote.
      * @param string $organization  The id of the organization the user chose.
      * @throws \Exception
-     * @throws \SimpleSAML\Module\core\Auth\Error\Error
-     * @throws \SimpleSAML\Module\core\Auth\Error\Exception
+     * @throws \SimpleSAML\Error\Error
+     * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\NoState
      * @throws \Throwable
      */
@@ -344,7 +344,7 @@ abstract class UserPassOrgBase extends Auth\Source
      * @return array|null  Array of organizations. NULL if the user must enter the
      *         organization as part of the username.
      * @throws \Exception
-     * @throws \SimpleSAML\Module\core\Auth\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\NoState
      * @throws \Throwable
      */

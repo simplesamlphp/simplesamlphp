@@ -43,7 +43,7 @@ class ErrorReport
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
      * @throws \PHPMailer\PHPMailer\Exception
-     * @throws \SimpleSAML\Module\core\Controller\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\ConfigurationError
      * @throws \Exception
      */

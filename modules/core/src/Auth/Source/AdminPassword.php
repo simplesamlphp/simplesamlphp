@@ -45,7 +45,7 @@ class AdminPassword extends UserPassBase
      * @param string $username  The username the user wrote.
      * @param string $password  The password the user wrote.
      * @return array  Associative array with the users attributes.
-     * @throws \SimpleSAML\Module\core\Auth\Source\Error\Error
+     * @throws \SimpleSAML\Error\Error
      * @throws \Exception
      */
     protected function login(

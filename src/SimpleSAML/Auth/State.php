@@ -366,7 +366,7 @@ class State
      * @param \SimpleSAML\Error\Exception $exception The exception.
      *
      * @throws \SimpleSAML\Error\Exception If there is no exception handler defined, it will just throw the $exception.
-     * @throws Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     public static function throwException(array $state, Error\Exception $exception): void

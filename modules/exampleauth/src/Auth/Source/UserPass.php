@@ -93,7 +93,7 @@ class UserPass extends UserPassBase
      * @param string $username  The username the user wrote.
      * @param string $password  The password the user wrote.
      * @return array  Associative array with the users attributes.
-     * @throws \SimpleSAML\Module\exampleauth\Auth\Source\Error\Error
+     * @throws \SimpleSAML\Error\Error
      */
     protected function login(
         string $username,

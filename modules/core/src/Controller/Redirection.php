@@ -50,7 +50,7 @@ class Redirection
      *   An HTML template or a redirection if we are not authenticated.
      * @throws \SimpleSAML\Error\ConfigurationError
      * @throws \SimpleSAML\Error\BadRequest
-     * @throws \SimpleSAML\Module\core\Controller\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      */
     public function postredirect(Request $request): Response

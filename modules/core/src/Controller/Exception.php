@@ -151,7 +151,7 @@ class Exception
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
      *   An HTML template or a redirection if we are not authenticated.
      * @throws \SimpleSAML\Error\ConfigurationError
-     * @throws \SimpleSAML\Module\core\Controller\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \InvalidArgumentException
      * @throws \Exception
      */
@@ -182,7 +182,7 @@ class Exception
      * @throws \SimpleSAML\Error\BadRequest
      * @throws \SimpleSAML\Error\ConfigurationError
      * @throws \SimpleSAML\Error\NoState
-     * @throws \SimpleSAML\Module\core\Controller\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function shortSsoInterval(Request $request): Template|Response

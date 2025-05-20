@@ -133,7 +133,7 @@ class MetadataTest extends TestCase
     /**
      * Test that accessing the metadata-endpoint with or without authentication
      * and admin.protectmetadata set to true or false is handled properly
-     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Error
+     * @throws \SimpleSAML\Error\Error
      * @throws \Exception
      * @throws \Throwable
      */
@@ -238,7 +238,7 @@ class MetadataTest extends TestCase
 
     /**
      * Basic smoke test of generated metadata
-     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Error
+     * @throws \SimpleSAML\Error\Error
      * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable
@@ -267,7 +267,7 @@ class MetadataTest extends TestCase
 
     /**
      * Test not specifying explict entityID falls back to a default
-     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Error
+     * @throws \SimpleSAML\Error\Error
      * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable
@@ -296,7 +296,7 @@ class MetadataTest extends TestCase
 
     /**
      * Check if caching headers are set
-     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Error
+     * @throws \SimpleSAML\Error\Error
      * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable

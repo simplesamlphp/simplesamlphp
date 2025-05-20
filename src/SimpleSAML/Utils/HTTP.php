@@ -115,7 +115,7 @@ class HTTP
      * @param array  $data An associative array containing the data to be posted to $destination.
      *
      * @throws \Exception
-     * @throws \SimpleSAML\Utils\Error\Exception If the current session is transient.
+     * @throws \SimpleSAML\Error\Exception If the current session is transient.
      * @throws \Throwable
      *
      * @return string  A URL which allows to securely post a form to $destination.
@@ -387,7 +387,7 @@ class HTTP
      * @return string The normalized URL itself if it is allowed. An empty string if the $url parameter is empty as
      * defined by the empty() function.
      * @throws \InvalidArgumentException If the URL is malformed.
-     * @throws \SimpleSAML\Utils\Error\Exception If the URL is not allowed by configuration.
+     * @throws \SimpleSAML\Error\Exception If the URL is not allowed by configuration.
      * @throws \Exception
      *
      */
@@ -477,7 +477,7 @@ class HTTP
      * @return string|array An array if $getHeaders is set, containing the data and the headers respectively; string
      *  otherwise.
      * @throws \InvalidArgumentException If the input parameters are invalid.
-     * @throws \SimpleSAML\Utils\Error\Exception If the file or URL cannot be retrieved.
+     * @throws \SimpleSAML\Error\Exception If the file or URL cannot be retrieved.
      * @throws \Exception
      *
      */

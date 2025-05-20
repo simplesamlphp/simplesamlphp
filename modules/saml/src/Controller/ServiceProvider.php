@@ -94,7 +94,7 @@ class ServiceProvider
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $sourceId
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * @throws \SimpleSAML\Module\saml\Controller\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable
      */
@@ -122,7 +122,7 @@ class ServiceProvider
      *
      * @return string
      * @throws \SimpleSAML\Error\BadRequest
-     * @throws \SimpleSAML\Module\saml\Controller\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     protected function loginHandler(
@@ -204,7 +204,7 @@ class ServiceProvider
      * Handler for response from IdP discovery service.
      *
      * @param \Symfony\Component\HttpFoundation\Request|null $request
-     * @throws \SimpleSAML\Module\saml\Controller\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \SimpleSAML\Error\NoState
      * @throws \SimpleSAML\Error\BadRequest
@@ -258,11 +258,11 @@ class ServiceProvider
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $sourceId
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \SimpleSAML\Module\saml\Controller\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \SimpleSAML\Error\BadRequest
      * @throws \Exception
-     * @throws \SimpleSAML\Module\saml\Controller\Error\Error
+     * @throws \SimpleSAML\Error\Error
      * @throws \Throwable
      */
     public function assertionConsumerService(Request $request, string $sourceId): Response
@@ -541,9 +541,9 @@ class ServiceProvider
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \SimpleSAML\Error\BadRequest
      * @throws \Exception
-     * @throws \SimpleSAML\Module\saml\Controller\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\NoState
-     * @throws \SimpleSAML\Module\saml\Controller\Error\Error
+     * @throws \SimpleSAML\Error\Error
      * @throws \Throwable
      */
     public function singleLogoutService(Request $request, string $sourceId): Response
@@ -694,7 +694,7 @@ class ServiceProvider
      * @param string $sourceId
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Exception
-     * @throws \SimpleSAML\Module\saml\Controller\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\AuthSource
      * @throws \Throwable
      */

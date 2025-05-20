@@ -149,7 +149,7 @@ class ServiceProviderTest extends TestCase
      * Test that accessing the login-endpoint without ReturnTo parameter leads to an exception
      *
      * @return void
-     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function testLoginMissingReturnTo(): void
@@ -170,7 +170,7 @@ class ServiceProviderTest extends TestCase
      * Test that accessing the login-endpoint with empty ReturnTo parameter leads to an exception
      *
      * @return void
-     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function testLoginEmptyReturnTo(): void
@@ -193,7 +193,7 @@ class ServiceProviderTest extends TestCase
      * Test that accessing the login-endpoint with ReturnTo parameter leads to a Response
      *
      * @return void
-     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function testLogin(): void
@@ -217,7 +217,7 @@ class ServiceProviderTest extends TestCase
      * Test that accessing the discoResponse-endpoint without AuthID leads to an exception
      *
      * @return void
-     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function testDiscoResponseMissingAuthId(): void
@@ -240,7 +240,7 @@ class ServiceProviderTest extends TestCase
      * Test that accessing the discoResponse-endpoint with AuthID but without idpentityid results in an exception
      *
      * @return void
-     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function testWithAuthIdWithoutEntity(): void
@@ -860,7 +860,7 @@ XML;
     /**
      * Test that requesting a non-existing authsource yields an error
      * @throws \SimpleSAML\Error\AuthSource
-     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function testMetadataUnknownEntityThrowsError(): void
@@ -880,7 +880,7 @@ XML;
     /**
      * Basic smoke test of generated metadata
      * @throws \SimpleSAML\Error\AuthSource
-     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function testMetadataYieldsContent(): void
@@ -903,7 +903,7 @@ XML;
     /**
      * Check if caching headers are set
      * @throws \SimpleSAML\Error\AuthSource
-     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function testMetadataCachingHeaders(): void

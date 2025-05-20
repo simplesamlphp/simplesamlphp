@@ -192,8 +192,8 @@ abstract class UserPassBase extends Auth\Source
      *
      * @param \Symfony\Component\HttpFoundation\Request $request  The current request
      * @param array &$state  Information about the current authentication.
-     * @throws \SimpleSAML\Module\core\Auth\Error\Error
-     * @throws \SimpleSAML\Module\core\Auth\Error\Exception
+     * @throws \SimpleSAML\Error\Error
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable
      */
@@ -282,7 +282,7 @@ abstract class UserPassBase extends Auth\Source
      * @param string $username  The username the user wrote.
      * @param string $password  The password the user wrote.
      * @throws \Exception
-     * @throws \SimpleSAML\Module\core\Auth\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\NoState
      * @throws \Throwable
      */

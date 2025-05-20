@@ -70,7 +70,7 @@ class SingleLogout
      * and LogoutRequests and also receive LogoutResponses. It is implementing SLO at the SAML 2.0 IdP.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @throws \SimpleSAML\Module\saml\Controller\Error\Error
+     * @throws \SimpleSAML\Error\Error
      * @throws \SimpleSAML\Error\BadRequest
      * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
@@ -111,7 +111,7 @@ class SingleLogout
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @throws \SimpleSAML\Error\Exception
-     * @throws \SimpleSAML\Module\saml\Controller\Error\Error
+     * @throws \SimpleSAML\Error\Error
      * @throws \Exception
      * @throws \Throwable
      */

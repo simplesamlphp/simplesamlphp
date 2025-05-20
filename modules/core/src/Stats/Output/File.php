@@ -69,7 +69,7 @@ class File extends Stats\Output
      * Open a log file.
      *
      * @param string $date  The date for the log file.
-     * @throws \SimpleSAML\Module\core\Stats\Output\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     private function openLog(string $date): void
     {
@@ -96,7 +96,7 @@ class File extends Stats\Output
      * Write a stats event.
      *
      * @param array $data  The event.
-     * @throws \SimpleSAML\Module\core\Stats\Output\Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function emit(array $data): void
     {
