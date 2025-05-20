@@ -6,6 +6,7 @@ namespace SimpleSAML\Metadata;
 
 use Exception;
 use SimpleSAML\{Configuration, Error, Module, Utils};
+use Symfony\Component\HttpFoundation\IpUtils;
 use Symfony\Component\Filesystem\Filesystem;
 
 use function array_flip;
@@ -217,9 +218,8 @@ abstract class MetaDataStorageSource
                 continue;
             }
 
-            $netUtils = new Utils\Net();
             foreach ($cidrHints as $hint_entry) {
-                if ($netUtils->ipCIDRcheck($hint_entry, $ip)) {
+                if (IpUtils::checkIp($ip, $hint_entry)) {
                     if ($type === 'entityid') {
                         return $entry['entityid'];
                     } else {
