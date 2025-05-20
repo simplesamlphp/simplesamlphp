@@ -76,6 +76,13 @@ class HTTPTest extends ClearStateTestCase
         $this->assertEquals($url . '&bar=foo', $httpUtils->addURLParameters($url, $params));
     }
 
+    private function makeNativePath($s)
+    {
+        if (DIRECTORY_SEPARATOR == '\\') {
+            $s = str_replace("/", "\\", $s);
+        }
+        return $s;
+    }
 
     /**
      * Test SimpleSAML\Utils\HTTP::guessBasePath().
@@ -86,35 +93,35 @@ class HTTPTest extends ClearStateTestCase
         $httpUtils = new Utils\HTTP();
 
         $_SERVER['REQUEST_URI'] = '/simplesaml/module.php';
-        $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/public/module.php';
+        $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/public/module.php');
         $this->assertEquals('/simplesaml/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/simplesaml/module.php/some/path/to/other/script.php';
-        $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/public/module.php';
+        $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/public/module.php');
         $this->assertEquals('/simplesaml/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/module.php';
-        $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/public/module.php';
+        $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/public/module.php');
         $this->assertEquals('/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/module.php/some/path/to/other/script.php';
-        $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/public/module.php';
+        $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/public/module.php');
         $this->assertEquals('/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/some/path/module.php';
-        $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/public/module.php';
+        $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/public/module.php');
         $this->assertEquals('/some/path/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/some/path/module.php/some/path/to/other/script.php';
-        $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/public/module.php';
+        $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/public/module.php');
         $this->assertEquals('/some/path/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/some/dir/in/www/script.php';
-        $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/www/some/dir/in/www/script.php';
+        $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/www/some/dir/in/www/script.php');
         $this->assertEquals('/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/simplesaml/some/dir/in/www/script.php';
-        $_SERVER['SCRIPT_FILENAME'] = '/some/path/simplesamlphp/www/some/dir/in/www/script.php';
+        $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/www/some/dir/in/www/script.php');
         $this->assertEquals('/simplesaml/', $httpUtils->guessBasePath());
 
         $_SERVER = $original;
