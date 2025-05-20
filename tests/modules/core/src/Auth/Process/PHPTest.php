@@ -23,7 +23,7 @@ class PHPTest extends TestCase
      * @param array $request The request state.
      *
      * @return array The state array after processing.
-     * @throws Error\Exception
+     * @throws \SimpleSAML\Test\Module\core\Auth\Process\Error\Exception
      */
     private static function processFilter(array $config, array $request): array
     {
@@ -49,7 +49,7 @@ class PHPTest extends TestCase
 
     /**
      * Check that defining the code works as expected.
-     * @throws Error\Exception
+     * @throws \SimpleSAML\Test\Module\core\Auth\Process\Error\Exception
      */
     public function testCodeDefined(): void
     {
@@ -71,7 +71,7 @@ class PHPTest extends TestCase
 
     /**
      * Check that the incoming attributes are also available after processing
-     * @throws Error\Exception
+     * @throws \SimpleSAML\Test\Module\core\Auth\Process\Error\Exception
      */
     public function testPreserveIncomingAttributes(): void
     {
@@ -102,7 +102,7 @@ class PHPTest extends TestCase
     /**
      * Check that throwing an Exception inside the PHP code of the
      * filter (a documented use case) works.
-     * @throws Error\Exception
+     * @throws \SimpleSAML\Test\Module\core\Auth\Process\Error\Exception
      */
     public function testThrowExceptionFromFilter(): void
     {
@@ -128,7 +128,7 @@ class PHPTest extends TestCase
 
     /**
      * Check that the entire state can be adjusted.
-     * @throws Error\Exception
+     * @throws \SimpleSAML\Test\Module\core\Auth\Process\Error\Exception
      */
     public function testStateCanBeModified(): void
     {

@@ -65,8 +65,8 @@ class Crypto
      *
      * @return array|NULL Extracted private key, or NULL if no private key is present.
      * @throws \InvalidArgumentException If $required is not boolean or $prefix is not a string.
-     * @throws Error\Exception If no private key is found in the metadata, or it was not possible to load
-     * @throws Exception
+     * @throws \SimpleSAML\Utils\Error\Exception If no private key is found in the metadata, or it was not possible to load
+     * @throws \Exception
      *     it.
      *
      */
@@ -123,9 +123,9 @@ class Crypto
      * @return array|NULL Public key or certificate data, or NULL if no public key or certificate was found.
      * @throws \InvalidArgumentException If $metadata is not an instance of \SimpleSAML\Configuration, $required is not
      *     boolean or $prefix is not a string.
-     * @throws Error\Exception If no public key is found in the metadata, or it was not possible to load
+     * @throws \SimpleSAML\Utils\Error\Exception If no public key is found in the metadata, or it was not possible to load
      *     it.
-     * @throws Exception
+     * @throws \Exception
      */
     public function loadPublicKey(Configuration $metadata, bool $required = false, string $prefix = ''): ?array
     {

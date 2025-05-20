@@ -6,7 +6,7 @@ namespace SimpleSAML\Test\Module\exampleauth\Controller;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Auth, Configuration, Error, Error\BadRequest, Error\Exception, Session};
+use SimpleSAML\{Auth, Configuration, Error, Session};
 use SimpleSAML\Module\exampleauth\Controller;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request};
@@ -139,7 +139,7 @@ class ExampleAuthTest extends TestCase
      * Test that accessing the authpage-endpoint using POST-method and using the correct password triggers a redirect
      *
      * @return void
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable
      */
@@ -172,7 +172,7 @@ class ExampleAuthTest extends TestCase
      * an incorrect password shows the login-screen again
      *
      * @return void
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable
      */
@@ -239,7 +239,7 @@ class ExampleAuthTest extends TestCase
      * Test that accessing the redirecttest-endpoint leads to a redirect
      *
      * @return void
-     * @throws BadRequest
+     * @throws \SimpleSAML\Error\BadRequest
      * @throws \Exception
      * @throws \Throwable
      */

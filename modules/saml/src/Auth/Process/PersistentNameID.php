@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SimpleSAML\{Error, Error\CriticalConfigurationError, Logger, Utils};
+use SimpleSAML\{Error, Logger, Utils};
 use SimpleSAML\Module\saml\BaseNameIDGenerator;
 use SimpleSAML\SAML2\Constants as C;
 
@@ -56,7 +56,7 @@ class PersistentNameID extends BaseNameIDGenerator
      *
      * @param array $state The state array.
      * @return string|null The NameID value.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     protected function getValue(array &$state): ?string

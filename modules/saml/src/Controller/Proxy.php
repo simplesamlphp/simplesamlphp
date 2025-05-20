@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Controller;
 
 use Exception;
-use SimpleSAML\{Auth, Configuration, Error, Error\BadRequest, Error\ConfigurationError, Error\NoState, IdP};
+use SimpleSAML\{Auth, Configuration, Error, IdP};
 use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\Module\saml\Error\NoAvailableIDP;
 use SimpleSAML\SAML2\Constants as C;
@@ -58,11 +58,11 @@ class Proxy
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\Response
-     * @throws ConfigurationError
-     * @throws Error\Exception
-     * @throws NoState
-     * @throws BadRequest
-     * @throws Exception
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Module\saml\Controller\Error\Exception
+     * @throws \SimpleSAML\Error\NoState
+     * @throws \SimpleSAML\Error\BadRequest
+     * @throws \Exception
      * @throws \Throwable
      */
     public function invalidSession(Request $request): Template|Response

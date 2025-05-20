@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Source;
 
-use SimpleSAML\{Error, Error\Exception, Error\NotFound, Logger};
+use SimpleSAML\{Error, Logger};
 use SimpleSAML\Assert\Assert;
 use Symfony\Component\HttpFoundation\{IpUtils, Request};
 
@@ -52,7 +52,7 @@ class SourceIPSelector extends AbstractSourceSelector
      *
      * @param array $info Information about this authentication source.
      * @param array $config Configuration.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      */
     public function __construct(array $info, array $config)
@@ -89,7 +89,7 @@ class SourceIPSelector extends AbstractSourceSelector
      *
      * @param array &$state Information about the current authentication.
      * @return string
-     * @throws NotFound
+     * @throws \SimpleSAML\Error\NotFound
      * @throws \Exception
      */
     protected function selectAuthSource(/** @scrutinizer ignore-unused */ array &$state): string

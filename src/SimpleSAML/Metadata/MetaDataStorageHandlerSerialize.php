@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
-use SimpleSAML\{Configuration, Error\CriticalConfigurationError, Logger, Utils};
+use SimpleSAML\{Configuration, Logger, Utils};
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\Finder\Finder;
@@ -278,7 +278,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      * @param array $entityIds The entity ids to load
      * @param string $set The set we want to get metadata from.
      * @return array An associative array with the metadata for the requested entities, if found.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function getMetaDataForEntities(array $entityIds, string $set): array
     {

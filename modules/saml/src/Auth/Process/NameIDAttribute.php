@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SimpleSAML\{Auth, Error, Error\Exception};
+use SimpleSAML\{Auth, Error};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\XML\saml\NameID;
@@ -43,7 +43,7 @@ class NameIDAttribute extends Auth\ProcessingFilter
      *
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function __construct(array $config, $reserved)
     {

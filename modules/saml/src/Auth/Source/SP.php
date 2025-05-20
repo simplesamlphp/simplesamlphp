@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Auth\Source;
 
 use SAML2\{AuthnRequest, Binding, LogoutRequest};
-use SimpleSAML\{Auth, Configuration, Error, Error\CannotSetCookie, Error\CriticalConfigurationError, Error\Exception, Error\MetadataNotFound, Error\NoState, IdP, Logger, Module, Session, Store, Utils};
-use SimpleSAML\Assert\{Assert, AssertionFailedException};
+use SimpleSAML\{Auth, Configuration, Error, IdP, Logger, Module, Session, Store, Utils};
+use SimpleSAML\Assert\{Assert};
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\SAML2\XML\Comparison;
@@ -21,7 +21,7 @@ use SimpleSAML\SAML2\Exception\Protocol\{
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\SAML2\XML\saml\{AuthnContextClassRef};
-use SimpleSAML\SAML2\XML\samlp\{Extensions, IDPEntry, IDPList, RequestedAuthnContext, RequesterID, Scoping};
+use SimpleSAML\SAML2\XML\samlp\{Extensions, IDPEntry, IDPList, RequestedAuthnContext, RequesterID};
 use SimpleSAML\Store\StoreFactory;
 use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
@@ -156,7 +156,7 @@ class SP extends Auth\Source
      * Retrieve the URL to the metadata of this SP.
      *
      * @return string  The metadata URL.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \InvalidArgumentException
      * @throws \Exception
      */
@@ -181,9 +181,9 @@ class SP extends Auth\Source
      * Retrieve the metadata array of this SP, as a remote IdP would see it.
      *
      * @return array The metadata array for its use by a remote IdP.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function getHostedMetadata(): array
     {
@@ -341,8 +341,8 @@ class SP extends Auth\Source
      * @param \SimpleSAML\Configuration $config  The configuration
      * @param string $entityId  The entity id of the IdP.
      * @return \SimpleSAML\Configuration  The metadata of the IdP.
-     * @throws MetadataNotFound
-     * @throws Exception
+     * @throws \SimpleSAML\Error\MetadataNotFound
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      */
     public function getIdPMetadata(Configuration $config, string $entityId): Configuration
@@ -477,7 +477,7 @@ class SP extends Auth\Source
 
     /**
      * Get the DiscoveryResponse endpoint available for a given local SP.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \InvalidArgumentException
      * @throws \Exception
      */
@@ -510,7 +510,7 @@ class SP extends Auth\Source
      * @param \SimpleSAML\Configuration $idpMetadata  The metadata of the IdP.
      * @param array $state  The state array for the current authentication.
      * @throws \Exception
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     private function startSSO2(Configuration $idpMetadata, array $state): Response
@@ -769,7 +769,7 @@ class SP extends Auth\Source
      * @param \SimpleSAML\Configuration $config  The configuration
      * @param string $idp  The entity ID of the IdP.
      * @param array $state  The state array for the current authentication.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function startSSO(Configuration $config, string $idp, array $state): ?Response
@@ -786,8 +786,8 @@ class SP extends Auth\Source
      * Start an IdP discovery service operation.
      *
      * @param array $state  The state array.
-     * @throws Exception
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      * @throws \Throwable
      */
@@ -829,7 +829,7 @@ class SP extends Auth\Source
      *
      * @param \Symfony\Component\HttpFoundation\Request $request  The current request
      * @param array &$state  Information about the current authentication.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable
      */
@@ -886,8 +886,8 @@ class SP extends Auth\Source
      * interact with the user even in the case when the user is already authenticated.
      *
      * @param array &$state  Information about the current authentication.
-     * @throws Exception
-     * @throws NoState
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\NoState
      * @throws \Exception
      * @throws \Throwable
      */
@@ -1002,8 +1002,8 @@ class SP extends Auth\Source
      * - 'SPMetadata': an array with the metadata of this local SP.
      *
      * @throws \SimpleSAML\SAML2\Exception\Protocol\NoPassiveException In case the authentication request was passive.
-     * @throws Exception
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      * @throws \Throwable
      */
@@ -1089,7 +1089,7 @@ class SP extends Auth\Source
      * Complete login operation after re-authenticating the user on another IdP.
      *
      * @param array $state  The authentication state.
-     * @throws CannotSetCookie
+     * @throws \SimpleSAML\Error\CannotSetCookie
      * @throws \Exception
      * @throws \Throwable
      */
@@ -1114,7 +1114,7 @@ class SP extends Auth\Source
      *
      * @param \SimpleSAML\IdP $idp The IdP we are logging out from.
      * @param array &$state The state array with the state during logout.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable
      */
@@ -1142,7 +1142,7 @@ class SP extends Auth\Source
      *
      * @param \SimpleSAML\Configuration $config  The configuration.
      * @param array $state  The logout state.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable
      */
@@ -1212,7 +1212,7 @@ class SP extends Auth\Source
      * Start logout operation.
      *
      * @param array $state  The logout state.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function logout(array &$state): ?Response
@@ -1238,7 +1238,7 @@ class SP extends Auth\Source
      * @param string $idp  The entity id of the IdP.
      * @param array $attributes  The attributes.
      * @throws \Exception
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function handleResponse(array $state, string $idp, array $attributes): Response
@@ -1306,7 +1306,7 @@ class SP extends Auth\Source
      * the session. The function will check if the URL is allowed, so there is no need to
      * manually check the URL on beforehand. Please refer to the 'trusted.url.domains'
      * configuration directive for more information about allowing (or disallowing) URLs.
-     * @throws CannotSetCookie
+     * @throws \SimpleSAML\Error\CannotSetCookie
      * @throws \Exception
      * @throws \Throwable
      */
@@ -1326,7 +1326,7 @@ class SP extends Auth\Source
      *
      * @param array $authProcState  The processing chain state.
      * @throws \Exception
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public static function onProcessingCompleted(array $authProcState): Response

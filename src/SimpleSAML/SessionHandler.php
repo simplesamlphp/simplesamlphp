@@ -16,7 +16,6 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use SimpleSAML\Store\StoreFactory;
-use SimpleSAML\Utils;
 
 abstract class SessionHandler
 {

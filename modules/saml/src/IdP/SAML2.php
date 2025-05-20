@@ -11,8 +11,8 @@ use DOMNodeList;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
-use SimpleSAML\{Auth, Configuration, Error, Error\MetadataNotFound, IdP, Logger, Module, Stats, Utils};
-use SimpleSAML\Assert\{Assert, AssertionFailedException};
+use SimpleSAML\{Auth, Configuration, Error, IdP, Logger, Module, Stats, Utils};
+use SimpleSAML\Assert\{Assert};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Message;
 use SimpleSAML\SAML2\{Binding, HTTPRedirect, SOAP}; // Bindings
@@ -62,8 +62,8 @@ class SAML2
      * Send a response to the SP.
      *
      * @param array $state The authentication state.
-     * @throws Error\Exception
-     * @throws Exception
+     * @throws \SimpleSAML\Module\saml\IdP\Error\Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     public static function sendResponse(array $state): Response
@@ -332,9 +332,9 @@ class SAML2
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs when trying to receive the request.
-     * @throws Exception
-     * @throws Error\Exception
-     * @throws MetadataNotFound
+     * @throws \Exception
+     * @throws \SimpleSAML\Module\saml\IdP\Error\Exception
+     * @throws \SimpleSAML\Error\MetadataNotFound
      * @throws \Throwable
      */
     public static function receiveAuthnRequest(Request $request, IdP $idp): Response
@@ -574,8 +574,8 @@ class SAML2
      * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
      * @param array           $association The association that should be terminated.
      * @param string|null     $relayState An id that should be carried across the logout.
-     * @throws Exception
-     * @throws MetadataNotFound
+     * @throws \Exception
+     * @throws \SimpleSAML\Error\MetadataNotFound
      */
     public static function sendLogoutRequest(IdP $idp, array $association, ?string $relayState = null): Response
     {
@@ -615,8 +615,8 @@ class SAML2
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
      * @param array           &$state The logout state array.
-     * @throws Exception
-     * @throws MetadataNotFound
+     * @throws \Exception
+     * @throws \SimpleSAML\Error\MetadataNotFound
      */
     public static function sendLogoutResponse(Request $request, IdP $idp, array $state): Response
     {
@@ -683,9 +683,9 @@ class SAML2
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs while trying to receive the logout message.
-     * @throws Error\Exception
-     * @throws MetadataNotFound
-     * @throws Exception
+     * @throws \SimpleSAML\Module\saml\IdP\Error\Exception
+     * @throws \SimpleSAML\Error\MetadataNotFound
+     * @throws \Exception
      * @throws \Throwable
      */
     public static function receiveLogoutMessage(Request $request, IdP $idp): Response
@@ -767,8 +767,8 @@ class SAML2
      * @param string|NULL     $relayState An id that should be carried across the logout.
      *
      * @return string The logout URL.
-     * @throws Exception
-     * @throws MetadataNotFound
+     * @throws \Exception
+     * @throws \SimpleSAML\Error\MetadataNotFound
      */
     public static function getLogoutURL(IdP $idp, array $association, ?string $relayState = null): string
     {
@@ -1510,8 +1510,8 @@ class SAML2
      * @param string|null $relayState An id that should be carried across the logout.
      *
      * @return \SimpleSAML\SAML2\LogoutRequest The corresponding SAML2 logout request.
-     * @throws Error\Exception
-     * @throws Exception
+     * @throws \SimpleSAML\Module\saml\IdP\Error\Exception
+     * @throws \Exception
      */
     private static function buildLogoutRequest(
         Configuration $idpMetadata,

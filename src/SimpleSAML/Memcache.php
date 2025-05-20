@@ -7,7 +7,6 @@ namespace SimpleSAML;
 use Exception;
 use Memcached;
 use SimpleSAML\Error\ErrorCodes;
-use SimpleSAML\Utils;
 
 use function array_key_exists;
 use function array_merge_recursive;
@@ -54,8 +53,8 @@ class Memcache
      * @param string $key The key of the data.
      *
      * @return mixed The data stored with the given key, or null if no data matching the key was found.
-     * @throws Error\Exception
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public static function get(string $key): mixed
     {

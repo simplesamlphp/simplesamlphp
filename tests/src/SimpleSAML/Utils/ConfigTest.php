@@ -6,7 +6,7 @@ namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Error, Error\CriticalConfigurationError, Utils};
+use SimpleSAML\{Error, Utils};
 
 use function dirname;
 use function putenv;
@@ -35,7 +35,7 @@ class ConfigTest extends TestCase
 
     /**
      * Test default config dir with not environment variable
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testDefaultConfigDir(): void
     {
@@ -49,7 +49,7 @@ class ConfigTest extends TestCase
 
     /**
      * Test valid dir specified by env var overrides default config dir
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testEnvVariableConfigDir(): void
     {
@@ -61,7 +61,7 @@ class ConfigTest extends TestCase
 
     /**
      * Test valid dir specified by env redirect var overrides default config dir
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testEnvRedirectVariableConfigDir(): void
     {
@@ -74,7 +74,7 @@ class ConfigTest extends TestCase
 
     /**
      * Test which directory takes precedence
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testEnvRedirectPriorityVariableConfigDir(): void
     {

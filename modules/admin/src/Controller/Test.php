@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\admin\Controller;
 
-use SimpleSAML\{Auth, Configuration, Error\ConfigurationError, Error\Exception, Module, Session, Utils};
+use SimpleSAML\{Auth, Configuration, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\XHTML\Template;
@@ -101,8 +101,8 @@ class Test
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string|null $as
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws ConfigurationError
-     * @throws Exception
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable
      */
@@ -170,7 +170,7 @@ class Test
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \SimpleSAML\XHTML\Template
-     * @throws ConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
      * @throws \Exception
      */
     public function logout(/** @scrutinizer ignore-unused */Request $request): Template

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\admin\Controller;
 
-use SimpleSAML\{Configuration, Error\ConfigurationError, Error\CriticalConfigurationError, Error\Exception, Module, Session, Utils};
+use SimpleSAML\{Configuration, Module, Session, Utils};
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{Request, Response, StreamedResponse};
@@ -80,9 +80,9 @@ class Config
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws CriticalConfigurationError
-     * @throws ConfigurationError
-     * @throws Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function diagnostics(Request $request): Response
@@ -121,8 +121,8 @@ class Config
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws Exception
-     * @throws ConfigurationError
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\ConfigurationError
      * @throws \Exception
      * @throws \Throwable
      */
@@ -184,7 +184,7 @@ class Config
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
      * @return \Symfony\Component\HttpFoundation\Response The output of phpinfo()
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function phpinfo(/** @scrutinizer ignore-unused */ Request $request): Response
@@ -215,7 +215,7 @@ class Config
      *   - enabled: True if the prerequisite is met, false otherwise.
      *
      * @return array
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      */
     protected function getPrerequisiteChecks(): array

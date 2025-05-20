@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
-use SimpleSAML\{Auth as Authentication, Error, Error\CriticalConfigurationError, Module, Session};
+use SimpleSAML\{Auth as Authentication, Error, Session};
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -21,7 +21,7 @@ class Auth
      *
      * @return string A URL which can be used for logging out.
      * @throws \InvalidArgumentException If $returnTo is neither a string nor null.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Throwable
      * @throws \Exception
      */

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use Exception;
-use SimpleSAML\{Auth, Error\CriticalConfigurationError, Logger, Utils};
+use SimpleSAML\{Auth, Logger, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\XML\saml\NameID;
@@ -102,8 +102,8 @@ class TargetedID extends Auth\ProcessingFilter
      * Apply filter to add the targeted ID.
      *
      * @param array &$state  The current state.
-     * @throws CriticalConfigurationError
-     * @throws Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
      */
     public function process(array &$state): void
     {

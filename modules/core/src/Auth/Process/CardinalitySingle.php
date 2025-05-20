@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\{Auth, Error\CriticalConfigurationError, Error\Exception, Logger, Module, Utils};
+use SimpleSAML\{Auth, Logger, Module, Utils};
 
 use function array_key_exists;
 use function array_shift;
@@ -86,8 +86,8 @@ class CardinalitySingle extends Auth\ProcessingFilter
      * Process this filter
      *
      * @param array &$state  The current request
-     * @throws Exception
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      * @throws \Throwable
      */

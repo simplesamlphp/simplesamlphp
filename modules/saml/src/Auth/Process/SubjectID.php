@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SimpleSAML\{Auth, Error\CriticalConfigurationError, Logger, Utils};
+use SimpleSAML\{Auth, Logger, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ProtocolViolationException;
@@ -136,7 +136,7 @@ class SubjectID extends Auth\ProcessingFilter
      * Apply filter to add the subject ID.
      *
      * @param array &$state  The current state.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     public function process(array &$state): void
@@ -260,7 +260,7 @@ class SubjectID extends Auth\ProcessingFilter
 
     /**
      * Calculate the hash for the unique part of the identifier.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \InvalidArgumentException
      * @throws \Exception
      */

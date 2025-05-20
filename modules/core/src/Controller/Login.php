@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Controller;
 
-use SimpleSAML\{Auth, Configuration, Error, Error\BadRequest, Error\CannotSetCookie, Error\ConfigurationError, Error\CriticalConfigurationError, Error\Exception, Error\NoState, Module, Utils};
+use SimpleSAML\{Auth, Configuration, Error, Module, Utils};
 use SimpleSAML\Module\core\Auth\{UserPassBase, UserPassOrgBase};
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{Cookie, RedirectResponse, Request, Response};
@@ -83,7 +83,7 @@ class Login
 
     /**
      * @return \SimpleSAML\XHTML\Template
-     * @throws ConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
      * @throws \Exception
      */
     public function welcome(): Template
@@ -99,10 +99,10 @@ class Login
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws Exception
-     * @throws NoState
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\NoState
      * @throws \Exception
-     * @throws BadRequest
+     * @throws \SimpleSAML\Error\BadRequest
      * @throws \Throwable
      */
     public function loginuserpass(Request $request): Response
@@ -150,9 +150,9 @@ class Login
      * @param \SimpleSAML\Module\core\Auth\UserPassBase|\SimpleSAML\Module\core\Auth\UserPassOrgBase $source
      * @param array $state
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
-     * @throws ConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
      * @throws \Throwable
      */
     private function handleLogin(Request $request, UserPassBase|UserPassOrgBase $source, array $state): Response
@@ -372,10 +372,10 @@ class Login
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws Exception
-     * @throws NoState
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\NoState
      * @throws \Exception
-     * @throws BadRequest
+     * @throws \SimpleSAML\Error\BadRequest
      * @throws \Throwable
      */
     public function loginuserpassorg(Request $request): Response
@@ -502,8 +502,8 @@ class Login
     /**
      * Searches for a valid and allowed ReturnTo URL parameter,
      * otherwise give the base installation page as a return point.
-     * @throws CriticalConfigurationError
-     * @throws Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \SimpleSAML\Error\Exception
      * @throws \InvalidArgumentException
      * @throws \Exception
      */
@@ -526,9 +526,9 @@ class Login
      * This clears the user's IdP discovery choices.
      *
      * @param Request $request The request that lead to this login operation.
-     * @throws CannotSetCookie
-     * @throws CriticalConfigurationError
-     * @throws Exception
+     * @throws \SimpleSAML\Error\CannotSetCookie
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Assert\AssertionFailedException
      * @throws \InvalidArgumentException
      * @throws \Exception

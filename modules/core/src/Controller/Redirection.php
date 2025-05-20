@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Controller;
 
 use Exception;
-use SimpleSAML\{Auth, Configuration, Error, Error\ConfigurationError, Logger, Module, Session, Utils};
+use SimpleSAML\{Configuration, Error, Session, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XHTML\Template;
 use SimpleSAML\XMLSecurity\Alg\Encryption\AES;
@@ -48,10 +48,10 @@ class Redirection
      * @param Request $request The request that lead to this login operation.
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
      *   An HTML template or a redirection if we are not authenticated.
-     * @throws ConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
      * @throws \SimpleSAML\Error\BadRequest
-     * @throws Error\Exception
-     * @throws Exception
+     * @throws \SimpleSAML\Module\core\Controller\Error\Exception
+     * @throws \Exception
      */
     public function postredirect(Request $request): Response
     {

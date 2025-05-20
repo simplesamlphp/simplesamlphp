@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Locale;
 
-use SimpleSAML\{Configuration, Error\CannotSetCookie, Logger, Utils};
+use SimpleSAML\{Configuration, Logger, Utils};
 use Symfony\Component\Intl\Locales;
 
 use function array_fill_keys;
@@ -92,7 +92,7 @@ class Language
      * Constructor
      *
      * @param \SimpleSAML\Configuration $configuration Configuration object
-     * @throws CannotSetCookie
+     * @throws \SimpleSAML\Error\CannotSetCookie
      * @throws \Exception
      */
     public function __construct(
@@ -177,7 +177,7 @@ class Language
      *
      * @param string  $language Language code for the language to set.
      * @param boolean $setLanguageCookie Whether to set the language cookie or not. Defaults to true.
-     * @throws CannotSetCookie
+     * @throws \SimpleSAML\Error\CannotSetCookie
      * @throws \Exception
      */
     public function setLanguage(string $language, bool $setLanguageCookie = true): void
@@ -398,7 +398,7 @@ class Language
      * specified is not in the list of available languages, or the headers have already been sent to the browser.
      *
      * @param string $language The language set by the user.
-     * @throws CannotSetCookie
+     * @throws \SimpleSAML\Error\CannotSetCookie
      * @throws \Exception
      */
     public static function setLanguageCookie(string $language): void

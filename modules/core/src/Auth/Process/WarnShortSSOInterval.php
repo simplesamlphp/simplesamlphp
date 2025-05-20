@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
-use SimpleSAML\{Auth, Error\CriticalConfigurationError, Error\Exception, Logger, Module, Utils};
+use SimpleSAML\{Auth, Logger, Module, Utils};
 
 use function array_key_exists;
 use function time;
@@ -24,8 +24,8 @@ class WarnShortSSOInterval extends Auth\ProcessingFilter
      * If it is to short a while since, we will show a warning to the user.
      *
      * @param array $state  The state of the response.
-     * @throws Exception
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      * @throws \Throwable
      */

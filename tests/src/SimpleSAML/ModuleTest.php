@@ -7,7 +7,7 @@ namespace SimpleSAML\Test;
 use Exception;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Configuration, Error\CriticalConfigurationError, Module};
+use SimpleSAML\{Configuration, Module};
 use Symfony\Component\Filesystem\Path;
 
 use function count;
@@ -45,7 +45,7 @@ class ModuleTest extends TestCase
 
     /**
      * Test for SimpleSAML\Module::getModuleURL().
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testGetModuleURL(): void
     {

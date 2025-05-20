@@ -7,7 +7,7 @@ namespace SimpleSAML\Metadata;
 use DOMDocument;
 use DOMElement;
 use Exception;
-use RobRichards\XMLSecLibs\{XMLSecurityDSig, XMLSecurityKey};
+use RobRichards\XMLSecLibs\{XMLSecurityKey};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\{Logger, Utils};
 use SimpleSAML\SAML2\Constants as C;
@@ -20,7 +20,7 @@ use SimpleSAML\SAML2\XML\mdrpi\RegistrationInfo;
 use SimpleSAML\SAML2\XML\mdui\{DiscoHints, UIInfo};
 use SimpleSAML\SAML2\XML\saml\Attribute;
 use SimpleSAML\SAML2\XML\shibmd\Scope;
-use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
+use SimpleSAML\XML\{DOMDocumentFactory};
 use SimpleSAML\XMLSecurity\XML\ds\{X509Certificate, X509Data};
 use Symfony\Component\Filesystem\Filesystem;
 

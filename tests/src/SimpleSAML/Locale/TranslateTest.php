@@ -7,7 +7,6 @@ namespace SimpleSAML\Test\Locale;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
-use SimpleSAML\Error\CannotSetCookie;
 use SimpleSAML\Locale\Translate;
 
 /**
@@ -17,7 +16,7 @@ class TranslateTest extends TestCase
 {
     /**
      * Test SimpleSAML\Locale\Translate::noop().
-     * @throws CannotSetCookie
+     * @throws \SimpleSAML\Error\CannotSetCookie
      */
     public function testNoop(): void
     {

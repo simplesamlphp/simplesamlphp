@@ -22,8 +22,8 @@ class ExceptionHandler
     /**
      * @param \Throwable $exception
      * @return void
-     * @throws Exception
-     * @throws Throwable
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function customExceptionHandler(Throwable $exception): void
     {

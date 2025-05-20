@@ -8,7 +8,7 @@ use Exception;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Auth, Configuration, Error, Error\AuthSource, Error\BadRequest, Error\ConfigurationError, Error\NoState, Session, Utils};
+use SimpleSAML\{Auth, Configuration, Error, Session, Utils};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Auth\Source;
 use SimpleSAML\Module\saml\Controller;
@@ -149,7 +149,7 @@ class ServiceProviderTest extends TestCase
      * Test that accessing the login-endpoint without ReturnTo parameter leads to an exception
      *
      * @return void
-     * @throws Error\Exception
+     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Exception
      * @throws \Throwable
      */
     public function testLoginMissingReturnTo(): void
@@ -170,7 +170,7 @@ class ServiceProviderTest extends TestCase
      * Test that accessing the login-endpoint with empty ReturnTo parameter leads to an exception
      *
      * @return void
-     * @throws Error\Exception
+     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Exception
      * @throws \Throwable
      */
     public function testLoginEmptyReturnTo(): void
@@ -193,7 +193,7 @@ class ServiceProviderTest extends TestCase
      * Test that accessing the login-endpoint with ReturnTo parameter leads to a Response
      *
      * @return void
-     * @throws Error\Exception
+     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Exception
      * @throws \Throwable
      */
     public function testLogin(): void
@@ -217,7 +217,7 @@ class ServiceProviderTest extends TestCase
      * Test that accessing the discoResponse-endpoint without AuthID leads to an exception
      *
      * @return void
-     * @throws Error\Exception
+     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Exception
      * @throws \Throwable
      */
     public function testDiscoResponseMissingAuthId(): void
@@ -240,7 +240,7 @@ class ServiceProviderTest extends TestCase
      * Test that accessing the discoResponse-endpoint with AuthID but without idpentityid results in an exception
      *
      * @return void
-     * @throws Error\Exception
+     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Exception
      * @throws \Throwable
      */
     public function testWithAuthIdWithoutEntity(): void
@@ -537,8 +537,8 @@ class ServiceProviderTest extends TestCase
      * Test that accessing the discoResponse-endpoint with non-SP authsource in state results in an exception
      *
      * @return void
-     * @throws BadRequest
-     * @throws NoState
+     * @throws \SimpleSAML\Error\BadRequest
+     * @throws \SimpleSAML\Error\NoState
      * @throws \Throwable
      */
     public function testWithNonSPAuthSource(): void
@@ -611,7 +611,7 @@ class ServiceProviderTest extends TestCase
      * Test that accessing the wrongAuthnContextClassRef-endpoint without AuthID leads to a Template
      *
      * @return void
-     * @throws ConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
      */
     public function testWrongAuthnContextClassRef(): void
     {
@@ -810,8 +810,8 @@ XML;
     /**
      * Test that accessing the metadata-endpoint with or without authentication
      * and admin.protectmetadata set to true or false is handled properly
-     * @throws AuthSource
-     * @throws Exception
+     * @throws \SimpleSAML\Error\AuthSource
+     * @throws \Exception
      * @throws \Throwable
      */
     #[DataProvider('provideMetadataAccess')]
@@ -859,8 +859,8 @@ XML;
 
     /**
      * Test that requesting a non-existing authsource yields an error
-     * @throws AuthSource
-     * @throws Error\Exception
+     * @throws \SimpleSAML\Error\AuthSource
+     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Exception
      * @throws \Throwable
      */
     public function testMetadataUnknownEntityThrowsError(): void
@@ -879,8 +879,8 @@ XML;
 
     /**
      * Basic smoke test of generated metadata
-     * @throws AuthSource
-     * @throws Error\Exception
+     * @throws \SimpleSAML\Error\AuthSource
+     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Exception
      * @throws \Throwable
      */
     public function testMetadataYieldsContent(): void
@@ -902,8 +902,8 @@ XML;
 
     /**
      * Check if caching headers are set
-     * @throws AuthSource
-     * @throws Error\Exception
+     * @throws \SimpleSAML\Error\AuthSource
+     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Exception
      * @throws \Throwable
      */
     public function testMetadataCachingHeaders(): void

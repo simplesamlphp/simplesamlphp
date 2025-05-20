@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Auth;
 
-use SimpleSAML\{Configuration, Error, Error\AuthSource, Error\CriticalConfigurationError, Error\Exception, Module, Session, Utils};
+use SimpleSAML\{Configuration, Error, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -63,7 +63,7 @@ class Simple
      * @return \SimpleSAML\Auth\Source The authentication source.
      *
      * @throws \SimpleSAML\Error\AuthSource If the requested auth source is unknown.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      */
     public function getAuthSource(): Source
@@ -103,7 +103,7 @@ class Simple
      * method for a description.
      *
      * @param array $params Various options to the authentication request. See the documentation.
-     * @throws AuthSource
+     * @throws \SimpleSAML\Error\AuthSource
      * @throws \Exception
      * @throws \Throwable
      */
@@ -129,9 +129,9 @@ class Simple
      *  - 'ReturnCallback': The function we should call after the user has finished authentication.
      *
      * @param array $params Various options to the authentication request.
-     * @throws AuthSource
-     * @throws Exception
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\AuthSource
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Throwable
      */
     public function login(array $params = []): Response
@@ -196,7 +196,7 @@ class Simple
      *
      * @param string|array|null $params Either the URL the user should be redirected to after logging out, or an array
      * with parameters for the logout. If this parameter is null, we will return to the current page.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable
      */
@@ -249,7 +249,7 @@ class Simple
      * This function never returns.
      *
      * @param array $state The state after the logout.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable
      */
@@ -337,7 +337,7 @@ class Simple
      * user will be returned to the current page.
      *
      * @return string A URL which is suitable for use in link-elements.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      * @throws \InvalidArgumentException
      */
@@ -363,7 +363,7 @@ class Simple
      * user will be returned to the current page.
      *
      * @return string A URL which is suitable for use in link-elements.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      * @throws \InvalidArgumentException
      */
@@ -391,7 +391,7 @@ class Simple
      * server.
      *
      * @return string The URL modified according to the precedence rules.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      * @throws \SimpleSAML\Assert\AssertionFailedException
      */

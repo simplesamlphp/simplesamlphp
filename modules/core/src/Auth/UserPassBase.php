@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth;
 
 use Exception;
-use SimpleSAML\{Auth, Configuration, Error, Error\NoState, Logger, Module, Utils};
+use SimpleSAML\{Auth, Configuration, Error, Logger, Module, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Constants as C;
 use Symfony\Component\HttpFoundation\{Request, Response};
@@ -192,9 +192,9 @@ abstract class UserPassBase extends Auth\Source
      *
      * @param \Symfony\Component\HttpFoundation\Request $request  The current request
      * @param array &$state  Information about the current authentication.
-     * @throws Error\Error
-     * @throws Error\Exception
-     * @throws Exception
+     * @throws \SimpleSAML\Module\core\Auth\Error\Error
+     * @throws \SimpleSAML\Module\core\Auth\Error\Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     public function authenticate(Request $request, array &$state): ?Response
@@ -281,9 +281,9 @@ abstract class UserPassBase extends Auth\Source
      * @param string $authStateId  The identifier of the authentication state.
      * @param string $username  The username the user wrote.
      * @param string $password  The password the user wrote.
-     * @throws Exception
-     * @throws Error\Exception
-     * @throws NoState
+     * @throws \Exception
+     * @throws \SimpleSAML\Module\core\Auth\Error\Exception
+     * @throws \SimpleSAML\Error\NoState
      * @throws \Throwable
      */
     public static function handleLogin(

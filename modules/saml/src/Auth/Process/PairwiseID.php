@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SimpleSAML\Error\CriticalConfigurationError;
 use SimpleSAML\SAML2\Constants as C;
 
 use function strtolower;
@@ -60,7 +59,7 @@ class PairwiseID extends SubjectID
      * Apply filter to add the Pairwise ID.
      *
      * @param array &$state  The current state.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     public function process(array &$state): void

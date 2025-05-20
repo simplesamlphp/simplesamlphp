@@ -14,8 +14,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
-use SimpleSAML\Utils;
-
 use function array_key_exists;
 use function array_merge;
 use function bin2hex;

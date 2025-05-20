@@ -7,7 +7,6 @@ namespace SimpleSAML\Test\Module\saml\Auth\Process;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Error;
-use SimpleSAML\Error\Exception;
 use SimpleSAML\Module\saml\Auth\Process\NameIDAttribute;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\XML\saml\NameID;
@@ -26,7 +25,7 @@ class NameIDAttributeTest extends TestCase
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
      * @return array  The state array after processing.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     private function processFilter(array $config, array $request): array
     {
@@ -38,7 +37,7 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test minimal configuration.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testMinimalConfig(): void
     {
@@ -70,7 +69,7 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test custom attribute name.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testCustomAttributeName(): void
     {
@@ -103,7 +102,7 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test custom format.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testFormat(): void
     {
@@ -162,7 +161,7 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test invalid request silently continues, leaving the state untouched
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testInvalidRequestLeavesStateUntouched(): void
     {
@@ -187,7 +186,7 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test custom attribute name with format.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testCustomAttributeNameAndFormat(): void
     {
@@ -220,7 +219,7 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test overriding NameID Format/NameQualifier/SPNameQualifier with defaults.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testOverrideNameID(): void
     {

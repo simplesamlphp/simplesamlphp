@@ -7,7 +7,6 @@ namespace SimpleSAML\Test\Store;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
-use SimpleSAML\Error\CriticalConfigurationError;
 use SimpleSAML\Store;
 
 use function str_repeat;
@@ -81,7 +80,7 @@ class SQLStoreTest extends TestCase
 
 
     /**
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testGetEmptyData(): void
     {
@@ -92,7 +91,7 @@ class SQLStoreTest extends TestCase
 
 
     /**
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testInsertData(): void
     {
@@ -104,7 +103,7 @@ class SQLStoreTest extends TestCase
 
 
     /**
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testOverwriteData(): void
     {
@@ -117,7 +116,7 @@ class SQLStoreTest extends TestCase
 
 
     /**
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testDeleteData(): void
     {
@@ -130,7 +129,7 @@ class SQLStoreTest extends TestCase
 
 
     /**
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testVeryLongKey(): void
     {

@@ -6,7 +6,7 @@ namespace SimpleSAML\Test\Module\saml\Controller;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Auth, Configuration, Error, Error\BadRequest};
+use SimpleSAML\{Auth, Configuration, Error};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Controller;
 use SimpleSAML\Module\saml\Error\NoAvailableIDP;
@@ -107,7 +107,7 @@ class ProxyTest extends TestCase
      * Test that accessing the invalidSession-endpoint with StateId results in a Template
      *
      * @return void
-     * @throws BadRequest
+     * @throws \SimpleSAML\Error\BadRequest
      */
     public function testWithStateId(): void
     {
@@ -137,7 +137,7 @@ class ProxyTest extends TestCase
      * with pressing cancel results in a Response
      *
      * @return void
-     * @throws BadRequest
+     * @throws \SimpleSAML\Error\BadRequest
      */
     public function testWithStateIdCancel(): void
     {
@@ -168,7 +168,7 @@ class ProxyTest extends TestCase
      * with pressing continue results in a Response
      *
      * @return void
-     * @throws BadRequest
+     * @throws \SimpleSAML\Error\BadRequest
      */
     public function testWithStateIdContinue(): void
     {

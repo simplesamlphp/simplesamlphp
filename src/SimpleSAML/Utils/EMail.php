@@ -7,7 +7,7 @@ namespace SimpleSAML\Utils;
 use Exception;
 use InvalidArgumentException;
 use PHPMailer\PHPMailer\PHPMailer;
-use SimpleSAML\{Configuration, Error\ConfigurationError, Logger};
+use SimpleSAML\{Configuration};
 use SimpleSAML\XHTML\Template;
 
 use function array_map;
@@ -142,8 +142,8 @@ class EMail
      * @param bool $plainTextOnly Do not send HTML payload
      *
      * @throws \PHPMailer\PHPMailer\Exception
-     * @throws ConfigurationError
-     * @throws Exception
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \Exception
      */
     public function send(bool $plainTextOnly = false): void
     {
@@ -264,8 +264,8 @@ class EMail
      * @param string $template The name of the template to use
      *
      * @return string The body of the e-mail
-     * @throws Exception
-     * @throws ConfigurationError
+     * @throws \Exception
+     * @throws \SimpleSAML\Error\ConfigurationError
      */
     public function generateBody(string $template): string
     {

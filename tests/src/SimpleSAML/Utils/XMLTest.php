@@ -11,7 +11,7 @@ use DOMText;
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Configuration, Error, Error\Exception, Utils};
+use SimpleSAML\{Utils};
 use SimpleSAML\XML\DOMDocumentFactory;
 
 /**
@@ -295,7 +295,7 @@ NOWDOC;
     }
 
     /**
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testCheckSAMLMessageInvalidType(): void
     {

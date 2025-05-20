@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\exampleauth\Controller;
 
-use SimpleSAML\{Auth, Configuration, Error, Error\BadRequest, Error\ConfigurationError, Error\Exception, Error\NoState, Session, Utils};
+use SimpleSAML\{Auth, Configuration, Error, Session, Utils};
 use SimpleSAML\Module\exampleauth\Auth\Source\External;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
@@ -63,9 +63,9 @@ class ExampleAuth
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
-     * @throws ConfigurationError
-     * @throws NoState
-     * @throws Exception
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\NoState
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function authpage(Request $request): Template|RedirectResponse
@@ -162,9 +162,9 @@ class ExampleAuth
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws NoState
-     * @throws BadRequest
-     * @throws Exception
+     * @throws \SimpleSAML\Error\NoState
+     * @throws \SimpleSAML\Error\BadRequest
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function redirecttest(Request $request): Response

@@ -6,7 +6,6 @@ namespace SimpleSAML;
 
 use DOMNodeList;
 use Exception;
-use SimpleSAML\{Error, Error\CannotSetCookie, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\XML\saml\AttributeValue;
 
@@ -166,8 +165,8 @@ class Session implements Utils\ClearableState
      * getSession() for a specific one.
      *
      * @param boolean $transient Whether to create a transient session or not.
-     * @throws CannotSetCookie
-     * @throws Exception
+     * @throws \SimpleSAML\Error\CannotSetCookie
+     * @throws \Exception
      */
     private function __construct(bool $transient = false)
     {
@@ -596,7 +595,7 @@ class Session implements Utils\ClearableState
      * Set remember me expire time.
      *
      * @param int $lifetime Number of seconds after when remember me session cookies expire.
-     * @throws CannotSetCookie
+     * @throws \SimpleSAML\Error\CannotSetCookie
      * @throws \Exception
      * @throws \SimpleSAML\Assert\AssertionFailedException
      */
@@ -620,8 +619,8 @@ class Session implements Utils\ClearableState
      * @param string     $authority The authority the user logged in with.
      * @param array      $data The authentication data for this authority.
      *
-     * @throws Error\CannotSetCookie If the authentication token cannot be set for some reason.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\CannotSetCookie If the authentication token cannot be set for some reason.
+     * @throws \Exception
      */
     public function doLogin(string $authority, array $data = []): void
     {
@@ -806,8 +805,8 @@ class Session implements Utils\ClearableState
      * Update session cookies.
      *
      * @param array $params The parameters for the cookies.
-     * @throws CannotSetCookie
-     * @throws Exception
+     * @throws \SimpleSAML\Error\CannotSetCookie
+     * @throws \Exception
      */
     public function updateSessionCookies(array $params = []): void
     {

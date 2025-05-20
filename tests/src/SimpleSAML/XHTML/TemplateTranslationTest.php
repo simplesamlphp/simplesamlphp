@@ -7,14 +7,12 @@ namespace SimpleSAML\Test\XHTML;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
-use SimpleSAML\Error\ConfigurationError;
-use SimpleSAML\Error\CriticalConfigurationError;
 use SimpleSAML\Locale\{Translate, TwigTranslator};
 use SimpleSAML\Module;
 use SimpleSAML\XHTML\Template;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
-use Symfony\Component\Finder\{Finder, SplFileInfo};
-use Twig\{Environment, Error\LoaderError, Error\RuntimeError, Error\SyntaxError, TwigFilter, TwigFunction};
+use Symfony\Component\Finder\{Finder};
+use Twig\{Environment, TwigFilter, TwigFunction};
 use Twig\Extra\Intl\IntlExtension;
 use Twig\Loader\FilesystemLoader;
 
@@ -24,8 +22,8 @@ use Twig\Loader\FilesystemLoader;
 class TemplateTranslationTest extends TestCase
 {
     /**
-     * @throws ConfigurationError
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testCoreCardinalityErrorTemplate(): void
     {
@@ -48,8 +46,8 @@ class TemplateTranslationTest extends TestCase
     }
 
     /**
-     * @throws ConfigurationError
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testCoreLoginUserPassTemplate(): void
     {
@@ -75,8 +73,8 @@ class TemplateTranslationTest extends TestCase
     }
 
     /**
-     * @throws ConfigurationError
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testCoreLogoutIframeTemplate(): void
     {
@@ -114,8 +112,8 @@ class TemplateTranslationTest extends TestCase
     }
 
     /**
-     * @throws ConfigurationError
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testAuthStatusTemplate(): void
     {
@@ -141,9 +139,9 @@ class TemplateTranslationTest extends TestCase
     }
 
     /**
-     * @throws SyntaxError
-     * @throws RuntimeError
-     * @throws LoaderError
+     * @throws \Twig\Error\SyntaxError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\LoaderError
      */
     public function testValidateTwigFiles(): void
     {

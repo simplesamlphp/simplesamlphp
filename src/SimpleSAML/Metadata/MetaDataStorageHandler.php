@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata;
 
 use Exception;
-use SimpleSAML\{Configuration, Error, Error\MetadataNotFound, Logger, Utils};
+use SimpleSAML\{Configuration, Error, Logger, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Utils\ClearableState;
@@ -192,7 +192,7 @@ class MetaDataStorageHandler implements ClearableState
      * @param string $set The set we want metadata from.
      *
      * @return array An associative array with the metadata.
-     * @throws MetadataNotFound
+     * @throws \SimpleSAML\Error\MetadataNotFound
      * @throws \Exception
      */
     public function getMetaDataCurrent(string $set): array

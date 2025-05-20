@@ -21,7 +21,7 @@ class NotFound extends Error
      * Create a new NotFound error
      *
      * @param string $reason  Optional description of why the given page could not be found.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     public function __construct(

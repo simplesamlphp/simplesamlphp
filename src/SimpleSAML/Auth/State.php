@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Auth;
 
 use Exception;
-use SimpleSAML\{Configuration, Error, Error\NoState, Logger, Session, Utils};
+use SimpleSAML\{Configuration, Error, Logger, Session, Utils};
 use SimpleSAML\Assert\Assert;
 
 use function array_key_exists;
@@ -406,7 +406,7 @@ class State
      * @param string|null $id The exception id. Can be NULL, in which case it will be retrieved from the request.
      *
      * @return array|null  The state array with the exception, or NULL if no exception was thrown.
-     * @throws NoState
+     * @throws \SimpleSAML\Error\NoState
      * @throws \Throwable
      */
     public static function loadExceptionState(?string $id = null): ?array

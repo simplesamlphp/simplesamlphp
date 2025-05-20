@@ -7,7 +7,7 @@ namespace SimpleSAML\Test\Module\saml\Controller;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Configuration, Error, Error\Exception, Session, Utils};
+use SimpleSAML\{Configuration, Error, Utils};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Controller;
 use Symfony\Component\HttpFoundation\{Request, Response};
@@ -133,7 +133,7 @@ class MetadataTest extends TestCase
     /**
      * Test that accessing the metadata-endpoint with or without authentication
      * and admin.protectmetadata set to true or false is handled properly
-     * @throws Error\Error
+     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Error
      * @throws \Exception
      * @throws \Throwable
      */
@@ -217,7 +217,7 @@ class MetadataTest extends TestCase
 
     /**
      * Test that requesting a non-existing entityID throws an exception
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable
      */
@@ -238,8 +238,8 @@ class MetadataTest extends TestCase
 
     /**
      * Basic smoke test of generated metadata
-     * @throws Error\Error
-     * @throws Exception
+     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Error
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable
      */
@@ -267,8 +267,8 @@ class MetadataTest extends TestCase
 
     /**
      * Test not specifying explict entityID falls back to a default
-     * @throws Error\Error
-     * @throws Exception
+     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Error
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable
      */
@@ -296,8 +296,8 @@ class MetadataTest extends TestCase
 
     /**
      * Check if caching headers are set
-     * @throws Error\Error
-     * @throws Exception
+     * @throws \SimpleSAML\Test\Module\saml\Controller\Error\Error
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable
      */

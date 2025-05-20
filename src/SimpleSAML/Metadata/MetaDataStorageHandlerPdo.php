@@ -128,7 +128,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      * @param string $set The set we are looking for metadata in.
      *
      * @return array $metadata An associative array with all the metadata for the given set.
-     * @throws Error\Exception
+     * @throws \SimpleSAML\Metadata\Error\Exception
      * @throws \Exception
      */
     public function getMetadataSet(string $set): array
@@ -159,8 +159,8 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      *
      * @return array|null An associative array with metadata for the given entity, or NULL if we are unable to
      *         locate the entity.
-     * @throws Error\Exception
-     * @throws Exception
+     * @throws \SimpleSAML\Metadata\Error\Exception
+     * @throws \Exception
      */
     public function getMetaData(string $entityId, string $set): ?array
     {

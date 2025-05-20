@@ -7,7 +7,7 @@ namespace SimpleSAML\Test;
 use Exception;
 use PHPUnit\Framework\Attributes\CoversClass;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\{Configuration, Error, Error\CriticalConfigurationError};
+use SimpleSAML\{Configuration, Error};
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 
@@ -145,7 +145,7 @@ class ConfigurationTest extends ClearStateTestCase
 
     /**
      * Test \SimpleSAML\Configuration::getBasePath()
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testGetBasePath(): void
     {

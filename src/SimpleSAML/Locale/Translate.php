@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Locale;
 
-use Gettext\{Translator, TranslatorFunctions};
-use SimpleSAML\{Configuration, Error\CannotSetCookie, Logger, Module};
+use Gettext\{TranslatorFunctions};
+use SimpleSAML\{Configuration};
 
 use function array_slice;
 use function func_get_args;
@@ -39,7 +39,7 @@ class Translate
      * Constructor
      *
      * @param \SimpleSAML\Configuration $configuration Configuration object
-     * @throws CannotSetCookie
+     * @throws \SimpleSAML\Error\CannotSetCookie
      * @throws \Exception
      */
     public function __construct(

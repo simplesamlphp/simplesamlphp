@@ -253,8 +253,8 @@ class Error extends Exception
      * @param int $logLevel  The log-level for this exception
      * @param bool $suppressReport  Whether or not sending an error report is an option
      * @throws \Exception
-     * @throws ConfigurationError
-     * @throws Throwable
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \Throwable
      */
     public function show(int $logLevel = Logger::ERR, bool $suppressReport = false): void
     {

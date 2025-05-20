@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
-use SimpleSAML\{Auth, Error\CannotSetCookie, Logger};
+use SimpleSAML\{Auth, Logger};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Locale\Language;
 
@@ -43,7 +43,7 @@ class LanguageAdaptor extends Auth\ProcessingFilter
      * Add or replace existing attributes with the configured values.
      *
      * @param array &$state  The current request
-     * @throws CannotSetCookie
+     * @throws \SimpleSAML\Error\CannotSetCookie
      * @throws \Exception
      */
     public function process(array &$state): void

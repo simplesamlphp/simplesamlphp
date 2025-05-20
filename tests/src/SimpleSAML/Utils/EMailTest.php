@@ -9,7 +9,6 @@ use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use SimpleSAML\Configuration;
-use SimpleSAML\Error\ConfigurationError;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\Utils\EMail;
 
@@ -67,7 +66,7 @@ class EMailTest extends ClearStateTestCase
      * Test that the data given is visible in the resulting mail
      *
      * @param string $template
-     * @throws ConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
      */
     #[DataProvider('mailTemplates')]
     public function testMailContents($template): void

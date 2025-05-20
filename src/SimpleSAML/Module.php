@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use Exception;
-use SimpleSAML\{Error\CriticalConfigurationError, Kernel, Utils};
 use SimpleSAML\Assert\Assert;
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
 use Symfony\Component\Filesystem\{Filesystem, Path};
@@ -153,10 +152,10 @@ class Module
      * @param Request|null $request The request to process. Defaults to the current one.
      *
      * @return Response|BinaryFileResponse Returns a Response object that can be sent to the browser.
-     * @throws Error\BadRequest In case the request URI is malformed.
-     * @throws Error\NotFound In case the request URI is invalid or the resource it points to cannot be found.
-     * @throws Exception
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\BadRequest In case the request URI is malformed.
+     * @throws \SimpleSAML\Error\NotFound In case the request URI is invalid or the resource it points to cannot be found.
+     * @throws \Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public static function process(?Request $request = null): Response
     {
@@ -506,7 +505,7 @@ class Module
      * @param array  $parameters Extra parameters which should be added to the URL. Optional.
      *
      * @return string The absolute URL to the given resource.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \InvalidArgumentException
      * @throws \Exception
      */

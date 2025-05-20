@@ -12,15 +12,15 @@ namespace SimpleSAML\XHTML;
 
 use Exception;
 use InvalidArgumentException;
-use SimpleSAML\{Configuration, Error, Error\ConfigurationError, Error\CriticalConfigurationError, Logger, Module, Utils};
+use SimpleSAML\{Configuration, Error, Logger, Module, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Locale\{Language, Localization, Translate, TwigTranslator};
+use SimpleSAML\Locale\{Localization, Translate, TwigTranslator};
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
-use Twig\{Environment, Error\LoaderError, TwigFilter, TwigFunction};
+use Twig\{Environment, TwigFilter, TwigFunction};
 use Twig\Error\RuntimeError;
 use Twig\Extension\DebugExtension;
 use Twig\Extra\Intl\IntlExtension;
@@ -120,9 +120,9 @@ class Template extends Response
      *
      * @param \SimpleSAML\Configuration $configuration Configuration object
      * @param string                   $template Which template file to load
-     * @throws Exception
-     * @throws ConfigurationError
-     * @throws CriticalConfigurationError
+     * @throws \Exception
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function __construct(
         private Configuration $configuration,
@@ -175,7 +175,7 @@ class Template extends Response
      * @param string|null $module
      * @param bool $tag
      * @return string
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException
      * @throws \InvalidArgumentException
      * @throws \Exception
@@ -458,8 +458,8 @@ class Template extends Response
      *
      * @param string $module The module where we need to search for templates.
      * @throws \InvalidArgumentException If the module is not enabled or it has no templates directory.
-     * @throws LoaderError
-     * @throws Exception
+     * @throws \Twig\Error\LoaderError
+     * @throws \Exception
      */
     public function addTemplatesFromModule(string $module): void
     {

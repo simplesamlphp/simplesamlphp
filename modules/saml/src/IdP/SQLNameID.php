@@ -7,7 +7,7 @@ namespace SimpleSAML\Module\saml\IdP;
 use Exception;
 use PDO;
 use PDOStatement;
-use SimpleSAML\{Configuration, Database, Error, Error\CriticalConfigurationError, Logger, Store};
+use SimpleSAML\{Configuration, Database, Error, Logger, Store};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Store\StoreFactory;
 
@@ -30,8 +30,8 @@ class SQLNameID
      * @param array $params Parameters
      * @param array $config
      * @return \PDOStatement object
-     * @throws CriticalConfigurationError
-     * @throws Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
      */
     private static function read(string $query, array $params = [], array $config = []): PDOStatement
     {
@@ -52,8 +52,8 @@ class SQLNameID
      * @param array $params Parameters
      * @param array $config
      * @return int|false The number of rows affected by the query or false on error.
-     * @throws CriticalConfigurationError
-     * @throws Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
      */
     private static function write(string $query, array $params = [], array $config = [])
     {
@@ -75,7 +75,7 @@ class SQLNameID
     /**
      * @param array $config
      * @return string
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     private static function tableName(array $config = []): string
     {
@@ -87,8 +87,8 @@ class SQLNameID
 
     /**
      * @param array $config
-     * @throws CriticalConfigurationError
-     * @throws Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
      */
     private static function create(array $config = []): void
     {
@@ -112,7 +112,7 @@ class SQLNameID
      * @param array $params
      * @param array $config
      * @return \PDOStatement
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     private static function createAndRead(string $query, array $params = [], array $config = []): PDOStatement
@@ -127,7 +127,7 @@ class SQLNameID
      * @param array $params
      * @param array $config
      * @return int|false The number of rows affected by the query or false on error.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     private static function createAndWrite(string $query, array $params = [], array $config = [])
@@ -142,7 +142,7 @@ class SQLNameID
      *
      * @param string $table  The table name.
      * @param array $config
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     private static function createTable(string $table, array $config = []): void
@@ -166,8 +166,8 @@ class SQLNameID
      * Retrieve the SQL datastore.
      *
      * @return \SimpleSAML\Store\SQLStore  SQL datastore.
-     * @throws CriticalConfigurationError
-     * @throws Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
      */
     private static function getStore(): Store\SQLStore
     {
@@ -194,7 +194,7 @@ class SQLNameID
      * @param string $user  The user's unique identificator (e.g. username).
      * @param string $value  The NameID value.
      * @param array $config
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     public static function add(
@@ -226,7 +226,7 @@ class SQLNameID
      * @param string $user  The user's unique identificator (e.g. username).
      * @param array $config
      * @return string|null $value  The NameID value, or NULL of no NameID value was found.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     public static function get(
@@ -262,7 +262,7 @@ class SQLNameID
      * @param string $spEntityId  The SP entityID.
      * @param string $user  The user's unique identificator (e.g. username).
      * @param array $config
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     public static function delete(
@@ -290,7 +290,7 @@ class SQLNameID
      * @param string $spEntityId  The SP entityID.
      * @param array $config
      * @return array  Array of userid => NameID.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     public static function getIdentities(string $idpEntityId, string $spEntityId, array $config = []): array

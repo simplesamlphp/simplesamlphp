@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SAML2\Exception\ProtocolViolationException;
-use SimpleSAML\{Auth, Utils};
+use SimpleSAML\{Auth};
 use SimpleSAML\Assert\Assert;
 
 use function array_key_exists;

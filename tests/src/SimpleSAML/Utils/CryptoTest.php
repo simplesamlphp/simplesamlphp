@@ -8,7 +8,7 @@ use InvalidArgumentException;
 use org\bovigo\vfs\{vfsStream, vfsStreamDirectory};
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Configuration, Error, Error\Exception, Utils};
+use SimpleSAML\{Configuration, Error, Utils};
 
 use function file_put_contents;
 use function substr;
@@ -151,7 +151,7 @@ PHP;
 
 
     /**
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testLoadPrivateKeyNotRequiredMetadataMissing(): void
     {
@@ -176,7 +176,7 @@ PHP;
 
 
     /**
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testLoadPrivateKeyBasic(): void
     {
@@ -195,7 +195,7 @@ PHP;
 
 
     /**
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testLoadPrivateKeyPassword(): void
     {
@@ -221,7 +221,7 @@ PHP;
 
 
     /**
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testLoadPrivateKeyPrefix(): void
     {
@@ -260,7 +260,7 @@ PHP;
 
 
     /**
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testLoadPublicKeyNotRequiredMetadataMissing(): void
     {
@@ -274,7 +274,7 @@ PHP;
 
 
     /**
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testLoadPublicKeyNotX509Certificate(): void
     {
@@ -298,7 +298,7 @@ PHP;
 
 
     /**
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testLoadPublicKeyNotSigning(): void
     {
@@ -322,7 +322,7 @@ PHP;
 
 
     /**
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testLoadPublicKeyBasic(): void
     {

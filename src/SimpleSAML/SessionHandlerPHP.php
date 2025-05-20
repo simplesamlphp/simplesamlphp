@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
-use SimpleSAML\{Error, Error\CriticalConfigurationError, Error\Exception, Utils};
 use SimpleSAML\Assert\Assert;
 
 use function array_key_exists;
@@ -57,7 +56,7 @@ class SessionHandlerPHP extends SessionHandler
     /**
      * Initialize the PHP session handling. This constructor is protected because it should only be called from
      * \SimpleSAML\SessionHandler::createSessionHandler(...).
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      */
     protected function __construct()
@@ -335,7 +334,7 @@ class SessionHandlerPHP extends SessionHandler
      * @param array|null $cookieParams Additional parameters to use for the session cookie.
      *
      * @throws \SimpleSAML\Error\CannotSetCookie If we can't set the cookie.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function setCookie(string $sessionName, ?string $sessionID, ?array $cookieParams = null): void
     {

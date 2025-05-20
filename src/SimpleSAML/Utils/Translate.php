@@ -6,8 +6,6 @@ namespace SimpleSAML\Utils;
 
 use Gettext\Scanner\PhpScanner;
 use SimpleSAML\Configuration;
-use SimpleSAML\Error\ConfigurationError;
-use SimpleSAML\Error\CriticalConfigurationError;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\Module;
 use SimpleSAML\XHTML\Template;
@@ -63,9 +61,9 @@ class Translate
 
 
     /**
-     * @throws ConfigurationError
-     * @throws CriticalConfigurationError
-     * @throws Exception
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      */
     public function getTranslationsFromTwig(string $module, bool $includeThemes = false): array

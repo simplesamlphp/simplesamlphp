@@ -27,7 +27,7 @@ class CardinalityTest extends TestCase
      * @param  array $config The filter configuration.
      * @param  array $request The request state.
      * @return array  The state array after processing.
-     * @throws SspException
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     private function processFilter(array $config, array $request): array
@@ -55,7 +55,7 @@ class CardinalityTest extends TestCase
 
     /**
      * Test where a minimum is set but no maximum
-     * @throws SspException
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function testMinNoMax(): void
@@ -77,7 +77,7 @@ class CardinalityTest extends TestCase
 
     /**
      * Test where a maximum is set but no minimum
-     * @throws SspException
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function testMaxNoMin(): void
@@ -99,7 +99,7 @@ class CardinalityTest extends TestCase
 
     /**
      * Test in bounds within a maximum an minimum
-     * @throws SspException
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function testMaxMin(): void
@@ -121,7 +121,7 @@ class CardinalityTest extends TestCase
 
     /**
      * Test maximum is out of bounds results in redirect
-     * @throws SspException
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     #[DoesNotPerformAssertions]
@@ -146,7 +146,7 @@ class CardinalityTest extends TestCase
 
     /**
      * Test minimum is out of bounds results in redirect
-     * @throws SspException
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     #[DoesNotPerformAssertions]
@@ -171,7 +171,7 @@ class CardinalityTest extends TestCase
 
     /**
      * Test missing attribute results in redirect
-     * @throws SspException
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     #[DoesNotPerformAssertions]

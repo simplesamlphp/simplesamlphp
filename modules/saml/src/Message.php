@@ -14,7 +14,7 @@ use SimpleSAML\SAML2\{Constants as C, SignedElement};
 use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
 use SimpleSAML\SAML2\XML\samlp\RequestedAuthnContext;
-use SimpleSAML\SAML2\XML\samlp\{StatusCode, StatusMessage}; // Status
+use SimpleSAML\SAML2\XML\samlp\{StatusCode}; // Status
 use SimpleSAML\XMLSecurity\XML\ds\{KeyInfo, X509Certificate, X509Data};
 
 use function array_key_exists;
@@ -46,8 +46,8 @@ class Message
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @param \SimpleSAML\SAML2\SignedElement $element The element we should add the data to.
-     * @throws Exception
-     * @throws SSP_Error\Exception
+     * @throws \Exception
+     * @throws \SimpleSAML\Module\saml\SSP_Error\Exception
      */
     public static function addSign(
         Configuration $srcMetadata,
@@ -100,7 +100,7 @@ class Message
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @param \SAML2\Message $message The message we should add the data to.
-     * @throws SSP_Error\Exception
+     * @throws \SimpleSAML\Module\saml\SSP_Error\Exception
      * @throws \SimpleSAML\Assert\AssertionFailedException
      * @throws \Exception
      */
@@ -265,8 +265,8 @@ class Message
      *   The EncryptionMethod from the assertion.
      *
      * @return array Array of decryption keys.
-     * @throws Exception
-     * @throws SSP_Error\Exception
+     * @throws \Exception
+     * @throws \SimpleSAML\Module\saml\SSP_Error\Exception
      */
     public static function getDecryptionKeys(
         Configuration $srcMetadata,
@@ -498,7 +498,7 @@ class Message
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the service provider.
      * @param \SimpleSAML\Configuration $idpMetadata The metadata of the identity provider.
      * @return \SimpleSAML\SAML2\AuthnRequest An authentication request object.
-     * @throws SSP_Error\Exception
+     * @throws \SimpleSAML\Module\saml\SSP_Error\Exception
      */
     public static function buildAuthnRequest(
         Configuration $spMetadata,
@@ -568,7 +568,7 @@ class Message
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @return \SimpleSAML\SAML2\LogoutRequest A logout request object.
-     * @throws SSP_Error\Exception
+     * @throws \SimpleSAML\Module\saml\SSP_Error\Exception
      */
     public static function buildLogoutRequest(
         Configuration $srcMetadata,
@@ -592,7 +592,7 @@ class Message
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @return \SimpleSAML\SAML2\LogoutResponse A logout response object.
-     * @throws SSP_Error\Exception
+     * @throws \SimpleSAML\Module\saml\SSP_Error\Exception
      */
     public static function buildLogoutResponse(
         Configuration $srcMetadata,

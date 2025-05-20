@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Auth;
 
-use SimpleSAML\{Configuration, Error, Error\CannotSetCookie, Error\Exception, Error\NoState, Logger, Module, Session, Utils};
+use SimpleSAML\{Configuration, Error, Logger, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
 use Symfony\Component\HttpFoundation\{Request, Response};
 
@@ -120,7 +120,7 @@ abstract class Source
      * interact with the user even in the case when the user is already authenticated.
      *
      * @param array &$state Information about the current authentication.
-     * @throws NoState
+     * @throws \SimpleSAML\Error\NoState
      * @throws \Exception
      * @throws \Throwable
      */
@@ -177,7 +177,7 @@ abstract class Source
      * check it by calling \SimpleSAML\Utils\HTTP::checkURLAllowed().
      * @param array $params Extra information about the login. Different authentication requestors may provide different
      * information. Optional, will default to an empty array.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function initLogin(string|array $return, ?string $errorURL = null, array $params = []): Response
@@ -221,7 +221,7 @@ abstract class Source
      * Called when a login operation has finished.
      *
      * @param array $state The state after the login has completed.
-     * @throws CannotSetCookie
+     * @throws \SimpleSAML\Error\CannotSetCookie
      * @throws \Exception
      * @throws \Throwable
      */

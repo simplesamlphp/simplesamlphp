@@ -6,7 +6,7 @@ namespace SimpleSAML\Module\saml\Controller;
 
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
-use SimpleSAML\{Configuration, Error, Error\BadRequest, Error\CriticalConfigurationError, Error\MetadataNotFound, IdP, Logger, Metadata, Module};
+use SimpleSAML\{Configuration, Error, IdP, Logger, Metadata, Module};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\{ArtifactResolve, ArtifactResponse, SOAP};
 use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
@@ -43,10 +43,10 @@ class WebBrowserSingleSignOn
      * And when the artifact is found, it sends a \SimpleSAML\SAML2\ArtifactResponse.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @throws MetadataNotFound
-     * @throws Exception
-     * @throws Error\Error
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\MetadataNotFound
+     * @throws \Exception
+     * @throws \SimpleSAML\Module\saml\Controller\Error\Error
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function artifactResolutionService(Request $request): Response
     {
@@ -117,9 +117,9 @@ class WebBrowserSingleSignOn
      * to the SP with an Authentication Response.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @throws Error\Error
-     * @throws BadRequest
-     * @throws Exception
+     * @throws \SimpleSAML\Module\saml\Controller\Error\Error
+     * @throws \SimpleSAML\Error\BadRequest
+     * @throws \Exception
      * @throws \Throwable
      */
     public function singleSignOnService(Request $request): Response

@@ -6,9 +6,9 @@ namespace SimpleSAML\Test\Module\saml\IdP;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\{Configuration, Error\BadRequest, IdP};
+use SimpleSAML\{Configuration, IdP};
 use SimpleSAML\Error\Exception;
-use SimpleSAML\Metadata\{MetaDataStorageHandler, MetaDataStorageHandlerSerialize};
+use SimpleSAML\Metadata\{MetaDataStorageHandlerSerialize};
 use SimpleSAML\Module\saml\IdP\SAML2;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
@@ -55,7 +55,7 @@ class SAML2Test extends ClearStateTestCase
 
     /**
      * Test that invoking the idp initiated endpoint with the minimum necessary parameters works.
-     * @throws BadRequest
+     * @throws \SimpleSAML\Error\BadRequest
      */
     public function testIdPInitiatedLoginMinimumParams(): void
     {
@@ -80,7 +80,7 @@ class SAML2Test extends ClearStateTestCase
 
     /**
      * Test that invoking the idp initiated endpoint with the optional parameters works.
-     * @throws BadRequest
+     * @throws \SimpleSAML\Error\BadRequest
      */
     public function testIdPInitiatedLoginOptionalParams(): void
     {
@@ -115,7 +115,7 @@ class SAML2Test extends ClearStateTestCase
 
     /**
      * Test that invoking the idp initiated endpoint using minimum shib params works
-     * @throws BadRequest
+     * @throws \SimpleSAML\Error\BadRequest
      */
     public function testIdPInitShibCompatyMinimumParams(): void
     {
@@ -142,7 +142,7 @@ class SAML2Test extends ClearStateTestCase
 
     /**
      * Test that invoking the idp initiated endpoint using minimum shib params works
-     * @throws BadRequest
+     * @throws \SimpleSAML\Error\BadRequest
      */
     public function testIdPInitShibCompatOptionalParams(): void
     {
@@ -178,7 +178,7 @@ class SAML2Test extends ClearStateTestCase
      *
      * @param array $queryParams
      * @return array The state array used for handling the authentication request.
-     * @throws BadRequest
+     * @throws \SimpleSAML\Error\BadRequest
      */
     private function idpInitiatedHelper(array $queryParams): array
     {

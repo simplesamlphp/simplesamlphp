@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Store;
 
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\{Configuration, Error\Exception, Memcache};
+use SimpleSAML\{Configuration, Memcache};
 
 /**
  * A memcache based data store.
@@ -39,7 +39,7 @@ class MemcacheStore implements StoreInterface
      * @param string $type The data type.
      * @param string $key The key.
      * @return mixed|null The value.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      */
     public function get(string $type, string $key): mixed

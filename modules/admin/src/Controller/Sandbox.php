@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\admin\Controller;
 
-use SimpleSAML\{Configuration, Error\ConfigurationError, Session};
+use SimpleSAML\{Configuration, Session};
 use SimpleSAML\XHTML\Template;
 
 use function time;
@@ -35,7 +35,7 @@ class Sandbox
      * Display the sandbox page
      *
      * @return \SimpleSAML\XHTML\Template
-     * @throws ConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
      * @throws \Exception
      */
     public function main(): Template

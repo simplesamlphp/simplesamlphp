@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\IdP;
 
-use SimpleSAML\{Auth, Configuration, Error, Error\ConfigurationError, IdP, Module, Utils};
+use SimpleSAML\{Auth, Configuration, Error, IdP, Module, Utils};
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -85,7 +85,7 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
      * @param string $assocId The association that is terminated.
      * @param string|null $relayState The RelayState from the start of the logout.
      * @param \SimpleSAML\Error\Exception|null $error The error that occurred during session termination (if any).
-     * @throws ConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
      * @throws \Exception
      * @throws \Throwable
      */

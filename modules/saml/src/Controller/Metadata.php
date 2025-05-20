@@ -66,9 +66,9 @@ class Metadata
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws Error\Error
-     * @throws Error\Exception
-     * @throws Exception
+     * @throws \SimpleSAML\Module\saml\Controller\Error\Error
+     * @throws \SimpleSAML\Module\saml\Controller\Error\Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     public function metadata(Request $request): Response

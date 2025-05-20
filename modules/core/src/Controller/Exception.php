@@ -6,7 +6,7 @@ namespace SimpleSAML\Module\core\Controller;
 
 use DateTimeInterface;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\{Auth, Configuration, Error, Error\ConfigurationError, Error\NoState, Logger, Module, Session, Utils};
+use SimpleSAML\{Auth, Configuration, Error, Logger, Module, Session, Utils};
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
 
@@ -52,7 +52,7 @@ class Exception
      * @param Request $request The request that lead to this login operation.
      * @param string $code The error code
      * @return \SimpleSAML\XHTML\Template  An HTML template
-     * @throws ConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
      * @throws \Exception
      */
     public function error(Request $request, string $code): Response
@@ -112,9 +112,9 @@ class Exception
      *
      * @param Request $request The request that lead to this login operation.
      * @return \SimpleSAML\XHTML\Template  An HTML template
-     * @throws ConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
      * @throws \SimpleSAML\Error\BadRequest
-     * @throws NoState
+     * @throws \SimpleSAML\Error\NoState
      * @throws \Exception
      * @throws \Throwable
      */
@@ -150,8 +150,8 @@ class Exception
      * @param Request $request The request that lead to this login operation.
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
      *   An HTML template or a redirection if we are not authenticated.
-     * @throws ConfigurationError
-     * @throws Error\Exception
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Module\core\Controller\Error\Exception
      * @throws \InvalidArgumentException
      * @throws \Exception
      */
@@ -180,9 +180,9 @@ class Exception
      * An HTML template, a redirect or a "runnable" response.
      *
      * @throws \SimpleSAML\Error\BadRequest
-     * @throws ConfigurationError
-     * @throws NoState
-     * @throws Error\Exception
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\NoState
+     * @throws \SimpleSAML\Module\core\Controller\Error\Exception
      * @throws \Throwable
      */
     public function shortSsoInterval(Request $request): Template|Response

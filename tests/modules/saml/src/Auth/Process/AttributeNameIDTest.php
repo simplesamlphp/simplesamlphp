@@ -6,7 +6,6 @@ namespace SimpleSAML\Test\Module\saml\Auth\Process;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Error\Exception;
 use SimpleSAML\Module\saml\Auth\Process\AttributeNameID;
 use SimpleSAML\SAML2\Constants as C;
 
@@ -24,7 +23,7 @@ class AttributeNameIDTest extends TestCase
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
      * @return array  The state array after processing.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      */
     private function processFilter(array $config, array $request): array
@@ -37,7 +36,7 @@ class AttributeNameIDTest extends TestCase
 
     /**
      * Test minimal configuration.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testMinimalConfig(): void
     {
@@ -73,7 +72,7 @@ class AttributeNameIDTest extends TestCase
 
     /**
      * Test third element in chain
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testSuccessInThirdElement(): void
     {
@@ -109,7 +108,7 @@ class AttributeNameIDTest extends TestCase
 
     /**
      * Test attributes in list not found.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testNotFound(): void
     {

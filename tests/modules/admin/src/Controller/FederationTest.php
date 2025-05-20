@@ -6,15 +6,14 @@ namespace SimpleSAML\Test\Module\admin\Controller;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Auth, Configuration, Error\Exception, Module, Session, Utils};
+use SimpleSAML\{Auth, Configuration, Utils};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\admin\Controller;
 use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{Cookie, Request, Response};
+use Symfony\Component\HttpFoundation\{Request, Response};
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-use Symfony\Component\VarExporter\Exception\ExceptionInterface;
 use function file_get_contents;
 
 /**
@@ -101,8 +100,8 @@ class FederationTest extends TestCase
 
 
     /**
-     * @throws Exception
-     * @throws ExceptionInterface
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Symfony\Component\VarExporter\Exception\ExceptionInterface
      * @throws \Exception
      * @throws \Throwable
      */
@@ -191,7 +190,7 @@ class FederationTest extends TestCase
 
     /**
      * @throws \Exception
-     * @throws ExceptionInterface
+     * @throws \Symfony\Component\VarExporter\Exception\ExceptionInterface
      * @throws \Throwable
      */
     public function testMetadataConverterFileUpload(): void
@@ -224,7 +223,7 @@ class FederationTest extends TestCase
 
     /**
      * @throws \Exception
-     * @throws ExceptionInterface
+     * @throws \Symfony\Component\VarExporter\Exception\ExceptionInterface
      * @throws \Throwable
      */
     public function testMetadataConverterData(): void
@@ -246,7 +245,7 @@ class FederationTest extends TestCase
 
     /**
      * @throws \Exception
-     * @throws ExceptionInterface
+     * @throws \Symfony\Component\VarExporter\Exception\ExceptionInterface
      * @throws \Throwable
      */
     public function testMetadataConverterSkipsExpires(): void
@@ -269,7 +268,7 @@ class FederationTest extends TestCase
 
     /**
      * @throws \Exception
-     * @throws ExceptionInterface
+     * @throws \Symfony\Component\VarExporter\Exception\ExceptionInterface
      * @throws \Throwable
      */
     public function testMetadataConverterInvalidMetadataShowsError(): void
@@ -293,7 +292,7 @@ class FederationTest extends TestCase
 
     /**
      * @throws \Exception
-     * @throws ExceptionInterface
+     * @throws \Symfony\Component\VarExporter\Exception\ExceptionInterface
      * @throws \Throwable
      */
     public function testMetadataConverterEmptyInput(): void
@@ -413,7 +412,7 @@ class FederationTest extends TestCase
 
     /**
      * @throws \Exception
-     * @throws ExceptionInterface
+     * @throws \Symfony\Component\VarExporter\Exception\ExceptionInterface
      * @throws \Throwable
      */
     public function testShowRemoteEntity(): void

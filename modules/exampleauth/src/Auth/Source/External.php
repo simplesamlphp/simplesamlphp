@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
-use SimpleSAML\{Auth, Error, Error\CriticalConfigurationError, Error\Exception, Module, Utils};
+use SimpleSAML\{Auth, Error, Module, Utils};
 use Symfony\Component\HttpFoundation\{Request, Response};
 
 use function session_id;
@@ -102,8 +102,8 @@ class External extends Auth\Source
      *
      * @param \Symfony\Component\HttpFoundation\Request $request  The current request
      * @param array &$state  Information about the current authentication.
-     * @throws Exception
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      * @throws \Throwable
      */

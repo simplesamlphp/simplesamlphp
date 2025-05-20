@@ -8,7 +8,7 @@ use Exception;
 use PDO;
 use PDOException;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\{Configuration, Error\CriticalConfigurationError, Logger, Utils};
+use SimpleSAML\{Configuration, Logger, Utils};
 
 use function array_keys;
 use function count;
@@ -359,7 +359,7 @@ class SQLStore implements StoreInterface
      * @param string $key The key to retrieve.
      *
      * @return mixed|null The value associated with that key, or null if there's no such key.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \InvalidArgumentException
      * @throws \Exception
      */
@@ -406,8 +406,8 @@ class SQLStore implements StoreInterface
      * @param string $key The key to insert.
      * @param mixed $value The value itself.
      * @param int|null $expire The expiration time (unix timestamp), or null if it never expires.
-     * @throws CriticalConfigurationError
-     * @throws Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
      */
     public function set(string $type, string $key, mixed $value, ?int $expire = null): void
     {
@@ -448,7 +448,7 @@ class SQLStore implements StoreInterface
      *
      * @param string $type The type of the data
      * @param string $key The key to delete.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \InvalidArgumentException
      * @throws \Exception
      */
@@ -478,7 +478,7 @@ class SQLStore implements StoreInterface
      *
      * @param string $data
      * @return string The hashed data.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \InvalidArgumentException
      * @throws \Exception
      */

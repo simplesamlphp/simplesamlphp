@@ -7,8 +7,6 @@ namespace SimpleSAML\Test\Metadata;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
-use SimpleSAML\Error\CriticalConfigurationError;
-use SimpleSAML\Error\Exception;
 use SimpleSAML\Metadata\SAMLBuilder;
 use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
@@ -410,8 +408,8 @@ class SAMLBuilderTest extends TestCase
      * Test certificate data.
      */
     /**
-     * @throws CriticalConfigurationError
-     * @throws Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      */
     public function testCertificateData(): void

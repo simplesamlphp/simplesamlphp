@@ -68,7 +68,7 @@ class RequestedAuthnContextSelector extends AbstractSourceSelector
      *
      * @param array $info Information about this authentication source.
      * @param array $config Configuration.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      */
     public function __construct(array $info, array $config)
@@ -106,7 +106,7 @@ class RequestedAuthnContextSelector extends AbstractSourceSelector
      *
      * @param array &$state Information about the current authentication.
      * @return string
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      */
     protected function selectAuthSource(array &$state): string

@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Controller;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use SimpleSAML\{Auth, Configuration, Error, Error\Exception};
+use SimpleSAML\{Auth, Configuration, Error};
 use SimpleSAML\Module\core\Controller;
-use SimpleSAML\Module\core\Auth\{UserPassBase, UserPassOrgBase};
+use SimpleSAML\Module\core\Auth\{UserPassBase};
 use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 /**
  * Set of tests for the controllers in the "core" module.
@@ -142,7 +142,7 @@ class LoginTest extends ClearStateTestCase
 
 
     /**
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      * @throws \Throwable
      */

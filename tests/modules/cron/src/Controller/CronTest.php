@@ -7,7 +7,7 @@ namespace SimpleSAML\Test\Module\cron\Controller;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Configuration, Error, Error\Exception, Session, Utils};
+use SimpleSAML\{Configuration, Error, Session, Utils};
 use SimpleSAML\Module\cron\Controller;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{Request, Response};
@@ -104,7 +104,7 @@ class CronTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      */
     public function testRun(): void
@@ -128,7 +128,7 @@ class CronTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      */
     #[DataProvider('provideStupidSecret')]
@@ -147,7 +147,7 @@ class CronTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      */
     #[DataProvider('provideStupidSecret')]

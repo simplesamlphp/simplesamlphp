@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Utils;
 
-use Random\RandomException;
 use org\bovigo\vfs\{vfsStream, vfsStreamDirectory};
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use SimpleSAML\{Configuration, Error, Error\Exception, Utils};
+use SimpleSAML\{Configuration, Error, Utils};
 
 use function chmod;
 use function file_get_contents;
@@ -151,9 +150,9 @@ class SystemTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \ReflectionException
-     * @throws RandomException
+     * @throws \Random\RandomException
      */
     public function testWriteFileBasic(): void
     {
@@ -171,9 +170,9 @@ class SystemTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \ReflectionException
-     * @throws RandomException
+     * @throws \Random\RandomException
      */
     public function testWriteFileContents(): void
     {
@@ -195,9 +194,9 @@ class SystemTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \ReflectionException
-     * @throws RandomException
+     * @throws \Random\RandomException
      */
     public function testWriteFileMode(): void
     {
@@ -219,7 +218,7 @@ class SystemTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \ReflectionException
      */
     public function testGetTempDirBasic(): void
@@ -238,7 +237,7 @@ class SystemTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \ReflectionException
      */
     public function testGetTempDirNonExistent(): void

@@ -7,7 +7,7 @@ namespace SimpleSAML\Test\Store;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Predis\Client;
-use SimpleSAML\{Configuration, Error\CriticalConfigurationError, Store};
+use SimpleSAML\{Configuration, Store};
 
 use function array_key_exists;
 
@@ -33,7 +33,7 @@ class RedisStoreTest extends TestCase
 
 
     /**
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     protected function setUp(): void
     {

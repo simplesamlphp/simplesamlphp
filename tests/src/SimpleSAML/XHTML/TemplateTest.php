@@ -8,8 +8,6 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
-use SimpleSAML\Error\ConfigurationError;
-use SimpleSAML\Error\CriticalConfigurationError;
 use SimpleSAML\XHTML\Template;
 
 /**
@@ -20,8 +18,8 @@ class TemplateTest extends TestCase
     private const TEMPLATE = 'sandbox.twig';
 
     /**
-     * @throws ConfigurationError
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testSetup(): void
     {
@@ -31,8 +29,8 @@ class TemplateTest extends TestCase
     }
 
     /**
-     * @throws ConfigurationError
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testNormalizeName(): void
     {
@@ -42,8 +40,8 @@ class TemplateTest extends TestCase
     }
 
     /**
-     * @throws ConfigurationError
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testTemplateModuleNamespace(): void
     {
@@ -61,8 +59,8 @@ class TemplateTest extends TestCase
     }
 
     /**
-     * @throws ConfigurationError
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     #[DataProvider('debugModeProvider')]
     public function testTemplateDebugMode(bool $debugMode): void
@@ -80,8 +78,8 @@ class TemplateTest extends TestCase
     }
 
     /**
-     * @throws ConfigurationError
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     public function testGetEntityDisplayNameBasic(): void
@@ -103,8 +101,8 @@ class TemplateTest extends TestCase
     }
 
     /**
-     * @throws ConfigurationError
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     public function testGetEntityDisplayNamePriorities(): void
@@ -141,8 +139,8 @@ class TemplateTest extends TestCase
     }
 
     /**
-     * @throws ConfigurationError
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     public function testGetEntityPropertyTranslation(): void

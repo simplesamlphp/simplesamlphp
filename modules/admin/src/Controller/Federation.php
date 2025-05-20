@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\admin\Controller;
 
 use Exception;
-use SimpleSAML\{Auth, Configuration, Error\ConfigurationError, Error\MetadataNotFound, Logger, Module, Utils};
-use SimpleSAML\Assert\{Assert, AssertionFailedException};
+use SimpleSAML\{Auth, Configuration, Logger, Module, Utils};
+use SimpleSAML\Assert\{Assert};
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Metadata\{MetaDataStorageHandler, SAMLBuilder, SAMLParser, Signer};
 use SimpleSAML\Module\adfs\IdP\ADFS as ADFS_IdP;
@@ -16,7 +16,6 @@ use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\{Request, Response, ResponseHeaderBag};
-use Symfony\Component\VarExporter\Exception\ExceptionInterface;
 use Symfony\Component\VarExporter\VarExporter;
 
 use function array_merge;
@@ -116,8 +115,8 @@ class Federation
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \SimpleSAML\Error\Exception
-     * @throws Exception
-     * @throws ExceptionInterface
+     * @throws \Exception
+     * @throws \Symfony\Component\VarExporter\Exception\ExceptionInterface
      * @throws \Throwable
      */
     public function main(/** @scrutinizer ignore-unused */ Request $request): Response
@@ -196,7 +195,7 @@ class Federation
      *
      * @return array
      * @throws \Exception
-     * @throws ExceptionInterface
+     * @throws \Symfony\Component\VarExporter\Exception\ExceptionInterface
      */
     private function getHostedIdP(): array
     {
@@ -339,8 +338,8 @@ class Federation
      *
      * @return array
      * @throws \SimpleSAML\Error\Exception If OrganizationName is set for an SP instance but OrganizationURL is not.
-     * @throws ExceptionInterface
-     * @throws Exception
+     * @throws \Symfony\Component\VarExporter\Exception\ExceptionInterface
+     * @throws \Exception
      */
     private function getHostedSP(): array
     {
@@ -408,8 +407,8 @@ class Federation
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws ConfigurationError
-     * @throws ExceptionInterface
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \Symfony\Component\VarExporter\Exception\ExceptionInterface
      * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
@@ -505,7 +504,7 @@ class Federation
      *
      * @return \Symfony\Component\HttpFoundation\Response PEM-encoded certificate.
      * @throws \SimpleSAML\Error\Exception
-     * @throws MetadataNotFound
+     * @throws \SimpleSAML\Error\MetadataNotFound
      * @throws \Throwable
      */
     public function downloadCert(Request $request): Response
@@ -553,9 +552,9 @@ class Federation
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws ExceptionInterface
-     * @throws ConfigurationError
-     * @throws MetadataNotFound
+     * @throws \Symfony\Component\VarExporter\Exception\ExceptionInterface
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\MetadataNotFound
      * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */

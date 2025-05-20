@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Error;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Error\Error;
@@ -24,7 +23,7 @@ class ErrorTest extends TestCase
     private MockObject|ErrorCodes|null $errorCodesMock;
 
     /**
-     * @throws Exception
+     * @throws \PHPUnit\Framework\MockObject\Exception
      */
     protected function setUp(): void
     {

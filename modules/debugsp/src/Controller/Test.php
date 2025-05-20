@@ -8,8 +8,6 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Error\ConfigurationError;
-use SimpleSAML\Error\NoState;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
@@ -80,7 +78,7 @@ class Test
      * @param string|null $as
      * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
      * @throws \Exception
-     * @throws ConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
      */
     private function makeSPList(Request $request, ?string $as = null): Response
     {
@@ -104,8 +102,8 @@ class Test
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string|null $as
      * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
-     * @throws ConfigurationError
-     * @throws NoState
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\NoState
      * @throws \Exception
      * @throws \Throwable
      */
@@ -177,7 +175,7 @@ class Test
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \SimpleSAML\XHTML\Template
-     * @throws ConfigurationError
+     * @throws \SimpleSAML\Error\ConfigurationError
      * @throws \Exception
      */
     public function logout(Request $request): Template

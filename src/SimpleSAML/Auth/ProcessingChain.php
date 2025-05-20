@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Auth;
 
 use Exception;
-use SimpleSAML\{Configuration, Error, Error\NoState, Logger, Module, Utils};
+use SimpleSAML\{Configuration, Error, Logger, Module, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Exception\Protocol\NoPassiveException;
 use Symfony\Component\HttpFoundation\Response;
@@ -236,8 +236,8 @@ class ProcessingChain
      * to whatever exception handler is defined in the state array.
      *
      * @param array $state  The state we are processing.
-     * @throws Error\Exception
-     * @throws Exception
+     * @throws \SimpleSAML\Auth\Error\Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     public static function resumeProcessing(array $state): Response
@@ -323,7 +323,7 @@ class ProcessingChain
      *
      * @param string $id The state identifier.
      * @return array|null The state referenced by the $id parameter.
-     * @throws NoState
+     * @throws \SimpleSAML\Error\NoState
      * @throws \Throwable
      * @see State::parseStateID()
      */

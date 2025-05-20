@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use Exception;
-use SimpleSAML\{Auth, Configuration, Error, Error\AuthSource, Error\MetadataNotFound, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\IdP\{IFrameLogoutHandler, LogoutHandlerInterface, TraditionalLogoutHandler};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
@@ -144,7 +143,7 @@ class IdP
      * @param string $id The identifier of the IdP.
      *
      * @return \SimpleSAML\IdP The IdP.
-     * @throws Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public static function getById(Configuration $config, string $id): IdP
@@ -166,7 +165,7 @@ class IdP
      * @param array &$state The state array.
      *
      * @return \SimpleSAML\IdP The IdP.
-     * @throws Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public static function getByState(Configuration $config, array &$state): IdP
@@ -196,8 +195,8 @@ class IdP
      * @param string $assocId The association identifier.
      *
      * @return array|null The name of the SP, as an associative array of language => text, or null if this isn't an SP.
-     * @throws MetadataNotFound
-     * @throws Exception
+     * @throws \SimpleSAML\Error\MetadataNotFound
+     * @throws \Exception
      */
     public function getSPName(string $assocId): ?array
     {
@@ -370,7 +369,7 @@ class IdP
      * @param array &$state The authentication request state.
      *
      * @throws \SimpleSAML\Module\saml\Error\NoPassive If we were asked to do passive authentication.
-     * @throws AuthSource
+     * @throws \SimpleSAML\Error\AuthSource
      * @throws \SimpleSAML\SAML2\Exception\Protocol\NoPassiveException
      * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\CriticalConfigurationError
@@ -410,8 +409,8 @@ class IdP
      * Process authentication requests.
      *
      * @param array &$state The authentication request state.
-     * @throws Exception
-     * @throws Error\Exception
+     * @throws \Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function handleAuthenticationRequest(array &$state): Response
@@ -581,7 +580,7 @@ class IdP
      * This function never returns.
      *
      * @param array    &$state The logout state from doLogoutRedirect().
-     * @throws Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \InvalidArgumentException
      * @throws \Exception
      */

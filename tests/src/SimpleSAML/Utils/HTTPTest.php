@@ -10,7 +10,7 @@ use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
-use SimpleSAML\{Configuration, Error, Error\CannotSetCookie, Error\CriticalConfigurationError, Error\Exception, Utils};
+use SimpleSAML\{Configuration, Error, Utils};
 use SimpleSAML\TestUtils\ClearStateTestCase;
 
 use function parse_url;
@@ -127,7 +127,7 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * Test SimpleSAML\Utils\HTTP::getSelfHost() with and without custom port.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testGetSelfHost(): void
     {
@@ -148,7 +148,7 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * Test SimpleSAML\Utils\HTTP::getSelfHostWithPort(), with and without custom port.
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testGetSelfHostWithPort(): void
     {
@@ -178,7 +178,7 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * Test SimpleSAML\Utils\HTTP::getSelfURL().
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testGetSelfURLMethods(): void
     {
@@ -318,7 +318,7 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * Test SimpleSAML\Utils\HTTP::checkURLAllowed(), without regex.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testCheckURLAllowedWithoutRegex(): void
     {
@@ -352,7 +352,7 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * Test SimpleSAML\Utils\HTTP::checkURLAllowed(), with regex.
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testCheckURLAllowedWithRegex(): void
     {
@@ -468,8 +468,8 @@ class HTTPTest extends ClearStateTestCase
 
 
     /**
-     * @throws CannotSetCookie
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CannotSetCookie
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     #[Depends('testXdebugMode')]
     #[RunInSeparateProcess]
@@ -531,7 +531,7 @@ class HTTPTest extends ClearStateTestCase
 
 
     /**
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testSetCookieInsecure(): void
     {
@@ -553,8 +553,8 @@ class HTTPTest extends ClearStateTestCase
 
 
     /**
-     * @throws CannotSetCookie
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CannotSetCookie
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     #[Depends('testXdebugMode')]
     #[RunInSeparateProcess]

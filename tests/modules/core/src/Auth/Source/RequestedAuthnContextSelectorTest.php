@@ -84,7 +84,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
     /**
      * No RequestedAuthnContext
      * @throws \Exception
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function testAuthenticationVariant1(): void
@@ -104,7 +104,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
     /**
      * Specific RequestedAuthnContext
      * @throws \Exception
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function testAuthenticationVariant2(): void
@@ -125,7 +125,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
     /**
      * Specific RequestedAuthnContext with comparison=exact
      * @throws \Exception
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Throwable
      */
     public function testAuthenticationVariant3(): void
@@ -273,7 +273,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
 
     /**
      * Missing default
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      */
     public function testIncompleteConfigurationThrowsExceptionVariant3(): void

@@ -6,7 +6,7 @@ namespace SimpleSAML\Store;
 
 use Predis\Client;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\{Configuration, Error, Error\CriticalConfigurationError, Utils};
+use SimpleSAML\{Configuration, Error, Utils};
 
 use function class_exists;
 use function serialize;
@@ -28,7 +28,7 @@ class RedisStore implements StoreInterface
      * Initialize the Redis data store.
      * @param \Predis\Client|null $redis
      * @throws \Exception
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function __construct(?Client $redis = null)
     {

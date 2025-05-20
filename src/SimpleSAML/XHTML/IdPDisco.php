@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\XHTML;
 
 use Exception;
-use SimpleSAML\{Configuration, Error\CannotSetCookie, Error\ConfigurationError, Error\CriticalConfigurationError, Logger, Session, Utils};
+use SimpleSAML\{Configuration, Logger, Session, Utils};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use Symfony\Component\HttpFoundation\{Request, Response};
 
@@ -213,8 +213,8 @@ class IdPDisco
      *
      * @param string $name The name of the cookie.
      * @param string $value The value of the cookie.
-     * @throws CannotSetCookie
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CannotSetCookie
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \InvalidArgumentException
      * @throws \Exception
      */
@@ -568,8 +568,8 @@ class IdPDisco
      * Handles a request to this discovery service.
      *
      * The IdP disco parameters should be set before calling this function.
-     * @throws ConfigurationError
-     * @throws Exception
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \Exception
      */
     public function handleRequest(): Response
     {

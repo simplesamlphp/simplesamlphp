@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\exampleauth\Auth\Process;
 
-use SimpleSAML\{Auth, Error\CriticalConfigurationError, Error\Exception, Module, Utils};
+use SimpleSAML\{Auth, Module, Utils};
 use SimpleSAML\Assert\Assert;
 
 /**
@@ -17,8 +17,8 @@ class RedirectTest extends Auth\ProcessingFilter
      * Initialize processing of the redirect test.
      *
      * @param array &$state  The state we should update.
-     * @throws Exception
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      * @throws \Throwable
      */

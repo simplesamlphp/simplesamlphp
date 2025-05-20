@@ -23,7 +23,7 @@ use SimpleSAML\Store\StoreFactory;
 class StoreFactoryTest extends TestCase
 {
     /**
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     public function testDefaultStore(): void
@@ -39,7 +39,7 @@ class StoreFactoryTest extends TestCase
 
 
     /**
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     public function testPhpSessionStore(): void
@@ -57,7 +57,7 @@ class StoreFactoryTest extends TestCase
 
 
     /**
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     public function testMemcacheStore(): void
@@ -76,7 +76,7 @@ class StoreFactoryTest extends TestCase
 
 
     /**
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     public function testRedisStore(): void
@@ -98,7 +98,7 @@ class StoreFactoryTest extends TestCase
 
 
     /**
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     public function testSqlStore(): void
@@ -119,7 +119,7 @@ class StoreFactoryTest extends TestCase
 
 
     /**
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     public function testPathStore(): void
@@ -159,7 +159,7 @@ class StoreFactoryTest extends TestCase
 
 
     /**
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
     protected function tearDown(): void

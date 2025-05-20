@@ -111,7 +111,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
 
     /**
      * Test the current metadata entity selection
-     * @throws MetadataNotFound
+     * @throws \SimpleSAML\Error\MetadataNotFound
      */
     public function testGetMetadataCurrent(): void
     {
@@ -122,7 +122,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
 
     /**
      * Test the helper that returns the metadata as a Configuration object
-     * @throws MetadataNotFound
+     * @throws \SimpleSAML\Error\MetadataNotFound
      */
     public function testGetMetadataConfig(): void
     {
@@ -157,7 +157,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
 
     /**
      * Test the current metadata entity selection, empty set
-     * @throws MetadataNotFound
+     * @throws \SimpleSAML\Error\MetadataNotFound
      */
     public function testGetMetadataCurrentEmptySet(): void
     {
@@ -178,7 +178,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
 
     /**
      * Test using the entityID from metadata-templates/saml20-idp-hosted.php
-     * @throws MetadataNotFound
+     * @throws \SimpleSAML\Error\MetadataNotFound
      */
     public function testSampleEntityIdException(): void
     {
@@ -213,7 +213,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
     }
 
     /**
-     * @throws MetadataNotFound
+     * @throws \SimpleSAML\Error\MetadataNotFound
      */
     public function testCanGetDefaultHostedIdpInCaseOfMultipleHostedIdps(): void
     {
@@ -230,8 +230,8 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
     }
 
     /**
-     * @throws MetadataNotFound
-     * @throws Exception
+     * @throws \SimpleSAML\Error\MetadataNotFound
+     * @throws \Exception
      */
     public function testCanGetParticularIdpInCaseOfMultipleHostedIdps(): void
     {

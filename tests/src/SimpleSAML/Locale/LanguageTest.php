@@ -7,7 +7,6 @@ namespace SimpleSAML\Test\Locale;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
-use SimpleSAML\Error\CannotSetCookie;
 use SimpleSAML\Locale\Language;
 
 /**
@@ -17,7 +16,7 @@ class LanguageTest extends TestCase
 {
     /**
      * Test SimpleSAML\Locale\Language::getDefaultLanguage().
-     * @throws CannotSetCookie
+     * @throws \SimpleSAML\Error\CannotSetCookie
      */
     public function testGetDefaultLanguage(): void
     {
@@ -63,7 +62,7 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::getLanguageList().
-     * @throws CannotSetCookie
+     * @throws \SimpleSAML\Error\CannotSetCookie
      * @throws \Exception
      */
     public function testGetLanguageListNoConfig(): void
@@ -78,7 +77,7 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::getLanguageList().
-     * @throws CannotSetCookie
+     * @throws \SimpleSAML\Error\CannotSetCookie
      * @throws \Exception
      */
     public function testGetLanguageListCorrectConfig(): void
@@ -98,7 +97,7 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::getLanguageList().
-     * @throws CannotSetCookie
+     * @throws \SimpleSAML\Error\CannotSetCookie
      * @throws \Exception
      */
     public function testGetLanguageListIncorrectConfig(): void
@@ -115,7 +114,7 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::getLanguageParameterName().
-     * @throws CannotSetCookie
+     * @throws \SimpleSAML\Error\CannotSetCookie
      */
     public function testGetLanguageParameterName(): void
     {
@@ -135,7 +134,7 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::isLanguageRTL().
-     * @throws CannotSetCookie
+     * @throws \SimpleSAML\Error\CannotSetCookie
      * @throws \Exception
      */
     public function testIsLanguageRTL(): void
@@ -188,7 +187,7 @@ class LanguageTest extends TestCase
     }
 
     /**
-     * @throws CannotSetCookie
+     * @throws \SimpleSAML\Error\CannotSetCookie
      * @throws \Exception
      */
     public function testGetPreferredLanguages(): void
