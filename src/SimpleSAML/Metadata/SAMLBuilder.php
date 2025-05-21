@@ -338,6 +338,10 @@ class SAMLBuilder
                     $t = new IndexedEndpointType();
                 }
 
+                if (isset($ep['isDefault'])) {
+                    $t->setIsDefault($ep['isDefault']);
+                }
+
                 if (!isset($ep['index'])) {
                     // Find the maximum index
                     $maxIndex = -1;

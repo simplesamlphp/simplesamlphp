@@ -9,6 +9,8 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+* Fixed a bug where metadata-endpoints with isDefault set would not yield the expected metadata (#2439)
+
 `memcacheMonitor`
 
 * Fixed an issue that prevented the latest version of this module from being installed on SSP 2.4.x
