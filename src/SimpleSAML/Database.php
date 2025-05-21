@@ -65,6 +65,7 @@ class Database
      * @param \SimpleSAML\Configuration|null $altConfig Optional: Instance of a \SimpleSAML\Configuration class
      *
      * @return \SimpleSAML\Database The shared database connection.
+     * @throws Exception
      */
     public static function getInstance(?Configuration $altConfig = null): Database
     {
@@ -86,6 +87,7 @@ class Database
      * Private constructor that restricts instantiation to getInstance().
      *
      * @param \SimpleSAML\Configuration $config Instance of the \SimpleSAML\Configuration class
+     * @throws Exception
      */
     private function __construct(Configuration $config)
     {
@@ -122,6 +124,8 @@ class Database
      * @param \SimpleSAML\Configuration $config Configuration class
      *
      * @return string $instanceId
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     private static function generateInstanceId(Configuration $config): string
     {
@@ -260,6 +264,7 @@ class Database
      * @param array  $params Parameters
      *
      * @return int|false The number of rows affected by the query or false on error.
+     * @throws Exception
      */
     public function write(string $stmt, array $params = []): int|bool
     {
@@ -274,6 +279,7 @@ class Database
      * @param array  $params Parameters
      *
      * @return \PDOStatement object
+     * @throws Exception
      */
     public function read(string $stmt, array $params = []): PDOStatement
     {

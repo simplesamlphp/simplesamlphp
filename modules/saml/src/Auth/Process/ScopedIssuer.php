@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SAML2\Exception\ProtocolViolationException;
-use SimpleSAML\{Auth, Utils};
+use SimpleSAML\{Auth};
 use SimpleSAML\Assert\Assert;
 
 use function array_key_exists;
@@ -87,6 +87,8 @@ class ScopedIssuer extends Auth\ProcessingFilter
      * Apply filter to dynamically set the saml:Issuer.
      *
      * @param array &$state  The current state.
+     * @throws \SimpleSAML\Assert\AssertionFailedException
+     * @throws \SAML2\Exception\ProtocolViolationException
      */
     public function process(array &$state): void
     {

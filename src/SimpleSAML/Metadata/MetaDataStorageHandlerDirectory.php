@@ -48,6 +48,7 @@ class MetaDataStorageHandlerDirectory extends MetaDataStorageSource
      *                set in the 'metadatadir' configuration option in 'config.php'.
      *
      * @param array $config An associative array with the configuration for this handler.
+     * @throws Exception
      */
     protected function __construct(Configuration $globalConfig, array $config)
     {
@@ -149,6 +150,7 @@ class MetaDataStorageHandlerDirectory extends MetaDataStorageSource
      *
      * @return array An associative array with the metadata. Each element in the array is an entity, and the
      *         key is the entity id.
+     * @throws Exception
      */
     public function getMetadataSet(string $set): array
     {

@@ -121,6 +121,8 @@ class SPTest extends ClearStateTestCase
      * 2 of https://simplesamlphp.org/docs/development/saml:sp
      *
      * @return \SimpleSAML\SAML2\AuthnRequest The AuthnRequest generated.
+     * @throws \ReflectionException
+     * @throws \Exception
      */
     private function createAuthnRequest(array $state = []): AuthnRequest
     {
@@ -148,6 +150,9 @@ class SPTest extends ClearStateTestCase
      * 2 of https://simplesamlphp.org/docs/development/saml:sp
      *
      * @return \SimpleSAML\SAML2\LogoutRequest The LogoutRequest generated.
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
+     * @throws \Throwable
      */
     private function createLogoutRequest(array $state = []): LogoutRequest
     {
@@ -170,6 +175,7 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test generating an AuthnRequest
+     * @throws \ReflectionException
      */
     public function testAuthnRequest(): void
     {
@@ -195,6 +201,7 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test setting a Subject
+     * @throws \Exception
      */
     public function testNameID(): void
     {
@@ -260,6 +267,7 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test setting ForcedAuthn
+     * @throws \ReflectionException
      */
     public function testForcedAuthn(): void
     {
@@ -289,6 +297,9 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test specifying an IDPList where no metadata found for those idps is an error
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testIdpListWithNoMatchingMetadata(): void
     {
@@ -308,6 +319,9 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test specifying an IDPList where the list does not overlap with the Idp specified in SP config is an error
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testIdpListWithExplicitIdpNotMatch(): void
     {
@@ -338,6 +352,9 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test that IDPList overlaps with the IDP specified in SP config results in AuthnRequest
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testIdpListWithExplicitIdpMatch(): void
     {
@@ -383,6 +400,9 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test that IDPList with a single valid idp and no SP config idp results in AuthnRequest to that idp
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testIdpListWithSingleMatch(): void
     {
@@ -424,6 +444,9 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test that IDPList with multiple valid idp and no SP config idp results in discovery redirect
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testIdpListWithMultipleMatch(): void
     {
@@ -461,6 +484,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Basic test for the hosted metadata generation in a default config
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedBasicConfig(): void
     {
@@ -489,6 +514,7 @@ class SPTest extends ClearStateTestCase
     /**
      * Test that adding IDPList to the state (of an AuthRequest)
      * will result in that IDP being added to the scope
+     * @throws \ReflectionException
      */
     public function testSPIdpListScoping(): void
     {
@@ -505,6 +531,7 @@ class SPTest extends ClearStateTestCase
     /**
      * Test that adding IDPList to the idp metadata
      * will result in that IDP being added to the scope
+     * @throws \ReflectionException
      */
     public function testIdpMetadataScoping(): void
     {
@@ -520,6 +547,8 @@ class SPTest extends ClearStateTestCase
     /**
      * Test that adding IDPList to the config
      * will result in that IDP being added to the scope
+     * @throws \ReflectionException
+     * @throws \Exception
      */
     public function testRemoteMetadataScoping(): void
     {
@@ -548,6 +577,8 @@ class SPTest extends ClearStateTestCase
      * Test that makes sure that the order in which the IDPList config is applied
      * is correct. Ie: The state IDPList has the highest priority, then the remote metadata,
      * then the idp config array.
+     * @throws \ReflectionException
+     * @throws \Exception
      */
     #[DataProvider('getScopingOrders')]
     public function testSPIdpListScopingOrder(
@@ -625,6 +656,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test for the hosted metadata generation with a custom entityID
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedSetEntityId(): void
     {
@@ -639,6 +672,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Contacts in SP hosted config appear in metadata
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedContacts(): void
     {
@@ -706,6 +741,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * A globally set tech contact also appears in SP hosted metadata
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedContactsIncludesGlobalTechContact(): void
     {
@@ -751,6 +788,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * The special value na@example.org global tech contact is not included in SP metadata
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedContactsSkipsNAGlobalTechContact(): void
     {
@@ -780,6 +819,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Contacts in SP hosted of unknown type throws Exceptiona
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedContactsUnknownTypeThrowsException(): void
     {
@@ -808,6 +849,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP acs.Bindings option overrides default bindigs
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedAcsBindingsOption(): void
     {
@@ -837,6 +880,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP acs.Bindings option with unsupported value should be skipped
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedAcsBindingsUnknownValueIsSkipped(): void
     {
@@ -866,6 +911,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP SLO Bindings option overrides default bindigs
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedSloBindingsOption(): void
     {
@@ -887,6 +934,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP empty SLO Bindings option omits SLO in metadata
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedSloBindingsEmptyNotInMetadata(): void
     {
@@ -904,6 +953,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP SLO Bindings option with unknown value is accepted as-is
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedSloBindingsUnknownValueIsAccepted(): void
     {
@@ -929,6 +980,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP SLO Location option is used as URL for all SLO Bindings
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedSloURLIsUsedForAllSLOBindings(): void
     {
@@ -957,6 +1010,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP AssertionConsumerService option overrides default bindigs
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedAssertionConsumerServiceOption(): void
     {
@@ -1002,6 +1057,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP config options WantAssertionsSigned, redirect.sign is reflected in metadata
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedSigning(): void
     {
@@ -1052,6 +1109,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP config option RegistrationInfo is reflected in metadata
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedContainsRegistrationInfo(): void
     {
@@ -1081,6 +1140,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP config option NameIDPolicy is reflected in metadata
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedNameIDPolicy(): void
     {
@@ -1103,6 +1164,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP config option NameIDPolicy specified without Format is reflected in metadata
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedNameIDPolicyNullFormat(): void
     {
@@ -1122,6 +1185,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP config option Organization* are reflected in metadata
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedOrganizationData(): void
     {
@@ -1153,6 +1218,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP config option Organization* without explicit DisplayName are reflected in metadata
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedOrganizationDataDefaultForDisplayNameIsName(): void
     {
@@ -1178,6 +1245,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP config option Organization* without URL is rejected with an Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
      */
     public function testMetadataHostedOrganizationURLMissingRaisesException(): void
     {
@@ -1202,6 +1271,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP config option for UIInfo is reflected in metadata
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedUIInfo(): void
     {
@@ -1231,6 +1302,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP config option for entity attribute extensions is reflected in metadata
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedEntityExtensions(): void
     {
@@ -1251,6 +1324,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP config option for Name, Description, Attributes is in metadata
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedNameDescriptionAttributes(): void
     {
@@ -1299,6 +1374,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP config option for Name, Description require attributes to be specified
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedNameDescriptionAbsentWhenNoAttributes(): void
     {
@@ -1323,6 +1400,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP config for attributes also requires name in metadata
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedAttributesRequiresName(): void
     {
@@ -1344,6 +1423,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP config for attributes with extra options
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHostedAttributesExtraOptions(): void
     {
@@ -1373,6 +1454,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP config for holder-of-key profile via ProtocolBinding is reflected in metadata
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadataHolderOfKeyViaProtocolBindingIsInMetadata(): void
     {
@@ -1400,6 +1483,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP config with certificate are reflected in metadata
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadatCertificateIsInMetadata(): void
     {
@@ -1426,6 +1511,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * SP config with certificate in rollocer scenario are reflected in metadata
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testMetadatCertificateInRolloverIsInMetadata(): void
     {
@@ -1459,6 +1546,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * We only support SAML 2.0 as a protocol with this auth source
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testSupportedProtocolsReturnsSAML20Only(): void
     {
@@ -1475,6 +1564,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * We only support SAML 2.0 as a protocol with this auth source
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testSAML11BindingsDoesNotInfluenceProtocolsSupported(): void
     {
@@ -1505,9 +1596,12 @@ class SPTest extends ClearStateTestCase
         $this->assertEquals('urn:oasis:names:tc:SAML:2.0:protocol', $protocols[0]);
     }
 
-   /**
-    * Test sending a LogoutRequest
-    */
+    /**
+     * Test sending a LogoutRequest
+     * @throws \DOMException
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
+     */
     public function testLogoutRequest(): void
     {
         $nameId = new NameID('someone@example.com');

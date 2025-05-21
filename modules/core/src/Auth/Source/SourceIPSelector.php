@@ -52,6 +52,8 @@ class SourceIPSelector extends AbstractSourceSelector
      *
      * @param array $info Information about this authentication source.
      * @param array $config Configuration.
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function __construct(array $info, array $config)
     {
@@ -87,6 +89,8 @@ class SourceIPSelector extends AbstractSourceSelector
      *
      * @param array &$state Information about the current authentication.
      * @return string
+     * @throws \SimpleSAML\Error\NotFound
+     * @throws \Exception
      */
     protected function selectAuthSource(/** @scrutinizer ignore-unused */ array &$state): string
     {

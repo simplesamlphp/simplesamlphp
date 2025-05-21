@@ -33,6 +33,7 @@ class RedisStoreTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     protected function setUp(): void
     {

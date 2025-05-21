@@ -208,6 +208,10 @@ abstract class UserPassOrgBase extends Auth\Source
      *
      * @param \Symfony\Component\HttpFoundation\Request $request  The current request
      * @param array &$state  Information about the current authentication.
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function authenticate(Request $request, array &$state): ?Response
     {
@@ -270,6 +274,11 @@ abstract class UserPassOrgBase extends Auth\Source
      * @param string $username  The username the user wrote.
      * @param string $password  The password the user wrote.
      * @param string $organization  The id of the organization the user chose.
+     * @throws \Exception
+     * @throws \SimpleSAML\Error\Error
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\NoState
+     * @throws \Throwable
      */
     public static function handleLogin(
         string $authStateId,
@@ -334,6 +343,10 @@ abstract class UserPassOrgBase extends Auth\Source
      * @param string $authStateId  The identifier of the authentication state.
      * @return array|null  Array of organizations. NULL if the user must enter the
      *         organization as part of the username.
+     * @throws \Exception
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\NoState
+     * @throws \Throwable
      */
     public static function listOrganizations(string $authStateId): ?array
     {

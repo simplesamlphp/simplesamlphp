@@ -30,6 +30,8 @@ class ConfigTest extends TestCase
 
     /**
      * Set up for each test.
+     * @throws \PHPUnit\Framework\MockObject\Exception
+     * @throws \Exception
      */
     protected function setUp(): void
     {
@@ -110,6 +112,8 @@ class ConfigTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function testPhpinfo(): void
     {

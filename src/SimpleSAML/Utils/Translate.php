@@ -28,13 +28,19 @@ class Translate
     protected string $baseDir;
 
 
+    /**
+     * @throws \SimpleSAML\Assert\AssertionFailedException
+     */
     public function __construct(
         protected Configuration $configuration,
     ) {
         $this->baseDir = $configuration->getBaseDir();
     }
 
-
+    /**
+     * @throws \LogicException
+     * @throws \Symfony\Component\Finder\Exception\DirectoryNotFoundException
+     */
     public function getTranslationsFromPhp(string $module, PhpScanner $phpScanner): PhpScanner
     {
         $moduleDir = $this->baseDir . ($module === '' ? '' : 'modules/' . $module . '/');
@@ -54,6 +60,12 @@ class Translate
     }
 
 
+    /**
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
+     */
     public function getTranslationsFromTwig(string $module, bool $includeThemes = false): array
     {
         $twigTranslations = [];

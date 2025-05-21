@@ -21,6 +21,7 @@ class ModuleTest extends TestCase
 {
     /**
      * Test for SimpleSAML\Module::isModuleEnabled().
+     * @throws Exception
      */
     public function testIsModuleEnabled(): void
     {
@@ -44,6 +45,7 @@ class ModuleTest extends TestCase
 
     /**
      * Test for SimpleSAML\Module::getModuleURL().
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testGetModuleURL(): void
     {
@@ -66,6 +68,7 @@ class ModuleTest extends TestCase
 
     /**
      * Test for SimpleSAML\Module::getModules().
+     * @throws Exception
      */
     public function testGetModules(): void
     {
@@ -98,6 +101,7 @@ class ModuleTest extends TestCase
 
     /**
      * Test for SimpleSAML\Module::resolveClass(). It covers all the valid use cases.
+     * @throws Exception
      */
     public function testResolveClass(): void
     {

@@ -35,6 +35,8 @@ class ExceptionTest extends TestCase
 
     /**
      * Set up before running the test-suite.
+     * @throws \Exception
+     * @throws \Throwable
      */
     public static function setUpBeforeClass(): void
     {
@@ -68,6 +70,7 @@ class ExceptionTest extends TestCase
     /**
      * @param string $code
      * Test that we are presented with an 'error was reported' page
+     * @throws \Exception
      */
     #[DataProvider('codeProvider')]
     public function testErrorURL(string $code, string $ts, string $rp, string $tid, string $ctx): void
@@ -141,6 +144,7 @@ class ExceptionTest extends TestCase
 
     /**
      * Test that an exception was thrown when an invalid error code was used.
+     * @throws \Exception
      */
     public function testErrorURLInvalidCode(): void
     {
