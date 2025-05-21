@@ -872,7 +872,7 @@ class ConfigurationTest extends ClearStateTestCase
         $this->assertEquals(
             [
                 'Location' => 'https://example.com/slo',
-                'Binding' => Constants::BINDING_HTTP_REDIRECT,
+                'Binding' => C::BINDING_HTTP_REDIRECT,
             ],
             $c->getDefaultEndpoint('SingleLogoutService'),
         );
