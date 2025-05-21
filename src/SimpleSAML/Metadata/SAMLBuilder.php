@@ -347,6 +347,11 @@ class SAMLBuilder
         foreach ($endpoints as &$ep) {
             if ($indexed) {
                 $t = new IndexedEndpointType();
+
+                if (isset($ep['isDefault'])) {
+                    $t->setIsDefault($ep['isDefault']);
+                }
+
                 if (!isset($ep['index'])) {
                     // Find the maximum index
                     $maxIndex = -1;

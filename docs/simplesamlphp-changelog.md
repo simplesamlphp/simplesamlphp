@@ -9,6 +9,7 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+* Fixed a bug where metadata-endpoints with isDefault set would not yield the expected metadata (#2439)
 * Downgrade simplesamlphp/composer-module-installer to 1.3.x to keep things working with older (OS-supplied)
   versions of composer
 * Fixed one more PHP 8.4 deprecation notice
