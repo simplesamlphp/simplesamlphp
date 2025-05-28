@@ -10,6 +10,7 @@ use SAML2\Constants;
 use SAML2\Exception\Protocol\NoAvailableIDPException;
 use SAML2\Exception\Protocol\NoPassiveException;
 use SAML2\Exception\Protocol\NoSupportedIDPException;
+use SAML2\Exception\Protocol\ProtocolViolationException;
 use SAML2\LogoutRequest;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\Assert;
@@ -105,7 +106,12 @@ class SP extends \SimpleSAML\Auth\Source
         );
 
         $entityId = $this->metadata->getString('entityID');
-        Assert::validURI($entityId);
+        try {
+            Assert::validURI($entityId);
+        } catch (ProtocolViolationException $e) {
+            Logger::warning($e->getMessage());
+        }
+
         Assert::maxLength(
             $entityId,
             Constants::SAML2INT_ENTITYID_MAX_LENGTH,
