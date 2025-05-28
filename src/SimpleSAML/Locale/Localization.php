@@ -268,7 +268,7 @@ class Localization
                 if (empty($translations->getDomain())) {
                     $translations->setDomain($domain);
                 }
-                
+
                 $themeConfig = $this->configuration->getOptionalString('theme.use', null);
                 $theme = ($themeConfig === null) ? null : explode(':', $themeConfig, 2)[0];
 
