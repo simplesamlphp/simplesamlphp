@@ -10,6 +10,8 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 Released TBD
 
 * Fixed a bug where metadata-endpoints with isDefault set would not yield the expected metadata (#2439)
+* Fixed a backwards incompatibility that would throw an exception on an invalid entityID.
+  The exception was downgraded to a warning in the log (#2448)
 
 `memcacheMonitor`
 
