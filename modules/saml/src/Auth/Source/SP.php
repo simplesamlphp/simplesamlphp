@@ -17,6 +17,7 @@ use SimpleSAML\SAML2\Exception\Protocol\{
     NoPassiveException,
     NoSupportedIDPException,
     ProxyCountExceededException,
+    ProtocolViolationException,
 };
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\saml\NameID;
@@ -126,7 +127,12 @@ class SP extends Auth\Source
         );
 
         $entityId = $this->metadata->getString('entityID');
-        Assert::validURI($entityId);
+        try {
+            Assert::validURI($entityId);
+        } catch (ProtocolViolationException $e) {
+            Logger::warning($e->getMessage());
+        }
+
         Assert::maxLength(
             $entityId,
             C::SAML2INT_ENTITYID_MAX_LENGTH,
