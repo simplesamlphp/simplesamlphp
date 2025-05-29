@@ -46,6 +46,7 @@ class CronTest extends TestCase
             '[ARRAY]',
             'simplesaml',
         );
+        Configuration::setPreLoadedConfig($this->config);
 
         $this->session = Session::getSessionFromRequest();
 
