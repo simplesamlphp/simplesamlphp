@@ -12,6 +12,8 @@ Released TBD
 * Fixed a bug where metadata-endpoints with isDefault set would not yield the expected metadata (#2439)
 * Fixed a backwards incompatibility that would throw an exception on an invalid entityID.
   The exception was downgraded to a warning in the log (#2448)
+* Fixed a security-issue where cron-jobs could be executed using the default key,
+  even if a different one was set (#2453)
 
 `memcacheMonitor`
 

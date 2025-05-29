@@ -7,6 +7,7 @@ namespace SimpleSAML\Test\Module\cron\Controller;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Module\cron\Controller;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
@@ -45,6 +46,7 @@ class CronTest extends TestCase
             '[ARRAY]',
             'simplesaml',
         );
+        Configuration::setPreLoadedConfig($this->config);
 
         $this->session = Session::getSessionFromRequest();
 
@@ -110,5 +112,21 @@ class CronTest extends TestCase
         $this->assertArrayHasKey('time', $response->data);
         $this->assertCount(1, $response->data['summary']);
         $this->assertEquals('Cron did run tag [daily] at ' . $response->data['time'], $response->data['summary'][0]);
+    }
+
+
+    /**
+     */
+    public function testRunConfiguredSecret(): void
+    {
+        $_SERVER['REQUEST_URI'] = '/module.php/cron/run/daily/secret';
+
+        $c = new Controller\Cron($this->config, $this->session);
+
+        $this->expectException(Error\ConfigurationError::class);
+        $this->expectExceptionMessage('Cron: Possible malicious attempt to run cron tasks with default secret');
+
+        $response = $c->run('daily', 'secret');
+        $this->assertFalse($response->isSuccessful());
     }
 }
