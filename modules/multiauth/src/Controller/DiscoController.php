@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\multiauth\Controller;
 
-use SimpleSAML\{Auth, Configuration, Error, Logger, Module, Session, Utils};
+use SimpleSAML\{Auth, Configuration, Error, Session};
 use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 use function array_key_exists;
 use function is_null;
@@ -82,6 +82,12 @@ class DiscoController
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\Response
      *   An HTML template or a redirection if we are not authenticated.
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \Exception
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\NoState
+     * @throws \SimpleSAML\Error\BadRequest
+     * @throws \Throwable
      */
     public function discovery(Request $request): Template|Response
     {

@@ -29,6 +29,7 @@ class AttributeLimitTest extends TestCase
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
      * @return array  The state array after processing.
+     * @throws \SimpleSAML\Error\Exception
      */
     private static function processFilter(array $config, array $request): array
     {
@@ -40,6 +41,7 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test reading IdP Attributes.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testIdPAttrs(): void
     {
@@ -86,6 +88,7 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Tests when no attributes are in metadata.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testNULLMetadataAttrs(): void
     {
@@ -169,6 +172,7 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test the most basic functionality.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testBasic(): void
     {
@@ -186,6 +190,7 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test defaults with metadata available.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testDefaultWithMetadata(): void
     {
@@ -203,6 +208,7 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test defaults with attributes and metadata
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testDefaultWithAttrs(): void
     {
@@ -224,6 +230,7 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test for exception with illegal config.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testInvalidConfig(): void
     {
@@ -238,6 +245,7 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test for invalid attribute name
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testInvalidAttributeName(): void
     {
@@ -252,6 +260,7 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test for attribute matching using regular expresssion support
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testMatchAttributeRegex(): void
     {
@@ -324,6 +333,7 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test for attribute value matching
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testMatchAttributeValues(): void
     {
@@ -367,6 +377,7 @@ class AttributeLimitTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testBadOptionsNotTreatedAsValidValues(): void
     {
@@ -384,6 +395,7 @@ class AttributeLimitTest extends TestCase
     /**
      * Verify that the true value for ignoreCase doesn't get converted into a string ('1') by
      * php and matched against an attribute value of '1'
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testThatIgnoreCaseOptionNotMatchBooleanAsStringValue(): void
     {
@@ -405,6 +417,7 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test for attribute value matching ignore case
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testMatchAttributeValuesIgnoreCase(): void
     {
@@ -448,6 +461,7 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test for attribute value matching
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testMatchAttributeValuesRegex(): void
     {
@@ -552,6 +566,7 @@ class AttributeLimitTest extends TestCase
      *
      * This test is very unlikely and would require malformed metadata processing.
      * Cannot be generated via config options.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testMatchAttributeValuesNotArray(): void
     {
@@ -581,6 +596,7 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test attributes not intersecting
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testNoIntersection(): void
     {

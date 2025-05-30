@@ -21,6 +21,7 @@ class ProcessingFilterTest extends TestCase
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
      * @return \SimpleSAML\Auth\ProcessingFilter
+     * @throws \SimpleSAML\Error\Exception
      */
     private static function processFilter(array $config, array $request): AuthProcFilter
     {
@@ -30,6 +31,7 @@ class ProcessingFilterTest extends TestCase
 
     /**
      * Test that a filter without precondition will run.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testWithoutPrecondition(): void
     {
@@ -52,6 +54,7 @@ class ProcessingFilterTest extends TestCase
 
     /**
      * Test that a filter with a precondition evaluating to true will run.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testWithPreconditionTrue(): void
     {
@@ -75,6 +78,7 @@ class ProcessingFilterTest extends TestCase
 
     /**
      * Test that a filter with a precondition evaluating to false will not run.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testWithPreconditionFalse(): void
     {

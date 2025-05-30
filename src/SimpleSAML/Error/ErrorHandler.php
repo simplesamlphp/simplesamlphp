@@ -15,14 +15,15 @@ use function is_null;
  */
 class ErrorHandler
 {
-   /**
-    * @param int $errno
-    * @param string $errstr
-    * @param string|null $errfile
-    * @param int $errline
-    * @param string|null $errcontext
-    * @return false
-    */
+    /**
+     * @param int $errno
+     * @param string $errstr
+     * @param string|null $errfile
+     * @param int $errline
+     * @param string|null $errcontext
+     * @return false
+     * @throws \Exception
+     */
     public function customErrorHandler(
         int $errno,
         string $errstr,

@@ -37,6 +37,7 @@ class MetaDataStorageSourceTest extends TestCase
 
     /**
      * Test \SimpleSAML\Metadata\MetaDataStorageSourceTest::getConfig XML static XML source
+     * @throws Exception
      */
     public function testStaticXMLSource(): void
     {
@@ -60,6 +61,7 @@ class MetaDataStorageSourceTest extends TestCase
 
     /**
      * Test loading multiple entities
+     * @throws Exception
      */
     public function testLoadEntitiesStaticXMLSource(): void
     {

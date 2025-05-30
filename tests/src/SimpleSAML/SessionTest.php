@@ -20,6 +20,8 @@ class SessionTest extends ClearStateTestCase
     protected Session $session;
 
     /**
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function setUp(): void
     {
@@ -29,6 +31,7 @@ class SessionTest extends ClearStateTestCase
     }
 
     /**
+     * @throws \SimpleSAML\Error\CannotSetCookie
      */
     public function testSetRememberMeExpireDefaults(): void
     {
@@ -42,6 +45,7 @@ class SessionTest extends ClearStateTestCase
     }
 
     /**
+     * @throws \SimpleSAML\Error\CannotSetCookie
      */
     public function testSetRememberMeExpireExplicit(): void
     {

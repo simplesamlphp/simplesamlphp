@@ -39,6 +39,8 @@ class TimeTest extends TestCase
 
     /**
      * Test the SimpleSAML\Utils\Time::initTimezone() method.
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testInitTimezone(): void
     {

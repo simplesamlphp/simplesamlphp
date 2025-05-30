@@ -58,6 +58,12 @@ class Proxy
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\Response
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\NoState
+     * @throws \SimpleSAML\Error\BadRequest
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function invalidSession(Request $request): Template|Response
     {

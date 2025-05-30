@@ -50,6 +50,7 @@ class ExpectedAuthnContextClassRef extends Auth\ProcessingFilter
      * @param mixed $reserved For future use.
      *
      * @throws \SimpleSAML\Error\Exception if the mandatory 'accepted' configuration option is missing.
+     * @throws \Exception
      */
     public function __construct(array $config, $reserved)
     {
@@ -69,6 +70,10 @@ class ExpectedAuthnContextClassRef extends Auth\ProcessingFilter
 
     /**
      * @param array &$state The current request
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function process(array &$state): void
     {
@@ -93,6 +98,10 @@ class ExpectedAuthnContextClassRef extends Auth\ProcessingFilter
      * permission logic.
      *
      * @param array $state
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
+     * @throws \Throwable
      */
     protected function unauthorized(array &$state): void
     {

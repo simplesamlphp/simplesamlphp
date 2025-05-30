@@ -17,6 +17,10 @@ class RedirectTest extends Auth\ProcessingFilter
      * Initialize processing of the redirect test.
      *
      * @param array &$state  The state we should update.
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function process(array &$state): void
     {
