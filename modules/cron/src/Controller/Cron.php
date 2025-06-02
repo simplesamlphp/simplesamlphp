@@ -135,7 +135,7 @@ class Cron
             $key,
             $configKey,
             'Cron: Wrong key %s provided. Cron will not run.',
-            Error\ConfigurationError::class,
+            Error\Exception::class,
         );
 
         $cron = new \SimpleSAML\Module\cron\Cron();
