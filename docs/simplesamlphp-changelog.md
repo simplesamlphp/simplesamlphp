@@ -9,6 +9,11 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+`cron`
+
+* Fixed a security-issue where cron-jobs could be executed using the default key,
+  even if a different one was set (#2453)
+
 `metarefresh`
 
 * Fixed parsing of large metadata files (v1.2.4)
