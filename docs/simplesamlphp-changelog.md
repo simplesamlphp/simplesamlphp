@@ -5,6 +5,29 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
+## Version 2.4.2
+
+Released TBD
+
+* Fixed a bug where metadata-endpoints with isDefault set would not yield the expected metadata (#2439)
+* Fixed a backwards incompatibility that would throw an exception on an invalid entityID.
+  The exception was downgraded to a warning in the log (#2448)
+
+`memcacheMonitor`
+
+* Fixed an issue that prevented the latest version of this module from being installed on SSP 2.4.x
+
+`negotiate`
+
+* Fixed an issue that prevented the latest version of this module from being installed on SSP 2.4.x
+
+## Version 2.4.1
+
+Released 2025-05-14
+
+* Reverted #2278 because of a regression in SLO when using SSP as a bridge (#2436)
+* Fixed a dependency on a dev-version of the saml2-library
+
 ## Version 2.4.0
 
 Released TBD

@@ -271,7 +271,11 @@ class Localization
                 if (empty($translations->getDomain())) {
                     $translations->setDomain($domain);
                 }
-                if ($domain != $translations->getDomain()) {
+
+                $themeConfig = $this->configuration->getOptionalString('theme.use', null);
+                $theme = ($themeConfig === null) ? null : explode(':', $themeConfig, 2)[0];
+
+                if ($domain !== $translations->getDomain() && $domain !== $theme) {
                     Logger::warning(sprintf(
                         "The translation file at %s has domain %s but is expected to have a domain %s",
                         $file->getPath(),

@@ -117,7 +117,9 @@ class System
                     (is_array($error) ? $error['message'] : 'no error available'),
                 );
             }
-        } elseif (!is_writable($tempDir)) {
+        }
+
+        if (!is_writable($tempDir)) {
             throw new Error\Exception(
                 'Temporary directory "' . $tempDir .
                 '" cannot be written to by the current user' .
