@@ -40,7 +40,6 @@ Directives that relate to signing of metadata start with the
 [own section](simplesamlphp-advancedfeatures.html#metadata-signing).
 in the advanced features page.
 
-
 ## Common options
 
 `auth`
