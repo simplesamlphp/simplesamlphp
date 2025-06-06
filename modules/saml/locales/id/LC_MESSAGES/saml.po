@@ -9,10 +9,10 @@ msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/saml/hooks/hook_sanitycheck.php:25
 msgid "Hosted IdP metadata present"
-msgstr ""
+msgstr "Metadata IdP yang dihosting hadir"
 
 msgid "Invalid Identity Provider"
-msgstr ""
+msgstr "Penyedia Identitas Tidak Valid"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/saml/hooks/hook_sanitycheck.php:35
 msgid "Matching key-pair for signing assertions"
@@ -27,19 +27,19 @@ msgid "Matching key-pair for signing metadata"
 msgstr ""
 
 msgid "No, cancel"
-msgstr ""
+msgstr "Tidak, batalkan"
 
 msgid "SimpleSAMLphp"
-msgstr ""
+msgstr "SimpleSAMLphp"
 
 msgid "Wrong authentication context"
 msgstr "Konteks otentikasi keliru"
 
 msgid "Yes, continue"
-msgstr ""
+msgstr "Ya, lanjutkan"
 
 msgid "You already have a valid session with an identity provider (<em>%IDP%</em>) that is not accepted by <em>%SP%</em>. Would you like to log out from your existing session and log in again with another identity provider?"
-msgstr ""
+msgstr "Anda sudah memiliki sesi yang valid dengan penyedia identitas (<em>%IDP%</em>) yang tidak diterima oleh <em>%SP%</em>. Apakah Anda ingin keluar dari sesi yang sudah ada dan masuk lagi dengan penyedia identitas lain?"
 
 msgid "Your authentication context is not accepted at this service. Probably too weak or not two-factor."
-msgstr "Konteks otentikasi Anda tidak tersedia pada layanan ini. Mungkin terlalu lemah atau bukan keamanan-ganda."
+msgstr "Konteks otentikasi Anda tidak tersedia pada layanan ini. Mungkin terlalu lemah atau tanpa keamanan-ganda."

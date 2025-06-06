@@ -11,11 +11,11 @@ msgid "Click here to run the cron jobs:"
 msgstr "Klik disini untuk menjalankan pekerjaan cron:"
 
 msgid "Cron is a way to run things regularly on unix systems."
-msgstr "Cron adalah cara untuk menjalankan sesuatu secara "
+msgstr "Cron adalah cara untuk menjalankan berbagai hal secara teratur pada sistem unix."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/cron/hooks/hook_configpage.php:18
 msgid "Cron module information page"
-msgstr ""
+msgstr "Halaman informasi modul Cron"
 
 msgid "Cron ran at"
 msgstr "Cron berjalan pada"
@@ -27,7 +27,7 @@ msgid "Cron result page"
 msgstr "Halaman hasil Cron"
 
 msgid "Here are the result for the cron job execution:"
-msgstr "Berikut ini adalah hasil dari eksekusi pekerjaan cron"
+msgstr "Berikut ini adalah hasil dari eksekusi pekerjaan cron:"
 
 msgid "Here is a suggestion for a crontab file:"
 msgstr "Berikut adalah saran untuk file crontab:"
