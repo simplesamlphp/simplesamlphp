@@ -35,6 +35,11 @@ select the correct configuration. One entry in the metadata-list can
 have the host `__DEFAULT__`. This entry will be used when no other
 entry matches.
 
+Directives that relate to signing of metadata start with the
+`metadata.sign` prefix. The signing directives are documented in their
+[own section](simplesamlphp-advancedfeatures.html#metadata-signing).
+in the advanced features page.
+
 ## Common options
 
 `auth`
