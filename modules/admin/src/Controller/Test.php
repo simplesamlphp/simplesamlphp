@@ -49,6 +49,9 @@ class Test
      *
      * @param \SimpleSAML\Configuration $config The configuration to use.
      * @param \SimpleSAML\Session $session The current user session.
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     public function __construct(
         protected Configuration $config,
@@ -98,6 +101,10 @@ class Test
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string|null $as
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function main(Request $request, ?string $as = null): Response
     {
@@ -163,6 +170,8 @@ class Test
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \SimpleSAML\XHTML\Template
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \Exception
      */
     public function logout(/** @scrutinizer ignore-unused */Request $request): Template
     {

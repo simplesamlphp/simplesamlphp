@@ -30,6 +30,7 @@ class LogoutTest extends ClearStateTestCase
 
     /**
      * Set up for each test.
+     * @throws \Exception
      */
     protected function setUp(): void
     {
@@ -51,6 +52,9 @@ class LogoutTest extends ClearStateTestCase
     /**
      * Test basic operation of the logout controller.
      * @TODO check if the passed auth source is correctly used
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function testLogout(): void
     {

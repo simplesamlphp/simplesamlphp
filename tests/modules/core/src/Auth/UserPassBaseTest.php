@@ -18,6 +18,9 @@ use Symfony\Component\HttpFoundation\Request;
 class UserPassBaseTest extends TestCase
 {
     /**
+     * @throws \SimpleSAML\Error\Error
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function testAuthenticateECPCallsLoginAndSetsAttributes(): void
     {
@@ -48,6 +51,8 @@ class UserPassBaseTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function testAuthenticateECPMissingUsername(): void
     {
@@ -72,6 +77,8 @@ class UserPassBaseTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function testAuthenticateECPMissingPassword(): void
     {
@@ -96,6 +103,9 @@ class UserPassBaseTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\Error
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function testAuthenticateECPCallsLoginWithForcedUsername(): void
     {

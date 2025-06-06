@@ -29,6 +29,7 @@ class SessionHandlerStore extends SessionHandlerCookie
      * Initialize the session.
      *
      * @param \SimpleSAML\Store\StoreInterface $store The store to use.
+     * @throws \Exception
      */
     protected function __construct(StoreInterface $store)
     {
@@ -69,6 +70,7 @@ class SessionHandlerStore extends SessionHandlerCookie
      * Save a session to the data store.
      *
      * @param \SimpleSAML\Session $session The session object we should save.
+     * @throws \Exception
      */
     public function saveSession(Session $session): void
     {

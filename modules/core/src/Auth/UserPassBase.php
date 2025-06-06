@@ -95,6 +95,7 @@ abstract class UserPassBase extends Auth\Source
      *
      * @param array $info  Information about this authentication source.
      * @param array &$config  Configuration for this authentication source.
+     * @throws Exception
      */
     public function __construct(array $info, array &$config)
     {
@@ -191,6 +192,10 @@ abstract class UserPassBase extends Auth\Source
      *
      * @param \Symfony\Component\HttpFoundation\Request $request  The current request
      * @param array &$state  Information about the current authentication.
+     * @throws \SimpleSAML\Error\Error
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function authenticate(Request $request, array &$state): ?Response
     {
@@ -276,6 +281,10 @@ abstract class UserPassBase extends Auth\Source
      * @param string $authStateId  The identifier of the authentication state.
      * @param string $username  The username the user wrote.
      * @param string $password  The password the user wrote.
+     * @throws \Exception
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\NoState
+     * @throws \Throwable
      */
     public static function handleLogin(
         string $authStateId,

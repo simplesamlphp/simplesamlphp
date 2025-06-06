@@ -43,6 +43,8 @@ class LanguageAdaptor extends Auth\ProcessingFilter
      * Add or replace existing attributes with the configured values.
      *
      * @param array &$state  The current request
+     * @throws \SimpleSAML\Error\CannotSetCookie
+     * @throws \Exception
      */
     public function process(array &$state): void
     {

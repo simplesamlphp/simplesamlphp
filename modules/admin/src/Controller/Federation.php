@@ -6,7 +6,7 @@ namespace SimpleSAML\Module\admin\Controller;
 
 use Exception;
 use SimpleSAML\{Auth, Configuration, Logger, Module, Utils};
-use SimpleSAML\Assert\{Assert, AssertionFailedException};
+use SimpleSAML\Assert\{Assert};
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Metadata\{MetaDataStorageHandler, SAMLBuilder, SAMLParser, Signer};
 use SimpleSAML\Module\adfs\IdP\ADFS as ADFS_IdP;
@@ -64,6 +64,7 @@ class Federation
      * FederationController constructor.
      *
      * @param \SimpleSAML\Configuration $config The configuration to use.
+     * @throws Exception
      */
     public function __construct(
         protected Configuration $config,
@@ -114,7 +115,9 @@ class Federation
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \SimpleSAML\Error\Exception
-     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
+     * @throws \Symfony\Component\VarExporter\Exception\ExceptionInterface
+     * @throws \Throwable
      */
     public function main(/** @scrutinizer ignore-unused */ Request $request): Response
     {
@@ -192,6 +195,7 @@ class Federation
      *
      * @return array
      * @throws \Exception
+     * @throws \Symfony\Component\VarExporter\Exception\ExceptionInterface
      */
     private function getHostedIdP(): array
     {
@@ -334,6 +338,8 @@ class Federation
      *
      * @return array
      * @throws \SimpleSAML\Error\Exception If OrganizationName is set for an SP instance but OrganizationURL is not.
+     * @throws \Symfony\Component\VarExporter\Exception\ExceptionInterface
+     * @throws \Exception
      */
     private function getHostedSP(): array
     {
@@ -401,6 +407,10 @@ class Federation
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \Symfony\Component\VarExporter\Exception\ExceptionInterface
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function metadataConverter(Request $request): Response
     {
@@ -496,6 +506,9 @@ class Federation
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
      * @return \Symfony\Component\HttpFoundation\Response PEM-encoded certificate.
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\MetadataNotFound
+     * @throws \Throwable
      */
     public function downloadCert(Request $request): Response
     {
@@ -542,6 +555,11 @@ class Federation
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Symfony\Component\VarExporter\Exception\ExceptionInterface
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\MetadataNotFound
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function showRemoteEntity(Request $request): Response
     {

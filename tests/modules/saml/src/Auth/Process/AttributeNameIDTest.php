@@ -23,6 +23,8 @@ class AttributeNameIDTest extends TestCase
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
      * @return array  The state array after processing.
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     private function processFilter(array $config, array $request): array
     {
@@ -34,6 +36,7 @@ class AttributeNameIDTest extends TestCase
 
     /**
      * Test minimal configuration.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testMinimalConfig(): void
     {
@@ -69,6 +72,7 @@ class AttributeNameIDTest extends TestCase
 
     /**
      * Test third element in chain
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testSuccessInThirdElement(): void
     {
@@ -104,6 +108,7 @@ class AttributeNameIDTest extends TestCase
 
     /**
      * Test attributes in list not found.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testNotFound(): void
     {

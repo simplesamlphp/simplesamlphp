@@ -16,6 +16,7 @@ class TranslateTest extends TestCase
 {
     /**
      * Test SimpleSAML\Locale\Translate::noop().
+     * @throws \SimpleSAML\Error\CannotSetCookie
      */
     public function testNoop(): void
     {

@@ -34,6 +34,7 @@ class AttributesTest extends TestCase
 
     /**
      * Test the getExpectedAttributeMethod() method with a non-normalized attributes array.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testGetExpectedAttributeNonNormalizedArray(): void
     {
@@ -105,6 +106,7 @@ class AttributesTest extends TestCase
 
     /**
      * Test that the getExpectedAttribute() method successfully obtains values from the attributes array.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testGetExpectedAttribute(): void
     {
