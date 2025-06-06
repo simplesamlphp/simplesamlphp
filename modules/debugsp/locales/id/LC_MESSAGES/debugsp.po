@@ -8,16 +8,16 @@ msgstr ""
 "X-Domain: debugsp\n"
 
 msgid "Logged out"
-msgstr ""
+msgstr "Anda telah keluar"
 
 msgid "SimpleSAMLphp installation page"
-msgstr ""
+msgstr "Halaman instalasi SimpleSAMLphp"
 
 msgid "Test SP login"
-msgstr ""
+msgstr "Uji login SP"
 
 msgid "Test another SP login for this site"
-msgstr ""
+msgstr "Menguji login SP lain untuk situs ini"
 
 msgid "You have been logged out."
-msgstr ""
+msgstr "Anda sekarang telah logout."

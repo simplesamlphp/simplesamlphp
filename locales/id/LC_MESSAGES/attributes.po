@@ -135,15 +135,15 @@ msgstr "urn:oid:2.5.4.39"
 
 # English string: Common name
 msgid "cn"
-msgstr "Common Name"
+msgstr "Nama umum"
 
 # English string: Common name
 msgid "urn:mace:dir:attribute-def:cn"
-msgstr "Common Name"
+msgstr "Nama umum"
 
 # English string: Common name
 msgid "urn:oid:2.5.4.3"
-msgstr "Common Name"
+msgstr "Nama umum"
 
 msgid "co"
 msgstr "co"
@@ -351,15 +351,15 @@ msgstr "urn:oid:0.9.2342.19200300.100.1.5"
 
 # English string: Organizational homepage
 msgid "eduOrgHomePageURI"
-msgstr "Homepage organisasi"
+msgstr "Organisasi Halaman Beranda"
 
 # English string: Organizational homepage
 msgid "urn:mace:dir:attribute-def:eduOrgHomePageURI"
-msgstr "Homepage organisasi"
+msgstr "Organisasi Halaman Beranda"
 
 # English string: Organizational homepage
 msgid "urn:oid:1.3.6.1.4.1.5923.1.2.1.2"
-msgstr "Homepage organisasi"
+msgstr "Organisasi Halaman Beranda"
 
 msgid "eduOrgIdentityAuthNPolicyURI"
 msgstr "eduOrgIdentityAuthNPolicyURI"
@@ -588,15 +588,15 @@ msgstr "urn:oid:2.5.4.47"
 
 # English string: Fax number
 msgid "facsimileTelephoneNumber"
-msgstr "No Fax"
+msgstr "Nomor Fax"
 
 # English string: Fax number
 msgid "urn:mace:dir:attribute-def:facsimileTelephoneNumber"
-msgstr "No Fax"
+msgstr "Nomor Fax"
 
 # English string: Fax number
 msgid "urn:oid:2.5.4.23"
-msgstr "No Fax"
+msgstr "Nomor Fax"
 
 msgid "favouriteDrink"
 msgstr "favouriteDrink"
@@ -771,15 +771,15 @@ msgstr "Lokalitas"
 
 # English string: Labeled URI
 msgid "labeledURI"
-msgstr "Berlabel URL"
+msgstr "URL terlabel"
 
 # English string: Labeled URI
 msgid "urn:mace:dir:attribute-def:labeledURI"
-msgstr "Berlabel URL"
+msgstr "URL terlabel"
 
 # English string: Labeled URI
 msgid "urn:oid:1.3.6.1.4.1.250.1.57"
-msgstr "Berlabel URL"
+msgstr "URL terlabel"
 
 msgid "localityName"
 msgstr "localityName"
@@ -807,15 +807,15 @@ msgstr "urn:oid:0.9.2342.19200300.100.1.28"
 
 # English string: Mail
 msgid "mail"
-msgstr "Mail"
+msgstr "Surat"
 
 # English string: Mail
 msgid "urn:mace:dir:attribute-def:mail"
-msgstr "Mail"
+msgstr "Surat"
 
 # English string: Mail
 msgid "urn:oid:0.9.2342.19200300.100.1.3"
-msgstr "Mail"
+msgstr "Surat"
 
 msgid "mailPreferenceOption"
 msgstr "mailPreferenceOption"
@@ -828,15 +828,15 @@ msgstr "urn:oid:0.9.2342.19200300.100.1.47"
 
 # English string: Manager
 msgid "manager"
-msgstr "Manager"
+msgstr "Manajer"
 
 # English string: Manager
 msgid "urn:mace:dir:attribute-def:manager"
-msgstr "Manager"
+msgstr "Manajer"
 
 # English string: Manager
 msgid "urn:oid:0.9.2342.19200300.100.1.10"
-msgstr "Manager"
+msgstr "Manajer"
 
 msgid "member"
 msgstr "member"
@@ -975,15 +975,15 @@ msgstr "Nomor identitas lokal"
 
 # English string: Identity number assigned by public authorities
 msgid "norEduPersonNIN"
-msgstr "Identity number assigned by public authorities"
+msgstr "Nomor identitas yang diberikan oleh otoritas publik"
 
 # English string: Identity number assigned by public authorities
 msgid "urn:mace:dir:attribute-def:norEduPersonNIN"
-msgstr "Identity number assigned by public authorities"
+msgstr "Nomor identitas yang diberikan oleh otoritas publik"
 
 # English string: Identity number assigned by public authorities
 msgid "urn:oid:1.3.6.1.4.1.2428.90.1.5"
-msgstr "Identity number assigned by public authorities"
+msgstr "Nomor identitas yang diberikan oleh otoritas publik"
 
 # English string: Organization name
 msgid "o"
@@ -1136,15 +1136,15 @@ msgstr "PO Box"
 
 # English string: Postal address
 msgid "postalAddress"
-msgstr "Alamat pos"
+msgstr "Alamat Pengiriman"
 
 # English string: Postal address
 msgid "urn:mace:dir:attribute-def:postalAddress"
-msgstr "Alamat pos"
+msgstr "Alamat Pengiriman"
 
 # English string: Postal address
 msgid "urn:oid:2.5.4.16"
-msgstr "Alamat pos"
+msgstr "Alamat Pengiriman"
 
 # English string: Postal code
 msgid "postalCode"
@@ -1470,19 +1470,19 @@ msgstr "urn:schac:attribute-def:schacUserPresenceID"
 
 # English string: Private information elements
 msgid "schacUserPrivateAttribute"
-msgstr "Elemen-elemen informasi personal"
+msgstr "Elemen-elemen informasi pribadi"
 
 # English string: Private information elements
 msgid "urn:mace:terena.org:attribute-def:schacUserPrivateAttribute"
-msgstr "Elemen-elemen informasi personal"
+msgstr "Elemen-elemen informasi pribadi"
 
 # English string: Private information elements
 msgid "urn:oid:1.3.6.1.4.1.25178.1.2.18"
-msgstr "Elemen-elemen informasi personal"
+msgstr "Elemen-elemen informasi pribadi"
 
 # English string: Private information elements
 msgid "urn:schac:attribute-def:schacUserPrivateAttribute"
-msgstr "Elemen-elemen informasi personal"
+msgstr "Elemen-elemen informasi pribadi"
 
 msgid "schacUserStatus"
 msgstr "schacUserStatus"
@@ -1776,15 +1776,15 @@ msgstr "urn:oid:2.16.840.1.113730.3.1.216"
 
 # English string: User's password hash
 msgid "userPassword"
-msgstr "Hash password user"
+msgstr "Hash kata sandi pengguna"
 
 # English string: User's password hash
 msgid "urn:mace:dir:attribute-def:userPassword"
-msgstr "Hash password user"
+msgstr "Hash kata sandi pengguna"
 
 # English string: User's password hash
 msgid "urn:oid:2.5.4.35"
-msgstr "Hash password user"
+msgstr "Hash kata sandi pengguna"
 
 msgid "userSMIMECertificate"
 msgstr "userSMIMECertificate"
@@ -1821,7 +1821,7 @@ msgstr "urn:oid:2.5.4.45"
 
 # English string: Common name
 msgid "facebook_cn"
-msgstr "Common Name"
+msgstr "Nama umum"
 
 msgid "http://axschema.org/contact/country/home"
 msgstr "http://axschema.org/contact/country/home"
@@ -1944,23 +1944,23 @@ msgstr "Berlabel URL"
 
 # English string: Mail
 msgid "facebook.email"
-msgstr "Mail"
+msgstr "Surat"
 
 # English string: Mail
 msgid "http://axschema.org/contact/email"
-msgstr "Mail"
+msgstr "Surat"
 
 # English string: Mail
 msgid "openid.sreg.email"
-msgstr "Mail"
+msgstr "Surat"
 
 # English string: Mail
 msgid "windowslive_mail"
-msgstr "Mail"
+msgstr "Surat"
 
 # English string: Mail
 msgid "windowslive.mail"
-msgstr "Mail"
+msgstr "Surat"
 
 # English string: Mobile
 msgid "http://axschema.org/contact/phone/cell"
