@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
+"X-Domain: saml\n"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/saml/hooks/hook_sanitycheck.php:25
+msgid "Hosted IdP metadata present"
+msgstr "Siêu dữ liệu IdP được lưu trữ hiện tại"
+
+msgid "Invalid Identity Provider"
+msgstr "Nhà cung cấp danh tính không hợp lệ"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/saml/hooks/hook_sanitycheck.php:35
+msgid "Matching key-pair for signing assertions"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/saml/hooks/hook_sanitycheck.php:42
+msgid "Matching key-pair for signing assertions (rollover key)"
+msgstr ""
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/saml/hooks/hook_sanitycheck.php:52
+msgid "Matching key-pair for signing metadata"
+msgstr ""
+
+msgid "No, cancel"
+msgstr "Không, hủy bỏ"
+
+msgid "SimpleSAMLphp"
+msgstr "SimpleSAMLphp"
+
+msgid "Wrong authentication context"
+msgstr "Bối cảnh xác thực sai"
+
+msgid "Yes, continue"
+msgstr "Vâng, tiếp tục"
+
+msgid "You already have a valid session with an identity provider (<em>%IDP%</em>) that is not accepted by <em>%SP%</em>. Would you like to log out from your existing session and log in again with another identity provider?"
+msgstr "Bạn đã có phiên hợp lệ với nhà cung cấp danh tính ( <em>%IDP%</em> ) không được <em>%SP%</em> chấp nhận. Bạn có muốn đăng xuất khỏi phiên hiện tại và đăng nhập lại bằng nhà cung cấp danh tính khác không?"
+
+msgid "Your authentication context is not accepted at this service. Probably too weak or not two-factor."
+msgstr "Ngữ cảnh xác thực của bạn không được chấp nhận tại dịch vụ này. Có thể là quá yếu hoặc không phải là hai yếu tố."
