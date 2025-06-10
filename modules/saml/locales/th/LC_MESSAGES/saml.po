@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: th\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
+"X-Domain: saml\n"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/saml/hooks/hook_sanitycheck.php:25
+msgid "Hosted IdP metadata present"
+msgstr "พบข้อมูลเมตาของผู้ให้บริการตรวจสอบตัวตนที่โฮสต์ไว้"
+
+msgid "Invalid Identity Provider"
+msgstr "ผู้ให้บริการตรวจสอบตัวตนไม่ถูกต้อง"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/saml/hooks/hook_sanitycheck.php:35
+msgid "Matching key-pair for signing assertions"
+msgstr "พบคู่กุญแจที่ตรงกันสำหรับการลงนามข้อมูลการยืนยันตัวตน"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/saml/hooks/hook_sanitycheck.php:42
+msgid "Matching key-pair for signing assertions (rollover key)"
+msgstr "พบคู่กุญแจสำหรับลงนามในการยืนยันตัวตน (กุญแจสำรอง)"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/saml/hooks/hook_sanitycheck.php:52
+msgid "Matching key-pair for signing metadata"
+msgstr "พบคู่กุญแจสำหรับลงนามข้อมูลเมตา"
+
+msgid "No, cancel"
+msgstr "ไม่ใช่ ,ยกเลิก"
+
+msgid "SimpleSAMLphp"
+msgstr "SimpleSAMLphp"
+
+msgid "Wrong authentication context"
+msgstr "วิธีการยืนยันตัวตนไม่ตรงตามที่ระบบต้องการ"
+
+msgid "Yes, continue"
+msgstr "ใช่ ดำเนินการต่อ"
+
+msgid "You already have a valid session with an identity provider (<em>%IDP%</em>) that is not accepted by <em>%SP%</em>. Would you like to log out from your existing session and log in again with another identity provider?"
+msgstr "คุณมีเซสชันที่ถูกต้องกับผู้ให้บริการข้อมูลประจำตัว ( <em>%IDP%</em> ) อยู่แล้วซึ่งไม่ได้รับการยอมรับจาก <em>%SP%</em> คุณต้องการออกจากเซสชันปัจจุบันและเข้าสู่ระบบอีกครั้งด้วยผู้ให้บริการข้อมูลประจำตัวราย"
+
+msgid "Your authentication context is not accepted at this service. Probably too weak or not two-factor."
+msgstr "บริบทการยืนยันตัวตนของคุณไม่เป็นที่ยอมรับโดยบริการนี้ อาจจะอ่อนเกินไปหรือไม่ได้ใช้การยืนยันตัวตนสองขั้นตอน"
