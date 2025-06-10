@@ -178,7 +178,7 @@ msgid "PDO extension"
 msgstr "Phần mở rộng PDO"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:211
-#, no-php-format
+#, no-php-format,php-format
 msgid "PHP %minimum% or newer is needed. You are running: %current%"
 msgstr "Cần có PHP %minimum% hoặc mới hơn. Bạn đang chạy: %current%"
 
