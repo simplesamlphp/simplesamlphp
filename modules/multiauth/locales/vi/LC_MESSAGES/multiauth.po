@@ -1,0 +1,14 @@
+msgid ""
+msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
+"X-Domain: multiauth\n"
+
+msgid "Select an authentication source"
+msgstr "Chọn nguồn xác thực"
+
+msgid "The selected authentication source will be used to authenticate you and to create a valid session."
+msgstr "Nguồn xác thực được chọn sẽ được sử dụng để xác thực bạn và tạo phiên hợp lệ."
