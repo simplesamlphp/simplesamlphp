@@ -1,0 +1,36 @@
+msgid ""
+msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: th\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
+"X-Domain: cron\n"
+
+msgid "Click here to run the cron jobs:"
+msgstr "คลิกที่นี่เพื่อเรียกใช้งาน cron:"
+
+msgid "Cron is a way to run things regularly on unix systems."
+msgstr "Cron คือระบบที่ใช้รันงานตามเวลาที่กำหนดในระบบ Unix"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/modules/cron/hooks/hook_configpage.php:18
+msgid "Cron module information page"
+msgstr "หน้าข้อมูลโมดูล Cron"
+
+msgid "Cron ran at"
+msgstr "Cron ถูกเรียกใช้เมื่อเวลา"
+
+msgid "Cron report"
+msgstr "รายงานการทำงานของ Cron"
+
+msgid "Cron result page"
+msgstr "หน้าผลลัพธ์การทำงานของ Cron"
+
+msgid "Here are the result for the cron job execution:"
+msgstr "นี่คือผลลัพธ์จากการดำเนินการงาน cron:"
+
+msgid "Here is a suggestion for a crontab file:"
+msgstr "ตัวอย่างไฟล์ crontab ที่แนะนำ"
+
+msgid "Run cron:"
+msgstr "เรียกใช้งาน Cron:"
