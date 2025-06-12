@@ -2,22 +2,22 @@ msgid ""
 msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Language: id\n"
+"Language: vi\n"
 "MIME-Version: 1.0\n"
 "Project-Id-Version: SimpleSAMLphp\n"
 "X-Domain: debugsp\n"
 
 msgid "Logged out"
-msgstr "Anda telah keluar"
+msgstr "Đã đăng xuất"
 
 msgid "SimpleSAMLphp installation page"
-msgstr "Halaman instalasi SimpleSAMLphp"
+msgstr "Trang cài đặt SimpleSAMLphp"
 
 msgid "Test SP login"
-msgstr "Uji login SP"
+msgstr "Kiểm tra đăng nhập SP"
 
 msgid "Test another SP login for this site"
-msgstr "Menguji login SP lain untuk situs ini"
+msgstr "Kiểm tra một SP khác đăng nhập vào trang web này"
 
 msgid "You have been logged out."
-msgstr "Anda sekarang telah logout."
+msgstr "Bạn đã đăng xuất."

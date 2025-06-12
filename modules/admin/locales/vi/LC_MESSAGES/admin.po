@@ -2,118 +2,118 @@ msgid ""
 msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Language: id\n"
+"Language: vi\n"
 "MIME-Version: 1.0\n"
 "Project-Id-Version: SimpleSAMLphp\n"
 "X-Domain: admin\n"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:422
 msgid "<strong>The configuration uses the default secret salt</strong>. Make sure to modify the <code>secretsalt</code> option in the SimpleSAMLphp configuration in production environments. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-install\">Read more about the maintenance of SimpleSAMLphp</a>."
-msgstr "<strong>Konfigurasi ini menggunakan secret salt default</strong>. Pastikan untuk memodifikasi opsi <code>secretsalt</code> dalam konfigurasi SimpleSAMLphp di lingkungan produksi. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-install\">Baca lebih lanjut tentang pemeliharaan SimpleSAMLphp</a>."
+msgstr "<strong>Cấu hình sử dụng secret salt mặc định</strong> . Đảm bảo sửa đổi tùy chọn <code>secretsalt</code> trong cấu hình SimpleSAMLphp trong môi trường sản xuất. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-install\">Đọc thêm về việc bảo trì SimpleSAMLphp</a> ."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:412
 msgid "<strong>You are not using HTTPS</strong> to protect communications with your users. HTTP works fine for testing purposes, but in a production environment you should use HTTPS. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance\">Read more about the maintenance of SimpleSAMLphp</a>."
-msgstr "<strong>Anda tidak menggunakan HTTPS</strong> untuk melindungi komunikasi dengan pengguna Anda. HTTP berfungsi dengan baik untuk tujuan pengujian, tetapi dalam lingkungan produksi Anda harus menggunakan HTTPS. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance\">Baca lebih lanjut tentang pemeliharaan SimpleSAMLphp</a>."
+msgstr "<strong>Bạn không sử dụng HTTPS</strong> để bảo vệ thông tin liên lạc với người dùng của mình. HTTP hoạt động tốt cho mục đích thử nghiệm, nhưng trong môi trường sản xuất, bạn nên sử dụng HTTPS. <a href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance\">Đọc thêm về việc bảo trì SimpleSAMLphp</a> ."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:175
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:176
 msgid "ADFS IdP metadata"
-msgstr "Metadata ADFS IdP"
+msgstr "Siêu dữ liệu ADFS IdP"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:173
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:174
 msgid "ADFS SP metadata"
-msgstr "Metadata ADFS SP"
+msgstr "Siêu dữ liệu ADFS SP"
 
 msgid "An error occurred"
-msgstr "Terjadi kesalahan"
+msgstr "Có lỗi xảy ra"
 
 msgid "Authentication data"
-msgstr "Data otentikasi"
+msgstr "Dữ liệu xác thực"
 
 msgid "Back"
-msgstr "Kembali"
+msgstr "Quay lại"
 
 msgid "Certificates"
-msgstr "Sertifikat"
+msgstr "Giấy chứng nhận"
 
 msgid "Checking your PHP installation"
-msgstr "Memerika instalasi PHP Anda"
+msgstr "Kiểm tra cài đặt PHP của bạn"
 
 msgid "Checks"
-msgstr "Pemeriksaan"
+msgstr "Kiểm tra"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:33
 msgid "Configuration"
-msgstr "Konfigurasi"
+msgstr "Cấu hình"
 
 msgid "Content of jpegPhoto attribute"
-msgstr "Isi atribut jpegPhoto"
+msgstr "Nội dung của thuộc tính jpegPhoto"
 
 msgid "Converted metadata"
-msgstr "Metadata yang telah dikonvesi"
+msgstr "Siêu dữ liệu đã chuyển đổi"
 
 msgid "Copy to clipboard"
-msgstr "Salin ke papan klip"
+msgstr "Sao chép vào bộ nhớ tạm thời"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:228
 msgid "Date/Time Extension"
-msgstr "Perpanjangan Tanggal/Waktu"
+msgstr "Ngày/Giờ mở rộng"
 
 msgid "Deprecated"
-msgstr "Usang"
+msgstr "Không dùng nữa"
 
 msgid "Details"
-msgstr "Detail"
+msgstr "Chi tiết"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:133
 msgid "Diagnostics on hostname, port and protocol"
-msgstr "Diagnostik pada hostname, port dan protokol"
+msgstr "Chẩn đoán tên máy chủ, cổng và giao thức"
 
 msgid "EntityID"
-msgstr "EntityID"
+msgstr "ID thực thể"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:41
 msgid "Federation"
-msgstr "Federasi"
+msgstr "Liên bang"
 
 msgid "Format"
-msgstr "Format"
+msgstr "Định dạng"
 
 msgid "Go back to SimpleSAMLphp installation page"
-msgstr "Kembali ke halaman instalasi SimpleSAMLphp"
+msgstr "Quay lại trang cài đặt SimpleSAMLphp"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:234
 msgid "Hashing function"
-msgstr "Fungsi hashing"
+msgstr "Hàm băm"
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Hai, ini adalah halaman status SimpleSAMLphp. Di sini Anda dapat melihat apakah sesi Anda habis, berapa lama waktu yang tersisa hingga habis, dan semua atribut yang dilampirkan pada sesi Anda."
+msgstr "Xin chào, đây là trang trạng thái của SimpleSAMLphp. Tại đây, bạn có thể xem phiên của mình đã hết thời gian chưa, thời gian hết thời gian kéo dài bao lâu và tất cả các thuộc tính được đính kèm vào phiên của bạn."
 
 msgid "Hosted IdP metadata present"
-msgstr "Metadata IdP yang dihosting hadir"
+msgstr "Siêu dữ liệu IdP được lưu trữ hiện tại"
 
 msgid "Hosted entities"
-msgstr "Entitas yang dihosting"
+msgstr "Các thực thể được lưu trữ"
 
 msgid "In SAML 2.0 Metadata XML format:"
-msgstr "Dalam format XML Metadata SAML 2.0:"
+msgstr "Ở định dạng XML siêu dữ liệu SAML 2.0:"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:137
 msgid "Information on your PHP installation"
-msgstr "Informasi tentang instalasi PHP Anda"
+msgstr "Thông tin về cài đặt PHP của bạn"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:270
 msgid "JSON support"
-msgstr "Dukungan JSON"
+msgstr "Hỗ trợ JSON"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:314
 msgid "LDAP extension"
-msgstr "Ekstensi LDAP"
+msgstr "Phần mở rộng LDAP"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:313
 msgid "LDAP extension (required if an LDAP backend is used)"
-msgstr "Ekstensi LDAP (diperlukan jika backend LDAP digunakan)"
+msgstr "Phần mở rộng LDAP (bắt buộc nếu sử dụng phần phụ trợ LDAP)"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:184
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:485
@@ -121,49 +121,49 @@ msgstr "Ekstensi LDAP (diperlukan jika backend LDAP digunakan)"
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:149
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Test.php:156
 msgid "Log out"
-msgstr "Keluar"
+msgstr "Đăng xuất"
 
 msgid "Logged out"
-msgstr "Anda telah keluar"
+msgstr "Đã đăng xuất"
 
 msgid "Logout"
-msgstr "Keluar"
+msgstr "Đăng xuất"
 
 msgid "Look up metadata for entity:"
-msgstr "Mencari metadata untuk entitas:"
+msgstr "Tra cứu siêu dữ liệu cho thực thể:"
 
 msgid "Matching key-pair for signing assertions"
-msgstr "Mencocokkan pasangan kunci untuk menandatangani pernyataan"
+msgstr "Phù hợp 2 bước khóa để ký xác nhận"
 
 msgid "Matching key-pair for signing assertions (rollover key)"
-msgstr "Mencocokkan pasangan kunci untuk menandatangani pernyataan (kunci rollover)"
+msgstr "2 bước khóa phù hợp để ký xác nhận"
 
 msgid "Matching key-pair for signing metadata"
-msgstr "Mencocokkan pasangan kunci untuk menandatangani metadata"
+msgstr "2 bước khóa phù hợp để ký siêu dứ liệu"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:344
 msgid "Memcache or Memcached extension"
-msgstr "Ekstensi Memcache atau Memcached"
+msgstr "Mở rộng Memcache hoặc Memcached"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:341
 msgid "Memcache or Memcached extension (required if the memcache backend is used)"
-msgstr "Ekstensi Memcache atau Memcached (diperlukan jika backend memcache digunakan)"
+msgstr "Phần mở rộng Memcache hoặc Memcached (bắt buộc nếu sử dụng phần phụ trợ memcache)"
 
 msgid "Metadata"
-msgstr "Metadata"
+msgstr "Siêu dữ liệu"
 
 msgid "Metadata parser"
-msgstr "Pengurai metadata"
+msgstr "Trình phân tích siêu dữ liệu"
 
 msgid "Modules"
-msgstr "Modul"
+msgstr "Mô-đun"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:282
 msgid "Multibyte String extension"
-msgstr "Ekstensi String Multibyte"
+msgstr "Phần mở rộng chuỗi Multibyte"
 
 msgid "No file selected."
-msgstr "Ttak ada berkas yang dipilih."
+msgstr "Không có tệp được chọn."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:246
 msgid "OpenSSL"
@@ -171,147 +171,147 @@ msgstr "OpenSSL"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:306
 msgid "PDO Extension (required if a database backend is used)"
-msgstr "Ekstensi PDO (diperlukan jika backend basis data digunakan)"
+msgstr "Phần mở rộng PDO (bắt buộc nếu sử dụng cơ sở dữ liệu phụ trợ)"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:307
 msgid "PDO extension"
-msgstr "Perpanjangan PDO"
+msgstr "Phần mở rộng PDO"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:211
 #, no-php-format,php-format
 msgid "PHP %minimum% or newer is needed. You are running: %current%"
-msgstr "PHP %minimum% atau yang lebih baru diperlukan. Anda sedang menjalankan: %current%"
+msgstr "Cần có PHP %minimum% hoặc mới hơn. Bạn đang chạy: %current%"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:264
 msgid "PHP intl extension"
-msgstr "Ekstensi PHP intl"
+msgstr "Phần mở rộng PHP quốc tế"
 
 msgid "Parse"
-msgstr "Parse"
+msgstr "Phân tích"
 
 msgid "Radius extension"
-msgstr "Perpanjangan radius"
+msgstr "Radius extension"
 
 msgid "Radius extension (required if a radius backend is used)"
-msgstr "Ekstensi radius (diperlukan jika backend radius digunakan)"
+msgstr "Radius extension (required if a radius backend is used)"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:258
 msgid "Regular expression support"
-msgstr "Dukungan ekspresi reguler"
+msgstr "Hỗ trợ biểu thức chính quy"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:171
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:172
 msgid "SAML 2.0 IdP metadata"
-msgstr "Metadata SAML 2.0 IdP"
+msgstr "Siêu dữ liệu IdP SAML 2.0"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:169
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:170
 msgid "SAML 2.0 SP metadata"
-msgstr "Metadata SAML 2.0 SP"
+msgstr "Siêu dữ liệu SAML 2.0 SP"
 
 msgid "SAML Metadata"
-msgstr "Metadata SAML"
+msgstr "Siêu dữ liệu SAML"
 
 msgid "SAML Subject"
-msgstr "Subjek SAML"
+msgstr "Chủ đề SAML"
 
 msgid "Search"
-msgstr "Cari"
+msgstr "Tìm kiếm"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:300
 msgid "Session extension"
-msgstr "Perpanjangan sesi"
+msgstr "Session extension"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:299
 msgid "Session extension (required if PHP sessions are used)"
-msgstr "Ekstensi sesi (diperlukan jika sesi PHP digunakan)"
+msgstr "Session extension (required if PHP sessions are used)"
 
 msgid "SimpleSAMLphp Metadata"
-msgstr "Metadata SimpleSAMLphp"
+msgstr "Siêu dữ liệu SimpleSAMLphp"
 
 msgid "SimpleSAMLphp Show Metadata"
-msgstr "SimpleSAMLphp Tampilkan Metadata"
+msgstr "SimpleSAMLphp Hiển thị siêu dữ liệu"
 
 msgid "SimpleSAMLphp installation page"
-msgstr "Halaman instalasi SimpleSAMLphp"
+msgstr "Trang cài đặt SimpleSAMLphp"
 
 msgid "SimpleSAMLphp is installed in:"
-msgstr "SimpleSAMLphp diinstal di:"
+msgstr "SimpleSAMLphp được cài đặt trong:"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:276
 msgid "Standard PHP library (SPL)"
-msgstr "Perpustakaan PHP standar (SPL)"
+msgstr "Thư viện PHP chuẩn (SPL)"
 
 msgid "Technical information"
-msgstr "Informasi teknis"
+msgstr "Thông tin kỹ thuật"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Menu.php:37
 msgid "Test"
-msgstr "Uji"
+msgstr "Kiểm tra"
 
 msgid "Test Authentication Sources"
-msgstr "Menguji Sumber Autentikasi"
+msgstr "Kiểm tra nguồn xác thực"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:430
 msgid "The \"secretsalt\" configuration option may not contain a `%` sign."
-msgstr "Opsi konfigurasi \"secretsalt\" mungkin tidak mengandung tanda `%`."
+msgstr "Tùy chọn cấu hình \"secretsalt\" không được chứa dấu `%`."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:366
 msgid "The <code>technicalcontact_email</code> configuration option should be set"
-msgstr "Opsi konfigurasi <code>technicalcontact_email</code> harus ditetapkan"
+msgstr "Tùy chọn cấu hình <code>technicalcontact_email</code> phải được thiết lập"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:372
 msgid "The auth.adminpassword configuration option must be set"
-msgstr "Opsi konfigurasi auth.adminpassword harus ditetapkan"
+msgstr "Tùy chọn cấu hình auth.adminpassword phải được thiết lập"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:437
 msgid "The cURL PHP extension is missing. Cannot check for SimpleSAMLphp updates."
-msgstr "Ekstensi PHP cURL tidak ada. Tidak dapat memeriksa pembaruan SimpleSAMLphp."
+msgstr "Phần mở rộng PHP cURL bị thiếu. Không thể kiểm tra các bản cập nhật SimpleSAMLphp."
 
 msgid "Tools"
-msgstr "Peralatan"
+msgstr "Công cụ"
 
 msgid "Trusted entities"
-msgstr "Entitas tepercaya"
+msgstr "Các thực thể đáng tin cậy"
 
 msgid "Type:"
-msgstr "Tipe:"
+msgstr "Loại:"
 
 msgid "Use this if you are using a SimpleSAMLphp entity on the other side:"
-msgstr "Gunakan ini jika Anda menggunakan entitas SimpleSAMLphp di sisi lain:"
+msgstr "Sử dụng lệnh này nếu bạn đang sử dụng thực thể SimpleSAMLphp ở phía bên kia:"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:252
 msgid "XML DOM"
-msgstr "XML DOM"
+msgstr "DOM XML"
 
 msgid "XML metadata"
-msgstr "metadata XML"
+msgstr "Siêu dữ liệu XML"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Federation.php:164
 msgid "XML to SimpleSAMLphp metadata converter"
-msgstr "Konverter XML ke metadata SimpleSAMLphp"
+msgstr "Bộ chuyển đổi siêu dữ liệu XML sang SimpleSAMLphp"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:462
 msgid "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%latest%\">the latest version</a> as soon as possible."
-msgstr "Anda menjalankan versi SimpleSAMLphp yang sudah ketinggalan zaman. Harap perbarui ke <a href=\"%latest%\">versi terbaru</a> sesegera mungkin."
+msgstr "Bạn đang chạy phiên bản cũ của SimpleSAMLphp. Vui lòng cập nhật lên <a href=\"%latest%\">phiên bản mới nhất</a> sớm nhất có thể."
 
 msgid "You are running version <kbd>%version%</kbd>."
-msgstr "Anda sedang menjalankan versi <kbd>%version%</kbd>."
+msgstr "Bạn đang chạy phiên bản <kbd>%version%</kbd> ."
 
 msgid "You can get the metadata XML on a dedicated URL:"
-msgstr "Anda bisa mendapatkan XML metadata pada URL khusus:"
+msgstr "Bạn có thể lấy siêu dữ liệu XML trên một URL chuyên dụng:"
 
 msgid "You have been logged out."
-msgstr "Kamu Sudah Keluar."
+msgstr "Bạn đã đăng xuất."
 
 msgid "You have the following modules installed"
-msgstr "Anda telah menginstal modul-modul berikut ini"
+msgstr "Bạn đã cài đặt các mô-đun sau"
 
 msgid "Your attributes"
-msgstr "Attribut Anda"
+msgstr "Thuộc tính của bạn"
 
 msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Session anda valid untuk %remaining% detik dari sekarang."
+msgstr "Phiên của bạn có hiệu lực trong %remaining% giây kể từ bây giờ."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:240
 msgid "ZLib"
@@ -319,49 +319,49 @@ msgstr "ZLib"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:288
 msgid "cURL (might be required by some modules)"
-msgstr "cURL (mungkin diperlukan oleh beberapa modul)"
+msgstr "cURL (có thể được yêu cầu bởi một số mô-đun)"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:291
 msgid "cURL (required if automatic version checks are used, also by some modules)"
-msgstr "cURL (diperlukan jika pemeriksaan versi otomatis digunakan, juga oleh beberapa modul)"
+msgstr "cURL (bắt buộc nếu sử dụng kiểm tra phiên bản tự động, cũng bởi một số mô-đun)"
 
 msgid "default"
-msgstr "bawaan"
+msgstr "mặc định"
 
 msgid "disabled"
-msgstr "dinonaktifkan"
+msgstr "vô hiệu hóa"
 
 msgid "enabled"
-msgstr "difungsikan"
+msgstr "đã bật"
 
 msgid "expired"
-msgstr "kadaluwarsa"
+msgstr "đã hết hạn"
 
 msgid "expires"
-msgstr "berakhir"
+msgstr "hết hạn"
 
 msgid "means the module is not enabled"
-msgstr "berarti modul tidak diaktifkan"
+msgstr "có nghĩa là mô-đun không được kích hoạt"
 
 msgid "new"
-msgstr "baru"
+msgstr "mới"
 
 msgid "not set"
-msgstr "tidak di atur"
+msgstr "không được thiết lập"
 
 msgid "optional"
-msgstr "opsional"
+msgstr "không bắt buộc"
 
 msgid "or select a file:"
-msgstr "atau pilih sebuah file:"
+msgstr "hoặc chọn một tập tin:"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:333
 msgid "predis/predis (required if the redis data store is used)"
-msgstr "predis/predis (diperlukan jika penyimpanan data redis digunakan)"
+msgstr "predis/predis (bắt buộc nếu sử dụng kho dữ liệu redis)"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/admin/src/Controller/Config.php:334
 msgid "predis/predis library"
-msgstr "perpustakaan predis/predis"
+msgstr "thư viện predis/predis"
 
 msgid "required"
-msgstr "diperlukan"
+msgstr "yêu cầu"

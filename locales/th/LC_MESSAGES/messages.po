@@ -1,0 +1,805 @@
+msgid ""
+msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: th\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
+"X-Domain: messages\n"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:189
+msgid "%MESSAGE%"
+msgstr "%MESSAGE%"
+
+msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
+msgstr "กรุณายืนยันตัวตนของคุณ โดยใส่ชื่อผู้ใช้และรหัสผ่านในช่องด้านล่าง"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
+msgid "Admin password not set to a hashed value"
+msgstr "รหัสผ่านของผู้ดูแลระบบ (Admin) ยังไม่ได้ถูกเข้ารหัส (hash)"
+
+msgid "Affiliation"
+msgstr "หน่วยงาน/สังกัด"
+
+msgid "Affiliation at home organization"
+msgstr "หน่วยงานต้นสังกัดของผู้ใช้"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:196
+msgid "An error occurred when trying to create the SAML request."
+msgstr "เกิดข้อผิดพลาดขณะพยายามสร้างคำขอ SAML"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:218
+msgid "An error occurred when trying to process the Logout Request."
+msgstr "เกิดข้อผิดพลาดขณะประมวลผลคำขอออกจากระบบ"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:257
+msgid "An unhandled exception was thrown."
+msgstr "พบข้อผิดพลาดที่ระบบไม่ได้จัดการไว้"
+
+msgid "As you are in debug mode, you get to see the content of the message you are sending:"
+msgstr "เมื่อคุณอยู่ในโหมดแก้ไขข้อบกพร่อง คุณสามารถดูเนื้อหาของข้อความที่คุณกำลังส่งได้:"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
+msgid "Authentication aborted"
+msgstr "การยืนยันตัวตนถูกยกเลิก"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:191
+msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
+msgstr "เกิดข้อผิดพลาดในการยืนยันจากแหล่งที่มา %AUTHSOURCE% สาเหตุคือ: %REASON%"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:203
+msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
+msgstr "การยืนยันล้มเหลว: ใบรับรองที่เบราว์เซอร์ของคุณส่งมาไม่ถูกต้องหรือไม่สามารถอ่านได้"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:258
+msgid "Authentication failed: the certificate your browser sent is unknown"
+msgstr "การยืนยันล้มเหลว: ใบรับรองที่เบราว์เซอร์ของคุณส่งมาไม่พบข้อมูล"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
+msgid "Authentication failed: your browser did not send any certificate"
+msgstr "การยืนยันล้มเหลว: เบราว์เซอร์ของคุณไม่ได้ส่งใบรับรองมา"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:72
+msgid "Authentication source error"
+msgstr "เกิดข้อผิดพลาดจากแหล่งที่มายืนยันตัวตน"
+
+msgid "Authentication status"
+msgstr "สถานะการยืนยันตัวตน"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
+msgid "Bad request received"
+msgstr "รับคำขอที่ไม่ถูกต้อง"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:77
+msgid "Bad request to discovery service"
+msgstr "คำขอที่ไม่ถูกต้องไปยังบริการค้นหา"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
+msgid "CAS Error"
+msgstr "ข้อผิดพลาดของระบบ CAS"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
+msgid "Cannot retrieve session data"
+msgstr "ไม่สามารถดึงข้อมูลเซสชันได้"
+
+msgid "Certificates"
+msgstr "ใบรับรอง"
+
+msgid "Change your home organization"
+msgstr "เปลี่ยนหน่วยงานต้นสังกัดของคุณ"
+
+msgid "Choose home organization"
+msgstr "เลือกหน่วยงานต้นสังกัด"
+
+msgid "Choose your home organization"
+msgstr "เลือกหน่วยงานต้นสังกัดของคุณ"
+
+msgid "Common name"
+msgstr "ชื่อทั่วไปที่ใช้ระบุตัวตนในใบรับรอง"
+
+msgid "Completed"
+msgstr "เสร็จสมบูรณ์"
+
+msgid "Configuration check"
+msgstr "ตรวจสอบการตั้งค่า"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:75
+msgid "Configuration error"
+msgstr "ข้อผิดพลาดในการตั้งค่า"
+
+msgid "Contact information:"
+msgstr "ข้อมูลติดต่อ:"
+
+msgid "Converted metadata"
+msgstr "ข้อมูลเมตาที่แปลงแล้ว"
+
+msgid "Copy to clipboard"
+msgstr "คัดลอกไปยังคลิปบอร์ด"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
+msgid "Could not create authentication response"
+msgstr "ไม่สามารถสร้างการตอบกลับการยืนยันตัวตนได้"
+
+msgid "Date of birth"
+msgstr "วันเดือนปีเกิด"
+
+msgid "Debug information"
+msgstr "ข้อมูลสำหรับการวิเคราะห์ปัญหา"
+
+msgid "Debug information to be used by your support staff"
+msgstr "ข้อมูลสำหรับการตรวจสอบระบบโดยเจ้าหน้าที่สนับสนุนของคุณ"
+
+msgid "Display name"
+msgstr "ชื่อที่แสดง"
+
+msgid "Distinguished name (DN) of person's home organization"
+msgstr "Distinguished name (DN) of person's home organization"
+
+msgid "Distinguished name (DN) of person's primary Organizational Unit"
+msgstr "Distinguished name (DN) of person's primary Organizational Unit"
+
+msgid "Distinguished name (DN) of the person's home organizational unit"
+msgstr "Distinguished name (DN) of the person's home organizational unit"
+
+msgid "Do you want to logout from all the services above?"
+msgstr "คุณต้องการออกจากระบบบริการทั้งหมดข้างต้นหรือไม่?"
+
+msgid "Domain component (DC)"
+msgstr "Domain component(DC)"
+
+msgid "Download the X509 certificates as PEM-encoded files."
+msgstr "ดาวน์โหลดใบรับรอง X509 ในรูปแบบไฟล์ PEM"
+
+msgid "E-mail address:"
+msgstr "ที่อยู่อีเมล:"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:260
+msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
+msgstr "ไม่พบบัญชีผู้ใช้ตามชื่อที่ระบุ หรือรหัสผ่านไม่ถูกต้อง กรุณาตรวจสอบและลองอีกครั้ง"
+
+msgid "Enter your username and password"
+msgstr "กรุณากรอกชื่อผู้ใช้และรหัสผ่านของคุณ"
+
+msgid "Entitlement regarding the service"
+msgstr "สิทธิ์ในการใช้งานบริการ"
+
+msgid "Error"
+msgstr "ข้อผิดพลาด"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:76
+msgid "Error creating request"
+msgstr "ข้อผิดพลาดในการสร้างคำขอ"
+
+msgid "Error in this metadata entry"
+msgstr "ข้อผิดพลาดในการกรอกข้อมูลเมตานี้"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
+msgid "Error loading metadata"
+msgstr "ข้อผิดพลาดในการโหลดข้อมูลเมตา"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
+msgid "Error processing request from Service Provider"
+msgstr "ข้อผิดพลาดในการประมวลผลคำขอจากผู้ให้บริการ"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
+msgid "Error processing response from Identity Provider"
+msgstr "ข้อผิดพลาดในการประมวลผลคำตอบจากผู้ให้บริการยืนยันตัวตน"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:82
+msgid "Error processing the Logout Request"
+msgstr "ข้อผิดพลาดในการประมวลผลคำขอออกจากระบบ"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
+msgid "Error received from Identity Provider"
+msgstr "ได้รับข้อผิดพลาดจากผู้ให้บริการยืนยันตัวตน"
+
+msgid "Error report sent"
+msgstr "ส่งรายงานข้อผิดพลาดแล้ว"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
+msgid "Error when communicating with the CAS server."
+msgstr "ข้อผิดพลาดในการสื่อสารกับเซิร์ฟเวอร์ CAS."
+
+msgid "Explain what you did when this error occurred..."
+msgstr "กรุณาอธิบายว่าคุณทำอะไรในขณะที่เกิดข้อผิดพลาดนี้"
+
+msgid "Fax number"
+msgstr "หมายเลขโทรสาร"
+
+msgid "Format"
+msgstr "รูปแบบ"
+
+msgid "Given name"
+msgstr "ชื่อจริง"
+
+msgid "Go back to SimpleSAMLphp installation page"
+msgstr "กลับไปยังหน้าการติดตั้ง SimpleSAMLphp"
+
+msgid "Go back to the file list"
+msgstr "กลับไปยังรายการไฟล์"
+
+msgid "Hello, Untranslated World!"
+msgstr "สวัสดีครับ/ค่ะ โลกที่ยังไม่ได้รับการแปลภาษา"
+
+msgid "Help desk homepage"
+msgstr "หน้าหลักของศูนย์ช่วยเหลือ"
+
+msgid "Help! I don't remember my password."
+msgstr "ขอความช่วยเหลือ! ฉันจำรหัสผ่านไม่ได้"
+
+msgid "Here is the metadata that SimpleSAMLphp has generated for you. You may send this metadata document to trusted partners to setup a trusted federation."
+msgstr "นี่คือข้อมูลเมตาที่ SimpleSAMLphp สร้างขึ้น คุณสามารถส่งเอกสารข้อมูลนี้ไปยังพาร์ทเนอร์เพื่อรูปแบบของระบบเฟเดอเรชัน (Federation) ที่มีความน่าเชื่อถือและปลอดภัย"
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "นี่คือหน้าสถานะของ SimpleSAMLphp ซึ่งคุณสามารถดูได้ว่าการใช้งานหมดเวลาหรือไม่ ใช้งานได้นานแค่ไหน และมีคุณลักษณะใดแนบมากับเซสชันของคุณ"
+
+msgid "Home organization domain name"
+msgstr "ชื่อโดเมนของหน่วยงานต้นสังกัด"
+
+msgid "Home postal address"
+msgstr "ที่อยู่ไปรษณีย์ของหน่วยงานต้นสังกัด"
+
+msgid "Home telephone"
+msgstr "เบอร์โทรศัพท์ของหน่วยงานต้นสังกัด"
+
+msgid "How to get help"
+msgstr "วิธีการรับความช่วยเหลือ"
+
+msgid "Identity assurance profile"
+msgstr "โปรไฟล์การยืนยันตัวตน"
+
+msgid "Identity number assigned by public authorities"
+msgstr "หมายเลขประจำตัวที่ออกโดยหน่วยงานทางราชการ"
+
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "หากคุณต้องการรายงานข้อผิดพลาดนี้ กรุณาระบุหมายเลขติดตามเพื่อให้ผู้ดูแลระบบสามารถค้นหาเซสชันของคุณจากบันทึกในระบบได้"
+
+msgid "In SAML 2.0 Metadata XML format:"
+msgstr "ในรูปแบบ XML เมตาดาต้า SAML 2.0:"
+
+msgid "In SimpleSAMLphp flat file format - use this if you are using a SimpleSAMLphp entity on the other side:"
+msgstr "ในรูปแบบไฟล์ธรรมดาของ SimpleSAMLphp - ใช้หากคุณใช้ SimpleSAMLphp เป็นฝั่งหนึ่ง"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
+msgid "Incorrect username or password"
+msgstr "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง"
+
+msgid "Incorrect username or password."
+msgstr "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง"
+
+msgid "Information about your current session"
+msgstr "ข้อมูลเกี่ยวกับเซสชันปัจจุบันของคุณ"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
+msgid "Invalid certificate"
+msgstr "ใบรับรองไม่ถูกต้อง"
+
+msgid "JPEG Photo"
+msgstr "รูปภาพ JPEG"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:80
+msgid "LDAP Error"
+msgstr "ข้อผิดพลาดของ LDAP"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:206
+msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
+msgstr "LDAP คือฐานข้อมูลผู้ใช้ และเมื่อคุณพยายามเข้าสู่ระบบ เราจำเป็นต้องติดต่อกับฐานข้อมูล LDAP ซึ่งครั้งนี้เกิดข้อผิดพลาด"
+
+msgid "Labeled URI"
+msgstr "URI ที่มีป้ายกำกับ"
+
+msgid "Language"
+msgstr "ภาษา"
+
+msgid "Legal name"
+msgstr "ชื่อทางกฎหมาย"
+
+msgid "Local identity number"
+msgstr "หมายเลขประจำตัวประชาชน"
+
+msgid "Locality"
+msgstr "เขต/ท้องถิ่น"
+
+msgid "Logged out"
+msgstr "ออกจากระบบแล้ว"
+
+msgid "Logging out of the following services:"
+msgstr "กำลังออกจากระบบบริการต่อไปนี้:"
+
+msgid "Logging out..."
+msgstr "กำลังออกจากระบบ..."
+
+msgid "Login"
+msgstr "เข้าสู่ระบบ"
+
+msgid "Login at"
+msgstr "เข้าสู่ระบบได้ที่"
+
+msgid "Logout"
+msgstr "ออกจากระบบ"
+
+msgid "Logout failed"
+msgstr "ออกจากระบบไม่สำเร็จ"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:81
+msgid "Logout information lost"
+msgstr "ข้อมูลการออกจากระบบสูญหาย"
+
+msgid "Mail"
+msgstr "อีเมล"
+
+msgid "Manager"
+msgstr "ผู้จัดการ"
+
+msgid "Message"
+msgstr "ข้อความ"
+
+msgid "Metadata"
+msgstr "เมตาดาต้า"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:85
+msgid "Metadata not found"
+msgstr "ไม่พบข้อมูลเมตา"
+
+msgid "Metadata overview"
+msgstr "ภาพรวมข้อมูลเมตา"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:90
+msgid "Method not allowed"
+msgstr "วิธีการไม่รองรับ"
+
+msgid "Mobile"
+msgstr "มือถือ"
+
+msgid "Next"
+msgstr "ถัดไป"
+
+msgid "Nickname"
+msgstr "ชื่อเล่น"
+
+msgid "No"
+msgstr "ไม่"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:88
+msgid "No RelayState"
+msgstr "ระบบไม่ได้รับข้อมูลตำแหน่งปลายทางนี้"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:71
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
+msgid "No SAML message provided"
+msgstr "ระบบไม่สามารถดำเนินการต่อได้ เพราะไม่มีข้อมูลยืนยันตัวตน"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
+msgid "No SAML request provided"
+msgstr "ระบบไม่ได้รับคำขอเพื่อเริ่มกระบวนการยืนยันตัวตน"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
+msgid "No SAML response provided"
+msgstr "ระบบไม่ได้รับข้อมูลตอบกลับจากผู้ให้บริการยืนยันตัวตน"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:86
+msgid "No access"
+msgstr "ไม่มีการเข้าถึง"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:87
+msgid "No certificate"
+msgstr "ไม่มีใบรับรอง"
+
+msgid "No errors found."
+msgstr "ไม่พบข้อผิดพลาด."
+
+msgid "No identity providers found. Cannot continue."
+msgstr "ไม่พบผู้ให้บริการระบุตัวตน ไม่สามารถดำเนินการต่อได้"
+
+msgid "No, cancel"
+msgstr "ไม่, ยกเลิก"
+
+msgid "No, only %SP%"
+msgstr "ไม่ มีเพียง %SP% เท่านั้น"
+
+msgid "Notices"
+msgstr "ประกาศ"
+
+msgid "On hold"
+msgstr "รอดำเนินการ"
+
+msgid "One or more of the services you are logged into <i>do not support logout</i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "บริการหนึ่งรายการหรือมากกว่าที่คุณเข้าสู่ระบบ <i>ไม่รองรับการออกจากระบบ</i> เพื่อให้แน่ใจว่าเซสชันทั้งหมดของคุณถูกปิดแล้ว คุณควร <i>ปิดเว็บเบราว์เซอร์ของคุณ</i>"
+
+msgid "Optional fields"
+msgstr "ช่องข้อมูลเพิ่มเติม (ไม่จำเป็นต้องกรอก)"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "คุณสามารถกรอกอีเมลเพื่อให้ผู้ดูแลระบบติดต่อกลับในกรณีที่มีคำถามเพิ่มเติมเกี่ยวกับปัญหาของคุณ"
+
+msgid "Options missing from config file"
+msgstr "ตัวเลือกบางรายการในไฟล์กำหนดค่า (config file) ยังไม่ได้ถูกกำหนด"
+
+msgid "Organization"
+msgstr "หน่วยงานต้นสังกัด"
+
+msgid "Organization name"
+msgstr "ชื่อหน่วยงานต้นสังกัด"
+
+msgid "Organization's legal name"
+msgstr "ชื่อทางกฎหมายของหน่วยงานต้นสังกัด"
+
+msgid "Organizational homepage"
+msgstr "หน้าแรกของหน่วยงานต้นสังกัด"
+
+msgid "Organizational number"
+msgstr "หมายเลขหน่วยงานต้นสังกัด"
+
+msgid "Organizational unit"
+msgstr "หน่วยงานในต้นสังกัด"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:90
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:91
+msgid "Page not found"
+msgstr "ไม่พบหน้านี้"
+
+msgid "Parse"
+msgstr "ประมวลผลข้อมูล"
+
+msgid "Password"
+msgstr "รหัสผ่าน"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
+msgid "Password not set"
+msgstr "ยังไม่ได้ตั้งรหัสผ่าน"
+
+msgid "Persistent pseudonymous ID"
+msgstr "รหัสประจำตัวที่ไม่เปิดเผยชื่อจริงของผู้ใช้"
+
+msgid "Person's principal name at home organization"
+msgstr "ชื่อหลักของผู้ใช้ในหน่วยงานต้นทาง"
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "กรุณาเลือกผู้ให้บริการยืนยันตัวตนที่คุณต้องการใช้"
+
+msgid "Post office box"
+msgstr "ตู้ไปรษณีย์"
+
+msgid "Postal address"
+msgstr "ที่อยู่ไปรษณีย์"
+
+msgid "Postal code"
+msgstr "รหัสไปรษณีย์"
+
+msgid "Preferred language"
+msgstr "ภาษาที่ต้องการใช้"
+
+msgid "Primary affiliation"
+msgstr "สังกัดหลัก"
+
+msgid "Private information elements"
+msgstr "ข้อมูลส่วนบุคคล"
+
+msgid "Remember"
+msgstr "จดจำ"
+
+msgid "Remember my choice"
+msgstr "จดจำตัวเลือกของฉัน"
+
+msgid "Report errors"
+msgstr "รายงานข้อผิดพลาด"
+
+msgid "Required fields"
+msgstr "ช่องที่จำเป็นต้องกรอก"
+
+msgid "Return to service"
+msgstr "กลับสู่การบริการ"
+
+msgid "SAML 2.0 Identity Provider (Hosted)"
+msgstr "Identity Provider SAML 2.0 (Hosted)"
+
+msgid "SAML 2.0 Identity Provider (Remote)"
+msgstr "Identity Provider SAML 2.0 (Remote)"
+
+msgid "SAML 2.0 SP Demo Example"
+msgstr "ตัวอย่างสาธิต SAML 2.0 SP"
+
+msgid "SAML 2.0 SP Metadata"
+msgstr "ข้อมูลเมตาของ SAML 2.0 SP"
+
+msgid "SAML 2.0 Service Provider (Hosted)"
+msgstr "Service Provider SAML 2.0 (Hosted)"
+
+msgid "SAML Subject"
+msgstr "ผู้ใช้ที่กำลังยืนยันตัวตนผ่านระบบ SAML"
+
+msgid "Select"
+msgstr "เลือก"
+
+msgid "Select configuration file to check:"
+msgstr "เลือกไฟล์การตั้งค่าที่ต้องการตรวจสอบ:"
+
+msgid "Select your identity provider"
+msgstr "เลือกผู้ให้บริการยืนยันตัวตนของคุณ"
+
+msgid "Send e-mail to help desk"
+msgstr "ส่งอีเมลไปยังฝ่ายช่วยเหลือ"
+
+msgid "Send error report"
+msgstr "ส่งรายงานข้อผิดพลาด"
+
+msgid "Sending message"
+msgstr "กำลังส่งข้อความ"
+
+msgid "Service Provider"
+msgstr "ผู้ให้บริการ"
+
+msgid "Session size: %SIZE%"
+msgstr "ขนาดเซสชัน: %SIZE%"
+
+msgid "Shib 1.3 IdP Metadata"
+msgstr "ข้อมูลเมตาของ Shib 1.3 IdP"
+
+msgid "Shib 1.3 Identity Provider (Hosted)"
+msgstr "Shib 1.3 Identity Provider (Hosted)"
+
+msgid "Shib 1.3 Identity Provider (Remote)"
+msgstr "Shib 1.3 Identity Provider (Remote)"
+
+msgid "Shib 1.3 SP Metadata"
+msgstr "Shib 1.3 SP Metadata"
+
+msgid "Shib 1.3 Service Provider (Hosted)"
+msgstr "Shib 1.3 Service Provider (Hosted)"
+
+msgid "Shib 1.3 Service Provider (Remote)"
+msgstr "Shib 1.3 Service Provider (Remote)"
+
+msgid "Shibboleth demo"
+msgstr "สาธิตการทำงานของระบบ Shibboleth"
+
+msgid "SimpleSAMLphp Diagnostics"
+msgstr "การวินิจฉัย SimpleSAMLphp"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:195
+msgid "SimpleSAMLphp appears to be misconfigured."
+msgstr "ดูเหมือนว่า SimpleSAMLphp มีการตั้งค่าผิดพลาด"
+
+msgid "SimpleSAMLphp error"
+msgstr "ข้อผิดพลาด SimpleSAMLphp"
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr "เนื่องจากเบราว์เซอร์ของคุณไม่รองรับ Javascript โปรดกดปุ่มด้านล่างเพื่อดำเนินการต่อ"
+
+msgid "Some error occurred"
+msgstr "เกิดข้อผิดพลาดบางประการ"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
+msgid "State information lost"
+msgstr "ข้อมูลสถานะสูญหาย"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:234
+msgid "State information lost, and no way to restart the request"
+msgstr "ข้อมูลสถานะสูญหาย และไม่สามารถเริ่มคำขอใหม่ได้"
+
+msgid "Street"
+msgstr "ถนน"
+
+msgid "Submit message"
+msgstr "ส่งข้อความ"
+
+msgid "Superfluous options in config file"
+msgstr "ตัวเลือกเกินความจำเป็นในไฟล์กำหนดค่า (Config File)"
+
+msgid "Surname"
+msgstr "นามสกุล"
+
+msgid "Telephone number"
+msgstr "หมายเลขโทรศัพท์"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
+msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
+msgstr "ผู้ให้บริการยืนยันตัวตนตอบกลับด้วยข้อผิดพลาด (รหัสสถานะใน SAML Response ไม่สำเร็จ)"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:259
+msgid "The authentication was aborted by the user"
+msgstr "การยืนยันตัวตนถูกยกเลิกโดยผู้ใช้"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "ข้อมูลการแก้ไขข้อบกพร่องด้านล่างอาจเป็นประโยชน์ต่อผู้ดูแลระบบ / ศูนย์ช่วยเหลือ"
+
+msgid "The error report has been sent to the administrators."
+msgstr "รายงานข้อผิดพลาดได้ถูกส่งไปยังผู้ดูแลระบบแล้ว"
+
+msgid "The following fields was not recognized"
+msgstr "ไม่สามารถระบุช่องข้อมูลต่อไปนี้ได้"
+
+msgid "The following optional fields was not found"
+msgstr "ไม่พบช่องข้อมูลตัวเลือกที่ระบุไว้"
+
+msgid "The following required fields was not found"
+msgstr "ไม่พบช่องข้อมูลที่จำเป็น"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:235
+msgid "The given page was not found. The URL was: %URL%"
+msgstr "ไม่พบหน้าที่ระบุ URL: %URL%"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:236
+msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
+msgstr "ไม่พบหน้าที่ระบุ สาเหตุ: %REASON%  URL: %URL%"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:209
+msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
+msgstr "ข้อมูลการออกจากระบบหมดอายุแล้ว กรุณากลับไปที่บริการเดิมและลองออกจากระบบใหม่"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:231
+msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
+msgstr "ระบบได้รับคำขอแล้ว แต่ไม่ได้ระบุค่า RelayState ซึ่งจำเป็นสำหรับการนำทางไปยังหน้าถัดไปหลังจากดำเนินการเสร็จสิ้น"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:197
+msgid "The parameters sent to the discovery service were not according to specifications."
+msgstr "ข้อมูลที่ส่งไปยังบริการค้นหาไม่ถูกต้องตามข้อกำหนด"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
+msgid "The password in the configuration (auth.adminpassword) is not a hashed value. Full details on how to fix this are supplied at https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"
+msgstr "รหัสผ่านในคอนฟิกูเรชัน (auth.adminpassword) ไม่ใช่ค่าแฮช รายละเอียดทั้งหมดเกี่ยวกับวิธีแก้ไขปัญหานี้สามารถดูได้ที่ https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
+msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
+msgstr "รหัสผ่านในการกำหนดค่า (auth.adminpassword) จะไม่เปลี่ยนแปลงจากค่าเริ่มต้น โปรดแก้ไขไฟล์การตั้งค่า"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:193
+msgid "There is an error in the request to this page. The reason was: %REASON%"
+msgstr "มีข้อผิดพลาดในคำขอนี้ สาเหตุคือ: %REASON%"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:222
+msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
+msgstr "การตั้งค่า SimpleSAMLphp ผิดพลาด กรุณาตรวจสอบไฟล์ metadata หากคุณเป็นผู้ดูแลระบบของบริการนี้"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:243
+msgid "This Identity Provider received an Authentication Request from a Service Provider, but an error occurred when trying to process the request."
+msgstr "ผู้ให้บริการระบุตัวตนได้รับคำขอยืนยันตัวตน แต่เกิดข้อผิดพลาดระหว่างดำเนินการ"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:227
+msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
+msgstr "จุดเชื่อมต่อนี้ยังไม่ถูกเปิดใช้งาน โปรดตรวจสอบการตั้งค่าSimpleSAMLphp ของคุณ"
+
+msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
+msgstr "ข้อผิดพลาดนี้อาจเกิดจากการตั้งค่าผิดหรือระบบทำงานผิดปกติ"
+
+msgid "Title"
+msgstr "หัวข้อ"
+
+msgid "To look at the details for an SAML entity, click on the SAML entity header."
+msgstr "หากต้องการดูรายละเอียดของ SAML entity ให้คลิกที่หัวข้อ"
+
+msgid "Tracking number"
+msgstr "หมายเลขติดตาม"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
+#, php-format
+msgid "Unable to locate metadata for %ENTITYID%"
+msgstr "ไม่พบข้อมูล metadata สำหรับ %ENTITYID%"
+
+msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "ไม่สามารถออกจากระบบบริการหนึ่งบริการหรือมากกว่านั้นได้ เพื่อให้แน่ใจว่าเซสชันทั้งหมดของคุณถูกปิดแล้ว เราขอแนะนำให้คุณ <i>ปิดเว็บเบราว์เซอร์ของคุณ</i>"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
+msgid "Unhandled exception"
+msgstr "ข้อผิดพลาดที่ไม่ได้รับการจัดการ"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:100
+msgid "Unknown certificate"
+msgstr "ใบรับรองไม่ถูกต้อง"
+
+msgid "User ID"
+msgstr "รหัสผู้ใช้"
+
+msgid "User's password hash"
+msgstr "รหัสผ่านที่ถูกแปลงเป็นค่าแฮชของผู้ใช้"
+
+msgid "Username"
+msgstr "ชื่อผู้ใช้"
+
+msgid "WS-Fed SP Demo Example"
+msgstr "ตัวอย่าง WS-Fed SP"
+
+msgid "WS-Federation Identity Provider (Remote)"
+msgstr "Identity Provider WS-Federation (Remote)"
+
+msgid "WS-Federation Service Provider (Hosted)"
+msgstr "Servide Provider WS-Federation (Hosted)"
+
+msgid "Warning"
+msgstr "การเตือน"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
+msgid "We did not accept the response sent from the Identity Provider."
+msgstr "ระบบไม่รับค่าที่ส่งจากผู้ให้บริการระบุตัวตน"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:200
+msgid "When this identity provider tried to create an authentication response, an error occurred."
+msgstr "เกิดข้อผิดพลาดขณะสร้างข้อมูลรับรองการยืนยันตัวตนจากผู้ให้บริการระบุตัวตน"
+
+msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
+msgstr "หากไม่มีชื่อผู้ใช้และรหัสผ่าน คุณจะไม่สามารถเข้าถึงบริการได้ โปรดติดต่อฝ่ายสนับสนุนของหน่วยงานของคุณ"
+
+msgid "World"
+msgstr "โลก"
+
+msgid "XML metadata"
+msgstr "ข้อมูล metadata รูปแบบ XML"
+
+msgid "Yes, all services"
+msgstr "ใช่ ทุกบริการ"
+
+msgid "Yes, continue"
+msgstr "ใช่ ดำเนินการต่อ"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:187
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr "คุณเข้าถึง Artifact Resolution Service แต่ไม่ได้ส่งข้อความ SAML ArtifactResolve โปรดทราบว่า endpoint นี้ไม่ควรเข้าถึงโดยตรง"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
+msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
+msgstr "คุณเข้าถึง Assertion Consumer Service แต่ไม่ได้ส่งข้อความ SAML Authentication Response โปรดทราบว่า endpoint นี้ไม่ควรเข้าถึงโดยตรง"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:253
+msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+msgstr "คุณเข้าถึง Single Sign On Service แต่ไม่ได้ส่งข้อความ SAML Authentication Request โปรดทราบว่า endpoint นี้ไม่ควรเข้าถึงโดยตรง"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
+msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
+msgstr "คุณเข้าถึง SingleLogoutService แต่ไม่ได้ส่งข้อความ SAML LogoutRequest หรือ LogoutResponse โปรดทราบว่า endpoint นี้ไม่ควรเข้าถึงโดยตรง"
+
+msgid "You are about to send a message. Hit the submit message button to continue."
+msgstr "คุณกำลังจะส่งข้อความ กดปุ่ม 'ส่งข้อความ' เพื่อดำเนินการต่อ"
+
+msgid "You are about to send a message. Hit the submit message link to continue."
+msgstr "คุณกำลังจะส่งข้อความ กดลิงก์ 'ส่งข้อความ' เพื่อดำเนินการต่อ"
+
+msgid "You are also logged in on these services:"
+msgstr "คุณยังคงล็อกอินอยู่ในบริการต่อไปนี้:"
+
+msgid "You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>."
+msgstr "คุณกำลังเข้าระบบทดสอบก่อนใช้งานจริง หากคุณไม่ใช่ผู้ทดสอบ โปรดอย่าใช้งานลิงก์นี้"
+
+msgid "You are now successfully logged out from %SP%."
+msgstr "คุณได้ออกจากระบบ %SP% เรียบร้อยแล้ว"
+
+msgid "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
+msgstr "<a href=\"%METAURL%\">คุณสามารถดู metadata xml ได้ที่ URL ที่กำหนดไว้</a>:"
+
+msgid "You can turn off debug mode in the global SimpleSAMLphp configuration file <tt>config/config.php</tt>."
+msgstr "คุณสามารถปิดโหมดดีบักได้จากไฟล์การตั้งค่า global ของ SimpleSAMLphp ที่ชื่อ <tt>config/config.php</tt>."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:241
+msgid "You did not present a valid certificate."
+msgstr "คุณไม่ได้แสดงใบรับรองที่ถูกต้อง"
+
+msgid "You have been logged out."
+msgstr "คุณได้ออกจากระบบเรียบร้อยแล้ว"
+
+msgid "You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong you may choose another one."
+msgstr "คุณเลือก <b>%HOMEORG%</b> เป็นหน่วยงานต้นสังกัด หากไม่ถูกต้อง คุณสามารถเลือกใหม่ได้."
+
+msgid "You have previously chosen to authenticate at"
+msgstr "คุณได้เลือกที่จะยืนยันตัวตนก่อนหน้านี้แล้วที่"
+
+msgid "You have successfully logged out from all services listed above."
+msgstr "คุณได้ออกจากระบบบริการทั้งหมดเรียบร้อยแล้ว"
+
+msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
+msgstr "คุณส่งข้อมูลมายังหน้าล็อกอิน แต่ระบบไม่ได้รับรหัสผ่าน ลองใหม่อีกครั้ง"
+
+msgid "Your attributes"
+msgstr "คุณลักษณะของคุณ"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:219
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr "ไม่สามารถเรียกข้อมูลเซสชันของคุณได้ในขณะนี้ เนื่องจากปัญหาทางเทคนิค กรุณาลองใหม่อีกครั้ง"
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "เซสชันของคุณยังคงใช้งานได้อีก %remaining% วินาที"
+
+msgid "[Preferred choice]"
+msgstr "[ตัวเลือกที่แนะนำ]"
+
+msgid "not set"
+msgstr "ยังไม่ได้ตั้งค่า"

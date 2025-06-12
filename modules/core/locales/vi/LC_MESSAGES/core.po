@@ -1,0 +1,206 @@
+msgid ""
+msgstr ""
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Project-Id-Version: SimpleSAMLphp\n"
+"X-Domain: core\n"
+
+msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
+msgstr "Một dịch vụ đã yêu cầu bạn xác thực. Vui lòng nhập tên người dùng và mật khẩu của bạn vào biểu mẫu bên dưới."
+
+msgid "An error has occurred"
+msgstr "Có lỗi xảy ra"
+
+msgid "Check that the link you used to access the web site is correct."
+msgstr "Kiểm tra xem liên kết bạn sử dụng để truy cập trang web có đúng không."
+
+msgid "Close the web browser, and try again."
+msgstr "Đóng trình duyệt web và thử lại."
+
+msgid "Continue"
+msgstr "Tiếp tục"
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "Cookie có thể bị vô hiệu hóa trong trình duyệt web."
+
+msgid "Do you want to logout from all the services above?"
+msgstr "Bạn có muốn đăng xuất khỏi tất cả các dịch vụ trên không?"
+
+msgid "Enter your username and password"
+msgstr "Nhập tên người dùng và mật khẩu của bạn"
+
+msgid "Error report sent"
+msgstr "Đã gửi báo cáo lỗi"
+
+msgid "Go back to the previous page and try again."
+msgstr "Quay lại trang trước và thử lại."
+
+msgid "Help! I don't remember my password."
+msgstr "Cần trợ  giúp! Tôi không nhớ mật khẩu của mình."
+
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "Siêu dữ liệu Nhà cung cấp danh tính Shibboleth 1.3 được lưu trữ (tự động tạo)"
+
+msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
+msgstr "Siêu dữ liệu nhà cung cấp dịch vụ Shibboleth 1.3 được lưu trữ (tự động tạo)"
+
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "Nếu vấn đề này vẫn tiếp diễn, bạn có thể báo cáo với người quản trị hệ thống."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
+msgstr "Nếu bạn là nhà phát triển đang triển khai giải pháp đăng nhập một lần, bạn có vấn đề với cấu hình siêu dữ liệu. Xác minh rằng siêu dữ liệu được cấu hình đúng trên cả nhà cung cấp danh tính và nhà cung cấp dịch vụ."
+
+msgid "If you are a developer who is deploying a single sign-on solution, you have are trying to reach an endpoint using the wrong HTTP-method."
+msgstr "Nếu bạn là nhà phát triển đang triển khai giải pháp đăng nhập một lần, bạn đang cố gắng truy cập điểm cuối bằng phương thức HTTP sai."
+
+msgid "If you are a user who received this error after following a link on a site, you should report this error to the owner of that site."
+msgstr "Nếu bạn là người dùng nhận được lỗi này sau khi nhấp vào liên kết trên một trang web, bạn nên báo cáo lỗi này cho chủ sở hữu trang web đó."
+
+msgid "If you are the administrator of this installation, please refer to the <a href=\"https://simplesamlphp.org/docs/\">SimpleSAMLphp documentation</a> for how to configure and interact with the software."
+msgstr "Nếu bạn là quản trị viên của cài đặt này, vui lòng tham khảo <a href=\"https://simplesamlphp.org/docs/\">tài liệu SimpleSAMLphp</a> để biết cách cấu hình và tương tác với phần mềm."
+
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "Nếu bạn báo cáo lỗi này, vui lòng cũng báo cáo số theo dõi này để có thể xác định vị trí phiên của bạn trong nhật ký mà quản trị viên hệ thống có thể xem:"
+
+msgid "Incorrect Attributes"
+msgstr "Thuộc tính không chính xác"
+
+msgid "Logging out..."
+msgstr "Đang đăng xuất..."
+
+msgid "Login"
+msgstr "Đăng nhập"
+
+msgid "Logout"
+msgstr "Đăng xuất"
+
+msgid "Missing cookie"
+msgstr "Thiếu cookie"
+
+msgid "No"
+msgstr "Không"
+
+msgid "No, only %SP%"
+msgstr "Không, chỉ có %SP%"
+
+msgid "One or more of the attributes supplied by your identity provider did not contain the expected number of values."
+msgstr "Một hoặc nhiều thuộc tính do nhà cung cấp danh tính của bạn cung cấp không chứa số lượng giá trị mong đợi."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Mở trình duyệt web có các tab đã lưu từ phiên trước."
+
+msgid "Organization"
+msgstr "Tổ chức"
+
+msgid "Password"
+msgstr "Mật khẩu"
+
+msgid "Processing..."
+msgstr "Đang xử lý..."
+
+msgid "Remember me"
+msgstr "Nhớ tôi"
+
+msgid "Remember my organization"
+msgstr "Nhớ tổ chức của tôi"
+
+msgid "Remember my username"
+msgstr "Nhớ tên người dùng của tôi"
+
+msgid "Report this error"
+msgstr "Báo cáo lỗi này"
+
+msgid "Retry"
+msgstr "Thử lại"
+
+msgid "Retry login"
+msgstr "Thử lại đăng nhập"
+
+msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
+msgstr "Ví dụ về Shibboleth 1.3 SP - kiểm tra đăng nhập thông qua Shib IdP của bạn"
+
+msgid "SimpleSAMLphp"
+msgstr "SimpleSAMLphp"
+
+msgid "State information lost"
+msgstr "Thông tin trạng thái bị mất"
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Gợi ý để giải quyết vấn đề này:"
+
+msgid "The authentication procesd has failed."
+msgstr "Quá trình xác thực đã thất bại."
+
+msgid "The authorization procesd has failed."
+msgstr "Quá trình ủy quyền đã thất bại."
+
+msgid "The error report has been sent to the administrators."
+msgstr "Báo cáo lỗi đã được gửi tới người quản trị."
+
+msgid "The identification procesd has failed."
+msgstr "Quá trình xác định danh tính đã thất bại."
+
+msgid "The link used to get here was bad, perhaps a bookmark."
+msgstr "Liên kết dùng để tới đây không hợp lệ, có thể là do dấu trang."
+
+msgid "The problematic attribute(s) are:"
+msgstr "Các thuộc tính có vấn đề là:"
+
+msgid "There was an issue while signing you in."
+msgstr "Đã xảy ra sự cố khi đăng nhập."
+
+msgid "This error may be caused by:"
+msgstr "Lỗi này có thể do:"
+
+msgid "This is most likely a configuration problem on either the service provider or identity provider."
+msgstr "Đây rất có thể là sự cố cấu hình của nhà cung cấp dịch vụ hoặc nhà cung cấp danh tính."
+
+msgid "This is the front page of the SimpleSAMLphp authentication software. There's not much to see here."
+msgstr "Đây là trang đầu của phần mềm xác thực SimpleSAMLphp. Không có nhiều thứ để xem ở đây."
+
+msgid "Too short interval between single sign on events."
+msgstr "Khoảng thời gian giữa các sự kiện đăng nhập một lần quá ngắn."
+
+msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Không thể đăng xuất khỏi một hoặc nhiều dịch vụ. Để đảm bảo rằng tất cả các phiên của bạn đã được đóng, bạn nên <i>đóng trình duyệt web của mình</i> ."
+
+msgid "Username"
+msgstr "Tên đăng nhập"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Sử dụng các nút quay lại và chuyển tiếp trong trình duyệt web."
+
+msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
+msgstr "Chúng tôi phát hiện chỉ có vài giây kể từ lần xác thực cuối cùng của bạn với nhà cung cấp dịch vụ này và do đó cho rằng có sự cố với SP này."
+
+msgid "We were unable to locate the state information for the current request."
+msgstr "Chúng tôi không thể tìm thấy thông tin tiểu bang cho yêu cầu hiện tại."
+
+msgid "Welcome"
+msgstr "Chào mừng"
+
+msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
+msgstr "Nếu không có tên người dùng và mật khẩu, bạn không thể xác thực để truy cập vào dịch vụ. Có thể có người có thể giúp bạn. Hãy tham khảo bộ phận trợ giúp tại tổ chức của bạn!"
+
+msgid "Yes, all services"
+msgstr "Có, tất cả các dịch vụ"
+
+msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
+msgstr "Có vẻ như bạn đã tắt cookie trong trình duyệt của mình. Vui lòng kiểm tra cài đặt trong trình duyệt của bạn và thử lại."
+
+msgid "You are also logged in on these services:"
+msgstr "Bạn cũng đã đăng nhập vào các dịch vụ sau:"
+
+msgid "You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>."
+msgstr "Bây giờ bạn đang truy cập vào hệ thống tiền sản xuất. Thiết lập xác thực này chỉ dành cho mục đích thử nghiệm và xác minh tiền sản xuất. Nếu ai đó gửi cho bạn một liên kết chỉ dẫn bạn đến đây và bạn không phải là <i>người thử nghiệm</i> thì có thể bạn đã nhận được liên kết sai và <b>không nên ở đây</b> ."
+
+msgid "You are now successfully logged out from %SP%."
+msgstr "Bây giờ bạn đã đăng xuất thành công khỏi %SP%."
+
+msgid "got %got% values, want %want%"
+msgstr "có %got% giá trị, muốn %want%"
+
+msgid "logout is not supported"
+msgstr "đăng xuất không được hỗ trợ"

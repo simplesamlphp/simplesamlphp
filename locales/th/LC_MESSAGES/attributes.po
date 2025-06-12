@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: id\n"
+"Language: th\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "aRecord"
@@ -135,15 +135,15 @@ msgstr "urn:oid:2.5.4.39"
 
 # English string: Common name
 msgid "cn"
-msgstr "Nama umum"
+msgstr "ชื่อสามัญ"
 
 # English string: Common name
 msgid "urn:mace:dir:attribute-def:cn"
-msgstr "Nama umum"
+msgstr "ชื่อสามัญ"
 
 # English string: Common name
 msgid "urn:oid:2.5.4.3"
-msgstr "Nama umum"
+msgstr "ชื่อสามัญ"
 
 msgid "co"
 msgstr "co"
@@ -243,15 +243,15 @@ msgstr "urn:oid:2.5.4.27"
 
 # English string: Display name
 msgid "displayName"
-msgstr "Nama yang ditampilkan"
+msgstr "ชื่อที่แสดง"
 
 # English string: Display name
 msgid "urn:mace:dir:attribute-def:displayName"
-msgstr "Nama yang ditampilkan"
+msgstr "ชื่อที่แสดง"
 
 # English string: Display name
 msgid "urn:oid:2.16.840.1.113730.3.1.241"
-msgstr "Nama yang ditampilkan"
+msgstr "ชื่อที่แสดง"
 
 msgid "distinguishedName"
 msgstr "distinguishedName"
@@ -351,15 +351,15 @@ msgstr "urn:oid:0.9.2342.19200300.100.1.5"
 
 # English string: Organizational homepage
 msgid "eduOrgHomePageURI"
-msgstr "Organisasi Halaman Beranda"
+msgstr "หน้าแรกขององค์กร"
 
 # English string: Organizational homepage
 msgid "urn:mace:dir:attribute-def:eduOrgHomePageURI"
-msgstr "Organisasi Halaman Beranda"
+msgstr "หน้าแรกขององค์กร"
 
 # English string: Organizational homepage
 msgid "urn:oid:1.3.6.1.4.1.5923.1.2.1.2"
-msgstr "Organisasi Halaman Beranda"
+msgstr "หน้าแรกขององค์กร"
 
 msgid "eduOrgIdentityAuthNPolicyURI"
 msgstr "eduOrgIdentityAuthNPolicyURI"
@@ -372,15 +372,15 @@ msgstr "urn:oid:1.3.6.1.4.1.5923.1.2.1.3"
 
 # English string: Organization's legal name
 msgid "eduOrgLegalName"
-msgstr "Nama legal Organisasi"
+msgstr "ชื่อทางกฎหมายขององค์กร"
 
 # English string: Organization's legal name
 msgid "urn:mace:dir:attribute-def:eduOrgLegalName"
-msgstr "Nama legal Organisasi"
+msgstr "ชื่อทางกฎหมายขององค์กร"
 
 # English string: Organization's legal name
 msgid "urn:oid:1.3.6.1.4.1.5923.1.2.1.4"
-msgstr "Nama legal Organisasi"
+msgstr "ชื่อทางกฎหมายขององค์กร"
 
 msgid "eduOrgSuperiorURI"
 msgstr "eduOrgSuperiorURI"
@@ -402,51 +402,51 @@ msgstr "urn:oid:1.3.6.1.4.1.5923.1.2.1.6"
 
 # English string: Affiliation
 msgid "eduPersonAffiliation"
-msgstr "Afiliasi"
+msgstr "สังกัด"
 
 # English string: Affiliation
 msgid "urn:mace:dir:attribute-def:eduPersonAffiliation"
-msgstr "Afiliasi"
+msgstr "สังกัด"
 
 # English string: Affiliation
 msgid "urn:oid:1.3.6.1.4.1.5923.1.1.1.1"
-msgstr "Afiliasi"
+msgstr "สังกัด"
 
 # English string: Identity assurance profile
 msgid "eduPersonAssurance"
-msgstr "Profil penjamin identitas"
+msgstr "โปรไฟล์การรับรองตัวตน"
 
 # English string: Identity assurance profile
 msgid "urn:mace:dir:attribute-def:eduPersonAssurance"
-msgstr "Profil penjamin identitas"
+msgstr "โปรไฟล์การรับรองตัวตน"
 
 # English string: Identity assurance profile
 msgid "urn:oid:1.3.6.1.4.1.5923.1.1.1.11"
-msgstr "Profil penjamin identitas"
+msgstr "โปรไฟล์การรับรองตัวตน"
 
 # English string: Entitlement regarding the service
 msgid "eduPersonEntitlement"
-msgstr "Hak mengenai layanan ini"
+msgstr "สิทธิในการรับบริการ"
 
 # English string: Entitlement regarding the service
 msgid "urn:mace:dir:attribute-def:eduPersonEntitlement"
-msgstr "Hak mengenai layanan ini"
+msgstr "สิทธิในการรับบริการ"
 
 # English string: Entitlement regarding the service
 msgid "urn:oid:1.3.6.1.4.1.5923.1.1.1.7"
-msgstr "Hak mengenai layanan ini"
+msgstr "สิทธิในการรับบริการ"
 
 # English string: Nickname
 msgid "eduPersonNickname"
-msgstr "Nama panggilan"
+msgstr "ชื่อเล่น"
 
 # English string: Nickname
 msgid "urn:mace:dir:attribute-def:eduPersonNickname"
-msgstr "Nama panggilan"
+msgstr "ชื่อเล่น"
 
 # English string: Nickname
 msgid "urn:oid:1.3.6.1.4.1.5923.1.1.1.2"
-msgstr "Nama panggilan"
+msgstr "ชื่อเล่น"
 
 # English string: Distinguished name (DN) of person's home organization
 msgid "eduPersonOrgDN"
@@ -474,15 +474,15 @@ msgstr "Distinguished name (DN) of the person's home organizational unit"
 
 # English string: Primary affiliation
 msgid "eduPersonPrimaryAffiliation"
-msgstr "Afiliasi utama"
+msgstr "สังกัดหลัก"
 
 # English string: Primary affiliation
 msgid "urn:mace:dir:attribute-def:eduPersonPrimaryAffiliation"
-msgstr "Afiliasi utama"
+msgstr "สังกัดหลัก"
 
 # English string: Primary affiliation
 msgid "urn:oid:1.3.6.1.4.1.5923.1.1.1.5"
-msgstr "Afiliasi utama"
+msgstr "สังกัดหลัก"
 
 # English string: Distinguished name (DN) of person's primary Organizational Unit
 msgid "eduPersonPrimaryOrgUnitDN"
@@ -498,27 +498,27 @@ msgstr "Distinguished name (DN) of person's primary Organizational Unit"
 
 # English string: Person's principal name at home organization
 msgid "eduPersonPrincipalName"
-msgstr "Nama kepala pada organisasi asal"
+msgstr "ชื่อบุคคลหลักที่บ้านองค์กร"
 
 # English string: Person's principal name at home organization
 msgid "urn:mace:dir:attribute-def:eduPersonPrincipalName"
-msgstr "Nama kepala pada organisasi asal"
+msgstr "ชื่อบุคคลหลักที่บ้านองค์กร"
 
 # English string: Person's principal name at home organization
 msgid "urn:oid:1.3.6.1.4.1.5923.1.1.1.6"
-msgstr "Nama kepala pada organisasi asal"
+msgstr "ชื่อบุคคลหลักที่บ้านองค์กร"
 
 # English string: Affiliation at home organization
 msgid "eduPersonScopedAffiliation"
-msgstr "Afiliasi di organisasi asal"
+msgstr "การสังกัดองค์กรที่บ้าน"
 
 # English string: Affiliation at home organization
 msgid "urn:mace:dir:attribute-def:eduPersonScopedAffiliation"
-msgstr "Afiliasi di organisasi asal"
+msgstr "การสังกัดองค์กรที่บ้าน"
 
 # English string: Affiliation at home organization
 msgid "urn:oid:1.3.6.1.4.1.5923.1.1.1.9"
-msgstr "Afiliasi di organisasi asal"
+msgstr "การสังกัดองค์กรที่บ้าน"
 
 # English string: Persistent pseudonymous ID
 msgid "eduPersonTargetedID"
@@ -588,15 +588,15 @@ msgstr "urn:oid:2.5.4.47"
 
 # English string: Fax number
 msgid "facsimileTelephoneNumber"
-msgstr "Nomor Fax"
+msgstr "หมายเลขโทรสาร"
 
 # English string: Fax number
 msgid "urn:mace:dir:attribute-def:facsimileTelephoneNumber"
-msgstr "Nomor Fax"
+msgstr "หมายเลขโทรสาร"
 
 # English string: Fax number
 msgid "urn:oid:2.5.4.23"
-msgstr "Nomor Fax"
+msgstr "หมายเลขโทรสาร"
 
 msgid "favouriteDrink"
 msgstr "favouriteDrink"
@@ -636,15 +636,15 @@ msgstr "urn:oid:2.5.4.44"
 
 # English string: Given name
 msgid "givenName"
-msgstr "Nama"
+msgstr "ชื่อที่ตั้ง"
 
 # English string: Given name
 msgid "urn:mace:dir:attribute-def:givenName"
-msgstr "Nama"
+msgstr "ชื่อที่ตั้ง"
 
 # English string: Given name
 msgid "urn:oid:2.5.4.42"
-msgstr "Nama"
+msgstr "ชื่อที่ตั้ง"
 
 msgid "gn"
 msgstr "gn"
@@ -654,27 +654,27 @@ msgstr "urn:mace:dir:attribute-def:gn"
 
 # English string: Home telephone
 msgid "homePhone"
-msgstr "Telepon rumah"
+msgstr "โทรศัพท์บ้าน"
 
 # English string: Home telephone
 msgid "urn:mace:dir:attribute-def:homePhone"
-msgstr "Telepon rumah"
+msgstr "โทรศัพท์บ้าน"
 
 # English string: Home telephone
 msgid "urn:oid:0.9.2342.19200300.100.1.20"
-msgstr "Telepon rumah"
+msgstr "โทรศัพท์บ้าน"
 
 # English string: Home postal address
 msgid "homePostalAddress"
-msgstr "Alamat pos rumah"
+msgstr "ที่อยู่ไปรษณีย์บ้าน"
 
 # English string: Home postal address
 msgid "urn:mace:dir:attribute-def:homePostalAddress"
-msgstr "Alamat pos rumah"
+msgstr "ที่อยู่ไปรษณีย์บ้าน"
 
 # English string: Home postal address
 msgid "urn:oid:0.9.2342.19200300.100.1.39"
-msgstr "Alamat pos rumah"
+msgstr "ที่อยู่ไปรษณีย์บ้าน"
 
 msgid "homeTelephoneNumber"
 msgstr "homeTelephoneNumber"
@@ -738,15 +738,15 @@ msgstr "urn:oid:0.9.2342.19200300.100.1.46"
 
 # English string: JPEG Photo
 msgid "jpegPhoto"
-msgstr "Foto JPEG"
+msgstr "ภาพถ่าย JPEG"
 
 # English string: JPEG Photo
 msgid "urn:mace:dir:attribute-def:jpegPhoto"
-msgstr "Foto JPEG"
+msgstr "ภาพถ่าย JPEG"
 
 # English string: JPEG Photo
 msgid "urn:oid:0.9.2342.19200300.100.1.60"
-msgstr "Foto JPEG"
+msgstr "ภาพถ่าย JPEG"
 
 msgid "knowledgeInformation"
 msgstr "knowledgeInformation"
@@ -759,27 +759,27 @@ msgstr "urn:oid:2.5.4.2"
 
 # English string: Locality
 msgid "l"
-msgstr "Lokalitas"
+msgstr "ท้องถิ่น"
 
 # English string: Locality
 msgid "urn:mace:dir:attribute-def:l"
-msgstr "Lokalitas"
+msgstr "ท้องถิ่น"
 
 # English string: Locality
 msgid "urn:oid:2.5.4.7"
-msgstr "Lokalitas"
+msgstr "ท้องถิ่น"
 
 # English string: Labeled URI
 msgid "labeledURI"
-msgstr "URL terlabel"
+msgstr "URI ที่มีป้ายกำกับ"
 
 # English string: Labeled URI
 msgid "urn:mace:dir:attribute-def:labeledURI"
-msgstr "URL terlabel"
+msgstr "URI ที่มีป้ายกำกับ"
 
 # English string: Labeled URI
 msgid "urn:oid:1.3.6.1.4.1.250.1.57"
-msgstr "URL terlabel"
+msgstr "URI ที่มีป้ายกำกับ"
 
 msgid "localityName"
 msgstr "localityName"
@@ -807,15 +807,15 @@ msgstr "urn:oid:0.9.2342.19200300.100.1.28"
 
 # English string: Mail
 msgid "mail"
-msgstr "Surat"
+msgstr "อีเมล"
 
 # English string: Mail
 msgid "urn:mace:dir:attribute-def:mail"
-msgstr "Surat"
+msgstr "อีเมล"
 
 # English string: Mail
 msgid "urn:oid:0.9.2342.19200300.100.1.3"
-msgstr "Surat"
+msgstr "อีเมล"
 
 msgid "mailPreferenceOption"
 msgstr "mailPreferenceOption"
@@ -828,15 +828,15 @@ msgstr "urn:oid:0.9.2342.19200300.100.1.47"
 
 # English string: Manager
 msgid "manager"
-msgstr "Manajer"
+msgstr "ผู้จัดการ"
 
 # English string: Manager
 msgid "urn:mace:dir:attribute-def:manager"
-msgstr "Manajer"
+msgstr "ผู้จัดการ"
 
 # English string: Manager
 msgid "urn:oid:0.9.2342.19200300.100.1.10"
-msgstr "Manajer"
+msgstr "ผู้จัดการ"
 
 msgid "member"
 msgstr "member"
@@ -849,15 +849,15 @@ msgstr "urn:oid:2.5.4.31"
 
 # English string: Mobile
 msgid "mobile"
-msgstr "Handphone"
+msgstr "มือถือ"
 
 # English string: Mobile
 msgid "urn:mace:dir:attribute-def:mobile"
-msgstr "Handphone"
+msgstr "มือถือ"
 
 # English string: Mobile
 msgid "urn:oid:0.9.2342.19200300.100.1.41"
-msgstr "Handphone"
+msgstr "มือถือ"
 
 msgid "mobileTelephoneNumber"
 msgstr "mobileTelephoneNumber"
@@ -894,15 +894,15 @@ msgstr "urn:oid:1.3.6.1.4.1.2428.90.1.6"
 
 # English string: Organizational number
 msgid "norEduOrgNIN"
-msgstr "Nomor Organisasi"
+msgstr "หมายเลของค์กร"
 
 # English string: Organizational number
 msgid "urn:mace:dir:attribute-def:norEduOrgNIN"
-msgstr "Nomor Organisasi"
+msgstr "หมายเลของค์กร"
 
 # English string: Organizational number
 msgid "urn:oid:1.3.6.1.4.1.2428.90.1.12"
-msgstr "Nomor Organisasi"
+msgstr "หมายเลของค์กร"
 
 msgid "norEduOrgSchemaVersion"
 msgstr "norEduOrgSchemaVersion"
@@ -951,51 +951,51 @@ msgstr "urn:oid:1.3.6.1.4.1.2428.90.1.2"
 
 # English string: Date of birth
 msgid "norEduPersonBirthDate"
-msgstr "Tanggal lahir"
+msgstr "วันเกิด"
 
 # English string: Date of birth
 msgid "urn:mace:dir:attribute-def:norEduPersonBirthDate"
-msgstr "Tanggal lahir"
+msgstr "วันเกิด"
 
 # English string: Date of birth
 msgid "urn:oid:1.3.6.1.4.1.2428.90.1.3"
-msgstr "Tanggal lahir"
+msgstr "วันเกิด"
 
 # English string: Local identity number
 msgid "norEduPersonLIN"
-msgstr "Nomor identitas lokal"
+msgstr "หมายเลขประจำตัวประชาชนท้องถิ่น"
 
 # English string: Local identity number
 msgid "urn:mace:dir:attribute-def:norEduPersonLIN"
-msgstr "Nomor identitas lokal"
+msgstr "หมายเลขประจำตัวประชาชนท้องถิ่น"
 
 # English string: Local identity number
 msgid "urn:oid:1.3.6.1.4.1.2428.90.1.4"
-msgstr "Nomor identitas lokal"
+msgstr "หมายเลขประจำตัวประชาชนท้องถิ่น"
 
 # English string: Identity number assigned by public authorities
 msgid "norEduPersonNIN"
-msgstr "Nomor identitas yang diberikan oleh otoritas publik"
+msgstr "หมายเลขประจำตัวที่ทางราชการกำหนด"
 
 # English string: Identity number assigned by public authorities
 msgid "urn:mace:dir:attribute-def:norEduPersonNIN"
-msgstr "Nomor identitas yang diberikan oleh otoritas publik"
+msgstr "หมายเลขประจำตัวที่ทางราชการกำหนด"
 
 # English string: Identity number assigned by public authorities
 msgid "urn:oid:1.3.6.1.4.1.2428.90.1.5"
-msgstr "Nomor identitas yang diberikan oleh otoritas publik"
+msgstr "หมายเลขประจำตัวที่ทางราชการกำหนด"
 
 # English string: Organization name
 msgid "o"
-msgstr "Nama organisasi"
+msgstr "ชื่อองค์กร"
 
 # English string: Organization name
 msgid "urn:mace:dir:attribute-def:o"
-msgstr "Nama organisasi"
+msgstr "ชื่อองค์กร"
 
 # English string: Organization name
 msgid "urn:oid:2.5.4.10"
-msgstr "Nama organisasi"
+msgstr "ชื่อองค์กร"
 
 msgid "objectClass"
 msgstr "objectClass"
@@ -1029,7 +1029,7 @@ msgstr "urn:mace:dir:attribute-def:organizationalUnitName"
 
 # English string: Organizational unit
 msgid "urn:oid:2.5.4.11"
-msgstr "Organizational unit"
+msgstr "หน่วยงานองค์กร"
 
 msgid "otherMailbox"
 msgstr "otherMailbox"
@@ -1042,11 +1042,11 @@ msgstr "urn:oid:0.9.2342.19200300.100.1.22"
 
 # English string: Organizational unit
 msgid "ou"
-msgstr "Organizational unit"
+msgstr "หน่วยงานองค์กร"
 
 # English string: Organizational unit
 msgid "urn:mace:dir:attribute-def:ou"
-msgstr "Organizational unit"
+msgstr "หน่วยงานองค์กร"
 
 msgid "owner"
 msgstr "owner"
@@ -1124,39 +1124,39 @@ msgstr "urn:mace:dir:attribute-def:pkcs9email"
 
 # English string: Post office box
 msgid "postOfficeBox"
-msgstr "PO Box"
+msgstr "ตู้ไปรษณีย์"
 
 # English string: Post office box
 msgid "urn:mace:dir:attribute-def:postOfficeBox"
-msgstr "PO Box"
+msgstr "ตู้ไปรษณีย์"
 
 # English string: Post office box
 msgid "urn:oid:2.5.4.18"
-msgstr "PO Box"
+msgstr "ตู้ไปรษณีย์"
 
 # English string: Postal address
 msgid "postalAddress"
-msgstr "Alamat Pengiriman"
+msgstr "ที่อยู่ไปรษณีย์"
 
 # English string: Postal address
 msgid "urn:mace:dir:attribute-def:postalAddress"
-msgstr "Alamat Pengiriman"
+msgstr "ที่อยู่ไปรษณีย์"
 
 # English string: Postal address
 msgid "urn:oid:2.5.4.16"
-msgstr "Alamat Pengiriman"
+msgstr "ที่อยู่ไปรษณีย์"
 
 # English string: Postal code
 msgid "postalCode"
-msgstr "Kode pos"
+msgstr "รหัส Zip / ไปรษณีย์"
 
 # English string: Postal code
 msgid "urn:mace:dir:attribute-def:postalCode"
-msgstr "Kode pos"
+msgstr "รหัส Zip / ไปรษณีย์"
 
 # English string: Postal code
 msgid "urn:oid:2.5.4.17"
-msgstr "Kode pos"
+msgstr "รหัส Zip / ไปรษณีย์"
 
 msgid "preferredDeliveryMethod"
 msgstr "preferredDeliveryMethod"
@@ -1169,15 +1169,15 @@ msgstr "urn:oid:2.5.4.28"
 
 # English string: Preferred language
 msgid "preferredLanguage"
-msgstr "Pilihan Bahasa"
+msgstr "ภาษาที่ต้องการ"
 
 # English string: Preferred language
 msgid "urn:mace:dir:attribute-def:preferredLanguage"
-msgstr "Pilihan Bahasa"
+msgstr "ภาษาที่ต้องการ"
 
 # English string: Preferred language
 msgid "urn:oid:2.16.840.1.113730.3.1.39"
-msgstr "Pilihan Bahasa"
+msgstr "ภาษาที่ต้องการ"
 
 msgid "presentationAddress"
 msgstr "presentationAddress"
@@ -1470,19 +1470,19 @@ msgstr "urn:schac:attribute-def:schacUserPresenceID"
 
 # English string: Private information elements
 msgid "schacUserPrivateAttribute"
-msgstr "Elemen-elemen informasi pribadi"
+msgstr "องค์ประกอบข้อมูลส่วนตัว"
 
 # English string: Private information elements
 msgid "urn:mace:terena.org:attribute-def:schacUserPrivateAttribute"
-msgstr "Elemen-elemen informasi pribadi"
+msgstr "องค์ประกอบข้อมูลส่วนตัว"
 
 # English string: Private information elements
 msgid "urn:oid:1.3.6.1.4.1.25178.1.2.18"
-msgstr "Elemen-elemen informasi pribadi"
+msgstr "องค์ประกอบข้อมูลส่วนตัว"
 
 # English string: Private information elements
 msgid "urn:schac:attribute-def:schacUserPrivateAttribute"
-msgstr "Elemen-elemen informasi pribadi"
+msgstr "องค์ประกอบข้อมูลส่วนตัว"
 
 msgid "schacUserStatus"
 msgstr "schacUserStatus"
@@ -1573,15 +1573,15 @@ msgstr "urn:oid:1.2.752.194.10.2.1"
 
 # English string: Surname
 msgid "sn"
-msgstr "Nama Keluaga"
+msgstr "นามสกุล"
 
 # English string: Surname
 msgid "urn:mace:dir:attribute-def:sn"
-msgstr "Nama Keluaga"
+msgstr "นามสกุล"
 
 # English string: Surname
 msgid "urn:oid:2.5.4.4"
-msgstr "Nama Keluaga"
+msgstr "นามสกุล"
 
 msgid "st"
 msgstr "st"
@@ -1600,15 +1600,15 @@ msgstr "urn:mace:dir:attribute-def:stateOrProvinceName"
 
 # English string: Street
 msgid "street"
-msgstr "Jalan"
+msgstr "ถนน"
 
 # English string: Street
 msgid "urn:mace:dir:attribute-def:street"
-msgstr "Jalan"
+msgstr "ถนน"
 
 # English string: Street
 msgid "urn:oid:2.5.4.9"
-msgstr "Jalan"
+msgstr "ถนน"
 
 msgid "streetAddress"
 msgstr "streetAddress"
@@ -1668,15 +1668,15 @@ msgstr "urn:mace:dir:attribute-def:surname"
 
 # English string: Telephone number
 msgid "telephoneNumber"
-msgstr "No Telepon"
+msgstr "เบอร์โทรศัพท์"
 
 # English string: Telephone number
 msgid "urn:mace:dir:attribute-def:telephoneNumber"
-msgstr "No Telepon"
+msgstr "เบอร์โทรศัพท์"
 
 # English string: Telephone number
 msgid "urn:oid:2.5.4.20"
-msgstr "No Telepon"
+msgstr "เบอร์โทรศัพท์"
 
 msgid "teletexTerminalIdentifier"
 msgstr "teletexTerminalIdentifier"
@@ -1707,27 +1707,27 @@ msgstr "urn:oid:0.9.2342.19200300.100.1.2"
 
 # English string: Title
 msgid "title"
-msgstr "Gelar"
+msgstr "หัวข้อ"
 
 # English string: Title
 msgid "urn:mace:dir:attribute-def:title"
-msgstr "Gelar"
+msgstr "หัวข้อ"
 
 # English string: Title
 msgid "urn:oid:2.5.4.12"
-msgstr "Gelar"
+msgstr "หัวข้อ"
 
 # English string: User ID
 msgid "uid"
-msgstr "User ID"
+msgstr "ID ผู้ใช้"
 
 # English string: User ID
 msgid "urn:mace:dir:attribute-def:uid"
-msgstr "User ID"
+msgstr "ID ผู้ใช้"
 
 # English string: User ID
 msgid "urn:oid:0.9.2342.19200300.100.1.1"
-msgstr "User ID"
+msgstr "ID ผู้ใช้"
 
 msgid "uniqueIdentifier"
 msgstr "uniqueIdentifier"
@@ -1776,15 +1776,15 @@ msgstr "urn:oid:2.16.840.1.113730.3.1.216"
 
 # English string: User's password hash
 msgid "userPassword"
-msgstr "Hash kata sandi pengguna"
+msgstr "แฮชรหัสผ่านของผู้ใช้"
 
 # English string: User's password hash
 msgid "urn:mace:dir:attribute-def:userPassword"
-msgstr "Hash kata sandi pengguna"
+msgstr "แฮชรหัสผ่านของผู้ใช้"
 
 # English string: User's password hash
 msgid "urn:oid:2.5.4.35"
-msgstr "Hash kata sandi pengguna"
+msgstr "แฮชรหัสผ่านของผู้ใช้"
 
 msgid "userSMIMECertificate"
 msgstr "userSMIMECertificate"
@@ -1821,7 +1821,7 @@ msgstr "urn:oid:2.5.4.45"
 
 # English string: Common name
 msgid "facebook_cn"
-msgstr "Nama umum"
+msgstr "ชื่อสามัญ"
 
 msgid "http://axschema.org/contact/country/home"
 msgstr "http://axschema.org/contact/country/home"
@@ -1840,51 +1840,51 @@ msgstr "twitter.description"
 
 # English string: Display name
 msgid "facebook.name"
-msgstr "Nama yang ditampilkan"
+msgstr "ชื่อที่แสดง"
 
 # English string: Display name
 msgid "http://axschema.org/namePerson/friendly"
-msgstr "Nama yang ditampilkan"
+msgstr "ชื่อที่แสดง"
 
 # English string: Display name
 msgid "openid.sreg.nickname"
-msgstr "Nama yang ditampilkan"
+msgstr "ชื่อที่แสดง"
 
 # English string: Display name
 msgid "http://axschema.org/namePerson"
-msgstr "Nama yang ditampilkan"
+msgstr "ชื่อที่แสดง"
 
 # English string: Display name
 msgid "openid.sreg.fullname"
-msgstr "Nama yang ditampilkan"
+msgstr "ชื่อที่แสดง"
 
 # English string: Display name
 msgid "twitter.name"
-msgstr "Nama yang ditampilkan"
+msgstr "ชื่อที่แสดง"
 
 # English string: Display name
 msgid "windowslive.displayName"
-msgstr "Nama yang ditampilkan"
+msgstr "ชื่อที่แสดง"
 
 # English string: Person's principal name at home organization
 msgid "facebook_user"
-msgstr "Nama kepala pada organisasi asal"
+msgstr "ชื่อบุคคลหลักที่บ้านองค์กร"
 
 # English string: Person's principal name at home organization
 msgid "linkedin_user"
-msgstr "Nama kepala pada organisasi asal"
+msgstr "ชื่อบุคคลหลักที่บ้านองค์กร"
 
 # English string: Person's principal name at home organization
 msgid "twitter_screen_n_realm"
-msgstr "Nama kepala pada organisasi asal"
+msgstr "ชื่อบุคคลหลักที่บ้านองค์กร"
 
 # English string: Person's principal name at home organization
 msgid "windowslive_user"
-msgstr "Nama kepala pada organisasi asal"
+msgstr "ชื่อบุคคลหลักที่บ้านองค์กร"
 
 # English string: Person's principal name at home organization
 msgid "windowslive.userPrincipalName"
-msgstr "Nama kepala pada organisasi asal"
+msgstr "ชื่อบุคคลหลักที่บ้านองค์กร"
 
 # English string: Persistent pseudonymous ID
 msgid "facebook_targetedID"
@@ -1904,155 +1904,155 @@ msgstr "Persistent pseudonymous ID"
 
 # English string: Fax number
 msgid "http://axschema.org/contact/phone/fax"
-msgstr "No Fax"
+msgstr "หมายเลขโทรสาร"
 
 # English string: Given name
 msgid "facebook.first_name"
-msgstr "Nama"
+msgstr "ชื่อที่ตั้ง"
 
 # English string: Given name
 msgid "linkedin.firstName"
-msgstr "Nama"
+msgstr "ชื่อที่ตั้ง"
 
 # English string: Given name
 msgid "http://axschema.org/namePerson/first"
-msgstr "Nama"
+msgstr "ชื่อที่ตั้ง"
 
 # English string: Given name
 msgid "windowslive.FirstName"
-msgstr "Nama"
+msgstr "ชื่อที่ตั้ง"
 
 # English string: Given name
 msgid "windowslive.givenName"
-msgstr "Nama"
+msgstr "ชื่อที่ตั้ง"
 
 # English string: Home telephone
 msgid "http://axschema.org/contact/phone/home"
-msgstr "Telepon rumah"
+msgstr "โทรศัพท์บ้าน"
 
 # English string: Locality
 msgid "windowslive.Location"
-msgstr "Lokalitas"
+msgstr "ท้องถิ่น"
 
 # English string: Labeled URI
 msgid "facebook.profile_url"
-msgstr "Berlabel URL"
+msgstr "URI ที่มีป้ายกำกับ"
 
 # English string: Labeled URI
 msgid "twitter.url"
-msgstr "Berlabel URL"
+msgstr "URI ที่มีป้ายกำกับ"
 
 # English string: Mail
 msgid "facebook.email"
-msgstr "Surat"
+msgstr "อีเมล"
 
 # English string: Mail
 msgid "http://axschema.org/contact/email"
-msgstr "Surat"
+msgstr "อีเมล"
 
 # English string: Mail
 msgid "openid.sreg.email"
-msgstr "Surat"
+msgstr "อีเมล"
 
 # English string: Mail
 msgid "windowslive_mail"
-msgstr "Surat"
+msgstr "อีเมล"
 
 # English string: Mail
 msgid "windowslive.mail"
-msgstr "Surat"
+msgstr "อีเมล"
 
 # English string: Mobile
 msgid "http://axschema.org/contact/phone/cell"
-msgstr "Handphone"
+msgstr "มือถือ"
 
 # English string: Organization name
 msgid "http://axschema.org/company/name"
-msgstr "Nama organisasi"
+msgstr "ชื่อองค์กร"
 
 msgid "http://axschema.org/namePerson/prefix"
 msgstr "http://axschema.org/namePerson/prefix"
 
 # English string: Postal code
 msgid "http://axschema.org/contact/postalCode/home"
-msgstr "Kode pos"
+msgstr "รหัส Zip / ไปรษณีย์"
 
 # English string: Postal code
 msgid "openid.sreg.postcode"
-msgstr "Kode pos"
+msgstr "รหัส Zip / ไปรษณีย์"
 
 # English string: Preferred language
 msgid "facebook.locale"
-msgstr "Pilihan Bahasa"
+msgstr "ภาษาที่ต้องการ"
 
 # English string: Preferred language
 msgid "http://axschema.org/pref/language"
-msgstr "Pilihan Bahasa"
+msgstr "ภาษาที่ต้องการ"
 
 # English string: Preferred language
 msgid "openid.sreg.language"
-msgstr "Pilihan Bahasa"
+msgstr "ภาษาที่ต้องการ"
 
 # English string: Preferred language
 msgid "twitter.lang"
-msgstr "Pilihan Bahasa"
+msgstr "ภาษาที่ต้องการ"
 
 # English string: Preferred language
 msgid "windowslive.preferredLanguage"
-msgstr "Pilihan Bahasa"
+msgstr "ภาษาที่ต้องการ"
 
 # English string: Surname
 msgid "facebook.last_name"
-msgstr "Nama Keluaga"
+msgstr "นามสกุล"
 
 # English string: Surname
 msgid "linkedin.lastName"
-msgstr "Nama Keluaga"
+msgstr "นามสกุล"
 
 # English string: Surname
 msgid "http://axschema.org/namePerson/last"
-msgstr "Nama Keluaga"
+msgstr "นามสกุล"
 
 # English string: Surname
 msgid "windowslive.LastName"
-msgstr "Nama Keluaga"
+msgstr "นามสกุล"
 
 # English string: Surname
 msgid "windowslive.surname"
-msgstr "Nama Keluaga"
+msgstr "นามสกุล"
 
 # English string: Telephone number
 msgid "http://axschema.org/contact/phone/default"
-msgstr "No Telepon"
+msgstr "เบอร์โทรศัพท์"
 
 # English string: Telephone number
 msgid "http://axschema.org/contact/phone/business"
-msgstr "No Telepon"
+msgstr "เบอร์โทรศัพท์"
 
 # English string: Title
 msgid "linkedin.headline"
-msgstr "Gelar"
+msgstr "หัวข้อ"
 
 # English string: Title
 msgid "http://axschema.org/company/title"
-msgstr "Gelar"
+msgstr "หัวข้อ"
 
 # English string: User ID
 msgid "facebook.username"
-msgstr "User ID"
+msgstr "ID ผู้ใช้"
 
 # English string: User ID
 msgid "linkedin.id"
-msgstr "User ID"
+msgstr "ID ผู้ใช้"
 
 # English string: User ID
 msgid "twitter.screen_name"
-msgstr "User ID"
+msgstr "ID ผู้ใช้"
 
 # English string: User ID
 msgid "windowslive_uid"
-msgstr "User ID"
+msgstr "ID ผู้ใช้"
 
 # English string: User ID
 msgid "windowslive.id"
-msgstr "User ID"
+msgstr "ID ผู้ใช้"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Language: id\n"
+"Language: vi\n"
 "MIME-Version: 1.0\n"
 "Project-Id-Version: SimpleSAMLphp\n"
 "X-Domain: messages\n"
@@ -12,17 +12,17 @@ msgid "%MESSAGE%"
 msgstr "%MESSAGE%"
 
 msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
-msgstr "Sebuah layanan telah meminta Anda untuk melakukan autentifikasi. Silahkan masukkan username dan password Anda pada form dibawah."
+msgstr "Một dịch vụ đã yêu cầu bạn xác thực. Vui lòng nhập tên người dùng và mật khẩu của bạn vào biểu mẫu bên dưới."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
 msgid "Admin password not set to a hashed value"
-msgstr "Kata sandi admin tidak disetel ke nilai hash"
+msgstr "Mật khẩu quản trị viên không được đặt thành giá trị băm"
 
 msgid "Affiliation"
-msgstr "Afiliasi"
+msgstr "Liên kết"
 
 msgid "Affiliation at home organization"
-msgstr "Afiliasi di organisasi asal"
+msgstr "Tổ chức liên kết tại nước nhà"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:196
 msgid "An error occurred when trying to create the SAML request."
@@ -30,409 +30,409 @@ msgstr "Sebuah error telah terjadi ketika membuat request SAML."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:218
 msgid "An error occurred when trying to process the Logout Request."
-msgstr "Sebuah error telah terjadi ketika memproses Request Logout."
+msgstr "Đã xảy ra lỗi khi cố gắng xử lý Yêu cầu đăng xuất."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:257
 msgid "An unhandled exception was thrown."
-msgstr "Pengecualian yang tidak tertangani telah dilempar."
+msgstr "Một ngoại lệ chưa được xử lý đã được đưa ra."
 
 msgid "As you are in debug mode, you get to see the content of the message you are sending:"
-msgstr "Karena anda berada pada mode debug, anda dapat melihat isi pesan yang anda kirim:"
+msgstr "Khi bạn đang ở chế độ gỡ lỗi, bạn sẽ thấy được nội dung của tin nhắn bạn đang gửi:"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
 msgid "Authentication aborted"
-msgstr "Otentikasi dibatalkan"
+msgstr "Xác thực đã bị hủy bỏ"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:191
 msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
-msgstr "Error otentikasi di sumber %AUTHSOURCE%. Alasannya adalah: %REASON%"
+msgstr "Lỗi xác thực trong nguồn %AUTHSOURCE%. Lý do là: %REASON%"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:203
 msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
-msgstr "Otentikasi gagal: Sertifikat yang browser Anda kirimkan invalid atau tidak dapat dibaca"
+msgstr "Xác thực không thành công: chứng chỉ trình duyệt của bạn gửi không hợp lệ hoặc không thể đọc được"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:258
 msgid "Authentication failed: the certificate your browser sent is unknown"
-msgstr "Otentikasi gagal: sertifikat yang browser anda kirimkan tidak dikenal"
+msgstr "Xác thực không thành công: chứng chỉ trình duyệt của bạn gửi không xác định"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
 msgid "Authentication failed: your browser did not send any certificate"
-msgstr "Otentikasi gagal: Browser anada tidak mengirim sertifikat"
+msgstr "Xác thực không thành công: trình duyệt của bạn không gửi bất kỳ chứng chỉ nào"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:72
 msgid "Authentication source error"
-msgstr "Error sumber autentifikasi"
+msgstr "Lỗi nguồn xác thực"
 
 msgid "Authentication status"
-msgstr "Status otentikasi"
+msgstr "Trạng thái xác thực"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
 msgid "Bad request received"
-msgstr "Pengajuan yang buruk ke layanan penemuan"
+msgstr "Đã nhận được yêu cầu không hợp lệ"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:77
 msgid "Bad request to discovery service"
-msgstr "Request yang buruk ke layanan penemuan"
+msgstr "Yêu cầu không hợp lệ đối với dịch vụ khám phá"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
 msgid "CAS Error"
-msgstr "Kesalahan CAS"
+msgstr "Lỗi CAS"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
 msgid "Cannot retrieve session data"
-msgstr "Tidak dapat mengambil data sesi"
+msgstr "Không thể truy xuất dữ liệu phiên"
 
 msgid "Certificates"
-msgstr "Sertifikat"
+msgstr "Giấy chứng nhận"
 
 msgid "Change your home organization"
-msgstr "Ubah basis organisasi anda"
+msgstr "Thay đổi tổ chức nước nhà của bạn"
 
 msgid "Choose home organization"
-msgstr "Pilih basis organisasi"
+msgstr "Chọn tổ chức nước nhà"
 
 msgid "Choose your home organization"
-msgstr "Pilih Basis Organisasi Anda"
+msgstr "Chọn tổ chức nước nhà của bạn"
 
 msgid "Common name"
-msgstr "Nama umum"
+msgstr "Tên thường gọi"
 
 msgid "Completed"
-msgstr "Selesai"
+msgstr "Đã hoàn thành"
 
 msgid "Configuration check"
-msgstr "Pemeriksaan konfigurasi"
+msgstr "Kiểm tra cấu hình"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:75
 msgid "Configuration error"
-msgstr "Error konfigurasi"
+msgstr "Lỗi cấu hình"
 
 msgid "Contact information:"
-msgstr "Informasi Kontak:"
+msgstr "Thông tin liên lạc:"
 
 msgid "Converted metadata"
-msgstr "Metadata yang telah dikonvesi"
+msgstr "Siêu dữ liệu đã chuyển đổi"
 
 msgid "Copy to clipboard"
-msgstr "Salin ke papan klip"
+msgstr "Sao chép vào bộ nhớ tạm thời"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
 msgid "Could not create authentication response"
-msgstr "Tidak dapat membuat respon autentifikasi"
+msgstr "Không thể tạo phản hồi xác thực"
 
 msgid "Date of birth"
-msgstr "Tanggal lahir"
+msgstr "Ngày sinh"
 
 msgid "Debug information"
-msgstr "Informasi debug"
+msgstr "Thông tin gỡ lỗi"
 
 msgid "Debug information to be used by your support staff"
-msgstr "Informasi debug yang akan digunakan oleh staf pendukung Anda"
+msgstr "Thông tin gỡ lỗi được nhân viên hỗ trợ của bạn sử dụng"
 
 msgid "Display name"
-msgstr "Nama yang ditampilkan"
+msgstr "Tên hiển thị"
 
 msgid "Distinguished name (DN) of person's home organization"
-msgstr "Distinguished name (DN) dari basis organisasi"
+msgstr "Distinguished name (DN) of person's home organization"
 
 msgid "Distinguished name (DN) of person's primary Organizational Unit"
-msgstr "Distinguished name (DN) dari basis utama unit organisasi"
+msgstr "Distinguished name (DN) of person's primary Organizational Unit"
 
 msgid "Distinguished name (DN) of the person's home organizational unit"
-msgstr "Distinguished name (DN) dari unit basis organisasi"
+msgstr "Distinguished name (DN) of the person's home organizational unit"
 
 msgid "Do you want to logout from all the services above?"
-msgstr "Apakah anda ingin keluar dari semua layanan diatas?"
+msgstr "Bạn có muốn đăng xuất khỏi tất cả các dịch vụ trên không?"
 
 msgid "Domain component (DC)"
 msgstr "Domain component(DC)"
 
 msgid "Download the X509 certificates as PEM-encoded files."
-msgstr "Download sertifikat X509 sebagai file dikodekan-PEM."
+msgstr "Tải xuống chứng chỉ X509 dưới dạng tệp được mã hóa PEM."
 
 msgid "E-mail address:"
-msgstr "Alamat E-mail:"
+msgstr "Địa chỉ email:"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:260
 msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
-msgstr "Username yang diberikan tidak dapat ditemukan, atau password yang Anda berikan salah. Silahkan periksa username dan coba lagi."
+msgstr "Không tìm thấy người dùng nào có tên người dùng đã cho hoặc mật khẩu bạn cung cấp không đúng. Vui lòng kiểm tra tên người dùng và thử lại."
 
 msgid "Enter your username and password"
-msgstr "Masukkan username dan password Anda"
+msgstr "Nhập tên người dùng và mật khẩu của bạn"
 
 msgid "Entitlement regarding the service"
-msgstr "Hak mengenai layanan ini"
+msgstr "Quyền liên quan đến dịch vụ"
 
 msgid "Error"
-msgstr "Error"
+msgstr "Lỗi"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:76
 msgid "Error creating request"
-msgstr "Error membuat pengajuan"
+msgstr "Lỗi khi tạo yêu cầu"
 
 msgid "Error in this metadata entry"
-msgstr "Error pada entri metadata ini"
+msgstr "Lỗi trong mục nhập siêu dữ liệu này"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
 msgid "Error loading metadata"
-msgstr "Error memproses metadata"
+msgstr "Lỗi khi tải siêu dữ liệu"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
 msgid "Error processing request from Service Provider"
-msgstr "Error memproses pengajuan dari Service Provider"
+msgstr "Lỗi khi xử lý yêu cầu từ Nhà cung cấp dịch vụ"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
 msgid "Error processing response from Identity Provider"
-msgstr "Error memproses respon dari Identity Provider"
+msgstr "Lỗi xử lý phản hồi từ Nhà cung cấp danh tính"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:82
 msgid "Error processing the Logout Request"
-msgstr "Error memproses pengajuan keluar"
+msgstr "Lỗi khi xử lý Yêu cầu Đăng xuất"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
 msgid "Error received from Identity Provider"
-msgstr "Error diterima dari Pemberi identitas"
+msgstr "Lỗi nhận được từ Nhà cung cấp danh tính"
 
 msgid "Error report sent"
-msgstr "Laporan error dikirimkan"
+msgstr "Đã gửi báo cáo lỗi"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
 msgid "Error when communicating with the CAS server."
-msgstr "Error ketika berkomunikasi dengans server CAS."
+msgstr "Lỗi khi kết nối với máy chủ CAS."
 
 msgid "Explain what you did when this error occurred..."
-msgstr "Jelaskan apa yang Anda lakukan ketika error ini terjadi..."
+msgstr "Giải thích bạn đã làm gì khi lỗi này xảy ra..."
 
 msgid "Fax number"
-msgstr "Nomor Fax"
+msgstr "Số fax"
 
 msgid "Format"
-msgstr "Format"
+msgstr "Định dạng"
 
 msgid "Given name"
-msgstr "Nama"
+msgstr "Tên gọi"
 
 msgid "Go back to SimpleSAMLphp installation page"
-msgstr "Kembali ke halaman instalasi SimpleSAMLphp"
+msgstr "Quay lại trang cài đặt SimpleSAMLphp"
 
 msgid "Go back to the file list"
-msgstr "Kembali ke daftar file"
+msgstr "Quay lại danh sách tập tin"
 
 msgid "Hello, Untranslated World!"
-msgstr "Halo, Dunia yang Tidak Diterjemahkan!"
+msgstr "Xin chào Thế giới chưa dịch!"
 
 msgid "Help desk homepage"
-msgstr "Homepage Help desk"
+msgstr "Trang chủ bộ phận trợ giúp"
 
 msgid "Help! I don't remember my password."
-msgstr "Tolong! Saya tidak ingat password saya."
+msgstr "Trợ giúp! Tôi không nhớ mật khẩu của mình."
 
 msgid "Here is the metadata that SimpleSAMLphp has generated for you. You may send this metadata document to trusted partners to setup a trusted federation."
-msgstr "Berikut ini adalah SimpleSAMLphp metadata yang telah digenerate untuk Anda. Anda dapat mengirim dokumen metadata ini kepada rekan yang dipercayai untuk menyusun federasi terpercaya."
+msgstr "Đây là siêu dữ liệu mà SimpleSAMLphp đã tạo cho bạn. Bạn có thể gửi tài liệu siêu dữ liệu này cho các đối tác đáng tin cậy để thiết lập liên kết đáng tin cậy."
 
 msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
-msgstr "Hai, ini adalah halaman status dari SimpleSAMLphp. Disini anda dapat melihat jika sesi anda telah berakhir, berapa lama ia berlaku sampai berakhir dan semua attribut yang menempel pada sesi anda."
+msgstr "Xin chào, đây là trang trạng thái của SimpleSAMLphp. Tại đây, bạn có thể xem phiên của mình đã hết thời gian chưa, thời gian hết thời gian kéo dài bao lâu và tất cả các thuộc tính được đính kèm vào phiên của bạn."
 
 msgid "Home organization domain name"
-msgstr "Nama domain basis organisasi"
+msgstr "Tên miền tổ chức nước nhà"
 
 msgid "Home postal address"
-msgstr "Alamat pos rumah"
+msgstr "Địa chỉ bưu chính nước nhà"
 
 msgid "Home telephone"
-msgstr "Telepon rumah"
+msgstr "Điện thoại nhà riêng"
 
 msgid "How to get help"
-msgstr "Bagaimana mendapatkan pertolongan"
+msgstr "Làm thế nào để nhận được sự giúp đỡ"
 
 msgid "Identity assurance profile"
-msgstr "Profil penjamin identitas"
+msgstr "Hồ sơ đảm bảo danh tính"
 
 msgid "Identity number assigned by public authorities"
-msgstr "No identitas yang diberikan oleh otoritas publik"
+msgstr "Số định danh do cơ quan nhà nước cấp"
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr "Jika Anda melaporkan error ini, tolong laporkan juga nomor pelacakan sehingga memungkinkan untuk menemukan lokasi sesi anda pada log tersedia untuk administrator sistem:"
+msgstr "Nếu bạn báo cáo lỗi này, vui lòng cũng báo cáo số theo dõi này để có thể xác định vị trí phiên của bạn trong nhật ký mà quản trị viên hệ thống có thể xem:"
 
 msgid "In SAML 2.0 Metadata XML format:"
-msgstr "Dalam format XML Metadata SAML 2.0:"
+msgstr "Ở định dạng XML siêu dữ liệu SAML 2.0:"
 
 msgid "In SimpleSAMLphp flat file format - use this if you are using a SimpleSAMLphp entity on the other side:"
-msgstr "Dalam format file biasa SimpleSAMLphp - gunakan ini jika Anda menggunakan entiti SimpleSAMLphp pada sisi lain:"
+msgstr "Ở định dạng tệp phẳng SimpleSAMLphp - sử dụng định dạng này nếu bạn đang sử dụng thực thể SimpleSAMLphp ở phía bên kia:"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
 msgid "Incorrect username or password"
-msgstr "Username atau password salah"
+msgstr "Tên đăng nhập và mật khẩu không chính xác"
 
 msgid "Incorrect username or password."
-msgstr "Username atau password salah."
+msgstr "Tên người dùng hoặc mật khẩu không đúng."
 
 msgid "Information about your current session"
-msgstr "Informasi tentang sesi Anda saat ini"
+msgstr "Thông tin về phiên truy cập hiện tại của bạn"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
-msgstr "Sertifikat invalid"
+msgstr "Giấy chứng nhận không hợp lệ"
 
 msgid "JPEG Photo"
-msgstr "Foto JPEG"
+msgstr "Ảnh JPEG"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:80
 msgid "LDAP Error"
-msgstr "Kesalahan LDAP"
+msgstr "Lỗi LDAP"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:206
 msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
-msgstr "LDAP adalah database user, dan ketika Anda mencoba login, kami perlu menghubungi database LDAP. Sebuah error terjadi ketika kami mencobanya saat ini."
+msgstr "LDAP là cơ sở dữ liệu người dùng và khi bạn thử đăng nhập, chúng tôi cần liên hệ với cơ sở dữ liệu LDAP. Đã xảy ra lỗi khi chúng tôi thử lần này."
 
 msgid "Labeled URI"
-msgstr "Berlabel URL"
+msgstr "URI được gắn nhãn"
 
 msgid "Language"
-msgstr "Bahasa"
+msgstr "Ngôn ngữ"
 
 msgid "Legal name"
-msgstr "Nama legal"
+msgstr "Tên hợp pháp"
 
 msgid "Local identity number"
-msgstr "Nomor identitas lokal"
+msgstr "Số định danh địa phương"
 
 msgid "Locality"
-msgstr "Lokalitas"
+msgstr "Địa phương"
 
 msgid "Logged out"
-msgstr "Keluar"
+msgstr "Đã đăng xuất"
 
 msgid "Logging out of the following services:"
-msgstr "Keluar dari layanan-layanan berikut:"
+msgstr "Đăng xuất khỏi các dịch vụ sau:"
 
 msgid "Logging out..."
-msgstr "Keluar..."
+msgstr "Đang đăng xuất..."
 
 msgid "Login"
-msgstr "Masuk"
+msgstr "Đăng nhập"
 
 msgid "Login at"
-msgstr "Masuk di"
+msgstr "Đăng nhập tại"
 
 msgid "Logout"
-msgstr "Keluar"
+msgstr "Đăng xuất"
 
 msgid "Logout failed"
-msgstr "Keluar gagal"
+msgstr "Đăng xuất không thành công"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:81
 msgid "Logout information lost"
-msgstr "Informasi keluar hilang"
+msgstr "Thông tin đăng xuất bị mất"
 
 msgid "Mail"
-msgstr "Surat"
+msgstr "Thư"
 
 msgid "Manager"
-msgstr "Manajer"
+msgstr "Người quản lý"
 
 msgid "Message"
-msgstr "Pesan"
+msgstr "Tin nhắn"
 
 msgid "Metadata"
-msgstr "Metadata"
+msgstr "Siêu dữ liệu"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:85
 msgid "Metadata not found"
-msgstr "Metadata tidak ditemukan"
+msgstr "Không tìm thấy siêu dữ liệu"
 
 msgid "Metadata overview"
-msgstr "Ikhtisar Metadata"
+msgstr "Tổng quan về siêu dữ liệu"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:90
 msgid "Method not allowed"
-msgstr "Metode tidak diizinkan"
+msgstr "Phương pháp không được phép"
 
 msgid "Mobile"
-msgstr "Handphone"
+msgstr "Di động"
 
 msgid "Next"
-msgstr "Selanjutnya"
+msgstr "Tiếp"
 
 msgid "Nickname"
-msgstr "Nama panggilan"
+msgstr "Biệt danh"
 
 msgid "No"
-msgstr "Tidak"
+msgstr "Không"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:88
 msgid "No RelayState"
-msgstr "Tidak ada RelayState"
+msgstr "Không có RelayState"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:71
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
 msgid "No SAML message provided"
-msgstr "Tidak pesan SAML yang disediakan"
+msgstr "Không có tin nhắn SAML nào được cung cấp"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
 msgid "No SAML request provided"
-msgstr "Tidak ada permintaan SAML yang diberikan"
+msgstr "Không có yêu cầu SAML nào được cung cấp"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
 msgid "No SAML response provided"
-msgstr "Tidak ada response SAML yang disediakan"
+msgstr "Không có phản hồi SAML nào được cung cấp"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:86
 msgid "No access"
-msgstr "Tidak ada akses"
+msgstr "Không truy cập"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:87
 msgid "No certificate"
-msgstr "Tidak ada sertifikat"
+msgstr "Không có chứng chỉ"
 
 msgid "No errors found."
-msgstr "Tidak ada error yang ditemukan."
+msgstr "Không tìm thấy lỗi."
 
 msgid "No identity providers found. Cannot continue."
-msgstr "Tidak ditemukan penyedia identitas. Tidak dapat melanjutkan."
+msgstr "Không tìm thấy nhà cung cấp danh tính. Không thể tiếp tục."
 
 msgid "No, cancel"
-msgstr "Tidak, batalkan"
+msgstr "Không, hủy bỏ"
 
 msgid "No, only %SP%"
-msgstr "Tidak, hanya %SP%"
+msgstr "Không, chỉ có %SP%"
 
 msgid "Notices"
-msgstr "Pemberitahuan"
+msgstr "Thông báo"
 
 msgid "On hold"
-msgstr "Diberhentikan sementara"
+msgstr "Tạm giữ"
 
 msgid "One or more of the services you are logged into <i>do not support logout</i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-msgstr "Satu atau beberapa layanan yang anda telah masuk <i>tidak mendukung keluar</i>.Untuk meyakinkan semua sesi anda ditutup, anda disarankan untuk <i>menutup web browser anda</i>."
+msgstr "Một hoặc nhiều dịch vụ bạn đã đăng nhập <i>không hỗ trợ đăng xuất</i> . Để đảm bảo rằng tất cả các phiên của bạn đã được đóng, bạn nên <i>đóng trình duyệt web của mình</i> ."
 
 msgid "Optional fields"
-msgstr "Bidang opsional"
+msgstr "Các trường tùy chọn"
 
 msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
-msgstr "Opsional, masukkan alamat email Anda, agar administrator dapat menghubungi Anda untuk pertanyaan lebih lanjut tentang masalah Anda:"
+msgstr "Bạn có thể nhập địa chỉ email của mình để người quản trị có thể liên hệ với bạn nếu có thêm câu hỏi về vấn đề của bạn:"
 
 msgid "Options missing from config file"
-msgstr "Opsi-opsi uang hilang dari file konfigurasi"
+msgstr "Tùy chọn bị thiếu trong tệp cấu hình"
 
 msgid "Organization"
-msgstr "Organisasi"
+msgstr "Tổ chức"
 
 msgid "Organization name"
-msgstr "Nama organisasi"
+msgstr "Tên tổ chức"
 
 msgid "Organization's legal name"
-msgstr "Nama legal Organisasi"
+msgstr "Tên hợp pháp của tổ chức"
 
 msgid "Organizational homepage"
-msgstr "Homepage organisasi"
+msgstr "Trang chủ của tổ chức"
 
 msgid "Organizational number"
-msgstr "Nomor Organisasi"
+msgstr "Số tổ chức"
 
 msgid "Organizational unit"
-msgstr "Unit Organisasi"
+msgstr "Đơn vị tổ chức"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:90
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:91
@@ -440,56 +440,56 @@ msgid "Page not found"
 msgstr "Halaman tidak ditemukan"
 
 msgid "Parse"
-msgstr "Parse"
+msgstr "Phân tích"
 
 msgid "Password"
-msgstr "Password"
+msgstr "Mật khẩu"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
 msgid "Password not set"
-msgstr "Password tidak diset"
+msgstr "Mật khẩu chưa được thiết lập"
 
 msgid "Persistent pseudonymous ID"
 msgstr "Persistent pseudonymous ID"
 
 msgid "Person's principal name at home organization"
-msgstr "Nama kepala pada organisasi asal"
+msgstr "Tên chính của người đó tại tổ chức nhà"
 
 msgid "Please select the identity provider where you want to authenticate:"
-msgstr "Silahkan pilih identity provider tempat anda ingin melakukan autentifikasi:"
+msgstr "Vui lòng chọn nhà cung cấp danh tính mà bạn muốn xác thực:"
 
 msgid "Post office box"
-msgstr "PO Box"
+msgstr "Hộp thư bưu điện"
 
 msgid "Postal address"
-msgstr "Alamat pos"
+msgstr "Địa chỉ bưu chính"
 
 msgid "Postal code"
-msgstr "Kode pos"
+msgstr "Mã bưu điện"
 
 msgid "Preferred language"
-msgstr "Pilihan Bahasa"
+msgstr "Ngôn ngữ ưa thích"
 
 msgid "Primary affiliation"
-msgstr "Afiliasi utama"
+msgstr "Liên kết chính"
 
 msgid "Private information elements"
-msgstr "Elemen-elemen informasi personal"
+msgstr "Các yếu tố thông tin riêng tư"
 
 msgid "Remember"
-msgstr "Ingat"
+msgstr "Ghi Nhớ"
 
 msgid "Remember my choice"
-msgstr "Ingat pilihan saya"
+msgstr "Nhớ sự lựa chọn của tôi"
 
 msgid "Report errors"
-msgstr "Laporakan error"
+msgstr "Báo cáo lỗi"
 
 msgid "Required fields"
-msgstr "Field-field yang wajib diisi"
+msgstr "Các trường bắt buộc"
 
 msgid "Return to service"
-msgstr "Kembali ke layanan"
+msgstr "Trở lại phục vụ"
 
 msgid "SAML 2.0 Identity Provider (Hosted)"
 msgstr "Identity Provider SAML 2.0 (Hosted)"
@@ -498,43 +498,43 @@ msgid "SAML 2.0 Identity Provider (Remote)"
 msgstr "Identity Provider SAML 2.0 (Remote)"
 
 msgid "SAML 2.0 SP Demo Example"
-msgstr "Contoh Demo SAML 2.0 SP"
+msgstr "Ví dụ về bản demo SAML 2.0 SP"
 
 msgid "SAML 2.0 SP Metadata"
-msgstr "Metadata SAML 2.0 SP"
+msgstr "Siêu dữ liệu SAML 2.0 SP"
 
 msgid "SAML 2.0 Service Provider (Hosted)"
-msgstr "Service Provider SAML 2.0 (Hosted)"
+msgstr "Nhà cung cấp dịch vụ SAML 2.0 (Đã lưu trữ)"
 
 msgid "SAML Subject"
-msgstr "Subjek SAML"
+msgstr "Chủ đề SAML"
 
 msgid "Select"
-msgstr "Pilih"
+msgstr "Chọn"
 
 msgid "Select configuration file to check:"
-msgstr "Pilih file konfigurasi yang akan diperiksa:"
+msgstr "Chọn tệp cấu hình để kiểm tra:"
 
 msgid "Select your identity provider"
-msgstr "Pilih identitas provider anda"
+msgstr "Chọn nhà cung cấp danh tính của bạn"
 
 msgid "Send e-mail to help desk"
-msgstr "Kirim e-mail ke meja bantuan"
+msgstr "Gửi email đến bộ phận trợ giúp"
 
 msgid "Send error report"
-msgstr "Kirim laporan error"
+msgstr "Gửi báo cáo lỗi"
 
 msgid "Sending message"
-msgstr "Mengirimpan pesan"
+msgstr "Gửi tin nhắn"
 
 msgid "Service Provider"
-msgstr "Service Provider"
+msgstr "Nhà cung cấp dịch vụ"
 
 msgid "Session size: %SIZE%"
-msgstr "Ukuran session: %SIZE%"
+msgstr "Kích thước phiên: %SIZE%"
 
 msgid "Shib 1.3 IdP Metadata"
-msgstr "Metadata Shib 1.3 IdP"
+msgstr "Shib 1.3 IdP Metadata"
 
 msgid "Shib 1.3 Identity Provider (Hosted)"
 msgstr "Identity Provider Shib 1.3 (Hosted)"
@@ -543,7 +543,7 @@ msgid "Shib 1.3 Identity Provider (Remote)"
 msgstr "Identity Provider Shib 1.3 (Remote)"
 
 msgid "Shib 1.3 SP Metadata"
-msgstr "Metadata Shib 1.3 SP"
+msgstr "Siêu dữ liệu Shib 1.3 SP"
 
 msgid "Shib 1.3 Service Provider (Hosted)"
 msgstr "Service Provider Shib 1.3 (Hosted)"
@@ -552,153 +552,153 @@ msgid "Shib 1.3 Service Provider (Remote)"
 msgstr "Service Provider Shib 1.3 (Remote)"
 
 msgid "Shibboleth demo"
-msgstr "Demo Shibboleth"
+msgstr "Bản demo Shibboleth"
 
 msgid "SimpleSAMLphp Diagnostics"
-msgstr "Diagnostik SimpleSAMLphp"
+msgstr "Chẩn đoán SimpleSAMLphp"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:195
 msgid "SimpleSAMLphp appears to be misconfigured."
-msgstr "SimpleSAMLphp sepertinya telah salah dikonfigurasi."
+msgstr "Có vẻ như SimpleSAMLphp bị cấu hình sai."
 
 msgid "SimpleSAMLphp error"
-msgstr "Error simpelSAMLphp"
+msgstr "Lỗi SimpleSAMLphp"
 
 msgid "Since your browser does not support Javascript, you must press the button below to proceed."
-msgstr "Karena browser Anda tidak mendukung Javascript, Anda harus menekan tombol di bawah ini untuk melanjutkan."
+msgstr "Vì trình duyệt của bạn không hỗ trợ Javascript, bạn phải nhấn nút bên dưới để tiếp tục."
 
 msgid "Some error occurred"
-msgstr "Beberapa kesalahan telah terjadi"
+msgstr "Đã xảy ra lỗi"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
 msgid "State information lost"
-msgstr "Informasi state hilang"
+msgstr "Thông tin trạng thái bị mất"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:234
 msgid "State information lost, and no way to restart the request"
-msgstr "Informasi state hilang, dan tidak ada cara untuk me-restat request"
+msgstr "Thông tin trạng thái bị mất và không có cách nào để khởi động lại yêu cầu"
 
 msgid "Street"
-msgstr "Jalan"
+msgstr "Đường"
 
 msgid "Submit message"
-msgstr "Serahkan pesan"
+msgstr "Gửi tin nhắn"
 
 msgid "Superfluous options in config file"
-msgstr "Pilihan tak beguna di file konfigurasi"
+msgstr "Các tùy chọn thừa trong tệp cấu hình"
 
 msgid "Surname"
-msgstr "Nama Keluaga"
+msgstr "Tên đệm"
 
 msgid "Telephone number"
-msgstr "No Telepon"
+msgstr "Số điện thoại"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
 msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
-msgstr "Identity Provider merespon dengan error. (Kode status di Response SAML adalah tidak berhasil)"
+msgstr "Nhà cung cấp danh tính đã trả lời với lỗi. (Mã trạng thái trong Phản hồi SAML không thành công)"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:259
 msgid "The authentication was aborted by the user"
-msgstr "Otentikasi dibatalkan oleh user"
+msgstr "Xác thực đã bị hủy bỏ bởi người dùng"
 
 msgid "The debug information below may be of interest to the administrator / help desk:"
-msgstr "Informasi debug dibawah ini mungkin menarik bagi administrator/help desk:"
+msgstr "Thông tin gỡ lỗi bên dưới có thể hữu ích cho người quản trị/bộ phận trợ giúp:"
 
 msgid "The error report has been sent to the administrators."
-msgstr "Laporan kesalahan telah dikirim ke administrator."
+msgstr "Báo cáo lỗi đã được gửi tới người quản trị."
 
 msgid "The following fields was not recognized"
-msgstr "Field-field berikut ini tidak dapat dikenali"
+msgstr "Các trường sau đây không được công nhận"
 
 msgid "The following optional fields was not found"
-msgstr "Field-field opsional berikut tidak dapat ditemukan"
+msgstr "Các trường tùy chọn sau đây không được tìm thấy"
 
 msgid "The following required fields was not found"
-msgstr "Field-field yang diperlukan wajib disisi berikut ini tidak ditemukan"
+msgstr "Các trường bắt buộc sau đây không được tìm thấy"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:235
 msgid "The given page was not found. The URL was: %URL%"
-msgstr "Halaman yang diminta tidak dapat ditemukan. URL nya adalah %URL%"
+msgstr "Không tìm thấy trang. URL là: %URL%"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:236
 msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
-msgstr "Halaman yang diminta tidak ditemykan, Error-nya adalah: %REASON% URL-nya adalah: %URL%"
+msgstr "Không tìm thấy trang. Lý do là: %REASON% URL là: %URL%"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:209
 msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
-msgstr "Informasi tentang operasi keluar saat ini telah hilang. Anda harus kembali ke layanan tempat Anda mencoba keluar dan mencoba melakukan proses keluar kembali. Kesalahan ini dapat disebabakan oleh informasi "
+msgstr "Thông tin về thao tác đăng xuất hiện tại đã bị mất. Bạn nên quay lại dịch vụ mà bạn đang cố gắng đăng xuất và thử đăng xuất lại. Lỗi này có thể do thông tin đăng xuất hết hạn. Thông tin đăng xuất được lưu trữ trong một khoảng thời gian giới hạn - thường là một số giờ. Khoảng thời gian này dài hơn bất kỳ thao tác đăng xuất thông thường nào, vì vậy lỗi này có thể chỉ ra một số lỗi khác với cấu hình. Nếu sự cố vẫn tiếp diễn, hãy liên hệ với nhà cung cấp dịch vụ của bạn."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:231
 msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
-msgstr "Orang yang memulai request ini tidak menyediakan parameter RelayState yang mengindikasikan kemana selanjutnya pergi."
+msgstr "Người khởi tạo yêu cầu này không cung cấp tham số RelayState cho biết bước tiếp theo cần thực hiện là gì."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:197
 msgid "The parameters sent to the discovery service were not according to specifications."
-msgstr "Parameter-parameter yang dikirimkan ke layanan penemuan tidak sesuai dengan spesifikasi."
+msgstr "Các thông số được gửi đến dịch vụ không theo đúng thông số kỹ thuật."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
 msgid "The password in the configuration (auth.adminpassword) is not a hashed value. Full details on how to fix this are supplied at https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"
-msgstr "Kata sandi dalam konfigurasi (auth.adminpassword) bukan merupakan nilai hash. Rincian lengkap tentang cara memperbaikinya tersedia di https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ) #gagal-login-ke-halaman-admin-dengan-dan-pesan-kesalahan-kata-password-admin-tidak-disetel-ke-nilai-hash"
+msgstr "Mật khẩu trong cấu hình (auth.adminpassword) không phải là giá trị băm. Chi tiết đầy đủ về cách khắc phục lỗi này được cung cấp tại https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
 msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
-msgstr "Password di konfigurasi (auth.adminspassword) tidak berubah dari nilai awal. Silahkan edit file konfigurasi."
+msgstr "Mật khẩu trong cấu hình (auth.adminpassword) không thay đổi so với giá trị mặc định. Vui lòng chỉnh sửa tệp cấu hình."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:193
 msgid "There is an error in the request to this page. The reason was: %REASON%"
-msgstr "Terjadi kesalahan pada request ke halaman ini. Alasannya adalah: %REASON%"
+msgstr "Có lỗi trong yêu cầu đến trang này. Lý do là: %REASON%"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:222
 msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
-msgstr "Ada beberapa kesalahan konfigurasi pada instalasi SimpleSAMLphp Anda. Jika Anda adalah administrator dari layanan ini, Anda harus memastikan konfigurasi metdata Anda telah disetup dengan benar."
+msgstr "Có một số cấu hình sai trong cài đặt SimpleSAMLphp của bạn. Nếu bạn là quản trị viên của dịch vụ này, bạn nên đảm bảo cấu hình siêu dữ liệu của mình được thiết lập đúng."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:243
 msgid "This Identity Provider received an Authentication Request from a Service Provider, but an error occurred when trying to process the request."
-msgstr "Identity Provider ini menerima Request Autentifikasi dari sebuah Service Provider, tetapi error terjadi ketika memproses request."
+msgstr "Nhà cung cấp danh tính này đã nhận được Yêu cầu xác thực từ Nhà cung cấp dịch vụ nhưng đã xảy ra lỗi khi cố gắng xử lý yêu cầu."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:227
 msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
-msgstr "Endpoint ini tidak diaktifkan. Periksalah opsi enable pada konfigurasi SimpleSAMLphp Anda."
+msgstr "Điểm cuối này không được bật. Kiểm tra tùy chọn bật trong cấu hình SimpleSAMLphp của bạn."
 
 msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
-msgstr "Error ini mungkin karena perilaku yang tidak diharapakan atau konfigurasi yang salah di SimpleSAMLphp. Hubungi administrator dari layanan login ini, dan kirimkan kepada mereka pesan error diatas."
+msgstr "Lỗi này có thể là do một số hành vi không mong muốn hoặc do cấu hình sai SimpleSAMLphp. Liên hệ với quản trị viên của dịch vụ đăng nhập này và gửi cho họ thông báo lỗi ở trên."
 
 msgid "Title"
-msgstr "Gelar"
+msgstr "Tiêu đề"
 
 msgid "To look at the details for an SAML entity, click on the SAML entity header."
-msgstr "Untuk melihat detail entiti SAML, klik pada bagian header entiti SAML."
+msgstr "Để xem thông tin chi tiết về một thực thể SAML, hãy nhấp vào tiêu đề thực thể SAML."
 
 msgid "Tracking number"
-msgstr "Nomor resi"
+msgstr "Mã vận đơn"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
 #, php-format
 msgid "Unable to locate metadata for %ENTITYID%"
-msgstr "Tidak dapat menemukan metadata untuk %ENTITYID%"
+msgstr "Không thể định vị siêu dữ liệu cho %ENTITYID%"
 
 msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-msgstr "Tidak dapat log out dari satu atau beberapa layanan. Untuk memastikan semua session anda ditutup, anda disaranakan untuk <i>menutup web browser anda</i>."
+msgstr "Không thể đăng xuất khỏi một hoặc nhiều dịch vụ. Để đảm bảo rằng tất cả các phiên của bạn đã được đóng, bạn nên <i>đóng trình duyệt web của mình</i> ."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
 msgid "Unhandled exception"
-msgstr "Pengecualian yang tidak tertangani"
+msgstr "Ngoại lệ chưa được xử lý"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:100
 msgid "Unknown certificate"
-msgstr "Sertifikat tidak dikenal"
+msgstr "Giấy chứng nhận không rõ"
 
 msgid "User ID"
-msgstr "User ID"
+msgstr "ID người dùng"
 
 msgid "User's password hash"
-msgstr "Hash password user"
+msgstr "Băm mật khẩu của người dùng"
 
 msgid "Username"
-msgstr "Username"
+msgstr "Tên đăng nhập"
 
 msgid "WS-Fed SP Demo Example"
-msgstr "Contoh Demo WS-Fed SP"
+msgstr "Ví dụ về bản demo WS-Fed SP"
 
 msgid "WS-Federation Identity Provider (Remote)"
 msgstr "Identity Provider WS-Federation (Remote)"
@@ -707,99 +707,99 @@ msgid "WS-Federation Service Provider (Hosted)"
 msgstr "Servide Provider WS-Federation (Hosted)"
 
 msgid "Warning"
-msgstr "Peringatan"
+msgstr "Cảnh báo"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
 msgid "We did not accept the response sent from the Identity Provider."
-msgstr "Kami tidak menerima response yang dikirimlan dari Identity Provider."
+msgstr "Chúng tôi không chấp nhận phản hồi được gửi từ Nhà cung cấp danh tính."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:200
 msgid "When this identity provider tried to create an authentication response, an error occurred."
-msgstr "Ketika identity provider ini mencoba untuk membuat response autentifikasi, error terjadi."
+msgstr "Khi nhà cung cấp danh tính này cố gắng tạo phản hồi xác thực, đã xảy ra lỗi."
 
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
-msgstr "Tanpa nama pengguna dan kata sandi, Anda tidak dapat mengautentikasi diri Anda sendiri untuk mengakses layanan ini. Mungkin ada seseorang yang dapat membantu Anda. Konsultasikan dengan meja bantuan di organisasi Anda!"
+msgstr "Nếu không có tên người dùng và mật khẩu, bạn không thể xác thực để truy cập vào dịch vụ. Có thể có người có thể giúp bạn. Hãy tham khảo bộ phận trợ giúp tại tổ chức của bạn!"
 
 msgid "World"
-msgstr "Dunia"
+msgstr "Thế Giới"
 
 msgid "XML metadata"
-msgstr "metadata XML"
+msgstr "Siêu dữ liệu XML"
 
 msgid "Yes, all services"
-msgstr "Ya, semua layanan"
+msgstr "Có, tất cả các dịch vụ"
 
 msgid "Yes, continue"
-msgstr "Ya, lanjutkan"
+msgstr "Vâng, tiếp tục"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:187
 msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
-msgstr "Anda mengakses antarmuka Layanan Resolusi Artefak, tetapi tidak memberikan pesan SAML ArtifactResolve. Harap diperhatikan bahwa titik akhir ini tidak dimaksudkan untuk diakses secara langsung."
+msgstr "Bạn đã truy cập vào giao diện Dịch vụ giải quyết hiện vật nhưng không cung cấp thông báo SAML ArtifactResolve. Xin lưu ý rằng điểm cuối này không có ý định được truy cập trực tiếp."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
 msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
-msgstr "Anda mengakses antarmuka Layanan Konsumen Penegasan, tetapi tidak memberikan Respons Otentikasi SAML. Harap diperhatikan bahwa titik akhir ini tidak dimaksudkan untuk diakses secara langsung."
+msgstr "Bạn đã truy cập vào giao diện Assertion Consumer Service nhưng không cung cấp Phản hồi xác thực SAML. Xin lưu ý rằng điểm cuối này không có ý định được truy cập trực tiếp."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:253
 msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
-msgstr "Anda mengakses antarmuka Layanan Sistem Masuk Tunggal, tetapi tidak memberikan Permintaan Autentikasi SAML. Harap diperhatikan bahwa titik akhir ini tidak dimaksudkan untuk diakses secara langsung."
+msgstr "Bạn đã truy cập vào giao diện Dịch vụ đăng nhập một lần nhưng không cung cấp Yêu cầu xác thực SAML. Xin lưu ý rằng điểm cuối này không được phép truy cập trực tiếp."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
 msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
-msgstr "Anda mengakses antarmuka SingleLogout, tetapi tidak menyediakan LogoutRequest SAML atau LogoutResponse."
+msgstr "Bạn đã truy cập giao diện SingleLogoutService nhưng không cung cấp SAML LogoutRequest hoặc LogoutResponse. Xin lưu ý rằng điểm cuối này không có ý định được truy cập trực tiếp."
 
 msgid "You are about to send a message. Hit the submit message button to continue."
-msgstr "Anda baru saja akan mengirim sebuah pesan. Tekan tombol submit pesan untuk melanjutkan."
+msgstr "Bạn sắp gửi tin nhắn. Nhấn nút gửi tin nhắn để tiếp tục."
 
 msgid "You are about to send a message. Hit the submit message link to continue."
-msgstr "Anda baru saja akan mengirim sebuah pesan. Tekan link submit pesan untuk melanjutkan."
+msgstr "Bạn sắp gửi tin nhắn. Nhấp vào liên kết gửi tin nhắn để tiếp tục."
 
 msgid "You are also logged in on these services:"
-msgstr "Anda juga masuk pada layanan berikut:"
+msgstr "Bạn cũng đã đăng nhập vào các dịch vụ sau:"
 
 msgid "You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>."
-msgstr "Anda sekarang mengakses sistem praproduksi. Pengaturan autentikasi ini hanya untuk pengujian dan verifikasi praproduksi. Jika seseorang mengirimi Anda tautan yang mengarahkan Anda ke sini, dan Anda bukan <i>penguji</i>, Anda mungkin mendapatkan tautan yang salah, dan seharusnya <b>tidak berada di sini</b>."
+msgstr "Bây giờ bạn đang truy cập vào hệ thống tiền sản xuất. Thiết lập xác thực này chỉ dành cho mục đích thử nghiệm và xác minh tiền sản xuất. Nếu ai đó gửi cho bạn một liên kết chỉ dẫn bạn đến đây và bạn không phải là <i>người thử nghiệm</i> thì có thể bạn đã nhận được liên kết sai và <b>không nên ở đây</b> ."
 
 msgid "You are now successfully logged out from %SP%."
-msgstr "Sekarang anda telah sukses log out dari %SP%."
+msgstr "Bây giờ bạn đã đăng xuất thành công khỏi %SP%."
 
 msgid "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
-msgstr "Anda dapat <a href=\"%METAURL%\">mendapatkan xml metadata pada URL tersendiri</a>:"
+msgstr "Bạn có thể <a href=\"%METAURL%\">lấy siêu dữ liệu xml trên một URL chuyên dụng</a> :"
 
 msgid "You can turn off debug mode in the global SimpleSAMLphp configuration file <tt>config/config.php</tt>."
-msgstr "Anda dapat menonaktifkan mode debuh pada file konfigurasi global simpleSAMLhphp  <tt>config/config.php</tt>."
+msgstr "Bạn có thể tắt chế độ gỡ lỗi trong tệp cấu hình SimpleSAMLphp toàn cục <tt>config/config.php</tt> ."
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:241
 msgid "You did not present a valid certificate."
-msgstr "Anda tidak menyediakan sertifikat yang valid."
+msgstr "Bạn không xuất trình được giấy chứng nhận hợp lệ."
 
 msgid "You have been logged out."
-msgstr "Anda telah log out."
+msgstr "Bạn đã đăng xuất."
 
 msgid "You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong you may choose another one."
-msgstr "Anda telah memilih  <b>%HOMEORG%</b> sebagai basis organisasi anda. Jika ini salah anda dapat memilih yang lain."
+msgstr "Bạn đã chọn <b>%HOMEORG%</b> làm tổ chức nhà của bạn. Nếu sai, bạn có thể chọn tổ chức khác."
 
 msgid "You have previously chosen to authenticate at"
-msgstr "Sebelumnya anda telah memilih untuk melakukan autentifikasi di"
+msgstr "Trước đó bạn đã chọn xác thực tại"
 
 msgid "You have successfully logged out from all services listed above."
-msgstr "Anda telah berhasil keluar dari semua layanan yang tercantuh diatas."
+msgstr "Bạn đã đăng xuất thành công khỏi tất cả các dịch vụ được liệt kê ở trên."
 
 msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
-msgstr "Anda mengirimkan sesuatu ke halaman masuk, tetapi karena suatu alasan tertentu password tidak terkirimkan, Silahkan coba lagi."
+msgstr "Bạn đã gửi gì đó đến trang đăng nhập, nhưng vì lý do nào đó, mật khẩu không được gửi. Vui lòng thử lại."
 
 msgid "Your attributes"
-msgstr "Attribut Anda"
+msgstr "Thuộc tính của bạn"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:219
 msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
-msgstr "Data sesi Anda tidak dapat diambil saat ini karena masalah teknis. Silakan coba lagi dalam beberapa menit."
+msgstr "Không thể truy xuất dữ liệu phiên của bạn ngay bây giờ do sự cố kỹ thuật. Vui lòng thử lại sau vài phút."
 
 msgid "Your session is valid for %remaining% seconds from now."
-msgstr "Sesi anda valid untuk %remaining% detik dari sekarang."
+msgstr "Phiên của bạn có hiệu lực trong %remaining% giây kể từ bây giờ."
 
 msgid "[Preferred choice]"
-msgstr "Pilihan yang disukai"
+msgstr "[Lựa chọn ưu tiên]"
 
 msgid "not set"
-msgstr "tidak di atur"
+msgstr "không được thiết lập"

@@ -8,106 +8,106 @@ msgstr ""
 "X-Domain: core\n"
 
 msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
-msgstr ""
+msgstr "Sebuah layanan telah meminta Anda untuk melakukan autentifikasi. Silahkan masukkan username dan password Anda pada form dibawah."
 
 msgid "An error has occurred"
-msgstr ""
+msgstr "Terjadi suatu kesalahan"
 
 msgid "Check that the link you used to access the web site is correct."
-msgstr ""
+msgstr "Periksa apakah tautan yang Anda gunakan untuk mengakses situs web sudah benar."
 
 msgid "Close the web browser, and try again."
-msgstr "Tutup browser, dan coba lagi."
+msgstr "Tutup browser web, dan coba lagi."
 
 msgid "Continue"
-msgstr ""
+msgstr "Lanjutkan"
 
 msgid "Cookies may be disabled in the web browser."
 msgstr "Cookie mungkin dinonaktifkan pada web browser ini."
 
 msgid "Do you want to logout from all the services above?"
-msgstr ""
+msgstr "Apakah Anda ingin keluar dari semua layanan di atas?"
 
 msgid "Enter your username and password"
-msgstr ""
+msgstr "Masukkan nama pengguna dan kata sandi Anda"
 
 msgid "Error report sent"
-msgstr ""
+msgstr "Laporan kesalahan terkirim"
 
 msgid "Go back to the previous page and try again."
 msgstr "Kembali ke halaman sebelumnya dan coba lagi."
 
 msgid "Help! I don't remember my password."
-msgstr ""
+msgstr "Tolong! Saya tidak ingat password saya."
 
 msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
-msgstr "Metadata Identity Provider Shibboleth 1.3 Hosted (secara otomatis digenerate)"
+msgstr "Metadata Identity Provider Shibboleth 1.3 Hosted (secara otomatis dihasilkan)"
 
 msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
-msgstr "Metadata Service Provider Shibboleth 1.3  Hosted (secara otomatis digenerate)"
+msgstr "Metadata Service Provider Shibboleth 1.3 Hosted (secara otomatis dihasilkan)"
 
 msgid "If this problem persists, you can report it to the system administrators."
-msgstr "Jika masalah ini tetap terjadi, anda dapat melaporkannnya ke system administrator."
+msgstr "Jika masalah ini tetap terjadi, anda dapat melaporkannnya ke administrator sistem."
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have a problem with the metadata configuration. Verify that metadata is configured correctly on both the identity provider and service provider."
-msgstr "Jika anda adalah pengembang yang mendeploy solusi sing-on, anda memiliki masalah dengan konfigurasi metadata.  Periksalah kalau metadata telah dikonfigurasi dengan benar baik pada sisi identity provider dan pada sisi service provider."
+msgstr "Jika anda adalah pengembang yang menerapkan solusi sistem masuk tunggal, anda memiliki masalah dengan konfigurasi metadata. Periksalah kalau metadata telah dikonfigurasi."
 
 msgid "If you are a developer who is deploying a single sign-on solution, you have are trying to reach an endpoint using the wrong HTTP-method."
-msgstr ""
+msgstr "Jika Anda seorang pengembang yang menerapkan solusi sistem masuk tunggal, Anda mencoba mencapai titik akhir menggunakan metode HTTP yang salah."
 
 msgid "If you are a user who received this error after following a link on a site, you should report this error to the owner of that site."
-msgstr "Jika adalah user yang menerika error ini setelah mengklik link pada sebuah situs, anda harus melaporkan error ini kepada pemilik situs tersebut"
+msgstr "Jika adalah pengguna yang menerima error ini setelah mengklik link pada sebuah situs, anda harus melaporkan error ini kepada pemilik situs tersebut."
 
 msgid "If you are the administrator of this installation, please refer to the <a href=\"https://simplesamlphp.org/docs/\">SimpleSAMLphp documentation</a> for how to configure and interact with the software."
-msgstr ""
+msgstr "Jika Anda adalah administrator instalasi ini, silakan lihat <a href=\"https://simplesamlphp.org/docs/\">dokumentasi SimpleSAMLphp</a> untuk mengetahui cara mengonfigurasi dan berinteraksi dengan perangkat lunak."
 
 msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
-msgstr ""
+msgstr "Jika Anda melaporkan kesalahan ini, laporkan juga nomor pelacakan ini yang memungkinkan untuk menemukan sesi Anda dalam log yang tersedia untuk administrator sistem:"
 
 msgid "Incorrect Attributes"
-msgstr ""
+msgstr "Atribut yang salah"
 
 msgid "Logging out..."
-msgstr ""
+msgstr "Keluar..."
 
 msgid "Login"
-msgstr ""
+msgstr "Masuk"
 
 msgid "Logout"
-msgstr ""
+msgstr "Keluar"
 
 msgid "Missing cookie"
 msgstr "Cookie hilang"
 
 msgid "No"
-msgstr ""
+msgstr "Tidak"
 
 msgid "No, only %SP%"
-msgstr ""
+msgstr "Tidak, hanya %SP%"
 
 msgid "One or more of the attributes supplied by your identity provider did not contain the expected number of values."
-msgstr ""
+msgstr "Satu atau beberapa atribut yang diberikan oleh penyedia identitas Anda tidak mengandung jumlah nilai yang diharapkan."
 
 msgid "Opened the web browser with tabs saved from the previous session."
-msgstr "Membuka web browser dengan tab-tab yang telah disimpan dari session sebelumnya."
+msgstr "Membuka web browser dengan tab-tab yang telah disimpan dari sesi sebelumnya."
 
 msgid "Organization"
-msgstr ""
+msgstr "Organisasi"
 
 msgid "Password"
-msgstr ""
+msgstr "Kata Sandi"
 
 msgid "Processing..."
-msgstr ""
+msgstr "Memproses..."
 
 msgid "Remember me"
-msgstr ""
+msgstr "Ingat saya"
 
 msgid "Remember my organization"
-msgstr ""
+msgstr "Ingat organisasi saya"
 
 msgid "Remember my username"
-msgstr ""
+msgstr "Ingat nama pengguna saya"
 
 msgid "Report this error"
 msgstr "Laporkan error ini"
@@ -116,13 +116,13 @@ msgid "Retry"
 msgstr "Coba lagi"
 
 msgid "Retry login"
-msgstr "Coba login kembali"
+msgstr "Coba masuk kembali"
 
 msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Contoh Shibboleth 1.3 SP  - Tes login melalui IdP Shib Anda"
 
 msgid "SimpleSAMLphp"
-msgstr ""
+msgstr "SimpleSAMLphp"
 
 msgid "State information lost"
 msgstr "Informasi kondisi/state hilang"
@@ -131,49 +131,49 @@ msgid "Suggestions for resolving this problem:"
 msgstr "Saran untuk memperbaiki masalah ini:"
 
 msgid "The authentication procesd has failed."
-msgstr ""
+msgstr "Proses autentikasi telah gagal."
 
 msgid "The authorization procesd has failed."
-msgstr ""
+msgstr "Proses otorisasi telah gagal."
 
 msgid "The error report has been sent to the administrators."
-msgstr ""
+msgstr "Laporan kesalahan telah dikirim ke administrator."
 
 msgid "The identification procesd has failed."
-msgstr ""
+msgstr "Proses identifikasi telah gagal."
 
 msgid "The link used to get here was bad, perhaps a bookmark."
-msgstr ""
+msgstr "Tautan yang digunakan untuk menuju ke sini rusak, mungkin penanda halaman."
 
 msgid "The problematic attribute(s) are:"
-msgstr ""
+msgstr "Atribut yang bermasalah adalah:"
 
 msgid "There was an issue while signing you in."
-msgstr ""
+msgstr "Ada masalah saat Anda masuk."
 
 msgid "This error may be caused by:"
 msgstr "Error ini mungkin disebabkan oleh:"
 
 msgid "This is most likely a configuration problem on either the service provider or identity provider."
-msgstr "Sepertinya ini terjadi karena ada kesalahan konfigurasi baik pada service provider maupun pada identity provider"
+msgstr "Sepertinya ini terjadi karena ada kesalahan konfigurasi baik pada service provider maupun pada identity provider."
 
 msgid "This is the front page of the SimpleSAMLphp authentication software. There's not much to see here."
-msgstr ""
+msgstr "Ini adalah halaman depan dari perangkat lunak autentikasi SimpleSAMLphp. Tidak banyak yang bisa dilihat di sini."
 
 msgid "Too short interval between single sign on events."
-msgstr "Interval yang terlalu pendek antara event single sign on."
+msgstr "Interval yang terlalu pendek antara sistem masuk tunggal."
 
 msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
-msgstr ""
+msgstr "Tidak dapat keluar dari satu atau beberapa layanan. Untuk memastikan bahwa semua sesi Anda telah ditutup, Anda disarankan untuk <i>menutup browser web Anda.</i>."
 
 msgid "Username"
-msgstr ""
+msgstr "Nama Pengguna"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Menggunakan tombol back dan forward pada browser web."
 
 msgid "We have detected that there is only a few seconds since you last authenticated with this service provider, and therefore assume that there is a problem with this SP."
-msgstr "Kami telah mendeteksi kalau beberapa detik yang lalu sejak autentifikasi yang anda lakukan pada service provider ini, dan oleh karena itu diasumsikan ada masalah dengan SP ini"
+msgstr "Kami mendeteksi bahwa hanya ada beberapa detik sejak Anda terakhir kali melakukan autentikasi dengan penyedia layanan ini, dan oleh karena itu berasumsi bahwa ada masalah dengan SP ini."
 
 msgid "We were unable to locate the state information for the current request."
 msgstr "Kita tidak dapat menemukan informasi kondisi/state dari request saat ini."
@@ -182,25 +182,25 @@ msgid "Welcome"
 msgstr "Selamat Datang"
 
 msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
-msgstr ""
+msgstr "Tanpa nama pengguna dan kata sandi, Anda tidak dapat mengautentikasi diri Anda sendiri untuk mengakses layanan ini. Mungkin ada seseorang yang dapat membantu Anda. Konsultasikan dengan meja bantuan di organisasi Anda!"
 
 msgid "Yes, all services"
-msgstr ""
+msgstr "Ya, semua layanan"
 
 msgid "You appear to have disabled cookies in your browser. Please check the settings in your browser, and try again."
 msgstr "Anda sepertinya menonaktifkan cookie di browser anda. Silahkan periksa  pengaturan pada browser anda, dan coba lagi."
 
 msgid "You are also logged in on these services:"
-msgstr ""
+msgstr "Anda juga masuk pada layanan berikut:"
 
 msgid "You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>."
-msgstr ""
+msgstr "Anda sekarang mengakses sistem praproduksi. Pengaturan autentikasi ini hanya untuk pengujian dan verifikasi praproduksi. Jika seseorang mengirimi Anda tautan yang mengarahkan Anda ke sini, dan Anda bukan <i>penguji</i>, Anda mungkin mendapatkan tautan yang salah, dan seharusnya <b>tidak berada di sini</b>."
 
 msgid "You are now successfully logged out from %SP%."
-msgstr ""
+msgstr "Anda sekarang berhasil keluar dari %SP%."
 
 msgid "got %got% values, want %want%"
-msgstr ""
+msgstr "mendapat %got%, menginginkan %want%"
 
 msgid "logout is not supported"
-msgstr ""
+msgstr "keluar tidak didukung"

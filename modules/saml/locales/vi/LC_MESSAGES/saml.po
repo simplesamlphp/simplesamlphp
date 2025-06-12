@@ -2,17 +2,17 @@ msgid ""
 msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Language: id\n"
+"Language: vi\n"
 "MIME-Version: 1.0\n"
 "Project-Id-Version: SimpleSAMLphp\n"
 "X-Domain: saml\n"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/saml/hooks/hook_sanitycheck.php:25
 msgid "Hosted IdP metadata present"
-msgstr "Metadata IdP yang dihosting hadir"
+msgstr "Siêu dữ liệu IdP được lưu trữ hiện tại"
 
 msgid "Invalid Identity Provider"
-msgstr "Penyedia Identitas Tidak Valid"
+msgstr "Nhà cung cấp danh tính không hợp lệ"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/modules/saml/hooks/hook_sanitycheck.php:35
 msgid "Matching key-pair for signing assertions"
@@ -27,19 +27,19 @@ msgid "Matching key-pair for signing metadata"
 msgstr ""
 
 msgid "No, cancel"
-msgstr "Tidak, batalkan"
+msgstr "Không, hủy bỏ"
 
 msgid "SimpleSAMLphp"
 msgstr "SimpleSAMLphp"
 
 msgid "Wrong authentication context"
-msgstr "Konteks otentikasi keliru"
+msgstr "Bối cảnh xác thực sai"
 
 msgid "Yes, continue"
-msgstr "Ya, lanjutkan"
+msgstr "Vâng, tiếp tục"
 
 msgid "You already have a valid session with an identity provider (<em>%IDP%</em>) that is not accepted by <em>%SP%</em>. Would you like to log out from your existing session and log in again with another identity provider?"
-msgstr "Anda sudah memiliki sesi yang valid dengan penyedia identitas (<em>%IDP%</em>) yang tidak diterima oleh <em>%SP%</em>. Apakah Anda ingin keluar dari sesi yang sudah ada dan masuk lagi dengan penyedia identitas lain?"
+msgstr "Bạn đã có phiên hợp lệ với nhà cung cấp danh tính ( <em>%IDP%</em> ) không được <em>%SP%</em> chấp nhận. Bạn có muốn đăng xuất khỏi phiên hiện tại và đăng nhập lại bằng nhà cung cấp danh tính khác không?"
 
 msgid "Your authentication context is not accepted at this service. Probably too weak or not two-factor."
-msgstr "Konteks otentikasi Anda tidak tersedia pada layanan ini. Mungkin terlalu lemah atau tanpa keamanan-ganda."
+msgstr "Ngữ cảnh xác thực của bạn không được chấp nhận tại dịch vụ này. Có thể là quá yếu hoặc không phải là hai yếu tố."
