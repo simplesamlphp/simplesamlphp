@@ -80,6 +80,7 @@ class SQLStoreTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testGetEmptyData(): void
     {
@@ -90,6 +91,7 @@ class SQLStoreTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testInsertData(): void
     {
@@ -101,6 +103,7 @@ class SQLStoreTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testOverwriteData(): void
     {
@@ -113,6 +116,7 @@ class SQLStoreTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testDeleteData(): void
     {
@@ -125,6 +129,7 @@ class SQLStoreTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testVeryLongKey(): void
     {

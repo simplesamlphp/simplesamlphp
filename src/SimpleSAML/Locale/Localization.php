@@ -13,9 +13,8 @@ namespace SimpleSAML\Locale;
 use Exception;
 use Gettext\Generator\ArrayGenerator;
 use Gettext\Loader\{MoLoader, PoLoader};
-use Gettext\{Translations, Translator, TranslatorFunctions};
+use Gettext\{Translator, TranslatorFunctions};
 use SimpleSAML\{Configuration, Logger};
-use SimpleSAML\Locale\Translate;
 use Symfony\Component\HttpFoundation\File\File;
 
 use function explode;
@@ -73,6 +72,7 @@ class Localization
      * Constructor
      *
      * @param \SimpleSAML\Configuration $configuration Configuration object
+     * @throws Exception
      */
     public function __construct(
         private Configuration $configuration,
@@ -112,6 +112,7 @@ class Localization
      * @param string $domain Name of module/domain
      *
      * @return string
+     * @throws Exception
      */
     public function getDomainLocaleDir(string $domain): string
     {
@@ -129,6 +130,7 @@ class Localization
      * @param string $module Module name
      * @param string $localeDir Absolute path if the module is housed elsewhere
      * @param string $domain Translation domain within module; defaults to module name
+     * @throws Exception
      */
     public function addModuleDomain(string $module, ?string $localeDir = null, ?string $domain = null): void
     {
@@ -153,6 +155,7 @@ class Localization
      *
      * @param string $localeDir Location of translations
      * @param string $domain Domain at location
+     * @throws Exception
      */
     public function addDomain(string $localeDir, string $domain): void
     {
@@ -298,6 +301,7 @@ class Localization
 
     /**
      * Set up L18N
+     * @throws Exception
      */
     private function setupL10N(): void
     {
@@ -323,6 +327,7 @@ class Localization
     /**
      * Add translation domains specifically used for translating attributes names:
      * the default in attributes.po and any attributes.po in the enabled theme.
+     * @throws Exception
      */
     public function addAttributeDomains(): void
     {

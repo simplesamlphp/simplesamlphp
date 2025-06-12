@@ -50,6 +50,7 @@ class LoggerTest extends TestCase
 
 
     /**
+     * @throws Exception
      */
     public function testCreateLoggingHandlerHonorsCustomHandler(): void
     {
@@ -64,6 +65,7 @@ class LoggerTest extends TestCase
 
 
     /**
+     * @throws Exception
      */
     public function testCaptureLog(): void
     {

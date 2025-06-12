@@ -122,6 +122,7 @@ class MDQ extends MetaDataStorageSource
      * @param string $entityId The entity id of this entity.
      *
      * @return string  The full path to the cache file.
+     * @throws \SimpleSAML\Error\ConfigurationError
      */
     private function getCacheFilename(string $set, string $entityId): string
     {
@@ -230,6 +231,7 @@ class MDQ extends MetaDataStorageSource
      *
      * @return array|null  The associative array with the metadata, or NULL if no metadata for
      *                     the given set was found.
+     * @throws Exception
      */
     private static function getParsedSet(SAMLParser $entity, string $set): ?array
     {
@@ -353,6 +355,7 @@ class MDQ extends MetaDataStorageSource
      * @param string[] $entityIds The entity ids to load
      * @param string $set The set we want to get metadata from.
      * @return array An associative array with the metadata for the requested entities, if found.
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function getMetaDataForEntities(array $entityIds, string $set): array
     {

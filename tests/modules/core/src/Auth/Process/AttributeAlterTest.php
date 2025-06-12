@@ -21,6 +21,7 @@ class AttributeAlterTest extends TestCase
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
      * @return array  The state array after processing.
+     * @throws \SimpleSAML\Error\Exception
      */
     private static function processFilter(array $config, array $request): array
     {
@@ -32,6 +33,7 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test the most basic functionality.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testBasic(): void
     {
@@ -56,6 +58,7 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test the most basic functionality.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testWithTarget(): void
     {
@@ -83,6 +86,7 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test the most basic functionality with merging strategy.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testMergeWithTarget(): void
     {
@@ -111,6 +115,7 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Module is a no op if subject attribute is not present.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testNomatch(): void
     {
@@ -139,6 +144,7 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test replacing attribute value.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testReplaceMatch(): void
     {
@@ -161,6 +167,7 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test replacing attribute value.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testReplaceMatchWithTarget(): void
     {
@@ -185,6 +192,7 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test replacing attribute value with merging strategy.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testReplaceMergeMatchWithTarget(): void
     {
@@ -210,6 +218,7 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test replacing attribute values.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testReplaceNoMatch(): void
     {
@@ -236,6 +245,7 @@ class AttributeAlterTest extends TestCase
      * Test removing attribute values.
      * Note that removing a value does not renumber the attributes array.
      * Also ensure unrelated attributes are not touched.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testRemoveMatch(): void
     {
@@ -259,6 +269,7 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test removing attribute values, resulting in an empty attribute.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testRemoveMatchAll(): void
     {
@@ -281,6 +292,7 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testWrongConfig(): void
     {
@@ -301,6 +313,7 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testIncompleteConfig(): void
     {
@@ -319,6 +332,7 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testIncompleteConfig2(): void
     {
@@ -339,6 +353,7 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testIncompleteConfig3(): void
     {
@@ -361,6 +376,7 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testIncompleteConfig4(): void
     {
@@ -383,6 +399,7 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testIncompleteConfig5(): void
     {

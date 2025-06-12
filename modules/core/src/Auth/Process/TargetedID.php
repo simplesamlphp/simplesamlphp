@@ -62,6 +62,7 @@ class TargetedID extends Auth\ProcessingFilter
      *
      * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
+     * @throws Exception
      */
     public function __construct(array &$config, $reserved)
     {
@@ -101,6 +102,8 @@ class TargetedID extends Auth\ProcessingFilter
      * Apply filter to add the targeted ID.
      *
      * @param array &$state  The current state.
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
      */
     public function process(array &$state): void
     {

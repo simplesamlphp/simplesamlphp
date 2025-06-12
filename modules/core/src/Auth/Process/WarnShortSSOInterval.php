@@ -24,6 +24,10 @@ class WarnShortSSOInterval extends Auth\ProcessingFilter
      * If it is to short a while since, we will show a warning to the user.
      *
      * @param array $state  The state of the response.
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function process(array &$state): void
     {

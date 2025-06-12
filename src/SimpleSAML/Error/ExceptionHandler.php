@@ -19,10 +19,12 @@ use function class_exists;
  */
 class ExceptionHandler
 {
-   /**
-    * @param \Throwable $exception
-    * @return void
-    */
+    /**
+     * @param \Throwable $exception
+     * @return void
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
+     */
     public function customExceptionHandler(Throwable $exception): void
     {
         Module::callHooks('exception_handler', $exception);

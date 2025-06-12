@@ -14,8 +14,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
-use SimpleSAML\Utils;
-
 use function array_key_exists;
 use function array_merge;
 use function bin2hex;
@@ -45,6 +43,7 @@ abstract class SessionHandlerCookie extends SessionHandler
     /**
      * This constructor initializes the session id based on what we receive in a cookie. We create a new session id and
      * set a cookie with this id if we don't have a session id.
+     * @throws \Exception
      */
     protected function __construct()
     {
@@ -159,6 +158,7 @@ abstract class SessionHandlerCookie extends SessionHandler
      * @param array|null $cookieParams Additional parameters to use for the session cookie.
      *
      * @throws \SimpleSAML\Error\CannotSetCookie If we can't set the cookie.
+     * @throws \Exception
      */
     public function setCookie(string $sessionName, ?string $sessionID, ?array $cookieParams = null): void
     {

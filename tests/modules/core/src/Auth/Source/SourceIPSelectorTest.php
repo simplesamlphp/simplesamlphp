@@ -28,6 +28,7 @@ class SourceIPSelectorTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public function setUp(): void
     {
@@ -80,6 +81,8 @@ class SourceIPSelectorTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testDefaultZoneIsRequired(): void
     {
@@ -102,6 +105,8 @@ class SourceIPSelectorTest extends TestCase
 
 
     /**
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testAuthentication(): void
     {
@@ -145,6 +150,7 @@ class SourceIPSelectorTest extends TestCase
     /**
      * @param string $ip  The client IP
      * @param string $expected  The expected authsource
+     * @throws \SimpleSAML\Error\NotFound
      */
     #[DataProvider('provideClientIP')]
     public function testSelectAuthSource(string $ip, string $expected): void
@@ -168,6 +174,7 @@ class SourceIPSelectorTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public function testIncompleteConfigurationThrowsExceptionVariant1(): void
     {
@@ -201,6 +208,7 @@ class SourceIPSelectorTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public function testIncompleteConfigurationThrowsExceptionVariant2(): void
     {

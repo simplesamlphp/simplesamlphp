@@ -17,6 +17,7 @@ class Logger implements LoggerInterface
      *
      * @param string|\Stringable $message
      * @param array $context
+     * @throws \Exception
      */
     public function emergency(string|Stringable $message, array $context = []): void
     {
@@ -32,6 +33,7 @@ class Logger implements LoggerInterface
      *
      * @param string|\Stringable $message
      * @param array $context
+     * @throws \Exception
      */
     public function alert(string|Stringable $message, array $context = []): void
     {
@@ -46,6 +48,7 @@ class Logger implements LoggerInterface
      *
      * @param string|\Stringable $message
      * @param array $context
+     * @throws \Exception
      */
     public function critical(string|Stringable $message, array $context = []): void
     {
@@ -59,6 +62,7 @@ class Logger implements LoggerInterface
      *
      * @param string|\Stringable $message
      * @param array $context
+     * @throws \Exception
      */
     public function error(string|Stringable $message, array $context = []): void
     {
@@ -74,6 +78,7 @@ class Logger implements LoggerInterface
      *
      * @param string|\Stringable $message
      * @param array $context
+     * @throws \Exception
      */
     public function warning(string|Stringable $message, array $context = []): void
     {
@@ -86,6 +91,7 @@ class Logger implements LoggerInterface
      *
      * @param string|\Stringable $message
      * @param array $context
+     * @throws \Exception
      */
     public function notice(string|Stringable $message, array $context = []): void
     {
@@ -100,6 +106,7 @@ class Logger implements LoggerInterface
      *
      * @param string|\Stringable $message
      * @param array $context
+     * @throws \Exception
      */
     public function info(string|Stringable $message, array $context = []): void
     {
@@ -112,6 +119,7 @@ class Logger implements LoggerInterface
      *
      * @param string|\Stringable $message
      * @param array $context
+     * @throws \Exception
      */
     public function debug(string|Stringable $message, array $context = []): void
     {
@@ -127,6 +135,7 @@ class Logger implements LoggerInterface
      * @param array $context
      *
      * @throws \SimpleSAML\Assert\AssertionFailedException if assertions are false
+     * @throws \Exception
      */
     public function log($level, string|Stringable $message, array $context = []): void
     {

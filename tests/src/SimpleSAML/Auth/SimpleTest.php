@@ -16,6 +16,7 @@ use SimpleSAML\TestUtils\ClearStateTestCase;
 class SimpleTest extends ClearStateTestCase
 {
     /**
+     * @throws \ReflectionException
      */
     public function testGetProcessedURL(): void
     {

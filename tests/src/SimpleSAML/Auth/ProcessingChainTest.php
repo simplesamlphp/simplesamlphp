@@ -21,6 +21,10 @@ class ProcessingChainTest extends TestCase
     }
 
 
+    /**
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
+     */
     public function testInsertAuthProcs(): void
     {
         $config = [];
@@ -44,6 +48,10 @@ class ProcessingChainTest extends TestCase
         $this->assertInstanceOf(AttributeLimit::class, $filterInChain[2]);
     }
 
+    /**
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
+     */
     public function testInsertAuthFromConfigs(): void
     {
         $config = [];

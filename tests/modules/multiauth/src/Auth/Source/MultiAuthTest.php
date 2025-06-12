@@ -25,6 +25,7 @@ class MultiAuthTest extends ClearStateTestCase
 
 
     /**
+     * @throws Exception
      */
     public function setUp(): void
     {
@@ -142,6 +143,8 @@ class MultiAuthTest extends ClearStateTestCase
 
 
     /**
+     * @throws Exception
+     * @throws \Throwable
      */
     public function testPreselectIsOptional(): void
     {
@@ -198,6 +201,8 @@ class MultiAuthTest extends ClearStateTestCase
 
 
     /**
+     * @throws Exception
+     * @throws \Throwable
      */
     public function testPreselectCanBeConfigured(): void
     {
@@ -217,6 +222,8 @@ class MultiAuthTest extends ClearStateTestCase
 
 
     /**
+     * @throws Exception
+     * @throws \Throwable
      */
     public function testStatePreselectHasPriority(): void
     {

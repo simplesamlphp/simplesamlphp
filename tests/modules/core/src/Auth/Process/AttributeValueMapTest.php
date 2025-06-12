@@ -21,6 +21,8 @@ class AttributeValueMapTest extends TestCase
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
      * @return array  The state array after processing.
+     * @throws \SimpleSAML\Error\Exception
+     * @throws Exception
      */
     private static function processFilter(array $config, array $request): array
     {
@@ -33,6 +35,7 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test the most basic functionality.
      *
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testBasic(): void
     {
@@ -62,6 +65,7 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test basic functionality, remove duplicates
      *
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testNoDuplicates(): void
     {
@@ -92,6 +96,7 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test the %replace functionality.
      *
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testReplace(): void
     {
@@ -123,6 +128,7 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test the %keep functionality.
      *
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testKeep(): void
     {
@@ -154,6 +160,7 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test unknown flag Exception
      *
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testUnknownFlag(): void
     {
@@ -182,6 +189,7 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test missing Source attribute
      *
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testMissingSourceAttribute(): void
     {
@@ -206,6 +214,7 @@ class AttributeValueMapTest extends TestCase
     /**
      * Test missing Target attribute
      *
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testMissingTargetAttribute(): void
     {

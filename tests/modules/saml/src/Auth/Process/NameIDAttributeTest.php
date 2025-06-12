@@ -25,6 +25,7 @@ class NameIDAttributeTest extends TestCase
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
      * @return array  The state array after processing.
+     * @throws \SimpleSAML\Error\Exception
      */
     private function processFilter(array $config, array $request): array
     {
@@ -36,6 +37,7 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test minimal configuration.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testMinimalConfig(): void
     {
@@ -67,6 +69,7 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test custom attribute name.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testCustomAttributeName(): void
     {
@@ -99,6 +102,7 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test custom format.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testFormat(): void
     {
@@ -157,6 +161,7 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test invalid request silently continues, leaving the state untouched
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testInvalidRequestLeavesStateUntouched(): void
     {
@@ -181,6 +186,7 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test custom attribute name with format.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testCustomAttributeNameAndFormat(): void
     {
@@ -213,6 +219,7 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test overriding NameID Format/NameQualifier/SPNameQualifier with defaults.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testOverrideNameID(): void
     {

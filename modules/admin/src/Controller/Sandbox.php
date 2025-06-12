@@ -35,6 +35,8 @@ class Sandbox
      * Display the sandbox page
      *
      * @return \SimpleSAML\XHTML\Template
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \Exception
      */
     public function main(): Template
     {

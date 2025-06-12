@@ -102,6 +102,10 @@ class External extends Auth\Source
      *
      * @param \Symfony\Component\HttpFoundation\Request $request  The current request
      * @param array &$state  Information about the current authentication.
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function authenticate(Request $request, array &$state): ?Response
     {
@@ -184,6 +188,8 @@ class External extends Auth\Source
      *
      * @throws \SimpleSAML\Error\BadRequest
      * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
+     * @throws \Throwable
      */
     public static function resume(Request $request, Auth\State $authState): Response
     {
