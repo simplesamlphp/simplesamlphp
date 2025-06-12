@@ -333,6 +333,18 @@ class MetaDataStorageHandler implements ClearableState
                     }
                 }
 
+                if(!array_key_exists('metadata.sign.enable', $metadata)) {
+                    // The admin needs to set the .enable setting to make these
+                    // specific keys be used.
+                    if(array_key_exists('metadata.sign.privatekey', $metadata)
+                       || array_key_exists('metadata.sign.certificate', $metadata)) {
+                        Logger::error("SIGNING: Please set metadata.sign.enable=true when"
+                                    . " you wish to specify the privatekey and certificate"
+                                     ." in the metadata file."
+                                    . " See entity $entityId" );
+                    }
+                }
+
                 $metadata['metadata-index'] = $entityId;
                 $metadata['metadata-set'] = $set;
                 Assert::keyExists($metadata, 'entityid');
