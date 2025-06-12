@@ -57,7 +57,9 @@ The default is not to use a proxy ('proxy' = null) and no username and password 
 
 ## Metadata signing
 
-SimpleSAMLphp supports signing of the metadata it generates. Metadata signing is configured by four options:
+SimpleSAMLphp supports signing of the metadata it generates.
+
+Metadata signing is configured by four options:
 
 - `metadata.sign.enable`: Whether metadata signing should be enabled or not. Set to `TRUE` to enable metadata signing. Defaults to `FALSE`.
 - `metadata.sign.privatekey`: Location of the private key data which should be used to sign the metadata.
@@ -71,7 +73,13 @@ SimpleSAMLphp supports signing of the metadata it generates. Metadata signing is
   - `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
   - `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 
-These options can be configured globally in the `config/config.php`-file, or per SP/IdP by adding them to the hosted metadata for the SP/IdP. The configuration in the metadata for the SP/IdP takes precedence over the global configuration.
+These options can be configured globally in the
+`config/config.php`-file, or per SP/IdP by adding them to the hosted
+metadata for the SP/IdP. The configuration in the metadata for the
+SP/IdP takes precedence over the global configuration. Note that if
+wish to set the metadata.sign.privatekey and metadata.sign.certificate
+in a metadata file you need to also set metadata.sign.enable=true in
+that metadata file.
 
 There is also an additional fallback for the private key and the certificate. If `metadata.sign.privatekey` and `metadata.sign.certificate` isn't configured, SimpleSAMLphp will use the `privatekey`, `privatekey_pass` and `certificate` options in the metadata for the SP/IdP.
 
