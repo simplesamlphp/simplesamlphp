@@ -12,6 +12,7 @@ Released TBD
 * Update and improve Indonesian translations (#2462)
 * Update and improve Thai translations (#2464)
 * Update and improve Vietnamese translations (#2465)
+* Fix various errors and warnings detected in VS Code (#2468)
 
 ## Version 2.4.2
 
