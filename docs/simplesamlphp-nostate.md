@@ -36,7 +36,7 @@ The domain name the IdP sends the response to is configured in the metadata of
 the IdP. This means that it may not match up with the domain name the user
 accessed. For example we may have the following scenario:
 
-1. The user accesses `https://www.example.org/`. A session is created for the user, and the session cookie is set for the current domain (www.example.org).
+1. The user accesses `https://www.example.org/`. A session is created for the user, and the session cookie is set for the current domain (`www.example.org`).
 1. The user needs to be authenticated. We therefore save some information about the current status in the state array, create a SAML 2.0 authentication request, and send it to the IdP.
 1. The user logs in on the IdP. The IdP then sends a response to the SP at `example.org`. However, the metadata for the SP that is registered at the IdP uses `https://example.org/` (without `www`) as the domain the response should be sent to. The authentication response is therefore sent to that domain.
 1. The SP (now at `https://example.org/`) tries to load the state information associated with the authentication response it received. But, because the domain name has changed, we do not receive the session cookie of the user. We are therefore unable to find the session of the user. When we attempt to load the state information from the session we are therefore unable to find it.
