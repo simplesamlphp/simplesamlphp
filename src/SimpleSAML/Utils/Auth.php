@@ -18,7 +18,7 @@ class Auth
     /**
      * Retrieve an admin logout URL.
      *
-     * @param string|NULL $returnTo The URL the user should arrive on after admin authentication. Defaults to null.
+     * @param string|null $returnTo The URL the user should arrive on after admin authentication. Defaults to null.
      *
      * @return string A URL which can be used for logging out.
      * @throws \InvalidArgumentException If $returnTo is neither a string nor null.

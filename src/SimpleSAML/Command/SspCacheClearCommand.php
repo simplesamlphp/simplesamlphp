@@ -59,7 +59,7 @@ EOF,);
     }
 
     /**
-     * @throws ExceptionInterface
+     * @throws \Symfony\Component\Console\Exception\ExceptionInterface
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {

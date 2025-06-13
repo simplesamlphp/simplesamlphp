@@ -258,7 +258,7 @@ class SPTest extends ClearStateTestCase
      */
     public function testForcedAuthn(): void
     {
-        /** @var bool $state['ForceAuthn'] */
+        /** @var array{ForceAuthn:bool} $state */
         $state = [
             'ForceAuthn' => true,
         ];
