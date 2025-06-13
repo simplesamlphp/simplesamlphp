@@ -34,7 +34,7 @@ class Crypto
      * @param string $der Data encoded in DER format.
      * @param string $type The type of data we are encoding, as expressed by the PEM header. Defaults to "CERTIFICATE".
      * @return string The same data encoded in PEM format.
-     * @see RFC7648 for known types and PEM format specifics.
+     * @see https://www.ietf.org/rfc/rfc7648.txt for known types and PEM format specifics.
      */
     public function der2pem(string $der, string $type = 'CERTIFICATE'): string
     {
@@ -63,7 +63,7 @@ class Crypto
      * @param bool                      $full_path Whether the location found in the configuration contains the
      * full path to the private key or not (only relevant for file locations). Default to false.
      *
-     * @return array|NULL Extracted private key, or NULL if no private key is present.
+     * @return array|null Extracted private key, or NULL if no private key is present.
      * @throws \InvalidArgumentException If $required is not boolean or $prefix is not a string.
      * @throws Error\Exception If no private key is found in the metadata, or it was not possible to load
      *     it.
@@ -119,7 +119,7 @@ class Crypto
      * @param string                    $prefix The prefix which should be used when reading from the metadata array.
      *     Defaults to ''.
      *
-     * @return array|NULL Public key or certificate data, or NULL if no public key or certificate was found.
+     * @return array|null Public key or certificate data, or NULL if no public key or certificate was found.
      * @throws \InvalidArgumentException If $metadata is not an instance of \SimpleSAML\Configuration, $required is not
      *     boolean or $prefix is not a string.
      * @throws Error\Exception If no public key is found in the metadata, or it was not possible to load
@@ -165,7 +165,7 @@ class Crypto
      * @param string $pem Data encoded in PEM format.
      * @return string The same data encoded in DER format.
      * @throws \InvalidArgumentException If $pem is not encoded in PEM format.
-     * @see RFC7648 for PEM format specifics.
+     * @see https://www.ietf.org/rfc/rfc7648.txt for PEM format specifics.
      */
     public function pem2der(string $pem): string
     {

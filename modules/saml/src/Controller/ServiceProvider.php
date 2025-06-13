@@ -119,7 +119,7 @@ class ServiceProvider
      * @param   Utils\HTTP    $httpUtils
      *
      * @return string
-     * @throws BadRequest
+     * @throws \SimpleSAML\Error\BadRequest
      * @throws Error\Exception
      */
     protected function loginHandler(
