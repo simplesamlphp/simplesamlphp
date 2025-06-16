@@ -842,6 +842,26 @@ class SAML2
             }
         }
 
+        if ($config->hasValue('metadata.sign.enable')) {
+            //
+            // Fallback to using the IdP/SP privatekey and certificcate for signing.
+            //
+            if (
+                !array_key_exists('metadata.sign.privatekey', $metadata)
+                && !array_key_exists('metadata.sign.certificate', $metadata)
+            ) {
+                if ($s = $config->getOptionalString('privatekey', null)) {
+                    $metadata['privatekey'] = $s;
+                }
+                if ($s = $config->getOptionalString('privatekey_pass', null)) {
+                    $metadata['privatekey_pass'] = $s;
+                }
+                if ($s = $config->getOptionalString('certificate', null)) {
+                    $metadata['certificate'] = $s;
+                }
+            }
+        }
+
         $cryptoUtils = new Utils\Crypto();
         $httpUtils = new Utils\HTTP();
 
