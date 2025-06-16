@@ -10,6 +10,7 @@ use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\DOMDocumentFactory;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
+use SimpleSAML\Logger;
 use SimpleSAML\Utils;
 
 use function array_key_exists;
@@ -115,6 +116,8 @@ class Signer
             if (array_key_exists('privatekey_pass', $entityMetadata)) {
                 $ret['privatekey_pass'] = $entityMetadata['privatekey_pass'];
             }
+
+            Logger::info("Falling back to using privatekey and certificate for the IdP for signing for " . $entityMetadata['entityid']);
 
             return $ret;
         }
