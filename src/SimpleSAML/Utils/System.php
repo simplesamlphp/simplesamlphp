@@ -72,6 +72,7 @@ class System
      */
     public function getTempDir(): string
     {
+        $nothing = 1;
         $globalConfig = Configuration::getInstance();
 
         $tempDir = rtrim(
