@@ -81,8 +81,6 @@ wish to set the metadata.sign.privatekey and metadata.sign.certificate
 in a metadata file you need to also set metadata.sign.enable=true in
 that metadata file.
 
-There is also an additional fallback for the private key and the certificate. If `metadata.sign.privatekey` and `metadata.sign.certificate` isn't configured, SimpleSAMLphp will use the `privatekey`, `privatekey_pass` and `certificate` options in the metadata for the SP/IdP.
-
 ## Session checking function
 
 Optional session checking function, called on session init and loading, defined with 'session.check_function' in config.php.
