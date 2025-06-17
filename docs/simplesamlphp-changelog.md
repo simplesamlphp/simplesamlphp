@@ -5,9 +5,14 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.3.8
+## Version 2.3.9
 
 Released TBD
+
+
+## Version 2.3.8
+
+Released 2025-06-17
 
 * Fixed a bug where metadata-endpoints with isDefault set would not yield the expected metadata (#2439)
 * Downgrade simplesamlphp/composer-module-installer to 1.3.x to keep things working with older (OS-supplied)
