@@ -159,7 +159,7 @@ class SQLStore implements StoreInterface
                      */
                     $update = [
                         'CREATE TABLE ' . $this->prefix .
-                          '_tableVersion (_name VARCHAR(30) PRIMARY KEY NOT NULL, _version INTEGER NOT NULL)',
+                          '_tableVersion_new (_name VARCHAR(30) PRIMARY KEY NOT NULL, _version INTEGER NOT NULL)',
                         'INSERT INTO ' . $this->prefix . '_tableVersion_new SELECT * FROM ' .
                           $this->prefix . '_tableVersion',
                         'DROP TABLE ' . $this->prefix . '_tableVersion',
