@@ -21,7 +21,7 @@
     </projectFiles>
 
     <issueHandlers>
-        <!-- Ignore this PHP 8.3 feature until this becomes are minimum required version -->
+        <!-- Ignore this PHP 8.3 feature until this becomes our minimum required version -->
         <MissingClassConstType errorLevel="info" />
 
         <LessSpecificReturnType errorLevel="info" />
