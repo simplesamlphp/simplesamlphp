@@ -9,6 +9,8 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+* Fix auth state AuthnInstant (#2478)
+
 `cron`
 
 * Fixed a security-issue where cron-jobs could be executed using the default key,
