@@ -13,6 +13,7 @@ Released TBD
 * Update and improve Thai translations (#2464)
 * Update and improve Vietnamese translations (#2465)
 * Fix various errors and warnings detected in VS Code (#2468)
+* Fix auth state AuthnInstant (#2478)
 
 ## Version 2.4.2
 
