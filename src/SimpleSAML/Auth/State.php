@@ -129,7 +129,7 @@ class State
             'Attributes',
             'Expire',
             'LogoutState',
-            'AuthInstant',
+            'AuthnInstant',
             'RememberMe',
             'saml:sp:NameID',
         ];
