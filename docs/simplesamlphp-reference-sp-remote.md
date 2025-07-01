@@ -166,10 +166,9 @@ The following options can be set:
 
 :   The three most commonly used values are:
 
-:
-    1.  `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`
-    2.  `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`
-    3.  `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`
+* `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`
+* `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`
+* `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`
 
 :   The `transient` format will generate a new unique ID every time
     the SP logs in.
