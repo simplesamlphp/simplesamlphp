@@ -112,7 +112,7 @@ class WebBrowserSingleSignOn
 
     public function headRequestNotAllowed(): RunnableResponse
     {
-        Logger::info('Handling a HEAD request by returning method not allowed...');
+        Logger::debug('Handling a HEAD request by returning method not allowed...');
         
         $request = Request::createFromGlobals();
 
