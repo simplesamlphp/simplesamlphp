@@ -116,6 +116,19 @@ class WebBrowserSingleSignOn
      */
     public function singleSignOnService(Request $request): Response
     {
+        if ($request->isMethod('HEAD')) {
+            // These are the allowed methods from routes.yml
+            $allowedMethods = ['GET', 'POST'];
+            $message = sprintf(
+                'No route found for "%s %s": Method Not Allowed (Allow: %s)', 
+                $request->getMethod(), 
+                $request->getUriForPath($request->getPathInfo()), 
+                implode(', ', $allowedMethods)
+            );
+
+            throw new MethodNotAllowedHttpException($allowedMethods, $message);
+        }
+
         Logger::info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoint SSOService');
 
         if ($this->config->getBoolean('enable.saml20-idp') === false || !Module::isModuleEnabled('saml')) {
