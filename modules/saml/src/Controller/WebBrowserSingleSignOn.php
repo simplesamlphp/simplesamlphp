@@ -110,14 +110,13 @@ class WebBrowserSingleSignOn
         return new RunnableResponse([$binding, 'send'], [$artifactResponse]);
     }
 
-    public function headRequestNotAllowed(): RunnableResponse
+    public function headRequestNotAllowed(array $allowedMethods): RunnableResponse
     {
         Logger::debug('Handling a HEAD request by returning method not allowed...');
         
         $request = Request::createFromGlobals();
 
         // These are the allowed methods from routes.yml
-        $allowedMethods = ['GET', 'POST'];
         $message = sprintf(
             'No route found for "%s %s": Method Not Allowed (Allow: %s)',
             $request->getMethod(),

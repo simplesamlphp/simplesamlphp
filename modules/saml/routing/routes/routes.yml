@@ -66,9 +66,9 @@ saml-legacy-sp-metadata:
 
 websso-single-sign-on-head:
   path: /idp/singleSignOnService
-  defaults: {
+  defaults:
     _controller: 'SimpleSAML\Module\saml\Controller\WebBrowserSingleSignOn::headRequestNotAllowed'
-  }
+    allowedMethods: ['GET','POST']
   condition: "context.getMethod() not in ['GET', 'POST']"
   
 websso-single-sign-on:
