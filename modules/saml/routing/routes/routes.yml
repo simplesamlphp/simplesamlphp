@@ -64,6 +64,13 @@ saml-legacy-sp-metadata:
   }
   methods: [GET]
 
+websso-single-sign-on-head:
+  path: /idp/singleSignOnService
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\WebBrowserSingleSignOn::headRequestNotAllowed'
+  }
+  methods: [HEAD]
+  
 websso-single-sign-on:
   path: /idp/singleSignOnService
   defaults: {
