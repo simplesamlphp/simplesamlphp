@@ -69,7 +69,7 @@ websso-single-sign-on-head:
   defaults: {
     _controller: 'SimpleSAML\Module\saml\Controller\WebBrowserSingleSignOn::headRequestNotAllowed'
   }
-  methods: [HEAD]
+  condition: "context.getMethod() not in ['GET', 'POST']"
   
 websso-single-sign-on:
   path: /idp/singleSignOnService
