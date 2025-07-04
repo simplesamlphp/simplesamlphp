@@ -20,9 +20,6 @@ use SimpleSAML\Logger;
 use SimpleSAML\Metadata;
 use SimpleSAML\Module;
 use SimpleSAML\Store\StoreFactory;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
-
 
 /**
  * Controller class for the Web Browser Single Sign On profile.
@@ -110,22 +107,6 @@ class WebBrowserSingleSignOn
         return new RunnableResponse([$binding, 'send'], [$artifactResponse]);
     }
 
-    public function methodNotAllowed(array $allowedMethods): RunnableResponse
-    {
-        Logger::debug('Handling a HEAD request by returning method not allowed...');
-        
-        $request = Request::createFromGlobals();
-
-        // These are the allowed methods from routes.yml
-        $message = sprintf(
-            'No route found for "%s %s": Method Not Allowed (Allow: %s)',
-            $request->getMethod(),
-            $request->getUriForPath($request->getPathInfo()),
-            implode(', ', $allowedMethods)
-        );
-
-        throw new MethodNotAllowedHttpException($allowedMethods, $message);
-    }
 
     /**
      * The SSOService is part of the SAML 2.0 IdP code, and it receives incoming Authentication Requests
