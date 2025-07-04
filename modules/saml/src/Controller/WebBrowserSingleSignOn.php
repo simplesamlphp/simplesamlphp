@@ -110,7 +110,7 @@ class WebBrowserSingleSignOn
         return new RunnableResponse([$binding, 'send'], [$artifactResponse]);
     }
 
-    public function headRequestNotAllowed(array $allowedMethods): RunnableResponse
+    public function methodNotAllowed(array $allowedMethods): RunnableResponse
     {
         Logger::debug('Handling a HEAD request by returning method not allowed...');
         
