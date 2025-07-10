@@ -14,6 +14,7 @@ Released TBD
 * Update and improve Vietnamese translations (#2465)
 * Fix various errors and warnings detected in VS Code (#2468)
 * Fix auth state AuthnInstant (#2478)
+* Allow "Secure" cookie attribute via HTTP on localhost (#2483)
 
 ## Version 2.4.2
 

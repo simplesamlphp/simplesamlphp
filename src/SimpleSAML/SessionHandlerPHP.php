@@ -190,8 +190,8 @@ class SessionHandlerPHP extends SessionHandler
         $session_cookie_params = session_get_cookie_params();
 
         $httpUtils = new Utils\HTTP();
-        if ($session_cookie_params['secure'] && !$httpUtils->isHTTPS()) {
-            throw new Error\Exception('Session start with secure cookie not allowed on http.');
+        if ($session_cookie_params['secure'] && !$httpUtils->isSecureCookieAllowed()) {
+            throw new Error\Exception('Session start with secure cookie not allowed on http (except on localhost).');
         }
 
         @session_start();
@@ -322,9 +322,9 @@ class SessionHandlerPHP extends SessionHandler
         }
 
         $httpUtils = new Utils\HTTP();
-        if ($cookieParams['secure'] && !$httpUtils->isHTTPS()) {
+        if ($cookieParams['secure'] && !$httpUtils->isSecureCookieAllowed()) {
             throw new Error\CannotSetCookie(
-                'Setting secure cookie on plain HTTP is not allowed.',
+                'Setting secure cookie on plain HTTP (except on localhost) is not allowed.',
                 Error\CannotSetCookie::SECURE_COOKIE,
             );
         }
