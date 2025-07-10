@@ -1188,7 +1188,7 @@ class HTTP
      */
     public function isSecureCookieAllowed(): bool
     {
-        return $this->isHTTPS() || in_array($this->getSelfHost(), ['localhost', '127.0.0.1', '::1'], true));
+        return $this->isHTTPS() || in_array($this->getSelfHost(), ['localhost', '127.0.0.1', '::1'], true);
     }
 
 
