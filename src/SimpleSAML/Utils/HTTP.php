@@ -1116,15 +1116,15 @@ class HTTP
             $params = $default_params;
         }
 
-        // Do not set secure cookie if not on HTTPS
-        if ($params['secure'] && !$this->isHTTPS()) {
+        // Do not set secure cookie if not on HTTPS or localhost
+        if ($params['secure'] && !$this->isSecureCookieAllowed()) {
             if ($throw) {
                 throw new Error\CannotSetCookie(
-                    'Setting secure cookie on plain HTTP is not allowed.',
+                    'Setting secure cookie on plain HTTP (except on localhost) is not allowed.',
                     Error\CannotSetCookie::SECURE_COOKIE,
                 );
             }
-            Logger::warning('Error setting cookie: setting secure cookie on plain HTTP is not allowed.');
+            Logger::warning('Error setting cookie: setting secure cookie on plain HTTP (except on localhost) is not allowed.');
             return;
         }
 
@@ -1178,6 +1178,17 @@ class HTTP
             }
             Logger::warning('Error setting cookie: headers already sent.');
         }
+    }
+
+
+    /**
+     * Check if "Secure" attribute on cookies is supported
+     *
+     * @return boolean True "Secure" attribute can be set, false otherwise.
+     */
+    public function isSecureCookieAllowed(): bool
+    {
+        return $this->isHTTPS() || in_array($this->getSelfHost(), ['localhost', '127.0.0.1', '::1'], true);
     }
 
 
