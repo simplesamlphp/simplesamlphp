@@ -1,6 +1,6 @@
 ---
 
-name: 'Lock Threads'
+name: 'RAW '
 
 on:  # yamllint disable-line rule:truthy
   schedule:
