@@ -5,6 +5,20 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
+## Version 2.4.3
+
+Released TBD
+
+* Update and improve Indonesian translations (#2462)
+* Update and improve Thai translations (#2464)
+* Update and improve Vietnamese translations (#2465)
+* Fix various errors and warnings detected in VS Code (#2468)
+* Remove information in simplesamlphp-advancedfeatures.md about
+  possible fallback from metadata.sign.privatekey to privatekey in IdP
+  and SP metadata files (#2470)
+* Fix auth state AuthnInstant (#2478)
+* Allow "Secure" cookie attribute via HTTP on localhost (#2483)
+
 ## Version 2.4.2
 
 Released TBD
