@@ -16,6 +16,8 @@ Released TBD
 * Remove information in simplesamlphp-advancedfeatures.md about
   possible fallback from metadata.sign.privatekey to privatekey in IdP
   and SP metadata files (#2470)
+* Fix auth state AuthnInstant (#2478)
+* Allow "Secure" cookie attribute via HTTP on localhost (#2483)
 
 ## Version 2.4.2
 
