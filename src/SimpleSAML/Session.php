@@ -821,8 +821,18 @@ class Session implements Utils\ClearableState
     {
         $this->markDirty();
 
-        if ($expire === null) {
-            $expire = time() + self::$config->getOptionalInteger('session.duration', 8 * 60 * 60);
+        $maxSessionExpire = time() + self::$config->getOptionalInteger('session.duration', 8 * 60 * 60);
+
+        if ($expire) {
+            // Convert from seconds in future to absolute time
+            $expire = time() + $expire;
+        } else {
+            $expire = $maxSessionExpire;
+        }
+
+        // Always clamp the provided value.
+        if ($expire > $maxSessionExpire) {
+            $expire = $maxSessionExpire;
         }
 
         $this->authData[$authority]['Expire'] = $expire;
