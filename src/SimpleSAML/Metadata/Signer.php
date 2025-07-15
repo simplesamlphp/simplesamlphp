@@ -117,7 +117,8 @@ class Signer
                 $ret['privatekey_pass'] = $entityMetadata['privatekey_pass'];
             }
 
-            Logger::info("Falling back to using privatekey and certificate for the IdP for signing for " . $entityMetadata['entityid']);
+            Logger::info("Falling back to using privatekey and certificate " .
+                         " for the IdP for signing for " . $entityMetadata['entityid']);
 
             return $ret;
         }
