@@ -18,6 +18,7 @@ Released TBD
   and SP metadata files (#2470)
 * Fix auth state AuthnInstant (#2478)
 * Allow "Secure" cookie attribute via HTTP on localhost (#2483)
+* Fix override over errorURL
 
 ## Version 2.4.2
 

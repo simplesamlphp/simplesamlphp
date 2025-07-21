@@ -262,6 +262,20 @@ EOT;
         return SAML2::getHostedMetadata($metadata['entityid']);
     }
 
+
+    /**
+     * Test that an override for the errorURL produced the expected output.
+     */
+    public function testIdPGetHostedMetadataErrorUrlOverride(): void
+    {
+        $md = [
+            'errorURL' => 'https://simplesamlphp.org',
+        ];
+        $hostedMd = $this->idpMetadataHandlerHelper($md);
+        $this->assertEquals('https://simplesamlphp.org', $hostedMd['errorURL']);
+    }
+
+
     /**
      * A minimally configured hosted IdP has all default fields with expected values.
      */
