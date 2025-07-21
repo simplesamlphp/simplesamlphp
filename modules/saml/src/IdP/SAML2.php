@@ -1005,6 +1005,11 @@ class SAML2
             $metadata['RegistrationInfo'] = $config->getArray('RegistrationInfo');
         }
 
+        // Override errorURL if set
+        if ($config->hasValue('errorURL')) {
+            $metadata['errorURL'] = $config->getString('errorURL');
+        }
+
         // configure signature options
         if ($config->hasValue('validate.authnrequest')) {
             $metadata['sign.authnrequest'] = $config->getBoolean('validate.authnrequest');
