@@ -4408,16 +4408,16 @@
     "packages-dev": [
         {
             "name": "dealerdirect/phpcodesniffer-composer-installer",
-            "version": "v1.1.1",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/composer-installer.git",
-                "reference": "6e0fa428497bf560152ee73ffbb8af5c6a56b0dd"
+                "reference": "e9cf5e4bbf7eeaf9ef5db34938942602838fc2b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/composer-installer/zipball/6e0fa428497bf560152ee73ffbb8af5c6a56b0dd",
-                "reference": "6e0fa428497bf560152ee73ffbb8af5c6a56b0dd",
+                "url": "https://api.github.com/repos/PHPCSStandards/composer-installer/zipball/e9cf5e4bbf7eeaf9ef5db34938942602838fc2b1",
+                "reference": "e9cf5e4bbf7eeaf9ef5db34938942602838fc2b1",
                 "shasum": ""
             },
             "require": {
@@ -4500,7 +4500,7 @@
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2025-06-27T17:24:01+00:00"
+            "time": "2025-07-17T20:45:56+00:00"
         },
         {
             "name": "gettext/php-scanner",
@@ -4946,16 +4946,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.12.27",
+            "version": "1.12.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "3a6e423c076ab39dfedc307e2ac627ef579db162"
+                "reference": "fcf8b71aeab4e1a1131d1783cef97b23a51b87a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/3a6e423c076ab39dfedc307e2ac627ef579db162",
-                "reference": "3a6e423c076ab39dfedc307e2ac627ef579db162",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/fcf8b71aeab4e1a1131d1783cef97b23a51b87a9",
+                "reference": "fcf8b71aeab4e1a1131d1783cef97b23a51b87a9",
                 "shasum": ""
             },
             "require": {
@@ -5000,7 +5000,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-05-21T20:51:45+00:00"
+            "time": "2025-07-17T17:15:39+00:00"
         },
         {
             "name": "phpstan/phpstan-mockery",
@@ -6462,16 +6462,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
-            "version": "v1.9.2",
+            "version": "v1.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-test-framework.git",
-                "reference": "b8506d7b59c658ff4bb9bdd301bf24d1635019d1"
+                "reference": "8dd14bb338573710165e6c237ec36378fa18eadb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/b8506d7b59c658ff4bb9bdd301bf24d1635019d1",
-                "reference": "b8506d7b59c658ff4bb9bdd301bf24d1635019d1",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/8dd14bb338573710165e6c237ec36378fa18eadb",
+                "reference": "8dd14bb338573710165e6c237ec36378fa18eadb",
                 "shasum": ""
             },
             "require": {
@@ -6486,7 +6486,7 @@
                 "symfony/phpunit-bridge": "^6.4 || ^7.0"
             },
             "require-dev": {
-                "simplesamlphp/simplesamlphp": "^2.2"
+                "simplesamlphp/simplesamlphp": "^2.4"
             },
             "type": "project",
             "autoload": {
@@ -6512,7 +6512,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-test-framework"
             },
-            "time": "2025-04-07T20:08:55+00:00"
+            "time": "2025-07-14T17:03:27+00:00"
         },
         {
             "name": "slevomat/coding-standard",
