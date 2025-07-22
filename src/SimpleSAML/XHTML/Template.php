@@ -37,7 +37,7 @@ use function class_exists;
 use function count;
 use function date;
 use function explode;
-use function hash;
+use function hash_hmac;
 use function in_array;
 use function is_null;
 use function key;
@@ -208,10 +208,20 @@ class Template extends Response
         $file = new File($file);
 
         $tag = $this->configuration->getVersion();
+        if ($module !== null) {
+            // Modules can be updated more frequently than the core. Especially the custom ones.
+            // As a result, we will use a different tagging method
+            $composerLock = new File($baseDir . 'composer.lock');
+            $tag = md5($composerLock->getContent());
+        }
+
         if ($tag === 'master') {
             $tag = strval($file->getMtime());
         }
-        $tag = substr(hash('md5', $tag), 0, 5);
+        // Use the `secretsalt` to enhance security.
+        // Do not make it easy to guess the underlying SSP version.
+        $secretSalt = $this->configuration->getString('secretsalt');
+        $tag = substr(hash_hmac('sha256', $tag, $secretSalt), 0, 5);
 
         return $path . '?tag=' . $tag;
     }
