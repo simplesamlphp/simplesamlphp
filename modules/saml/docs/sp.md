@@ -153,7 +153,7 @@ The following attributes are available:
 
 `authproc`
 :   Processing filters that should be run after SP authentication.
-    See the [authentication processing filter manual](simplesamlphp-authproc).
+    See the [authentication processing filter manual](../simplesamlphp-authproc).
 
 `certData`
 :   Base64 encoded certificate data. Can be used instead of the `certificate` option.
