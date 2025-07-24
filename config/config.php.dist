@@ -195,7 +195,7 @@ $config = [
      * Used to generate cache buster tags. This salt is only used for this purpose.
      * you should set this in the same way as secretsalt
      */
-    'tagsalt' => 'defaulttagsalt',
+    'assets.secretsalt' => 'default.assets.secretsalt',
     
     /*
      * This password must be kept secret, and modified from the default value 123.

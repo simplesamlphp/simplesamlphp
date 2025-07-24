@@ -220,12 +220,11 @@ class Template extends Response
         if ($tag === 'master') {
             $tag = strval($file->getMtime());
         } else {
-            $configfile = new File($this->configuration->getConfigPath());
-            $tag .= $this->getAssetTagForFile($configfile);
+            $tag .= $this->getAssetTagForFile($file);
         }
         // Use the `secretsalt` to enhance security.
         // Do not make it easy to guess the underlying SSP version.
-        $salt = $this->configuration->getOptionalString('tagsalt', 'defaulttagsalt');
+        $salt = $this->configuration->getOptionalString('assets.secretsalt', 'default.assets.secretsalt');
         $mac = hash_hmac('sha256', $tag, $salt, true);
         $tag = substr(base64_encode($mac), 0, $tagLength);
 
