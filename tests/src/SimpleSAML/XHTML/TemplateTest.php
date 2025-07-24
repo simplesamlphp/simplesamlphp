@@ -19,21 +19,21 @@ class TemplateTest extends TestCase
 
     public function testSetup(): void
     {
-        $c = Configuration::loadFromArray(['tagsalt' => '1234567890'], '', 'simplesaml');
+        $c = Configuration::loadFromArray(['assets.secretsalt' => '1234567890'], '', 'simplesaml');
         $t = new Template($c, self::TEMPLATE);
         $this->assertEquals(self::TEMPLATE, $t->getTemplateName());
     }
 
     public function testNormalizeName(): void
     {
-        $c = Configuration::loadFromArray(['tagsalt' => '1234567890'], '', 'simplesaml');
+        $c = Configuration::loadFromArray(['assets.secretsalt' => '1234567890'], '', 'simplesaml');
         $t = new Template($c, 'sandbox');
         $this->assertEquals(self::TEMPLATE, $t->getTemplateName());
     }
 
     public function testTemplateModuleNamespace(): void
     {
-        $c = Configuration::loadFromArray(['tagsalt' => '1234567890'], '', 'simplesaml');
+        $c = Configuration::loadFromArray(['assets.secretsalt' => '1234567890'], '', 'simplesaml');
         $t = new Template($c, 'core:welcome');
         $this->assertEquals('core:welcome.twig', $t->getTemplateName());
     }
@@ -63,7 +63,7 @@ class TemplateTest extends TestCase
 
     public function testGetEntityDisplayNameBasic(): void
     {
-        $c = Configuration::loadFromArray(['tagsalt' => '1234567890'], '', 'simplesaml');
+        $c = Configuration::loadFromArray(['assets.secretsalt' => '1234567890'], '', 'simplesaml');
         $t = new Template($c, self::TEMPLATE);
 
         $data = [
@@ -81,7 +81,7 @@ class TemplateTest extends TestCase
 
     public function testGetEntityDisplayNamePriorities(): void
     {
-        $c = Configuration::loadFromArray(['tagsalt' => '1234567890'], '', 'simplesaml');
+        $c = Configuration::loadFromArray(['assets.secretsalt' => '1234567890'], '', 'simplesaml');
         $t = new Template($c, self::TEMPLATE);
 
         $data = [
@@ -102,7 +102,7 @@ class TemplateTest extends TestCase
         $this->assertEquals('Example Org EN', $name);
 
         $c = Configuration::loadFromArray(
-            ['language.default' => 'nl', 'tagsalt' => '1234567890'],
+            ['language.default' => 'nl', 'assets.secretsalt' => '1234567890'],
             '',
             'simplesaml',
         );
@@ -118,7 +118,7 @@ class TemplateTest extends TestCase
 
     public function testGetEntityPropertyTranslation(): void
     {
-        $c = Configuration::loadFromArray(['tagsalt' => '1234567890'], '', 'simplesaml');
+        $c = Configuration::loadFromArray(['assets.secretsalt' => '1234567890'], '', 'simplesaml');
         $t = new Template($c, self::TEMPLATE);
 
         $prop = 'description';
@@ -130,7 +130,7 @@ class TemplateTest extends TestCase
         $this->assertEquals('Other lang', $name);
 
         $c = Configuration::loadFromArray(
-            ['language.default' => 'nl', 'tagsalt' => '1234567890'],
+            ['language.default' => 'nl', 'assets.secretsalt' => '1234567890'],
             '',
             'simplesaml',
         );
@@ -149,7 +149,7 @@ class TemplateTest extends TestCase
 
     public function testAssetModuleTagDoesNotMatchCoreTag(): void
     {
-        $c = Configuration::loadFromArray(['tagsalt' => '1234567890'], '', 'simplesaml');
+        $c = Configuration::loadFromArray(['assets.secretsalt' => '1234567890'], '', 'simplesaml');
         $moduleTemplate = new Template($c, 'admin:status');
         $tagModule = $moduleTemplate->asset('css/admin.css', 'admin');
         $this->assertStringContainsString('?tag=', $tagModule);
@@ -167,7 +167,7 @@ class TemplateTest extends TestCase
 
     public function testAssetWillReturnPathOnTagIsFalse(): void
     {
-        $c = Configuration::loadFromArray(['tagsalt' => '1234567890'], '', 'simplesaml');
+        $c = Configuration::loadFromArray(['assets.secretsalt' => '1234567890'], '', 'simplesaml');
         $moduleTemplate = new Template($c, 'admin:status');
         $tagModule = $moduleTemplate->asset('css/admin.css', 'admin', false);
         $this->assertStringNotContainsString('?tag=', $tagModule);
