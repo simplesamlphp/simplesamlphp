@@ -182,6 +182,8 @@ class Template extends Response
      */
     public function asset(string $asset, ?string $module = null, bool $tag = true): string
     {
+        $tagLength = 6;
+
         $baseDir = $this->configuration->getBaseDir();
         $basePath = $this->configuration->getBasePath();
         if (is_null($module)) {
@@ -212,20 +214,42 @@ class Template extends Response
             // Modules can be updated more frequently than the core. Especially the custom ones.
             // As a result, we will use a different tagging method
             $composerLock = new File($baseDir . 'composer.lock');
-            $tag = md5($composerLock->getContent());
+            $tag .= $this->getAssetTagForFile($composerLock);
         }
 
         if ($tag === 'master') {
             $tag = strval($file->getMtime());
+        } else {
+            $configfile = new File($this->configuration->getConfigPath());
+            $tag .= $this->getAssetTagForFile($configfile);
         }
         // Use the `secretsalt` to enhance security.
         // Do not make it easy to guess the underlying SSP version.
-        $secretSalt = $this->configuration->getString('secretsalt');
-        $tag = substr(hash_hmac('sha256', $tag, $secretSalt), 0, 5);
+        $salt = $this->configuration->getOptionalString('tagsalt', 'defaulttagsalt');
+        $mac = hash_hmac('sha256', $tag, $salt, true);
+        $tag = substr(base64_encode($mac), 0, $tagLength);
 
         return $path . '?tag=' . $tag;
     }
 
+    /**
+     * Get a string to use in tag generation for a file. This can be done from the contents
+     * of the file (expensive) or the mtime of the file (cheap). If a store is using many SSP
+     * instances and knows that the mtime is synced for the files in the installation then
+     * the cheap method is preferred.
+     */
+    public function getAssetTagForFile(File $f): string
+    {
+        $useContents = false;
+
+        if ($useContents) {
+            $r = md5($f->getContent());
+        } else {
+            $r = ":" . strval($f->getMtime());
+        }
+
+        return $r;
+    }
 
     /**
      * Get the normalized template name.
