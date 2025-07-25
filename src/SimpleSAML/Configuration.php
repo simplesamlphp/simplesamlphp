@@ -11,9 +11,9 @@ use SAML2\Constants;
 use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
+use SimpleSAML\Logger;
 use SimpleSAML\Utils;
 use Symfony\Component\Filesystem\Filesystem;
-use SimpleSAML\Logger;
 
 use function array_key_exists;
 use function array_keys;
@@ -752,10 +752,10 @@ class Configuration implements Utils\ClearableState
     public function getOptionalStringNested(string $name, ?string $default): ?string
     {
         $base = $this->configuration;
-        $paths = explode('.',$name);
+        $paths = explode('.', $name);
 
-        foreach( $paths as $i => $p ) {
-            if( empty($base[$p])) {
+        foreach ($paths as $i => $p) {
+            if (empty($base[$p])) {
                 return $default;
             }
             $base = $base[$p];
@@ -766,10 +766,10 @@ class Configuration implements Utils\ClearableState
             $ret,
             sprintf('%s: The option %s is not a valid string value.', $this->location, var_export($name, true)),
         );
-        
+
         return $ret;
     }
-    
+
 
     /**
      * This function retrieves an integer configuration option.
