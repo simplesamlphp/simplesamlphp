@@ -19,6 +19,7 @@ Released TBD
 * Fix auth state AuthnInstant (#2478)
 * Allow "Secure" cookie attribute via HTTP on localhost (#2483)
 * Fix override over errorURL
+* Introduced a new asssets.secretsalt to allow cache busting without leaking information (#2490)
 
 ## Version 2.4.2
 

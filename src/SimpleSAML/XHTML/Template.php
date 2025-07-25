@@ -210,9 +210,10 @@ class Template extends Response
         $file = new File($file);
         $tag = $this->getAssetTagForFile($file);
 
-        // Use the `secretsalt` to enhance security.
+        // Use the `assets.secretsalt` to enhance security.
         // Do not make it easy to guess the underlying SSP version.
-        $salt = $this->configuration->getOptionalString('assets.secretsalt', 'default.assets.secretsalt');
+        $salt = $this->configuration->getOptionalStringNested( 'assets.secretsalt',
+                                                               'assets.secretsalt.default');
         $mac = hash_hmac('sha256', $tag, $salt, true);
         $tag = substr(base64_encode($mac), 0, $tagLength);
 

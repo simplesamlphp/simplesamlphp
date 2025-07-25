@@ -13,6 +13,7 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
 use SimpleSAML\Utils;
 use Symfony\Component\Filesystem\Filesystem;
+use SimpleSAML\Logger;
 
 use function array_key_exists;
 use function array_keys;
@@ -738,6 +739,37 @@ class Configuration implements Utils\ClearableState
         return $ret;
     }
 
+    /**
+     * Similar to getOptionalString but '.' will be interpreted as walking into a configuration
+     * array. So you can use name="a.b.c" to lookup
+     * [
+     *   a => [
+     *      b => [
+     *         c => 'value'
+     *      ]
+     *   ]
+     */
+    public function getOptionalStringNested(string $name, ?string $default): ?string
+    {
+        $base = $this->configuration;
+        $paths = explode('.',$name);
+
+        foreach( $paths as $i => $p ) {
+            if( empty($base[$p])) {
+                return $default;
+            }
+            $base = $base[$p];
+        }
+
+        $ret = $base;
+        Assert::string(
+            $ret,
+            sprintf('%s: The option %s is not a valid string value.', $this->location, var_export($name, true)),
+        );
+        
+        return $ret;
+    }
+    
 
     /**
      * This function retrieves an integer configuration option.
