@@ -19,6 +19,7 @@ use SimpleSAML\Locale\Translate;
 use SimpleSAML\Locale\TwigTranslator;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
+use SimpleSAML\Utils\System;
 use SimpleSAML\Utils;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Component\Filesystem\Filesystem;
@@ -37,7 +38,7 @@ use function class_exists;
 use function count;
 use function date;
 use function explode;
-use function hash;
+use function hash_hmac;
 use function in_array;
 use function is_null;
 use function key;
@@ -182,6 +183,8 @@ class Template extends Response
      */
     public function asset(string $asset, ?string $module = null, bool $tag = true): string
     {
+        $tagLength = 6;
+
         $baseDir = $this->configuration->getBaseDir();
         $basePath = $this->configuration->getBasePath();
         if (is_null($module)) {
@@ -208,10 +211,26 @@ class Template extends Response
         $file = new File($file);
 
         $tag = $this->configuration->getVersion();
+        if ($module !== null) {
+            // Modules can be updated more frequently than the core. Especially the custom ones.
+            // As a result, we will use a different tagging method
+            $composerLock = new File($baseDir . 'composer.lock');
+            $tag = md5($composerLock->getContent());
+        }
         if ($tag === 'master') {
             $tag = strval($file->getMtime());
         }
-        $tag = substr(hash('md5', $tag), 0, 5);
+
+        // Use the `assets.salt` to enhance security.
+        // Do not make it easy to guess the underlying SSP version.
+        $salt = 'assets.salt.default';
+        $assetsConfig = $this->configuration->getOptionalArray('assets',array());
+        if(!empty($assetsConfig['salt'])) {
+            $salt = $assetsConfig['salt'];
+        }
+
+        $mac = hash_hmac('sha256', $tag, $salt, true);
+        $tag = substr(System::base64_url_encode($mac), 0, $tagLength);
 
         return $path . '?tag=' . $tag;
     }

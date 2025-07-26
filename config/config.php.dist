@@ -927,6 +927,12 @@ $config = [
      */
     'assets' => [
         /*
+         * Used to generate cache buster tags. This salt is only used for this purpose.
+         * you should set this in the same way as secretsalt
+         */
+        'salt' => 'assets.salt.default',
+
+        /*
          * These settings adjust the caching headers that are sent
          * when serving static resources.
          */
