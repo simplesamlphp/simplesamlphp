@@ -209,7 +209,17 @@ class Template extends Response
         }
 
         $file = new File($file);
-        $tag = $this->getAssetTagForFile($file);
+
+        $tag = $this->configuration->getVersion();
+        if ($module !== null) {
+            // Modules can be updated more frequently than the core. Especially the custom ones.
+            // As a result, we will use a different tagging method
+            $composerLock = new File($baseDir . 'composer.lock');
+            $tag = md5($composerLock->getContent());
+        }
+        if ($tag === 'master') {
+            $tag = strval($file->getMtime());
+        }
 
         // Use the `assets.salt` to enhance security.
         // Do not make it easy to guess the underlying SSP version.
@@ -225,24 +235,6 @@ class Template extends Response
         return $path . '?tag=' . $tag;
     }
 
-    /**
-     * Get a string to use in tag generation for a file. This can be done from the contents
-     * of the file (expensive) or the mtime of the file (cheap). If a store is using many SSP
-     * instances and knows that the mtime is synced for the files in the installation then
-     * the cheap method is preferred.
-     */
-    public function getAssetTagForFile(File $f): string
-    {
-        $useContents = false;
-
-        if ($useContents) {
-            $r = md5($f->getContent());
-        } else {
-            $r = ":" . strval($f->getMtime());
-        }
-
-        return $r;
-    }
 
     /**
      * Get the normalized template name.
