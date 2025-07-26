@@ -11,7 +11,6 @@ use SAML2\Constants;
 use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
 use SimpleSAML\Utils;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -254,7 +253,9 @@ class Configuration implements Utils\ClearableState
             }
         }
 
-        $filePath = self::getConfigPath($filename, $configSet);
+        $dir = self::$configDirs[$configSet];
+        $filePath = $dir . '/' . $filename;
+
         self::$loadedConfigs[$filePath] = $config;
     }
 
@@ -281,21 +282,11 @@ class Configuration implements Utils\ClearableState
             }
         }
 
-        $filePath = self::getConfigPath($filename, $configSet);
+        $dir = self::$configDirs[$configSet];
+        $filePath = $dir . '/' . $filename;
         return self::loadFromFile($filePath, true);
     }
 
-    /**
-     * Get the path where the desired config file should be located.
-     */
-    public static function getConfigPath(
-        string $filename = 'config.php',
-        string $configSet = 'simplesaml',
-    ): string {
-        $dir = self::$configDirs[$configSet];
-        $filePath = $dir . '/' . $filename;
-        return $filePath;
-    }
 
     /**
      * Load a configuration file from a configuration set.
@@ -321,7 +312,8 @@ class Configuration implements Utils\ClearableState
             self::$configDirs['simplesaml'] = $configUtils->getConfigDir();
         }
 
-        $filePath = self::getConfigPath($filename, $configSet);
+        $dir = self::$configDirs[$configSet];
+        $filePath = $dir . '/' . $filename;
         return self::loadFromFile($filePath, false);
     }
 
