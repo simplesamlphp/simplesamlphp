@@ -19,6 +19,7 @@ use SimpleSAML\Locale\Translate;
 use SimpleSAML\Locale\TwigTranslator;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
+use SimpleSAML\Utils\System;
 use SimpleSAML\Utils;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Component\Filesystem\Filesystem;
@@ -217,7 +218,7 @@ class Template extends Response
             'assets.secretsalt.default',
         );
         $mac = hash_hmac('sha256', $tag, $salt, true);
-        $tag = substr(base64_encode($mac), 0, $tagLength);
+        $tag = substr(System::base64_url_encode($mac), 0, $tagLength);
 
         return $path . '?tag=' . $tag;
     }
