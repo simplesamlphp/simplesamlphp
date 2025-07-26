@@ -191,7 +191,6 @@ $config = [
      */
     'secretsalt' => 'defaultsecretsalt',
 
-    
     /*
      * This password must be kept secret, and modified from the default value 123.
      * This password will give access to the installation page of SimpleSAMLphp with
@@ -931,7 +930,7 @@ $config = [
          * Used to generate cache buster tags. This salt is only used for this purpose.
          * you should set this in the same way as secretsalt
          */
-        'secretsalt' => 'assets.secretsalt.default',
+        'salt' => 'assets.salt.default',
 
         /*
          * These settings adjust the caching headers that are sent
