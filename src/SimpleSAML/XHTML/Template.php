@@ -213,10 +213,12 @@ class Template extends Response
 
         // Use the `assets.secretsalt` to enhance security.
         // Do not make it easy to guess the underlying SSP version.
-        $salt = $this->configuration->getOptionalStringNested(
-            'assets.secretsalt',
-            'assets.secretsalt.default',
-        );
+        $salt = 'assets.secretsalt.default';
+        $assetsConfig = $this->configuration->getOptionalArray('assets',array());
+        if(!empty($assetsConfig['secretsalt'])) {
+            $salt = $assetsConfig['secretsalt'];
+        }
+
         $mac = hash_hmac('sha256', $tag, $salt, true);
         $tag = substr(System::base64_url_encode($mac), 0, $tagLength);
 
