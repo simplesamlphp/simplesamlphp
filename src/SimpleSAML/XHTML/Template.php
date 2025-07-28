@@ -38,7 +38,7 @@ use function class_exists;
 use function count;
 use function date;
 use function explode;
-use function hash_hmac;
+use function hash_hmac_file;
 use function in_array;
 use function is_null;
 use function key;
