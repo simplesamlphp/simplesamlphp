@@ -928,7 +928,14 @@ $config = [
     'assets' => [
         /*
          * Used to generate cache buster tags. This salt is only used for this purpose.
-         * you should set this in the same way as secretsalt
+         * You should set this in the same way as secretsalt.
+         *
+         * You can change this salt at any time. This will have the effect of explicit
+         * cache busting as the tags for resources will change and thus all resources
+         * will be fetched again.
+         *
+         * Leaving the default value in place can allow an attacker the opportunity
+         * to work out the version of SSP you have installed.
          */
         'salt' => 'assets.salt.default',
 
