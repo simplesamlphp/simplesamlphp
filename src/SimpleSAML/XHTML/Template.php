@@ -228,7 +228,7 @@ class Template extends Response
             $salt = $assetsConfig['salt'];
         }
 
-        $tagLength = 32;
+        $tagLength = 5;
         $mac = hash_hmac_file('sha256', $file->getPathname(), $salt);
         $tag = substr($mac, 0, $tagLength);
 
