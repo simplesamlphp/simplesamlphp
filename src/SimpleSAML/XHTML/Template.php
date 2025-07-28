@@ -183,7 +183,6 @@ class Template extends Response
      */
     public function asset(string $asset, ?string $module = null, bool $tag = true): string
     {
-
         $baseDir = $this->configuration->getBaseDir();
         $basePath = $this->configuration->getBasePath();
         if (is_null($module)) {
