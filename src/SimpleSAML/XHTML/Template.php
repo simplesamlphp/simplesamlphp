@@ -19,6 +19,7 @@ use SimpleSAML\Locale\Translate;
 use SimpleSAML\Locale\TwigTranslator;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
+use SimpleSAML\Utils\System;
 use SimpleSAML\Utils;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Component\Filesystem\Filesystem;
@@ -37,7 +38,7 @@ use function class_exists;
 use function count;
 use function date;
 use function explode;
-use function hash;
+use function hash_hmac_file;
 use function in_array;
 use function is_null;
 use function key;
@@ -205,13 +206,17 @@ class Template extends Response
             return $path;
         }
 
-        $file = new File($file);
-
-        $tag = $this->configuration->getVersion();
-        if ($tag === 'master') {
-            $tag = strval($file->getMtime());
+        // Use the `assets.salt` to enhance security.
+        // Do not make it easy to guess the underlying SSP version.
+        $salt = 'assets.salt.default';
+        $assetsConfig = $this->configuration->getOptionalArray('assets',array());
+        if(!empty($assetsConfig['salt'])) {
+            $salt = $assetsConfig['salt'];
         }
-        $tag = substr(hash('md5', $tag), 0, 5);
+
+        $tagLength = 5;
+        $mac = hash_hmac_file('sha256', $file, $salt);
+        $tag = substr($mac, 0, $tagLength);
 
         return $path . '?tag=' . $tag;
     }
