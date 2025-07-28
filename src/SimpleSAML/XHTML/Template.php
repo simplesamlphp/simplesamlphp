@@ -183,7 +183,6 @@ class Template extends Response
      */
     public function asset(string $asset, ?string $module = null, bool $tag = true): string
     {
-        $tagLength = 6;
 
         $baseDir = $this->configuration->getBaseDir();
         $basePath = $this->configuration->getBasePath();
@@ -229,8 +228,9 @@ class Template extends Response
             $salt = $assetsConfig['salt'];
         }
 
-        $mac = hash_hmac('sha256', $tag, $salt, true);
-        $tag = substr(System::base64_url_encode($mac), 0, $tagLength);
+        $tagLength = 32;
+        $mac = hash_hmac_file('sha256', $file->getPathname(), $salt);
+        $tag = substr($mac, 0, $tagLength);
 
         return $path . '?tag=' . $tag;
     }

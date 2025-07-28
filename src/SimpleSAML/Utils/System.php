@@ -265,19 +265,4 @@ class System
     {
         return preg_match('/^[\w\d]*:\/{2}/', $path) === 1;
     }
-
-    /**
-     * Encode a string to a base64 that is URL safe.
-     * This should become an RFC 4648 compliant function in the future.
-     *
-     * @param string $s Input to encode
-     * @return rfc 4648 compliant string
-     */
-    public static function base64_url_encode( string $s ): string
-    {
-        $s = base64_encode($s);
-        $s = strtr($s, '+/', '-_');
-        $s = rtrim($s, '=');
-        return $s;
-    }
 }
