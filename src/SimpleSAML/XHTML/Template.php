@@ -207,19 +207,6 @@ class Template extends Response
             return $path;
         }
 
-        $file = new File($file);
-
-        $tag = $this->configuration->getVersion();
-        if ($module !== null) {
-            // Modules can be updated more frequently than the core. Especially the custom ones.
-            // As a result, we will use a different tagging method
-            $composerLock = new File($baseDir . 'composer.lock');
-            $tag = md5($composerLock->getContent());
-        }
-        if ($tag === 'master') {
-            $tag = strval($file->getMtime());
-        }
-
         // Use the `assets.salt` to enhance security.
         // Do not make it easy to guess the underlying SSP version.
         $salt = 'assets.salt.default';
@@ -229,7 +216,7 @@ class Template extends Response
         }
 
         $tagLength = 5;
-        $mac = hash_hmac_file('sha256', $file->getPathname(), $salt);
+        $mac = hash_hmac_file('sha256', $file, $salt);
         $tag = substr($mac, 0, $tagLength);
 
         return $path . '?tag=' . $tag;
