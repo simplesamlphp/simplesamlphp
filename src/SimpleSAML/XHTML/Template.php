@@ -19,7 +19,6 @@ use SimpleSAML\Locale\Translate;
 use SimpleSAML\Locale\TwigTranslator;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
-use SimpleSAML\Utils\System;
 use SimpleSAML\Utils;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Component\Filesystem\Filesystem;
@@ -209,8 +208,8 @@ class Template extends Response
         // Use the `assets.salt` to enhance security.
         // Do not make it easy to guess the underlying SSP version.
         $salt = 'assets.salt.default';
-        $assetsConfig = $this->configuration->getOptionalArray('assets',array());
-        if(!empty($assetsConfig['salt'])) {
+        $assetsConfig = $this->configuration->getOptionalArray('assets', []);
+        if (!empty($assetsConfig['salt'])) {
             $salt = $assetsConfig['salt'];
         }
 
