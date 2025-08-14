@@ -85,7 +85,69 @@ that metadata file.
 
 Optional session checking function, called on session init and loading, defined with 'session.check_function' in config.php.
 
-Example code for the function with GeoIP country check:
+A simple example that will logout a specific user and also prevent
+them from logging in. The code should be placed in in a file
+`src/SimpleSAML/CustomCode.php` in the main repository.
+
+```php
+    'session.check_function' => ['\SimpleSAML\CustomCode', 'checkSession'],
+```
+
+In the `src/SimpleSAML/CustomCode.php` file we check for a specific
+`uid` who we know is a bad boy in a known auth source and stop them
+from doing anything.
+
+```php
+declare(strict_types=1);
+
+namespace SimpleSAML;
+
+class CustomCode
+{
+    /**
+     * The session.check_function can be used to throw away a session object
+     * during normal processing. If we throw it away by returning `false` then
+     * the user will be forced to create a new session.
+     * 
+     * There are two call modes: during session init which can not fail and 
+     * during testing. When testing returning false will cause the session to 
+     * be discarded.
+     *
+     * @param \SimpleSAML\Session $session The session to approve/reject
+     * @param bool $init true if called during session init.
+     */
+    public static function checkSession(\SimpleSAML\Session $session, bool $init = false)
+    {
+        $authority = "default-sp";
+        
+        if( $init ) {
+            // init can not fail
+            // return value is ignored
+            return true;
+        }
+        
+        $ad = $session->getAuthData($authority,"Attributes");
+        if( !$ad ) {
+            return true;
+        }
+        $uid = $ad["uid"];
+        
+        if( in_array("badboy@localhost.localdomain",$uid)) {
+            // drop the session
+            return false;
+        }
+
+        // normal functionality
+        return true;
+    }
+};
+
+```
+
+A more complex example which performs a GeoIP country check on the
+session to make sure the user is in the same country as they were when
+they authenticated.
+
 
 ```php
 public static function checkSession(\SimpleSAML\Session $session, bool $init = false)
@@ -136,49 +198,6 @@ public static function checkSession(\SimpleSAML\Session $session, bool $init = f
 }
 ```
 
-A simple example that will logout a specific user and also prevent them from logging in.
-This time the code is in a file `src/SimpleSAML/CustomCode.php` in the main repo instead
-of in a module.
-
-```php
-    'session.check_function' => ['\SimpleSAML\CustomCode', 'checkSession'],
-```
-
-In the `src/SimpleSAML/CustomCode.php` file we check for a specific `uid` who we know is a 
-bad boy in a known auth source and stop them from doing anything.
-
-```php
-declare(strict_types=1);
-
-namespace SimpleSAML;
-
-class CustomCode
-{
-    public static function checkSession(\SimpleSAML\Session $session, bool $init = false)
-    {
-        $authority = "default-sp";
-        
-        if( $init ) {
-            return true;
-        }
-        
-        $ad = $session->getAuthData($authority,"Attributes");
-        if( !$ad ) {
-            return true;
-        }
-        $uid = $ad["uid"];
-        
-        if( in_array("badboy@localhost.localdomain",$uid)) {
-            // drop the session
-            return false;
-        }
-
-        // normal functionality
-        return true;
-    }
-};
-
-```
 
 
 ## Support
