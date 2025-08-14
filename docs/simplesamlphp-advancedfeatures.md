@@ -148,7 +148,6 @@ A more complex example which performs a GeoIP country check on the
 session to make sure the user is in the same country as they were when
 they authenticated.
 
-
 ```php
 public static function checkSession(\SimpleSAML\Session $session, bool $init = false)
 {
@@ -197,8 +196,6 @@ public static function checkSession(\SimpleSAML\Session $session, bool $init = f
     return false;
 }
 ```
-
-
 
 ## Support
 
