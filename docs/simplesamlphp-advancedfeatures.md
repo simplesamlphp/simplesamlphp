@@ -136,6 +136,47 @@ public static function checkSession(\SimpleSAML\Session $session, bool $init = f
 }
 ```
 
+A simple example that will logout a specific user and also prevent them from logging in.
+This time the code is in a file `src/SimpleSAML/CustomCode.php` in the main repo instead
+of in a module.
+
+```php
+    'session.check_function' => ['\SimpleSAML\CustomCode', 'checkSession'],
+```
+
+In the `src/SimpleSAML/CustomCode.php` file we check for a specific `uid` who we know is a 
+bad boy in a known auth source and stop them from doing anything.
+
+```php
+declare(strict_types=1);
+
+namespace SimpleSAML;
+
+class CustomCode
+{
+    public static function checkSession(\SimpleSAML\Session $session, bool $init = false)
+    {
+        $authority = "default-sp";
+        
+        $ad = $session->getAuthData($authority,"Attributes");
+        if( !$ad ) {
+            return true;
+        }
+        $uid = $ad["uid"];
+        
+        if( in_array("badboy@localhost.localdomain",$uid)) {
+            // drop the session
+            return false;
+        }
+
+        // normal functionality
+        return true;
+    }
+};
+
+```
+
+
 ## Support
 
 If you need help to make this work, or want to discuss
