@@ -182,6 +182,9 @@ class Session implements Utils\ClearableState
             $checkFunction = self::$config->getOptionalValue('session.check_function', null);
             if (is_callable($checkFunction)) {
                 call_user_func($checkFunction, $this, true);
+            } else {
+                Logger::error('Configuration error: session.check_function'
+                            . ' is defined but is not callable by SimpleSAMLphp.');
             }
         }
     }
@@ -376,6 +379,9 @@ class Session implements Utils\ClearableState
                     Logger::warning('Session did not pass check function.');
                     return null;
                 }
+            } else {
+                Logger::error('Configuration error: session.check_function'
+                            . ' is defined but is not callable by SimpleSAMLphp');
             }
         }
 
