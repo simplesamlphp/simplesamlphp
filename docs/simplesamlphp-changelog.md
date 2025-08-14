@@ -20,6 +20,7 @@ Released TBD
 * Allow "Secure" cookie attribute via HTTP on localhost (#2483)
 * Fix override over errorURL
 * Introduced a new assets.salt to allow cache busting without leaking version information (#2490)
+* If session.check_function is set and can not be called a log message will be generated (#2498)
 
 ## Version 2.4.2
 
