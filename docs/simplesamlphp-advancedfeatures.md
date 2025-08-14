@@ -158,6 +158,10 @@ class CustomCode
     {
         $authority = "default-sp";
         
+        if( $init ) {
+            return true;
+        }
+        
         $ad = $session->getAuthData($authority,"Attributes");
         if( !$ad ) {
             return true;
