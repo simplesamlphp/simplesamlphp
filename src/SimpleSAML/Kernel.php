@@ -66,7 +66,7 @@ class Kernel extends BaseKernel
             return $cachePath;
         }
 
-        return $configuration->getBaseDir() . DIRECTORY_SEPARATOR . $cachePath;
+        return $configuration->getBaseDir() . $cachePath;
     }
 
 
