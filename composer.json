@@ -129,5 +129,5 @@
         "translations:unused": "php bin/translations translations:unused",
         "translations:update:translatable": "php bin/translations translations:update:translatable"
     },
-    "version": "v2.2.5"
+    "version": "v2.2.6"
 }
