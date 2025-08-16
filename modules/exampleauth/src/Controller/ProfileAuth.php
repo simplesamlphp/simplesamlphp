@@ -8,9 +8,7 @@ use Exception as BuiltinException;
 use SimpleSAML\{Auth, Configuration, Error, Module, Utils};
 use SimpleSAML\Module\exampleauth\Auth\Source\UserClick;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Cookie;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{Request, Response};
 
 use function trim;
 
@@ -106,11 +104,7 @@ class ProfileAuth
             $errorParams = $state['error']['params'];
         }
 
-        $cookies = [];
         if ($id !== '') {
-            $httpUtils = new Utils\HTTP();
-            $sameSiteNone = $httpUtils->canSetSamesiteNone() ? Cookie::SAMESITE_NONE : null;
-
             try {
                 UserClick::handleLogin($authStateId, (int)$id);
             } catch (Error\Error $e) {
@@ -142,10 +136,6 @@ class ProfileAuth
             $t->data['SPMetadata'] = $state['SPMetadata'];
         } else {
             $t->data['SPMetadata'] = null;
-        }
-
-        foreach ($cookies as $cookie) {
-            $t->headers->setCookie($cookie);
         }
 
         return $t;
