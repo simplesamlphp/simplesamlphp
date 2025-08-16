@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
 use Exception;
-use SAML2\Constants;
 use SimpleSAML\Auth;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error;
@@ -13,6 +12,9 @@ use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\{Request, Response};
+
+use function array_key_exists;
+use function sprintf;
 
 /**
  * Profileauth authentication source.
@@ -43,23 +45,35 @@ class UserClick extends Auth\Source
      */
     public array $users = [];
 
-    protected function getUsers($config) {
+
+    /**
+     * @param array<mixed> $config
+     * @return array<mixed>
+     */
+    protected function getUsers(array $config): array
+    {
         $users = [];
+        $attrUtils = new Utils\Attributes();
 
         // Validate and parse our configuration
         foreach ($config as $id => $attributes) {
-            $attrUtils = new Utils\Attributes();
-
             try {
                 $attributes = $attrUtils->normalizeAttributesArray($attributes);
             } catch (Exception $e) {
-                throw new Exception('Invalid attributes for user ' . $id .
-                    ' in authentication source ' . $this->authId . ': ' . $e->getMessage());
+                throw new Exception(sprintf(
+                    'Invalid attributes for user %s in authentication source %s: %s',
+                    $id,
+                    $this->authId,
+                    $e->getMessage(),
+                ));
             }
+
             $users[$id] = $attributes;
         }
+
         return $users;
     }
+
 
     /**
      * Constructor for this authentication source.
@@ -75,14 +89,16 @@ class UserClick extends Auth\Source
         if (array_key_exists('users', $config)) {
             $users = $config['users'];
         } else {
-            Logger::warning("Module exampleauth:UserClick misconfigured." .
-                "Put users in 'users' key in your authsource.");
+            Logger::warning(
+                "Module exampleauth:UserClick misconfigured. Put users in 'users' key in your authsource.",
+            );
+
             throw new Error\Error(Error\ErrorCodes::WRONGUSERPASS);
         }
 
         $this->users = $this->getUsers($users);
-
     }
+
 
     /**
      * Initialize login.
@@ -92,7 +108,7 @@ class UserClick extends Auth\Source
      *
      * @param array &$state  Information about the current authentication.
      */
-    public function authenticate(array &$state): void
+    public function authenticate(array &$state): never
     {
         /*
          * Save the identifier of this authentication source, so that we can
@@ -107,7 +123,7 @@ class UserClick extends Auth\Source
         /*
          * If there is only one user configured, skip the persona chooser
          */
-        if (count($this->users) == 1) {
+        if (count($this->users) === 1) {
             $this->handleLogin($id, 0);
         }
 
@@ -119,9 +135,6 @@ class UserClick extends Auth\Source
         $params = ['AuthState' => $id];
         $httpUtils = new Utils\HTTP();
         $httpUtils->redirectTrustedURL($url, $params);
-
-        // The previous function never returns, so this code is never executed.
-        assert::true(false);
     }
 
 
@@ -147,6 +160,7 @@ class UserClick extends Auth\Source
         return $this->users[$id];
     }
 
+
     /**
      * Handle login request.
      *
@@ -168,7 +182,7 @@ class UserClick extends Auth\Source
         /** @var \SimpleSAML\Module\exampleauth\Auth\Source\UserClick|null $source */
         $source = Auth\Source::getById($state[self::AUTHID]);
         if ($source === null) {
-            throw new \Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
+            throw new Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
         }
 
         /*
@@ -179,12 +193,19 @@ class UserClick extends Auth\Source
         // Attempt to log in
         try {
             $attributes = $source->login($id);
-        } catch (\Exception $e) {
-            Logger::stats('Unsuccessful login attempt from ' . $_SERVER['REMOTE_ADDR'] . '.');
+        } catch (Exception $e) {
+            Logger::stats(sprintf(
+                'Unsuccessful login attempt from %s.',
+                $_SERVER['REMOTE_ADDR'],
+            ));
             throw $e;
         }
 
-        Logger::stats('User \'' . $id . '\' successfully authenticated from ' . $_SERVER['REMOTE_ADDR']);
+        Logger::stats(sprintf(
+            "User '%s' successfully authenticated from %s",
+            $id,
+            $_SERVER['REMOTE_ADDR'],
+        ));
 
         // Save the attributes we received from the login-function in the $state-array
         $state['Attributes'] = $attributes;
@@ -192,6 +213,4 @@ class UserClick extends Auth\Source
         // Return control to SimpleSAMLphp after successful authentication.
         Auth\Source::completeAuth($state);
     }
-
-
 }

@@ -11,11 +11,7 @@ use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use SimpleSAML\Logger;
 
-use function array_key_exists;
-use function substr;
-use function time;
 use function trim;
 
 /**
@@ -39,19 +35,21 @@ class ProfileAuth
      */
     protected $authState = Auth\State::class;
 
+
     /**
      * Controller constructor.
      *
      * It initializes the global configuration for the controllers implemented here.
      *
-     * @param \SimpleSAML\Configuration              $config The configuration to use by the controllers.
+     * @param \SimpleSAML\Configuration $config The configuration to use by the controllers.
      *
      * @throws \Exception
      */
     public function __construct(
-        protected Configuration $config
+        protected Configuration $config,
     ) {
     }
+
 
     /**
      * This page shows a list of users, and passes information from it
@@ -66,6 +64,7 @@ class ProfileAuth
         if (!$request->query->has('AuthState')) {
             throw new Error\BadRequest('Missing AuthState parameter.');
         }
+
         $authStateId = $request->query->get('AuthState');
         $this->authState::validateStateId($authStateId);
 
@@ -75,7 +74,7 @@ class ProfileAuth
         $source = $this->authSource::getById($state[UserClick::AUTHID]);
         if ($source === null) {
             throw new BuiltinException(
-                'Could not find authentication source with id ' . $state[UserClick::AUTHID]
+                'Could not find authentication source with id ' . $state[UserClick::AUTHID],
             );
         }
 
@@ -120,7 +119,7 @@ class ProfileAuth
                 $errorParams = $e->getParameters();
                 $state['error'] = [
                     'code' => $errorCode,
-                    'params' => $errorParams
+                    'params' => $errorParams,
                 ];
                 $authStateId = Auth\State::saveState($state, $source::STAGEID);
             }
@@ -152,6 +151,7 @@ class ProfileAuth
         return $t;
     }
 
+
     /**
      * Retrieve the username from the request, a cookie or the state
      *
@@ -172,5 +172,4 @@ class ProfileAuth
 
         return $id;
     }
-
 }
