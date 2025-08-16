@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\multiauth\Auth\Source;
 
 use Exception;
 use SAML2\Exception\Protocol\NoAuthnContextException;
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -94,7 +93,7 @@ class MultiAuth extends Auth\Source
      *
      * @param array &$state Information about the current authentication.
      */
-    public function authenticate(array &$state): void
+    public function authenticate(array &$state): never
     {
         $state[self::AUTHID] = $this->authId;
         $state[self::SOURCESID] = $this->sources;
@@ -145,9 +144,6 @@ class MultiAuth extends Auth\Source
 
         $httpUtils = new Utils\HTTP();
         $httpUtils->redirectTrustedURL($url, $params);
-
-        // The previous function never returns, so this code is never executed
-        Assert::true(false);
     }
 
 

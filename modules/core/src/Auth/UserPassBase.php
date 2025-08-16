@@ -250,7 +250,7 @@ abstract class UserPassBase extends Auth\Source
         $httpUtils->redirectTrustedURL($url, $params);
 
         // The previous function never returns, so this code is never executed.
-        assert::true(false);
+        Assert::true(false);
     }
 
 
