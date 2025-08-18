@@ -432,13 +432,13 @@ Now, we need to make a few configuration changes. First, let's edit `~/public_ht
 Change the two lines from:
 
 ```php
-require_once(dirname(_FILE__, 2) . '/lib/_autoload.php');
+require_once(dirname(_FILE__, 2) . '/src/_autoload.php');
 ```
 
 to something like:
 
 ```php
-require_once(dirname(__FILE__, 3) . '/lib/_autoload.php');
+require_once(dirname(__FILE__, 3) . '/src/_autoload.php');
 ```
 
 **Warning**: note that this will make upgrading SimpleSAMLphp much more difficult, since you will need to move the
