@@ -116,23 +116,23 @@ class CustomCode
      * @param \SimpleSAML\Session $session The session to approve/reject
      * @param bool $init true if called during session init.
      */
-    public static function checkSession(\SimpleSAML\Session $session, bool $init = false)
+    public static function checkSession(\SimpleSAML\Session $session, bool $init = false): bool
     {
         $authority = "default-sp";
         
-        if( $init ) {
+        if ($init) {
             // init can not fail
             // return value is ignored
             return true;
         }
         
-        $ad = $session->getAuthData($authority,"Attributes");
-        if( !$ad ) {
+        $ad = $session->getAuthData($authority, "Attributes");
+        if ($ad === null) {
             return true;
         }
         $uid = $ad["uid"];
         
-        if( in_array("badboy@localhost.localdomain",$uid)) {
+        if (in_array("badboy@localhost.localdomain", $uid)) {
             // drop the session
             return false;
         }
