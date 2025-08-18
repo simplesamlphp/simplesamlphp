@@ -127,7 +127,7 @@ class CustomCode
         }
         
         $ad = $session->getAuthData($authority, "Attributes");
-        if ($ad === null) {
+        if (empty($ad)) {
             return true;
         }
         $uid = $ad["uid"];
