@@ -13,6 +13,10 @@ Released TBD
 * Allow "Secure" cookie attribute via HTTP on localhost (#2483)
 * Fix override over errorURL
 
+`authorize`
+
+* Remove reauthentication-button when reauthentication is disabled (simplesamlphp/simplesamlphp-module-authorize#24) (v1.6.2)
+
 ## Version 2.3.8
 
 Released 2025-06-17
