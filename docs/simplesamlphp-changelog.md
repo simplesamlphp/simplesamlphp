@@ -22,6 +22,10 @@ Released TBD
 * Introduced a new assets.salt to allow cache busting without leaking version information (#2490)
 * If session.check_function is set and can not be called an error is raised (#2498)
 
+`authorize`
+
+* Remove reauthentication-button when reauthentication is disabled (simplesamlphp/simplesamlphp-module-authorize#24) (v1.6.2)
+
 ## Version 2.4.2
 
 Released 2025-06-04
