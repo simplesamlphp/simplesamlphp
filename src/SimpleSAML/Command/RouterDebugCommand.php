@@ -17,7 +17,7 @@ class RouterDebugCommand extends Command
     /**
      * @var string|null
      */
-    protected static $defaultName = 'debug:router';
+    protected static ?string $defaultName = 'debug:router';
 
 
     /**

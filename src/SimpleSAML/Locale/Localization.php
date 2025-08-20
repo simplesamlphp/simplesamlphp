@@ -94,8 +94,6 @@ class Localization
 
     /**
      * Dump the default locale directory
-     *
-     * @return string
      */
     public function getLocaleDir(): string
     {
@@ -107,8 +105,6 @@ class Localization
      * Get the default locale dir for a specific module aka. domain
      *
      * @param string $domain Name of module/domain
-     *
-     * @return string
      */
     public function getDomainLocaleDir(string $domain): string
     {
@@ -136,6 +132,9 @@ class Localization
     }
 
 
+    /**
+     * @param string $domain
+     */
     public function defaultDomain(string $domain): self
     {
         $this->translator->defaultDomain($domain);
@@ -164,8 +163,6 @@ class Localization
      *
      * @param string $domain Name of localization domain
      * @throws \Exception If the path does not exist even for the default, fallback language
-     *
-     * @return string
      */
     public function getLangPath(string $domain = self::DEFAULT_DOMAIN): string
     {
@@ -300,13 +297,12 @@ class Localization
 
     /**
      * Show which domains are registered
-     *
-     * @return array
      */
     public function getRegisteredDomains(): array
     {
         return $this->localeDomainMap;
     }
+
 
     /**
      * Add translation domains specifically used for translating attributes names:

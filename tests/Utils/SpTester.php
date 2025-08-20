@@ -42,7 +42,7 @@ class SpTester extends SP
     /**
      * override the method that sends the request to avoid sending anything
      */
-    public function sendSAML2AuthnRequest(Binding $binding, AuthnRequest $ar): void
+    public function sendSAML2AuthnRequest(Binding $binding, AuthnRequest $ar): never
     {
         // Exit test. Continuing would mean running into a assert(FALSE)
         throw new ExitTestException(
@@ -57,7 +57,7 @@ class SpTester extends SP
     /**
      * override the method that sends the request to avoid sending anything
      */
-    public function sendSAML2LogoutRequest(Binding $binding, LogoutRequest $lr): void
+    public function sendSAML2LogoutRequest(Binding $binding, LogoutRequest $lr): never
     {
         // Exit test. Continuing would mean running into a assert(FALSE)
         throw new ExitTestException(

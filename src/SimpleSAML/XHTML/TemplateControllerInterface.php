@@ -17,7 +17,6 @@ interface TemplateControllerInterface
      * Implement to modify the twig environment after its initialization (e.g. add filters or extensions).
      *
      * @param \Twig\Environment $twig The current twig environment.
-     *
      */
     public function setUpTwig(Environment &$twig): void;
 
@@ -28,7 +27,6 @@ interface TemplateControllerInterface
      * This method will be called right before displaying the template.
      *
      * @param array $data The current data used by the template.
-     *
      */
     public function display(array &$data): void;
 }

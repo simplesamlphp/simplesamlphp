@@ -28,7 +28,7 @@ class ErrorHandler
         string $errstr,
         ?string $errfile = null,
         int $errline = 0,
-    ): bool {
+    ): false {
         if (Logger::isErrorMasked($errno)) {
             // masked error
             return false;

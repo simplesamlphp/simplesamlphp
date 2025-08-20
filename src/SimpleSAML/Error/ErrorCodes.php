@@ -23,45 +23,44 @@ class ErrorCodes
         Login::registerErrorCodeClass($this);
     }
 
-    // TODO PHPv8.1 - Consider moving to final consts for these default error codes to prevent overrides.
-    public const ACSPARAMS = 'ACSPARAMS';
-    public const ARSPARAMS = 'ARSPARAMS';
-    public const AUTHSOURCEERROR = 'AUTHSOURCEERROR';
-    public const BADREQUEST = 'BADREQUEST';
-    public const CASERROR = 'CASERROR';
-    public const CONFIG = 'CONFIG';
-    public const CREATEREQUEST = 'CREATEREQUEST';
-    public const DISCOPARAMS = 'DISCOPARAMS';
-    public const GENERATEAUTHNRESPONSE = 'GENERATEAUTHNRESPONSE';
-    public const INVALIDCERT = 'INVALIDCERT';
-    public const LDAPERROR = 'LDAPERROR';
-    public const LOGOUTINFOLOST = 'LOGOUTINFOLOST';
-    public const LOGOUTREQUEST = 'LOGOUTREQUEST';
-    public const MEMCACHEDOWN = 'MEMCACHEDOWN';
-    public const METADATA = 'METADATA';
-    public const METADATANOTFOUND = 'METADATANOTFOUND';
-    public const METHODNOTALLOWED = 'METHODNOTALLOWED';
-    public const NOACCESS = 'NOACCESS';
-    public const NOCERT = 'NOCERT';
-    public const NORELAYSTATE = 'NORELAYSTATE';
-    public const NOSTATE = 'NOSTATE';
-    public const NOTFOUND = 'NOTFOUND';
-    public const NOTFOUNDREASON = 'NOTFOUNDREASON';
-    public const NOTSET = 'NOTSET';
-    public const ADMINNOTHASHED = 'ADMINNOTHASHED';
-    public const NOTVALIDCERT = 'NOTVALIDCERT';
-    public const PROCESSASSERTION = 'PROCESSASSERTION';
-    public const PROCESSAUTHNREQUEST = 'PROCESSAUTHNREQUEST';
-    public const RESPONSESTATUSNOSUCCESS = 'RESPONSESTATUSNOSUCCESS';
-    public const SLOSERVICEPARAMS = 'SLOSERVICEPARAMS';
-    public const SSOPARAMS = 'SSOPARAMS';
-    public const UNHANDLEDEXCEPTION = 'UNHANDLEDEXCEPTION';
-    public const UNKNOWNCERT = 'UNKNOWNCERT';
-    public const USERABORTED = 'USERABORTED';
-    public const WRONGUSERPASS = 'WRONGUSERPASS';
+    final public const ACSPARAMS = 'ACSPARAMS';
+    final public const ARSPARAMS = 'ARSPARAMS';
+    final public const AUTHSOURCEERROR = 'AUTHSOURCEERROR';
+    final public const BADREQUEST = 'BADREQUEST';
+    final public const CASERROR = 'CASERROR';
+    final public const CONFIG = 'CONFIG';
+    final public const CREATEREQUEST = 'CREATEREQUEST';
+    final public const DISCOPARAMS = 'DISCOPARAMS';
+    final public const GENERATEAUTHNRESPONSE = 'GENERATEAUTHNRESPONSE';
+    final public const INVALIDCERT = 'INVALIDCERT';
+    final public const LDAPERROR = 'LDAPERROR';
+    final public const LOGOUTINFOLOST = 'LOGOUTINFOLOST';
+    final public const LOGOUTREQUEST = 'LOGOUTREQUEST';
+    final public const MEMCACHEDOWN = 'MEMCACHEDOWN';
+    final public const METADATA = 'METADATA';
+    final public const METADATANOTFOUND = 'METADATANOTFOUND';
+    final public const METHODNOTALLOWED = 'METHODNOTALLOWED';
+    final public const NOACCESS = 'NOACCESS';
+    final public const NOCERT = 'NOCERT';
+    final public const NORELAYSTATE = 'NORELAYSTATE';
+    final public const NOSTATE = 'NOSTATE';
+    final public const NOTFOUND = 'NOTFOUND';
+    final public const NOTFOUNDREASON = 'NOTFOUNDREASON';
+    final public const NOTSET = 'NOTSET';
+    final public const ADMINNOTHASHED = 'ADMINNOTHASHED';
+    final public const NOTVALIDCERT = 'NOTVALIDCERT';
+    final public const PROCESSASSERTION = 'PROCESSASSERTION';
+    final public const PROCESSAUTHNREQUEST = 'PROCESSAUTHNREQUEST';
+    final public const RESPONSESTATUSNOSUCCESS = 'RESPONSESTATUSNOSUCCESS';
+    final public const SLOSERVICEPARAMS = 'SLOSERVICEPARAMS';
+    final public const SSOPARAMS = 'SSOPARAMS';
+    final public const UNHANDLEDEXCEPTION = 'UNHANDLEDEXCEPTION';
+    final public const UNKNOWNCERT = 'UNKNOWNCERT';
+    final public const USERABORTED = 'USERABORTED';
+    final public const WRONGUSERPASS = 'WRONGUSERPASS';
 
-    public const KEY_TITLE = 'title';
-    public const KEY_DESCRIPTION = 'descr';
+    final public const KEY_TITLE = 'title';
+    final public const KEY_DESCRIPTION = 'descr';
 
 
     /**
@@ -114,6 +113,7 @@ class ErrorCodes
         ];
     }
 
+
     /**
      * Fetch all default translation strings for error code titles.
      *
@@ -124,6 +124,7 @@ class ErrorCodes
         // TODO NextMajorRelease Move content from self::defaultGetAllErrorCodeTitles() to this method.
         return self::defaultGetAllErrorCodeTitles();
     }
+
 
     /**
      * Fetch all title translation strings for custom error codes.
@@ -140,6 +141,7 @@ class ErrorCodes
     {
         return [];
     }
+
 
     /**
      * Fetch all title translation strings for custom error codes.
@@ -167,6 +169,7 @@ class ErrorCodes
     {
         return array_merge(self::defaultGetAllErrorCodeTitles(), static::getCustomErrorCodeTitles());
     }
+
 
     /**
      * Fetch all translation strings for error code titles.
@@ -282,6 +285,7 @@ class ErrorCodes
         ];
     }
 
+
     /**
      * Fetch all default translation strings for error code descriptions.
      *
@@ -292,6 +296,7 @@ class ErrorCodes
         // TODO NextMajorRelease Move content from self::defaultGetAllErrorCodeDescriptions() to this method.
         return self::defaultGetAllErrorCodeDescriptions();
     }
+
 
     /**
      * Fetch all description translation strings for custom error codes.
@@ -309,6 +314,7 @@ class ErrorCodes
         return [];
     }
 
+
     /**
      * Fetch all description translation strings for custom error codes.
      *
@@ -320,6 +326,7 @@ class ErrorCodes
     {
         return [];
     }
+
 
     /**
      * Fetch all translation strings for error code descriptions.
@@ -335,6 +342,10 @@ class ErrorCodes
         return array_merge(self::defaultGetAllErrorCodeDescriptions(), static::getCustomErrorCodeDescriptions());
     }
 
+
+    /**
+     * @return array
+     */
     public function getAllDescriptions(): array
     {
         return array_merge($this->getDefaultDescriptions(), $this->getCustomDescriptions());
@@ -358,6 +369,7 @@ class ErrorCodes
             self::KEY_DESCRIPTION => self::getAllErrorCodeDescriptions(),
         ];
     }
+
 
     /**
      * Get a map of both errorcode titles and descriptions
@@ -396,6 +408,7 @@ class ErrorCodes
         }
     }
 
+
     /**
      * Fetch a translation string for a title for a given error code.
      *
@@ -407,6 +420,7 @@ class ErrorCodes
     {
         return (string)($this->getAllTitles()[$errorCode] ?? Translate::addTagPrefix($errorCode, 'title_'));
     }
+
 
     /**
      * Fetch a translation string for a description for a given error code.
@@ -429,6 +443,7 @@ class ErrorCodes
         }
     }
 
+
     /**
      * Fetch a translation string for a description for a given error code.
      *
@@ -440,6 +455,7 @@ class ErrorCodes
     {
         return (string)($this->getAllDescriptions()[$errorCode] ?? Translate::addTagPrefix($errorCode, 'descr_'));
     }
+
 
     /**
      * Get both title and description for a specific error code
@@ -461,6 +477,7 @@ class ErrorCodes
             self::KEY_DESCRIPTION => self::getErrorCodeDescription($errorCode),
         ];
     }
+
 
     /**
      * Get both title and description for a specific error code

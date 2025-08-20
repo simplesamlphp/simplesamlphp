@@ -717,7 +717,6 @@ class HTTP
      * E.g. www.example.com
      *
      * @return string The current host.
-     *
      */
     public function getSelfHost(): string
     {
@@ -734,7 +733,6 @@ class HTTP
      *
      * @return string The current host, followed by a colon and the port number, in case the port is not standard for
      * the protocol.
-     *
      */
     public function getSelfHostWithNonStandardPort(): string
     {
@@ -754,7 +752,6 @@ class HTTP
      * current SP, as defined in the global configuration.
      *
      * @return string The current host (with non-default ports included) plus the URL path.
-     *
      */
     public function getSelfHostWithPath(): string
     {
@@ -775,7 +772,6 @@ class HTTP
      * Note that this method does NOT make use of the HTTP X-Forwarded-* set of headers.
      *
      * @return string The current URL, including query parameters.
-     *
      */
     public function getSelfURL(): string
     {
@@ -835,7 +831,6 @@ class HTTP
      * optionally, the port number.
      *
      * @return string The current URL without path or query parameters.
-     *
      */
     public function getSelfURLHost(): string
     {
@@ -853,7 +848,6 @@ class HTTP
      * Retrieve the current URL using the base URL in the configuration, without the query parameters.
      *
      * @return string The current URL, not including query parameters.
-     *
      */
     public function getSelfURLNoQuery(): string
     {
@@ -870,7 +864,6 @@ class HTTP
      * This function checks if we are using HTTPS as protocol.
      *
      * @return boolean True if the HTTPS is used, false otherwise.
-     *
      */
     public function isHTTPS(): bool
     {
@@ -886,7 +879,6 @@ class HTTP
      *
      * @return string An absolute URL for the given relative URL.
      * @throws \InvalidArgumentException If $url is not a string or a valid URL.
-     *
      */
     public function normalizeURL(string $url): string
     {
@@ -913,7 +905,6 @@ class HTTP
      *
      * @return array The query string as an associative array.
      * @throws \InvalidArgumentException If $query_string is not a string.
-     *
      */
     public function parseQueryString(string $query_string): array
     {
@@ -954,7 +945,6 @@ class HTTP
      * name, without a value.
      *
      * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
-     *
      */
     public function redirectTrustedURL(string $url, array $parameters = []): void
     {
@@ -980,7 +970,6 @@ class HTTP
      * name, without a value.
      *
      * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
-     *
      */
     public function redirectUntrustedURL(string $url, array $parameters = []): void
     {
@@ -1006,7 +995,6 @@ class HTTP
      * @return string An absolute URL for the given relative URL.
      * @throws \InvalidArgumentException If the base URL cannot be parsed into a valid URL, or the given parameters
      *     are not strings.
-     *
      */
     public function resolveURL(string $url, ?string $base = null): string
     {
@@ -1080,8 +1068,6 @@ class HTTP
      *
      * @throws \InvalidArgumentException If any parameter has an incorrect type.
      * @throws \SimpleSAML\Error\CannotSetCookie If the headers were already sent and the cookie cannot be set.
-     *
-     *
      */
     public function setCookie(string $name, ?string $value, ?array $params = null, bool $throw = true): void
     {
@@ -1188,8 +1174,6 @@ class HTTP
      *
      * @throws \InvalidArgumentException If $destination is not a string or $data is not an array.
      * @throws \SimpleSAML\Error\Exception If $destination is not a valid HTTP URL.
-     *
-     *
      */
     public function submitPOSTData(string $destination, array $data): void
     {

@@ -22,7 +22,6 @@ class Net
      * not rely on default parameter if running behind load balancers.
      *
      * @return boolean True if the IP address belongs to the specified CIDR, false otherwise.
-     *
      */
     public function ipCIDRcheck(string|array $cidr, ?string $ip = null): bool
     {

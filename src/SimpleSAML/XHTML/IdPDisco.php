@@ -33,7 +33,6 @@ use function usort;
  *
  * @package SimpleSAMLphp
  */
-
 class IdPDisco
 {
     /**
@@ -505,7 +504,6 @@ class IdPDisco
 
     /**
      * Check if an IdP is set or if the request is passive, and redirect accordingly.
-     *
      */
     protected function start(): void
     {

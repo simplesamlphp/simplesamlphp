@@ -41,7 +41,7 @@ class Configuration implements Utils\ClearableState
     /**
      * The release version of this package
      */
-    public const VERSION = '2.4.2';
+    public const VERSION = '2.5.0';
 
     /**
      * A default value which means that the given option is required.
@@ -116,6 +116,7 @@ class Configuration implements Utils\ClearableState
      * @var string|null
      */
     private ?string $filename = null;
+
 
     /**
      * Initializes a configuration from the given array.
@@ -1011,7 +1012,7 @@ class Configuration implements Utils\ClearableState
      * @return array|null The option with the given name.
      * @psalm-return      ($default is null ? array|null : array)
      */
-    public function getOptionalArrayize(string $name, $default): ?array
+    public function getOptionalArrayize(string $name, ?array $default): ?array
     {
         $ret = $this->getOptionalValue($name, $default);
 

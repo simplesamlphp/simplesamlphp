@@ -27,6 +27,7 @@ class Translate
      */
     private static array $defaultDomains = [];
 
+
     /**
      * Constructor
      *
@@ -62,10 +63,15 @@ class Translate
         return $tag;
     }
 
+
+    /**
+     * @param string $domain
+     */
     public static function addDefaultDomain(string $domain): void
     {
         array_push(self::$defaultDomains, $domain);
     }
+
 
     /**
      * Translate a singular text.
@@ -172,6 +178,7 @@ class Translate
         // nothing we can use, return null so that we can set a default
         return null;
     }
+
 
     /**
      * Prefix tag

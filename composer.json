@@ -44,7 +44,7 @@
         "files": ["tests/_autoload_modules.php"]
     },
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "ext-date": "*",
         "ext-dom": "*",
         "ext-hash": "*",
@@ -142,5 +142,5 @@
             "echo 'Post-install tasks completed!'"
         ]
     },
-    "version": "v2.4.2"
+    "version": "v2.5.0"
 }

@@ -11,8 +11,6 @@ use SimpleSAML\Module;
  * when the main template is not part of a module (or the same one).
  *
  * @package simplesamlphp/simplesamlphp
- *
- * @psalm-suppress DeprecatedInterface  This suppress may be removed when Twig 3.0 becomes the default
  */
 class TemplateLoader extends \Twig\Loader\FilesystemLoader
 {

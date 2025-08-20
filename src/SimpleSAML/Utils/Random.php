@@ -16,11 +16,11 @@ class Random
      */
     public const ID_LENGTH = 43;
 
+
     /**
      * Generate a random identifier, ID_LENGTH bytes long.
      *
      * @return string A ID_LENGTH-bytes long string with a random, hex-encoded string.
-     *
      */
     public function generateID(): string
     {

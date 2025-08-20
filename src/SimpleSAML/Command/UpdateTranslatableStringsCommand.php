@@ -37,10 +37,11 @@ class UpdateTranslatableStringsCommand extends Command
     /**
      * @var string|null
      */
-    protected static $defaultName = 'translations:update:translatable';
+    protected static ?string $defaultName = 'translations:update:translatable';
 
 
     /**
+     * @return void
      */
     protected function configure(): void
     {
@@ -78,6 +79,7 @@ class UpdateTranslatableStringsCommand extends Command
         );
     }
 
+
     /**
      * Clone the entries from $iterator into the passed Translations object.
      * It is expected that $iterator was made by getIterator() on Translations.
@@ -98,6 +100,7 @@ class UpdateTranslatableStringsCommand extends Command
         }
         return $ret;
     }
+
 
     /**
      * @param \Symfony\Component\Console\Input\InputInterface $input
