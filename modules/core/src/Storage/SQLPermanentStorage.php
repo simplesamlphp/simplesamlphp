@@ -218,7 +218,7 @@ class SQLPermanentStorage
      * @param string|null $key2
      * @return array|false
      */
-    public function getList(?string $type = null, ?string $key1 = null, ?string $key2 = null)
+    public function getList(?string $type = null, ?string $key1 = null, ?string $key2 = null): array|false
     {
         $conditions = $this->getCondition($type, $key1, $key2);
         $query = 'SELECT * FROM data WHERE ' . $conditions;
@@ -302,6 +302,7 @@ class SQLPermanentStorage
         $prepared->execute($data);
         return $prepared->rowCount();
     }
+
 
     /**
      * Create a SQL condition statement based on parameters

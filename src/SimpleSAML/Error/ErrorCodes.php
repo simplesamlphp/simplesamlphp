@@ -52,6 +52,7 @@ class ErrorCodes
     final public const UNKNOWNCERT = 'UNKNOWNCERT';
     final public const USERABORTED = 'USERABORTED';
     final public const WRONGUSERPASS = 'WRONGUSERPASS';
+
     final public const KEY_TITLE = 'title';
     final public const KEY_DESCRIPTION = 'descr';
 
@@ -129,7 +130,7 @@ class ErrorCodes
      *
      * @return array A map from error code to error code title
      */
-    final public function getAllTitles(): array
+    public function getAllTitles(): array
     {
         return array_merge($this->getDefaultTitles(), $this->getCustomTitles());
     }
@@ -248,6 +249,9 @@ class ErrorCodes
     }
 
 
+    /**
+     * @return array
+     */
     public function getAllDescriptions(): array
     {
         return array_merge($this->getDefaultDescriptions(), $this->getCustomDescriptions());

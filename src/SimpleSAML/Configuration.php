@@ -114,6 +114,7 @@ class Configuration implements Utils\ClearableState
      */
     private ?string $filename = null;
 
+
     /**
      * Initializes a configuration from the given array.
      *
@@ -1008,7 +1009,7 @@ class Configuration implements Utils\ClearableState
      * @return array|null The option with the given name.
      * @psalm-return      ($default is null ? array|null : array)
      */
-    public function getOptionalArrayize(string $name, $default): ?array
+    public function getOptionalArrayize(string $name, ?array $default): ?array
     {
         $ret = $this->getOptionalValue($name, $default);
 

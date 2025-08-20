@@ -240,7 +240,7 @@ class Session implements Utils\ClearableState
      *
      * @param array $serialized The serialized representation of a session that we want to restore.
      */
-    public function __unserialize($serialized): void
+    public function __unserialize(array $serialized): void
     {
         foreach ($serialized as $k => $v) {
             $this->$k = $v;

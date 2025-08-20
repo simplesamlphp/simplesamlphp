@@ -28,19 +28,29 @@ use Symfony\Component\HttpKernel\RebootableInterface;
 )]
 class SspCacheClearCommand extends Command
 {
-    private CacheClearerInterface $cacheClearer;
+    /** @var \Symfony\Component\Filesystem\Filesystem */
     private Filesystem $filesystem;
 
+    /** @var array */
     private array $enabledModules;
 
-    public function __construct(CacheClearerInterface $cacheClearer, ?Filesystem $filesystem = null)
-    {
-        parent::__construct();
 
-        $this->cacheClearer = $cacheClearer;
+    /**
+     * @param \Symfony\Component\HttpKernel\CacheClearer\CacheClearerInterface $cacheClearer
+     * @param \Symfony\Component\Filesystem\Filesystem $filesystem
+     */
+    public function __construct(
+        private CacheClearerInterface $cacheClearer,
+        ?Filesystem $filesystem = null,
+    ) {
+        parent::__construct();
         $this->filesystem = $filesystem ?? new Filesystem();
     }
 
+
+    /**
+     * @return void
+     */
     protected function configure(): void
     {
         $this
@@ -58,7 +68,11 @@ and debug mode:
 EOF,);
     }
 
+
     /**
+     * @param \Symfony\Component\Console\Input\InputInterface $input
+     * @param \Symfony\Component\Console\Input\OutputInterface $output
+     *
      * @throws \Symfony\Component\Console\Exception\ExceptionInterface
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -238,6 +252,10 @@ EOF,);
         return Command::SUCCESS;
     }
 
+
+    /**
+     * @param string $dir
+     */
     private function isNfs(string $dir): bool
     {
         static $mounts = null;
@@ -266,6 +284,11 @@ EOF,);
         return false;
     }
 
+
+    /**
+     * @param string $warmupDir
+     * @param string $realBuildDir
+     */
     private function warmup(string $warmupDir, string $realBuildDir): void
     {
         // create a temporary kernel
@@ -278,6 +301,12 @@ EOF,);
         $kernel->reboot($warmupDir);
     }
 
+
+    /**
+     * @param string $cacheDir
+     * @param string $warmupDir
+     * @param \Symfony\Component\Console\Style\SymfonyStyle $io
+     */
     private function warmupOptionals(string $cacheDir, string $warmupDir, SymfonyStyle $io): void
     {
         $kernel = $this->getApplication()->getKernel();

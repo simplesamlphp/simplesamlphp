@@ -31,7 +31,6 @@ use function usort;
  *
  * @package SimpleSAMLphp
  */
-
 class IdPDisco
 {
     /**

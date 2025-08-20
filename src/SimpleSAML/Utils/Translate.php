@@ -28,6 +28,9 @@ class Translate
     protected string $baseDir;
 
 
+    /**
+     * @param \SimpleSAML\Configuration $configuration
+     */
     public function __construct(
         protected Configuration $configuration,
     ) {
@@ -35,6 +38,11 @@ class Translate
     }
 
 
+    /**
+     * @param string $module
+     * @param \Gettext\Scanner\PhpScanner $phpScanner
+     * @return \Gettext\Scanner\PhpScanner
+     */
     public function getTranslationsFromPhp(string $module, PhpScanner $phpScanner): PhpScanner
     {
         $moduleDir = $this->baseDir . ($module === '' ? '' : 'modules/' . $module . '/');
@@ -54,6 +62,10 @@ class Translate
     }
 
 
+    /**
+     * @param string $module
+     * @param bool $includeThemes
+     */
     public function getTranslationsFromTwig(string $module, bool $includeThemes = false): array
     {
         $twigTranslations = [];

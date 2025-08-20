@@ -89,14 +89,12 @@ class State
      */
     public const EXCEPTION_STAGE = '\SimpleSAML\Auth\State.exceptionStage';
 
-
     /**
      * The URL parameter which contains the exception state id.
      * Note that this does not contain a "." since it's used in the
      * _REQUEST superglobal that does not allow dots.
      */
     public const EXCEPTION_PARAM = '\SimpleSAML\Auth\State_exceptionId';
-
 
     /**
      * State timeout.
@@ -171,6 +169,7 @@ class State
         return $id . ':' . $state[self::RESTART];
     }
 
+
     /**
      * Perform syntactic validation of an incoming state ID.
      *
@@ -187,6 +186,7 @@ class State
             throw new Exception("Invalid AuthState return URL syntax: " . $parts[1]);
         }
     }
+
 
     /**
      * Retrieve state timeout.

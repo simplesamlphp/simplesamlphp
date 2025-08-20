@@ -8,11 +8,13 @@ use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\{Assertion, EncryptedAssertion}; // Assertions
 use SAML2\{AuthnRequest, LogoutRequest, LogoutResponse, Response, StatusResponse}; // Messages
+use SAML2\Message as SAMLMessage;
 use SimpleSAML\{Configuration, Error as SSP_Error, Logger, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\{Constants as C, SignedElement};
 use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
+use SimpleSAML\SAML2\XML\samlp\AbstractMessage;
 use SimpleSAML\SAML2\XML\samlp\RequestedAuthnContext;
 use SimpleSAML\SAML2\XML\samlp\{StatusCode, StatusMessage}; // Status
 use SimpleSAML\XMLSecurity\XML\ds\{KeyInfo, X509Certificate, X509Data};
@@ -102,7 +104,7 @@ class Message
     private static function addRedirectSign(
         Configuration $srcMetadata,
         Configuration $dstMetadata,
-        \SAML2\Message $message,
+        SAMLMessage $message,
     ): void {
         $signingEnabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
@@ -209,7 +211,7 @@ class Message
     public static function validateMessage(
         Configuration $srcMetadata,
         Configuration $dstMetadata,
-        \SimpleSAML\SAML2\XML\samlp\AbstractMessage $message,
+        AbstractMessage $message,
     ): bool {
         $enabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
@@ -262,7 +264,7 @@ class Message
     public static function getDecryptionKeys(
         Configuration $srcMetadata,
         Configuration $dstMetadata,
-        $encryptionMethod = null,
+        ?string $encryptionMethod = null,
     ): array {
         $sharedKey = $srcMetadata->getOptionalString('sharedkey', null);
         if ($sharedKey !== null) {
@@ -414,7 +416,6 @@ class Message
      * @param \SimpleSAML\SAML2\Assertion|\SimpleSAML\SAML2\Assertion $assertion
      *   The assertion containing any possibly encrypted attributes.
      *
-     *
      * @throws \SimpleSAML\Error\Exception if we cannot get the decryption keys or decryption fails.
      */
     private static function decryptAttributes(
@@ -458,10 +459,11 @@ class Message
      *
      * @return \SimpleSAML\Module\saml\Error The error.
      */
-    public static function getResponseError(StatusResponse $response): \SimpleSAML\Module\saml\Error
+    public static function getResponseError(StatusResponse $response): SAMLError
     {
         $status = $response->getStatus();
         $subcode = null;
+
         if (!empty($status->getStatusCode()->getSubCodes())) {
             $subcodes = array_map(
                 function (StatusCode $code) {
@@ -472,7 +474,7 @@ class Message
             $subcode = implode(' / ', $subcodes);
         }
 
-        return new \SimpleSAML\Module\saml\Error(
+        return new SAMLError(
             $status->getStatusCode()->getValue(),
             $subcode,
             $status->getStatusMessage()?->getContent(),

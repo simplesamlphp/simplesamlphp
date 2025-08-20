@@ -323,7 +323,7 @@ class LogoutStore
      * @param array $sessionIndexes  The SessionIndexes we should log out of. Logs out of all if this is empty.
      * @return int|false  Number of sessions logged out, or FALSE if not supported.
      */
-    public static function logoutSessions(string $authId, NameID $nameId, array $sessionIndexes)
+    public static function logoutSessions(string $authId, NameID $nameId, array $sessionIndexes): int|false
     {
         $config = Configuration::getInstance();
         $storeType = $config->getOptionalString('store.type', 'phpsession');

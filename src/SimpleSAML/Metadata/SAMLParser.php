@@ -8,6 +8,8 @@ use DOMDocument;
 use DOMElement;
 use Exception;
 use RobRichards\XMLSecLibs\{XMLSecurityDSig, XMLSecurityKey};
+use SAML2\XML\md\EntitiesDescriptor;
+use SAML2\XML\md\EntityDescriptor;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\{Logger, Utils};
 use SimpleSAML\SAML2\Constants as C;
@@ -212,13 +214,13 @@ class SAMLParser
      *
      * @param string $file The path to the file which contains the metadata.
      *
-     * @return SAMLParser An instance of this class with the metadata loaded.
+     * @return \SimpleSAML\Metadata\SAMLParser An instance of this class with the metadata loaded.
      * @throws \Exception If the file does not parse as XML.
      */
     public static function parseFile(string $file): SAMLParser
     {
-        /** @var string $data */
         $httpUtils = new Utils\HTTP();
+        /** @var string $data */
         $data = $httpUtils->fetch($file);
 
         try {
@@ -371,7 +373,7 @@ class SAMLParser
      * @param array                 $validators The parent-elements that may be signed.
      * @param array                 $parentExtensions An optional array of extensions from the parent element.
      *
-     * @return SAMLParser[] Array of SAMLParser instances.
+     * @return \SimpleSAML\Metadata\SAMLParser[] Array of SAMLParser instances.
      */
     private static function processDescriptorsElement(
         SignedElementHelper $element,

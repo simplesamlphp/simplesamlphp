@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml;
 
 use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\Error as SSPError;
+use SimpleSAML\Module\saml\Error as SAMLError;
+use SimpleSAML\Module\saml\Error\NoPassive;
 use Throwable;
 
 use function strlen;
@@ -16,7 +19,7 @@ use function substr;
  * @package SimpleSAMLphp
  */
 
-class Error extends \SimpleSAML\Error\Exception
+class Error extends SSPError\Exception
 {
     /**
      * Create a SAML 2 error.
@@ -87,9 +90,9 @@ class Error extends \SimpleSAML\Error\Exception
      * @param \Throwable $e  The original exception.
      * @return \SimpleSAML\Error\Exception  The new exception.
      */
-    public static function fromException(Throwable $e): \SimpleSAML\Error\Exception
+    public static function fromException(Throwable $e): SSPError\Exception
     {
-        if ($e instanceof \SimpleSAML\Module\saml\Error) {
+        if ($e instanceof SAMLError) {
             // Return the original exception unchanged
             return $e;
         } else {
@@ -116,7 +119,7 @@ class Error extends \SimpleSAML\Error\Exception
      *
      * @return \SimpleSAML\Error\Exception  An exception representing this error.
      */
-    public function toException(): \SimpleSAML\Error\Exception
+    public function toException(): SSPError\Exception
     {
         $e = null;
 
@@ -124,7 +127,7 @@ class Error extends \SimpleSAML\Error\Exception
             case C::STATUS_RESPONDER:
                 switch ($this->subStatus) {
                     case C::STATUS_NO_PASSIVE:
-                        $e = new \SimpleSAML\Module\saml\Error\NoPassive(
+                        $e = new NoPassive(
                             C::STATUS_RESPONDER,
                             $this->statusMessage,
                         );

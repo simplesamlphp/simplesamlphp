@@ -119,7 +119,7 @@ class Template extends Response
      * Constructor
      *
      * @param \SimpleSAML\Configuration $configuration Configuration object
-     * @param string                   $template Which template file to load
+     * @param string $template Which template file to load
      */
     public function __construct(
         private Configuration $configuration,
@@ -529,6 +529,7 @@ class Template extends Response
         $this->data['header'] = $this->configuration->getOptionalString('theme.header', 'SimpleSAMLphp');
     }
 
+
     /**
      * Helper function for locale extraction: just compile but not display
      * this template. This is not generally useful, getContents() will normally
@@ -538,6 +539,7 @@ class Template extends Response
     {
         $this->twig->load($this->twig_template);
     }
+
 
     /**
      * Get the contents produced by this template.
@@ -644,6 +646,7 @@ class Template extends Response
         return $this->translator->getLanguage()->isLanguageRTL();
     }
 
+
     /**
      * Search through entity metadata to find the best display name for this
      * entity. It will search in order for the current language, default
@@ -668,6 +671,7 @@ class Template extends Response
         }
         return $data['entityid'];
     }
+
 
     /**
      * Search through entity metadata to find the best value for a

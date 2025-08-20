@@ -245,7 +245,7 @@ class AttributeLimit extends Auth\ProcessingFilter
      * @param array|null  Array with regular expressions to test against. null is equivalent to an empty array.
      * @return string|null  Regular expression that matched, or null if no match.
      */
-    private static function matchAnyRegex(string $needle, ?array $regexps = null): string | null
+    private static function matchAnyRegex(string $needle, ?array $regexps = null): string|null
     {
         if ($regexps !== null) {
             foreach ($regexps as $x => $y) {

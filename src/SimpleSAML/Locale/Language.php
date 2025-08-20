@@ -350,6 +350,7 @@ class Language
         return in_array($this->getLanguage(), $this->rtlLanguages, true);
     }
 
+
     /**
      * Returns the list of languages in order of preference. This is useful
      * to search e.g. an array of entity names for first the current language,
@@ -360,6 +361,7 @@ class Language
         $curLanguage = $this->getLanguage();
         return array_unique([0 => $curLanguage, 1 => $this->defaultLanguage, 2 => self::FALLBACKLANGUAGE]);
     }
+
 
     /**
      * Retrieve the user-selected language from a cookie.
@@ -381,6 +383,7 @@ class Language
 
         return null;
     }
+
 
     /**
      * This method will attempt to set the user-selected language in a cookie. It will do nothing if the language

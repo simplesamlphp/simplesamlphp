@@ -738,7 +738,7 @@ class SP extends Auth\Source
      * This function does not return.
      *
      * @param \SAML2\Binding $binding  The binding.
-     * @param \SAML2\LogoutRequest  $ar  The logout request.
+     * @param \SAML2\LogoutRequest $ar  The logout request.
      */
     public function sendSAML2LogoutRequest(Binding $binding, LogoutRequest $lr): Response
     {
@@ -1010,7 +1010,7 @@ class SP extends Auth\Source
      * - 'saml:sp:AuthId': the identifier of the current authentication source.
      * @throws \SAML2\Exception\Protocol\NoPassiveException In case the authentication request was passive.
      */
-    public static function tryStepUpAuth(array &$state): void
+    public static function tryStepUpAuth(array &$state): never
     {
         Assert::keyExists($state, 'saml:idp');
         Assert::keyExists($state, 'saml:sp:AuthId');
@@ -1025,7 +1025,6 @@ class SP extends Auth\Source
         /** @var \SimpleSAML\Module\saml\Auth\Source\SP $as */
         $as = new Auth\Simple($state['saml:sp:AuthId']);
         $as->login($state);
-        Assert::true(false);
     }
 
 
@@ -1218,6 +1217,7 @@ class SP extends Auth\Source
         if (isset($state['saml:sp:NameID'])) {
             $authProcState['saml:sp:NameID'] = $state['saml:sp:NameID'];
         }
+
         if (isset($state['saml:sp:SessionIndex'])) {
             $authProcState['saml:sp:SessionIndex'] = $state['saml:sp:SessionIndex'];
         }
@@ -1255,7 +1255,7 @@ class SP extends Auth\Source
      * manually check the URL on beforehand. Please refer to the 'trusted.url.domains'
      * configuration directive for more information about allowing (or disallowing) URLs.
      */
-    public static function handleUnsolicitedAuth(string $authId, array $state, string $redirectTo): void
+    public static function handleUnsolicitedAuth(string $authId, array $state, string $redirectTo): never
     {
         $session = Session::getSessionFromRequest();
         $session->doLogin($authId, Auth\State::getPersistentAuthData($state));

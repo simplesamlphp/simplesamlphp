@@ -130,6 +130,7 @@ class Error extends Exception
         parent::__construct($msg, -1, $cause);
     }
 
+
     /**
      * Retrieve the ErrorCodes instance to use for resolving dictionary title and description tags.
      *
