@@ -147,8 +147,7 @@ class UserClick extends Auth\Source
      *
      * Note that both the username and the password are UTF-8 encoded.
      *
-     * @param int $id  The username the user wrote.
-     * @param string $password  The password the user wrote.
+     * @param int $id  The userprofile the user clicked on.
      * @return array  Associative array with the users attributes.
      */
     protected function login(int $id): array
