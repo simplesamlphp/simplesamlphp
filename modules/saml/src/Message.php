@@ -12,6 +12,7 @@ use SAML2\Message as SAMLMessage;
 use SimpleSAML\{Configuration, Error as SSP_Error, Logger, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\{Constants as C, SignedElement};
+use SimpleSAML\SAML2\XML\Comparison;
 use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
 use SimpleSAML\SAML2\XML\samlp\AbstractMessage;
@@ -530,12 +531,11 @@ class Message
 
         if ($spMetadata->hasValue('AuthnContextClassRef')) {
             $accr = $spMetadata->getArrayizeString('AuthnContextClassRef');
-            $comp = $spMetadata->getOptionalValueValidate('AuthnContextComparison', [
-                C::COMPARISON_EXACT,
-                C::COMPARISON_MINIMUM,
-                C::COMPARISON_MAXIMUM,
-                C::COMPARISON_BETTER,
-            ], C::COMPARISON_EXACT);
+            $comp = $spMetadata->getOptionalValueValidate(
+                'AuthnContextComparison',
+                array_column(Comparison::cases(), 'value'),
+                Comparison::EXACT->value,
+            );
 
             $ar->setRequestedAuthnContext(
                 new RequestedAuthnContext(
