@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8d045b218b31f65b3576617c9c7f1af5",
+    "content-hash": "14a384af10a6970333f4b427f2224032",
     "packages": [
         {
             "name": "beste/clock",
@@ -1325,62 +1325,6 @@
                 "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.4.2"
             },
             "time": "2025-07-20T01:44:06+00:00"
-        },
-        {
-            "name": "simplesamlphp/simplesamlphp-module-adfs",
-            "version": "v2.1.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/simplesamlphp/simplesamlphp-module-adfs.git",
-                "reference": "f2202b9d8d4c14f09690f4781988e435f7dfd405"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/f2202b9d8d4c14f09690f4781988e435f7dfd405",
-                "reference": "f2202b9d8d4c14f09690f4781988e435f7dfd405",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.0",
-                "simplesamlphp/assert": "^1.0",
-                "simplesamlphp/composer-module-installer": "^1.3.2",
-                "simplesamlphp/xml-security": "^1.6"
-            },
-            "require-dev": {
-                "simplesamlphp/simplesamlphp": "^3@dev",
-                "simplesamlphp/simplesamlphp-test-framework": "^1.5.4"
-            },
-            "type": "simplesamlphp-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "SimpleSAML\\Module\\adfs\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL-2.1-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Tim van Dijen",
-                    "email": "tvdijen@gmail.com"
-                }
-            ],
-            "description": "A module that implements the WS-federation IDP",
-            "keywords": [
-                "adfs",
-                "simplesamlphp"
-            ],
-            "support": {
-                "issues": "https://github.com/simplesamlphp/simplesamlphp-module-adfs/issues",
-                "source": "https://github.com/simplesamlphp/simplesamlphp-module-adfs"
-            },
-            "time": "2024-05-27T12:30:45+00:00"
         },
         {
             "name": "simplesamlphp/xml-common",

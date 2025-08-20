@@ -73,7 +73,6 @@
         "simplesamlphp/saml2": "^5@dev",
         "simplesamlphp/saml2-legacy": "~4.18.1",
         "simplesamlphp/simplesamlphp-assets-base": "~2.4.0",
-        "simplesamlphp/simplesamlphp-module-adfs": "^2.1",
         "simplesamlphp/xml-common": "^1.13",
         "simplesamlphp/xml-security": "^1.7",
         "symfony/cache": "^6.4.0",
