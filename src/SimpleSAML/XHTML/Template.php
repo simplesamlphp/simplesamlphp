@@ -576,10 +576,10 @@ class Template extends Response
      * @return $this This response.
      * @throws \Exception if the template cannot be found.
      */
-    public function send(): static
+    public function send(bool $flush = true): static
     {
         $this->content = $this->getContents();
-        return parent::send();
+        return parent::send($flush);
     }
 
 
