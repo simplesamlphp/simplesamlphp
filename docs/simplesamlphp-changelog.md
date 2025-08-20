@@ -7,7 +7,7 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 ## Version 2.2.6
 
-Released 2025-08-16
+Released 2025-08-20
 
 * Fix auth state AuthnInstant (#2478)
 
