@@ -5,6 +5,10 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
+## Version 2.5.0
+
+Released TBD - November 2025 - as soon as Symfony 7.4 is released
+
 ## Version 2.4.3
 
 Released TBD
