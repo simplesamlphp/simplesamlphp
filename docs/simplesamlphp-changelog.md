@@ -186,6 +186,48 @@ Released 2024-08-20
 * Add username_regex option - run regular expression over username before querying the
   database (simplesamlphp/simplesamlphp-module-sqlauth#11) (v1.3.0)
 
+## Version 2.2.6
+
+Released 2025-08-20
+
+* Fix auth state AuthnInstant (#2478)
+
+`cron`
+
+* Fixed a security-issue where cron-jobs could be executed using the default key,
+  even if a different one was set (#2453)
+
+`metarefresh`
+
+* Fixed parsing of large metadata files (v1.2.4)
+
+## Version 2.2.5
+
+Released 2025-03-11
+
+* Fixed PHP 8.4 deprecation notices
+* Fixed infinite recursion (#2367)
+* Fixed "Undefined array key" warning in RequestedAuthnContextSelector if no RAC is present in the request
+* Bumped vulnerable saml2-library to v4.17.0
+
+## Version 2.2.4
+
+Released 2024-12-02
+
+`Security`
+
+* A security bug was patched in the `saml2-library` that allowed for XXE during the parsing
+  of SAML2-messages (CVE-2024-52596)
+
+`Other fixes`
+
+* Run ob_end_clean() on configuration file parsing error (#2219)
+* Fix typo that caused the metadata file-upload to be hidden (#2271)
+
+`admin`
+
+* Fix metadata-viewer to output a valid PHP array
+
 ## Version 2.2.3
 
 Released 2024-08-20
