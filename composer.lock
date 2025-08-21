@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3127e8bc497ec716f2949397b0339ee0",
+    "content-hash": "2ea00dd97bf18aca5745b9eff5ee1cab",
     "packages": [
         {
             "name": "beste/clock",
@@ -4919,20 +4919,20 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.12.28",
+            "version": "2.1.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "fcf8b71aeab4e1a1131d1783cef97b23a51b87a9"
+                "reference": "41600c8379eb5aee63e9413fe9e97273e25d57e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/fcf8b71aeab4e1a1131d1783cef97b23a51b87a9",
-                "reference": "fcf8b71aeab4e1a1131d1783cef97b23a51b87a9",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/41600c8379eb5aee63e9413fe9e97273e25d57e4",
+                "reference": "41600c8379eb5aee63e9413fe9e97273e25d57e4",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2|^8.0"
+                "php": "^7.4|^8.0"
             },
             "conflict": {
                 "phpstan/phpstan-shim": "*"
@@ -4973,33 +4973,32 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-07-17T17:15:39+00:00"
+            "time": "2025-08-04T19:17:37+00:00"
         },
         {
             "name": "phpstan/phpstan-mockery",
-            "version": "1.1.3",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-mockery.git",
-                "reference": "98cac6e256b4ee60fdeb26a7dd81bb271b454e80"
+                "reference": "89a949d0ac64298e88b7c7fa00caee565c198394"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-mockery/zipball/98cac6e256b4ee60fdeb26a7dd81bb271b454e80",
-                "reference": "98cac6e256b4ee60fdeb26a7dd81bb271b454e80",
+                "url": "https://api.github.com/repos/phpstan/phpstan-mockery/zipball/89a949d0ac64298e88b7c7fa00caee565c198394",
+                "reference": "89a949d0ac64298e88b7c7fa00caee565c198394",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2 || ^8.0",
-                "phpstan/phpstan": "^1.12"
+                "php": "^7.4 || ^8.0",
+                "phpstan/phpstan": "^2.0"
             },
             "require-dev": {
                 "mockery/mockery": "^1.6.11",
-                "nikic/php-parser": "^4.13.0",
                 "php-parallel-lint/php-parallel-lint": "^1.2",
-                "phpstan/phpstan-phpunit": "^1.4",
-                "phpstan/phpstan-strict-rules": "^1.6",
-                "phpunit/phpunit": "^9.5"
+                "phpstan/phpstan-phpunit": "^2.0",
+                "phpstan/phpstan-strict-rules": "^2.0",
+                "phpunit/phpunit": "^9.6"
             },
             "type": "phpstan-extension",
             "extra": {
@@ -5021,9 +5020,9 @@
             "description": "PHPStan Mockery extension",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-mockery/issues",
-                "source": "https://github.com/phpstan/phpstan-mockery/tree/1.1.3"
+                "source": "https://github.com/phpstan/phpstan-mockery/tree/2.0.0"
             },
-            "time": "2024-09-11T15:47:29+00:00"
+            "time": "2024-10-14T03:18:12+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -6508,28 +6507,28 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
-            "version": "v1.9.3",
+            "version": "v1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-test-framework.git",
-                "reference": "8dd14bb338573710165e6c237ec36378fa18eadb"
+                "reference": "48e2fe311b59d5dc5da729175920035fe9a36276"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/8dd14bb338573710165e6c237ec36378fa18eadb",
-                "reference": "8dd14bb338573710165e6c237ec36378fa18eadb",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/48e2fe311b59d5dc5da729175920035fe9a36276",
+                "reference": "48e2fe311b59d5dc5da729175920035fe9a36276",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
-                "php": "^8.1",
+                "php": "^8.2",
                 "phpstan/extension-installer": "^1.4",
-                "phpstan/phpstan": "^1.11",
-                "phpstan/phpstan-mockery": "^1.1",
-                "phpunit/phpunit": "^10.0 || ^11.0",
-                "psr/log": "^2.0 || ^3.0",
-                "slevomat/coding-standard": "^8.15",
-                "symfony/phpunit-bridge": "^6.4 || ^7.0"
+                "phpstan/phpstan": "^2.1",
+                "phpstan/phpstan-mockery": "^2.0",
+                "phpunit/phpunit": "^11.5 || ^12.3",
+                "psr/log": "^3.0",
+                "slevomat/coding-standard": "^8.20",
+                "symfony/phpunit-bridge": "^7.3 || ^8.0"
             },
             "require-dev": {
                 "simplesamlphp/simplesamlphp": "^2.4"
@@ -6558,7 +6557,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-test-framework"
             },
-            "time": "2025-07-14T17:03:27+00:00"
+            "time": "2025-08-21T14:14:44+00:00"
         },
         {
             "name": "slevomat/coding-standard",
