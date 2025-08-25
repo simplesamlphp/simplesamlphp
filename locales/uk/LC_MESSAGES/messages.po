@@ -1,0 +1,834 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: SimpleSAMLphp\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: messages\n"
+"X-Generator: Poedit 3.7\n"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:189
+msgid "%MESSAGE%"
+msgstr "%MESSAGE%"
+
+msgid "A service has requested you to authenticate yourself. Please enter your username and password in the form below."
+msgstr "Служба запросила автентифікацію. Будь ласка, введіть ім’я користувача та пароль у форму нижче."
+
+msgid "ADFS IdP Metadata"
+msgstr "Метадані постачальника ідентифікації IdP ADFS"
+
+msgid "ADFS Identity Provider (Hosted)"
+msgstr "Постачальник ідентифікації ADFS (хостинговий)"
+
+msgid "ADFS SP Metadata"
+msgstr "Метадані постачальника послуг (SP) ADFS"
+
+msgid "ADFS Service Provider (Remote)"
+msgstr "Постачальник сервісів ADFS (віддалений)"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
+msgid "Admin password not set to a hashed value"
+msgstr "Пароль адміністратора не встановлено у хешованому вигляді"
+
+msgid "Affiliation"
+msgstr "Членство"
+
+msgid "Affiliation at home organization"
+msgstr "Належність до домашньої організації"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:196
+msgid "An error occurred when trying to create the SAML request."
+msgstr "Виникла помилка при формуванні SAML-запиту."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:218
+msgid "An error occurred when trying to process the Logout Request."
+msgstr "Сталася помилка під час обробки запиту на вихід із системи."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:257
+msgid "An unhandled exception was thrown."
+msgstr "Виникла необроблена виняткова ситуація."
+
+msgid "As you are in debug mode, you get to see the content of the message you are sending:"
+msgstr "Оскільки ви перебуваєте в режимі налагодження, ви можете бачити вміст повідомлення, яке надсилаєте:"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:101
+msgid "Authentication aborted"
+msgstr "Аутентифікацію перервано"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:191
+msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
+msgstr "Помилка автентифікації в джерелі %AUTHSOURCE%. Причина: %REASON%"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:203
+msgid "Authentication failed: the certificate your browser sent is invalid or cannot be read"
+msgstr "Помилка автентифікації: сертифікат, надісланий вашим браузером, є недійсним або не може бути прочитаний"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:258
+msgid "Authentication failed: the certificate your browser sent is unknown"
+msgstr "Помилка автентифікації: сертифікат, надісланий вашим браузером, невідомий"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:230
+msgid "Authentication failed: your browser did not send any certificate"
+msgstr "Помилка автентифікації: ваш браузер не надіслав жодного сертифіката"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:72
+msgid "Authentication source error"
+msgstr "Помилка джерела автентифікаці"
+
+msgid "Authentication status"
+msgstr "Статус автентифікації"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:73
+msgid "Bad request received"
+msgstr "Отримано некоректний запит"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:77
+msgid "Bad request to discovery service"
+msgstr "Некоректний запит до служби виявлення"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:74
+msgid "CAS Error"
+msgstr "Помилка CAS"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:83
+msgid "Cannot retrieve session data"
+msgstr "Не вдалося отримати дані сеансу"
+
+msgid "Certificates"
+msgstr "Сертифікати"
+
+msgid "Change your home organization"
+msgstr "Змініть вашу домашню організацію"
+
+msgid "Choose home organization"
+msgstr "Виберіть домашню організацію"
+
+msgid "Choose your home organization"
+msgstr "Виберить вашу домашню організацію"
+
+msgid "Common name"
+msgstr "Звичайне ім’я"
+
+msgid "Completed"
+msgstr "Виконано"
+
+msgid "Configuration check"
+msgstr "Перевірка конфігурації"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:75
+msgid "Configuration error"
+msgstr "Помилка конфігурації"
+
+msgid "Contact information:"
+msgstr "Контактна інформація:"
+
+msgid "Converted metadata"
+msgstr "Перетворені метадані"
+
+msgid "Copy to clipboard"
+msgstr "Скопіювати до буфера обміну"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:78
+msgid "Could not create authentication response"
+msgstr "Не вдалося створити відповідь автентифікації"
+
+msgid "Date of birth"
+msgstr "Дата народження"
+
+msgid "Debug information"
+msgstr "Налагоджувальна інформація"
+
+msgid "Debug information to be used by your support staff"
+msgstr "Налагоджувальна інформація для використання вашою службою підтримки"
+
+msgid "Display name"
+msgstr "Відображуване ім’я"
+
+msgid "Distinguished name (DN) of person's home organization"
+msgstr "Унікальне ім’я (DN) домашньої організації особи"
+
+msgid "Distinguished name (DN) of person's primary Organizational Unit"
+msgstr "Визначене ім’я (DN) головного організаційного підрозділу особи"
+
+msgid "Distinguished name (DN) of the person's home organizational unit"
+msgstr "Визначене ім’я (DN) домашнього структурного підрозділу особи"
+
+msgid "Do you want to logout from all the services above?"
+msgstr "Хочете завершити сеанс у всіх вищезгаданих сервісах?"
+
+msgid "Domain component (DC)"
+msgstr "Компонент домену (DC)"
+
+msgid "Download the X509 certificates as PEM-encoded files."
+msgstr "Завантажте сертифікати X509 у форматі файлів з кодуванням PEM."
+
+msgid "E-mail address:"
+msgstr "Адреса електронної пошти:"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:260
+msgid "Either no user with the given username could be found, or the password you gave was wrong. Please check the username and try again."
+msgstr "Користувача з вказаним іменем не знайдено, або введений пароль неправильний. Перевірте ім’я користувача та спробуйте ще раз."
+
+msgid "Enter your username and password"
+msgstr "Введіть ім’я користувача та пароль"
+
+msgid "Entitlement regarding the service"
+msgstr "Право на користування сервісом"
+
+msgid "Error"
+msgstr "Помилка"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:76
+msgid "Error creating request"
+msgstr "Помилка під час створення запиту"
+
+msgid "Error in this metadata entry"
+msgstr "Помилка в цьому записі метаданих"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:84
+msgid "Error loading metadata"
+msgstr "Помилка завантаження метаданих"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:95
+msgid "Error processing request from Service Provider"
+msgstr "Помилка обробки запиту від постачальника послуг"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:94
+msgid "Error processing response from Identity Provider"
+msgstr "Помилка обробки відповіді від постачальника ідентифікації"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:82
+msgid "Error processing the Logout Request"
+msgstr "Помилка обробки запиту на вихід із системи"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:96
+msgid "Error received from Identity Provider"
+msgstr "Отримано помилку від постачальника ідентифікації"
+
+msgid "Error report sent"
+msgstr "Звіт про помилку надіслано"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
+msgid "Error when communicating with the CAS server."
+msgstr "Помилка під час зв'язку з сервером CAS."
+
+msgid "Explain what you did when this error occurred..."
+msgstr "Поясніть, що ви зробили, коли сталася ця помилка..."
+
+msgid "Fax number"
+msgstr "Номер факса"
+
+msgid "Format"
+msgstr "Формат"
+
+msgid "Given name"
+msgstr "Ім'я"
+
+msgid "Go back to SimpleSAMLphp installation page"
+msgstr "Повернутися на сторінку встановлення SimpleSAMLphp"
+
+msgid "Go back to the file list"
+msgstr "Повернутися до списку файлів"
+
+msgid "Group membership"
+msgstr "Членство в групі"
+
+msgid "Hello, Untranslated World!"
+msgstr "Привіт, Untranslated World!"
+
+msgid "Help desk homepage"
+msgstr "Домашня сторінка служби підтримки"
+
+msgid "Help! I don't remember my password."
+msgstr "Допоможіть! Я не пам’ятаю свій пароль."
+
+msgid "Here is the metadata that SimpleSAMLphp has generated for you. You may send this metadata document to trusted partners to setup a trusted federation."
+msgstr "Ось метадані, які SimpleSAMLphp згенерував для вас. Ви можете надіслати цей документ метаданих довіреним партнерам для налаштування довіреної федерації."
+
+msgid "Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session."
+msgstr "Привіт! Це сторінка стану SimpleSAMLphp. Тут ви можете побачити, чи завершено вашу сесію, скільки часу залишилося до її завершення, а також усі атрибути, пов’язані з вашою сесією."
+
+msgid "Home organization domain name"
+msgstr "Доменне ім’я домашньої організації"
+
+msgid "Home postal address"
+msgstr "Домашня поштова адреса"
+
+msgid "Home telephone"
+msgstr "Домашній телефон"
+
+msgid "How to get help"
+msgstr "Як отримати допомогу"
+
+msgid "Identity assurance profile"
+msgstr "Профіль гарантії автентичності особи"
+
+msgid "Identity number assigned by public authorities"
+msgstr "Ідентифікаційний номер, присвоєний державними органами"
+
+msgid "If you report this error, please also report this tracking number which makes it possible to locate your session in the logs available to the system administrator:"
+msgstr "Якщо ви повідомляєте про цю помилку, будь ласка, також вкажіть цей номер відстеження, який дозволяє знайти вашу сесію в журналах, доступних системному адміністратору:"
+
+msgid "In SAML 2.0 Metadata XML format:"
+msgstr "У форматі XML метаданих SAML 2.0:"
+
+msgid "In SimpleSAMLphp flat file format - use this if you are using a SimpleSAMLphp entity on the other side:"
+msgstr "У форматі плоского файлу SimpleSAMLphp — використовуйте це, якщо на іншій стороні використовується сутність SimpleSAMLphp:"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:102
+msgid "Incorrect username or password"
+msgstr "Неправильне ім’я користувача або пароль"
+
+msgid "Incorrect username or password."
+msgstr "Неправильне ім’я користувача або пароль."
+
+msgid "Information about your current session"
+msgstr "Інформація про вашу поточну сесію"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:79
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
+msgid "Invalid certificate"
+msgstr "Недійсний сертифікат"
+
+msgid "JPEG Photo"
+msgstr "Фотографія в форматі JPEG"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:80
+msgid "LDAP Error"
+msgstr "Помилка LDAP"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:206
+msgid "LDAP is the user database, and when you try to login, we need to contact an LDAP database. An error occurred when we tried it this time."
+msgstr "LDAP — це база даних користувачів, і коли ви намагаєтесь увійти в систему, нам потрібно звернутися до бази даних LDAP. Цього разу під час спроби виникла помилка."
+
+msgid "Labeled URI"
+msgstr "Маркований URI (LabeledURI)"
+
+msgid "Language"
+msgstr "Мова"
+
+msgid "Legal name"
+msgstr "Офіційна назва"
+
+msgid "Local identity number"
+msgstr "Місцевий ідентифікаційний номер"
+
+msgid "Locality"
+msgstr "Місцевість"
+
+msgid "Logged out"
+msgstr "Вихід виконано"
+
+msgid "Logging out of the following services:"
+msgstr "Вихід із таких сервісів:"
+
+msgid "Logging out..."
+msgstr "Вихід із системи..."
+
+msgid "Login"
+msgstr "Вхід"
+
+msgid "Login at"
+msgstr "Вхід на"
+
+msgid "Logout"
+msgstr "Вийти"
+
+msgid "Logout failed"
+msgstr "Не вдалося вийти із системи"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:81
+msgid "Logout information lost"
+msgstr "Інформацію про вихід втрачено"
+
+msgid "Mail"
+msgstr "Пошта"
+
+msgid "Manager"
+msgstr "Управляючий"
+
+msgid "Message"
+msgstr "Повідомлення"
+
+msgid "Metadata"
+msgstr "Метадані"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:85
+msgid "Metadata not found"
+msgstr "Метадані не знайдені"
+
+msgid "Metadata overview"
+msgstr "Загальна інформація про метадані"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:90
+msgid "Method not allowed"
+msgstr "Цей метод не підтримується"
+
+msgid "Mobile"
+msgstr "Мобільний"
+
+msgid "Next"
+msgstr "Далі"
+
+msgid "Nickname"
+msgstr "Псевдонім"
+
+msgid "No"
+msgstr "Ні"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:88
+msgid "No RelayState"
+msgstr "Відсутній параметр RelayState"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:71
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:97
+msgid "No SAML message provided"
+msgstr "Не надано повідомлення SAML"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:98
+msgid "No SAML request provided"
+msgstr "Запит SAML не надано"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:70
+msgid "No SAML response provided"
+msgstr "Відсутня відповідь SAML"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:86
+msgid "No access"
+msgstr "Доступ заборонено"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:87
+msgid "No certificate"
+msgstr "Сертифікат відсутній"
+
+msgid "No errors found."
+msgstr "Помилок не виявлено."
+
+msgid "No identity providers found. Cannot continue."
+msgstr "Постачальників ідентифікації не знайдено. Неможливо продовжити."
+
+msgid "No, cancel"
+msgstr "Ні, скасувати"
+
+msgid "No, only %SP%"
+msgstr "Ні, тільки для служби %SP%"
+
+msgid "Notices"
+msgstr "Повідомлення"
+
+msgid "ORCID researcher identifiers"
+msgstr "Унікальні ідентифікатори ORCID для дослідників"
+
+msgid "On hold"
+msgstr "У режимі очікування"
+
+msgid "One or more of the services you are logged into <i>do not support logout</i>. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Одна або кілька служб, у які ви увійшли, <i>не підтримують вихід із системи</i>. Щоб переконатися, що всі ваші сеанси завершено, рекомендується <i>закрити ваш браузер</i>."
+
+msgid "Optional fields"
+msgstr "Необов’язкові поля"
+
+msgid "Optionally enter your email address, for the administrators to be able contact you for further questions about your issue:"
+msgstr "За бажанням введіть свою електронну адресу, щоб адміністратори могли зв’язатися з вами для уточнення деталей щодо вашої проблеми:"
+
+msgid "Options missing from config file"
+msgstr "Параметри відсутні у файлі конфігурації"
+
+msgid "Organization"
+msgstr "Організація"
+
+msgid "Organization name"
+msgstr "Назва організації"
+
+msgid "Organization's legal name"
+msgstr "Юридична назва організації"
+
+msgid "Organizational homepage"
+msgstr "Домашня сторінка організації"
+
+msgid "Organizational number"
+msgstr "Номер організації"
+
+msgid "Organizational unit"
+msgstr "Підрозділ організації"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:90
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:91
+msgid "Page not found"
+msgstr "Сторінку не знайдено"
+
+msgid "Parse"
+msgstr "Аналіз"
+
+msgid "Password"
+msgstr "Пароль"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:92
+msgid "Password not set"
+msgstr "Пароль не встановлено"
+
+msgid "Persistent pseudonymous ID"
+msgstr "Cтійкий псевдонімний ідентифікатор ID"
+
+msgid "Person's principal name at home organization"
+msgstr "Ім'я керівника головної організації"
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "Будь ласка, виберіть постачальника ідентифікації, через якого ви хочете пройти автентифікацію:"
+
+msgid "Post office box"
+msgstr "Абонентська скринька"
+
+msgid "Postal address"
+msgstr "Поштова адреса"
+
+msgid "Postal code"
+msgstr "Поштовий індекс"
+
+msgid "Preferred language"
+msgstr "Бажана мова"
+
+msgid "Primary affiliation"
+msgstr "Основна приналежність"
+
+msgid "Private information elements"
+msgstr "Елементи особистої інформації"
+
+msgid "Remember"
+msgstr "Запам'ятати"
+
+msgid "Remember me"
+msgstr "Запам'ятати мене"
+
+msgid "Remember my choice"
+msgstr "Запам’ятати мій вибір"
+
+msgid "Remember my username"
+msgstr "Запам’ятати моє ім'я користувача"
+
+msgid "Report errors"
+msgstr "Повідомлення про помилки"
+
+msgid "Required fields"
+msgstr "Обов'язкові поля"
+
+msgid "Return to service"
+msgstr "Повернутися до сервісу"
+
+msgid "SAML 2.0 Identity Provider (Hosted)"
+msgstr "Постачальник ідентифікації SAML 2.0 (хостинговий)"
+
+msgid "SAML 2.0 Identity Provider (Remote)"
+msgstr "Постачальник ідентифікації SAML 2.0 (віддалений)"
+
+msgid "SAML 2.0 SP Demo Example"
+msgstr "Демонстраційний приклад SAML 2.0 SP"
+
+msgid "SAML 2.0 SP Metadata"
+msgstr "Метадані постачальника послуг SAML 2.0"
+
+msgid "SAML 2.0 Service Provider (Hosted)"
+msgstr "Постачальник сервісів SAML 2.0 (хостинговий)"
+
+msgid "SAML Subject"
+msgstr "Об'єкт SAML"
+
+msgid "Select"
+msgstr "Вибрати"
+
+msgid "Select configuration file to check:"
+msgstr "Виберіть файл конфігурації для перевірки:"
+
+msgid "Select your identity provider"
+msgstr "Виберіть свого постачальника ідентифікації"
+
+msgid "Send e-mail to help desk"
+msgstr "Надіслати електронного листа до служби підтримки"
+
+msgid "Send error report"
+msgstr "Надіслати звіт про помилку"
+
+msgid "Sending message"
+msgstr "Надіслати повідомлення"
+
+msgid "Service Provider"
+msgstr "Постачальник послуг"
+
+msgid "Session size: %SIZE%"
+msgstr "Розмір сесії: %SIZE%"
+
+msgid "Shib 1.3 IdP Metadata"
+msgstr "Метадані IdP Shib 1.3"
+
+msgid "Shib 1.3 Identity Provider (Hosted)"
+msgstr "Постачальник ідентифікації Shib 1.3 (хостинговий)"
+
+msgid "Shib 1.3 Identity Provider (Remote)"
+msgstr "Постачальник ідентифікації Shib 1.3 (віддалений)"
+
+msgid "Shib 1.3 SP Metadata"
+msgstr "Метаданные сервис провайдера Shib 1.3 SP"
+
+msgid "Shib 1.3 Service Provider (Hosted)"
+msgstr "Постачальник сервісів Shib 1.3 (хостинговий)"
+
+msgid "Shib 1.3 Service Provider (Remote)"
+msgstr "Постачальник сервісів Shib 1.3 (віддалений)"
+
+msgid "Shibboleth demo"
+msgstr "Тестова версія Shibboleth"
+
+msgid "SimpleSAMLphp Diagnostics"
+msgstr "Діагностика SimpleSAMLphp"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:195
+msgid "SimpleSAMLphp appears to be misconfigured."
+msgstr "Здається, SimpleSAMLphp неправильно налаштований."
+
+msgid "SimpleSAMLphp error"
+msgstr "Помилка SimpleSAMLphp"
+
+msgid "Since your browser does not support Javascript, you must press the button below to proceed."
+msgstr "Оскільки ваш браузер не підтримує JavaScript, вам потрібно натиснути кнопку нижче, щоб продовжити."
+
+msgid "Some error occurred"
+msgstr "Виникла помилка"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:89
+msgid "State information lost"
+msgstr "Втрачено дані про поточний стан"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:234
+msgid "State information lost, and no way to restart the request"
+msgstr "Інформацію про стан втрачено, і немає способу перезапустити запит"
+
+msgid "Street"
+msgstr "Вулиця"
+
+msgid "Submit message"
+msgstr "Надіслати повідомлення"
+
+msgid "Superfluous options in config file"
+msgstr "Зайві параметри у конфігураційному файлі"
+
+msgid "Surname"
+msgstr "Прізвище"
+
+msgid "Telephone number"
+msgstr "Номер телефону"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:246
+msgid "The Identity Provider responded with an error. (The status code in the SAML Response was not success)"
+msgstr "Постачальник ідентифікації відповів з помилкою. (Код статусу в SAML-відповіді не є успішним)"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:259
+msgid "The authentication was aborted by the user"
+msgstr "Автентифікацію було перервано користувачем"
+
+msgid "The debug information below may be of interest to the administrator / help desk:"
+msgstr "Наведена нижче інформація може зацікавити адміністратора або службу підтримки:"
+
+msgid "The error report has been sent to the administrators."
+msgstr "Звіт про помилку надіслано адміністраторам."
+
+msgid "The following fields was not recognized"
+msgstr "Наступні поля не були розпізнані"
+
+msgid "The following optional fields was not found"
+msgstr "Наступні необов’язкові поля не знайдено"
+
+msgid "The following required fields was not found"
+msgstr "Наступні обов’язкові поля не знайдено"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:235
+msgid "The given page was not found. The URL was: %URL%"
+msgstr "Задану сторінку не знайдено. URL-адреса: %URL%"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:236
+msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
+msgstr "Задану сторінку не знайдено. Причина: %REASON%  URL-адреса: %URL%"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:209
+msgid "The information about the current logout operation has been lost. You should return to the service you were trying to log out from and try to log out again. This error can be caused by the logout information expiring. The logout information is stored for a limited amount of time - usually a number of hours. This is longer than any normal logout operation should take, so this error may indicate some other error with the configuration. If the problem persists, contact your service provider."
+msgstr "Інформація про поточну операцію виходу була втрачена. Вам слід повернутися до сервісу, з якого ви намагалися вийти, і спробувати вийти ще раз. Ця помилка може бути спричинена закінченням терміну дії інформації про вихід. Інформація про вихід зберігається протягом обмеженого періоду часу - зазвичай кілька годин. Це довше, ніж має тривати будь-яка звичайна операція виходу з системи, тому ця помилка може вказувати на якусь іншу помилку у конфігурації. Якщо проблема не зникає, зверніться до свого постачальника послуг."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:231
+msgid "The initiator of this request did not provide a RelayState parameter indicating where to go next."
+msgstr "Ініціатор цього запиту не надав параметр RelayState, який вказує, куди слід перейти далі."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:197
+msgid "The parameters sent to the discovery service were not according to specifications."
+msgstr "Параметри, надіслані до служби виявлення, не відповідають технічним специфікаціям."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:194
+msgid "The password in the configuration (auth.adminpassword) is not a hashed value. Full details on how to fix this are supplied at https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"
+msgstr "Пароль у конфігурації (auth.adminpassword) не є хешованим значенням. Повні інструкції щодо виправлення цієї помилки наведені на сторінці https://github.com/simplesamlphp/simplesamlphp/wiki/Frequently-Asked-Questions-(FAQ)#failed-to-login-to-the-admin-page-with-and-error-message-admin-password-not-set-to-a-hashed-value"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:238
+msgid "The password in the configuration (auth.adminpassword) is not changed from the default value. Please edit the configuration file."
+msgstr "Пароль у конфігурації (auth.adminpassword) не змінено зі значення за замовчуванням. Будь ласка, відредагуйте конфігураційний файл."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:193
+msgid "There is an error in the request to this page. The reason was: %REASON%"
+msgstr "Сталася помилка у запиті до цієї сторінки. Причина: %REASON%"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:222
+msgid "There is some misconfiguration of your SimpleSAMLphp installation. If you are the administrator of this service, you should make sure your metadata configuration is correctly setup."
+msgstr "У вашій інсталяції SimpleSAMLphp є деякі помилки у конфігурації. Якщо ви є адміністратором цього сервісу, переконайтеся, що конфігурація метаданих налаштована правильно."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:243
+msgid "This Identity Provider received an Authentication Request from a Service Provider, but an error occurred when trying to process the request."
+msgstr "Цей постачальник Ідентифікації отримав запит на автентифікацію від Постачальника послуг, але під час обробки запиту сталася помилка."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:227
+msgid "This endpoint is not enabled. Check the enable options in your configuration of SimpleSAMLphp."
+msgstr "Цю кінцеву точку не увімкнено. Перевірте опції увімкнення у вашій конфігурації SimpleSAMLphp."
+
+msgid "This error probably is due to some unexpected behaviour or to misconfiguration of SimpleSAMLphp. Contact the administrator of this login service, and send them the error message above."
+msgstr "Ця помилка, ймовірно, пов'язана з неочікуваною поведінкою або неправильною конфігурацією SimpleSAMLphp. Зверніться до адміністратора цієї служби входу і надішліть йому повідомлення про помилку, що наведене вище."
+
+msgid "Title"
+msgstr "Заголовок"
+
+msgid "To look at the details for an SAML entity, click on the SAML entity header."
+msgstr "Щоб переглянути деталі SAML-об'єкта, натисніть на заголовок SAML-об'єкта."
+
+msgid "Tracking number"
+msgstr "Номер для відстеження"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:226
+#, php-format
+msgid "Unable to locate metadata for %ENTITYID%"
+msgstr "Неможливо знайти метадані для %ENTITYID%"
+
+msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "Не вдалося вийти з одного або кількох сервісів. Щоб переконатися, що всі ваші сеанси завершено, рекомендується <i>закрити веббраузер</i>."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
+msgid "Unhandled exception"
+msgstr "Необроблений виняток"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:100
+msgid "Unknown certificate"
+msgstr "Невідомий сертифікат"
+
+msgid "User ID"
+msgstr "ID користувача"
+
+msgid "User's password hash"
+msgstr "Хеш пароля користувача"
+
+msgid "Username"
+msgstr "Ім'я користувача"
+
+msgid "WS-Fed SP Demo Example"
+msgstr "Демонстраційний приклад WS-Fed SP"
+
+msgid "WS-Federation Identity Provider (Remote)"
+msgstr "Постачальник ідентифікації WS-Federation (віддалений)"
+
+msgid "WS-Federation Service Provider (Hosted)"
+msgstr "Постачальник послуг WS-Federation (хостинговий)"
+
+msgid "Warning"
+msgstr "Увага"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:242
+msgid "We did not accept the response sent from the Identity Provider."
+msgstr "Відповідь, надіслана постачальником ідентифікації, не була прийнята."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:200
+msgid "When this identity provider tried to create an authentication response, an error occurred."
+msgstr "Виникла помилка під час формування відповіді автентифікації цим постачальником ідентитифікації."
+
+msgid "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
+msgstr "Без вашого імені користувача та пароля ви не зможете пройти автентифікацію для доступу до сервісу. Можливо, хтось зможе вам допомогти. Зверніться до служби підтримки у вашій організації!"
+
+msgid "World"
+msgstr "Світ"
+
+msgid "XML metadata"
+msgstr "XML метадані"
+
+msgid "Yes, all services"
+msgstr "Так, для всіх сервісів"
+
+msgid "Yes, continue"
+msgstr "Так, продовжити"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:187
+msgid "You accessed the Artifact Resolution Service interface, but did not provide a SAML ArtifactResolve message. Please note that this endpoint is not intended to be accessed directly."
+msgstr "Ви звернулися до інтерфейсу служби розв’язання артефактів, але не надали повідомлення SAML ArtifactResolve. Зверніть увагу, що ця кінцева точка не призначена для прямого доступу."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:183
+msgid "You accessed the Assertion Consumer Service interface, but did not provide a SAML Authentication Response. Please note that this endpoint is not intended to be accessed directly."
+msgstr "Ви звернулися до інтерфейсу служби отримання тверджень (Assertion Consumer Service), але не надали автентифікаційну відповідь SAML. Зверніть увагу, що ця кінцева точка не призначена для прямого доступу."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:253
+msgid "You accessed the Single Sign On Service interface, but did not provide a SAML Authentication Request. Please note that this endpoint is not intended to be accessed directly."
+msgstr "Ви звернулися до інтерфейсу служби єдиного входу (Single Sign-On), але не надали автентифікаційний запит SAML. Зверніть увагу, що ця кінцева точка не призначена для прямого доступу."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:249
+msgid "You accessed the SingleLogoutService interface, but did not provide a SAML LogoutRequest or LogoutResponse. Please note that this endpoint is not intended to be accessed directly."
+msgstr "Ви звернулися до інтерфейсу служби єдиного виходу (SingleLogoutService), але не надали запит на вихід або відповідь SAML. Зверніть увагу, що ця кінцева точка не призначена для прямого доступу."
+
+msgid "You are about to send a message. Hit the submit message button to continue."
+msgstr "Ви збираєтеся надіслати повідомлення. Натисніть кнопку Надіслати повідомлення, щоб продовжити."
+
+msgid "You are about to send a message. Hit the submit message link to continue."
+msgstr "Ви збираєтесь надіслати повідомлення. Натисніть посилання Надіслати повідомлення, щоб продовжити."
+
+msgid "You are also logged in on these services:"
+msgstr "Ви також авторизовані в наступних сервісах:"
+
+msgid "You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>."
+msgstr "Ви зараз отримали доступ до тестової системи.Ця система автентифікації призначена лише для тестування та перевірки попередньої версії. Якщо хтось надіслав вам посилання, яке привело вас сюди, і ви не є <i>тестувальником</i>, ймовірно, це неправильне посилання, і вам < <b>не слід бути тут</b>."
+
+msgid "You are now successfully logged out from %SP%."
+msgstr "Ви успішно вийшли з системи %SP%."
+
+msgid "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
+msgstr "Ви можете<a href=\"%METAURL%\"> отримати XML-метадані за спеціальним посиланням URL</a>:"
+
+msgid "You can turn off debug mode in the global SimpleSAMLphp configuration file <tt>config/config.php</tt>."
+msgstr "Ви можете вимкнути режим налагодження у глобальному конфігураційному файлі SimpleSAMLphp -<tt>config/config.php</tt>."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:241
+msgid "You did not present a valid certificate."
+msgstr "Ви не надали дійсний сертифікат."
+
+msgid "You have been logged out."
+msgstr "Ви вийшли з системи."
+
+msgid "You have chosen <b>%HOMEORG%</b> as your home organization. If this is wrong you may choose another one."
+msgstr "Ви обрали <b>%HOMEORG%</b> як вашу домашню організацію. Якщо це помилка, ви можете вибрати іншу."
+
+msgid "You have previously chosen to authenticate at"
+msgstr "Раніше ви обрали автентифікацію через"
+
+msgid "You have successfully logged out from all services listed above."
+msgstr "Ви успішно вийшли з усіх перелічених вище сервісів."
+
+msgid "You sent something to the login page, but for some reason the password was not sent. Try again please."
+msgstr "Ви надіслали запит на сторінку входу, але з якоїсь причини пароль не був переданий. Спробуйте ще раз, будь ласка."
+
+msgid "Your attributes"
+msgstr "Ваші атрибути"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:219
+msgid "Your session data cannot be retrieved right now due to technical difficulties. Please try again in a few minutes."
+msgstr "Наразі неможливо отримати дані вашої сесії через технічні неполадки. Спробуйте ще раз за кілька хвилин."
+
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Ваша сесія буде дійсною ще протягом %remaining% секунд."
+
+msgid "[Preferred choice]"
+msgstr "[Бажаний вибір]"
+
+msgid "not set"
+msgstr "не встановлено"
