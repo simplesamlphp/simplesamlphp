@@ -82,7 +82,7 @@
         "symfony/password-hasher": "~7.3.0",
         "symfony/polyfill-intl-icu": "~1.33.0",
         "symfony/routing": "~7.3.0",
-        "symfony/translation-contracts": "~3.2.0",
+        "symfony/translation-contracts": "~3.6.0",
         "symfony/twig-bridge": "~7.3.0",
         "symfony/var-exporter": "~7.3.0",
         "symfony/yaml": "~7.3.0",
