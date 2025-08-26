@@ -2,7 +2,7 @@
   "modules": {
     "authorize": {
       "repository": "simplesamlphp/simplesamlphp-module-authorize",
-      "version": "~1.6.2"
+      "version": "~1.7.0"
     },
     "consent": {
       "repository": "simplesamlphp/simplesamlphp-module-consent",
