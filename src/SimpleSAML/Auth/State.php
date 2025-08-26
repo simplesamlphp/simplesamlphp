@@ -272,8 +272,8 @@ class State
      * @throws \SimpleSAML\Error\NoState If we couldn't find the state and there's no URL defined to redirect to.
      * @throws \Exception If the stage of the state is invalid and there's no URL defined to redirect to.
      *
-     * @return array|null  State information, or NULL if the state is missing and $allowMissing is true.
-     * @psalm-return ($allowMissing is true ? array|null : array)
+     * @return ($allowMissing is true ? array|null : array)
+     *   State information, or NULL if the state is missing and $allowMissing is true.
      */
     public static function loadState(string $id, string $stage, bool $allowMissing = false): ?array
     {
