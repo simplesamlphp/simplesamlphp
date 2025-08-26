@@ -29,10 +29,10 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           # Should be the higest supported version, so we can use the newest tools
-          php-version: '8.3'
+          php-version: '8.4'
           coverage: none
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           # token: ${{ secrets.PAT_TOKEN }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
@@ -83,7 +83,7 @@ jobs:
     runs-on: [ubuntu-latest]
 
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           name: build
 
