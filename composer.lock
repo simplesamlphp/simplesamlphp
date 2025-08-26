@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2ea00dd97bf18aca5745b9eff5ee1cab",
+    "content-hash": "646d5baccaa70e48e5a1199bdaa8e88b",
     "packages": [
         {
             "name": "beste/clock",
@@ -1291,21 +1291,21 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
-            "version": "v2.4.2",
+            "version": "v2.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-assets-base.git",
-                "reference": "b368dc01e1271a351a22a151c523cf24febe4775"
+                "reference": "b0f93575e308507df584a8cc98555e45e8a448b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/b368dc01e1271a351a22a151c523cf24febe4775",
-                "reference": "b368dc01e1271a351a22a151c523cf24febe4775",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/b0f93575e308507df584a8cc98555e45e8a448b8",
+                "reference": "b0f93575e308507df584a8cc98555e45e8a448b8",
                 "shasum": ""
             },
             "require": {
-                "php": "^8.1",
-                "simplesamlphp/composer-module-installer": "^1.3.4"
+                "php": "^8.2",
+                "simplesamlphp/composer-module-installer": "^1.4.0"
             },
             "type": "simplesamlphp-module",
             "notification-url": "https://packagist.org/downloads/",
@@ -1321,9 +1321,9 @@
             "description": "Assets for the SimpleSAMLphp main repository",
             "support": {
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-assets-base/issues",
-                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.4.2"
+                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.5.2"
             },
-            "time": "2025-07-20T01:44:06+00:00"
+            "time": "2025-08-21T20:01:56+00:00"
         },
         {
             "name": "simplesamlphp/xml-common",
