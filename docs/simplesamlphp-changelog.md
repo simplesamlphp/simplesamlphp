@@ -26,6 +26,10 @@ Released TBD
 
 * Remove reauthentication-button when reauthentication is disabled (simplesamlphp/simplesamlphp-module-authorize#24) (v1.6.2)
 
+`radius`
+
+* Add some more logging (v2.0.3)
+
 ## Version 2.4.2
 
 Released 2025-06-04

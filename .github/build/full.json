@@ -26,7 +26,7 @@
     },
     "radius": {
       "repository": "simplesamlphp/simplesamlphp-module-radius",
-      "version": "~2.0.2"
+      "version": "~2.0.3"
     },
     "sqlauth": {
       "repository": "simplesamlphp/simplesamlphp-module-sqlauth",
