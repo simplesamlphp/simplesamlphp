@@ -22,6 +22,7 @@
   * [Identity Provider Advanced Topics](simplesamlphp-idp-more)
   * [Holder-of-Key profile](simplesamlphp-hok-idp)
 * Further topics
+  * [Testing your installation](simplesamlphp-testing-install) - Test out your new installation
   * [Maintenance and configuration](simplesamlphp-maintenance) - covers session handling, php configuration etc.
   * [Automated Metadata Management](/docs/contrib_modules/metarefresh/simplesamlphp-automated_metadata)
   * [Key rollover](./saml:keyrollover)
