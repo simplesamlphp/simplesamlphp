@@ -36,7 +36,7 @@
     <p><b>{{ 'Continue as persona' }}</b></p>
 
     {% for id, attributes in users %}
-    <a href="{{formURL}}&id={{ id }}">
+    <a href="{{ usersLinks[id] }}">
     <div>
     <h2>
         {{ attributes['displayName'][0] }}

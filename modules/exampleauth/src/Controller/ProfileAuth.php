@@ -126,7 +126,12 @@ class ProfileAuth
         $t = new Template($this->config, 'exampleauth:userclick.twig');
 
         $t->data['users'] = $source->users;
-        $t->data['formURL'] = Module::getModuleURL('exampleauth/profileauth', ['AuthState' => $authStateId]);
+        $userlinks = [];
+        foreach ($source->users as $id => $attr) {
+            $userlinks[$id] = Module::getModuleURL('exampleauth/profileauth', ['AuthState' => $authStateId,
+                                                                               "id" => $id ]);
+        }
+        $t->data['usersLinks'] = $userlinks;
 
         $t->data['errorcode'] = $errorCode;
         $t->data['errorcodes'] = Error\ErrorCodes::getAllErrorCodeMessages();
