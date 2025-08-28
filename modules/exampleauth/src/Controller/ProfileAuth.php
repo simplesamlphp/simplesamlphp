@@ -92,8 +92,6 @@ class ProfileAuth
         $authStateId = $request->query->get('AuthState');
         $this->authState::validateStateId($authStateId);
 
-        $organizations = $organization = null;
-
         $id = $this->getIDFromRequest($request, $source, $state);
 
         $errorCode = null;
