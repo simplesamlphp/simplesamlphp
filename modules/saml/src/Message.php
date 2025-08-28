@@ -175,17 +175,30 @@ class Message
                 }
                 Logger::debug('Validation with key #' . $i . ' failed without exception.');
             } catch (\Exception $e) {
+                Logger::debug('Check Signature for ' . get_class($element) . ' element');
+                Logger::debug('EntityID: ' . $srcMetadata->getString('entityid'));
                 Logger::debug('Validation with key #' . $i . ' failed with exception: ' . $e->getMessage());
-                $lastException = $e;
+
+                // Clone the exception and improve the message
+                $lastException = new SSP_Error\Error(
+                    [
+                        (string)$e->getCode(),
+                        'element' => get_class($element),
+                        'message' => $e->getMessage(),
+                        'issuer' => $element->getIssuer()->getValue(),
+                        'entityid' => $srcMetadata->getString('entityid'),
+                    ],
+                    $e->getPrevious(),
+                );
             }
         }
 
         // we were unable to validate the signature with any of our keys
         if ($lastException !== null) {
             throw $lastException;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
 
