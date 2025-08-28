@@ -20,3 +20,10 @@ exampleauth-resume:
     _controller: 'SimpleSAML\Module\exampleauth\Controller\ExampleAuth::resume'
   }
   methods: [GET]
+
+profileauth-login:
+  path: /profileauth
+  defaults: {
+    _controller: 'SimpleSAML\Module\exampleauth\Controller\ProfileAuth::login'
+  }
+  methods: [GET, POST]

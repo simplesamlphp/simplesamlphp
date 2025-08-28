@@ -235,3 +235,4 @@ typings/
 
 # dotenv environment variables file
 .env
+cache
