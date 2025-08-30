@@ -21,6 +21,7 @@ use SAML2\XML\saml\Issuer;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error as SSP_Error;
+use SimpleSAML\Error\ErrorCodes;
 use SimpleSAML\Logger;
 use SimpleSAML\Module\saml\Error as SAMLError;
 use SimpleSAML\SAML2\Constants;
@@ -182,9 +183,9 @@ class Message
                 // Clone the exception and improve the message
                 $lastException = new SSP_Error\Error(
                     [
-                        (string)$e->getCode(),
+                        ErrorCodes::NOTVALIDCERTSIGNATURE,
+                        'message' => (new ErrorCodes())->getMessage(ErrorCodes::NOTVALIDCERTSIGNATURE),
                         'element' => get_class($element),
-                        'message' => $e->getMessage(),
                         'issuer' => $element->getIssuer()->getValue(),
                         'entityid' => $srcMetadata->getString('entityid'),
                     ],

@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use SAML2\AuthnRequest;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error as SSP_Error;
+use SimpleSAML\Error\ErrorCodes;
 use SimpleSAML\Module\saml\Message;
 use SimpleSAML\XMLSecurity\TestUtils\PEMCertificatesMock;
 
@@ -197,9 +198,9 @@ class MessageTest extends TestCase
     {
         $this->expectException(SSP_Error\Error::class);
         $expectedMessage =  [
-            'errorCode' => '0',
+            ErrorCodes::NOTVALIDCERTSIGNATURE,
+            'message' => (new ErrorCodes())->getMessage(ErrorCodes::NOTVALIDCERTSIGNATURE),
             'element'  => 'SAML2\AuthnRequest',
-            'message'  => 'Unable to validate Signature',
             'issuer'   => 'https://sp.acmee.com/demo',
             'entityid' => 'https://idp.acmee.com/example',
         ];
