@@ -198,7 +198,7 @@ class MessageTest extends TestCase
     {
         $this->expectException(SSP_Error\Error::class);
         $expectedMessage =  [
-            ErrorCodes::NOTVALIDCERTSIGNATURE,
+            'errorCode' => ErrorCodes::NOTVALIDCERTSIGNATURE,
             'message' => (new ErrorCodes())->getMessage(ErrorCodes::NOTVALIDCERTSIGNATURE),
             'element'  => 'SAML2\AuthnRequest',
             'issuer'   => 'https://sp.acmee.com/demo',
