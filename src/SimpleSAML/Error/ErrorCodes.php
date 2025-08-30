@@ -24,6 +24,7 @@ class ErrorCodes
     }
 
     final public const ACSPARAMS = 'ACSPARAMS';
+    final public const ADMINNOTHASHED = 'ADMINNOTHASHED';
     final public const ARSPARAMS = 'ARSPARAMS';
     final public const AUTHSOURCEERROR = 'AUTHSOURCEERROR';
     final public const BADREQUEST = 'BADREQUEST';
@@ -47,8 +48,8 @@ class ErrorCodes
     final public const NOTFOUND = 'NOTFOUND';
     final public const NOTFOUNDREASON = 'NOTFOUNDREASON';
     final public const NOTSET = 'NOTSET';
-    final public const ADMINNOTHASHED = 'ADMINNOTHASHED';
     final public const NOTVALIDCERT = 'NOTVALIDCERT';
+    final public const NOTVALIDCERTSIGNATURE = 'NOTVALIDCERTSIGNATURE';
     final public const PROCESSASSERTION = 'PROCESSASSERTION';
     final public const PROCESSAUTHNREQUEST = 'PROCESSAUTHNREQUEST';
     final public const RESPONSESTATUSNOSUCCESS = 'RESPONSESTATUSNOSUCCESS';
@@ -76,6 +77,7 @@ class ErrorCodes
     {
         return [
             self::ACSPARAMS => Translate::noop('No SAML response provided'),
+            self::ADMINNOTHASHED => Translate::noop('Admin password not set to a hashed value'),
             self::ARSPARAMS => Translate::noop('No SAML message provided'),
             self::AUTHSOURCEERROR => Translate::noop('Authentication source error'),
             self::BADREQUEST => Translate::noop('Bad request received'),
@@ -99,8 +101,8 @@ class ErrorCodes
             self::NOTFOUND => Translate::noop('Page not found'),
             self::NOTFOUNDREASON => Translate::noop('Page not found'),
             self::NOTSET => Translate::noop('Password not set'),
-            self::ADMINNOTHASHED => Translate::noop('Admin password not set to a hashed value'),
             self::NOTVALIDCERT => Translate::noop('Invalid certificate'),
+            self::NOTVALIDCERTSIGNATURE => Translate::noop('Invalid certificate signature'),
             self::PROCESSASSERTION => Translate::noop('Error processing response from Identity Provider'),
             self::PROCESSAUTHNREQUEST => Translate::noop('Error processing request from Service Provider'),
             self::RESPONSESTATUSNOSUCCESS => Translate::noop('Error received from Identity Provider'),
@@ -204,7 +206,8 @@ class ErrorCodes
                 " not intended to be accessed directly."),
             self::AUTHSOURCEERROR => Translate::noop("" .
                 'Authentication error in source %AUTHSOURCE%. The reason was: %REASON%'),
-            self::BADREQUEST => Translate::noop('There is an error in the request to this page. The reason was: %REASON%'),
+            self::BADREQUEST =>
+                Translate::noop('There is an error in the request to this page. The reason was: %REASON%'),
             self::CASERROR => Translate::noop('Error when communicating with the CAS server.'),
             self::CONFIG => Translate::noop('SimpleSAMLphp appears to be misconfigured.'),
             self::CREATEREQUEST => Translate::noop("An error occurred when trying to create the SAML request."),
@@ -261,7 +264,9 @@ class ErrorCodes
                 "admin-page-with-and-error-message-admin-password-" .
                 "not-set-to-a-hashed-value"),
             self::NOTVALIDCERT => Translate::noop('You did not present a valid certificate.'),
-            self::PROCESSASSERTION => Translate::noop('We did not accept the response sent from the Identity Provider.'),
+            self::NOTVALIDCERTSIGNATURE => Translate::noop('Unable to validate certificate signature.'),
+            self::PROCESSASSERTION =>
+                Translate::noop('We did not accept the response sent from the Identity Provider.'),
             self::PROCESSAUTHNREQUEST => Translate::noop("" .
                 "This Identity Provider received an Authentication Request from a Service " .
                 "Provider, but an error occurred when trying to process the request."),
