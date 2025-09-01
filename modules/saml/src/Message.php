@@ -11,7 +11,9 @@ use SAML2\{AuthnRequest, LogoutRequest, LogoutResponse, Response, StatusResponse
 use SAML2\Message as SAMLMessage;
 use SimpleSAML\{Configuration, Error as SSP_Error, Logger, Utils};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Error\ErrorCodes;
 use SimpleSAML\SAML2\{Constants as C, SignedElement};
+use SimpleSAML\Module\saml\Error as SAMLError;
 use SimpleSAML\SAML2\XML\Comparison;
 use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
@@ -185,17 +187,30 @@ class Message
                 }
                 Logger::debug('Validation with key #' . $i . ' failed without exception.');
             } catch (Exception $e) {
+                Logger::debug('Check Signature for ' . get_class($element) . ' element');
+                Logger::debug('EntityID: ' . $srcMetadata->getString('entityid'));
                 Logger::debug('Validation with key #' . $i . ' failed with exception: ' . $e->getMessage());
-                $lastException = $e;
+
+                // Clone the exception and improve the message
+                $lastException = new SSP_Error\Error(
+                    [
+                        ErrorCodes::NOTVALIDCERTSIGNATURE,
+                        'message' => (new ErrorCodes())->getMessage(ErrorCodes::NOTVALIDCERTSIGNATURE),
+                        'element' => get_class($element),
+                        'issuer' => $element->getIssuer()->getValue(),
+                        'entityid' => $srcMetadata->getString('entityid'),
+                    ],
+                    $e->getPrevious(),
+                );
             }
         }
 
         // we were unable to validate the signature with any of our keys
         if ($lastException !== null) {
             throw $lastException;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
 
