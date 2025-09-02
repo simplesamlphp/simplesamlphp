@@ -37,11 +37,11 @@
     {%- for key, sp in remaining_services %}
       {%- set timeout = 5 %}
       {%- set name = sp['metadata']|entityDisplayName %}
-      {%- set icon = 'circle-o-notch'  %}
+      {%- set icon = 'circle-notch'  %}
       {%- if sp['status'] == 'completed' %}
-        {%- set icon = 'check-circle' %}
+        {%- set icon = 'circle-check' %}
       {%- elseif sp['status'] == 'failed' %}
-        {%- set icon = 'exclamation-circle' %}
+        {%- set icon = 'circle-exclamation' %}
         {%- set failed = true %}
       {%- elseif (sp['status'] == 'onhold' or sp['status'] == 'inprogress') %}
         {%- set remaining = remaining + 1 %}
