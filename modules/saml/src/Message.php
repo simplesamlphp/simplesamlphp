@@ -184,10 +184,10 @@ class Message
                 $lastException = new SSP_Error\Error(
                     [
                         ErrorCodes::NOTVALIDCERTSIGNATURE,
-                        'message' => (new ErrorCodes())->getMessage(ErrorCodes::NOTVALIDCERTSIGNATURE),
-                        'element' => get_class($element),
-                        'issuer' => $element->getIssuer()->getValue(),
-                        'entityid' => $srcMetadata->getString('entityid'),
+                        '%MESSAGE%' => (new ErrorCodes())->getMessage(ErrorCodes::NOTVALIDCERTSIGNATURE),
+                        '%ELEMENT%' => get_class($element),
+                        '%ISSUER%' => $element->getIssuer()->getValue(),
+                        '%ENTITYID%' => $srcMetadata->getString('entityid'),
                     ],
                     $e->getPrevious(),
                 );
