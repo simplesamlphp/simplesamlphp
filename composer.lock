@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "475f3a5841bcde7258cf4c58b44332a1",
+    "content-hash": "63c92899d70693d3b77fdbf51988b263",
     "packages": [
         {
             "name": "beste/clock",
@@ -1231,16 +1231,16 @@
         },
         {
             "name": "simplesamlphp/saml2-legacy",
-            "version": "v4.18.1",
+            "version": "v4.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2-legacy.git",
-                "reference": "9bbf43a5ace9c8e5107dad3a613b014b456ecd56"
+                "reference": "96eb144356702d7d913078fb2e4364e42458fc31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2-legacy/zipball/9bbf43a5ace9c8e5107dad3a613b014b456ecd56",
-                "reference": "9bbf43a5ace9c8e5107dad3a613b014b456ecd56",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2-legacy/zipball/96eb144356702d7d913078fb2e4364e42458fc31",
+                "reference": "96eb144356702d7d913078fb2e4364e42458fc31",
                 "shasum": ""
             },
             "require": {
@@ -1285,9 +1285,9 @@
             ],
             "description": "SAML2 PHP library from SimpleSAMLphp",
             "support": {
-                "source": "https://github.com/simplesamlphp/saml2-legacy/tree/v4.18.1"
+                "source": "https://github.com/simplesamlphp/saml2-legacy/tree/v4.19.0"
             },
-            "time": "2025-03-16T11:50:02+00:00"
+            "time": "2025-09-05T23:39:13+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
