@@ -162,6 +162,7 @@ class Database
         try {
             $db = new PDO($dsn, $username, $password, $options);
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
             return $db;
         } catch (PDOException $e) {
