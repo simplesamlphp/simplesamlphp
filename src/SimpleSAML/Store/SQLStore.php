@@ -78,6 +78,7 @@ class SQLStore implements StoreInterface
             throw new Exception("Database error: " . $e->getMessage());
         }
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
         $this->driver = $this->pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
 
