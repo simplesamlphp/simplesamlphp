@@ -1192,6 +1192,14 @@ class HTTP
         $p = new Template($config, 'post.twig');
         $p->data['destination'] = $destination;
         $p->data['post'] = $data;
+
+        // Read optional config override; default to 30s, ensure non-negative integer
+        $delay = (int) ($config->getOptionalValue('slow_post_delay_ms', 30000));
+        if ($delay < 0) {
+            $delay = 30000;
+        }
+        $p->data['slow_post_delay_ms'] = $delay;
+
         $p->send();
         exit(0);
     }

@@ -567,6 +567,16 @@ $config = [
         'saml' => true,
     ],
 
+    /*************************************
+    | POST/REDIRECT UI CONFIGURATION    |
+     *************************************/
+
+    /*
+     * Delay (in milliseconds) before revealing the slow-post message on the auto-submit POST page.
+     * If unset, defaults to 30000 ms. Negative values are coerced to 30000.
+     * Set to 0 to reveal immediately.
+     */
+    //'slow_post_delay_ms' => 30000,
 
     /*************************
      | SESSION CONFIGURATION |
