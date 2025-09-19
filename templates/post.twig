@@ -1,40 +1,84 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="{{ appLocale|default(locale|default('en')) }}">
+<head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="icon" href="{{ asset("icons/favicon.ico") }}">
     <title>{% trans %}Sending message{% endtrans %}</title>
     <link rel="stylesheet" href="{{ asset("css/postSubmit.css") }}">
-    <script src="{{ asset("js/post.js") }}"></script>
-  </head>
-  <body>
+    {% block preload %}{% endblock %}
+</head>
+<body>
+{% block content %}
+    <h1 id="page-title" class="mb-2 center hidden">{% trans %}Sending message{% endtrans %}</h1>
     <form method="post" action="{{ destination }}">
-      {#- We need to add this element and call the click method, because calling submit() on the form causes failed
+        {#- We need to add this element and call the click method, because calling submit() on the form causes failed
           submissions if the form has another element with name or id of submit. See:
           https://developer.mozilla.org/en/DOM/form.submit#Specification
-       #}
+        #}
 
-      <input type="submit" id="postLoginSubmitButton">
-      {%- for name, value in post %}
-        {%- if value is iterable %}
-          {%- for index, item in value %}
+        <input
+                type="submit"
+                id="postLoginSubmitButton"
+                value="{% trans %}Continue{% endtrans %}"
+                class="js-only"
+                aria-hidden="true"
+                tabindex="-1"
+        >
+        {%- for name, value in post %}
+            {%- if value is iterable %}
+                {%- for index, item in value %}
 
-      <input type="hidden" name="{{ name }}[{{ index }}]" value="{{ item }}">
-          {%- endfor %}
-        {%- else %}
+                    <input type="hidden" name="{{ name }}[{{ index }}]" value="{{ item }}">
+                {%- endfor %}
+            {%- else %}
 
-      <input type="hidden" name="{{ name }}" value="{{ value }}">
-        {%- endif %}
-      {%- endfor %}
+                <input type="hidden" name="{{ name }}" value="{{ value }}">
+            {%- endif %}
+        {%- endfor %}
 
-      <noscript>
-        <h2>{% trans %}Warning{% endtrans %}</h2>
-        <p>{% trans %}Since your browser does not support Javascript, you must press the button below to proceed.{%
-            endtrans %}</p>
-        <button type="submit">{% trans %}Yes, continue{% endtrans %}</button>
-      </noscript>
+        <noscript>
+            {#  Make this css class available only in the case of no script  #}
+            <style>
+              .js-only {
+                display: none !important;
+              }
+            </style>
+            <h2>{% trans %}Warning{% endtrans %}</h2>
+            <p>{% trans %}Since your browser does not support Javascript, you must press the button below to proceed.{%
+                    endtrans %}</p>
+            <button type="submit">{% trans %}Yes, continue{% endtrans %}</button>
+        </noscript>
     </form>
-  </body>
+
+    <div id="slowPostMessage"
+         class="js-only slowPostMessage hidden"
+         role="alert"
+         aria-live="assertive"
+         aria-atomic="true"
+         aria-labelledby="slowpost-title"
+         aria-describedby="slowpost-desc"
+         data-slow-post-delay="{{ slow_post_delay_ms|default(30000) }}"
+         tabindex="-1">
+        <div class="p-2 mt-1">
+            <h2 id="slowpost-title" class="mb-2">Connecting to the application…</h2>
+            <div id="slowpost-desc">
+                <div class="mb-2">
+                    The application at {{ destination }} may not be responding.
+                </div>
+                <div class="mb-0">
+                    Your browser will continue trying to connect. Do not refresh this page or press the back button, as it may cause an error.
+                    If you are unable to connect, return to the original application and try again.
+                </div>
+            </div>
+        </div>
+    </div>
+    <span id="loader" class="loader js-only"></span>
+{% endblock %}
+
+<script src="{{ asset("js/post.js") }}"></script>
+{% block postload %}{% endblock %}
+</body>
 </html>

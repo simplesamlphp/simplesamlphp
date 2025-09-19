@@ -265,7 +265,9 @@ class HTTP
         echo '</html>';
 
         // end script execution
-        exit;
+        if (!defined('SIMPLESAMLPHP_TEST_NOEXIT')) {
+            exit;
+        }
     }
 
 
@@ -1187,12 +1189,23 @@ class HTTP
         if ($allowed && preg_match("#^http:#", $destination) && $this->isHTTPS()) {
             // we need to post the data to HTTP
             $this->redirect($this->getSecurePOSTRedirectURL($destination, $data));
+            return;
         }
 
         $p = new Template($config, 'post.twig');
         $p->data['destination'] = $destination;
         $p->data['post'] = $data;
+
+        // Read optional config override; default to 30s, ensure non-negative integer
+        $delay = $config->getOptionalInteger('slow_post_delay_ms', 30000);
+        if ($delay < 0) {
+            $delay = 30000;
+        }
+        $p->data['slow_post_delay_ms'] = $delay;
+
         $p->send();
-        exit(0);
+        if (!defined('SIMPLESAMLPHP_TEST_NOEXIT')) {
+            exit(0);
+        }
     }
 }
