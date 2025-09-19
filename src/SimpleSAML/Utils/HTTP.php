@@ -1197,7 +1197,7 @@ class HTTP
         $p->data['post'] = $data;
 
         // Read optional config override; default to 30s, ensure non-negative integer
-        $delay = (int) ($config->getOptionalValue('slow_post_delay_ms', 30000));
+        $delay = $config->getOptionalInteger('slow_post_delay_ms', 30000);
         if ($delay < 0) {
             $delay = 30000;
         }
