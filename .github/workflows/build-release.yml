@@ -32,7 +32,7 @@ jobs:
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       # Store the version, stripping any v-prefix
       - name: Write release version
@@ -112,7 +112,7 @@ jobs:
           startsWith(github.ref, 'refs/tags/v') &&
           contains(github.ref, 'alpha') != true &&
           contains(github.ref, 'beta') != true
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           # Token has to be generated on a user account that controls the docs-repository.
           # The _only_ scope to select is "Access public repositories", nothing more.

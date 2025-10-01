@@ -21,7 +21,7 @@ jobs:
       matrix:
         php-version: ['8.2', '8.3', '8.4']
 
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_phplinter.yml@v1.9.3
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_phplinter.yml@v1.10.2
     with:
       php-version: ${{ matrix.php-version }}
 
@@ -30,7 +30,7 @@ jobs:
     strategy:
       fail-fast: false
 
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_linter.yml@v1.9.3
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_linter.yml@v1.10.2
     with:
       enable_eslinter: true
       enable_jsonlinter: true
@@ -69,7 +69,7 @@ jobs:
           git config --global core.autocrlf false
           git config --global core.eol lf
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Copy config.php.dist to config.php
         run: cp config/config.php.dist config/config.php
@@ -137,7 +137,7 @@ jobs:
           git config --global core.autocrlf false
           git config --global core.eol lf
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Get composer cache directory
         run: echo COMPOSER_CACHE="$(composer config cache-files-dir)" >> "$env:GITHUB_ENV"
@@ -177,7 +177,7 @@ jobs:
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Copy config.php.dist to config.php
         run: cp config/config.php.dist config/config.php
@@ -261,7 +261,7 @@ jobs:
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Copy config.php.dist to config.php
         run: cp config/config.php.dist config/config.php
@@ -296,9 +296,9 @@ jobs:
     runs-on: [ubuntu-latest]
     needs: [unit-tests-linux]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           name: coverage-data
           path: ${{ github.workspace }}/build
