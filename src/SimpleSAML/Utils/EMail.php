@@ -7,7 +7,7 @@ namespace SimpleSAML\Utils;
 use Exception;
 use InvalidArgumentException;
 use PHPMailer\PHPMailer\PHPMailer;
-use SimpleSAML\{Configuration};
+use SimpleSAML\Configuration;
 use SimpleSAML\XHTML\Template;
 
 use function array_map;
