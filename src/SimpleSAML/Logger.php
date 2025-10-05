@@ -178,6 +178,7 @@ class Logger
      * Log an emergency message.
      *
      * @param string $string The message to log.
+     * @throws Exception
      */
     public static function emergency(string $string): void
     {
@@ -189,6 +190,7 @@ class Logger
      * Log a critical message.
      *
      * @param string $string The message to log.
+     * @throws Exception
      */
     public static function critical(string $string): void
     {
@@ -200,6 +202,7 @@ class Logger
      * Log an alert.
      *
      * @param string $string The message to log.
+     * @throws Exception
      */
     public static function alert(string $string): void
     {
@@ -211,6 +214,7 @@ class Logger
      * Log an error.
      *
      * @param string $string The message to log.
+     * @throws Exception
      */
     public static function error(string $string): void
     {
@@ -222,6 +226,7 @@ class Logger
      * Log a warning.
      *
      * @param string $string The message to log.
+     * @throws Exception
      */
     public static function warning(string $string): void
     {
@@ -232,6 +237,7 @@ class Logger
      * Log a warning about deprecated code.
      *
      * @param string $string The message to log.
+     * @throws Exception
      */
     public static function deprecated(string $string): void
     {
@@ -242,6 +248,7 @@ class Logger
      * We reserve the notice level for statistics, so do not use this level for other kind of log messages.
      *
      * @param string $string The message to log.
+     * @throws Exception
      */
     public static function notice(string $string): void
     {
@@ -253,6 +260,7 @@ class Logger
      * Info messages are a bit less verbose than debug messages. This is useful to trace a session.
      *
      * @param string $string The message to log.
+     * @throws Exception
      */
     public static function info(string $string): void
     {
@@ -265,6 +273,7 @@ class Logger
      * system.
      *
      * @param string $string The message to log.
+     * @throws Exception
      */
     public static function debug(string $string): void
     {
@@ -276,6 +285,7 @@ class Logger
      * Statistics.
      *
      * @param string $string The message to log.
+     * @throws Exception
      */
     public static function stats(string $string): void
     {
@@ -317,6 +327,7 @@ class Logger
      * Set the track identifier to use in all logs.
      *
      * @param string $trackId The track identifier to use during this session.
+     * @throws Exception
      */
     public static function setTrackId(string $trackId): void
     {
@@ -328,6 +339,7 @@ class Logger
     /**
      * Flush any pending log messages to the logging handler.
      *
+     * @throws Exception
      */
     public static function flush(): void
     {
@@ -344,6 +356,8 @@ class Logger
      * This method is intended to be registered as a shutdown handler, so that any pending messages that weren't sent
      * to the logging handler at that point, can still make it. It is therefore not intended to be called manually.
      *
+     * @throws Exception
+     * @throws \Throwable
      */
     public static function shutdown(): void
     {
@@ -521,6 +535,7 @@ class Logger
      * @param int $level
      * @param string $string
      * @param bool $statsLog
+     * @throws Exception
      */
     private static function log(int $level, string $string, bool $statsLog = false): void
     {

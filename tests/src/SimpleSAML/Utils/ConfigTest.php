@@ -35,6 +35,7 @@ class ConfigTest extends TestCase
 
     /**
      * Test default config dir with not environment variable
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testDefaultConfigDir(): void
     {
@@ -48,6 +49,7 @@ class ConfigTest extends TestCase
 
     /**
      * Test valid dir specified by env var overrides default config dir
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testEnvVariableConfigDir(): void
     {
@@ -59,6 +61,7 @@ class ConfigTest extends TestCase
 
     /**
      * Test valid dir specified by env redirect var overrides default config dir
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testEnvRedirectVariableConfigDir(): void
     {
@@ -71,6 +74,7 @@ class ConfigTest extends TestCase
 
     /**
      * Test which directory takes precedence
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testEnvRedirectPriorityVariableConfigDir(): void
     {

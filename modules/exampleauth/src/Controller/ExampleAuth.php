@@ -63,6 +63,10 @@ class ExampleAuth
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\NoState
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function authpage(Request $request): Template|RedirectResponse
     {
@@ -158,6 +162,10 @@ class ExampleAuth
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \SimpleSAML\Error\NoState
+     * @throws \SimpleSAML\Error\BadRequest
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function redirecttest(Request $request): Response
     {
@@ -180,6 +188,10 @@ class ExampleAuth
      * Resume testpage.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
+     * @throws \SimpleSAML\Error\BadRequest
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function resume(Request $request): Response
     {

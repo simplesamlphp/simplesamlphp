@@ -6,6 +6,8 @@
     reportMixedIssues="false"
     hideExternalErrors="true"
     allowStringToStandInForClass="true"
+    checkForThrowsDocblock="true"
+    checkForThrowsInGlobalScope="true"
 >
     <projectFiles>
         <directory name="config" />

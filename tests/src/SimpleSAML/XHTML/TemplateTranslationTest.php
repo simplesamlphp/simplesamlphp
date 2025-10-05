@@ -11,7 +11,7 @@ use SimpleSAML\Locale\{Translate, TwigTranslator};
 use SimpleSAML\Module;
 use SimpleSAML\XHTML\Template;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
-use Symfony\Component\Finder\{Finder, SplFileInfo};
+use Symfony\Component\Finder\{Finder};
 use Twig\{Environment, TwigFilter, TwigFunction};
 use Twig\Extra\Intl\IntlExtension;
 use Twig\Loader\FilesystemLoader;
@@ -21,6 +21,10 @@ use Twig\Loader\FilesystemLoader;
 #[CoversClass(Template::class)]
 class TemplateTranslationTest extends TestCase
 {
+    /**
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     */
     public function testCoreCardinalityErrorTemplate(): void
     {
         $c = Configuration::loadFromArray(['assets' => [ 'salt' => '1234567890']], '', 'simplesaml');
@@ -41,6 +45,10 @@ class TemplateTranslationTest extends TestCase
         $this->assertStringContainsString('got 1 values, want 2', $html);
     }
 
+    /**
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     */
     public function testCoreLoginUserPassTemplate(): void
     {
         $c = Configuration::loadFromArray(['assets' => [ 'salt' => '1234567890']], '', 'simplesaml');
@@ -64,6 +72,10 @@ class TemplateTranslationTest extends TestCase
         $this->assertStringContainsString('value="h.c oersted"', $html);
     }
 
+    /**
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     */
     public function testCoreLogoutIframeTemplate(): void
     {
         $c = Configuration::loadFromArray(['assets' => [ 'salt' => '1234567890']], '', 'simplesaml');
@@ -99,6 +111,10 @@ class TemplateTranslationTest extends TestCase
         $this->assertStringContainsString('ze missing service', $html);
     }
 
+    /**
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     */
     public function testAuthStatusTemplate(): void
     {
         $c = Configuration::loadFromArray(['assets' => [ 'salt' => '1234567890']], '', 'simplesaml');
@@ -122,6 +138,11 @@ class TemplateTranslationTest extends TestCase
         );
     }
 
+    /**
+     * @throws \Twig\Error\SyntaxError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\LoaderError
+     */
     public function testValidateTwigFiles(): void
     {
         $root = dirname(__DIR__, 4);

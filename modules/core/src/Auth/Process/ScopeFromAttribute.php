@@ -48,6 +48,7 @@ class ScopeFromAttribute extends Auth\ProcessingFilter
      *
      * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     public function __construct(array &$config, $reserved)
     {
@@ -63,6 +64,8 @@ class ScopeFromAttribute extends Auth\ProcessingFilter
      * Apply this filter.
      *
      * @param array &$state  The current request
+     * @throws \Exception
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     public function process(array &$state): void
     {

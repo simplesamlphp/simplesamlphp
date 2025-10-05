@@ -467,6 +467,7 @@ class Configuration implements Utils\ClearableState
      * @return string The absolute path where SimpleSAMLphp can be reached in the web server.
      *
      * @throws \SimpleSAML\Error\CriticalConfigurationError If the format of 'baseurlpath' is incorrect.
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     public function getBasePath(): string
     {
@@ -518,6 +519,7 @@ class Configuration implements Utils\ClearableState
      *
      * @return string|null $path if $path is an absolute path, or $path prepended with the base directory of this
      * SimpleSAMLphp installation. We will return NULL if $path is null.
+     * @throws Exception
      */
     public function resolvePath(?string $path): ?string
     {
@@ -543,6 +545,7 @@ class Configuration implements Utils\ClearableState
      * not specified.
      *
      * @return string|null The path configuration option with name $name, or $default if the option was not found.
+     * @throws Exception
      */
     public function getPathValue(string $name, ?string $default = null): ?string
     {
@@ -589,6 +592,8 @@ class Configuration implements Utils\ClearableState
      *
      * @return string The absolute path to the base directory for this SimpleSAMLphp installation. This path will
      * always end with a slash.
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     public function getBaseDir(): string
     {
@@ -984,6 +989,8 @@ class Configuration implements Utils\ClearableState
      * @param string $name The name of the option.
      *
      * @return array The option with the given name.
+     *
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     public function getArrayize(string $name): array
     {
@@ -1008,6 +1015,7 @@ class Configuration implements Utils\ClearableState
      *
      * @return array|null The option with the given name.
      * @psalm-return      ($default is null ? array|null : array)
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     public function getOptionalArrayize(string $name, ?array $default): ?array
     {

@@ -12,6 +12,8 @@ class Application extends BaseApplication
 {
     /**
      * @param \SimpleSAML\Kernel $kernel
+     * @throws \Symfony\Component\Console\Exception\LogicException
+     * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
      */
     public function __construct(Kernel $kernel)
     {

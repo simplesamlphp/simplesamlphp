@@ -46,6 +46,7 @@ class DatabaseTest extends TestCase
      *
      * @param string $getMethod The method to get.
      * @return mixed The method itself.
+     * @throws \ReflectionException
      */
     protected static function getMethod($getMethod)
     {
@@ -57,6 +58,7 @@ class DatabaseTest extends TestCase
 
 
     /**
+     * @throws Exception
      */
     public function setUp(): void
     {
@@ -98,6 +100,8 @@ class DatabaseTest extends TestCase
 
 
     /**
+     * @throws \ReflectionException
+     * @throws Exception
      */
     public function testInstances(): void
     {
@@ -161,6 +165,8 @@ class DatabaseTest extends TestCase
 
 
     /**
+     * @throws \ReflectionException
+     * @throws Exception
      */
     public function testSecondaries(): void
     {
@@ -231,6 +237,7 @@ class DatabaseTest extends TestCase
 
 
     /**
+     * @throws Exception
      */
     public function testQuerying(): void
     {
@@ -280,6 +287,7 @@ class DatabaseTest extends TestCase
 
 
     /**
+     * @throws Exception
      */
     public function tearDown(): void
     {

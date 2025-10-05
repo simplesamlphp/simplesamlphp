@@ -77,6 +77,8 @@ class Test
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string|null $as
      * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
+     * @throws \Exception
+     * @throws \SimpleSAML\Error\ConfigurationError
      */
     private function makeSPList(Request $request, ?string $as = null): Response
     {
@@ -100,6 +102,10 @@ class Test
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string|null $as
      * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\NoState
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function main(Request $request, ?string $as = null): Response
     {
@@ -169,6 +175,8 @@ class Test
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \SimpleSAML\XHTML\Template
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \Exception
      */
     public function logout(Request $request): Template
     {

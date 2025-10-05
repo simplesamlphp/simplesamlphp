@@ -60,6 +60,7 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public function testResolvePathRemoveTrailingSlashes(): void
     {
@@ -74,6 +75,7 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public function testResolvePathPreferAbsolutePathToBase(): void
     {
@@ -88,6 +90,7 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public function testResolvePathCurDirPath(): void
     {
@@ -102,6 +105,7 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public function testResolvePathParentPath(): void
     {
@@ -116,6 +120,7 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public function testResolvePathAllowsStreamWrappers(): void
     {
@@ -130,6 +135,7 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws \Exception
      */
     public function testResolvePathAllowsAwsS3StreamWrappers(): void
     {
@@ -144,6 +150,9 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \ReflectionException
+     * @throws \Random\RandomException
      */
     public function testWriteFileBasic(): void
     {
@@ -161,6 +170,9 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \ReflectionException
+     * @throws \Random\RandomException
      */
     public function testWriteFileContents(): void
     {
@@ -182,6 +194,9 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \ReflectionException
+     * @throws \Random\RandomException
      */
     public function testWriteFileMode(): void
     {
@@ -203,6 +218,8 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \ReflectionException
      */
     public function testGetTempDirBasic(): void
     {
@@ -220,6 +237,8 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \ReflectionException
      */
     public function testGetTempDirNonExistent(): void
     {
@@ -237,6 +256,7 @@ class SystemTest extends TestCase
 
 
     /**
+     * @throws \ReflectionException
      */
     public function testGetTempDirBadPermissions(): void
     {
@@ -269,6 +289,7 @@ class SystemTest extends TestCase
     /**
      * @param \SimpleSAML\Configuration $service
      * @param class-string $className
+     * @throws \ReflectionException
      */
     protected function clearInstance(Configuration $service, string $className): void
     {

@@ -153,6 +153,7 @@ class Exception extends \Exception
      * @param boolean $anonymize Whether the resulting messages should be anonymized or not.
      *
      * @return string[] Log lines that should be written out.
+     * @throws \Exception
      */
     public function format(bool $anonymize = false): array
     {
@@ -171,6 +172,7 @@ class Exception extends \Exception
      * @param boolean $anonymize Whether the resulting messages should be anonymized or not.
      *
      * @return string[] All lines of the backtrace, properly formatted.
+     * @throws \Exception
      */
     public function formatBacktrace(bool $anonymize = false): array
     {
@@ -202,6 +204,7 @@ class Exception extends \Exception
     /**
      * Print the backtrace to the log if the 'debug' option is enabled in the configuration.
      * @param int $level
+     * @throws \Exception
      */
     protected function logBacktrace(int $level = Logger::DEBUG): void
     {
@@ -251,6 +254,7 @@ class Exception extends \Exception
      * Print the exception to the log with log level error.
      *
      * This function will write this exception to the log, including a full backtrace.
+     * @throws \Exception
      */
     public function logError(): void
     {
@@ -263,6 +267,7 @@ class Exception extends \Exception
      * Print the exception to the log with log level warning.
      *
      * This function will write this exception to the log, including a full backtrace.
+     * @throws \Exception
      */
     public function logWarning(): void
     {
@@ -275,6 +280,7 @@ class Exception extends \Exception
      * Print the exception to the log with log level info.
      *
      * This function will write this exception to the log, including a full backtrace.
+     * @throws \Exception
      */
     public function logInfo(): void
     {
@@ -287,6 +293,7 @@ class Exception extends \Exception
      * Print the exception to the log with log level debug.
      *
      * This function will write this exception to the log, including a full backtrace.
+     * @throws \Exception
      */
     public function logDebug(): void
     {

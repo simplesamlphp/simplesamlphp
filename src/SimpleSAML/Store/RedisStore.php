@@ -27,6 +27,8 @@ class RedisStore implements StoreInterface
     /**
      * Initialize the Redis data store.
      * @param \Predis\Client|null $redis
+     * @throws \Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function __construct(?Client $redis = null)
     {

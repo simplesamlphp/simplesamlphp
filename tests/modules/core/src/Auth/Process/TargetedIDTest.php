@@ -47,6 +47,7 @@ class TargetedIDTest extends TestCase
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
      * @return array  The state array after processing.
+     * @throws Exception
      */
     private static function processFilter(array $config, array $request): array
     {
@@ -59,6 +60,7 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test the most basic functionality
+     * @throws Exception
      */
     public function testBasic(): void
     {
@@ -76,6 +78,7 @@ class TargetedIDTest extends TestCase
     /**
      * Test with src and dst entityIds.
      * Make sure to overwrite any present eduPersonTargetedId
+     * @throws Exception
      */
     public function testWithSrcDst(): void
     {
@@ -105,6 +108,7 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test with nameId config option set.
+     * @throws Exception
      */
     public function testNameIdGeneration(): void
     {
@@ -150,6 +154,7 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test the outcome to make sure the algorithm remains unchanged
+     * @throws Exception
      */
     public function testOutcome(): void
     {
@@ -166,6 +171,7 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test the outcome when multiple values are given
+     * @throws Exception
      */
     public function testOutcomeMultipleValues(): void
     {
@@ -182,6 +188,7 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test that Id is the same for subsequent invocations with same input.
+     * @throws Exception
      */
     public function testIdIsPersistent(): void
     {
@@ -215,6 +222,7 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test that Id is different for two different usernames and two different sp's
+     * @throws Exception
      */
     public function testIdIsUnique(): void
     {

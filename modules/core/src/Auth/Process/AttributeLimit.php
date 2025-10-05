@@ -130,6 +130,7 @@ class AttributeLimit extends Auth\ProcessingFilter
      *
      * @param array &$state  The current request
      * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
+     * @throws \Exception
      */
     public function process(array &$state): void
     {
@@ -196,6 +197,7 @@ class AttributeLimit extends Auth\ProcessingFilter
      * @param array $values The current values for a given attribute
      * @param array $allowedConfigValues The allowed values, and possibly configuration options.
      * @return array The filtered values
+     * @throws \Exception
      */
     private function filterAttributeValues(array $values, ?array $allowedConfigValues): array
     {

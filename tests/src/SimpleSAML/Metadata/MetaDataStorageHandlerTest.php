@@ -14,6 +14,9 @@ use SimpleSAML\TestUtils\ClearStateTestCase;
 
 class MetaDataStorageHandlerTest extends ClearStateTestCase
 {
+    /**
+     * @throws Exception
+     */
     protected function getHandler(?array $c = null): MetaDataStorageHandler
     {
         $c ??= [
@@ -41,8 +44,10 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
             'empty list' => [[]],
         ];
     }
+
     /**
      * Test that loading specific entities work, and that metadata source precedence is followed
+     * @throws Exception
      */
     #[DataProvider('entityIDsList')]
     public function testLoadEntities(array $entityIDs): void
@@ -71,6 +76,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
 
     /**
      * Test that retrieving a full metadataSet from a source works and precedence works
+     * @throws Exception
      */
     public function testLoadMetadataSet(): void
     {
@@ -95,6 +101,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
 
     /**
      * Query from a metadata set for which we have no entities should be empty
+     * @throws Exception
      */
     public function testLoadMetadataSetEmpty(): void
     {
@@ -104,6 +111,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
 
     /**
      * Test the current metadata entity selection
+     * @throws \SimpleSAML\Error\MetadataNotFound
      */
     public function testGetMetadataCurrent(): void
     {
@@ -114,6 +122,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
 
     /**
      * Test the helper that returns the metadata as a Configuration object
+     * @throws \SimpleSAML\Error\MetadataNotFound
      */
     public function testGetMetadataConfig(): void
     {
@@ -148,6 +157,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
 
     /**
      * Test the current metadata entity selection, empty set
+     * @throws \SimpleSAML\Error\MetadataNotFound
      */
     public function testGetMetadataCurrentEmptySet(): void
     {
@@ -170,8 +180,9 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         $this->getHandler()->getMetaData('doesnotexist', 'saml20-sp-remote');
     }
 
-    /*
+    /**
      * Test using the entityID from metadata-templates/saml20-idp-hosted.php
+     * @throws \SimpleSAML\Error\MetadataNotFound
      */
     public function testSampleEntityIdException(): void
     {
@@ -205,6 +216,9 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         $this->assertCount(2, $idps);
     }
 
+    /**
+     * @throws \SimpleSAML\Error\MetadataNotFound
+     */
     public function testCanGetDefaultHostedIdpInCaseOfMultipleHostedIdps(): void
     {
         $config = [
@@ -219,6 +233,10 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         $this->assertSame('urn:x-simplesamlphp:example-idp-1', $defaultIdp['entityid']);
     }
 
+    /**
+     * @throws \SimpleSAML\Error\MetadataNotFound
+     * @throws \Exception
+     */
     public function testCanGetParticularIdpInCaseOfMultipleHostedIdps(): void
     {
         $config = [
@@ -233,6 +251,9 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         $this->assertSame('urn:x-simplesamlphp:example-idp-2', $particularIdp['entityid']);
     }
 
+    /**
+     * @throws Exception
+     */
     public function testCanOverrideHostedIdpOptionsInCaseOfMultipleHostedIdps(): void
     {
         $config = [

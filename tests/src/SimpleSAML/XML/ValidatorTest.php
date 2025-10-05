@@ -28,6 +28,7 @@ class ValidatorTest extends SigningTestCase
 
 
     /**
+     * @throws Exception
      */
     public function testGetX509Certificate(): void
     {
@@ -55,6 +56,7 @@ class ValidatorTest extends SigningTestCase
 
 
     /**
+     * @throws Exception
      */
     public function testIsNodeValidatedSuccess(): void
     {
@@ -82,6 +84,7 @@ class ValidatorTest extends SigningTestCase
 
 
     /**
+     * @throws Exception
      */
     public function testIsNodeValidatedFailure(): void
     {

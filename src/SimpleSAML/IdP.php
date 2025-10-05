@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use Exception;
-use SimpleSAML\{Auth, Configuration, Error, Utils};
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\IdP\{IFrameLogoutHandler, LogoutHandlerInterface, TraditionalLogoutHandler};
 use SimpleSAML\Metadata\MetaDataStorageHandler;
@@ -82,6 +81,8 @@ class IdP
      * @param string $id The identifier of this IdP.
      *
      * @throws \SimpleSAML\Error\Exception If the IdP is disabled or no such auth source was found.
+     * @throws Exception
+     * @throws \Throwable
      */
     private function __construct(Configuration $config, string $id)
     {
@@ -142,6 +143,8 @@ class IdP
      * @param string $id The identifier of the IdP.
      *
      * @return \SimpleSAML\IdP The IdP.
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public static function getById(Configuration $config, string $id): IdP
     {
@@ -162,6 +165,8 @@ class IdP
      * @param array &$state The state array.
      *
      * @return \SimpleSAML\IdP The IdP.
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public static function getByState(Configuration $config, array &$state): IdP
     {
@@ -190,6 +195,8 @@ class IdP
      * @param string $assocId The association identifier.
      *
      * @return array|null The name of the SP, as an associative array of language => text, or null if this isn't an SP.
+     * @throws \SimpleSAML\Error\MetadataNotFound
+     * @throws \Exception
      */
     public function getSPName(string $assocId): ?array
     {
@@ -225,6 +232,8 @@ class IdP
      * Add an SP association.
      *
      * @param array $association The SP association.
+     * @throws Exception
+     * @throws \Throwable
      */
     public function addAssociation(array $association): void
     {
@@ -242,6 +251,8 @@ class IdP
      * Retrieve list of SP associations.
      *
      * @return array List of SP associations.
+     * @throws Exception
+     * @throws \Throwable
      */
     public function getAssociations(): array
     {
@@ -254,6 +265,8 @@ class IdP
      * Remove an SP association.
      *
      * @param string $assocId The association id.
+     * @throws Exception
+     * @throws \Throwable
      */
     public function terminateAssociation(string $assocId): void
     {
@@ -266,6 +279,7 @@ class IdP
      * Is the current user authenticated?
      *
      * @return boolean True if the user is authenticated, false otherwise.
+     * @throws Exception
      */
     public function isAuthenticated(): bool
     {
@@ -277,6 +291,8 @@ class IdP
      * Called after authproc has run.
      *
      * @param array $state The authentication request state array.
+     * @throws Exception
+     * @throws \Throwable
      */
     public static function postAuthProc(array $state): Response
     {
@@ -304,6 +320,8 @@ class IdP
      * @param array $state The authentication request state array.
      *
      * @throws \SimpleSAML\Error\Exception If we are not authenticated.
+     * @throws Exception
+     * @throws \Throwable
      */
     public static function postAuth(array $state): Response
     {
@@ -351,6 +369,11 @@ class IdP
      * @param array &$state The authentication request state.
      *
      * @throws \SimpleSAML\Module\saml\Error\NoPassive If we were asked to do passive authentication.
+     * @throws \SimpleSAML\Error\AuthSource
+     * @throws \SimpleSAML\SAML2\Exception\Protocol\NoPassiveException
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Throwable
      */
     private function authenticate(array &$state): Response
     {
@@ -373,6 +396,7 @@ class IdP
      * @param array &$state The authentication request state.
      *
      * @throws \Exception If there is no auth source defined for this IdP.
+     * @throws \Throwable
      */
     private function reauthenticate(array &$state): void
     {
@@ -385,6 +409,9 @@ class IdP
      * Process authentication requests.
      *
      * @param array &$state The authentication request state.
+     * @throws \Exception
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function handleAuthenticationRequest(array &$state): Response
     {
@@ -477,6 +504,8 @@ class IdP
      * @param array       &$state The logout request state.
      * @param string|null $assocId The association we received the logout request from, or null if there was no
      * association.
+     * @throws Exception
+     * @throws \Throwable
      */
     public function handleLogoutRequest(array &$state, ?string $assocId): Response
     {
@@ -509,6 +538,8 @@ class IdP
      * @param string                 $assocId The association that is terminated.
      * @param string|null            $relayState The RelayState from the start of the logout.
      * @param \SimpleSAML\Error\Exception|null $error  The error that occurred during session termination (if any).
+     * @throws Exception
+     * @throws \Throwable
      */
     public function handleLogoutResponse(string $assocId, ?string $relayState, ?Error\Exception $error = null): Response
     {
@@ -529,6 +560,8 @@ class IdP
      * This function never returns.
      *
      * @param string $url The URL the user should be returned to after logout.
+     * @throws Exception
+     * @throws \Throwable
      */
     public function doLogoutRedirect(string $url): Response
     {
@@ -547,6 +580,9 @@ class IdP
      * This function never returns.
      *
      * @param array    &$state The logout state from doLogoutRedirect().
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     public static function finishLogoutRedirect(array $state): RedirectResponse
     {

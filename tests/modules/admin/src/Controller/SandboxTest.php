@@ -27,6 +27,8 @@ class SandboxTest extends TestCase
 
     /**
      * Set up for each test.
+     * @throws \Exception
+     * @throws \Throwable
      */
     protected function setUp(): void
     {
@@ -45,6 +47,7 @@ class SandboxTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\ConfigurationError
      */
     public function testSandbox(): void
     {

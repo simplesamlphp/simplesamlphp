@@ -29,6 +29,7 @@ class SyslogLoggingHandler implements LoggingHandlerInterface
     /**
      * Build a new logging handler based on syslog.
      * @param \SimpleSAML\Configuration $config
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     public function __construct(Configuration $config)
     {

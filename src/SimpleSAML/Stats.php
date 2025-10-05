@@ -43,6 +43,7 @@ class Stats
      * @param \SimpleSAML\Configuration $config The configuration.
      *
      * @return mixed A new instance of the configured class.
+     * @throws \Exception
      */
     private static function createOutput(Configuration $config): mixed
     {
@@ -57,6 +58,7 @@ class Stats
     /**
      * Initialize the outputs.
      *
+     * @throws \Exception
      */
     private static function initOutputs(): void
     {
@@ -77,6 +79,7 @@ class Stats
      * @param array  $data Event data. Optional.
      *
      * @return false|null
+     * @throws \Exception
      */
     public static function log(string $event, array $data = []): bool|null
     {

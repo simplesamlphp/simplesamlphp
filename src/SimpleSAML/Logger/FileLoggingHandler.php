@@ -63,6 +63,8 @@ class FileLoggingHandler implements LoggingHandlerInterface
     /**
      * Build a new logging handler based on files.
      * @param \SimpleSAML\Configuration $config
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function __construct(Configuration $config)
     {
@@ -111,6 +113,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
      *
      * @param int    $level The log level.
      * @param string $string The formatted message to log.
+     * @throws \Symfony\Component\Filesystem\Exception\IOException
      */
     public function log(int $level, string $string): void
     {

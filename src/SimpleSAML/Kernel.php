@@ -47,6 +47,7 @@ class Kernel extends BaseKernel
 
     /**
      * @return string
+     * @throws \Exception
      */
     public function getCacheDir(): string
     {
@@ -64,6 +65,7 @@ class Kernel extends BaseKernel
 
     /**
      * @return string
+     * @throws \Exception
      */
     public function getLogDir(): string
     {
@@ -106,6 +108,7 @@ class Kernel extends BaseKernel
      *
      * @param ContainerBuilder $container
      * @param LoaderInterface $loader
+     * @throws \Exception
      */
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
     {
@@ -129,6 +132,7 @@ class Kernel extends BaseKernel
      * Import routes.
      *
      * @param RoutingConfigurator  $routes
+     * @throws \Exception
      */
     protected function configureRoutes(RoutingConfigurator $routes): void
     {

@@ -214,6 +214,7 @@ NOWDOC;
 
 
     /**
+     * @throws \ReflectionException
      */
     public function tearDown(): void
     {
@@ -225,6 +226,7 @@ NOWDOC;
      * @param \SimpleSAML\Configuration $service
      * @param class-string $className
      * @param mixed $value
+     * @throws \ReflectionException
      */
     protected function clearInstance(Configuration $service, string $className, mixed $value = null): void
     {

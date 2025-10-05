@@ -59,6 +59,7 @@ class SubjectIDTest extends TestCase
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
      * @return array  The state array after processing.
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     private static function processFilter(array $config, array $request): array
     {
@@ -73,6 +74,7 @@ class SubjectIDTest extends TestCase
 
     /**
      * Test the most basic functionality
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testBasic(): void
     {
@@ -93,6 +95,7 @@ class SubjectIDTest extends TestCase
 
     /**
      * Test the most basic functionality with hash
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testBasicWithHash(): void
     {
@@ -116,6 +119,7 @@ class SubjectIDTest extends TestCase
 
     /**
      * Test the most basic functionality, but with a scoped scope-attribute
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testScopedScope(): void
     {
@@ -136,6 +140,7 @@ class SubjectIDTest extends TestCase
 
     /**
      * Test that illegal characters in userID throws an exception.
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testUserIDIllegalCharacterThrowsException(): void
     {
@@ -151,6 +156,7 @@ class SubjectIDTest extends TestCase
 
     /**
      * Test that illegal characters in scope throws an exception.
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testScopeIllegalCharacterThrowsException(): void
     {
@@ -166,6 +172,7 @@ class SubjectIDTest extends TestCase
 
     /**
      * Test that generated ID's for different users, but the same SP's are NOT equal
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testUniqueIdentifierPerUserSameSP(): void
     {
@@ -195,6 +202,7 @@ class SubjectIDTest extends TestCase
 
     /**
      * Test that generated ID's for the same user and same SP, but with a different scope are NOT equal
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testUniqueIdentifierDifferentScopes(): void
     {
@@ -233,6 +241,7 @@ class SubjectIDTest extends TestCase
 
     /**
      * Test that weak identifiers log a warning
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testWeakIdentifierLogsWarning(): void
     {
@@ -249,6 +258,7 @@ class SubjectIDTest extends TestCase
 
     /**
      * Test that weak identifiers log a warning: not an actual domain name
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testScopeNotADomainLogsWarning(): void
     {

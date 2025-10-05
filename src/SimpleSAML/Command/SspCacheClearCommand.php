@@ -38,6 +38,7 @@ class SspCacheClearCommand extends Command
     /**
      * @param \Symfony\Component\HttpKernel\CacheClearer\CacheClearerInterface $cacheClearer
      * @param \Symfony\Component\Filesystem\Filesystem $filesystem
+     * @throws \Symfony\Component\Console\Exception\LogicException
      */
     public function __construct(
         private CacheClearerInterface $cacheClearer,
@@ -47,9 +48,8 @@ class SspCacheClearCommand extends Command
         $this->filesystem = $filesystem ?? new Filesystem();
     }
 
-
     /**
-     * @return void
+     * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
      */
     protected function configure(): void
     {
@@ -73,6 +73,7 @@ EOF,);
      * @param \Symfony\Component\Console\Input\InputInterface $input
      * @param \Symfony\Component\Console\Input\OutputInterface $output
      *
+     * @throws \RuntimeException
      * @throws \Symfony\Component\Console\Exception\ExceptionInterface
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -284,10 +285,10 @@ EOF,);
         return false;
     }
 
-
     /**
      * @param string $warmupDir
      * @param string $realBuildDir
+     * @throws \LogicException
      */
     private function warmup(string $warmupDir, string $realBuildDir): void
     {

@@ -59,6 +59,8 @@ class PairwiseID extends SubjectID
      * Apply filter to add the Pairwise ID.
      *
      * @param array &$state  The current state.
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
      */
     public function process(array &$state): void
     {

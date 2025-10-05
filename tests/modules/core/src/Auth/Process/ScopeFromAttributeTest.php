@@ -20,6 +20,7 @@ class ScopeFromAttributeTest extends TestCase
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
      * @return array  The state array after processing.
+     * @throws \Exception
      */
     private static function processFilter(array $config, array $request): array
     {
@@ -31,6 +32,7 @@ class ScopeFromAttributeTest extends TestCase
 
     /**
      * Test the most basic functionality.
+     * @throws \Exception
      */
     public function testBasic(): void
     {
@@ -52,6 +54,7 @@ class ScopeFromAttributeTest extends TestCase
 
     /**
      * If scope already set, module must not overwrite.
+     * @throws \Exception
      */
     public function testNoOverwrite(): void
     {
@@ -73,6 +76,7 @@ class ScopeFromAttributeTest extends TestCase
 
     /**
      * If source attribute not set, nothing happens
+     * @throws \Exception
      */
     public function testNoSourceAttribute(): void
     {
@@ -93,6 +97,7 @@ class ScopeFromAttributeTest extends TestCase
 
     /**
      * When multiple @ signs in attribute, should use first one.
+     * @throws \Exception
      */
     public function testMultiAt(): void
     {
@@ -113,6 +118,7 @@ class ScopeFromAttributeTest extends TestCase
 
     /**
      * When the source attribute doesn't have a scope, a warning is emitted
+     * @throws \Exception
      */
     public function testNoAt(): void
     {

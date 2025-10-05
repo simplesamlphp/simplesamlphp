@@ -22,6 +22,7 @@ class FilterScopesTest extends TestCase
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
      * @return array  The state array after processing.
+     * @throws \Exception
      */
     private function processFilter(array $config, array $request): array
     {
@@ -33,6 +34,7 @@ class FilterScopesTest extends TestCase
 
     /**
      * Test valid scopes.
+     * @throws \Exception
      */
     public function testValidScopes(): void
     {
@@ -86,6 +88,7 @@ class FilterScopesTest extends TestCase
 
     /**
      * Test implicit scope matching on IdP hostname
+     * @throws \Exception
      */
     public function testImplicitScopes(): void
     {
@@ -116,6 +119,7 @@ class FilterScopesTest extends TestCase
 
     /**
      * Test invalid scopes.
+     * @throws \Exception
      */
     public function testInvalidScopes(): void
     {
@@ -163,6 +167,7 @@ class FilterScopesTest extends TestCase
 
     /**
      * Test that implicit matching is not done when explicit scopes present
+     * @throws \Exception
      */
     public function testNoImplicitMatchingWhenExplicitScopes(): void
     {
@@ -191,6 +196,7 @@ class FilterScopesTest extends TestCase
 
     /**
      * Test that the scope is considered to be the part after the first @ sign
+     * @throws \Exception
      */
     public function testAttributeValueMultipleAt(): void
     {

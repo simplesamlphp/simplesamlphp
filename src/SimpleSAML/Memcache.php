@@ -7,7 +7,6 @@ namespace SimpleSAML;
 use Exception;
 use Memcached;
 use SimpleSAML\Error\ErrorCodes;
-use SimpleSAML\Utils;
 
 use function array_key_exists;
 use function array_merge_recursive;
@@ -54,6 +53,8 @@ class Memcache
      * @param string $key The key of the data.
      *
      * @return mixed The data stored with the given key, or null if no data matching the key was found.
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public static function get(string $key): mixed
     {
@@ -158,6 +159,7 @@ class Memcache
      * @param string       $key The key of the data.
      * @param mixed        $value The value of the data.
      * @param integer|null $expire The expiration timestamp of the data.
+     * @throws Exception
      */
     public static function set(string $key, mixed $value, ?int $expire = null): void
     {
@@ -184,6 +186,7 @@ class Memcache
      * Delete a key-value pair from the memcache servers.
      *
      * @param string $key The key we should delete.
+     * @throws Exception
      */
     public static function delete(string $key): void
     {
@@ -449,6 +452,7 @@ class Memcache
      * all server groups.
      *
      * @return array An array with the extended stats output for each server group.
+     * @throws Exception
      */
     public static function getRawStats(): array
     {

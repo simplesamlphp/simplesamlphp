@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Source;
 
-use SimpleSAML\{Configuration, Error, Utils};
+use SimpleSAML\{Configuration, Error};
 use SimpleSAML\Module\core\Auth\UserPassBase;
 use Symfony\Component\PasswordHasher\Hasher\NativePasswordHasher;
 
@@ -22,6 +22,7 @@ class AdminPassword extends UserPassBase
      *
      * @param array $info  Information about this authentication source.
      * @param array $config  Configuration.
+     * @throws \Exception
      */
     public function __construct(array $info, array $config)
     {
@@ -44,6 +45,8 @@ class AdminPassword extends UserPassBase
      * @param string $username  The username the user wrote.
      * @param string $password  The password the user wrote.
      * @return array  Associative array with the users attributes.
+     * @throws \SimpleSAML\Error\Error
+     * @throws \Exception
      */
     protected function login(
         string $username,

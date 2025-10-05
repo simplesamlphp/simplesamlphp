@@ -22,6 +22,9 @@ class ErrorTest extends TestCase
     private MockObject|Throwable|null $causeMock;
     private MockObject|ErrorCodes|null $errorCodesMock;
 
+    /**
+     * @throws \PHPUnit\Framework\MockObject\Exception
+     */
     protected function setUp(): void
     {
         $this->errorCodes = new ErrorCodes();

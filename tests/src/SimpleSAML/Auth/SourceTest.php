@@ -17,6 +17,7 @@ use SimpleSAML\Test\Utils\{TestAuthSource, TestAuthSourceFactory};
 class SourceTest extends ClearStateTestCase
 {
     /**
+     * @throws \ReflectionException
      */
     public function testParseAuthSource(): void
     {

@@ -28,6 +28,8 @@ class ErrorReportTest extends TestCase
 
     /**
      * Set up for each test.
+     * @throws \Exception
+     * @throws \Throwable
      */
     protected function setUp(): void
     {
@@ -50,6 +52,8 @@ class ErrorReportTest extends TestCase
 
     /**
      * Test that we are presented with an 'error was reported' page
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \PHPMailer\PHPMailer\Exception
      */
     public function testErrorReportSent(): void
     {
@@ -90,6 +94,8 @@ class ErrorReportTest extends TestCase
 
     /**
      * Test that we are presented with an 'error was reported' page
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \PHPMailer\PHPMailer\Exception
      */
     public function testErrorReport(): void
     {

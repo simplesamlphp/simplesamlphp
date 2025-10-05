@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth\Source;
 
 use Exception;
-use SimpleSAML\{Auth, Configuration, Error, Session};
-use Symfony\Component\HttpFoundation\{Request, Response};
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function in_array;
 
@@ -29,6 +32,7 @@ abstract class AbstractSourceSelector extends Auth\Source
      *
      * @param array $info Information about this authentication source.
      * @param array $config Configuration.
+     * @throws Exception
      */
     public function __construct(array $info, array $config)
     {
@@ -54,6 +58,9 @@ abstract class AbstractSourceSelector extends Auth\Source
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request
      * @param array &$state Information about the current authentication.
+     * @throws \Exception
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function authenticate(Request $request, array &$state): ?Response
     {
@@ -72,6 +79,9 @@ abstract class AbstractSourceSelector extends Auth\Source
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \SimpleSAML\Auth\Source $as
      * @param array $state
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
+     * @throws \Throwable
      */
     public static function doAuthentication(Request $request, Auth\Source $as, array &$state): ?Response
     {

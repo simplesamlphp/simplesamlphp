@@ -25,6 +25,7 @@ class LocalizationTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Localization().
+     * @throws \Exception
      */
     public function testLocalization(): void
     {
@@ -36,6 +37,7 @@ class LocalizationTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Localization::addDomain().
+     * @throws \Exception
      */
     public function testAddDomain(): void
     {
@@ -51,6 +53,7 @@ class LocalizationTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Localization::addModuleDomains().
+     * @throws \Exception
      */
     public function testAddModuleDomain(): void
     {
@@ -68,6 +71,7 @@ class LocalizationTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Localization::addModuleDomains() with a theme.
+     * @throws \Exception
      */
     public function testAddModuleDomainWithTheme(): void
     {

@@ -51,6 +51,7 @@ class ServiceProviderTest extends TestCase
     /**
      * Set up for each test.
      * @throws Exception
+     * @throws \Throwable
      */
     protected function setUp(): void
     {
@@ -112,6 +113,7 @@ class ServiceProviderTest extends TestCase
 
     /**
      * Tear down after each test.
+     * @throws Exception
      */
     protected function tearDown(): void
     {
@@ -126,6 +128,7 @@ class ServiceProviderTest extends TestCase
      * Test that accessing the login-endpoint with a non-SP authsource leads to an exception
      *
      * @return void
+     * @throws \Throwable
      */
     public function testLoginWrongAuthSource(): void
     {
@@ -146,6 +149,8 @@ class ServiceProviderTest extends TestCase
      * Test that accessing the login-endpoint without ReturnTo parameter leads to an exception
      *
      * @return void
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function testLoginMissingReturnTo(): void
     {
@@ -165,6 +170,8 @@ class ServiceProviderTest extends TestCase
      * Test that accessing the login-endpoint with empty ReturnTo parameter leads to an exception
      *
      * @return void
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function testLoginEmptyReturnTo(): void
     {
@@ -186,6 +193,8 @@ class ServiceProviderTest extends TestCase
      * Test that accessing the login-endpoint with ReturnTo parameter leads to a Response
      *
      * @return void
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function testLogin(): void
     {
@@ -208,6 +217,8 @@ class ServiceProviderTest extends TestCase
      * Test that accessing the discoResponse-endpoint without AuthID leads to an exception
      *
      * @return void
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function testDiscoResponseMissingAuthId(): void
     {
@@ -229,6 +240,8 @@ class ServiceProviderTest extends TestCase
      * Test that accessing the discoResponse-endpoint with AuthID but without idpentityid results in an exception
      *
      * @return void
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function testWithAuthIdWithoutEntity(): void
     {
@@ -319,6 +332,7 @@ class ServiceProviderTest extends TestCase
      * @param   bool   $expectingException
      *
      * @return void
+     * @throws Exception
      */
     #[DataProvider('loginNotAuthenticatedDataProvider')]
     public function testLoginHandleNotAuthenticated(
@@ -439,6 +453,7 @@ class ServiceProviderTest extends TestCase
      * @param   bool   $expectingException
      *
      * @return void
+     * @throws Exception
      */
     #[DataProvider('loginAuthenticatedDataProvider')]
     public function testLoginHandleAuthenticated(
@@ -522,6 +537,9 @@ class ServiceProviderTest extends TestCase
      * Test that accessing the discoResponse-endpoint with non-SP authsource in state results in an exception
      *
      * @return void
+     * @throws \SimpleSAML\Error\BadRequest
+     * @throws \SimpleSAML\Error\NoState
+     * @throws \Throwable
      */
     public function testWithNonSPAuthSource(): void
     {
@@ -549,6 +567,8 @@ class ServiceProviderTest extends TestCase
     /**
      * Test that accessing the discoResponse-endpoint with SP authsource in state results in a Response
      * @return void
+     * @throws Exception
+     * @throws \Throwable
      */
     public function testWithSPAuthSource(): void
     {
@@ -591,6 +611,7 @@ class ServiceProviderTest extends TestCase
      * Test that accessing the wrongAuthnContextClassRef-endpoint without AuthID leads to a Template
      *
      * @return void
+     * @throws \SimpleSAML\Error\ConfigurationError
      */
     public function testWrongAuthnContextClassRef(): void
     {
@@ -797,6 +818,9 @@ XML;
     /**
      * Test that accessing the metadata-endpoint with or without authentication
      * and admin.protectmetadata set to true or false is handled properly
+     * @throws \SimpleSAML\Error\AuthSource
+     * @throws \Exception
+     * @throws \Throwable
      */
     #[DataProvider('provideMetadataAccess')]
     public function testMetadataAccess(bool $authenticated, bool $protected): void
@@ -843,6 +867,9 @@ XML;
 
     /**
      * Test that requesting a non-existing authsource yields an error
+     * @throws \SimpleSAML\Error\AuthSource
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function testMetadataUnknownEntityThrowsError(): void
     {
@@ -860,6 +887,9 @@ XML;
 
     /**
      * Basic smoke test of generated metadata
+     * @throws \SimpleSAML\Error\AuthSource
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function testMetadataYieldsContent(): void
     {
@@ -880,6 +910,9 @@ XML;
 
     /**
      * Check if caching headers are set
+     * @throws \SimpleSAML\Error\AuthSource
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function testMetadataCachingHeaders(): void
     {

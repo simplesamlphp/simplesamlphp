@@ -23,9 +23,10 @@ class Cron
     private Configuration $cronconfig;
 
 
-    /*
+    /**
      * @param \SimpleSAML\Configuration $cronconfig The cron configuration to use. If not specified defaults
      * to `config/module_cron.php`
+     * @throws \Exception
      */
     public function __construct(?Configuration $cronconfig = null)
     {
@@ -67,6 +68,7 @@ class Cron
     /**
      * @param string $tag
      * @return bool
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     public function isValidTag(string $tag): bool
     {

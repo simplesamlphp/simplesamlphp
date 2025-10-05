@@ -24,6 +24,7 @@ class DiscoTest extends TestCase
 
     /**
      * Set up for each test.
+     * @throws \Exception
      */
     protected function setUp(): void
     {
@@ -44,6 +45,8 @@ class DiscoTest extends TestCase
      * Test that accessing the disco-endpoint leads to a RedirectResponse
      *
      * @return void
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testDisco(): void
     {

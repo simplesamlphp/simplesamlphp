@@ -30,6 +30,8 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
      * @return string|null
      *
      * NOTE: cannot typehint due to upstream restrictions
+     * @throws \Twig\Error\LoaderError
+     * @throws \Exception
      */
     protected function findTemplate(string $name, bool $throw = true)
     {
@@ -68,6 +70,7 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
      * @return string The templates directory of a module.
      *
      * @throws \InvalidArgumentException If the module is not enabled or it has no templates directory.
+     * @throws \Exception
      */
     public static function getModuleTemplateDir(string $module): string
     {

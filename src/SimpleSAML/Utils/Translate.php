@@ -30,6 +30,7 @@ class Translate
 
     /**
      * @param \SimpleSAML\Configuration $configuration
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     public function __construct(
         protected Configuration $configuration,
@@ -37,11 +38,13 @@ class Translate
         $this->baseDir = $configuration->getBaseDir();
     }
 
-
     /**
      * @param string $module
      * @param \Gettext\Scanner\PhpScanner $phpScanner
      * @return \Gettext\Scanner\PhpScanner
+     *
+     * @throws \LogicException
+     * @throws \Symfony\Component\Finder\Exception\DirectoryNotFoundException
      */
     public function getTranslationsFromPhp(string $module, PhpScanner $phpScanner): PhpScanner
     {
@@ -65,6 +68,11 @@ class Translate
     /**
      * @param string $module
      * @param bool $includeThemes
+     *
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function getTranslationsFromTwig(string $module, bool $includeThemes = false): array
     {

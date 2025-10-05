@@ -32,6 +32,8 @@ class TestTest extends TestCase
 
     /**
      * Set up for each test.
+     * @throws \Exception
+     * @throws \Throwable
      */
     protected function setUp(): void
     {
@@ -110,6 +112,7 @@ class TestTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\ConfigurationError
      */
     public function testLogoutReturnsTemplate(): void
     {

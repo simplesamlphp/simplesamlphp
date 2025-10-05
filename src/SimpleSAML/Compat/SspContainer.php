@@ -54,6 +54,9 @@ class SspContainer extends AbstractContainer
      * {@inheritdoc}
      * @param mixed $message
      * @param string $type
+     * @throws \DOMException
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     public function debugMessage($message, string $type): void
     {
@@ -66,6 +69,8 @@ class SspContainer extends AbstractContainer
      * {@inheritdoc}
      * @param string $url
      * @param array $data
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function getPOSTRedirectURL(string $url, array $data = []): string
     {
@@ -90,6 +95,9 @@ class SspContainer extends AbstractContainer
      * @param string $filename
      * @param string $date
      * @param int|null $mode
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Random\RandomException
+     * @throws \InvalidArgumentException
      */
     public function writeFile(string $filename, string $data, ?int $mode = null): void
     {

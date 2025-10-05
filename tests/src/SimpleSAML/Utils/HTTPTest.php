@@ -134,6 +134,7 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * Test SimpleSAML\Utils\HTTP::getSelfHost() with and without custom port.
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testGetSelfHost(): void
     {
@@ -154,6 +155,7 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * Test SimpleSAML\Utils\HTTP::getSelfHostWithPort(), with and without custom port.
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testGetSelfHostWithPort(): void
     {
@@ -183,6 +185,7 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * Test SimpleSAML\Utils\HTTP::getSelfURL().
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testGetSelfURLMethods(): void
     {
@@ -322,6 +325,7 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * Test SimpleSAML\Utils\HTTP::checkURLAllowed(), without regex.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testCheckURLAllowedWithoutRegex(): void
     {
@@ -355,6 +359,7 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * Test SimpleSAML\Utils\HTTP::checkURLAllowed(), with regex.
+     * @throws \SimpleSAML\Error\Exception
      */
     public function testCheckURLAllowedWithRegex(): void
     {
@@ -470,6 +475,8 @@ class HTTPTest extends ClearStateTestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\CannotSetCookie
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     #[Depends('testXdebugMode')]
     #[RunInSeparateProcess]
@@ -531,6 +538,7 @@ class HTTPTest extends ClearStateTestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testSetCookieInsecure(): void
     {
@@ -552,6 +560,8 @@ class HTTPTest extends ClearStateTestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\CannotSetCookie
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     #[Depends('testXdebugMode')]
     #[RunInSeparateProcess]

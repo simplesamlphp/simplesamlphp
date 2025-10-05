@@ -56,6 +56,8 @@ class PersistentNameID extends BaseNameIDGenerator
      *
      * @param array $state The state array.
      * @return string|null The NameID value.
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
      */
     protected function getValue(array &$state): ?string
     {

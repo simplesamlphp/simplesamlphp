@@ -87,6 +87,7 @@ abstract class BaseNameIDGenerator extends Auth\ProcessingFilter
      * Generate transient NameID.
      *
      * @param array &$state  The request state.
+     * @throws \Exception
      */
     public function process(array &$state): void
     {

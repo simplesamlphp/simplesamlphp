@@ -86,6 +86,10 @@ class CardinalitySingle extends Auth\ProcessingFilter
      * Process this filter
      *
      * @param array &$state  The current request
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function process(array &$state): void
     {

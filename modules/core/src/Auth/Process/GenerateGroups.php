@@ -36,6 +36,7 @@ class GenerateGroups extends Auth\ProcessingFilter
      *
      * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
+     * @throws Exception
      */
     public function __construct(array &$config, $reserved)
     {
@@ -65,6 +66,7 @@ class GenerateGroups extends Auth\ProcessingFilter
      * Apply filter to add groups attribute.
      *
      * @param array &$state  The current request
+     * @throws Exception
      */
     public function process(array &$state): void
     {

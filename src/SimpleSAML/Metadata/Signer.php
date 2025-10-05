@@ -166,6 +166,7 @@ class Signer
      * algorithms to use, respectively.
      *
      * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     private static function getMetadataSigningAlgorithm(
         Configuration $config,

@@ -66,6 +66,7 @@ class EMailTest extends ClearStateTestCase
      * Test that the data given is visible in the resulting mail
      *
      * @param string $template
+     * @throws \SimpleSAML\Error\ConfigurationError
      */
     #[DataProvider('mailTemplates')]
     public function testMailContents($template): void
@@ -99,6 +100,7 @@ class EMailTest extends ClearStateTestCase
 
 
     /**
+     * @throws Exception
      */
     public function testInvalidTransportConfiguration(): void
     {
@@ -136,6 +138,7 @@ class EMailTest extends ClearStateTestCase
     /**
      * Test setting configuration.
      *
+     * @throws Exception
      */
     public function testGetDefaultMailAddress(): void
     {

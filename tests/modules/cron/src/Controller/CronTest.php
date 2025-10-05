@@ -32,6 +32,8 @@ class CronTest extends TestCase
 
     /**
      * Set up for each test.
+     * @throws \Exception
+     * @throws \Throwable
      */
     protected function setUp(): void
     {
@@ -74,6 +76,8 @@ class CronTest extends TestCase
 
 
     /**
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function testInfo(): void
     {
@@ -100,6 +104,8 @@ class CronTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function testRun(): void
     {
@@ -122,6 +128,8 @@ class CronTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     #[DataProvider('provideStupidSecret')]
     public function testRunWithStupidSecretThrowsException(string $secret): void
@@ -139,6 +147,8 @@ class CronTest extends TestCase
 
 
     /**
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     #[DataProvider('provideStupidSecret')]
     public function testRunWithConfiguredStupidSecretThrowsException(string $secret): void

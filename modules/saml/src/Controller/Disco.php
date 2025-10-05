@@ -34,6 +34,8 @@ class Disco
      * Built-in IdP discovery service
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function disco(Request $request): Response
     {

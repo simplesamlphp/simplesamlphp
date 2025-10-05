@@ -114,7 +114,10 @@ class HTTP
      * @param string $destination The destination URL.
      * @param array  $data An associative array containing the data to be posted to $destination.
      *
-     * @throws Error\Exception If the current session is transient.
+     * @throws \Exception
+     * @throws \SimpleSAML\Error\Exception If the current session is transient.
+     * @throws \Throwable
+     *
      * @return string  A URL which allows to securely post a form to $destination.
      *
      */
@@ -258,6 +261,7 @@ class HTTP
      *
      * @throws \InvalidArgumentException If $url is not a string or is empty, or $parameters is not an array.
      * @throws \SimpleSAML\Error\Exception If $url is not a valid HTTP URL.
+     * @throws \Exception
      *
      */
     private function redirect(string $url, array $parameters = []): RedirectResponse
@@ -291,6 +295,7 @@ class HTTP
      *
      * @return string A random identifier that can be used to retrieve the data from the current session.
      *
+     * @throws \Exception
      */
     private function savePOSTData(Session $session, string $destination, array $data): string
     {
@@ -350,6 +355,8 @@ class HTTP
      *
      *     page telling about the missing cookie.
      * @throws \InvalidArgumentException If $retryURL is neither a string nor null.
+     * @throws \Exception
+     * @throws \Throwable
      *
      */
     public function checkSessionCookie(?string $retryURL = null): void
@@ -380,7 +387,8 @@ class HTTP
      * @return string The normalized URL itself if it is allowed. An empty string if the $url parameter is empty as
      * defined by the empty() function.
      * @throws \InvalidArgumentException If the URL is malformed.
-     * @throws Error\Exception If the URL is not allowed by configuration.
+     * @throws \SimpleSAML\Error\Exception If the URL is not allowed by configuration.
+     * @throws \Exception
      *
      */
     public function checkURLAllowed(string $url, ?array $trustedSites = null): string
@@ -469,7 +477,8 @@ class HTTP
      * @return string|array An array if $getHeaders is set, containing the data and the headers respectively; string
      *  otherwise.
      * @throws \InvalidArgumentException If the input parameters are invalid.
-     * @throws Error\Exception If the file or URL cannot be retrieved.
+     * @throws \SimpleSAML\Error\Exception If the file or URL cannot be retrieved.
+     * @throws \Exception
      *
      */
     public function fetch(string $url, array $context = [], bool $getHeaders = false)
@@ -654,6 +663,7 @@ class HTTP
      *
      * @return string The absolute base URL for the SimpleSAMLphp installation.
      * @throws \SimpleSAML\Error\CriticalConfigurationError If 'baseurlpath' has an invalid format.
+     * @throws \Exception
      *
      */
     public function getBaseURL(): string
@@ -704,6 +714,9 @@ class HTTP
      *
      * @return string  A URL which can be accessed to post the data.
      * @throws \InvalidArgumentException If $destination is not a string or $data is not an array.
+     * @throws \Exception
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      *
      */
     public function getPOSTRedirectURL(string $destination, array $data): string
@@ -731,6 +744,9 @@ class HTTP
      * E.g. www.example.com
      *
      * @return string The current host.
+     *
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
      */
     public function getSelfHost(): string
     {
@@ -747,6 +763,9 @@ class HTTP
      *
      * @return string The current host, followed by a colon and the port number, in case the port is not standard for
      * the protocol.
+     *
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
      */
     public function getSelfHostWithNonStandardPort(): string
     {
@@ -766,6 +785,9 @@ class HTTP
      * current SP, as defined in the global configuration.
      *
      * @return string The current host (with non-default ports included) plus the URL path.
+     *
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
      */
     public function getSelfHostWithPath(): string
     {
@@ -786,6 +808,9 @@ class HTTP
      * Note that this method does NOT make use of the HTTP X-Forwarded-* set of headers.
      *
      * @return string The current URL, including query parameters.
+     *
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
      */
     public function getSelfURL(): string
     {
@@ -845,6 +870,9 @@ class HTTP
      * optionally, the port number.
      *
      * @return string The current URL without path or query parameters.
+     *
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
      */
     public function getSelfURLHost(): string
     {
@@ -862,6 +890,9 @@ class HTTP
      * Retrieve the current URL using the base URL in the configuration, without the query parameters.
      *
      * @return string The current URL, not including query parameters.
+     *
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
      */
     public function getSelfURLNoQuery(): string
     {
@@ -878,6 +909,9 @@ class HTTP
      * This function checks if we are using HTTPS as protocol.
      *
      * @return boolean True if the HTTPS is used, false otherwise.
+     *
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
      */
     public function isHTTPS(): bool
     {
@@ -893,6 +927,8 @@ class HTTP
      *
      * @return string An absolute URL for the given relative URL.
      * @throws \InvalidArgumentException If $url is not a string or a valid URL.
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
      */
     public function normalizeURL(string $url): string
     {
@@ -959,6 +995,8 @@ class HTTP
      * name, without a value.
      *
      * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function redirectTrustedURL(string $url, array $parameters = []): RedirectResponse
     {
@@ -984,6 +1022,8 @@ class HTTP
      * name, without a value.
      *
      * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Exception
      */
     public function redirectUntrustedURL(string $url, array $parameters = []): RedirectResponse
     {
@@ -1009,6 +1049,8 @@ class HTTP
      * @return string An absolute URL for the given relative URL.
      * @throws \InvalidArgumentException If the base URL cannot be parsed into a valid URL, or the given parameters
      *     are not strings.
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \Exception
      */
     public function resolveURL(string $url, ?string $base = null): string
     {
@@ -1080,8 +1122,10 @@ class HTTP
      * @param array|NULL  $params Cookie parameters.
      * @param bool        $throw Whether to throw exception if setcookie() fails.
      *
+     * @throws \Exception
      * @throws \InvalidArgumentException If any parameter has an incorrect type.
      * @throws \SimpleSAML\Error\CannotSetCookie If the headers were already sent and the cookie cannot be set.
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function setCookie(string $name, ?string $value, ?array $params = null, bool $throw = true): void
     {
@@ -1186,6 +1230,7 @@ class HTTP
      * @param string $destination The destination URL.
      * @param array  $data An associative array with the data to be posted to $destination.
      *
+     * @throws \Exception
      * @throws \InvalidArgumentException If $destination is not a string or $data is not an array.
      * @throws \SimpleSAML\Error\Exception If $destination is not a valid HTTP URL.
      */

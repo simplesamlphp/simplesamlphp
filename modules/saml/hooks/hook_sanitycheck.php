@@ -7,6 +7,10 @@ use SimpleSAML\{Configuration, Utils};
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 
+/**
+ * @throws \SimpleSAML\Error\Exception
+ * @throws Exception
+ */
 function saml_hook_sanitycheck(array &$hookinfo): void
 {
     Assert::keyExists($hookinfo, 'errors');

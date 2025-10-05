@@ -52,6 +52,8 @@ class Exception
      * @param Request $request The request that lead to this login operation.
      * @param string $code The error code
      * @return \SimpleSAML\XHTML\Template  An HTML template
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \Exception
      */
     public function error(Request $request, string $code): Response
     {
@@ -109,8 +111,12 @@ class Exception
      * Show cardinality error.
      *
      * @param Request $request The request that lead to this login operation.
-     * @throws \SimpleSAML\Error\BadRequest
      * @return \SimpleSAML\XHTML\Template  An HTML template
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\BadRequest
+     * @throws \SimpleSAML\Error\NoState
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function cardinality(Request $request): Response
     {
@@ -144,6 +150,10 @@ class Exception
      * @param Request $request The request that lead to this login operation.
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
      *   An HTML template or a redirection if we are not authenticated.
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     public function nocookie(Request $request): Template|RedirectResponse
     {
@@ -170,6 +180,10 @@ class Exception
      * An HTML template, a redirect or a "runnable" response.
      *
      * @throws \SimpleSAML\Error\BadRequest
+     * @throws \SimpleSAML\Error\ConfigurationError
+     * @throws \SimpleSAML\Error\NoState
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \Throwable
      */
     public function shortSsoInterval(Request $request): Template|Response
     {
