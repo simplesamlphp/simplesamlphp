@@ -5,14 +5,20 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.3.9
+## Version 2.3.10
 
 Released TBD
+
+## Version 2.3.9
+
+Released 2025-10-05
 
 * Fix auth state AuthnInstant (#2478)
 * Allow "Secure" cookie attribute via HTTP on localhost (#2483)
 * Fix override over errorURL
 * Fix FontAwesome icon names (#2509)
+* Prevent emulation of SQL prepare-statements
+* Remove double directory separator; \SimpleSAML\Configuration::getBasedir always ends with one
 
 `authorize`
 
