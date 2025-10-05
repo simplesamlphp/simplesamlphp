@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Locale;
 
-use Gettext\{TranslatorFunctions};
-use SimpleSAML\{Configuration};
+use Gettext\TranslatorFunctions;
+use SimpleSAML\Configuration;
 
 use function array_slice;
 use function func_get_args;
