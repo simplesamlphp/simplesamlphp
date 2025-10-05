@@ -114,6 +114,7 @@ class Configuration implements Utils\ClearableState
      */
     private ?string $filename = null;
 
+
     /**
      * Initializes a configuration from the given array.
      *
@@ -1016,7 +1017,7 @@ class Configuration implements Utils\ClearableState
      * @psalm-return      ($default is null ? array|null : array)
      * @throws \SimpleSAML\Assert\AssertionFailedException
      */
-    public function getOptionalArrayize(string $name, $default): ?array
+    public function getOptionalArrayize(string $name, ?array $default): ?array
     {
         $ret = $this->getOptionalValue($name, $default);
 

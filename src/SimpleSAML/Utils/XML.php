@@ -48,8 +48,6 @@ class XML
      *     values allowed.
      * @throws \SimpleSAML\Error\Exception If $message contains a doctype declaration.
      * @throws Exception
-     *
-     *
      */
     public function checkSAMLMessage(string $message, string $type): void
     {
@@ -100,10 +98,8 @@ class XML
      *      - 'encrypt': for encrypted messages.
      *
      * @throws \InvalidArgumentException If $type is not a string or $message is neither a string nor a \DOMElement.
-     * @throws DOMException
-     * @throws Exception
-     *
-     *
+     * @throws \DOMException
+     * @throws \Exception
      */
     public function debugSAMLMessage(string|DOMElement $message, string $type): void
     {
@@ -157,8 +153,6 @@ class XML
      *     string.
      *
      * @throws \InvalidArgumentException If $root is not a DOMElement or $indentBase is not a string.
-     *
-     *
      */
     public function formatDOMElement(DOMNode $root, string $indentBase = ''): void
     {
@@ -243,7 +237,6 @@ class XML
      * @return string The formatted string.
      * @throws \InvalidArgumentException If the parameters are not strings.
      * @throws \DOMException If the input does not parse correctly as an XML string.
-     *
      */
     public function formatXMLString(string $xml, string $indentBase = ''): string
     {
@@ -277,7 +270,6 @@ class XML
      *
      * @return boolean True if both namespace and local name matches, false otherwise.
      * @throws \InvalidArgumentException If the namespace shortcut is unknown.
-     *
      */
     public function isDOMNodeOfType(DOMNode $element, string $name, string $nsURI): bool
     {
@@ -326,10 +318,9 @@ class XML
      *
      * @return bool|string Returns a string with errors found if validation fails. True if validation passes ok.
      * @throws \InvalidArgumentException If $schema is not a string, or $xml is neither a string nor a \DOMDocument.
-     * @throws Exception
-     *
+     * @throws \Exception
      */
-    public function isValid(string|DOMDocument $xml, string $schema)
+    public function isValid(string|DOMDocument $xml, string $schema): bool|string
     {
         Errors::begin();
 

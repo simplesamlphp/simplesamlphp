@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\multiauth\Auth\Source;
 
-use SimpleSAML\SAML2\Exception\Protocol\NoAuthnContextException;
 use Exception;
-use SimpleSAML\{Auth, Configuration, Error, Module, Session, Utils};
+use SimpleSAML\{Auth, Configuration, Error, SimpleSAML\HTTP\RunnableResponse, Module, Session, Utils};
+use SimpleSAML\SAML2\Exception\Protocol\NoAuthnContextException;
 use Symfony\Component\HttpFoundation\{Request, Response};
 
 use function array_intersect;

@@ -172,7 +172,11 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
     public function testGetMetaDataNonExistentEntity(): void
     {
         $this->expectException(MetadataNotFound::class);
-        $this->expectExceptionMessage("METADATANOTFOUND('%ENTITYID%' => 'doesnotexist')");
+        $exceptionMessage = [
+            "errorCode" => "METADATANOTFOUND",
+            "%ENTITYID%" => "doesnotexist",
+        ];
+        $this->expectExceptionMessage(json_encode($exceptionMessage));
         $this->getHandler()->getMetaData('doesnotexist', 'saml20-sp-remote');
     }
 

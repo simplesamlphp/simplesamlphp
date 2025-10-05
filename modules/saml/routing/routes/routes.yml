@@ -35,12 +35,28 @@ saml-sp-wrongAuthnContextClassRef:
   }
   methods: [GET]
 
+saml-sp-assertionConsumerService-method-not-allowed:
+  path: /sp/saml2-acs.php/{sourceId}
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\Exception::methodNotAllowed',
+    allowedMethods: ['GET', 'POST']
+  }
+  condition: "context.getMethod() not in ['GET', 'POST']"
+
 saml-sp-assertionConsumerService:
   path: /sp/saml2-acs.php/{sourceId}
   defaults: {
     _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::assertionConsumerService'
   }
   methods: [GET, POST]
+
+saml-sp-singleLogoutService-method-not-allowed:
+  path: /sp/saml2-logout.php/{sourceId}
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\Exception::methodNotAllowed',
+    allowedMethods: ['GET', 'POST']
+  }
+  condition: "context.getMethod() not in ['GET', 'POST']"
 
 saml-sp-singleLogoutService:
   path: /sp/saml2-logout.php/{sourceId}
@@ -64,12 +80,28 @@ saml-legacy-sp-metadata:
   }
   methods: [GET]
 
+websso-single-sign-on-method-not-allowed:
+  path: /idp/singleSignOnService
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\Exception::methodNotAllowed',
+    allowedMethods: ['GET', 'POST']
+  }
+  condition: "context.getMethod() not in ['GET', 'POST']"
+
 websso-single-sign-on:
   path: /idp/singleSignOnService
   defaults: {
     _controller: 'SimpleSAML\Module\saml\Controller\WebBrowserSingleSignOn::singleSignOnService'
   }
   methods: [GET, POST]
+
+websso-artifact-resolution-method-not-allowed:
+  path: /idp/artifactResolutionService
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\Exception::methodNotAllowed',
+    allowedMethods: ['GET', 'POST']
+  }
+  condition: "context.getMethod() not in ['GET', 'POST']"
 
 websso-artifact-resolution:
   path: /idp/artifactResolutionService
@@ -84,6 +116,14 @@ websso-metadata:
     _controller: 'SimpleSAML\Module\saml\Controller\Metadata::metadata'
   }
   methods: [GET]
+
+websso-single-logout-method-not-allowed:
+  path: /idp/singleLogout
+  defaults: {
+    _controller: 'SimpleSAML\Module\saml\Controller\Exception::methodNotAllowed',
+    allowedMethods: ['GET', 'POST']
+  }
+  condition: "context.getMethod() not in ['GET', 'POST']"
 
 websso-single-logout:
   path: /idp/singleLogout

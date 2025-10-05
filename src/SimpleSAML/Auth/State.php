@@ -89,14 +89,12 @@ class State
      */
     public const EXCEPTION_STAGE = '\SimpleSAML\Auth\State.exceptionStage';
 
-
     /**
      * The URL parameter which contains the exception state id.
      * Note that this does not contain a "." since it's used in the
      * _REQUEST superglobal that does not allow dots.
      */
     public const EXCEPTION_PARAM = '\SimpleSAML\Auth\State_exceptionId';
-
 
     /**
      * State timeout.
@@ -129,7 +127,7 @@ class State
             'Attributes',
             'Expire',
             'LogoutState',
-            'AuthInstant',
+            'AuthnInstant',
             'RememberMe',
             'saml:sp:NameID',
         ];
@@ -171,6 +169,7 @@ class State
         return $id . ':' . $state[self::RESTART];
     }
 
+
     /**
      * Perform syntactic validation of an incoming state ID.
      *
@@ -187,6 +186,7 @@ class State
             throw new Exception("Invalid AuthState return URL syntax: " . $parts[1]);
         }
     }
+
 
     /**
      * Retrieve state timeout.
@@ -280,8 +280,8 @@ class State
      * @throws \Exception If the stage of the state is invalid and there's no URL defined to redirect to.
      * @throws \Throwable
      *
-     * @return array|null  State information, or NULL if the state is missing and $allowMissing is true.
-     * @psalm-return ($allowMissing is true ? array|null : array)
+     * @return ($allowMissing is true ? array|null : array)
+     *   State information, or NULL if the state is missing and $allowMissing is true.
      */
     public static function loadState(string $id, string $stage, bool $allowMissing = false): ?array
     {

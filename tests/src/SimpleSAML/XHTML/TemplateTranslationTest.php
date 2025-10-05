@@ -27,7 +27,7 @@ class TemplateTranslationTest extends TestCase
      */
     public function testCoreCardinalityErrorTemplate(): void
     {
-        $c = Configuration::loadFromArray([], '', 'simplesaml');
+        $c = Configuration::loadFromArray(['assets' => [ 'salt' => '1234567890']], '', 'simplesaml');
         $t = new Template($c, 'core:cardinality_error.twig');
 
         $t->data['cardinalityErrorAttributes'] = [
@@ -51,7 +51,7 @@ class TemplateTranslationTest extends TestCase
      */
     public function testCoreLoginUserPassTemplate(): void
     {
-        $c = Configuration::loadFromArray([], '', 'simplesaml');
+        $c = Configuration::loadFromArray(['assets' => [ 'salt' => '1234567890']], '', 'simplesaml');
         $t = new Template($c, 'core:loginuserpass.twig');
 
         $t->data['isProduction'] = false;
@@ -78,7 +78,7 @@ class TemplateTranslationTest extends TestCase
      */
     public function testCoreLogoutIframeTemplate(): void
     {
-        $c = Configuration::loadFromArray([], '', 'simplesaml');
+        $c = Configuration::loadFromArray(['assets' => [ 'salt' => '1234567890']], '', 'simplesaml');
         $t = new Template($c, 'core:logout-iframe.twig');
 
         $t->data['auth_state'] = 'logout-test';
@@ -117,7 +117,7 @@ class TemplateTranslationTest extends TestCase
      */
     public function testAuthStatusTemplate(): void
     {
-        $c = Configuration::loadFromArray([], '', 'simplesaml');
+        $c = Configuration::loadFromArray(['assets' => [ 'salt' => '1234567890']], '', 'simplesaml');
         $t = new Template($c, 'auth_status.twig');
 
         $t->data['remaining'] = 2;

@@ -352,6 +352,7 @@ class MyAuth extends \SimpleSAML\Module\core\Auth\UserPassBase
         /* Connect to the database. */
         $db = new PDO($this->dsn, $this->username, $this->password, $this->options);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
         /* Ensure that we are operating with UTF-8 encoding.
          * This command is for MySQL. Other databases may need different commands.

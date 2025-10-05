@@ -764,7 +764,7 @@ class SAML2
      *
      * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
      * @param array           $association The association that should be terminated.
-     * @param string|NULL     $relayState An id that should be carried across the logout.
+     * @param string|null     $relayState An id that should be carried across the logout.
      *
      * @return string The logout URL.
      * @throws \Exception
@@ -1025,6 +1025,11 @@ class SAML2
 
         if ($config->hasValue('RegistrationInfo')) {
             $metadata['RegistrationInfo'] = $config->getArray('RegistrationInfo');
+        }
+
+        // Override errorURL if set
+        if ($config->hasValue('errorURL')) {
+            $metadata['errorURL'] = $config->getString('errorURL');
         }
 
         // configure signature options

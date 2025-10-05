@@ -478,8 +478,8 @@ class Module
      *
      * @param string The classname.
      * @param string|null $subclass The class should be a subclass of this class. Optional.
-     *
      * @return object the new object
+     *
      * @throws \Exception
      */
     public static function createObject(string $className, ?string $subclass = null): object

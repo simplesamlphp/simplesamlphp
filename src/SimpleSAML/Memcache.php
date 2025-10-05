@@ -279,7 +279,7 @@ class Memcache
      *
      * @throws \Exception If the servers configuration is invalid.
      */
-    private static function loadMemcacheServerGroup(array $group, $index = null)
+    private static function loadMemcacheServerGroup(array $group, $index = null): Memcached
     {
         if (is_string($index)) {
             $memcache = new Memcached($index);

@@ -24,7 +24,7 @@
     </projectFiles>
 
     <issueHandlers>
-        <!-- Ignore this PHP 8.3 feature until this becomes are minimum required version -->
+        <!-- Ignore this PHP 8.3 feature until this becomes our minimum required version -->
         <MissingClassConstType errorLevel="info" />
 
         <LessSpecificReturnType errorLevel="info" />
@@ -81,7 +81,6 @@
 
     <stubs>
         <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/krb5.php" />
-        <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/memcache.php" />
         <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/memcached.php" />
         <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/predis.php" />
     </stubs>

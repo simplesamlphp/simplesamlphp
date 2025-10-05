@@ -8,11 +8,16 @@ use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\{Assertion, EncryptedAssertion}; // Assertions
 use SAML2\{AuthnRequest, LogoutRequest, LogoutResponse, Response, StatusResponse}; // Messages
+use SAML2\Message as SAMLMessage;
 use SimpleSAML\{Configuration, Error as SSP_Error, Logger, Utils};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Error\ErrorCodes;
 use SimpleSAML\SAML2\{Constants as C, SignedElement};
+use SimpleSAML\Module\saml\Error as SAMLError;
+use SimpleSAML\SAML2\XML\Comparison;
 use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
+use SimpleSAML\SAML2\XML\samlp\AbstractMessage;
 use SimpleSAML\SAML2\XML\samlp\RequestedAuthnContext;
 use SimpleSAML\SAML2\XML\samlp\{StatusCode}; // Status
 use SimpleSAML\XMLSecurity\XML\ds\{KeyInfo, X509Certificate, X509Data};
@@ -107,7 +112,7 @@ class Message
     private static function addRedirectSign(
         Configuration $srcMetadata,
         Configuration $dstMetadata,
-        \SAML2\Message $message,
+        SAMLMessage $message,
     ): void {
         $signingEnabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
@@ -187,17 +192,30 @@ class Message
                 }
                 Logger::debug('Validation with key #' . $i . ' failed without exception.');
             } catch (Exception $e) {
+                Logger::debug('Check Signature for ' . get_class($element) . ' element');
+                Logger::debug('EntityID: ' . $srcMetadata->getString('entityid'));
                 Logger::debug('Validation with key #' . $i . ' failed with exception: ' . $e->getMessage());
-                $lastException = $e;
+
+                // Clone the exception and improve the message
+                $lastException = new SSP_Error\Error(
+                    [
+                        ErrorCodes::NOTVALIDCERTSIGNATURE,
+                        '%MESSAGE%' => (new ErrorCodes())->getMessage(ErrorCodes::NOTVALIDCERTSIGNATURE),
+                        '%ELEMENT%' => get_class($element),
+                        '%ISSUER%' => $element->getIssuer()->getValue(),
+                        '%ENTITYID%' => $srcMetadata->getString('entityid'),
+                    ],
+                    $e->getPrevious(),
+                );
             }
         }
 
         // we were unable to validate the signature with any of our keys
         if ($lastException !== null) {
             throw $lastException;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
 
@@ -216,7 +234,7 @@ class Message
     public static function validateMessage(
         Configuration $srcMetadata,
         Configuration $dstMetadata,
-        \SimpleSAML\SAML2\XML\samlp\AbstractMessage $message,
+        AbstractMessage $message,
     ): bool {
         $enabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
@@ -271,7 +289,7 @@ class Message
     public static function getDecryptionKeys(
         Configuration $srcMetadata,
         Configuration $dstMetadata,
-        $encryptionMethod = null,
+        ?string $encryptionMethod = null,
     ): array {
         $sharedKey = $srcMetadata->getOptionalString('sharedkey', null);
         if ($sharedKey !== null) {
@@ -425,7 +443,6 @@ class Message
      * @param \SimpleSAML\SAML2\Assertion|\SimpleSAML\SAML2\Assertion $assertion
      *   The assertion containing any possibly encrypted attributes.
      *
-     *
      * @throws \SimpleSAML\Error\Exception if we cannot get the decryption keys or decryption fails.
      * @throws Exception
      */
@@ -470,10 +487,11 @@ class Message
      *
      * @return \SimpleSAML\Module\saml\Error The error.
      */
-    public static function getResponseError(StatusResponse $response): \SimpleSAML\Module\saml\Error
+    public static function getResponseError(StatusResponse $response): SAMLError
     {
         $status = $response->getStatus();
         $subcode = null;
+
         if (!empty($status->getStatusCode()->getSubCodes())) {
             $subcodes = array_map(
                 function (StatusCode $code) {
@@ -484,7 +502,7 @@ class Message
             $subcode = implode(' / ', $subcodes);
         }
 
-        return new \SimpleSAML\Module\saml\Error(
+        return new SAMLError(
             $status->getStatusCode()->getValue(),
             $subcode,
             $status->getStatusMessage()?->getContent(),
@@ -541,12 +559,11 @@ class Message
 
         if ($spMetadata->hasValue('AuthnContextClassRef')) {
             $accr = $spMetadata->getArrayizeString('AuthnContextClassRef');
-            $comp = $spMetadata->getOptionalValueValidate('AuthnContextComparison', [
-                C::COMPARISON_EXACT,
-                C::COMPARISON_MINIMUM,
-                C::COMPARISON_MAXIMUM,
-                C::COMPARISON_BETTER,
-            ], C::COMPARISON_EXACT);
+            $comp = $spMetadata->getOptionalValueValidate(
+                'AuthnContextComparison',
+                array_column(Comparison::cases(), 'value'),
+                Comparison::EXACT->value,
+            );
 
             $ar->setRequestedAuthnContext(
                 new RequestedAuthnContext(

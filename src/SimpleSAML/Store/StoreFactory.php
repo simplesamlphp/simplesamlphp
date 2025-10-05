@@ -21,7 +21,7 @@ abstract class StoreFactory implements Utils\ClearableState
      *
      * @var \SimpleSAML\Store\StoreInterface|false|null
      */
-    private static $instance = null;
+    private static StoreInterface|false|null $instance = null;
 
 
     /**
@@ -33,7 +33,7 @@ abstract class StoreFactory implements Utils\ClearableState
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws Exception
      */
-    public static function getInstance(string $storeType)
+    public static function getInstance(string $storeType): StoreInterface|false
     {
         if (self::$instance !== null) {
             return self::$instance;

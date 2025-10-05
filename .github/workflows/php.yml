@@ -19,9 +19,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['8.1', '8.2', '8.3', '8.4']
+        php-version: ['8.2', '8.3', '8.4']
 
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_phplinter.yml@v1.9.2
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_phplinter.yml@v1.10.2
     with:
       php-version: ${{ matrix.php-version }}
 
@@ -30,7 +30,7 @@ jobs:
     strategy:
       fail-fast: false
 
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_linter.yml@v1.9.2
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_linter.yml@v1.10.2
     with:
       enable_eslinter: true
       enable_jsonlinter: true
@@ -45,7 +45,7 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: ['8.1', '8.2', '8.3']
+        php-versions: ['8.2', '8.3', '8.4']
 
     steps:
       - name: Setup PHP, with composer and extensions
@@ -69,7 +69,7 @@ jobs:
           git config --global core.autocrlf false
           git config --global core.eol lf
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Copy config.php.dist to config.php
         run: cp config/config.php.dist config/config.php
@@ -91,15 +91,15 @@ jobs:
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Run unit tests with coverage
-        if: ${{ matrix.php-versions == '8.1' }}
+        if: ${{ matrix.php-versions == '8.2' }}
         run: ./vendor/bin/phpunit
 
       - name: Run unit tests (no coverage)
-        if: ${{ matrix.php-versions != '8.1' }}
+        if: ${{ matrix.php-versions != '8.2' }}
         run: ./vendor/bin/phpunit --no-coverage
 
       - name: Save coverage data
-        if: ${{ matrix.php-versions == '8.1' }}
+        if: ${{ matrix.php-versions == '8.2' }}
         uses: actions/upload-artifact@v4
         with:
           name: coverage-data
@@ -113,7 +113,7 @@ jobs:
       fail-fast: true
       matrix:
         operating-system: [windows-latest]
-        php-versions: ['8.1', '8.2', '8.3']
+        php-versions: ['8.2', '8.3', '8.4']
 
     steps:
       - name: Setup PHP, with composer and extensions
@@ -137,7 +137,7 @@ jobs:
           git config --global core.autocrlf false
           git config --global core.eol lf
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Get composer cache directory
         run: echo COMPOSER_CACHE="$(composer config cache-files-dir)" >> "$env:GITHUB_ENV"
@@ -177,7 +177,7 @@ jobs:
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Copy config.php.dist to config.php
         run: cp config/config.php.dist config/config.php
@@ -253,16 +253,15 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           # Should be the lowest supported version
-          php-version: '8.1'
-          extensions: ctype, date, dom, hash, fileinfo, filter, json, mbstring, mysql, \
-            openssl, pcre, pdo, pdo_sqlite, posix, soap, spl, xml
-          tools: composer
+          php-version: '8.2'
+          extensions: mbstring, soap, xml
+          tools: composer:v2
           coverage: none
 
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Copy config.php.dist to config.php
         run: cp config/config.php.dist config/config.php
@@ -297,9 +296,9 @@ jobs:
     runs-on: [ubuntu-latest]
     needs: [unit-tests-linux]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           name: coverage-data
           path: ${{ github.workspace }}/build

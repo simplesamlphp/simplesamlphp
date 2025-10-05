@@ -708,7 +708,11 @@ class ServiceProviderTest extends TestCase
         $c = new Controller\ServiceProvider($this->config, $this->session);
 
         $this->expectException(Error\MetadataNotFound::class);
-        $this->expectExceptionMessage("METADATANOTFOUND('%ENTITYID%' => 'https://engine.test.surfconext.nl/authentication/idp/metadata')");
+        $exceptionMessage = [
+            "errorCode" => "METADATANOTFOUND",
+            "%ENTITYID%" => "https://engine.test.surfconext.nl/authentication/idp/metadata",
+        ];
+        $this->expectExceptionMessage(json_encode($exceptionMessage));
 
         $c->assertionConsumerService($request, 'phpunit');
     }
@@ -801,7 +805,11 @@ XML;
         $c = new Controller\ServiceProvider($this->config, $this->session);
 
         $this->expectException(Error\MetadataNotFound::class);
-        $this->expectExceptionMessage("METADATANOTFOUND('%ENTITYID%' => 'TheIssuer')");
+        $exceptionMessage = [
+            "errorCode" => "METADATANOTFOUND",
+            "%ENTITYID%" => "TheIssuer",
+        ];
+        $this->expectExceptionMessage(json_encode($exceptionMessage));
 
         $c->singleLogoutService($request, 'phpunit');
     }

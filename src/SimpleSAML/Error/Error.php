@@ -115,15 +115,8 @@ class Error extends Exception
         $this->dictDescr = $errorCodes->getDescription($this->errorCode);
 
         if (!empty($this->parameters)) {
-            $msg = $this->errorCode . '(';
-            foreach ($this->parameters as $k => $v) {
-                if ($k === 0) {
-                    continue;
-                }
-
-                $msg .= var_export($k, true) . ' => ' . var_export($v, true) . ', ';
-            }
-            $msg = substr($msg, 0, -2) . ')';
+            $msgData = ['errorCode' => $this->errorCode] + $this->parameters;
+            $msg = json_encode($msgData);
         } else {
             $msg = $this->errorCode;
         }

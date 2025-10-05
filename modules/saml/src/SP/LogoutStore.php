@@ -332,7 +332,7 @@ class LogoutStore
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
-    public static function logoutSessions(string $authId, NameID $nameId, array $sessionIndexes)
+    public static function logoutSessions(string $authId, NameID $nameId, array $sessionIndexes): int|false
     {
         $config = Configuration::getInstance();
         $storeType = $config->getOptionalString('store.type', 'phpsession');

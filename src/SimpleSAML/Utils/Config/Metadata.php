@@ -60,7 +60,7 @@ class Metadata
      * @param array $endpoints An array with endpoints.
      * @param array|null $bindings An array with acceptable bindings. Can be null if any binding is allowed.
      *
-     * @return array|NULL The default endpoint, or null if no acceptable endpoints are used.
+     * @return array|null The default endpoint, or null if no acceptable endpoints are used.
      *
      */
     public static function getDefaultEndpoint(array $endpoints, ?array $bindings = null): ?array

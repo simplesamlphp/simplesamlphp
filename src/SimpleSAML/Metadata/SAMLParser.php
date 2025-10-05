@@ -7,7 +7,9 @@ namespace SimpleSAML\Metadata;
 use DOMDocument;
 use DOMElement;
 use Exception;
-use RobRichards\XMLSecLibs\{XMLSecurityKey};
+use RobRichards\XMLSecLibs\XMLSecurityKey;
+use SAML2\XML\md\EntitiesDescriptor;
+use SAML2\XML\md\EntityDescriptor;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\{Logger, Utils};
 use SimpleSAML\SAML2\Constants as C;
@@ -213,13 +215,13 @@ class SAMLParser
      *
      * @param string $file The path to the file which contains the metadata.
      *
-     * @return SAMLParser An instance of this class with the metadata loaded.
+     * @return \SimpleSAML\Metadata\SAMLParser An instance of this class with the metadata loaded.
      * @throws \Exception If the file does not parse as XML.
      */
     public static function parseFile(string $file): SAMLParser
     {
-        /** @var string $data */
         $httpUtils = new Utils\HTTP();
+        /** @var string $data */
         $data = $httpUtils->fetch($file);
 
         try {
@@ -343,7 +345,7 @@ class SAMLParser
      * This function parses a DOMElement which represents either an EntityDescriptor element or an
      * EntitiesDescriptor element. It will return an associative array of SAMLParser instances in both cases.
      *
-     * @param \DOMElement|NULL $element The DOMElement which contains the EntityDescriptor element or the
+     * @param \DOMElement|null $element The DOMElement which contains the EntityDescriptor element or the
      *     EntitiesDescriptor element.
      *
      * @return SAMLParser[] An associative array of SAMLParser instances. The key of the array will
@@ -369,14 +371,13 @@ class SAMLParser
 
     /**
      *
-     * @param \SAML2\XML\md\EntityDescriptor|\SAML2\XML\md\EntitiesDescriptor $element
-     *   The element we should process.
-     * @param int|NULL              $maxExpireTime The maximum expiration time of the entities.
+     * @param \SAML2\XML\md\EntityDescriptor|\SAML2\XML\md\EntitiesDescriptor $element The element we should process.
+     * @param int|null              $maxExpireTime The maximum expiration time of the entities.
      * @param array                 $validators The parent-elements that may be signed.
      * @param array                 $parentExtensions An optional array of extensions from the parent element.
-     *
-     * @return SAMLParser[] Array of SAMLParser instances.
      * @throws Exception
+     *
+     * @return \SimpleSAML\Metadata\SAMLParser[] Array of SAMLParser instances.
      */
     private static function processDescriptorsElement(
         SignedElementHelper $element,
@@ -754,9 +755,8 @@ class SAMLParser
      * - 'nameIDFormats': The NameIDFormats supported by this SSODescriptor. This may be an empty array.
      * - 'keys': Array of associative arrays with the elements from parseKeyDescriptor:
      *
-     * @param \SimpleSAML\SAML2\XML\md\SSODescriptorType $element The element we should extract metadata from.
-     * @param int|null                       $expireTime The unix timestamp for when this element should expire, or
-     *                             NULL if unknown.
+     * @param \SAML2\XML\md\SSODescriptorType $element The element we should extract metadata from.
+     * @param int|null $expireTime The unix timestamp for when this element should expire, or NULL if unknown.
      *
      * @return array An associative array with metadata we have extracted from this element.
      * @throws Exception
@@ -785,9 +785,8 @@ class SAMLParser
      * This function extracts metadata from a SPSSODescriptor element.
      *
      * @param \SimpleSAML\SAML2\XML\md\SPSSODescriptor $element The element which should be parsed.
-     * @param int|null                     $expireTime The unix timestamp for when this element should expire, or
-     *                             NULL if unknown.
-     * @throws Exception
+     * @param int|null $expireTime The unix timestamp for when this element should expire, or NULL if unknown.
+     * @throws \Exception
      */
     private function processSPSSODescriptor(SPSSODescriptor $element, ?int $expireTime): void
     {
@@ -820,8 +819,7 @@ class SAMLParser
      * This function extracts metadata from a IDPSSODescriptor element.
      *
      * @param \SimpleSAML\SAML2\XML\md\IDPSSODescriptor $element The element which should be parsed.
-     * @param int|null                      $expireTime The unix timestamp for when this element should expire, or
-     *                             NULL if unknown.
+     * @param int|null $expireTime The unix timestamp for when this element should expire, or NULL if unknown.
      * @throws Exception
      */
     private function processIDPSSODescriptor(IDPSSODescriptor $element, ?int $expireTime): void
@@ -845,8 +843,7 @@ class SAMLParser
      * This function extracts metadata from a AttributeAuthorityDescriptor element.
      *
      * @param \SimpleSAML\SAML2\XML\md\AttributeAuthorityDescriptor $element The element which should be parsed.
-     * @param int|null                                  $expireTime The unix timestamp for when this element should
-     *     expire, or NULL if unknown.
+     * @param int|null $expireTime The unix timestamp for when this element should expire, or NULL if unknown.
      * @throws Exception
      */
     private function processAttributeAuthorityDescriptor(

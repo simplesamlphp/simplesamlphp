@@ -955,7 +955,6 @@ class HTTP
      *
      * @return array The query string as an associative array.
      * @throws \InvalidArgumentException If $query_string is not a string.
-     *
      */
     public function parseQueryString(string $query_string): array
     {
@@ -1123,12 +1122,10 @@ class HTTP
      * @param array|NULL  $params Cookie parameters.
      * @param bool        $throw Whether to throw exception if setcookie() fails.
      *
+     * @throws \Exception
      * @throws \InvalidArgumentException If any parameter has an incorrect type.
      * @throws \SimpleSAML\Error\CannotSetCookie If the headers were already sent and the cookie cannot be set.
-     * @throws \Exception
      * @throws \SimpleSAML\Error\CriticalConfigurationError
-     *
-     *
      */
     public function setCookie(string $name, ?string $value, ?array $params = null, bool $throw = true): void
     {
@@ -1149,15 +1146,15 @@ class HTTP
             $params = $default_params;
         }
 
-        // Do not set secure cookie if not on HTTPS
-        if ($params['secure'] && !$this->isHTTPS()) {
+        // Do not set secure cookie if not on HTTPS or localhost
+        if ($params['secure'] && !$this->isSecureCookieAllowed()) {
             if ($throw) {
                 throw new Error\CannotSetCookie(
-                    'Setting secure cookie on plain HTTP is not allowed.',
+                    'Setting secure cookie on plain HTTP (except on localhost) is not allowed.',
                     Error\CannotSetCookie::SECURE_COOKIE,
                 );
             }
-            Logger::warning('Error setting cookie: setting secure cookie on plain HTTP is not allowed.');
+            Logger::warning('Error setting cookie: setting secure cookie on plain HTTP (except on localhost) is not allowed.');
             return;
         }
 
@@ -1215,6 +1212,17 @@ class HTTP
 
 
     /**
+     * Check if "Secure" attribute on cookies is supported
+     *
+     * @return boolean True "Secure" attribute can be set, false otherwise.
+     */
+    public function isSecureCookieAllowed(): bool
+    {
+        return $this->isHTTPS() || in_array($this->getSelfHost(), ['localhost', '127.0.0.1', '::1'], true);
+    }
+
+
+    /**
      * Submit a POST form to a specific destination.
      *
      * This function never returns.
@@ -1222,11 +1230,9 @@ class HTTP
      * @param string $destination The destination URL.
      * @param array  $data An associative array with the data to be posted to $destination.
      *
+     * @throws \Exception
      * @throws \InvalidArgumentException If $destination is not a string or $data is not an array.
      * @throws \SimpleSAML\Error\Exception If $destination is not a valid HTTP URL.
-     * @throws \Exception
-     * @throws \Throwable
-     *
      */
     public function submitPOSTData(string $destination, array $data): RedirectResponse|Template
     {

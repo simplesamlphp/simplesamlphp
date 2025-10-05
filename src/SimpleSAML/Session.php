@@ -198,7 +198,11 @@ class Session implements Utils\ClearableState
 
             // initialize data for session check function if defined
             $checkFunction = self::$config->getOptionalValue('session.check_function', null);
-            if (is_callable($checkFunction)) {
+            if ($checkFunction) {
+                Assert::isCallable(
+                    $checkFunction,
+                    'Configuration error: session.check_function is not callable',
+                );
                 call_user_func($checkFunction, $this, true);
             }
         }
@@ -238,7 +242,7 @@ class Session implements Utils\ClearableState
      * @param array $serialized The serialized representation of a session that we want to restore.
      * @throws Exception
      */
-    public function __unserialize($serialized): void
+    public function __unserialize(array $serialized): void
     {
         foreach ($serialized as $k => $v) {
             $this->$k = $v;
@@ -391,7 +395,11 @@ class Session implements Utils\ClearableState
 
             // run session check function if defined
             $checkFunction = $globalConfig->getOptionalValue('session.check_function', null);
-            if (is_callable($checkFunction)) {
+            if ($checkFunction) {
+                Assert::isCallable(
+                    $checkFunction,
+                    'Configuration error: session.check_function is not callable',
+                );
                 $check = call_user_func($checkFunction, $session);
                 if ($check !== true) {
                     Logger::warning('Session did not pass check function.');
@@ -839,8 +847,18 @@ class Session implements Utils\ClearableState
     {
         $this->markDirty();
 
-        if ($expire === null) {
-            $expire = time() + self::$config->getOptionalInteger('session.duration', 8 * 60 * 60);
+        $maxSessionExpire = time() + self::$config->getOptionalInteger('session.duration', 8 * 60 * 60);
+
+        if ($expire) {
+            // Convert from seconds in future to absolute time
+            $expire = time() + $expire;
+        } else {
+            $expire = $maxSessionExpire;
+        }
+
+        // Always clamp the provided value.
+        if ($expire > $maxSessionExpire) {
+            $expire = $maxSessionExpire;
         }
 
         $this->authData[$authority]['Expire'] = $expire;

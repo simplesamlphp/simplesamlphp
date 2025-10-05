@@ -34,7 +34,6 @@ use function unlink;
  *
  * @package SimpleSAMLphp
  */
-
 class System
 {
     public const WINDOWS = 1;
@@ -52,7 +51,6 @@ class System
      *
      * @return int|false A predefined constant identifying the OS we are running on.
      *                   False if we are unable to determine it.
-     *
      */
     public function getOS(): int|false
     {
@@ -142,7 +140,6 @@ class System
      * @param string      $path The path we should resolve.
      * @param string|null $base The base path, where we should search for $path from. Default value is the root of the
      *     SimpleSAMLphp installation.
-     *
      * @return string An absolute path referring to $path.
      *
      * @throws \Exception
@@ -210,7 +207,6 @@ class System
      * @throws \SimpleSAML\Error\Exception If the file cannot be saved, permissions cannot be changed or it is not
      * @throws \Random\RandomException
      *     possible to write to the target file.
-     *
      */
     public function writeFile(string $filename, string $data, int $mode = 0600): void
     {
@@ -258,7 +254,6 @@ class System
      * Check if the supplied path is an absolute path.
      *
      * @param string $path
-     *
      * @return bool
      */
     public function isAbsolutePath(string $path): bool
@@ -271,7 +266,6 @@ class System
      * Check if the supplied path contains a Windows-style drive letter.
      *
      * @param string $path
-     *
      * @return bool
      */
     private function pathContainsDriveLetter(string $path): bool
@@ -283,6 +277,7 @@ class System
 
     /**
      * Check if the supplied path contains a stream wrapper
+     *
      * @param string $path
      * @return bool
      */

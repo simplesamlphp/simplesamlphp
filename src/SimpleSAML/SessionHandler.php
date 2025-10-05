@@ -164,7 +164,7 @@ abstract class SessionHandler
             'lifetime' => $config->getOptionalInteger('session.cookie.lifetime', 0),
             'path'     => $config->getOptionalString('session.cookie.path', '/'),
             'domain'   => $config->getOptionalString('session.cookie.domain', null),
-            'secure'   => $config->getOptionalBoolean('session.cookie.secure', $httpUtils->isHTTPS()),
+            'secure'   => $config->getOptionalBoolean('session.cookie.secure', $httpUtils->isSecureCookieAllowed()),
             'samesite' => $config->getOptionalString('session.cookie.samesite', null),
             'httponly' => true,
         ];

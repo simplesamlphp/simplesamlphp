@@ -31,7 +31,7 @@ use function sprintf;
 class UnusedTranslatableStringsCommand extends Command
 {
     /** @var string|null */
-    protected static $defaultName = 'translations:unused';
+    protected static ?string $defaultName = 'translations:unused';
 
 
     /**

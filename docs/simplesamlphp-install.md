@@ -231,9 +231,12 @@ There are a few steps that you should complete in the main configuration file, `
 'auth.adminpassword' => 'setnewpasswordhere',
 ```
 
-* Set a secret salt. This should be a random string. Some parts of the SimpleSAMLphp needs this salt to generate
+* Set a secret salt and assets.salt.
+  These should be random strings. Some parts of the SimpleSAMLphp needs this salt to generate
   cryptographically secure hashes. SimpleSAMLphp will give an error if the salt is not changed from the default value.
   The command below can help you to generated a random string on (some) unix systems:
+
+  The assets.salt is separate to the main secretsalt because assets.salt is used on many assets with known values.
 
 ```bash
 tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
@@ -429,13 +432,13 @@ Now, we need to make a few configuration changes. First, let's edit `~/public_ht
 Change the two lines from:
 
 ```php
-require_once(dirname(_FILE__, 2) . '/lib/_autoload.php');
+require_once(dirname(_FILE__, 2) . '/src/_autoload.php');
 ```
 
 to something like:
 
 ```php
-require_once(dirname(__FILE__, 3) . '/lib/_autoload.php');
+require_once(dirname(__FILE__, 3) . '/src/_autoload.php');
 ```
 
 **Warning**: note that this will make upgrading SimpleSAMLphp much more difficult, since you will need to move the

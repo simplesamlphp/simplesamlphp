@@ -55,7 +55,7 @@ class SQLNameID
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
-    private static function write(string $query, array $params = [], array $config = [])
+    private static function write(string $query, array $params = [], array $config = []): int|false
     {
         if (!empty($config)) {
             $database = Database::getInstance(Configuration::loadFromArray($config));
@@ -130,7 +130,7 @@ class SQLNameID
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \Exception
      */
-    private static function createAndWrite(string $query, array $params = [], array $config = [])
+    private static function createAndWrite(string $query, array $params = [], array $config = []): int|false
     {
         self::create($config);
         return self::write($query, $params, $config);

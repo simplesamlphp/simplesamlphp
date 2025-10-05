@@ -1,0 +1,63 @@
+{% set pagetitle = 'Continue as persona' %}
+
+{% extends "@core/base.twig" %}
+
+{% block preload %}
+    <link rel="stylesheet" href="{{ asset('css/default.css', 'exampleauth') }}">
+{% endblock %}
+
+{% block content %}
+    {%- if not isProduction %}
+
+    <div class="message-box warning">
+      {% trans %}You are now accessing a pre-production system. This authentication setup is for testing and pre-production verification only. If someone sent you a link that pointed you here, and you are not <i>a tester</i> you probably got the wrong link, and should <b>not be here</b>.{% endtrans %}
+    </div>
+    {% endif -%}
+    {% if errorcode -%}
+    <div class="pure-g">
+        <div class="pure-u-1">
+            <div class="message-box error">
+
+                {% set errtitles = errorcodes['title'] %}
+                {% set errtitle = errtitles[errorcode] %}
+
+                <h3>{{ errtitle|trans(errorparams) }}</h3>
+
+                {% set errdescs = errorcodes['descr'] %}
+                {% set errdesc = errdescs[errorcode] %}
+
+                <p>{{ errdesc|trans(errorparams) }}</p>
+
+            </div>
+        </div>
+    </div>
+    {%- endif %}
+
+    <p><b>{{ 'Continue as persona' }}</b></p>
+
+    {% for id, attributes in users %}
+    <a href="{{ usersLinks[id] }}">
+    <div>
+    <h2>
+        {{ attributes['displayName'][0] }}
+    </h2>
+    <table class="profile">
+    <tbody>
+        {%- for key, values in attributes %}
+        <tr>
+            <td class=key>
+                <b>{{ key }}</b>
+            </td>
+            <td>
+                {%- for value in values %}
+                {{ value }}<br>
+                {%- endfor %}
+            </td>
+            {%- endfor %}
+        </tr>
+    </tbody>
+    </table>
+    </a>
+    {%- endfor %}
+
+{% endblock %}

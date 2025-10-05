@@ -1050,7 +1050,7 @@ class SP extends Auth\Source
      * @throws \Exception
      * @throws \Throwable
      */
-    public static function tryStepUpAuth(array &$state): void
+    public static function tryStepUpAuth(array &$state): never
     {
         Assert::keyExists($state, 'saml:idp');
         Assert::keyExists($state, 'saml:sp:AuthId');
@@ -1065,7 +1065,6 @@ class SP extends Auth\Source
         /** @var \SimpleSAML\Module\saml\Auth\Source\SP $as */
         $as = new Auth\Simple($state['saml:sp:AuthId']);
         $as->login($state);
-        Assert::true(false);
     }
 
 
@@ -1274,6 +1273,7 @@ class SP extends Auth\Source
         if (isset($state['saml:sp:NameID'])) {
             $authProcState['saml:sp:NameID'] = $state['saml:sp:NameID'];
         }
+
         if (isset($state['saml:sp:SessionIndex'])) {
             $authProcState['saml:sp:SessionIndex'] = $state['saml:sp:SessionIndex'];
         }
@@ -1316,7 +1316,7 @@ class SP extends Auth\Source
      * @throws \Exception
      * @throws \Throwable
      */
-    public static function handleUnsolicitedAuth(string $authId, array $state, string $redirectTo): void
+    public static function handleUnsolicitedAuth(string $authId, array $state, string $redirectTo): never
     {
         $session = Session::getSessionFromRequest();
         $session->doLogin($authId, Auth\State::getPersistentAuthData($state));

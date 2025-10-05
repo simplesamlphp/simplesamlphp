@@ -11,7 +11,6 @@ use SimpleSAML\Configuration;
  *
  * @package SimpleSAMLphp
  */
-
 abstract class Output
 {
     /**

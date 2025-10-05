@@ -27,7 +27,7 @@ class StateTest extends TestCase
             'Attributes' => [],
             'Expire' => 1234,
             'LogoutState' => 'logoutState',
-            'AuthInstant' => 123456,
+            'AuthnInstant' => 123456,
             'RememberMe' => true,
             'saml:sp:NameID' => 'nameID',
         ];
