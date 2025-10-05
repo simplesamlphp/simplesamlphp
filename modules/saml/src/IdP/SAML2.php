@@ -11,23 +11,50 @@ use DOMNodeList;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
-use SimpleSAML\{Auth, Configuration, Error, IdP, Logger, Module, Stats, Utils};
-use SimpleSAML\Assert\{Assert};
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\IdP;
+use SimpleSAML\Logger;
+use SimpleSAML\Module;
+use SimpleSAML\Stats;
+use SimpleSAML\Utils;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Message;
-use SimpleSAML\SAML2\{Binding, HTTPRedirect, SOAP}; // Bindings
+use SimpleSAML\SAML2\Binding;
+use SimpleSAML\SAML2\HTTPRedirect;
+use SimpleSAML\SAML2\SOAP;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
-use SimpleSAML\SAML2\XML\saml\{Assertion, EncryptedAssertion}; // Assertions
-use SimpleSAML\SAML2\XML\saml\{AttributeValue, Audience, Issuer, NameID, Subject, SubjectConfirmation, SubjectConfirmationData};
-use SimpleSAML\SAML2\XML\saml\{AuthenticatingAuthority, AuthnContext, AuthnContextClassRef}; // AuthnContext
-use SimpleSAML\SAML2\XML\samlp\{AuthnRequest, LogoutRequest, LogoutResponse, Response as SAML2_Response}; // Messages
-use SimpleSAML\SAML2\XML\samlp\{Status, StatusCode, StatusMessage}; // Status
+use SimpleSAML\SAML2\XML\saml\Assertion;
+use SimpleSAML\SAML2\XML\saml\AttributeValue;
+use SimpleSAML\SAML2\XML\saml\Audience;
+use SimpleSAML\SAML2\XML\saml\EncryptedAssertion;
+use SimpleSAML\SAML2\XML\saml\Issuer;
+use SimpleSAML\SAML2\XML\saml\NameID;
+use SimpleSAML\SAML2\XML\saml\Subject;
+use SimpleSAML\SAML2\XML\saml\SubjectConfirmation;
+use SimpleSAML\SAML2\XML\saml\SubjectConfirmationData;
+use SimpleSAML\SAML2\XML\saml\AuthenticatingAuthority;
+use SimpleSAML\SAML2\XML\saml\AuthnContext;
+use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
+use SimpleSAML\SAML2\XML\samlp\AuthnRequest;
+use SimpleSAML\SAML2\XML\samlp\LogoutRequest;
+use SimpleSAML\SAML2\XML\samlp\LogoutResponse;
+use SimpleSAML\SAML2\XML\samlp\Response as SAML2_Response;
+use SimpleSAML\SAML2\XML\samlp\Status;
+use SimpleSAML\SAML2\XML\samlp\StatusCode;
+use SimpleSAML\SAML2\XML\samlp\StatusMessage;
 use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XMLSecurity\XML\ds\{X509Certificate, X509Data, KeyInfo};
-use Symfony\Bridge\PsrHttpMessage\Factory\{HttpFoundationFactory, PsrHttpFactory};
-use Symfony\Component\HttpFoundation\{Request, Response};
+use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
+use SimpleSAML\XMLSecurity\XML\ds\X509Data;
+use SimpleSAML\XMLSecurity\XML\ds\KeyInfo;
+use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
+use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function array_key_exists;
 use function array_map;
