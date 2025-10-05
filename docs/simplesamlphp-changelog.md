@@ -5,10 +5,15 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.4.3
+## Version 2.4.4
 
 Released TBD
 
+## Version 2.4.3
+
+Released 2025-10-05
+
+* Prevent emulation of SQL prepare-statements
 * Add Ukrainian translations (#2501)
 * Update and improve Indonesian translations (#2462)
 * Update and improve Thai translations (#2464)
