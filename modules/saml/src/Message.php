@@ -6,21 +6,32 @@ namespace SimpleSAML\Module\saml;
 
 use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
-use SAML2\{Assertion, EncryptedAssertion}; // Assertions
-use SAML2\{AuthnRequest, LogoutRequest, LogoutResponse, Response, StatusResponse}; // Messages
+use SAML2\Assertion;
+use SAML2\AuthnRequest;
+use SAML2\EncryptedAssertion;
+use SAML2\LogoutRequest;
+use SAML2\LogoutResponse;
 use SAML2\Message as SAMLMessage;
-use SimpleSAML\{Configuration, Error as SSP_Error, Logger, Utils};
+use SAML2\Response;
+use SAML2\StatusResponse;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error as SSP_Error;
 use SimpleSAML\Error\ErrorCodes;
-use SimpleSAML\SAML2\{Constants as C, SignedElement};
+use SimpleSAML\Logger;
 use SimpleSAML\Module\saml\Error as SAMLError;
+use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\SignedElement;
 use SimpleSAML\SAML2\XML\Comparison;
 use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
 use SimpleSAML\SAML2\XML\samlp\AbstractMessage;
 use SimpleSAML\SAML2\XML\samlp\RequestedAuthnContext;
-use SimpleSAML\SAML2\XML\samlp\{StatusCode}; // Status
-use SimpleSAML\XMLSecurity\XML\ds\{KeyInfo, X509Certificate, X509Data};
+use SimpleSAML\SAML2\XML\samlp\StatusCode;
+use SimpleSAML\Utils;
+use SimpleSAML\XMLSecurity\XML\ds\KeyInfo;
+use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
+use SimpleSAML\XMLSecurity\XML\ds\X509Data;
 
 use function array_key_exists;
 use function array_filter;
