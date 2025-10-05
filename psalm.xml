@@ -78,7 +78,6 @@
 
     <stubs>
         <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/krb5.php" />
-        <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/memcache.php" />
         <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/memcached.php" />
         <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/predis.php" />
     </stubs>
