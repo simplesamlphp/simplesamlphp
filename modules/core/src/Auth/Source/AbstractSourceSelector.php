@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth\Source;
 
 use Exception;
-use SimpleSAML\{Auth, Auth\Source, Configuration, Error};
-use Symfony\Component\HttpFoundation\{Request, Response};
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function in_array;
 
