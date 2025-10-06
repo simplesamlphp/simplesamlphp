@@ -210,14 +210,14 @@ class Error extends Exception
         $showerrors = $config->getOptionalBoolean('showerrors', true);
 
         $whitelist = Configuration::getInstance()->getOptionalArray('showerrors.whitelist', ['*' => true]);
-        if( count($whitelist)==1 && array_key_exists('*', $whitelist)) {
+        if (count($whitelist) == 1 && array_key_exists('*', $whitelist)) {
             // no filtering
         } else {
             $showRealError = false;
-            if( array_key_exists($this->errorCode, $whitelist)) {
+            if (array_key_exists($this->errorCode, $whitelist)) {
                 $showRealError = ($whitelist[$this->errorCode] == true);
             }
-            if(!$showRealError) {
+            if (!$showRealError) {
                 // they didn't select to show this message
                 $emsg = "secret";
                 $etrace = "trace";
