@@ -65,7 +65,7 @@
         "beste/clock": "~3.0.0",
         "gettext/gettext": "~5.7.3",
         "gettext/translator": "~1.2.1",
-        "phpmailer/phpmailer": "~6.10.0",
+        "phpmailer/phpmailer": "~6.11.1",
         "psr/log": "~3.0.2",
         "robrichards/xmlseclibs": "~3.1.3",
         "simplesamlphp/assert": "^1.1",
