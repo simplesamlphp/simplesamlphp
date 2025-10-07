@@ -293,6 +293,10 @@ msgstr "Información sobre su sesión actual"
 msgid "Invalid certificate"
 msgstr "Certificado no válido"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:103
+msgid "Invalid certificate signature"
+msgstr ""
+
 msgid "JPEG Photo"
 msgstr "Fotografía en JPEG"
 
@@ -706,6 +710,10 @@ msgstr "No se puede localizar los metadatos en %ENTITYID%"
 
 msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
 msgstr "Imposible desconectarse de uno o más servicios. Para asegurar que todas sus sesiones han sido cerradas, se recomienda que <i>cierre su navegador web</i>."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:217
+msgid "Unable to validate certificate signature."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
 msgid "Unhandled exception"

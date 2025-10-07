@@ -293,6 +293,10 @@ msgstr ""
 msgid "Invalid certificate"
 msgstr "Ongeldig certificaat"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:103
+msgid "Invalid certificate signature"
+msgstr ""
+
 msgid "JPEG Photo"
 msgstr "JPEG-foto"
 
@@ -712,6 +716,10 @@ msgstr "Kan geen metadata vinden voor %ENTITYID%"
 
 msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
 msgstr "Het was niet mogelijk bij een of meerdere diensten uit te loggen. Om alle sessies te sluiten, raden wij u aan uw <i>webbrowser te af te sluiten</i>."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:217
+msgid "Unable to validate certificate signature."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
 msgid "Unhandled exception"

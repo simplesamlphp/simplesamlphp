@@ -272,6 +272,10 @@ msgstr ""
 msgid "Invalid certificate"
 msgstr "Érvénytelen tanúsítvány"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:103
+msgid "Invalid certificate signature"
+msgstr ""
+
 msgid "JPEG Photo"
 msgstr "Fotó JPEG formátumban"
 
@@ -682,6 +686,10 @@ msgstr "%ENTITYID% entitáshoz nem található metadataA"
 
 msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
 msgstr "Legalább egy szolgáltatásból nem sikerült kilépni. Ahhoz, hogy biztosan lezárja a megkezdett munkamenetet, kérjük, <i>zárja be böngészőjét</i>."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:217
+msgid "Unable to validate certificate signature."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
 msgid "Unhandled exception"

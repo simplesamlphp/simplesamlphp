@@ -275,6 +275,10 @@ msgstr "ข้อมูลเกี่ยวกับเซสชันปัจ
 msgid "Invalid certificate"
 msgstr "ใบรับรองไม่ถูกต้อง"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:103
+msgid "Invalid certificate signature"
+msgstr ""
+
 msgid "JPEG Photo"
 msgstr "รูปภาพ JPEG"
 
@@ -679,6 +683,10 @@ msgstr "ไม่พบข้อมูล metadata สำหรับ %ENTITYID%
 
 msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
 msgstr "ไม่สามารถออกจากระบบบริการหนึ่งบริการหรือมากกว่านั้นได้ เพื่อให้แน่ใจว่าเซสชันทั้งหมดของคุณถูกปิดแล้ว เราขอแนะนำให้คุณ <i>ปิดเว็บเบราว์เซอร์ของคุณ</i>"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:217
+msgid "Unable to validate certificate signature."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
 msgid "Unhandled exception"

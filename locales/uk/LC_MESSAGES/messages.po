@@ -1,16 +1,11 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: SimpleSAMLphp\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: SimpleSAMLphp\n"
 "X-Domain: messages\n"
-"X-Generator: Poedit 3.7\n"
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:189
 msgid "%MESSAGE%"
@@ -294,6 +289,10 @@ msgstr "Інформація про вашу поточну сесію"
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:93
 msgid "Invalid certificate"
 msgstr "Недійсний сертифікат"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:103
+msgid "Invalid certificate signature"
+msgstr ""
 
 msgid "JPEG Photo"
 msgstr "Фотографія в форматі JPEG"
@@ -708,6 +707,10 @@ msgstr "Неможливо знайти метадані для %ENTITYID%"
 
 msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
 msgstr "Не вдалося вийти з одного або кількох сервісів. Щоб переконатися, що всі ваші сеанси завершено, рекомендується <i>закрити веббраузер</i>."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:217
+msgid "Unable to validate certificate signature."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
 msgid "Unhandled exception"

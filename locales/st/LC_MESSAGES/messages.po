@@ -200,6 +200,10 @@ msgstr ""
 msgid "Invalid certificate"
 msgstr "Setifikeiti se sa nepahalang"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:103
+msgid "Invalid certificate signature"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:80
 msgid "LDAP Error"
 msgstr "Phoso ya LDAP"
@@ -457,6 +461,10 @@ msgstr "Ha e kgone ho fumana metadata bakeng sa %ID YA SETHEO%"
 
 msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
 msgstr "Ha e kgone ho tswa tshebeletsong e le nngwe kapa ho feta. Ho netefatsa hore diseshene tsohle tsa hao di kwetswe, o kgothaletswa ho <i>kwala sebadi sa webo sa hao</i>."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:217
+msgid "Unable to validate certificate signature."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
 msgid "Unhandled exception"

@@ -212,6 +212,10 @@ msgstr "Informatiounen iwwer Är aktuell Sessioun"
 msgid "Invalid certificate"
 msgstr "Ongültegen Zertifikat"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:103
+msgid "Invalid certificate signature"
+msgstr ""
+
 msgid "JPEG Photo"
 msgstr "Foto am JPEG Format"
 
@@ -475,6 +479,10 @@ msgstr "Tracking Nummer"
 #, php-format
 msgid "Unable to locate metadata for %ENTITYID%"
 msgstr "Net méiglech d'Metadate fir %ENTITYID% ze fannen"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:217
+msgid "Unable to validate certificate signature."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
 msgid "Unhandled exception"

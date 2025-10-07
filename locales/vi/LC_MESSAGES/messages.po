@@ -275,6 +275,10 @@ msgstr "Thông tin về phiên truy cập hiện tại của bạn"
 msgid "Invalid certificate"
 msgstr "Giấy chứng nhận không hợp lệ"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:103
+msgid "Invalid certificate signature"
+msgstr ""
+
 msgid "JPEG Photo"
 msgstr "Ảnh JPEG"
 
@@ -679,6 +683,10 @@ msgstr "Không thể định vị siêu dữ liệu cho %ENTITYID%"
 
 msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
 msgstr "Không thể đăng xuất khỏi một hoặc nhiều dịch vụ. Để đảm bảo rằng tất cả các phiên của bạn đã được đóng, bạn nên <i>đóng trình duyệt web của mình</i> ."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:217
+msgid "Unable to validate certificate signature."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
 msgid "Unhandled exception"

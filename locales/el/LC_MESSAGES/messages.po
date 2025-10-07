@@ -290,6 +290,10 @@ msgstr ""
 msgid "Invalid certificate"
 msgstr "Μη έγκυρο πιστοποιητικό"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:103
+msgid "Invalid certificate signature"
+msgstr ""
+
 msgid "JPEG Photo"
 msgstr "Φωτογραφία σε μορφή JPEG"
 
@@ -703,6 +707,10 @@ msgstr "Δεν ήταν δυνατό να βρεθούν μεταδεδομέν�
 
 msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
 msgstr "Δεν ήταν δυνατή η αποσύνδεση από μία ή περισσότερες υπηρεσίες. Για το κλείσιμο όλων των συνεδριών σας (sessions), σας συνιστούμε να <i>κλείσετε</i> το πρόγραμμα πλοήγησης (web browser)."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:217
+msgid "Unable to validate certificate signature."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
 msgid "Unhandled exception"

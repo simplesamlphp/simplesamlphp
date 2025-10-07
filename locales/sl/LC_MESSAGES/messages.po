@@ -275,6 +275,10 @@ msgstr ""
 msgid "Invalid certificate"
 msgstr "Napačen certifikat"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:103
+msgid "Invalid certificate signature"
+msgstr ""
+
 msgid "JPEG Photo"
 msgstr "JPEG Slika"
 
@@ -679,6 +683,10 @@ msgstr "Metapodatkov za %ENTITYID% ni bilo moč najti"
 
 msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
 msgstr "Odjava z ene ali več storitev ni uspela. Odjavo dokončajte tako, da <i>zaprete spletni brskalnik</i>."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:217
+msgid "Unable to validate certificate signature."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
 msgid "Unhandled exception"

@@ -275,6 +275,10 @@ msgstr ""
 msgid "Invalid certificate"
 msgstr "无效的证书"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:103
+msgid "Invalid certificate signature"
+msgstr ""
+
 msgid "JPEG Photo"
 msgstr "JPEG图片"
 
@@ -679,6 +683,10 @@ msgstr "无法为%ENTITYID%定位元信息"
 
 msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
 msgstr "无法从一个或者多个服务中退出，请确认你所有sessions已关闭，我们鼓励你 <i>关闭浏览器</i>"
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:217
+msgid "Unable to validate certificate signature."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
 msgid "Unhandled exception"

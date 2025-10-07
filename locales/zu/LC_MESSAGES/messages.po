@@ -191,6 +191,10 @@ msgstr ""
 msgid "Invalid certificate"
 msgstr "Isifiketi esingalungile"
 
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:103
+msgid "Invalid certificate signature"
+msgstr ""
+
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:80
 msgid "LDAP Error"
 msgstr "Iphutha le-LDAP"
@@ -445,6 +449,10 @@ msgstr "Ayikwazi ukuthola imethadatha yokuthi %ENTITYID%"
 
 msgid "Unable to log out of one or more services. To ensure that all your sessions are closed, you are encouraged to <i>close your webbrowser</i>."
 msgstr "Ayikwazi ukuphuma kusevisi eyodwa noma ngaphezulu. Ukuze wenze isiqiniseko sokuthi wonke amaseshini akho avaliwe, ukhuthazwa ukuthi <i>uvale isiphequluli sakho sewebhu</i>."
+
+#: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:217
+msgid "Unable to validate certificate signature."
+msgstr ""
 
 #: /home/runner/work/simplesamlphp/simplesamlphp/src/SimpleSAML/Error/ErrorCodes.php:99
 msgid "Unhandled exception"
