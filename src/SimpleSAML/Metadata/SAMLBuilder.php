@@ -27,8 +27,11 @@ use SAML2\XML\mdui\UIInfo;
 use SAML2\XML\saml\Attribute;
 use SAML2\XML\saml\AttributeValue;
 use SAML2\XML\shibmd\Scope;
-use SimpleSAML\{Configuration, Module, Logger, Utils};
-use SimpleSAML\Assert\{Assert, AssertionFailedException};
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
+use SimpleSAML\Module;
+use SimpleSAML\Utils;
 
 /**
  * Class for generating SAML 2.0 metadata from SimpleSAMLphp metadata arrays.

@@ -230,8 +230,8 @@ class EMail
     /**
      * Initializes the provided EMail object with the configuration provided from the SimpleSAMLphp configuration.
      *
-     * @param EMail $EMail
-     * @return EMail
+     * @param \SimpleSAML\Utils\EMail $EMail
+     * @return \SimpleSAML\Utils\EMail
      * @throws \Exception
      */
     public function initFromConfig(EMail $EMail): EMail

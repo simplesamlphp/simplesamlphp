@@ -40,12 +40,10 @@ class ProcessingChain
      */
     public const FILTERS_INDEX = '\SimpleSAML\Auth\ProcessingChain.filters';
 
-
     /**
      * The stage we use for completed requests.
      */
     public const COMPLETED_STAGE = '\SimpleSAML\Auth\ProcessingChain.completed';
-
 
     /**
      * The request parameter we will use to pass the state identifier when we redirect after
@@ -329,7 +327,7 @@ class ProcessingChain
     /**
      * @param array $state
      * @psalm-param array{"\\\SimpleSAML\\\Auth\\\ProcessingChain.filters": array} $state
-     * @param ProcessingFilter[] $authProcs
+     * @param \SimpleSAML\Auth\ProcessingFilter[] $authProcs
      */
     public static function insertFilters(array &$state, array $authProcs): void
     {

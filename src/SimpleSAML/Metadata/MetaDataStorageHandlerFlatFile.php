@@ -29,7 +29,6 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      */
     private string $directory = '/';
 
-
     /**
      * Optional explicit file path to load metadata from
      *

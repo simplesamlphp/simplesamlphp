@@ -22,14 +22,12 @@ class Metadata
      */
     public static string $ENTITY_CATEGORY = 'http://macedir.org/entity-category';
 
-
     /**
      * The string the identifies the REFEDS "Hide From Discovery" Entity Category.
      *
      * @var string
      */
     public static string $HIDE_FROM_DISCOVERY = 'http://refeds.org/category/hide-from-discovery';
-
 
     /**
      * Valid options for the ContactPerson element

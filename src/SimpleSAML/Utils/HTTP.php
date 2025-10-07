@@ -66,13 +66,14 @@ class HTTP
         return true;
     }
 
+
     /**
      * Obtain a URL where we can redirect to securely post a form with the given data to a specific destination.
      *
      * @param string $destination The destination URL.
      * @param array  $data An associative array containing the data to be posted to $destination.
      *
-     * @throws Error\Exception If the current session is transient.
+     * @throws \SimpleSAML\Error\Exception If the current session is transient.
      * @return string  A URL which allows to securely post a form to $destination.
      *
      */
@@ -362,13 +363,13 @@ class HTTP
      * Check if a URL is valid and is in our list of allowed URLs.
      *
      * @param string $url The URL to check.
-     * @param string[]|null $trustedSites An optional white list of domains. If none specified, the 'trusted.url.domains'
+     * @param string[]|null $trustedSites An optional whitelist of domains. If none specified, the 'trusted.url.domains'
      * configuration directive will be used.
      *
      * @return string The normalized URL itself if it is allowed. An empty string if the $url parameter is empty as
      * defined by the empty() function.
      * @throws \InvalidArgumentException If the URL is malformed.
-     * @throws Error\Exception If the URL is not allowed by configuration.
+     * @throws \SimpleSAML\Error\Exception If the URL is not allowed by configuration.
      *
      */
     public function checkURLAllowed(string $url, ?array $trustedSites = null): string
@@ -457,7 +458,7 @@ class HTTP
      * @return string|array An array if $getHeaders is set, containing the data and the headers respectively; string
      *  otherwise.
      * @throws \InvalidArgumentException If the input parameters are invalid.
-     * @throws Error\Exception If the file or URL cannot be retrieved.
+     * @throws \SimpleSAML\Error\Exception If the file or URL cannot be retrieved.
      *
      */
     public function fetch(string $url, array $context = [], bool $getHeaders = false)
@@ -1098,7 +1099,9 @@ class HTTP
                     Error\CannotSetCookie::SECURE_COOKIE,
                 );
             }
-            Logger::warning('Error setting cookie: setting secure cookie on plain HTTP (except on localhost) is not allowed.');
+            Logger::warning(
+                'Error setting cookie: setting secure cookie on plain HTTP (except on localhost) is not allowed.',
+            );
             return;
         }
 

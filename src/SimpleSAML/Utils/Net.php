@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
-use Symfony\Component\HttpFoundation\{IpUtils, Request};
+use Symfony\Component\HttpFoundation\IpUtils;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Net-related utility methods.
@@ -18,8 +19,8 @@ class Net
      * Check whether an IP address is part of a CIDR.
      *
      * @param string|array $cidr The network CIDR address.
-     * @param string|null $ip The IP address to check. Optional. Current remote address will be used if none specified. Do
-     * not rely on default parameter if running behind load balancers.
+     * @param string|null $ip The optional IP address to check. Current remote address will be used if none specified.
+     *   Do not rely on the default parameter if running behind load balancers.
      *
      * @return boolean True if the IP address belongs to the specified CIDR, false otherwise.
      */

@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Locale;
 
 use Gettext\TranslatorFunctions;
-use SimpleSAML\{Configuration, Logger};
+use SimpleSAML\Configuration;
 
 class Translate
 {

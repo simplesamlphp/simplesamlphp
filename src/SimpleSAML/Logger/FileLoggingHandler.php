@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Logger;
 
 use DateTimeImmutable;
-use SimpleSAML\{Configuration, Logger, Utils};
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
+use SimpleSAML\Utils;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\Exception\CannotWriteFileException;
 use Symfony\Component\HttpFoundation\File\File;

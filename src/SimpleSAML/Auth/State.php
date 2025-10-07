@@ -93,6 +93,7 @@ class State
      */
     public const EXCEPTION_PARAM = '\SimpleSAML\Auth\State_exceptionId';
 
+
     /**
      * State timeout.
      */

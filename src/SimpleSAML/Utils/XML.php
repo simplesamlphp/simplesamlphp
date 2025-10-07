@@ -327,7 +327,9 @@ class XML
         if ($res === true) {
             $config = Configuration::getInstance();
             $sysUtils = new System();
-            $schemaFile = $sysUtils->resolvePath($config->getVendorDir() . 'simplesamlphp/saml2/resources/schemas/' . $schema);
+            $schemaFile = $sysUtils->resolvePath(
+                $config->getVendorDir() . 'simplesamlphp/saml2/resources/schemas/' . $schema,
+            );
 
             libxml_set_external_entity_loader(
                 /**
@@ -336,7 +338,12 @@ class XML
                  * @param array $context
                  * @return string|null
                  */
-                function (?string $public = null, string $system = '', /** @scrutinizer ignore-unused */ array $context = []) {
+                function (
+                    ?string $public = null,
+                    string $system = '',
+                    /** @scrutinizer ignore-unused */
+                    array $context = [],
+                ) {
                     if (filter_var($system, FILTER_VALIDATE_URL) === $system) {
                         return null;
                     }

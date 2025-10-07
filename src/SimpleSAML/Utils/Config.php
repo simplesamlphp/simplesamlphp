@@ -63,6 +63,7 @@ class Config
         return $secretSalt;
     }
 
+
     /**
      * Returns the path to the config dir
      *

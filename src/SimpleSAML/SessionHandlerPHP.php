@@ -165,6 +165,7 @@ class SessionHandlerPHP extends SessionHandler
         return $sessionId;
     }
 
+
     /**
      * Retrieve the session ID saved in the session cookie, if there's one.
      *

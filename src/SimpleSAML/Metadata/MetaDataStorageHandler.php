@@ -29,7 +29,6 @@ class MetaDataStorageHandler implements ClearableState
      */
     private static ?MetadataStorageHandler $metadataHandler = null;
 
-
     /**
      * This is a list of all the metadata sources we have in our metadata
      * chain. When we need metadata, we will look through this chain from start to end.
@@ -44,7 +43,7 @@ class MetaDataStorageHandler implements ClearableState
      * The metadata handler will be instantiated if this is the first call
      * to this function.
      *
-     * @return MetaDataStorageHandler The current metadata handler instance.
+     * @return \SimpleSAML\Metadata\MetaDataStorageHandler The current metadata handler instance.
      */
     public static function getMetadataHandler(): MetaDataStorageHandler
     {
@@ -301,6 +300,7 @@ class MetaDataStorageHandler implements ClearableState
 
         return $result;
     }
+
 
     /**
      * This function looks up the metadata for the given entity id in the given set. It will throw an

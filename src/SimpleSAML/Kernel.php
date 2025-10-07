@@ -28,7 +28,9 @@ class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
 
+
     public const CONFIG_EXTS = '.{php,xml,yaml,yml}';
+
 
     /** @var string */
     private string $module;
@@ -113,8 +115,8 @@ class Kernel extends BaseKernel
     /**
      * Configures the container.
      *
-     * @param ContainerBuilder $container
-     * @param LoaderInterface $loader
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @param \Symfony\Component\Config\Loader\LoaderInterface $loader
      */
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
     {
@@ -137,7 +139,7 @@ class Kernel extends BaseKernel
     /**
      * Import routes.
      *
-     * @param RoutingConfigurator  $routes
+     * @param \Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator $routes
      */
     protected function configureRoutes(RoutingConfigurator $routes): void
     {
@@ -152,7 +154,7 @@ class Kernel extends BaseKernel
 
 
     /**
-     * @param ContainerBuilder $container
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      */
     private function registerModuleControllers(ContainerBuilder $container): void
     {

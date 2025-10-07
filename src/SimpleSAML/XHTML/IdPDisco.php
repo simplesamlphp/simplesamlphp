@@ -559,10 +559,11 @@ class IdPDisco
 
         if (sizeof($idpList) === 1) {
             $selectedIdP = array_key_first($idpList);
-            $this->log(
-                'One candidate IdP, not showing discovery [' . $selectedIdP . '] (Redirecting the user back. returnIDParam=' .
-                $this->returnIdParam . ')',
-            );
+            $this->log(sprintf(
+                'One candidate IdP, not showing discovery [%s] (Redirecting the user back. returnIDParam=%s',
+                $selectedIdP,
+                $this->returnIdParam,
+            ));
             $httpUtils->redirectTrustedURL(
                 $this->returnURL,
                 [$this->returnIdParam => $selectedIdP],

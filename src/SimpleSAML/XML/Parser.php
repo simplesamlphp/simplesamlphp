@@ -17,6 +17,7 @@ class Parser
     /** @var \SimpleXMLElement */
     public SimpleXMLElement $simplexml;
 
+
     /**
      * @param string $xml
      */

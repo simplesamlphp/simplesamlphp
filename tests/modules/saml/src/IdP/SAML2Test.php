@@ -61,6 +61,7 @@ class SAML2Test extends ClearStateTestCase
         $this->assertEquals('https://some-sp-entity-id', $state['SPMetadata']['entityid']);
 
         $this->assertStringStartsWith(
+            // phpcs:ignore Generic.Files.LineLength.TooLong
             'http://idp.examlple.com/module.php/saml/idp/singleSignOnService?spentityid=https%3A%2F%2Fsome-sp-entity-id&cookie',
             $state['\SimpleSAML\Auth\State.restartURL'],
         );
@@ -121,6 +122,7 @@ class SAML2Test extends ClearStateTestCase
         $this->assertEquals('https://some-sp-entity-id', $state['SPMetadata']['entityid']);
 
         $this->assertStringStartsWith(
+            // phpcs:ignore Generic.Files.LineLength.TooLong
             'http://idp.examlple.com/module.php/saml/idp/singleSignOnService?spentityid=https%3A%2F%2Fsome-sp-entity-id&cookie',
             $state['\SimpleSAML\Auth\State.restartURL'],
         );

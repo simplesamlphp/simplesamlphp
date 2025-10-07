@@ -70,6 +70,7 @@ class Configuration implements Utils\ClearableState
         'Referrer-Policy' => 'origin-when-cross-origin',
     ];
 
+
     /**
      * Associative array with mappings from instance-names to configuration objects.
      *
@@ -1104,7 +1105,6 @@ class Configuration implements Utils\ClearableState
     }
 
 
-
     /**
      * Retrieve an optional array as a \SimpleSAML\Configuration object.
      *
@@ -1189,6 +1189,7 @@ class Configuration implements Utils\ClearableState
                 throw new Exception('Missing default binding for ' . $endpointType . ' in ' . $set);
         }
     }
+
 
     /**
      * Helper function for dealing with metadata endpoints.

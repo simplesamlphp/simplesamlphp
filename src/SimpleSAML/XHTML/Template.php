@@ -251,7 +251,7 @@ class Template extends Response
     /**
      * Set up the places where twig can look for templates.
      *
-     * @return TemplateLoader The twig template loader or false if the template does not exist.
+     * @return \SimpleSAML\XHMTL\TemplateLoader The twig template loader or false if the template does not exist.
      * @throws \Twig\Error\LoaderError In case a failure occurs.
      */
     private function setupTwigTemplatepaths(): TemplateLoader

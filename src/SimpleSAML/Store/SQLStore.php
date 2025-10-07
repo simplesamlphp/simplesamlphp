@@ -8,7 +8,9 @@ use Exception;
 use PDO;
 use PDOException;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\{Configuration, Logger, Utils};
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
+use SimpleSAML\Utils;
 
 use function array_keys;
 use function count;
@@ -17,12 +19,12 @@ use function implode;
 use function in_array;
 use function intval;
 use function rand;
+use function rawurlencode;
 use function serialize;
 use function sha1;
 use function strlen;
 use function unserialize;
 use function urldecode;
-use function rawurlencode;
 
 /**
  * A data store using a RDBMS to keep the data.
@@ -196,6 +198,7 @@ class SQLStore implements StoreInterface
             return;
         }
     }
+
 
     /**
      * Initialize key-value table.

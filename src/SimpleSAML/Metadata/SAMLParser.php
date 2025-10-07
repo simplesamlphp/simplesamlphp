@@ -250,7 +250,7 @@ class SAMLParser
      *
      * @param string $metadata A string which contains XML encoded metadata.
      *
-     * @return SAMLParser An instance of this class with the metadata loaded.
+     * @return \SimpleSAML\Metadata\SAMLParser An instance of this class with the metadata loaded.
      * @throws \Exception If the string does not parse as XML.
      */
     public static function parseString(string $metadata): SAMLParser
@@ -270,7 +270,7 @@ class SAMLParser
      *
      * @param \DOMDocument $document The \DOMDocument which contains the EntityDescriptor element.
      *
-     * @return SAMLParser An instance of this class with the metadata loaded.
+     * @return \SimpleSAML\Metadata\SAMLParser An instance of this class with the metadata loaded.
      */
     public static function parseDocument(DOMDocument $document): SAMLParser
     {
@@ -286,7 +286,7 @@ class SAMLParser
      * @param \SAML2\XML\md\EntityDescriptor $entityElement A \SAML2\XML\md\EntityDescriptor object which represents a
      *     EntityDescriptor element.
      *
-     * @return SAMLParser An instance of this class with the metadata loaded.
+     * @return \SimpleSAML\Metadata\SAMLParser An instance of this class with the metadata loaded.
      */
     public static function parseElement(EntityDescriptor $entityElement): SAMLParser
     {
@@ -303,7 +303,7 @@ class SAMLParser
      * @param string $file The path to the file which contains the EntityDescriptor or EntitiesDescriptor element.
      * @param array $context The connection context to pass to file_get_contents()
      *
-     * @return SAMLParser[] An array of SAMLParser instances.
+     * @return \SimpleSAML\Metadata\SAMLParser[] An array of SAMLParser instances.
      * @throws \Exception If the file does not parse as XML.
      */
     public static function parseDescriptorsFile(string $file, array $context = []): array
@@ -333,8 +333,8 @@ class SAMLParser
      *
      * @param string $string The string with XML data.
      *
-     * @return SAMLParser[] An associative array of SAMLParser instances. The key of the array will
-     *     be the entity id.
+     * @return \SimpleSAML\Metadata]SAMLParser[] An associative array of SAMLParser instances.
+     *   The key of the array will be the entity id.
      * @throws \Exception If the string does not parse as XML.
      */
     public static function parseDescriptorsString(string $string): array
@@ -356,8 +356,8 @@ class SAMLParser
      * @param \DOMElement|null $element The DOMElement which contains the EntityDescriptor element or the
      *     EntitiesDescriptor element.
      *
-     * @return SAMLParser[] An associative array of SAMLParser instances. The key of the array will
-     *     be the entity id.
+     * @return \SimpleSAML\Metadata\SAMLParser[] An associative array of SAMLParser instances.
+     *   The key of the array will be the entity id.
      * @throws \Exception if the document is empty or the root is an unexpected node.
      */
     public static function parseDescriptorsElement(?DOMElement $element = null): array
@@ -395,7 +395,7 @@ class SAMLParser
         if ($element instanceof EntityDescriptor) {
             $ret = new SAMLParser($element, $maxExpireTime, $validators, $parentExtensions);
             $ret = [$ret->getEntityId() => $ret];
-            /** @var SAMLParser[] $ret */
+            /** @var \SimpleSAML\Metadata\SAMLParser[] $ret */
             return $ret;
         }
 
@@ -424,8 +424,8 @@ class SAMLParser
      * @param mixed $element The element we should determine the expiry time of.
      * @param int|null $maxExpireTime The maximum expiration time.
      *
-     * @return int|null The unix timestamp for when the element should expire. Will be NULL if no
-     *             limit is set for the element.
+     * @return int|null The unix timestamp for when the element should expire.
+     *   Will be NULL if no limit is set for the element.
      */
     private static function getExpireTime(mixed $element, ?int $maxExpireTime): ?int
     {

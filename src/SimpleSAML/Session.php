@@ -35,6 +35,7 @@ class Session implements Utils\ClearableState
      */
     public const DATA_TIMEOUT_SESSION_END = 'sessionEndTimeout';
 
+
     /**
      * The list of loaded session objects.
      *
@@ -194,7 +195,7 @@ class Session implements Utils\ClearableState
     /**
      * Set the configuration we should use.
      *
-     * @param Configuration $config
+     * @param \SimpleSAML\Configuration $config
      */
     public function setConfiguration(Configuration $config): void
     {
@@ -250,7 +251,7 @@ class Session implements Utils\ClearableState
     /**
      * Retrieves the current session. Creates a new session if there's not one.
      *
-     * @return Session The current session.
+     * @return \SimpleSAML\Session The current session.
      * @throws \Exception When session couldn't be initialized and the session fallback is disabled by configuration.
      */
     public static function getSessionFromRequest(): Session
@@ -498,7 +499,6 @@ class Session implements Utils\ClearableState
      * Mark this session as dirty.
      *
      * This method will register a callback to save the session right before any output is sent to the browser.
-     *
      */
     public function markDirty(): void
     {
@@ -598,7 +598,7 @@ class Session implements Utils\ClearableState
      * @param string     $authority The authority the user logged in with.
      * @param array      $data The authentication data for this authority.
      *
-     * @throws Error\CannotSetCookie If the authentication token cannot be set for some reason.
+     * @throws \SimpleSAML\Error\CannotSetCookie If the authentication token cannot be set for some reason.
      */
     public function doLogin(string $authority, array $data = []): void
     {

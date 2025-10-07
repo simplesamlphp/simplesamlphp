@@ -25,7 +25,6 @@ abstract class SessionHandlerCookie extends SessionHandler
      */
     private ?string $session_id = null;
 
-
     /**
      * This variable contains the session cookie name.
      *

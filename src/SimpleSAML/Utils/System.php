@@ -15,12 +15,19 @@ use SimpleSAML\Error;
 class System
 {
     public const WINDOWS = 1;
+
     public const LINUX = 2;
+
     public const OSX = 3;
+
     public const HPUX = 4;
+
     public const UNIX = 5;
+
     public const BSD = 6;
+
     public const IRIX = 7;
+
     public const SUNOS = 8;
 
 
@@ -64,9 +71,9 @@ class System
      * This function retrieves the path to a directory where temporary files can be saved.
      *
      * @return string Path to a temporary directory, without a trailing directory separator.
-     * @throws Error\Exception If the temporary directory cannot be created or it exists and cannot be written
+     * @throws \SimpleSAML\Error\Exception
+     *   If the temporary directory cannot be created or it exists and cannot be written
      * to by the current user.
-     *
      */
     public function getTempDir(): string
     {
@@ -180,7 +187,7 @@ class System
      *
      *
      * @throws \InvalidArgumentException If any of the input parameters doesn't have the proper types.
-     * @throws Error\Exception If the file cannot be saved, permissions cannot be changed or it is not
+     * @throws \SimpleSAML\Error\Exception If the file cannot be saved, permissions cannot be changed or it is not
      *     possible to write to the target file.
      */
     public function writeFile(string $filename, string $data, int $mode = 0600): void
@@ -249,6 +256,7 @@ class System
         return substr($path, 1, 1) === ':'
                 && $letterAsciiValue >= 65 && $letterAsciiValue <= 90;
     }
+
 
     /**
      * Check if the supplied path contains a stream wrapper

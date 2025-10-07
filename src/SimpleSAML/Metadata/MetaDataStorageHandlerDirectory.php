@@ -31,7 +31,6 @@ class MetaDataStorageHandlerDirectory extends MetaDataStorageSource
      */
     private string $directory = '/';
 
-
     /**
      * This is an associative array which stores the different metadata sets we have loaded.
      *

@@ -13,9 +13,11 @@ namespace SimpleSAML\Locale;
 use Exception;
 use Gettext\Generator\ArrayGenerator;
 use Gettext\Loader\PoLoader;
-use Gettext\{Translations, Translator, TranslatorFunctions};
-use SimpleSAML\{Configuration, Logger};
+use Gettext\Translator;
+use Gettext\TranslatorFunctions;
+use SimpleSAML\Configuration;
 use SimpleSAML\Locale\Translate;
+use SimpleSAML\Logger;
 use Symfony\Component\HttpFoundation\File\File;
 
 use function explode;
@@ -28,7 +30,9 @@ class Localization
      * @var string
      */
     public const DEFAULT_DOMAIN = 'messages';
+
     public const CORE_DOMAIN = 'core';
+
 
     /**
      * The default locale directory

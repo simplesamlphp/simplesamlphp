@@ -156,11 +156,16 @@ class Module
      * configuration and the actual request, it will run a PHP script and exit, or return a Response produced either
      * by another controller or by a static file.
      *
-     * @param \Symfony\Component\HttpFoundation\Request|null $request The request to process. Defaults to the current one.
+     * @param \Symfony\Component\HttpFoundation\Request|null $request
+     *   The request to process. Defaults to the current one.
+     * @return (
+     *   \Symfony\Component\HttpFoundation\Response|
+     *   \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * ) Returns a Response object that can be sent to the browser.
      *
-     * @return Response|BinaryFileResponse Returns a Response object that can be sent to the browser.
-     * @throws Error\BadRequest In case the request URI is malformed.
-     * @throws Error\NotFound In case the request URI is invalid or the resource it points to cannot be found.
+     * @throws \SimpleSAML\Error\BadRequest In case the request URI is malformed.
+     * @throws \SimpleSAML\Error\NotFound
+     *   In case the request URI is invalid or the resource it points to cannot be found.
      */
     public static function process(?Request $request = null): Response
     {
@@ -499,6 +504,7 @@ class Module
         return $obj;
     }
 
+
     /**
      * Get absolute URL to a specified module resource.
      *
@@ -604,9 +610,9 @@ class Module
      *
      * This method add the trailing slash and redirects to the resulting URL.
      *
-     * @param Request $request The request to process by this controller method.
-     *
-     * @return RedirectResponse A redirection to the URI specified in the request, but with a trailing slash.
+     * @param \Symfony\Component\HttpFoundation\Request $request The request to process by this controller method.
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *   A redirection to the URI specified in the request, but with a trailing slash.
      */
     public static function addTrailingSlash(Request $request): RedirectResponse
     {
