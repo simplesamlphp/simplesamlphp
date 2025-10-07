@@ -12,6 +12,7 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Module;
 use SimpleSAML\TestUtils\ArrayLogger;
 use SimpleSAML\Utils;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -28,12 +29,12 @@ use function dirname;
 use function in_array;
 use function sprintf;
 
+#[AsCommand(
+    name: 'translations:unused',
+    description: 'Generates a list of translations that are no longer in used in PHP or Twig files.',
+)]
 class UnusedTranslatableStringsCommand extends Command
 {
-    /** @var string|null */
-    protected static ?string $defaultName = 'translations:unused';
-
-
     /**
      * @throws \Exception
      */
@@ -49,7 +50,6 @@ class UnusedTranslatableStringsCommand extends Command
             'simplesaml',
         );
 
-        $this->setDescription('Generates a list of translations that are no longer in used in PHP or Twig files');
         $this->addOption(
             'module',
             null,

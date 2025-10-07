@@ -14,6 +14,7 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Module;
 use SimpleSAML\TestUtils\ArrayLogger;
 use SimpleSAML\Utils;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -32,14 +33,12 @@ use function in_array;
 use function ksort;
 use function sprintf;
 
+#[AsCommand(
+    name: 'translations:update:translatable',
+    description: 'Generates fresh .po translation files based on the translatable strings from PHP and Twig files.',
+)]
 class UpdateTranslatableStringsCommand extends Command
 {
-    /**
-     * @var string|null
-     */
-    protected static ?string $defaultName = 'translations:update:translatable';
-
-
     /**
      * @throws \Exception
      */
@@ -55,9 +54,6 @@ class UpdateTranslatableStringsCommand extends Command
             'simplesaml',
         );
 
-        $this->setDescription(
-            'Generates fresh .po translation files based on the translatable strings from PHP and Twig files',
-        );
         $this->addOption(
             'module',
             null,
