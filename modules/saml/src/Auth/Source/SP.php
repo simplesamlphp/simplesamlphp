@@ -448,6 +448,7 @@ class SP extends Auth\Source
         return $endpoints;
     }
 
+
     /**
      * Get the DiscoveryResponse endpoint available for a given local SP.
      */
@@ -460,6 +461,7 @@ class SP extends Auth\Source
                 'Location' => $location,
         ] ];
     }
+
 
     /**
      * Determine if the Request Initiator Protocol is enabled

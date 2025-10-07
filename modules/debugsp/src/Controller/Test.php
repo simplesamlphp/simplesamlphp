@@ -38,7 +38,6 @@ class Test
     protected $authState = Auth\State::class;
 
 
-
     /**
      * TestController constructor.
      *
@@ -51,6 +50,7 @@ class Test
     ) {
     }
 
+
     /**
      * Inject the \SimpleSAML\Auth\Simple dependency.
      *
@@ -61,6 +61,7 @@ class Test
         $this->authSimple = $authSimple;
     }
 
+
     /**
      * Inject the \SimpleSAML\Auth\State dependency.
      *
@@ -70,6 +71,7 @@ class Test
     {
         $this->authState = $authState;
     }
+
 
     /**
      * Create a page listing the SPs that can be tested
@@ -93,6 +95,7 @@ class Test
 
         return $t;
     }
+
 
     /**
      * Display the list of available authsources.

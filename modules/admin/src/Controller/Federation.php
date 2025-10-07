@@ -211,7 +211,11 @@ class Federation
                     $selfHost = $httpUtils->getSelfHostWithPath();
                     foreach ($idps as $index => $idp) {
                         if (isset($idp['host']) && $idp['host'] !== '__DEFAULT__') {
-                            $mdHostBase = str_replace('://' . $selfHost . '/', '://' . $idp['host'] . '/', $metadataBase);
+                            $mdHostBase = str_replace(
+                                '://' . $selfHost . '/',
+                                '://' . $idp['host'] . '/',
+                                $metadataBase,
+                            );
                         } else {
                             $mdHostBase = $metadataBase;
                         }

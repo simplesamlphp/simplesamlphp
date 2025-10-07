@@ -167,6 +167,7 @@ class SQLPermanentStorage
         return $res;
     }
 
+
     /**
      * Return the value directly (not in a container)
      *

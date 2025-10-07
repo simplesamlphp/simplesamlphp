@@ -23,7 +23,9 @@ use SimpleSAML\Store\StoreFactory;
 class SQLNameID
 {
     public const TABLE_VERSION = 1;
+
     public const DEFAULT_TABLE_PREFIX = '';
+
     public const TABLE_SUFFIX = '_saml_PersistentNameID';
 
 
@@ -81,6 +83,7 @@ class SQLNameID
         $table = $prefix . self::TABLE_SUFFIX;
         return $table;
     }
+
 
     /**
      * @param array $config

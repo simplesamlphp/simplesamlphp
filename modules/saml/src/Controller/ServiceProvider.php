@@ -30,7 +30,8 @@ use SimpleSAML\Session;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function array_merge;
 use function count;
@@ -65,8 +66,8 @@ class ServiceProvider
      *
      * It initializes the global configuration for the controllers implemented here.
      *
-     * @param   Configuration  $config   The configuration to use by the controllers.
-     * @param   Session        $session  The Session to use by the controllers.
+     * @param \SimpleSAML\Configuration $config   The configuration to use by the controllers.
+     * @param \SimpleSAML\Session       $session  The Session to use by the controllers.
      */
     public function __construct(
         protected Configuration $config,
@@ -98,15 +99,15 @@ class ServiceProvider
     }
 
 
-  /**
-   * Start single sign-on for an SP identified with the specified Authsource ID
-   *
-   * @param   \Symfony\Component\HttpFoundation\Request  $request
-   * @param   string                                     $sourceId
-   *
-   * @return \SimpleSAML\HTTP\RunnableResponse
-   * @throws Error\Exception
-   */
+    /**
+     * Start single sign-on for an SP identified with the specified Authsource ID
+     *
+     * @param   \Symfony\Component\HttpFoundation\Request  $request
+     * @param   string                                     $sourceId
+     *
+     * @return \SimpleSAML\HTTP\RunnableResponse
+     * @throws \SimpleSAML\Error\Exception
+     */
     public function login(Request $request, string $sourceId): RunnableResponse
     {
         // Initialize all the dependencies
@@ -125,15 +126,16 @@ class ServiceProvider
         return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$returnTo]);
     }
 
+
     /**
-     * @param   Request       $request
-     * @param   Auth\Simple   $authSource
-     * @param   Auth\Source   $spSource
-     * @param   Utils\HTTP    $httpUtils
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \SimpleSAML\Auth\Simple $authSource
+     * @param \SimpleSAML\Auth\Source $spSource
+     * @param \SimpleSAML\Utils\HTTP $httpUtils
      *
      * @return string
      * @throws \SimpleSAML\Error\BadRequest
-     * @throws Error\Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     protected function loginHandler(
         Request $request,

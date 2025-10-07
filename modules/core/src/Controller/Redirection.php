@@ -13,7 +13,8 @@ use SimpleSAML\XHTML\Template;
 use SimpleSAML\XMLSecurity\Alg\Encryption\AES;
 use SimpleSAML\XMLSecurity\Constants as C;
 use SimpleSAML\XMLSecurity\Key\SymmetricKey;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Controller class for the core module.
@@ -44,7 +45,7 @@ class Redirection
     /**
      * This controller provides a way to create a redirect to a POST request
      *
-     * @param Request $request The request that lead to this login operation.
+     * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this login operation.
      * @throws \SimpleSAML\Error\BadRequest
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
      *   An HTML template or a redirection if we are not authenticated.

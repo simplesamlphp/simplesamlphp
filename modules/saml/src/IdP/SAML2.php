@@ -761,7 +761,7 @@ class SAML2
      * Retrieve the metadata of a hosted SAML 2 IdP.
      *
      * @param string $entityid The entity ID of the hosted SAML 2 IdP whose metadata we want.
-     * @param MetaDataStorageHandler|null $handler Optionally the metadata storage to use,
+     * @param \SimpleSAML\Metadata\MetaDataStorageHandler|null $handler Optionally the metadata storage to use,
      *        if omitted the configured handler will be used.
      *
      * @return array
@@ -1267,6 +1267,7 @@ class SAML2
         return $a;
     }
 
+
     /**
      * Helper for buildAssertion to decide on an NameID to set
      */
@@ -1327,6 +1328,7 @@ class SAML2
 
         return $nameId;
     }
+
 
     /**
      * Encrypt an assertion.

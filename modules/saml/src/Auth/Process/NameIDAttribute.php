@@ -24,7 +24,6 @@ class NameIDAttribute extends ProcessingFilter
      */
     private string $attribute;
 
-
     /**
      * The format of the NameID in the attribute.
      *

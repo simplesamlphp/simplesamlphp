@@ -27,7 +27,6 @@ abstract class BaseNameIDGenerator extends ProcessingFilter
      */
     private string|bool $nameQualifier;
 
-
     /**
      * What SPNameQualifier should be used.
      * Can be one of:
@@ -38,7 +37,6 @@ abstract class BaseNameIDGenerator extends ProcessingFilter
      * @var string|bool
      */
     private string|bool $spNameQualifier;
-
 
     /**
      * The format of this NameID.

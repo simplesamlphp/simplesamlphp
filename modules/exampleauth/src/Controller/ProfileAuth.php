@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\exampleauth\Controller;
 
 use Exception as BuiltinException;
-use SimpleSAML\{Auth, Configuration, Error, Module, Utils};
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Module;
 use SimpleSAML\Module\exampleauth\Auth\Source\UserClick;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function trim;
 

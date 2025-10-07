@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-use Webmozart\Assert\Assert;
-use SimpleSAML\{Configuration, Utils};
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
+use SimpleSAML\Utils;
 
 function saml_hook_sanitycheck(array &$hookinfo): void
 {

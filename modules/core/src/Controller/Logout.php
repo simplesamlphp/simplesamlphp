@@ -7,10 +7,16 @@ namespace SimpleSAML\Module\core\Controller;
 use Exception as BuiltinException;
 use SAML2\Binding;
 use SAML2\Constants;
-use SimpleSAML\{Auth, Configuration, Error, IdP, Logger, Stats, Utils};
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
+use SimpleSAML\IdP;
+use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Message;
+use SimpleSAML\Stats;
+use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -66,7 +72,7 @@ class Logout
     /**
      * Log the user out of a given authentication source.
      *
-     * @param Request $request The request that lead to this logout operation.
+     * @param \Symfony\Components\HttpFoundation\Request $request The request that lead to this logout operation.
      * @param string $as The name of the auth source.
      *
      * @return \SimpleSAML\HTTP\RunnableResponse A runnable response which will actually perform logout.
@@ -106,7 +112,7 @@ class Logout
 
 
     /**
-     * @param Request $request The request that lead to this logout operation.
+     * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this logout operation.
      * @return \SimpleSAML\HTTP\RunnableResponse
      */
     public function logoutIframeDone(Request $request): RunnableResponse
@@ -173,7 +179,7 @@ class Logout
 
 
     /**
-     * @param Request $request The request that lead to this logout operation.
+     * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this logout operation.
      * @return \SimpleSAML\HTTP\RunnableResponse
      */
     public function logoutIframePost(Request $request): RunnableResponse
@@ -239,7 +245,7 @@ class Logout
 
 
     /**
-     * @param Request $request The request that lead to this logout operation.
+     * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this logout operation.
      * @return \SimpleSAML\XHTML\Template
      */
     public function logoutIframe(Request $request): Template
@@ -385,7 +391,7 @@ class Logout
 
 
     /**
-     * @param Request $request The request that lead to this logout operation.
+     * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this logout operation.
      * @return \SimpleSAML\HTTP\RunnableResponse
      */
     public function resumeLogout(Request $request): RunnableResponse

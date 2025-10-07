@@ -33,6 +33,7 @@ abstract class UserPassBase extends Auth\Source
      */
     public const AUTHID = '\SimpleSAML\Module\core\Auth\UserPassBase.AuthId';
 
+
     /**
      * Username we should force.
      *
@@ -135,6 +136,7 @@ abstract class UserPassBase extends Auth\Source
         Assert::nullOrString($forcedUsername);
         $this->forcedUsername = $forcedUsername;
     }
+
 
     /**
      * Return login links from configuration

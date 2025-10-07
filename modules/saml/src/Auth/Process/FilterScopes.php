@@ -24,6 +24,7 @@ class FilterScopes extends ProcessingFilter
         'eduPersonPrincipalName',
     ];
 
+
     /**
      * Constructor for the processing filter.
      *
@@ -38,6 +39,7 @@ class FilterScopes extends ProcessingFilter
             $this->scopedAttributes = $config['attributes'];
         }
     }
+
 
     /**
      * This method applies the filter, removing any values

@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SAML2\Exception\ProtocolViolationException;
-use SimpleSAML\{Auth, Utils};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 
 use function array_key_exists;
 use function explode;
-use function strpos;
 use function sprintf;
+use function strpos;
 
 /**
  * Filter to generate a saml:issuer dynamically based on an input attribute.
@@ -46,6 +46,7 @@ class ScopedIssuer extends Auth\ProcessingFilter
      * @var string
      */
     public const SCOPE_PATTERN = '/^[a-z0-9][a-z0-9.-]{0,126}$/Di';
+
 
     /**
      * The attribute we should use for the scope of the saml:Issuer.
@@ -131,7 +132,10 @@ class ScopedIssuer extends Auth\ProcessingFilter
      */
     protected function getScopedAttribute(array $state): ?string
     {
-        if (!array_key_exists('Attributes', $state) || !array_key_exists($this->scopedAttribute, $state['Attributes'])) {
+        if (
+            !array_key_exists('Attributes', $state)
+            || !array_key_exists($this->scopedAttribute, $state['Attributes'])
+        ) {
             return null;
         }
 

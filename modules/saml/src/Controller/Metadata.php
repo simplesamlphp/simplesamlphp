@@ -31,6 +31,7 @@ class Metadata
     /** @var \SimpleSAML\Metadata\MetaDataStorageHandler */
     protected MetadataStorageHandler $mdHandler;
 
+
     /**
      * Controller constructor.
      *
@@ -45,6 +46,7 @@ class Metadata
         $this->mdHandler = MetaDataStorageHandler::getMetadataHandler();
     }
 
+
     /**
      * Inject the \SimpleSAML\Utils\Auth dependency.
      *
@@ -55,6 +57,7 @@ class Metadata
         $this->authUtils = $authUtils;
     }
 
+
     /**
      * Inject the \SimpleSAML\Metadata\MetadataStorageHandler dependency.
      */
@@ -62,6 +65,7 @@ class Metadata
     {
         $this->mdHandler = $mdHandler;
     }
+
 
     /**
      * This endpoint will offer the SAML 2.0 IdP metadata.

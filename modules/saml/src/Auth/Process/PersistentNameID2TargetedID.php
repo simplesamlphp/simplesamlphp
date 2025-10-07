@@ -23,7 +23,6 @@ class PersistentNameID2TargetedID extends ProcessingFilter
      */
     private string $attribute;
 
-
     /**
      * Whether we should insert it as an saml:NameID element.
      *

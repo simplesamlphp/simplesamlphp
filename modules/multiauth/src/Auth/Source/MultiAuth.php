@@ -42,6 +42,7 @@ class MultiAuth extends Auth\Source
      */
     public const SESSION_SOURCE = 'multiauth:selectedSource';
 
+
     /**
      * Array of sources we let the user chooses among.
      * @var array
