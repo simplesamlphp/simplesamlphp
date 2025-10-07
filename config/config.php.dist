@@ -341,6 +341,57 @@ $config = [
     'errorreporting' => true,
 
     /*
+     * When showerrors is true, this is an array of which errors
+     * should still be shown to the user. By default an error will
+     * always be shown if showerrors==true. If you list anything in
+     * this option you have to explicitly list each error you would
+     * like to be shown to the user. You can also set the value to false
+     * to hide that error.
+     *
+     * These can be any of the error codes in
+     * src/SimpleSAML/Error/ErrorCodes.php
+     *
+     */
+    'showerrors.whitelist' => [
+        'ACSPARAMS' => true,
+        'ADMINNOTHASHED' => true,
+        'ARSPARAMS' => true,
+        'AUTHSOURCEERROR' => true,
+        'BADREQUEST' => true,
+        'CASERROR' => true,
+        'CONFIG' => true,
+        'CREATEREQUEST' => true,
+        'DISCOPARAMS' => true,
+        'GENERATEAUTHNRESPONSE' => true,
+        'INVALIDCERT' => true,
+        'LDAPERROR' => true,
+        'LOGOUTINFOLOST' => true,
+        'LOGOUTREQUEST' => true,
+        'MEMCACHEDOWN' => true,
+        'METADATA' => true,
+        'METADATANOTFOUND' => true,
+        'METHODNOTALLOWED' => true,
+        'NOACCESS' => true,
+        'NOCERT' => true,
+        'NORELAYSTATE' => true,
+        'NOSTATE' => true,
+        'NOTFOUND' => true,
+        'NOTFOUNDREASON' => true,
+        'NOTSET' => true,
+        'NOTVALIDCERT' => true,
+        'NOTVALIDCERTSIGNATURE' => true,
+        'PROCESSASSERTION' => true,
+        'PROCESSAUTHNREQUEST' => true,
+        'RESPONSESTATUSNOSUCCESS' => true,
+        'SLOSERVICEPARAMS' => true,
+        'SSOPARAMS' => true,
+        'UNHANDLEDEXCEPTION' => true,
+        'UNKNOWNCERT' => true,
+        'USERABORTED' => true,
+        'WRONGUSERPASS' => true,
+    ],
+
+    /*
      * Custom error show function called from SimpleSAML\Error\Error::show.
      * See docs/simplesamlphp-errorhandling.md for function code example.
      *
