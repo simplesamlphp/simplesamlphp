@@ -200,38 +200,42 @@ class UpdateTranslatableStringsCommand extends Command
                 $moduleLocalesDir = $moduleDir . '/locales/';
                 $domain = $domain ?: 'messages';
 
-                $finder = new Finder();
-                foreach ($finder->files()->in($moduleLocalesDir . '**/LC_MESSAGES/')->name("{$domain}.po") as $poFile) {
-                    $current = $loader->loadFile($poFile->getPathName());
+                if (file_exists($moduleLocalesDir)) {
+                    // The module contains translations - if not we skip it.
 
-                    $merged = $template->mergeWith(
-                        $current,
-                        Merge::TRANSLATIONS_OVERRIDE
-                        | Merge::COMMENTS_OURS
-                        | Merge::HEADERS_OURS
-                        | Merge::REFERENCES_THEIRS
-                        | Merge::EXTRACTED_COMMENTS_OURS,
-                    );
-                    $merged->setDomain($domain);
+                    $finder = new Finder();
+                    foreach ($finder->files()->in($moduleLocalesDir . '**/LC_MESSAGES/')->name("{$domain}.po") as $poFile) {
+                        $current = $loader->loadFile($poFile->getPathName());
 
-                    //
-                    // Sort the translations in a predictable way
-                    //
-                    $iter = $merged->getIterator();
-                    $iter->ksort();
-                    $merged = $this->cloneIteratorToTranslations(
-                        Translations::create($merged->getDomain(), $merged->getLanguage()),
-                        $iter,
-                    );
+                        $merged = $template->mergeWith(
+                            $current,
+                            Merge::TRANSLATIONS_OVERRIDE
+                            | Merge::COMMENTS_OURS
+                            | Merge::HEADERS_OURS
+                            | Merge::REFERENCES_THEIRS
+                            | Merge::EXTRACTED_COMMENTS_OURS,
+                        );
+                        $merged->setDomain($domain);
 
-                    $language = basename(dirname($poFile->getPath()));
-                    $merged->getHeaders()
-                        ->set('Project-Id-Version', 'SimpleSAMLphp')
-                        ->set('MIME-Version', '1.0')
-                        ->set('Content-Type', 'text/plain; charset=UTF-8')
-                        ->set('Content-Transfer-Encoding', '8bit')
-                        ->setLanguage($language);
-                    $poGenerator->generateFile($merged, $poFile->getPathName());
+                        //
+                        // Sort the translations in a predictable way
+                        //
+                        $iter = $merged->getIterator();
+                        $iter->ksort();
+                        $merged = $this->cloneIteratorToTranslations(
+                            Translations::create($merged->getDomain(), $merged->getLanguage()),
+                            $iter,
+                        );
+
+                        $language = basename(dirname($poFile->getPath()));
+                        $merged->getHeaders()
+                            ->set('Project-Id-Version', 'SimpleSAMLphp')
+                            ->set('MIME-Version', '1.0')
+                            ->set('Content-Type', 'text/plain; charset=UTF-8')
+                            ->set('Content-Transfer-Encoding', '8bit')
+                            ->setLanguage($language);
+                        $poGenerator->generateFile($merged, $poFile->getPathName());
+                    }
                 }
             }
         }
