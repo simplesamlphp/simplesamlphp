@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Compat;
 
-use Psr\Log\{InvalidArgumentException, LoggerInterface, LogLevel};
+use Psr\Log\InvalidArgumentException;
+use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 use SimpleSAML\Logger as SspLogger;
 use Stringable;
 

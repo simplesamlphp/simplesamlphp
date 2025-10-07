@@ -204,7 +204,8 @@ class UpdateTranslatableStringsCommand extends Command
                     // The module contains translations - if not we skip it.
 
                     $finder = new Finder();
-                    foreach ($finder->files()->in($moduleLocalesDir . '**/LC_MESSAGES/')->name("{$domain}.po") as $poFile) {
+                    $poFiles = $finder->files()->in($moduleLocalesDir . '**/LC_MESSAGES/')->name("{$domain}.po");
+                    foreach ($poFiles as $poFile) {
                         $current = $loader->loadFile($poFile->getPathName());
 
                         $merged = $template->mergeWith(

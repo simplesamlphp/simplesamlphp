@@ -22,6 +22,7 @@ class TwigTranslator implements TranslatorInterface
     /** @var callable $translator */
     private $translator;
 
+
     /**
      * @param callable $translator
      */
@@ -29,6 +30,7 @@ class TwigTranslator implements TranslatorInterface
     {
         $this->translator = $translator;
     }
+
 
     /**
      * Translate message via configured translator.
@@ -44,6 +46,7 @@ class TwigTranslator implements TranslatorInterface
 
         return call_user_func_array($this->translator, func_get_args());
     }
+
 
     /**
      * Returns the default locale.

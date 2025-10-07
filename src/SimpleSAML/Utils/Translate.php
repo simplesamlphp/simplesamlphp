@@ -38,6 +38,7 @@ class Translate
         $this->baseDir = $configuration->getBaseDir();
     }
 
+
     /**
      * @param string $module
      * @param \Gettext\Scanner\PhpScanner $phpScanner

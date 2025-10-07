@@ -47,7 +47,7 @@ class EMail
      * @param string $html_template The template to use for html messages
      *
      * @throws \PHPMailer\PHPMailer\Exception
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct(
         string $subject,
@@ -74,7 +74,7 @@ class EMail
      * which is na@example.org.
      *
      * @return string Default mail address
-     * @throws Exception
+     * @throws \Exception
      */
     public function getDefaultMailAddress(): string
     {
@@ -242,8 +242,8 @@ class EMail
     /**
      * Initializes the provided EMail object with the configuration provided from the SimpleSAMLphp configuration.
      *
-     * @param EMail $EMail
-     * @return EMail
+     * @param \SimpleSAML\Utils\EMail $EMail
+     * @return \SimpleSAML\Utils\EMail
      * @throws \Exception
      */
     public function initFromConfig(EMail $EMail): EMail

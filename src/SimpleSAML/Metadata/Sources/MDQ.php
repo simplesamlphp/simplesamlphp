@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata\Sources;
 
 use Exception;
-use SimpleSAML\{Configuration, Error, Logger, Utils};
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageSource;
 use SimpleSAML\Metadata\SAMLParser;
+use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\File\File;
 
 use function array_key_exists;
@@ -57,6 +60,7 @@ class MDQ extends MetaDataStorageSource
      * @var integer
      */
     private int $cacheLength;
+
 
     /**
      * This function initializes the dynamic XML metadata source.
@@ -231,7 +235,7 @@ class MDQ extends MetaDataStorageSource
      *
      * @return array|null  The associative array with the metadata, or NULL if no metadata for
      *                     the given set was found.
-     * @throws Exception
+     * @throws \Exception
      */
     private static function getParsedSet(SAMLParser $entity, string $set): ?array
     {
@@ -348,6 +352,7 @@ class MDQ extends MetaDataStorageSource
 
         return $data;
     }
+
 
     /**
      * This function loads the metadata for entity IDs in $entityIds. It is returned as an associative array

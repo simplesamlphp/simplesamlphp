@@ -6,11 +6,14 @@ namespace SimpleSAML;
 
 use Exception;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\IdP\{IFrameLogoutHandler, LogoutHandlerInterface, TraditionalLogoutHandler};
+use SimpleSAML\IdP\IFrameLogoutHandler;
+use SimpleSAML\IdP\LogoutHandlerInterface;
+use SimpleSAML\IdP\TraditionalLogoutHandler;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\Protocol\NoPassiveException;
-use Symfony\Component\HttpFoundation\{RedirectResponse, Response};
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 use function call_user_func;
 use function strpos;
@@ -81,7 +84,7 @@ class IdP
      * @param string $id The identifier of this IdP.
      *
      * @throws \SimpleSAML\Error\Exception If the IdP is disabled or no such auth source was found.
-     * @throws Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     private function __construct(Configuration $config, string $id)
@@ -179,7 +182,7 @@ class IdP
     /**
      * Retrieve the configuration for this IdP.
      *
-     * @return Configuration The configuration object.
+     * @return \SimpleSAML\Configuration The configuration object.
      */
     public function getConfig(): Configuration
     {
@@ -232,7 +235,7 @@ class IdP
      * Add an SP association.
      *
      * @param array $association The SP association.
-     * @throws Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     public function addAssociation(array $association): void
@@ -251,7 +254,7 @@ class IdP
      * Retrieve list of SP associations.
      *
      * @return array List of SP associations.
-     * @throws Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     public function getAssociations(): array
@@ -265,7 +268,7 @@ class IdP
      * Remove an SP association.
      *
      * @param string $assocId The association id.
-     * @throws Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     public function terminateAssociation(string $assocId): void
@@ -279,7 +282,7 @@ class IdP
      * Is the current user authenticated?
      *
      * @return boolean True if the user is authenticated, false otherwise.
-     * @throws Exception
+     * @throws \Exception
      */
     public function isAuthenticated(): bool
     {
@@ -291,7 +294,7 @@ class IdP
      * Called after authproc has run.
      *
      * @param array $state The authentication request state array.
-     * @throws Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     public static function postAuthProc(array $state): Response
@@ -320,7 +323,7 @@ class IdP
      * @param array $state The authentication request state array.
      *
      * @throws \SimpleSAML\Error\Exception If we are not authenticated.
-     * @throws Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     public static function postAuth(array $state): Response
@@ -504,7 +507,7 @@ class IdP
      * @param array       &$state The logout request state.
      * @param string|null $assocId The association we received the logout request from, or null if there was no
      * association.
-     * @throws Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     public function handleLogoutRequest(array &$state, ?string $assocId): Response
@@ -538,7 +541,7 @@ class IdP
      * @param string                 $assocId The association that is terminated.
      * @param string|null            $relayState The RelayState from the start of the logout.
      * @param \SimpleSAML\Error\Exception|null $error  The error that occurred during session termination (if any).
-     * @throws Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     public function handleLogoutResponse(string $assocId, ?string $relayState, ?Error\Exception $error = null): Response
@@ -560,7 +563,7 @@ class IdP
      * This function never returns.
      *
      * @param string $url The URL the user should be returned to after logout.
-     * @throws Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     public function doLogoutRedirect(string $url): Response
@@ -579,7 +582,7 @@ class IdP
      *
      * This function never returns.
      *
-     * @param array    &$state The logout state from doLogoutRedirect().
+     * @param array &$state The logout state from doLogoutRedirect().
      * @throws \SimpleSAML\Error\Exception
      * @throws \InvalidArgumentException
      * @throws \Exception

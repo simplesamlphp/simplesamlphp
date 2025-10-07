@@ -5,7 +5,11 @@ declare(strict_types=1);
 namespace SimpleSAML\Utils;
 
 use InvalidArgumentException;
-use SimpleSAML\{Configuration, Error, Logger, Module, Session};
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
+use SimpleSAML\Module;
+use SimpleSAML\Session;
 use SimpleSAML\XHTML\Template;
 use SimpleSAML\XMLSecurity\Alg\Encryption\AES;
 use SimpleSAML\XMLSecurity\Constants as C;
@@ -35,9 +39,10 @@ use function is_string;
 use function join;
 use function parse_url;
 use function preg_match;
-use function preg_replace;
 use function preg_quote;
+use function preg_replace;
 use function realpath;
+use function rtrim;
 use function setcookie;
 use function setrawcookie;
 use function str_contains;
@@ -51,7 +56,6 @@ use function strval;
 use function substr;
 use function time;
 use function trim;
-use function rtrim;
 use function urldecode;
 use function var_export;
 use function version_compare;
@@ -108,6 +112,7 @@ class HTTP
         return true;
     }
 
+
     /**
      * Obtain a URL where we can redirect to securely post a form with the given data to a specific destination.
      *
@@ -119,7 +124,6 @@ class HTTP
      * @throws \Throwable
      *
      * @return string  A URL which allows to securely post a form to $destination.
-     *
      */
     private function getSecurePOSTRedirectURL(string $destination, array $data): string
     {
@@ -381,8 +385,8 @@ class HTTP
      * Check if a URL is valid and is in our list of allowed URLs.
      *
      * @param string $url The URL to check.
-     * @param string[] $trustedSites An optional white list of domains. If none specified, the 'trusted.url.domains'
-     * configuration directive will be used.
+     * @param string[]|null $trustedSites An optional whitelist of domains. If none specified, the 'trusted.url.domains'
+     *   configuration directive will be used.
      *
      * @return string The normalized URL itself if it is allowed. An empty string if the $url parameter is empty as
      * defined by the empty() function.
@@ -476,10 +480,10 @@ class HTTP
      *
      * @return string|array An array if $getHeaders is set, containing the data and the headers respectively; string
      *  otherwise.
+     *
      * @throws \InvalidArgumentException If the input parameters are invalid.
      * @throws \SimpleSAML\Error\Exception If the file or URL cannot be retrieved.
      * @throws \Exception
-     *
      */
     public function fetch(string $url, array $context = [], bool $getHeaders = false)
     {
@@ -1154,7 +1158,9 @@ class HTTP
                     Error\CannotSetCookie::SECURE_COOKIE,
                 );
             }
-            Logger::warning('Error setting cookie: setting secure cookie on plain HTTP (except on localhost) is not allowed.');
+            Logger::warning(
+                'Error setting cookie: setting secure cookie on plain HTTP (except on localhost) is not allowed.',
+            );
             return;
         }
 

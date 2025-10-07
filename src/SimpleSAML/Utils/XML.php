@@ -18,9 +18,12 @@ use DOMNode;
 use DOMText;
 use Exception;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\{Configuration, Error, Logger};
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
 use SimpleSAML\SAML2\Constants as C;
-use SimpleSAML\XML\{DOMDocumentFactory, Errors};
+use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\Errors;
 
 use function array_key_exists;
 use function count;
@@ -47,7 +50,7 @@ class XML
      * @throws \InvalidArgumentException If $message is not a string or $type is not a string containing one of the
      *     values allowed.
      * @throws \SimpleSAML\Error\Exception If $message contains a doctype declaration.
-     * @throws Exception
+     * @throws \Exception
      */
     public function checkSAMLMessage(string $message, string $type): void
     {
@@ -350,7 +353,12 @@ class XML
                  * @param array $context
                  * @return string|null
                  */
-                function (?string $public = null, string $system = '', /** @scrutinizer ignore-unused */ array $context = []) {
+                function (
+                    ?string $public = null,
+                    string $system = '',
+                    /** @scrutinizer ignore-unused */
+                    array $context = [],
+                ) {
                     if (filter_var($system, FILTER_VALIDATE_URL) === $system) {
                         return null;
                     }

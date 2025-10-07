@@ -28,7 +28,6 @@ class Stats
      */
     private static bool $initialized = false;
 
-
     /**
      * The statistics output callbacks.
      *

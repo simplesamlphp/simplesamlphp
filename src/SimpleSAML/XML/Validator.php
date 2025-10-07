@@ -10,10 +10,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\XML;
 
-use DOMNode;
 use DOMDocument;
+use DOMNode;
 use Exception;
-use RobRichards\XMLSecLibs\{XMLSecEnc, XMLSecurityDSig};
+use RobRichards\XMLSecLibs\XMLSecEnc;
+use RobRichards\XMLSecLibs\XMLSecurityDSig;
 
 use function array_key_exists;
 use function in_array;

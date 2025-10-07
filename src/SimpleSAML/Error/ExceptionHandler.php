@@ -6,7 +6,8 @@ namespace SimpleSAML\Error;
 
 use Error as BuiltinError;
 use Exception as BuiltinException;
-use SimpleSAML\{Logger, Module};
+use SimpleSAML\Logger;
+use SimpleSAML\Module;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Throwable;
 

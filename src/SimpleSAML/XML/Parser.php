@@ -21,9 +21,10 @@ class Parser
     /** @var \SimpleXMLElement */
     public SimpleXMLElement $simplexml;
 
+
     /**
      * @param string $xml
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct(string $xml)
     {
@@ -37,7 +38,7 @@ class Parser
     /**
      * @param \SimpleXMLElement $element
      * @return \SimpleSAML\XML\Parser
-     * @throws Exception
+     * @throws \Exception
      */
     public static function fromSimpleXMLElement(SimpleXMLElement $element): Parser
     {

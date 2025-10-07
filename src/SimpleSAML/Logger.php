@@ -40,6 +40,39 @@ use function substr;
 class Logger
 {
     /**
+     * This constant defines the string we set the track ID to while we are fetching the track ID from the session
+     * class. This is used to prevent infinite recursion.
+     *
+     * @var string
+     */
+    public const NO_TRACKID = '_NOTRACKIDYET_';
+
+    /** @var int */
+    public const EMERG = 0;
+
+    /** @var int */
+    public const ALERT = 1;
+
+    /** @var int */
+    public const CRIT = 2;
+
+    /** @var int */
+    public const ERR = 3;
+
+    /** @var int */
+    public const WARNING = 4;
+
+    /** @var int */
+    public const NOTICE = 5;
+
+    /** @var int */
+    public const INFO = 6;
+
+    /** @var int */
+    public const DEBUG = 7;
+
+
+    /**
      * @var \SimpleSAML\Logger\LoggingHandlerInterface|null
      */
     private static ?LoggingHandlerInterface $loggingHandler = null;
@@ -88,14 +121,6 @@ class Logger
      * @var int
      */
     private static int $logMask = 0;
-
-    /**
-     * This constant defines the string we set the track ID to while we are fetching the track ID from the session
-     * class. This is used to prevent infinite recursion.
-     *
-     * @var string
-     */
-    public const NO_TRACKID = '_NOTRACKIDYET_';
 
     /**
      * This variable holds the track ID we have retrieved from the session class. It can also be NULL, in which case
@@ -149,36 +174,12 @@ class Logger
      */
     private static bool $shuttingDown = false;
 
-    /** @var int */
-    public const EMERG = 0;
-
-    /** @var int */
-    public const ALERT = 1;
-
-    /** @var int */
-    public const CRIT = 2;
-
-    /** @var int */
-    public const ERR = 3;
-
-    /** @var int */
-    public const WARNING = 4;
-
-    /** @var int */
-    public const NOTICE = 5;
-
-    /** @var int */
-    public const INFO = 6;
-
-    /** @var int */
-    public const DEBUG = 7;
-
 
     /**
      * Log an emergency message.
      *
      * @param string $string The message to log.
-     * @throws Exception
+     * @throws \Exception
      */
     public static function emergency(string $string): void
     {
@@ -190,7 +191,7 @@ class Logger
      * Log a critical message.
      *
      * @param string $string The message to log.
-     * @throws Exception
+     * @throws \Exception
      */
     public static function critical(string $string): void
     {
@@ -202,7 +203,7 @@ class Logger
      * Log an alert.
      *
      * @param string $string The message to log.
-     * @throws Exception
+     * @throws \Exception
      */
     public static function alert(string $string): void
     {
@@ -214,7 +215,7 @@ class Logger
      * Log an error.
      *
      * @param string $string The message to log.
-     * @throws Exception
+     * @throws \Exception
      */
     public static function error(string $string): void
     {
@@ -226,29 +227,31 @@ class Logger
      * Log a warning.
      *
      * @param string $string The message to log.
-     * @throws Exception
+     * @throws \Exception
      */
     public static function warning(string $string): void
     {
         self::log(self::WARNING, $string);
     }
 
+
     /**
      * Log a warning about deprecated code.
      *
      * @param string $string The message to log.
-     * @throws Exception
+     * @throws \Exception
      */
     public static function deprecated(string $string): void
     {
         self::log(self::WARNING, 'DEPRECATION WARNING: ' . $string);
     }
 
+
     /**
      * We reserve the notice level for statistics, so do not use this level for other kind of log messages.
      *
      * @param string $string The message to log.
-     * @throws Exception
+     * @throws \Exception
      */
     public static function notice(string $string): void
     {
@@ -260,7 +263,7 @@ class Logger
      * Info messages are a bit less verbose than debug messages. This is useful to trace a session.
      *
      * @param string $string The message to log.
-     * @throws Exception
+     * @throws \Exception
      */
     public static function info(string $string): void
     {
@@ -273,7 +276,7 @@ class Logger
      * system.
      *
      * @param string $string The message to log.
-     * @throws Exception
+     * @throws \Exception
      */
     public static function debug(string $string): void
     {
@@ -285,7 +288,7 @@ class Logger
      * Statistics.
      *
      * @param string $string The message to log.
-     * @throws Exception
+     * @throws \Exception
      */
     public static function stats(string $string): void
     {
@@ -327,7 +330,7 @@ class Logger
      * Set the track identifier to use in all logs.
      *
      * @param string $trackId The track identifier to use during this session.
-     * @throws Exception
+     * @throws \Exception
      */
     public static function setTrackId(string $trackId): void
     {
@@ -339,7 +342,7 @@ class Logger
     /**
      * Flush any pending log messages to the logging handler.
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public static function flush(): void
     {
@@ -356,7 +359,7 @@ class Logger
      * This method is intended to be registered as a shutdown handler, so that any pending messages that weren't sent
      * to the logging handler at that point, can still make it. It is therefore not intended to be called manually.
      *
-     * @throws Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     public static function shutdown(): void
@@ -423,7 +426,7 @@ class Logger
     /**
      * Returns the current logging handler
      *
-     * @return LoggingHandlerInterface
+     * @return \SimpleSAML\Logger\LoggingHandlerInterface
      */
     public static function getLoggingHandler(): ?LoggingHandlerInterface
     {
@@ -434,13 +437,14 @@ class Logger
     /**
      * Sets the current logging handler
      *
-     * @param LoggingHandlerInterface|null $loggingHandler The logging handler to set
+     * @param \SimpleSAML\Logger\LoggingHandlerInterface|null $loggingHandler The logging handler to set
      */
     public static function setLoggingHandler(?LoggingHandlerInterface $loggingHandler): void
     {
         self::$initializing   = false;
         self::$loggingHandler = $loggingHandler;
     }
+
 
     /**
      * Sets the log level.
@@ -451,6 +455,7 @@ class Logger
     {
         self::$logLevel = $level;
     }
+
 
     /**
      * Defer a message for later logging.
@@ -535,7 +540,7 @@ class Logger
      * @param int $level
      * @param string $string
      * @param bool $statsLog
-     * @throws Exception
+     * @throws \Exception
      */
     private static function log(int $level, string $string, bool $statsLog = false): void
     {

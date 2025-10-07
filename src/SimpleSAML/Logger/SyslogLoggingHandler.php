@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Logger;
 
-use SimpleSAML\{Configuration, Utils};
+use SimpleSAML\Configuration;
+use SimpleSAML\Utils;
 
 use function defined;
 use function openlog;

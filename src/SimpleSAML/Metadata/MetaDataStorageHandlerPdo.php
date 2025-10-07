@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata;
 
 use Exception;
-use SimpleSAML\{Configuration, Database, Error};
+use SimpleSAML\Configuration;
+use SimpleSAML\Database;
+use SimpleSAML\Error;
 
 use function array_key_exists;
 use function count;
@@ -66,7 +68,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      * - 'password':                Password for the database user.
      *
      * @param array $config An associative array with the configuration for this handler.
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct(
         /** @scrutinizer ignore-unused */ Configuration $globalConfig,
@@ -220,7 +222,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      * @param array  $entityData Metadata
      *
      * @return bool True/False if entry was successfully added
-     * @throws Exception
+     * @throws \Exception
      */
     public function addEntry(string $index, string $set, array $entityData): bool
     {
@@ -267,7 +269,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      * @param string $set The set to remove the metadata from.
      *
      * @return bool True/False if entry was successfully deleted
-     * @throws Exception
+     * @throws \Exception
      */
     public function removeEntry(string $entityId, string $set): bool
     {
@@ -304,7 +306,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      * Initialize the configured database
      *
      * @return int|false The number of SQL statements successfully executed, false if some error occurred.
-     * @throws Exception
+     * @throws \Exception
      */
     public function initDatabase(): int|false
     {

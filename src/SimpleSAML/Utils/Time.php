@@ -10,7 +10,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
-use SimpleSAML\{Configuration, Error, Logger};
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
 use SimpleSAML\XML\Assert\Assert;
 
 use function date_default_timezone_get;

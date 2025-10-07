@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\IdP;
 
-use SimpleSAML\{Auth, Configuration, Error, IdP, Module, Utils};
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\IdP;
+use SimpleSAML\Module;
+use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Response;
 

@@ -31,7 +31,6 @@ class MetaDataStorageHandlerDirectory extends MetaDataStorageSource
      */
     private string $directory = '/';
 
-
     /**
      * This is an associative array which stores the different metadata sets we have loaded.
      *
@@ -48,7 +47,7 @@ class MetaDataStorageHandlerDirectory extends MetaDataStorageSource
      *                set in the 'metadatadir' configuration option in 'config.php'.
      *
      * @param array $config An associative array with the configuration for this handler.
-     * @throws Exception
+     * @throws \Exception
      */
     protected function __construct(Configuration $globalConfig, array $config)
     {
@@ -135,7 +134,7 @@ class MetaDataStorageHandlerDirectory extends MetaDataStorageSource
         if (!is_array($metadata)) {
             throw new Exception('Could not load metadata set [' . $set . '] from file: ' . $metadatasetdir);
         }
-        
+
         return $metadata;
     }
 
@@ -148,7 +147,7 @@ class MetaDataStorageHandlerDirectory extends MetaDataStorageSource
      *
      * @return array An associative array with the metadata. Each element in the array is an entity, and the
      *         key is the entity id.
-     * @throws Exception
+     * @throws \Exception
      */
     public function getMetadataSet(string $set): array
     {

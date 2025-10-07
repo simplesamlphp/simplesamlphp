@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata;
 
 use Exception;
-use SimpleSAML\{Configuration, Error, Logger, Utils};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
 use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\Utils;
 use SimpleSAML\Utils\ClearableState;
 
 use function array_key_exists;
@@ -39,7 +42,6 @@ class MetaDataStorageHandler implements ClearableState
      */
     private static ?MetadataStorageHandler $metadataHandler = null;
 
-
     /**
      * This is a list of all the metadata sources we have in our metadata
      * chain. When we need metadata, we will look through this chain from start to end.
@@ -54,8 +56,8 @@ class MetaDataStorageHandler implements ClearableState
      * The metadata handler will be instantiated if this is the first call
      * to this function.
      *
-     * @return MetaDataStorageHandler The current metadata handler instance.
-     * @throws Exception
+     * @return \SimpleSAML\Metadata\MetaDataStorageHandler The current metadata handler instance.
+     * @throws \Exception
      */
     public static function getMetadataHandler(Configuration $config): MetaDataStorageHandler
     {
@@ -70,7 +72,7 @@ class MetaDataStorageHandler implements ClearableState
     /**
      * This constructor initializes this metadata storage handler. It will load and
      * parse the configuration, and initialize the metadata source list.
-     * @throws Exception
+     * @throws \Exception
      */
     protected function __construct(Configuration $globalConfig)
     {
@@ -153,7 +155,7 @@ class MetaDataStorageHandler implements ClearableState
      * @param bool $showExpired A boolean specifying whether expired entities should be returned
      *
      * @return array An associative array with the metadata from from the given set.
-     * @throws Exception
+     * @throws \Exception
      */
     public function getList(string $set = 'saml20-idp-remote', bool $showExpired = false): array
     {
@@ -279,7 +281,7 @@ class MetaDataStorageHandler implements ClearableState
      * @param string[] $entityIds The entity ids to load
      * @param string $set The set we want to get metadata from.
      * @return array An associative array with the metadata for the requested entities, if found.
-     * @throws Exception
+     * @throws \Exception
      */
     public function getMetaDataForEntities(array $entityIds, string $set): array
     {
@@ -316,6 +318,7 @@ class MetaDataStorageHandler implements ClearableState
 
         return $result;
     }
+
 
     /**
      * This function looks up the metadata for the given entity id in the given set. It will throw an

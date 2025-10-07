@@ -6,7 +6,9 @@ namespace SimpleSAML\Store;
 
 use Predis\Client;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\{Configuration, Error, Utils};
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Utils;
 
 use function class_exists;
 use function serialize;

@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace SimpleSAML\Metadata;
 
 use Exception;
-use RobRichards\XMLSecLibs\{XMLSecurityKey, XMLSecurityDSig};
-use SimpleSAML\{Configuration, Error, Utils};
+use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use RobRichards\XMLSecLibs\XMLSecurityKey;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Utils;
 use SimpleSAML\XML\DOMDocumentFactory;
 
 use function array_key_exists;

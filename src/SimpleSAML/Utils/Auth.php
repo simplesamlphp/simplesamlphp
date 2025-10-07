@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
-use SimpleSAML\{Auth as Authentication, Error, Session};
+use SimpleSAML\Auth as Authentication;
+use SimpleSAML\Error;
+use SimpleSAML\Session;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

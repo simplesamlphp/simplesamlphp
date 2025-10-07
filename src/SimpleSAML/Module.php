@@ -7,9 +7,14 @@ namespace SimpleSAML;
 use Exception;
 use SimpleSAML\Assert\Assert;
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
-use Symfony\Component\Filesystem\{Filesystem, Path};
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Path;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\HttpFoundation\{BinaryFileResponse, RedirectResponse, Request, Response, ResponseHeaderBag};
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use function array_filter;
@@ -149,11 +154,16 @@ class Module
      * configuration and the actual request, it will run a PHP script and exit, or return a Response produced either
      * by another controller or by a static file.
      *
-     * @param Request|null $request The request to process. Defaults to the current one.
+     * @param \Symfony\Component\HttpFoundation\Request|null $request
+     *   The request to process. Defaults to the current one.
+     * @return (
+     *   \Symfony\Component\HttpFoundation\Response|
+     *   \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * ) Returns a Response object that can be sent to the browser.
      *
-     * @return Response|BinaryFileResponse Returns a Response object that can be sent to the browser.
      * @throws \SimpleSAML\Error\BadRequest In case the request URI is malformed.
-     * @throws \SimpleSAML\Error\NotFound In case the request URI is invalid or the resource it points to cannot be found.
+     * @throws \SimpleSAML\Error\NotFound
+     *   In case the request URI is invalid or the resource it points to cannot be found.
      * @throws \Exception
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
@@ -348,7 +358,7 @@ class Module
      * @param string $module
      * @param array $mod_config
      * @return bool
-     * @throws Exception
+     * @throws \Exception
      */
     private static function isModuleEnabledWithConf(string $module, array $mod_config): bool
     {
@@ -496,6 +506,7 @@ class Module
         return $obj;
     }
 
+
     /**
      * Get absolute URL to a specified module resource.
      *
@@ -568,7 +579,7 @@ class Module
      * @param mixed  &$data The data which should be passed to each hook. Will be passed as a reference.
      *
      * @throws \SimpleSAML\Error\Exception If an invalid hook is found in a module.
-     * @throws Exception
+     * @throws \Exception
      */
     public static function callHooks(string $hook, mixed &$data = null): void
     {
@@ -608,9 +619,9 @@ class Module
      *
      * This method add the trailing slash and redirects to the resulting URL.
      *
-     * @param Request $request The request to process by this controller method.
-     *
-     * @return RedirectResponse A redirection to the URI specified in the request, but with a trailing slash.
+     * @param \Symfony\Component\HttpFoundation\Request $request The request to process by this controller method.
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *   A redirection to the URI specified in the request, but with a trailing slash.
      *
      * @throws \InvalidArgumentException
      */

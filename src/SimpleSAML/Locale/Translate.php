@@ -17,8 +17,8 @@ use function array_slice;
 use function func_get_args;
 use function func_num_args;
 use function is_array;
-use function strtr;
 use function strrpos;
+use function strtr;
 use function substr_replace;
 
 class Translate

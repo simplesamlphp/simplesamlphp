@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
-use SimpleSAML\{Configuration, Error};
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 
 use function dirname;
 use function getenv;
@@ -69,6 +70,7 @@ class Config
 
         return $secretSalt;
     }
+
 
     /**
      * Returns the path to the config dir

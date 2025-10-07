@@ -5,7 +5,11 @@ declare(strict_types=1);
 namespace SimpleSAML\Error;
 
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\{Configuration, Logger, Module, Session, Utils};
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
+use SimpleSAML\Module;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Throwable;
 
@@ -20,8 +24,6 @@ use function http_response_code;
 use function implode;
 use function is_array;
 use function openssl_random_pseudo_bytes;
-use function substr;
-use function var_export;
 
 /**
  * Class that wraps SimpleSAMLphp errors in exceptions.
@@ -88,7 +90,7 @@ class Error extends Exception
      * (with index 0), is the error code, while the other elements are replacements for the error text.
      *
      * @param string|array     $errorCode One of the error codes defined in the errors dictionary.
-     * @param Throwable|null   $cause The exception which caused this fatal error (if any). Optional.
+     * @param \Throwable|null   $cause The exception which caused this fatal error (if any). Optional.
      * @param int|null         $httpCode The HTTP response code to use. Optional.
      */
     public function __construct(
@@ -123,6 +125,7 @@ class Error extends Exception
         parent::__construct($msg, -1, $cause);
     }
 
+
     /**
      * Retrieve the ErrorCodes instance to use for resolving dictionary title and description tags.
      *
@@ -131,7 +134,7 @@ class Error extends Exception
      * This has to be public to allow Login to get an object
      * containing custom error codes if they in use.
      *
-     * @return ErrorCodes
+     * @return \SimpleSAML\Erorr\ErrorCodes
      */
     public function getErrorCodes(): ErrorCodes
     {
@@ -199,7 +202,7 @@ class Error extends Exception
      *
      * @return array  The array with the error report data.
      * @throws \Exception
-     * @throws Throwable
+     * @throws \Throwable
      */
     protected function saveError(): array
     {

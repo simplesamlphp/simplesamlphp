@@ -5,8 +5,12 @@ declare(strict_types=1);
 namespace SimpleSAML\Auth;
 
 use Exception;
-use SimpleSAML\{Configuration, Error, Logger, Session, Utils};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
 
 use function array_key_exists;
 use function call_user_func;
@@ -95,6 +99,7 @@ class State
      * _REQUEST superglobal that does not allow dots.
      */
     public const EXCEPTION_PARAM = '\SimpleSAML\Auth\State_exceptionId';
+
 
     /**
      * State timeout.
@@ -192,7 +197,7 @@ class State
      * Retrieve state timeout.
      *
      * @return integer  State timeout.
-     * @throws Exception
+     * @throws \Exception
      */
     private static function getStateTimeout(): int
     {
@@ -216,7 +221,7 @@ class State
      * @param bool   $rawId Return a raw ID, without a restart URL.
      *
      * @return string  Identifier which can be used to retrieve the state later.
-     * @throws Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     public static function saveState(array &$state, string $stage, bool $rawId = false): string
@@ -246,7 +251,7 @@ class State
      * @param array $state The original request state.
      *
      * @return array  Cloned state data.
-     * @throws Exception
+     * @throws \Exception
      */
     public static function cloneState(array $state): array
     {
@@ -342,7 +347,7 @@ class State
      * This function deletes the given state to prevent the user from reusing it later.
      *
      * @param array &$state The state which should be deleted.
-     * @throws Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     public static function deleteState(array &$state): void

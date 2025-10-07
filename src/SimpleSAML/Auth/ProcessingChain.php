@@ -5,9 +5,13 @@ declare(strict_types=1);
 namespace SimpleSAML\Auth;
 
 use Exception;
-use SimpleSAML\{Configuration, Error, Logger, Module, Utils};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
+use SimpleSAML\Module;
 use SimpleSAML\SAML2\Exception\Protocol\NoPassiveException;
+use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\Response;
 
 use function array_key_exists;
@@ -37,12 +41,10 @@ class ProcessingChain
      */
     public const FILTERS_INDEX = '\SimpleSAML\Auth\ProcessingChain.filters';
 
-
     /**
      * The stage we use for completed requests.
      */
     public const COMPLETED_STAGE = '\SimpleSAML\Auth\ProcessingChain.completed';
-
 
     /**
      * The request parameter we will use to pass the state identifier when we redirect after
@@ -64,7 +66,7 @@ class ProcessingChain
      * @param array $idpMetadata  The metadata for the IdP.
      * @param array $spMetadata  The metadata for the SP.
      * @param string $mode
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct(array $idpMetadata, array $spMetadata, string $mode = 'idp')
     {
@@ -122,7 +124,7 @@ class ProcessingChain
      *
      * @param array $filterSrc  Array with filter configuration.
      * @return array  Array of ProcessingFilter objects.
-     * @throws Exception
+     * @throws \Exception
      */
     private static function parseFilterList(array $filterSrc): array
     {
@@ -154,7 +156,7 @@ class ProcessingChain
      * @param int $priority      The priority of the current filter, (not included in the filter
      *                           definition.)
      * @return \SimpleSAML\Auth\ProcessingFilter  The parsed filter.
-     * @throws Exception
+     * @throws \Exception
      */
     private static function parseFilter(array $config, int $priority): ProcessingFilter
     {
@@ -336,8 +338,8 @@ class ProcessingChain
     /**
      * @param array $state
      * @psalm-param array{"\\\SimpleSAML\\\Auth\\\ProcessingChain.filters": array} $state
-     * @param ProcessingFilter[] $authProcs
-     * @throws Exception
+     * @param \SimpleSAML\Auth\ProcessingFilter[] $authProcs
+     * @throws \Exception
      */
     public static function insertFilters(array &$state, array $authProcs): void
     {
@@ -360,7 +362,7 @@ class ProcessingChain
      * @psalm-param array{"\\\SimpleSAML\\\Auth\\\ProcessingChain.filters": array} $state
      * @param array $authProcConfigs
      * @return \SimpleSAML\Auth\ProcessingFilter[]
-     * @throws Exception
+     * @throws \Exception
      */
     public static function createAndInsertFilters(array &$state, array $authProcConfigs): array
     {

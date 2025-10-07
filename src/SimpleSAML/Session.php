@@ -51,6 +51,7 @@ class Session implements Utils\ClearableState
      */
     public const DATA_TIMEOUT_SESSION_END = 'sessionEndTimeout';
 
+
     /**
      * The list of loaded session objects.
      *
@@ -212,7 +213,7 @@ class Session implements Utils\ClearableState
     /**
      * Set the configuration we should use.
      *
-     * @param Configuration $config
+     * @param \SimpleSAML\Configuration $config
      */
     public function setConfiguration(Configuration $config): void
     {
@@ -240,7 +241,7 @@ class Session implements Utils\ClearableState
      * be serializable in its original form (e.g.: DOM objects).
      *
      * @param array $serialized The serialized representation of a session that we want to restore.
-     * @throws Exception
+     * @throws \Exception
      */
     public function __unserialize(array $serialized): void
     {
@@ -350,7 +351,7 @@ class Session implements Utils\ClearableState
      *
      * @return \SimpleSAML\Session|null The session that is stored in the session handler,
      *   or null if the session wasn't found.
-     * @throws Exception
+     * @throws \Exception
      */
     public static function getSession(?string $sessionId = null): ?Session
     {
@@ -423,7 +424,7 @@ class Session implements Utils\ClearableState
      *
      * @param \SimpleSAML\Session $session The session to load.
      * @return \SimpleSAML\Session The session we just loaded, just for convenience.
-     * @throws Exception
+     * @throws \Exception
      */
     private static function load(Session $session): Session
     {
@@ -439,7 +440,7 @@ class Session implements Utils\ClearableState
      * Create a session that should not be saved at the end of the request.
      * Subsequent calls to getInstance() will return this transient session.
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public static function useTransientSession(): void
     {
@@ -472,7 +473,7 @@ class Session implements Utils\ClearableState
      * WARNING: please do not use this method directly unless you really need to and know what you are doing. Use
      * markDirty() instead.
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public function save(): void
     {
@@ -507,7 +508,7 @@ class Session implements Utils\ClearableState
      * Use this method if you are using PHP sessions in your application *and* in SimpleSAMLphp, *after* you are done
      * using SimpleSAMLphp and before trying to access your application's session again.
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public function cleanup(): void
     {
@@ -523,7 +524,6 @@ class Session implements Utils\ClearableState
      * Mark this session as dirty.
      *
      * This method will register a callback to save the session right before any output is sent to the browser.
-     *
      */
     public function markDirty(): void
     {
@@ -546,7 +546,7 @@ class Session implements Utils\ClearableState
      *
      * Destructor for this class. It will save the session to the session handler
      * in case the session has been marked as dirty. Do nothing otherwise.
-     * @throws Exception
+     * @throws \Exception
      */
     public function __destruct()
     {
@@ -721,7 +721,7 @@ class Session implements Utils\ClearableState
      * This function will call any registered logout handlers before marking the user as logged out.
      *
      * @param string $authority The authentication source we are logging out of.
-     * @throws Exception
+     * @throws \Exception
      */
     public function doLogout(string $authority): void
     {
@@ -786,7 +786,7 @@ class Session implements Utils\ClearableState
      * @param string $authority The authentication source that the user should be authenticated with.
      *
      * @return bool True if the user has a valid session, false if not.
-     * @throws Exception
+     * @throws \Exception
      */
     public function isValid(string $authority): bool
     {
@@ -1082,7 +1082,7 @@ class Session implements Utils\ClearableState
      * This function will only return false if is is certain that the cookie isn't set.
      *
      * @return bool  true if it was set, false if not.
-     * @throws Exception
+     * @throws \Exception
      */
     public function hasSessionCookie(): bool
     {
@@ -1198,7 +1198,7 @@ class Session implements Utils\ClearableState
      * this session.
      *
      * @return string[] An array containing every authority currently valid. Empty if none available.
-     * @throws Exception
+     * @throws \Exception
      */
     public function getAuthorities(): array
     {

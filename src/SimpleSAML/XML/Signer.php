@@ -16,7 +16,8 @@ use DOMComment;
 use DOMElement;
 use DOMText;
 use Exception;
-use RobRichards\XMLSecLibs\{XMLSecurityDSig, XMLSecurityKey};
+use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Utils;
 use Symfony\Component\Filesystem\Filesystem;
@@ -67,7 +68,7 @@ class Signer
      *  - id               The name of the ID attribute.
      *
      * @param array $options  Associative array with options for the constructor. Defaults to an empty array.
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct(array $options = [])
     {
@@ -107,7 +108,7 @@ class Signer
      * by \SimpleSAML\Utils\Crypto::loadPrivateKey(...).
      *
      * @param array $privatekey  The private key.
-     * @throws Exception
+     * @throws \Exception
      */
     public function loadPrivateKeyArray(array $privatekey): void
     {

@@ -18,46 +18,84 @@ use function strval;
 class ErrorCodes
 {
     final public const ACSPARAMS = 'ACSPARAMS';
+
     final public const ADMINNOTHASHED = 'ADMINNOTHASHED';
+
     final public const ARSPARAMS = 'ARSPARAMS';
+
     final public const AUTHSOURCEERROR = 'AUTHSOURCEERROR';
+
     final public const BADREQUEST = 'BADREQUEST';
+
     final public const CASERROR = 'CASERROR';
+
     final public const CONFIG = 'CONFIG';
+
     final public const CREATEREQUEST = 'CREATEREQUEST';
+
     final public const DISCOPARAMS = 'DISCOPARAMS';
+
     final public const GENERATEAUTHNRESPONSE = 'GENERATEAUTHNRESPONSE';
+
     final public const INVALIDCERT = 'INVALIDCERT';
+
     final public const LDAPERROR = 'LDAPERROR';
+
     final public const LOGOUTINFOLOST = 'LOGOUTINFOLOST';
+
     final public const LOGOUTREQUEST = 'LOGOUTREQUEST';
+
     final public const MEMCACHEDOWN = 'MEMCACHEDOWN';
+
     final public const METADATA = 'METADATA';
+
     final public const METADATANOTFOUND = 'METADATANOTFOUND';
+
     final public const METHODNOTALLOWED = 'METHODNOTALLOWED';
+
     final public const NOACCESS = 'NOACCESS';
+
     final public const NOCERT = 'NOCERT';
+
     final public const NORELAYSTATE = 'NORELAYSTATE';
+
     final public const NOSTATE = 'NOSTATE';
+
     final public const NOTFOUND = 'NOTFOUND';
+
     final public const NOTFOUNDREASON = 'NOTFOUNDREASON';
+
     final public const NOTSET = 'NOTSET';
+
     final public const NOTVALIDCERT = 'NOTVALIDCERT';
+
     final public const NOTVALIDCERTSIGNATURE = 'NOTVALIDCERTSIGNATURE';
+
     final public const PROCESSASSERTION = 'PROCESSASSERTION';
+
     final public const PROCESSAUTHNREQUEST = 'PROCESSAUTHNREQUEST';
+
     final public const RESPONSESTATUSNOSUCCESS = 'RESPONSESTATUSNOSUCCESS';
+
     final public const SLOSERVICEPARAMS = 'SLOSERVICEPARAMS';
+
     final public const SSOPARAMS = 'SSOPARAMS';
+
     final public const UNHANDLEDEXCEPTION = 'UNHANDLEDEXCEPTION';
+
     final public const UNKNOWNCERT = 'UNKNOWNCERT';
+
     final public const USERABORTED = 'USERABORTED';
+
     final public const WRONGUSERPASS = 'WRONGUSERPASS';
 
     final public const KEY_TITLE = 'title';
+
     final public const KEY_DESCRIPTION = 'descr';
 
 
+    /**
+     */
     public function __construct()
     {
         // Automatically register instances of subclasses with Login to allow

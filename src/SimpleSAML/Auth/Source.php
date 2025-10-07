@@ -4,9 +4,15 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Auth;
 
-use SimpleSAML\{Configuration, Error, Logger, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
+use SimpleSAML\Module;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function array_key_exists;
 use function array_merge;
@@ -58,7 +64,7 @@ abstract class Source
      *
      * @param string $type The type of the authentication source.
      *
-     * @return Source[]  Array of \SimpleSAML\Auth\Source objects of the specified type.
+     * @return \SimpleSAML\Auth\Source[]  Array of \SimpleSAML\Auth\Source objects of the specified type.
      * @throws \Exception If the authentication source is invalid.
      */
     public static function getSourcesOfType(string $type): array
@@ -327,7 +333,7 @@ abstract class Source
                 '\SimpleSAML\Auth\SourceFactory',
             );
 
-            /** @var SourceFactory $factory */
+            /** @var \SimpleSAML\Auth\SourceFactory $factory */
             $factory = new $factoryClass();
             $authSource = $factory->create($info, $config);
         } catch (\Exception $e) {

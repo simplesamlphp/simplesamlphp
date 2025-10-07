@@ -5,13 +5,17 @@ declare(strict_types=1);
 namespace SimpleSAML\XHTML;
 
 use Exception;
-use SimpleSAML\{Configuration, Logger, Session, Utils};
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function array_fill_keys;
-use function array_intersect_key;
 use function array_intersect;
+use function array_intersect_key;
 use function array_key_exists;
 use function array_key_first;
 use function array_keys;
@@ -100,6 +104,7 @@ class IdPDisco
      */
     protected string $returnURL;
 
+
     /**
      * Initializes this discovery service.
      *
@@ -175,7 +180,7 @@ class IdPDisco
      * discovery service type.
      *
      * @param string $message The message which should be logged.
-     * @throws Exception
+     * @throws \Exception
      */
     protected function log(string $message): void
     {
@@ -243,7 +248,7 @@ class IdPDisco
      * @param string|null $idp The entity id we want to validate. This can be null, in which case we will return null.
      *
      * @return string|null The entity id if it is valid, null if not.
-     * @throws Exception
+     * @throws \Exception
      */
     protected function validateIdP(?string $idp): ?string
     {
@@ -277,7 +282,7 @@ class IdPDisco
      * This function finds out which IdP the user has manually chosen, if any.
      *
      * @return string|null The entity id of the IdP the user has chosen, or null if the user has made no choice.
-     * @throws Exception
+     * @throws \Exception
      */
     protected function getSelectedIdP(): ?string
     {
@@ -314,7 +319,7 @@ class IdPDisco
      * Retrieve the users saved choice of IdP.
      *
      * @return string|null The entity id of the IdP the user has saved, or null if the user hasn't saved any choice.
-     * @throws Exception
+     * @throws \Exception
      */
     protected function getSavedIdP(): ?string
     {
@@ -341,7 +346,7 @@ class IdPDisco
      * Retrieve the previous IdP the user used.
      *
      * @return string|null The entity id of the previous IdP the user used, or null if this is the first time.
-     * @throws Exception
+     * @throws \Exception
      */
     protected function getPreviousIdP(): ?string
     {
@@ -378,7 +383,7 @@ class IdPDisco
      * hasn't chosen an IdP before, it will look at the IP address.
      *
      * @return string|null The entity id of the IdP the user should most likely use.
-     * @throws Exception
+     * @throws \Exception
      */
     protected function getRecommendedIdP(): ?string
     {
@@ -403,7 +408,7 @@ class IdPDisco
      * Save the current IdP choice to a cookie.
      *
      * @param string $idp The entityID of the IdP.
-     * @throws Exception
+     * @throws \Exception
      */
     protected function setPreviousIdP(string $idp): void
     {
@@ -437,7 +442,7 @@ class IdPDisco
      * Determine which IdP the user should go to, if any.
      *
      * @return string|null The entity id of the IdP the user should be sent to, or null if the user should choose.
-     * @throws Exception
+     * @throws \Exception
      */
     protected function getTargetIdP(): ?string
     {
@@ -474,7 +479,7 @@ class IdPDisco
      * Retrieve the list of IdPs which are stored in the metadata.
      *
      * @return array An array with entityid => metadata mappings.
-     * @throws Exception
+     * @throws \Exception
      */
     protected function getIdPList(): array
     {
@@ -527,7 +532,7 @@ class IdPDisco
     /**
      * Check if an IdP is set or if the request is passive, and redirect accordingly.
      * @throws \SimpleSAML\Error\Exception
-     * @throws Exception
+     * @throws \Exception
      */
     protected function start(): ?Response
     {
@@ -591,10 +596,12 @@ class IdPDisco
 
         if (sizeof($idpList) === 1) {
             $selectedIdP = array_key_first($idpList);
-            $this->log(
-                'One candidate IdP, not showing discovery [' . $selectedIdP . '] (Redirecting the user back. returnIDParam=' .
-                $this->returnIdParam . ')',
-            );
+
+            $this->log(sprintf(
+                'One candidate IdP, not showing discovery [%s] (Redirecting the user back. returnIDParam=%s',
+                $selectedIdP,
+                $this->returnIdParam,
+            ));
 
             return $httpUtils->redirectTrustedURL(
                 $this->returnURL,

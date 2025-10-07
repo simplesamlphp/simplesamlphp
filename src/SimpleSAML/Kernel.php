@@ -10,7 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\LoaderInterface;
-use Symfony\Component\DependencyInjection\{ContainerBuilder, Definition};
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Loader\DirectoryLoader;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
@@ -26,7 +27,9 @@ class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
 
+
     public const CONFIG_EXTS = '.{php,xml,yaml,yml}';
+
 
     /** @var string */
     private string $module;
@@ -106,8 +109,8 @@ class Kernel extends BaseKernel
     /**
      * Configures the container.
      *
-     * @param ContainerBuilder $container
-     * @param LoaderInterface $loader
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @param \Symfony\Component\Config\Loader\LoaderInterface $loader
      * @throws \Exception
      */
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
@@ -131,7 +134,7 @@ class Kernel extends BaseKernel
     /**
      * Import routes.
      *
-     * @param RoutingConfigurator  $routes
+     * @param \Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator $routes
      * @throws \Exception
      */
     protected function configureRoutes(RoutingConfigurator $routes): void
@@ -147,7 +150,7 @@ class Kernel extends BaseKernel
 
 
     /**
-     * @param ContainerBuilder $container
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      */
     private function registerModuleControllers(ContainerBuilder $container): void
     {

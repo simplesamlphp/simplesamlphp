@@ -7,7 +7,10 @@ namespace SimpleSAML\Utils;
 use Exception;
 use InvalidArgumentException;
 use PDO;
-use SimpleSAML\{Configuration, Database, Error, Logger};
+use SimpleSAML\Configuration;
+use SimpleSAML\Database;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
 
 use function base64_decode;
 use function base64_encode;
@@ -65,9 +68,9 @@ class Crypto
      *
      * @return array|null Extracted private key, or NULL if no private key is present.
      * @throws \InvalidArgumentException If $required is not boolean or $prefix is not a string.
-     * @throws \SimpleSAML\Error\Exception If no private key is found in the metadata, or it was not possible to load
+     * @throws \SimpleSAML\Error\Exception If no private key is found in the metadata,
+     *   or it was not possible to load it.
      * @throws \Exception
-     *     it.
      *
      */
     public function loadPrivateKey(
@@ -121,10 +124,11 @@ class Crypto
      *     Defaults to ''.
      *
      * @return array|null Public key or certificate data, or NULL if no public key or certificate was found.
+     *
      * @throws \InvalidArgumentException If $metadata is not an instance of \SimpleSAML\Configuration, $required is not
      *     boolean or $prefix is not a string.
-     * @throws \SimpleSAML\Error\Exception If no public key is found in the metadata, or it was not possible to load
-     *     it.
+     * @throws \SimpleSAML\Error\Exception If no public key is found in the metadata,
+     *   or it was not possible to load it.
      * @throws \Exception
      */
     public function loadPublicKey(Configuration $metadata, bool $required = false, string $prefix = ''): ?array
@@ -204,7 +208,7 @@ class Crypto
      *
      * @return string The certificate or private key, or null if not found
      *
-     * @throws Exception
+     * @throws \Exception
      */
     private function retrieveCertOrKey(string $data_type, string $location, bool $full_path): ?string
     {
@@ -271,6 +275,7 @@ class Crypto
         return $data;
     }
 
+
     /**
      * Public wrapper around retrieveCertOrKey to retrieve a certificate
      *
@@ -281,12 +286,13 @@ class Crypto
      *
      * @return string The certificate or null if not found
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public function retrieveCertificate(string $location, bool $full_path = false): ?string
     {
         return $this->retrieveCertOrKey('certificate', $location, $full_path);
     }
+
 
     /**
      * Public wrapper around retrieveCertOrKey to retrieve a private key
@@ -298,7 +304,7 @@ class Crypto
      *
      * @return string The private key or null if not found
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public function retrieveKey(string $location, bool $full_path = false): ?string
     {

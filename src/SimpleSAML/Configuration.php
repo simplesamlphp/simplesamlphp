@@ -67,6 +67,7 @@ class Configuration implements Utils\ClearableState
         'X-Content-Type-Options' => 'nosniff',
     ];
 
+
     /**
      * Associative array with mappings from instance-names to configuration objects.
      *
@@ -519,7 +520,7 @@ class Configuration implements Utils\ClearableState
      *
      * @return string|null $path if $path is an absolute path, or $path prepended with the base directory of this
      * SimpleSAMLphp installation. We will return NULL if $path is null.
-     * @throws Exception
+     * @throws \Exception
      */
     public function resolvePath(?string $path): ?string
     {
@@ -545,7 +546,7 @@ class Configuration implements Utils\ClearableState
      * not specified.
      *
      * @return string|null The path configuration option with name $name, or $default if the option was not found.
-     * @throws Exception
+     * @throws \Exception
      */
     public function getPathValue(string $name, ?string $default = null): ?string
     {
@@ -1109,7 +1110,6 @@ class Configuration implements Utils\ClearableState
     }
 
 
-
     /**
      * Retrieve an optional array as a \SimpleSAML\Configuration object.
      *
@@ -1194,6 +1194,7 @@ class Configuration implements Utils\ClearableState
                 throw new Exception('Missing default binding for ' . $endpointType . ' in ' . $set);
         }
     }
+
 
     /**
      * Helper function for dealing with metadata endpoints.

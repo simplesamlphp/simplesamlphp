@@ -5,7 +5,12 @@ declare(strict_types=1);
 namespace SimpleSAML\IdP;
 
 use Exception;
-use SimpleSAML\{Auth, Configuration, Error, IdP, Logger, Utils};
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\IdP;
+use SimpleSAML\Logger;
+use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\Response;
 
 use function call_user_func;
@@ -36,7 +41,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      * This function never returns.
      *
      * @param array &$state The logout state.
-     * @throws Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     private function logoutNextSP(array &$state): Response
@@ -72,7 +77,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      *
      * @param array  &$state The logout state.
      * @param string|null $assocId The association that started the logout.
-     * @throws Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     public function startLogout(array &$state, /** @scrutinizer ignore-unused */ ?string $assocId): Response
@@ -91,7 +96,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      * @param \SimpleSAML\Error\Exception|null $error The error that occurred during session termination (if any).
      *
      * @throws \SimpleSAML\Error\Exception If the RelayState was lost during logout.
-     * @throws Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     public function onResponse(string $assocId, ?string $relayState, ?Error\Exception $error = null): Response

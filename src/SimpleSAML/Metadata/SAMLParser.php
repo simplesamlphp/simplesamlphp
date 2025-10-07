@@ -11,19 +11,27 @@ use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\XML\md\EntitiesDescriptor;
 use SAML2\XML\md\EntityDescriptor;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\{Logger, Utils};
+use SimpleSAML\Logger;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\XML\idpdisc\DiscoveryResponse;
-use SimpleSAML\SAML2\XML\md\{AttributeAuthorityDescriptor, IDPSSODescriptor};
-use SimpleSAML\SAML2\XML\md\{AttributeConsumingService, ContactPerson, AbstractEndpointType, KeyDescriptor};
-use SimpleSAML\SAML2\XML\md\{Organization, RoleDescriptor, SPSSODescriptor, SSODescriptorType};
+use SimpleSAML\SAML2\XML\md\AbstractEndpointType;
+use SimpleSAML\SAML2\XML\md\AttributeAuthorityDescriptor;
+use SimpleSAML\SAML2\XML\md\AttributeConsumingService;
+use SimpleSAML\SAML2\XML\md\ContactPerson;
+use SimpleSAML\SAML2\XML\md\IDPSSODescriptor;
+use SimpleSAML\SAML2\XML\md\KeyDescriptor;
+use SimpleSAML\SAML2\XML\md\SPSSODescriptor;
+use SimpleSAML\SAML2\XML\md\SSODescriptorType;
 use SimpleSAML\SAML2\XML\mdattr\EntityAttributes;
 use SimpleSAML\SAML2\XML\mdrpi\RegistrationInfo;
-use SimpleSAML\SAML2\XML\mdui\{DiscoHints, UIInfo};
+use SimpleSAML\SAML2\XML\mdui\DiscoHints;
+use SimpleSAML\SAML2\XML\mdui\UIInfo;
 use SimpleSAML\SAML2\XML\saml\Attribute;
 use SimpleSAML\SAML2\XML\shibmd\Scope;
-use SimpleSAML\XML\{DOMDocumentFactory};
-use SimpleSAML\XMLSecurity\XML\ds\{X509Certificate, X509Data};
+use SimpleSAML\Utils;
+use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
+use SimpleSAML\XMLSecurity\XML\ds\X509Data;
 use Symfony\Component\Filesystem\Filesystem;
 
 use function array_diff;
@@ -163,7 +171,7 @@ class SAMLParser
      *     NULL if unknown.
      * @param array                         $validators An array of parent elements that may validate this element.
      * @param array                         $parentExtensions An optional array of extensions from the parent element.
-     * @throws Exception
+     * @throws \Exception
      */
     private function __construct(
         EntityDescriptor $entityElement,
@@ -239,7 +247,7 @@ class SAMLParser
      *
      * @param string $metadata A string which contains XML encoded metadata.
      *
-     * @return SAMLParser An instance of this class with the metadata loaded.
+     * @return \SimpleSAML\Metadata\SAMLParser An instance of this class with the metadata loaded.
      * @throws \Exception If the string does not parse as XML.
      */
     public static function parseString(string $metadata): SAMLParser
@@ -259,8 +267,8 @@ class SAMLParser
      *
      * @param \DOMDocument $document The \DOMDocument which contains the EntityDescriptor element.
      *
-     * @return SAMLParser An instance of this class with the metadata loaded.
-     * @throws Exception
+     * @return \SimpleSAML\Metadata\SAMLParser An instance of this class with the metadata loaded.
+     * @throws \Exception
      */
     public static function parseDocument(DOMDocument $document): SAMLParser
     {
@@ -277,8 +285,8 @@ class SAMLParser
      * @param \SimpleSAML\SAML2\XML\md\EntityDescriptor $entityElement A \SimpleSAML\SAML2\XML\md\EntityDescriptor
      *   object which represents a EntityDescriptor element.
      *
-     * @return SAMLParser An instance of this class with the metadata loaded.
-     * @throws Exception
+     * @return \SimpleSAML\Metadata\SAMLParser An instance of this class with the metadata loaded.
+     * @throws \Exception
      */
     public static function parseElement(EntityDescriptor $entityElement): SAMLParser
     {
@@ -295,7 +303,7 @@ class SAMLParser
      * @param string $file The path to the file which contains the EntityDescriptor or EntitiesDescriptor element.
      * @param array $context The connection context to pass to file_get_contents()
      *
-     * @return SAMLParser[] An array of SAMLParser instances.
+     * @return \SimpleSAML\Metadata\SAMLParser[] An array of SAMLParser instances.
      * @throws \Exception If the file does not parse as XML.
      */
     public static function parseDescriptorsFile(string $file, array $context = []): array
@@ -325,8 +333,8 @@ class SAMLParser
      *
      * @param string $string The string with XML data.
      *
-     * @return SAMLParser[] An associative array of SAMLParser instances. The key of the array will
-     *     be the entity id.
+     * @return \SimpleSAML\Metadata]SAMLParser[] An associative array of SAMLParser instances.
+     *   The key of the array will be the entity id.
      * @throws \Exception If the string does not parse as XML.
      */
     public static function parseDescriptorsString(string $string): array
@@ -348,8 +356,8 @@ class SAMLParser
      * @param \DOMElement|null $element The DOMElement which contains the EntityDescriptor element or the
      *     EntitiesDescriptor element.
      *
-     * @return SAMLParser[] An associative array of SAMLParser instances. The key of the array will
-     *     be the entity id.
+     * @return \SimpleSAML\Metadata\SAMLParser[] An associative array of SAMLParser instances.
+     *   The key of the array will be the entity id.
      * @throws \Exception if the document is empty or the root is an unexpected node.
      */
     public static function parseDescriptorsElement(?DOMElement $element = null): array
@@ -375,7 +383,7 @@ class SAMLParser
      * @param int|null              $maxExpireTime The maximum expiration time of the entities.
      * @param array                 $validators The parent-elements that may be signed.
      * @param array                 $parentExtensions An optional array of extensions from the parent element.
-     * @throws Exception
+     * @throws \Exception
      *
      * @return \SimpleSAML\Metadata\SAMLParser[] Array of SAMLParser instances.
      */
@@ -388,7 +396,7 @@ class SAMLParser
         if ($element instanceof EntityDescriptor) {
             $ret = new SAMLParser($element, $maxExpireTime, $validators, $parentExtensions);
             $ret = [$ret->getEntityId() => $ret];
-            /** @var SAMLParser[] $ret */
+            /** @var \SimpleSAML\Metadata\SAMLParser[] $ret */
             return $ret;
         }
 
@@ -417,8 +425,8 @@ class SAMLParser
      * @param mixed $element The element we should determine the expiry time of.
      * @param int|null $maxExpireTime The maximum expiration time.
      *
-     * @return int|null The unix timestamp for when the element should expire. Will be NULL if no
-     *             limit is set for the element.
+     * @return int|null The unix timestamp for when the element should expire.
+     *   Will be NULL if no limit is set for the element.
      */
     private static function getExpireTime(mixed $element, ?int $maxExpireTime): ?int
     {
@@ -710,7 +718,7 @@ class SAMLParser
      *                             NULL if unknown.
      *
      * @return array An associative array with metadata we have extracted from this element.
-     * @throws Exception
+     * @throws \Exception
      */
     private static function parseRoleDescriptorType(RoleDescriptor $element, ?int $expireTime): array
     {
@@ -759,7 +767,7 @@ class SAMLParser
      * @param int|null $expireTime The unix timestamp for when this element should expire, or NULL if unknown.
      *
      * @return array An associative array with metadata we have extracted from this element.
-     * @throws Exception
+     * @throws \Exception
      */
     private static function parseSSODescriptor(SSODescriptorType $element, ?int $expireTime): array
     {
@@ -820,7 +828,7 @@ class SAMLParser
      *
      * @param \SimpleSAML\SAML2\XML\md\IDPSSODescriptor $element The element which should be parsed.
      * @param int|null $expireTime The unix timestamp for when this element should expire, or NULL if unknown.
-     * @throws Exception
+     * @throws \Exception
      */
     private function processIDPSSODescriptor(IDPSSODescriptor $element, ?int $expireTime): void
     {
@@ -844,7 +852,7 @@ class SAMLParser
      *
      * @param \SimpleSAML\SAML2\XML\md\AttributeAuthorityDescriptor $element The element which should be parsed.
      * @param int|null $expireTime The unix timestamp for when this element should expire, or NULL if unknown.
-     * @throws Exception
+     * @throws \Exception
      */
     private function processAttributeAuthorityDescriptor(
         AttributeAuthorityDescriptor $element,
@@ -870,7 +878,7 @@ class SAMLParser
      * @param array $parentExtensions An optional array of extensions from the parent element.
      *
      * @return array An associative array with the extensions parsed.
-     * @throws Exception
+     * @throws \Exception
      */
     private static function processExtensions(mixed $element, array $parentExtensions = []): array
     {

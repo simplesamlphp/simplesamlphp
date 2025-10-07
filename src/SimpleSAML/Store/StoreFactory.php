@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Store;
 
 use Exception;
-use SimpleSAML\{Configuration, Error, Module, Utils};
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Module;
+use SimpleSAML\Utils;
 
 /**
  * Base class for data stores.
@@ -31,7 +34,7 @@ abstract class StoreFactory implements Utils\ClearableState
      * @return \SimpleSAML\Store\StoreInterface|false The data store, or false if it isn't enabled.
      *
      * @throws \SimpleSAML\Error\CriticalConfigurationError
-     * @throws Exception
+     * @throws \Exception
      */
     public static function getInstance(string $storeType): StoreInterface|false
     {

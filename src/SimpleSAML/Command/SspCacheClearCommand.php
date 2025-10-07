@@ -48,6 +48,7 @@ class SspCacheClearCommand extends Command
         $this->filesystem = $filesystem ?? new Filesystem();
     }
 
+
     /**
      * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
      */
@@ -284,6 +285,7 @@ EOF,);
 
         return false;
     }
+
 
     /**
      * @param string $warmupDir

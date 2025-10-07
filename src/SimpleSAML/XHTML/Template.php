@@ -12,19 +12,27 @@ namespace SimpleSAML\XHTML;
 
 use Exception;
 use InvalidArgumentException;
-use SimpleSAML\{Configuration, Error, Logger, Module, Utils};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Locale\{Localization, Translate, TwigTranslator};
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Locale\Localization;
+use SimpleSAML\Locale\Translate;
+use SimpleSAML\Locale\TwigTranslator;
+use SimpleSAML\Logger;
+use SimpleSAML\Module;
+use SimpleSAML\Utils;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
-use Twig\{Environment, TwigFilter, TwigFunction};
+use Twig\Environment;
 use Twig\Error\RuntimeError;
 use Twig\Extension\DebugExtension;
 use Twig\Extra\Intl\IntlExtension;
 use Twig\Loader\FilesystemLoader;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 use function class_exists;
 use function count;
@@ -252,9 +260,9 @@ class Template extends Response
     /**
      * Set up the places where twig can look for templates.
      *
-     * @return TemplateLoader The twig template loader or false if the template does not exist.
+     * @return \SimpleSAML\XHMTL\TemplateLoader The twig template loader or false if the template does not exist.
      * @throws \Twig\Error\LoaderError In case a failure occurs.
-     * @throws Exception
+     * @throws \Exception
      */
     private function setupTwigTemplatepaths(): TemplateLoader
     {
@@ -391,7 +399,7 @@ class Template extends Response
      * Add overriding templates from the configured theme.
      *
      * @return array An array of module => templatedir lookups.
-     * @throws Exception
+     * @throws \Exception
      */
     private function findThemeTemplateDirs(): array
     {
@@ -438,7 +446,7 @@ class Template extends Response
      * @return string The templates directory of a module
      *
      * @throws \InvalidArgumentException If the module is not enabled or it has no templates directory.
-     * @throws Exception
+     * @throws \Exception
      */
     private function getModuleTemplateDir(string $module): string
     {
@@ -480,7 +488,7 @@ class Template extends Response
      * containing their localized names and the URL that should be used in order to change to that language.
      *
      * @return array|null The array containing information of all available languages.
-     * @throws Exception
+     * @throws \Exception
      */
     private function generateLanguageBar(): ?array
     {
@@ -512,7 +520,7 @@ class Template extends Response
 
     /**
      * Set some default context
-     * @throws Exception
+     * @throws \Exception
      */
     private function twigDefaultContext(): void
     {
@@ -648,7 +656,7 @@ class Template extends Response
      * Wraps Language->getLanguageList
      *
      * @return string[]
-     * @throws Exception
+     * @throws \Exception
      */
     private function getLanguageList(): array
     {
@@ -660,7 +668,7 @@ class Template extends Response
      * Wrap Language->isLanguageRTL
      *
      * @return bool
-     * @throws Exception
+     * @throws \Exception
      */
     private function isLanguageRTL(): bool
     {
@@ -674,7 +682,7 @@ class Template extends Response
      * language and fallback language for the DisplayName, name, OrganizationDisplayName
      * and OrganizationName; the first one found is considered the best match.
      * If nothing found, will return the entityId.
-     * @throws Exception
+     * @throws \Exception
      */
     public function getEntityDisplayName(array $data): string
     {
@@ -703,7 +711,7 @@ class Template extends Response
      * returns null.
      *
      * @return string|array|null
-     * @throws Exception
+     * @throws \Exception
      */
     public function getEntityPropertyTranslation(string $property, array $data): string|array|null
     {
