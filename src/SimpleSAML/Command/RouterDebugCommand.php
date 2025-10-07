@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Command;
 
 use Closure;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
@@ -12,14 +13,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Routing\RouterInterface;
 
+#[AsCommand(
+    name: 'debug:router',
+    description: 'Displays the current routes for a module.',
+)]
 class RouterDebugCommand extends Command
 {
-    /**
-     * @var string|null
-     */
-    protected static ?string $defaultName = 'debug:router';
-
-
     /**
      * @param \Symfony\Component\Routing\RouterInterface $router
      *
@@ -37,7 +36,6 @@ class RouterDebugCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setDescription('Displays current routes for a module')
             ->setHelp(
                 <<<'EOF'
 The <info>%command.name%</info> displays the configured routes for a module:
