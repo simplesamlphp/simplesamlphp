@@ -115,6 +115,7 @@ class ModuleTest extends TestCase
         ));
     }
 
+
     /**
      * Test for SimpleSAML\Module::getModuleHooks(). It covers happy path.
      */
@@ -126,6 +127,7 @@ class ModuleTest extends TestCase
         $expectedFile = Path::canonicalize(dirname(__DIR__, 3) . '/modules/cron/hooks/hook_configpage.php');
         $this->assertEquals($expectedFile, $hooks['configpage']['file']);
     }
+
 
     /**
      * Test for SimpleSAML\Module::getModuleHooks(). It covers invalid hook names

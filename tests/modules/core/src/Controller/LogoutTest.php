@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Controller;
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use SimpleSAML\{Auth, Configuration, Error};
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\core\Controller;
 use SimpleSAML\TestUtils\ClearStateTestCase;

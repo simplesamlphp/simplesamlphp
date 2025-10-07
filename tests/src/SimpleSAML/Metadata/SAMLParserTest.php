@@ -368,6 +368,7 @@ XML,
         $this->assertEquals($expected['name'], $metadata['name']);
     }
 
+
     /**
      * Test entity category hidden from discovery is parsed
      */
@@ -400,6 +401,7 @@ XML,
         $this->assertTrue($metadata['hide.from.discovery']);
     }
 
+
     /**
      * Test entity category hidden from discovery is not returned when not present
      */
@@ -430,6 +432,7 @@ XML,
         $metadata = $entities['theEntityID']->getMetadata20IdP();
         $this->assertArrayNotHasKey('hide.from.discovery', $metadata);
     }
+
 
     /**
      * Test entity category hidden from discovery is not returned when no mace dir entity categories present

@@ -6,8 +6,9 @@ namespace SimpleSAML\Test;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use SimpleSAML\Configuration;
+use SimpleSAML\Session;
 use SimpleSAML\TestUtils\ClearStateTestCase;
-use SimpleSAML\{Configuration, Session};
 
 /**
  */
@@ -17,6 +18,7 @@ class SessionTest extends ClearStateTestCase
     /** @var \SimpleSAML\Session */
     protected Session $session;
 
+
     /**
      */
     public function setUp(): void
@@ -25,6 +27,7 @@ class SessionTest extends ClearStateTestCase
 
         $this->session = Session::getSessionFromRequest();
     }
+
 
     /**
      */
@@ -39,6 +42,7 @@ class SessionTest extends ClearStateTestCase
         $this->assertEquals(time() + 14 * 86400, $this->session->getRememberMeExpire());
     }
 
+
     /**
      */
     public function testSetRememberMeExpireExplicit(): void
@@ -49,6 +53,7 @@ class SessionTest extends ClearStateTestCase
         $this->assertEquals(time() + 1000, $this->session->getRememberMeExpire());
     }
 
+
     public static function expirationValues(): array
     {
         return [
@@ -57,6 +62,7 @@ class SessionTest extends ClearStateTestCase
             'String (Any)' => ['Value'],
         ];
     }
+
 
     #[DataProvider('expirationValues')]
     public function testSetDataExpiration(int|string $expire): void
@@ -73,6 +79,7 @@ class SessionTest extends ClearStateTestCase
             $this->assertEquals('data', $fetchedData);
         }
     }
+
 
     public static function getAllowedExpired(): array
     {
@@ -103,6 +110,7 @@ class SessionTest extends ClearStateTestCase
             ],
         ];
     }
+
 
     /**
      * Tests that getData returns expected data when session is expired.

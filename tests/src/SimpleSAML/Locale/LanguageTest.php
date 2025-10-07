@@ -174,6 +174,7 @@ class LanguageTest extends TestCase
         $this->assertEquals('en', $l->getLanguage());
     }
 
+
     public function testGetPreferredLanguages(): void
     {
         // test defaults

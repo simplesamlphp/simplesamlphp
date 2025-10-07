@@ -22,6 +22,7 @@ class XMLTest extends TestCase
 {
     private const FRAMEWORK = 'vendor/simplesamlphp/saml2/tests/resources/xml';
 
+
     /**
      */
     public function testIsDomNodeOfTypeBasic(): void
@@ -284,6 +285,7 @@ NOWDOC;
         $res = $xmlUtils->isValid($dom, $schema);
         $this->assertTrue($res === true);
     }
+
 
     /**
      */

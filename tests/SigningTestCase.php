@@ -167,11 +167,17 @@ NOWDOC;
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
+
     protected const ROOTDIRNAME = 'testdir';
+
     protected const DEFAULTCERTDIR = 'certdir';
+
     protected const CA_PRIVATE_KEY = 'ca.key.pem';
+
     protected const CA_CERTIFICATE = 'ca.cert.pem';
+
     protected const GOOD_PRIVATE_KEY = 'good.key.pem';
+
     protected const GOOD_CERTIFICATE = 'good.cert.pem';
 
 

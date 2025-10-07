@@ -246,6 +246,7 @@ class MetadataTest extends TestCase
         ], Metadata::parseNameIdPolicy($nameIdPolicy));
     }
 
+
     /**
      * Test \SimpleSAML\Utils\Config\Metadata::parseNameIdPolicy().
      * Test with settings that produce the fallback defaults.
@@ -275,6 +276,7 @@ class MetadataTest extends TestCase
             'AllowCreate' => false,
         ], Metadata::parseNameIdPolicy($nameIdPolicy));
     }
+
 
     /**
      * Test \SimpleSAML\Utils\Config\Metadata::parseNameIdPolicy().

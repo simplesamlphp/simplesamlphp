@@ -25,6 +25,7 @@ class TargetedIDTest extends TestCase
     /** @var \SimpleSAML\Utils\Config */
     protected static Utils\Config $configUtils;
 
+
     /**
      * Set up for each test.
      */

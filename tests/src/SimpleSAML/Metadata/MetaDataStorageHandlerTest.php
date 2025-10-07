@@ -26,6 +26,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         return MetaDataStorageHandler::getMetadataHandler();
     }
 
+
     public static function entityIDsList(): array
     {
         return [
@@ -41,6 +42,8 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
             'empty list' => [[]],
         ];
     }
+
+
     /**
      * Test that loading specific entities work, and that metadata source precedence is followed
      */
@@ -69,6 +72,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         }
     }
 
+
     /**
      * Test that retrieving a full metadataSet from a source works and precedence works
      */
@@ -93,6 +97,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         $this->assertEquals('hostname SP from source1', $entities['http://localhost/simplesaml']['name']['en']);
     }
 
+
     /**
      * Query from a metadata set for which we have no entities should be empty
      */
@@ -102,6 +107,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
 
         $this->assertCount(0, $entities);
     }
+
 
     /**
      * Test the current metadata entity selection
@@ -113,6 +119,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         $this->assertEquals('http://localhost/simplesaml', $entity['entityid']);
     }
 
+
     /**
      * Test the helper that returns the metadata as a Configuration object
      */
@@ -123,6 +130,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         $this->assertInstanceOf(Configuration::class, $entity);
         $this->assertEquals('entityA', $entity->getValue('entityid'));
     }
+
 
     /**
      * Test the helper that searches metadata by sha1 hash
@@ -136,6 +144,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         $this->assertEquals('entityB', $entity->getValue('entityid'));
     }
 
+
     /**
      * Test the helper that searches metadata by sha1 hash
      */
@@ -147,6 +156,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         $this->assertNull($entity);
     }
 
+
     /**
      * Test the current metadata entity selection, empty set
      */
@@ -156,6 +166,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         $this->expectExceptionMessage('Could not find any default metadata');
         $this->getHandler()->getMetaDataCurrent('saml20-idp-remote');
     }
+
 
     /**
      * Test that trying to fetch a non-existent entity throws Exception
@@ -171,6 +182,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         $this->getHandler()->getMetaData('doesnotexist', 'saml20-sp-remote');
     }
 
+
     /*
      * Test using the entityID from metadata-templates/saml20-idp-hosted.php
      */
@@ -180,6 +192,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         $this->expectExceptionMessageMatches('/entityID/');
         $this->getHandler()->getMetaDataCurrent('saml20-idp-hosted');
     }
+
 
     public function testCanHaveMultipleHostedIdps(): void
     {
@@ -195,6 +208,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         $this->assertCount(2, $idps);
     }
 
+
     public function testCanGetDefaultHostedIdpInCaseOfMultipleHostedIdps(): void
     {
         $config = [
@@ -209,6 +223,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         $this->assertSame('urn:x-simplesamlphp:example-idp-1', $defaultIdp['entityid']);
     }
 
+
     public function testCanGetParticularIdpInCaseOfMultipleHostedIdps(): void
     {
         $config = [
@@ -222,6 +237,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
 
         $this->assertSame('urn:x-simplesamlphp:example-idp-2', $particularIdp['entityid']);
     }
+
 
     public function testCanOverrideHostedIdpOptionsInCaseOfMultipleHostedIdps(): void
     {

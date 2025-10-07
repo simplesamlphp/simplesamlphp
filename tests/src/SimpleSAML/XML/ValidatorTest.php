@@ -35,7 +35,7 @@ class ValidatorTest extends SigningTestCase
     {
         $doc = DOMDocumentFactory::fromString('<node>value</node>');
 
-        /** @psalm-var DOMElement $node */
+        /** @psalm-var \DOMElement $node */
         $node = $doc->getElementsByTagName('node')->item(0);
 
         $signature_parent = $doc->appendChild(new DOMElement('signature_parent'));
@@ -62,7 +62,7 @@ class ValidatorTest extends SigningTestCase
     {
         $doc = DOMDocumentFactory::fromString('<node>value</node>');
 
-        /** @psalm-var DOMElement $node */
+        /** @psalm-var \DOMElement $node */
         $node = $doc->getElementsByTagName('node')->item(0);
 
         $signature_parent = $doc->appendChild(new DOMElement('signature_parent'));
@@ -89,10 +89,10 @@ class ValidatorTest extends SigningTestCase
     {
         $doc = DOMDocumentFactory::fromString('<parent><node1>value1</node1><node2>value2</node2></parent>');
 
-        /** @psalm-var DOMElement $node1 */
+        /** @psalm-var \DOMElement $node1 */
         $node1 = $doc->getElementsByTagName('node1')->item(0);
 
-        /** @psalm-var DOMElement $node2 */
+        /** @psalm-var \DOMElement $node2 */
         $node2 = $doc->getElementsByTagName('node2')->item(0);
 
         $signature_parent = $doc->appendChild(new DOMElement('signature_parent'));

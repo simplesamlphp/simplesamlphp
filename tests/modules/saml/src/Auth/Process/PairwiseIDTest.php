@@ -9,8 +9,10 @@ use PHPUnit\Framework\TestCase;
 use RuntimeException;
 use SAML2\Constants as C;
 use SAML2\Exception\ProtocolViolationException;
-use SimpleSAML\{Configuration, Logger, Utils};
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
 use SimpleSAML\Module\saml\Auth\Process\PairwiseID;
+use SimpleSAML\Utils;
 
 /**
  * Test for the saml:PairwiseID filter.

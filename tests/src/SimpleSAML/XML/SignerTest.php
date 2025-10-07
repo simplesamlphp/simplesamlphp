@@ -49,6 +49,7 @@ d2udRIYG0WcjQTk86+EraXNGtuwUaknQ7WPKlJwLzypuZM8lk3F1FXxXWomHN3SH
 -----END CERTIFICATE-----
 NOWDOC;
 
+
     private const OTHER_CERTIFICATE = 'other_certificate.pem';
 
 
@@ -81,7 +82,7 @@ NOWDOC;
     {
         $node = DOMDocumentFactory::fromString('<node>value</node>');
 
-        /** @psalm-var DOMElement $element */
+        /** @psalm-var \DOMElement $element */
         $element = $node->getElementsByTagName("node")->item(0);
 
         $doc = new DOMDocument();
@@ -120,7 +121,7 @@ NOWDOC;
     {
         $node = DOMDocumentFactory::fromString('<node>value</node>');
 
-        /** @psalm-var DOMElement $element */
+        /** @psalm-var \DOMElement $element */
         $element = $node->getElementsByTagName("node")->item(0);
 
         $doc = new DOMDocument();
@@ -148,7 +149,7 @@ NOWDOC;
 
         $node = DOMDocumentFactory::fromString('<node>value</node>');
 
-        /** @psalm-var DOMElement $element */
+        /** @psalm-var \DOMElement $element */
         $element = $node->getElementsByTagName("node")->item(0);
 
         $doc = new DOMDocument();
@@ -177,7 +178,7 @@ NOWDOC;
     {
         $node = DOMDocumentFactory::fromString('<node>value</node>');
 
-        /** @psalm-var DOMElement $element */
+        /** @psalm-var \DOMElement $element */
         $element = $node->getElementsByTagName("node")->item(0);
 
         $doc = new DOMDocument();

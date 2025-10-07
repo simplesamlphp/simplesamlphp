@@ -31,6 +31,8 @@ class MetadataTest extends TestCase
     protected Utils\Auth $authUtils;
 
     protected MetaDataStorageHandler $mdh;
+
+
     /**
      * Set up for each test.
      */
@@ -48,7 +50,10 @@ class MetadataTest extends TestCase
             /** @var string */
             public const CERT_PUBLIC = self::XMLSEC . '/certificates/selfsigned.simplesamlphp.org.crt';
 
+
+            /** @var array<mixed> */
             private array $idps;
+
 
             public function __construct()
             {
@@ -72,6 +77,7 @@ class MetadataTest extends TestCase
                     ];
             }
 
+
             public function getMetaData(?string $entityId, string $set): array
             {
                 if (isset($this->idps[$entityId]) && $set === 'saml20-idp-hosted') {
@@ -81,6 +87,7 @@ class MetadataTest extends TestCase
                 throw new Error\MetadataNotFound($entityId ?? '');
             }
 
+
             public function getList(string $set = 'saml20-idp-remote', bool $showExpired = false): array
             {
                 if ($set === 'saml20-idp-hosted') {
@@ -88,6 +95,7 @@ class MetadataTest extends TestCase
                 }
                 return [];
             }
+
 
             public function getMetaDataCurrentEntityID(string $set, string $type = 'entityid'): string
             {
@@ -179,6 +187,7 @@ class MetadataTest extends TestCase
         }
     }
 
+
     public static function provideMetadataAccess(): array
     {
         return [
@@ -189,6 +198,7 @@ class MetadataTest extends TestCase
            [true, true],
         ];
     }
+
 
     /**
      * Test that saml20-idp setting disabled disables access
@@ -217,6 +227,7 @@ class MetadataTest extends TestCase
         $result = $c->metadata($request);
     }
 
+
     /**
      * Test that requesting a non-existing entityID throws an exception
      */
@@ -234,6 +245,7 @@ class MetadataTest extends TestCase
         $this->expectExceptionMessage(Error\ErrorCodes::METADATA);
         $result = $c->metadata($request);
     }
+
 
     /**
      * Basic smoke test of generated metadata
@@ -260,6 +272,7 @@ class MetadataTest extends TestCase
         $this->assertStringContainsString($expect, $content);
     }
 
+
     /**
      * Test not specifying explict entityID falls back to a default
      */
@@ -284,6 +297,7 @@ class MetadataTest extends TestCase
         $expect = '<md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location=';
         $this->assertStringContainsString($expect, $content);
     }
+
 
     /**
      * Check if caching headers are set

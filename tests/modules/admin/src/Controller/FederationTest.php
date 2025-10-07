@@ -38,6 +38,7 @@ class FederationTest extends TestCase
     /** @var string */
     public const CERT_PUBLIC = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.crt';
 
+
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
@@ -55,6 +56,7 @@ class FederationTest extends TestCase
 
     /** @var string */
     private string $ssp_metadata = self::FRAMEWORK . '/metadata/simplesamlphp/saml20-idp-remote_cert_selfsigned.php';
+
 
     /**
      * Set up for each test.
@@ -110,6 +112,7 @@ class FederationTest extends TestCase
             {
             }
 
+
             public function getList(string $set = 'saml20-idp-remote', bool $showExpired = false): array
             {
                 if ($set === 'saml20-idp-hosted') {
@@ -144,10 +147,12 @@ class FederationTest extends TestCase
                 // stub
             }
 
+
             public function authenticate(array &$state): void
             {
                 // stub
             }
+
 
             public static function getSourcesOfType(string $type): array
             {
@@ -226,6 +231,7 @@ class FederationTest extends TestCase
         $this->assertTrue($response->isSuccessful());
         $this->assertNull($response->data['error']);
     }
+
 
     /**
      */
@@ -308,10 +314,12 @@ class FederationTest extends TestCase
                 // stub
             }
 
+
             public function authenticate(array &$state): void
             {
                 // stub
             }
+
 
             public function getMetadata(): Configuration
             {
@@ -321,6 +329,7 @@ class FederationTest extends TestCase
                     'simplesaml',
                 );
             }
+
 
             public static function getById(string $authId, ?string $type = null): ?Auth\Source
             {
@@ -355,6 +364,7 @@ class FederationTest extends TestCase
             public function __construct()
             {
             }
+
 
             public function getMetaDataConfig(string $entityId, string $set): Configuration
             {
@@ -391,6 +401,7 @@ class FederationTest extends TestCase
             public function __construct()
             {
             }
+
 
             public function getMetaData(?string $entityId, string $set): array
             {

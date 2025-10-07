@@ -107,6 +107,7 @@ class IndexTest extends TestCase
         );
     }
 
+
     /**
      * Test the frontpage.redirect config option
      */
@@ -124,6 +125,7 @@ class IndexTest extends TestCase
             $resp['headers']['Location'],
         );
     }
+
 
     /**
      * The tear down method that is executed after all tests in this class.

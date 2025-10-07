@@ -128,10 +128,12 @@ class DiscoControllerTest extends TestCase
                 // stub
             }
 
+
             public function authenticate(array &$state): never
             {
                 // stub
             }
+
 
             public static function getById(string $authId, ?string $type = null): ?Source
             {
@@ -182,10 +184,12 @@ class DiscoControllerTest extends TestCase
                 // stub
             }
 
+
             public function authenticate(array &$state): never
             {
                 // stub
             }
+
 
             public static function getById(string $authId, ?string $type = null): ?Source
             {
@@ -238,10 +242,12 @@ class DiscoControllerTest extends TestCase
                 // stub
             }
 
+
             public function authenticate(array &$state): never
             {
                 // stub
             }
+
 
             public static function getById(string $authId, ?string $type = null): ?Source
             {
@@ -294,10 +300,12 @@ class DiscoControllerTest extends TestCase
                 // stub
             }
 
+
             public function authenticate(array &$state): never
             {
                 // stub
             }
+
 
             public static function getById(string $authId, ?string $type = null): ?Source
             {
@@ -348,10 +356,12 @@ class DiscoControllerTest extends TestCase
                 // stub
             }
 
+
             public function authenticate(array &$state): never
             {
                 // stub
             }
+
 
             public static function getById(string $authId, ?string $type = null): ?Source
             {

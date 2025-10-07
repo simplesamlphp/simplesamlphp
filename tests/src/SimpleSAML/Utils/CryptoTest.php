@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Utils;
 
 use InvalidArgumentException;
-use org\bovigo\vfs\{vfsStream, vfsStreamDirectory};
+use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
@@ -21,6 +22,7 @@ class CryptoTest extends TestCase
     private const ROOTDIRNAME = 'testdir';
 
     private const DEFAULTCERTDIR = 'certdir';
+
 
     /** @var \org\bovigo\vfs\vfsStreamDirectory */
     protected VfsStreamDirectory $root;
@@ -74,6 +76,7 @@ pfajpJ9ZzdyLIo6dVjdQtl+S1rpFCx7ziVN8tCCX4fAVCqRqZJaG/UMLvguVqayb
 5iHKlJ6FlnuhcGCDsUCvG8qCw9FfoS0tuS4tKoQ5WHGQx3sKmr/D
 -----END CERTIFICATE-----
 PHP;
+
 
     /**
      */
@@ -248,6 +251,7 @@ CIPHER;
 
         $this->assertFalse($res);
     }
+
 
     /**
      * Check that hash cannot be used to authenticate ith.

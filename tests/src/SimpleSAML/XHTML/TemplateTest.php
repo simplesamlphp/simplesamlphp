@@ -17,12 +17,14 @@ class TemplateTest extends TestCase
 {
     private const TEMPLATE = 'sandbox.twig';
 
+
     public function testSetup(): void
     {
         $c = Configuration::loadFromArray(['assets' => [ 'salt' => '1234567890']], '', 'simplesaml');
         $t = new Template($c, self::TEMPLATE);
         $this->assertEquals(self::TEMPLATE, $t->getTemplateName());
     }
+
 
     public function testNormalizeName(): void
     {
@@ -31,12 +33,14 @@ class TemplateTest extends TestCase
         $this->assertEquals(self::TEMPLATE, $t->getTemplateName());
     }
 
+
     public function testTemplateModuleNamespace(): void
     {
         $c = Configuration::loadFromArray(['assets' => [ 'salt' => '1234567890']], '', 'simplesaml');
         $t = new Template($c, 'core:welcome');
         $this->assertEquals('core:welcome.twig', $t->getTemplateName());
     }
+
 
     public static function debugModeProvider(): array
     {
@@ -45,6 +49,7 @@ class TemplateTest extends TestCase
             'off' => [false],
         ];
     }
+
 
     #[DataProvider('debugModeProvider')]
     public function testTemplateDebugMode(bool $debugMode): void
@@ -60,6 +65,7 @@ class TemplateTest extends TestCase
             $this->assertFalse($t->getTwig()->isDebug());
         }
     }
+
 
     public function testGetEntityDisplayNameBasic(): void
     {
@@ -78,6 +84,7 @@ class TemplateTest extends TestCase
         $name = $t->getEntityDisplayName($data);
         $this->assertEquals('Something', $name);
     }
+
 
     public function testGetEntityDisplayNamePriorities(): void
     {
@@ -116,6 +123,7 @@ class TemplateTest extends TestCase
         $this->assertEquals('UIname NL', $name);
     }
 
+
     public function testGetEntityPropertyTranslation(): void
     {
         $c = Configuration::loadFromArray(['assets' => [ 'salt' => '1234567890']], '', 'simplesaml');
@@ -147,6 +155,7 @@ class TemplateTest extends TestCase
         $this->assertNull($name);
     }
 
+
     public function testAssetModuleTagDoesNotMatchCoreTag(): void
     {
         $c = Configuration::loadFromArray(['assets' => [ 'salt' => '1234567890']], '', 'simplesaml');
@@ -165,6 +174,7 @@ class TemplateTest extends TestCase
         );
     }
 
+
     public function testAssetWillReturnPathOnTagIsFalse(): void
     {
         $c = Configuration::loadFromArray(['assets' => [ 'salt' => '1234567890']], '', 'simplesaml');
@@ -176,6 +186,7 @@ class TemplateTest extends TestCase
             $tagModule,
         );
     }
+
 
     public function testAssetDebugTagProduction(): void
     {

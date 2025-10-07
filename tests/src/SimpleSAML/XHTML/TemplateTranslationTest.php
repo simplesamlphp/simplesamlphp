@@ -44,6 +44,7 @@ class TemplateTranslationTest extends TestCase
         $this->assertStringContainsString('got 1 values, want 2', $html);
     }
 
+
     public function testCoreLoginUserPassTemplate(): void
     {
         $c = Configuration::loadFromArray(['assets' => [ 'salt' => '1234567890']], '', 'simplesaml');
@@ -66,6 +67,7 @@ class TemplateTranslationTest extends TestCase
 
         $this->assertStringContainsString('value="h.c oersted"', $html);
     }
+
 
     public function testCoreLogoutIframeTemplate(): void
     {
@@ -102,6 +104,7 @@ class TemplateTranslationTest extends TestCase
         $this->assertStringContainsString('ze missing service', $html);
     }
 
+
     public function testAuthStatusTemplate(): void
     {
         $c = Configuration::loadFromArray(['assets' => [ 'salt' => '1234567890']], '', 'simplesaml');
@@ -124,6 +127,7 @@ class TemplateTranslationTest extends TestCase
             $html,
         );
     }
+
 
     public function testValidateTwigFiles(): void
     {

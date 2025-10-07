@@ -40,18 +40,20 @@ class ServiceProviderTest extends TestCase
     /** @var \SimpleSAML\Utils\Auth */
     protected Utils\Auth $authUtils;
 
-    /** @var Controller\ServiceProvider */
+    /** @var \SimpleSAML\Module\saml\Controller\ServiceProvider */
     protected Controller\ServiceProvider $serviceProvider;
 
-    /** @var Utils\HTTP */
+    /** @var \SimpleSAML\Utils\HTTP */
     protected Utils\HTTP $httpUtils;
+
 
     /** @var string */
     public const RELAY_STATE = 'https://example.org';
 
+
     /**
      * Set up for each test.
-     * @throws Exception
+     * @throws \Exception
      */
     protected function setUp(): void
     {
@@ -143,6 +145,7 @@ class ServiceProviderTest extends TestCase
         $this->expectExceptionMessage('Missing ReturnTo parameter.');
         $c->login($request, 'phpunit');
     }
+
 
     /**
      * Test that accessing the login-endpoint with empty ReturnTo parameter leads to an exception
@@ -294,6 +297,7 @@ class ServiceProviderTest extends TestCase
         ];
     }
 
+
     /**
      * Test Login without Session/ Not Authenticated
      *
@@ -346,6 +350,7 @@ class ServiceProviderTest extends TestCase
             $this->assertEquals($options['ReturnTo'], $returnsTo);
         }
     }
+
 
     /**
      * @return array
@@ -412,6 +417,7 @@ class ServiceProviderTest extends TestCase
         ];
     }
 
+
     /**
      * Test Login with Session/Authenticated
      *
@@ -470,6 +476,7 @@ class ServiceProviderTest extends TestCase
             $this->assertEquals($options['ReturnTo'], $returnsTo);
         }
     }
+
 
     /**
      * Test that accessing the discoResponse-endpoint with unknown authsource in state results in an exception
@@ -798,6 +805,7 @@ XML;
         }
     }
 
+
     public static function provideMetadataAccess(): array
     {
         return [
@@ -808,6 +816,7 @@ XML;
            [true, true],
         ];
     }
+
 
     /**
      * Test that requesting a non-existing authsource yields an error
@@ -825,6 +834,7 @@ XML;
         $this->expectExceptionMessage("Error with authentication source 'phpnonunit': Could not find authentication source.");
         $c->metadata($request, 'phpnonunit');
     }
+
 
     /**
      * Basic smoke test of generated metadata
@@ -845,6 +855,7 @@ XML;
         $expect = 'entityID="urn:x-simplesamlphp:example-sp"';
         $this->assertStringContainsString($expect, $content);
     }
+
 
     /**
      * Check if caching headers are set

@@ -181,6 +181,7 @@ class TestTest extends TestCase
                 return false;
             }
 
+
             public function login(array $params = []): void
             {
                 // stub
@@ -211,6 +212,7 @@ class TestTest extends TestCase
             {
                 return true;
             }
+
 
             public function getAttributes(): array
             {
@@ -251,10 +253,12 @@ class TestTest extends TestCase
                 ];
             }
 
+
             public function getAuthDataArray(): ?array
             {
                 return [];
             }
+
 
             public function getAuthData(string $name): mixed
             {

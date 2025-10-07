@@ -133,6 +133,7 @@ class EMailTest extends ClearStateTestCase
         $email->setTransportMethod('smtp');
     }
 
+
     /**
      * Test setting configuration.
      *

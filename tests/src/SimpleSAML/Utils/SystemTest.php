@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Utils;
 
-use org\bovigo\vfs\{vfsStream, vfsStreamDirectory};
+use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
@@ -21,6 +22,7 @@ class SystemTest extends TestCase
     private const ROOTDIRNAME = 'testdir';
 
     private const DEFAULTTEMPDIR = 'tempdir';
+
 
     /** @var \org\bovigo\vfs\vfsStreamDirectory */
     protected VfsStreamDirectory $root;

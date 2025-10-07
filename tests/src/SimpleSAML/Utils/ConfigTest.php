@@ -55,6 +55,7 @@ class ConfigTest extends TestCase
         $this->assertEquals($configDir, __DIR__);
     }
 
+
     /**
      * Test valid dir specified by env redirect var overrides default config dir
      */

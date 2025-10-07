@@ -18,6 +18,7 @@ class ErrorCodesTest extends TestCase
         return new ErrorCodes();
     }
 
+
     /**
      * @deprecated
      */
@@ -28,12 +29,14 @@ class ErrorCodesTest extends TestCase
         $this->assertStringContainsString($nonExistentCode, ErrorCodes::getErrorCodeDescription($nonExistentCode));
     }
 
+
     public function testCanGetFallbackValuesForNonExistentErrorCode(): void
     {
         $nonExistentCode = 'nonexistent';
         $this->assertStringContainsString($nonExistentCode, $this->instance()->getTitle($nonExistentCode));
         $this->assertStringContainsString($nonExistentCode, $this->instance()->getDescription($nonExistentCode));
     }
+
 
     /**
      * @deprecated
@@ -79,6 +82,7 @@ class ErrorCodesTest extends TestCase
         );
     }
 
+
     public function testCanGetDefaultErrorCodes(): void
     {
         $this->assertSameSize(
@@ -120,6 +124,7 @@ class ErrorCodesTest extends TestCase
         );
     }
 
+
     /**
      * @deprecated
      */
@@ -128,13 +133,18 @@ class ErrorCodesTest extends TestCase
         $customErrorCodes = new class extends ErrorCodes
         {
             public const CUSTOMCODE = 'CUSTOMCODE';
+
+
             public static string $customTitle = 'customTitle';
+
             public static string $customDescription = 'customDescription';
+
 
             public static function getCustomErrorCodeTitles(): array
             {
                 return [self::CUSTOMCODE => self::$customTitle];
             }
+
 
             public static function getCustomErrorCodeDescriptions(): array
             {
@@ -181,6 +191,7 @@ class ErrorCodesTest extends TestCase
         );
     }
 
+
     /**
      * @deprecated
      */
@@ -189,13 +200,18 @@ class ErrorCodesTest extends TestCase
         $customErrorCodes = new class extends ErrorCodes
         {
             public const CUSTOMCODE = 'CUSTOMCODE';
+
+
             public static string $customTitle = 'customTitle';
+
             public static string $customDescription = 'customDescription';
+
 
             public function getCustomTitles(): array
             {
                 return [self::CUSTOMCODE => self::$customTitle];
             }
+
 
             public function getCustomDescriptions(): array
             {

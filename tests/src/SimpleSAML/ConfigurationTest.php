@@ -1076,7 +1076,7 @@ class ConfigurationTest extends ClearStateTestCase
 
     /**
      * @return void
-     * @throws Exception
+     * @throws \Exception
      */
     public function testCanLoadDefinedConfigFromFile(): void
     {
@@ -1090,7 +1090,7 @@ class ConfigurationTest extends ClearStateTestCase
 
     /**
      * @return void
-     * @throws Exception
+     * @throws \Exception
      */
     public function testCanLoadReturnedConfigFromFile(): void
     {
@@ -1101,9 +1101,10 @@ class ConfigurationTest extends ClearStateTestCase
         $this->assertArrayHasKey('returned', $config->toArray());
     }
 
+
     /**
      * @return void
-     * @throws Exception
+     * @throws \Exception
      */
     public function testLoadFromFileConfigurationError(): void
     {

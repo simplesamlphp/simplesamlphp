@@ -9,7 +9,8 @@ use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
-use SimpleSAML\{Configuration, SessionHandlerPHP};
+use SimpleSAML\Configuration;
+use SimpleSAML\SessionHandlerPHP;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 
 /**
@@ -168,7 +169,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
         session_start();
 
         Configuration::loadFromArray($this->sessionConfig, '[ARRAY]', 'simplesaml');
-        /** @var SessionHandlerPHP $sh */
+        /** @var \SimpleSAML\SessionHandlerPHP $sh */
         $sh = SessionHandlerPHP::getSessionHandler();
         $sh->setCookie('SimpleSAMLSessionID', 'Restore');
         $sh->restorePrevious();
