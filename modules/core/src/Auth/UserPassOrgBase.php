@@ -5,9 +5,14 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth;
 
 use Exception;
-use SimpleSAML\{Auth, Error, Logger, Module, Utils};
 use SimpleSAML\Assert\Assert;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use SimpleSAML\Auth;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
+use SimpleSAML\Module;
+use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function count;
 use function explode;
@@ -38,6 +43,7 @@ abstract class UserPassOrgBase extends Auth\Source
      * The key of the OrgId field in the state, identifies which org was selected.
      */
     public const ORGID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.SelectedOrg';
+
 
     /**
      * What way do we handle the organization as part of the username.

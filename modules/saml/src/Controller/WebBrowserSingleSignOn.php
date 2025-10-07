@@ -6,15 +6,24 @@ namespace SimpleSAML\Module\saml\Controller;
 
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
-use SimpleSAML\{Configuration, Error, IdP, Logger, Metadata, Module};
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\SAML2\{ArtifactResolve, ArtifactResponse, SOAP};
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\IdP;
+use SimpleSAML\Logger;
+use SimpleSAML\Metadata;
+use SimpleSAML\Module;
+use SimpleSAML\SAML2\ArtifactResolve;
+use SimpleSAML\SAML2\ArtifactResponse;
 use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
+use SimpleSAML\SAML2\SOAP;
 use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\XML\DOMDocumentFactory;
-use Symfony\Bridge\PsrHttpMessage\Factory\{HttpFoundationFactory, PsrHttpFactory};
-use Symfony\Component\HttpFoundation\{Request, Response};
+use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
+use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Controller class for the Web Browser Single Sign On profile.

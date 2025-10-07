@@ -5,22 +5,22 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\admin\Controller;
 
 use Exception;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
-use SimpleSAML\Module;
-use SimpleSAML\Utils;
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Locale\Translate;
+use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Metadata\SAMLBuilder;
 use SimpleSAML\Metadata\SAMLParser;
 use SimpleSAML\Metadata\Signer;
+use SimpleSAML\Module;
 use SimpleSAML\Module\adfs\IdP\ADFS as ADFS_IdP;
 use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
+use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -73,7 +73,7 @@ class Federation
      * FederationController constructor.
      *
      * @param \SimpleSAML\Configuration $config The configuration to use.
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct(
         protected Configuration $config,
@@ -221,7 +221,11 @@ class Federation
                     $selfHost = $httpUtils->getSelfHostWithPath();
                     foreach ($idps as $index => $idp) {
                         if (isset($idp['host']) && $idp['host'] !== '__DEFAULT__') {
-                            $mdHostBase = str_replace('://' . $selfHost . '/', '://' . $idp['host'] . '/', $metadataBase);
+                            $mdHostBase = str_replace(
+                                '://' . $selfHost . '/',
+                                '://' . $idp['host'] . '/',
+                                $metadataBase,
+                            );
                         } else {
                             $mdHostBase = $metadataBase;
                         }

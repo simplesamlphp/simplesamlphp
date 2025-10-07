@@ -11,7 +11,7 @@ use SimpleSAML\XHTML\Template;
  *
  * @param \SimpleSAML\XHTML\Template &$template The template that we should alter in this hook.
  * @throws \SimpleSAML\Error\CriticalConfigurationError
- * @throws Exception
+ * @throws \Exception
  */
 function cron_hook_configpage(Template &$template): void
 {

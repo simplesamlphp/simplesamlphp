@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
-use SimpleSAML\{Auth, Error, Logger};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
 
 use function array_intersect;
 use function array_key_exists;

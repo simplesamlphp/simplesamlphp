@@ -5,13 +5,17 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Controller;
 
 use Exception;
-use SimpleSAML\{Configuration, Error, Session, Utils};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use SimpleSAML\XMLSecurity\Alg\Encryption\AES;
 use SimpleSAML\XMLSecurity\Constants as C;
 use SimpleSAML\XMLSecurity\Key\SymmetricKey;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function base64_decode;
 use function explode;
@@ -45,11 +49,12 @@ class Redirection
     /**
      * This controller provides a way to create a redirect to a POST request
      *
-     * @param Request $request The request that lead to this login operation.
+     * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this login operation.
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
      *   An HTML template or a redirection if we are not authenticated.
-     * @throws \SimpleSAML\Error\ConfigurationError
+     *
      * @throws \SimpleSAML\Error\BadRequest
+     * @throws \SimpleSAML\Error\ConfigurationError
      * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      */

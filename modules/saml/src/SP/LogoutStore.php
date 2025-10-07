@@ -6,10 +6,15 @@ namespace SimpleSAML\Module\saml\SP;
 
 use Exception;
 use PDO;
-use SimpleSAML\{Configuration, Logger, Session, Utils};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
 use SimpleSAML\SAML2\XML\saml\NameID;
-use SimpleSAML\Store\{SQLStore, StoreFactory, StoreInterface};
+use SimpleSAML\Session;
+use SimpleSAML\Store\SQLStore;
+use SimpleSAML\Store\StoreFactory;
+use SimpleSAML\Store\StoreInterface;
+use SimpleSAML\Utils;
 
 use function gmdate;
 use function rand;
@@ -29,7 +34,7 @@ class LogoutStore
      * Create logout table in SQL, if it is missing.
      *
      * @param \SimpleSAML\Store\SQLStore $store  The datastore.
-     * @throws Exception
+     * @throws \Exception
      */
     private static function createLogoutTable(SQLStore $store): void
     {
@@ -54,9 +59,11 @@ class LogoutStore
                      * NOTE: We get the name of the index by looking for the only unique index with a default name.
                      */
                     $update = [
+                        // phpcs:disable Generic.Files.LineLength.TooLong
                         'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore DROP INDEX IF EXISTS SELECT CONSTRAINT_NAME ' .
                           'FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_NAME=' . $store->prefix . '_saml_LogoutStore ' .
                           'AND CONSTRAINT_NAME LIKE \'UQ__%"\'',
+                        // phpcs:enable Generic.Files.LineLength.TooLong
                         'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ADD CONSTRAINT _authSource ' .
                           'PRIMARY KEY CLUSTERED (_authSource, _nameId, _sessionIndex)',
                     ];
@@ -148,7 +155,7 @@ class LogoutStore
      * Clean the logout table of expired entries.
      *
      * @param \SimpleSAML\Store\SQLStore $store  The datastore.
-     * @throws Exception
+     * @throws \Exception
      */
     private static function cleanLogoutStore(SQLStore $store): void
     {
@@ -171,7 +178,7 @@ class LogoutStore
      * @param string $sessionIndex  The SessionIndex of the user.
      * @param int $expire Unix timestamp when this session expires.
      * @param string $sessionId
-     * @throws Exception
+     * @throws \Exception
      */
     private static function addSessionSQL(
         SQLStore $store,
@@ -209,7 +216,7 @@ class LogoutStore
      * @param string $authId  The authsource ID.
      * @param string $nameId  The hash of the users NameID.
      * @return array  Associative array of SessionIndex =>  SessionId.
-     * @throws Exception
+     * @throws \Exception
      */
     private static function getSessionsSQL(SQLStore $store, string $authId, string $nameId): array
     {

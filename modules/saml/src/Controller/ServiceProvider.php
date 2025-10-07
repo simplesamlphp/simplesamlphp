@@ -6,18 +6,33 @@ namespace SimpleSAML\Module\saml\Controller;
 
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
-use SimpleSAML\{Auth, Configuration, Error, Logger, Metadata, Module, Session, Utils};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
+use SimpleSAML\Metadata;
+use SimpleSAML\Module;
 use SimpleSAML\Module\saml\Auth\Source\SP;
-use SimpleSAML\SAML2\{Assertion, Binding, HTTPArtifact, HTTPRedirect, LogoutRequest, LogoutResponse, SOAP};
+use SimpleSAML\SAML2\Assertion;
+use SimpleSAML\SAML2\Binding;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
-use SimpleSAML\SAML2\XML\samlp\Response as SAML2_Response;
+use SimpleSAML\SAML2\HTTPArtifact;
+use SimpleSAML\SAML2\LogoutRequest;
+use SimpleSAML\SAML2\LogoutResponse;
+use SimpleSAML\SAML2\SOAP;
 use SimpleSAML\SAML2\XML\saml\Issuer;
+use SimpleSAML\SAML2\XML\samlp\Response as SAML2_Response;
+use SimpleSAML\Session;
 use SimpleSAML\Store\StoreFactory;
+use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Bridge\PsrHttpMessage\Factory\{HttpFoundationFactory, PsrHttpFactory};
-use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
+use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
+use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function array_merge;
 use function basename;
@@ -55,8 +70,8 @@ class ServiceProvider
      *
      * It initializes the global configuration for the controllers implemented here.
      *
-     * @param   Configuration  $config   The configuration to use by the controllers.
-     * @param   Session        $session  The Session to use by the controllers.
+     * @param \SimpleSAML\Configuration $config   The configuration to use by the controllers.
+     * @param \SimpleSAML\Session       $session  The Session to use by the controllers.
      */
     public function __construct(
         protected Configuration $config,
@@ -114,11 +129,12 @@ class ServiceProvider
         return $this->loginHandler($request, $authSource, $spSource, $httpUtils);
     }
 
+
     /**
-     * @param   Request       $request
-     * @param   Auth\Simple   $authSource
-     * @param   Auth\Source   $spSource
-     * @param   Utils\HTTP    $httpUtils
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \SimpleSAML\Auth\Simple $authSource
+     * @param \SimpleSAML\Auth\Source $spSource
+     * @param \SimpleSAML\Utils\HTTP $httpUtils
      *
      * @return string
      * @throws \SimpleSAML\Error\BadRequest

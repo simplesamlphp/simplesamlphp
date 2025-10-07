@@ -5,11 +5,15 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Controller;
 
 use Exception;
-use SimpleSAML\{Configuration, Error, Module, Utils};
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Metadata as SSPMetadata;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
+use SimpleSAML\Module;
 use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function hash;
 
@@ -28,13 +32,14 @@ class Metadata
     /** @var \SimpleSAML\Metadata\MetaDataStorageHandler */
     protected MetadataStorageHandler $mdHandler;
 
+
     /**
      * Controller constructor.
      *
      * It initializes the global configuration for the controllers implemented here.
      *
      * @param \SimpleSAML\Configuration $config The configuration to use by the controllers.
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct(
         protected Configuration $config,
@@ -42,6 +47,7 @@ class Metadata
         $this->authUtils = new Utils\Auth();
         $this->mdHandler = MetaDataStorageHandler::getMetadataHandler($config);
     }
+
 
     /**
      * Inject the \SimpleSAML\Utils\Auth dependency.
@@ -53,6 +59,7 @@ class Metadata
         $this->authUtils = $authUtils;
     }
 
+
     /**
      * Inject the \SimpleSAML\Metadata\MetadataStorageHandler dependency.
      */
@@ -60,6 +67,7 @@ class Metadata
     {
         $this->mdHandler = $mdHandler;
     }
+
 
     /**
      * This endpoint will offer the SAML 2.0 IdP metadata.

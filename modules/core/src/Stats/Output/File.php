@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Stats\Output;
 
 use Exception;
-use SimpleSAML\{Configuration, Error, Stats};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Stats;
 
 use function fclose;
 use function fopen;
@@ -50,7 +52,7 @@ class File extends Stats\Output
      * Initialize the output.
      *
      * @param \SimpleSAML\Configuration $config  The configuration for this output.
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct(Configuration $config)
     {

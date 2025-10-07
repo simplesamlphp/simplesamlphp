@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SimpleSAML\{Auth, Logger};
+use SimpleSAML\Auth;
+use SimpleSAML\Logger;
 use SimpleSAML\SAML2\Constants as C;
 
 /**
@@ -21,7 +22,6 @@ class PersistentNameID2TargetedID extends Auth\ProcessingFilter
      * @var string
      */
     private string $attribute;
-
 
     /**
      * Whether we should insert it as an saml:NameID element.

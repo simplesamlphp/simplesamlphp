@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\admin\Controller;
 
-use SimpleSAML\{Configuration, Module, Session, Utils};
+use SimpleSAML\Configuration;
 use SimpleSAML\Locale\Translate;
+use SimpleSAML\Module;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{Request, Response, StreamedResponse};
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 use function curl_close;
 use function curl_exec;
@@ -33,6 +37,7 @@ class Config
     public const LATEST_VERSION_STATE_KEY = 'core:latest_simplesamlphp_version';
 
     public const RELEASES_API = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases/latest';
+
 
     /** @var \SimpleSAML\Utils\Auth */
     protected Utils\Auth $authUtils;
@@ -202,6 +207,7 @@ class Config
 
         return $response;
     }
+
 
     /**
      * Perform a list of checks on the current installation, and return the results as an array.

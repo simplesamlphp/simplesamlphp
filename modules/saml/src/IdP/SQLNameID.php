@@ -7,8 +7,12 @@ namespace SimpleSAML\Module\saml\IdP;
 use Exception;
 use PDO;
 use PDOStatement;
-use SimpleSAML\{Configuration, Database, Error, Logger, Store};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
+use SimpleSAML\Database;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
+use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
 
 use function strval;
@@ -21,7 +25,9 @@ use function strval;
 class SQLNameID
 {
     public const TABLE_VERSION = 1;
+
     public const DEFAULT_TABLE_PREFIX = '';
+
     public const TABLE_SUFFIX = '_saml_PersistentNameID';
 
 
@@ -84,6 +90,7 @@ class SQLNameID
         $table = $prefix . self::TABLE_SUFFIX;
         return $table;
     }
+
 
     /**
      * @param array $config

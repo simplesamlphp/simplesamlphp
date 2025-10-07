@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use Exception;
-use SimpleSAML\{Auth, Configuration, Module};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Module;
 use Symfony\Component\Filesystem\Filesystem;
 
 use function array_key_exists;

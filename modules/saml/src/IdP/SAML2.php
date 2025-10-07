@@ -11,35 +11,32 @@ use DOMNodeList;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\IdP;
 use SimpleSAML\Logger;
-use SimpleSAML\Module;
-use SimpleSAML\Stats;
-use SimpleSAML\Utils;
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
+use SimpleSAML\Module;
 use SimpleSAML\Module\saml\Message;
 use SimpleSAML\SAML2\Binding;
-use SimpleSAML\SAML2\HTTPRedirect;
-use SimpleSAML\SAML2\SOAP;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
+use SimpleSAML\SAML2\HTTPRedirect;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\saml\Assertion;
 use SimpleSAML\SAML2\XML\saml\AttributeValue;
 use SimpleSAML\SAML2\XML\saml\Audience;
+use SimpleSAML\SAML2\XML\saml\AuthenticatingAuthority;
+use SimpleSAML\SAML2\XML\saml\AuthnContext;
+use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
 use SimpleSAML\SAML2\XML\saml\EncryptedAssertion;
 use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\SAML2\XML\saml\Subject;
 use SimpleSAML\SAML2\XML\saml\SubjectConfirmation;
 use SimpleSAML\SAML2\XML\saml\SubjectConfirmationData;
-use SimpleSAML\SAML2\XML\saml\AuthenticatingAuthority;
-use SimpleSAML\SAML2\XML\saml\AuthnContext;
-use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
 use SimpleSAML\SAML2\XML\samlp\AuthnRequest;
 use SimpleSAML\SAML2\XML\samlp\LogoutRequest;
 use SimpleSAML\SAML2\XML\samlp\LogoutResponse;
@@ -47,10 +44,12 @@ use SimpleSAML\SAML2\XML\samlp\Response as SAML2_Response;
 use SimpleSAML\SAML2\XML\samlp\Status;
 use SimpleSAML\SAML2\XML\samlp\StatusCode;
 use SimpleSAML\SAML2\XML\samlp\StatusMessage;
+use SimpleSAML\Stats;
+use SimpleSAML\Utils;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XMLSecurity\XML\ds\KeyInfo;
 use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
 use SimpleSAML\XMLSecurity\XML\ds\X509Data;
-use SimpleSAML\XMLSecurity\XML\ds\KeyInfo;
 use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
 use Symfony\Component\HttpFoundation\Request;
@@ -168,7 +167,7 @@ class SAML2
      * \SimpleSAML\Error\Exception $exception  The exception.
      *
      * @param array $state The error state.
-     * @throws Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     public static function handleAuthError(Error\Exception $exception, array $state): Response
@@ -250,7 +249,7 @@ class SAML2
      * @param bool                      $authnRequestSigned Whether or not the authn request was signed.
      *
      * @return array|null  Array with the Location and Binding we should use for the response.
-     * @throws Exception
+     * @throws \Exception
      */
     private static function getAssertionConsumerService(
         array $supportedBindings,
@@ -836,7 +835,7 @@ class SAML2
      * @param array           $association The SP association.
      *
      * @return \SimpleSAML\Configuration  Configuration object for the SP metadata.
-     * @throws Exception
+     * @throws \Exception
      */
     public static function getAssociationConfig(IdP $idp, array $association): Configuration
     {
@@ -853,14 +852,14 @@ class SAML2
      * Retrieve the metadata of a hosted SAML 2 IdP.
      *
      * @param string $entityid The entity ID of the hosted SAML 2 IdP whose metadata we want.
-     * @param MetaDataStorageHandler|null $handler Optionally the metadata storage to use,
+     * @param \SimpleSAML\Metadata\MetaDataStorageHandler|null $handler Optionally the metadata storage to use,
      *        if omitted the configured handler will be used.
      *
      * @return array
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\MetadataNotFound
-     * @throws Exception
+     * @throws \Exception
      */
     public static function getHostedMetadata(string $entityid, ?MetaDataStorageHandler $handler = null): array
     {
@@ -1226,7 +1225,7 @@ class SAML2
      * @return \SimpleSAML\SAML2\Assertion  The assertion.
      *
      * @throws \SimpleSAML\Error\Exception In case an error occurs when creating a holder-of-key assertion.
-     * @throws Exception
+     * @throws \Exception
      */
     private static function buildAssertion(
         Configuration $idpMetadata,
@@ -1396,9 +1395,10 @@ class SAML2
         return $a;
     }
 
+
     /**
      * Helper for buildAssertion to decide on an NameID to set
-     * @throws Exception
+     * @throws \Exception
      */
     private static function generateNameId(
         Configuration $idpMetadata,
@@ -1459,6 +1459,7 @@ class SAML2
         return $nameId;
     }
 
+
     /**
      * Encrypt an assertion.
      *
@@ -1472,7 +1473,7 @@ class SAML2
      * @return \SimpleSAML\SAML2\Assertion|\SimpleSAML\SAML2\EncryptedAssertion  The assertion.
      *
      * @throws \SimpleSAML\Error\Exception In case the encryption key type is not supported.
-     * @throws Exception
+     * @throws \Exception
      */
     private static function encryptAssertion(
         Configuration $idpMetadata,
@@ -1582,7 +1583,7 @@ class SAML2
      * @param string                    $consumerURL The Destination URL of the response.
      *
      * @return \SimpleSAML\SAML2\Response The SAML2 Response corresponding to the given data.
-     * @throws Exception
+     * @throws \Exception
      */
     private static function buildResponse(
         Configuration $idpMetadata,

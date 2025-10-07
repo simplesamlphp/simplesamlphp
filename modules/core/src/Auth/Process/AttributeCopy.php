@@ -41,7 +41,7 @@ class AttributeCopy extends Auth\ProcessingFilter
      *
      * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct(array &$config, $reserved)
     {

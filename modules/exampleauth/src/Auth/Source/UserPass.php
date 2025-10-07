@@ -6,8 +6,9 @@ namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
 use Exception;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\{Error, Utils};
+use SimpleSAML\Error;
 use SimpleSAML\Module\core\Auth\UserPassBase;
+use SimpleSAML\Utils;
 
 use function array_key_exists;
 use function count;
@@ -39,7 +40,7 @@ class UserPass extends UserPassBase
      *
      * @param array $info  Information about this authentication source.
      * @param array $config  Configuration.
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct(array $info, array $config)
     {

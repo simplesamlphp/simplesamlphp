@@ -6,7 +6,8 @@ namespace SimpleSAML\Module\saml\Controller;
 
 use SimpleSAML\Configuration;
 use SimpleSAML\XHTML\IdPDisco;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Controller class for the saml module.

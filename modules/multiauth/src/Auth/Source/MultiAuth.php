@@ -5,9 +5,15 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\multiauth\Auth\Source;
 
 use Exception;
-use SimpleSAML\{Auth, Configuration, Error, SimpleSAML\HTTP\RunnableResponse, Module, Session, Utils};
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Module;
 use SimpleSAML\SAML2\Exception\Protocol\NoAuthnContextException;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function array_intersect;
 use function array_key_exists;
@@ -45,6 +51,7 @@ class MultiAuth extends Auth\Source
      */
     public const SESSION_SOURCE = 'multiauth:selectedSource';
 
+
     /**
      * Array of sources we let the user chooses among.
      * @var array
@@ -62,7 +69,7 @@ class MultiAuth extends Auth\Source
      *
      * @param array $info Information about this authentication source.
      * @param array $config Configuration.
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct(array $info, array $config)
     {
@@ -96,7 +103,7 @@ class MultiAuth extends Auth\Source
      *
      * @param \Symfony\Component\HttpFoundation\Request $request  The current request
      * @param array &$state Information about the current authentication.
-     * @throws Exception
+     * @throws \Exception
      * @throws \Throwable
      */
     public function authenticate(Request $request, array &$state): Response

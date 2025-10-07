@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use Exception;
-use SimpleSAML\{Auth, Logger};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
+use SimpleSAML\Logger;
 
 use function array_key_exists;
 use function count;
@@ -36,7 +37,7 @@ class GenerateGroups extends Auth\ProcessingFilter
      *
      * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct(array &$config, $reserved)
     {
@@ -66,7 +67,7 @@ class GenerateGroups extends Auth\ProcessingFilter
      * Apply filter to add groups attribute.
      *
      * @param array &$state  The current request
-     * @throws Exception
+     * @throws \Exception
      */
     public function process(array &$state): void
     {

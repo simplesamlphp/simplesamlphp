@@ -5,14 +5,21 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Controller;
 
 use Exception as BuiltinException;
-use SimpleSAML\{Auth, Configuration, Error, IdP, Logger, Stats, Utils};
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\IdP;
+use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Message;
 use SimpleSAML\SAML2\Binding;
 use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\Stats;
+use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function call_user_func;
 use function in_array;
@@ -66,7 +73,7 @@ class Logout
     /**
      * Log the user out of a given authentication source.
      *
-     * @param Request $request The request that lead to this logout operation.
+     * @param \Symfony\Components\HttpFoundation\Request $request The request that lead to this logout operation.
      * @param string $as The name of the auth source.
      *
      * @return \Symfony\Component\HttpFoundation\Response
@@ -111,7 +118,7 @@ class Logout
 
 
     /**
-     * @param Request $request The request that lead to this logout operation.
+     * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this logout operation.
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \SimpleSAML\Error\NoState
      * @throws \SimpleSAML\Error\BadRequest
@@ -255,7 +262,7 @@ class Logout
 
 
     /**
-     * @param Request $request The request that lead to this logout operation.
+     * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this logout operation.
      * @return \SimpleSAML\XHTML\Template
      * @throws \SimpleSAML\Error\ConfigurationError
      * @throws \SimpleSAML\Error\MetadataNotFound
@@ -407,7 +414,8 @@ class Logout
 
 
     /**
-     * @param Request $request The request that lead to this logout operation.
+     * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this logout operation.
+     * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Exception
      * @throws \SimpleSAML\Error\NoState
      * @throws \SimpleSAML\Error\BadRequest

@@ -4,15 +4,23 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Controller;
 
-use SimpleSAML\{Auth, Configuration, Error, Module, Utils};
-use SimpleSAML\Module\core\Auth\{UserPassBase, UserPassOrgBase};
-use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{Cookie, RedirectResponse, Request, Response};
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Error\ErrorCodes;
+use SimpleSAML\Module;
+use SimpleSAML\Module\core\Auth\UserPassBase;
+use SimpleSAML\Module\core\Auth\UserPassOrgBase;
+use SimpleSAML\Utils;
+use SimpleSAML\XHTML\Template;
+use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function array_key_exists;
-use function substr;
 use function strval;
+use function substr;
 use function time;
 use function trim;
 
@@ -43,13 +51,12 @@ class Login
     protected static array $registeredErrorCodeClasses = [];
 
 
-
     /**
      * Controller constructor.
      *
      * It initializes the global configuration for the controllers implemented here.
      *
-     * @param \SimpleSAML\Configuration              $config The configuration to use by the controllers.
+     * @param \SimpleSAML\Configuration $config The configuration to use by the controllers.
      *
      * @throws \Exception
      */
@@ -142,6 +149,7 @@ class Login
             self::$registeredErrorCodeClasses[] = $className;
         }
     }
+
 
     /**
      * This method handles the generic part for both loginuserpass and loginuserpassorg
@@ -525,7 +533,7 @@ class Login
     /**
      * This clears the user's IdP discovery choices.
      *
-     * @param Request $request The request that lead to this login operation.
+     * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this login operation.
      * @throws \SimpleSAML\Error\CannotSetCookie
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      * @throws \SimpleSAML\Error\Exception

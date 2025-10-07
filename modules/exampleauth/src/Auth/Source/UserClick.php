@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
 use Exception;
-use SimpleSAML\Auth;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
-use Symfony\Component\HttpFoundation\{Request, Response};
 
 use function array_key_exists;
 use function sprintf;
@@ -36,6 +35,7 @@ class UserClick extends Auth\Source
      * The key of the AuthId field in the state.
      */
     public const AUTHID = '\SimpleSAML\Module\exampleauth\Auth\UserClick.AuthId';
+
 
     /**
      * Our users, stored in an associative array. The key of the array is "<id>",

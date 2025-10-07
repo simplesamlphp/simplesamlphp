@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Controller;
 
-use SimpleSAML\{Configuration, Logger};
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 

@@ -4,10 +4,16 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\exampleauth\Controller;
 
-use SimpleSAML\{Auth, Configuration, Error, Session, Utils};
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Module\exampleauth\Auth\Source\External;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session as SymfonySession;
 
 use function preg_match;

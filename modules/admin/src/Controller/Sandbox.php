@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\admin\Controller;
 
-use SimpleSAML\{Configuration, Session};
+use SimpleSAML\Configuration;
+use SimpleSAML\Session;
 use SimpleSAML\XHTML\Template;
 
 use function time;

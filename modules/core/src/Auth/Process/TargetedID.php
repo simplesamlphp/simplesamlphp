@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use Exception;
-use SimpleSAML\{Auth, Logger, Utils};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
+use SimpleSAML\Logger;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\XML\saml\NameID;
+use SimpleSAML\Utils;
 
 use function array_key_exists;
 use function hash;
@@ -62,7 +64,7 @@ class TargetedID extends Auth\ProcessingFilter
      *
      * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct(array &$config, $reserved)
     {

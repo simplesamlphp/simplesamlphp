@@ -5,9 +5,15 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\cron\Controller;
 
 use PHPMailer\PHPMailer\Exception as PHPMailerException;
-use SimpleSAML\{Configuration, Error, Logger, Module, Session, Utils};
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
+use SimpleSAML\Module;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function array_key_exists;
 use function count;

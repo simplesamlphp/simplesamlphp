@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SimpleSAML\{Error, Logger};
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
 use SimpleSAML\Module\saml\BaseNameIDGenerator;
 use SimpleSAML\Module\saml\Error as SAMLError;
 use SimpleSAML\Module\saml\IdP\SQLNameID;

@@ -4,28 +4,42 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Source;
 
-use SAML2\{AuthnRequest, Binding, LogoutRequest};
-use SimpleSAML\{Auth, Configuration, Error, IdP, Logger, Module, Session, Store, Utils};
-use SimpleSAML\Assert\{Assert};
+use SAML2\AuthnRequest;
+use SAML2\Binding;
+use SAML2\LogoutRequest;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
+use SimpleSAML\IdP;
+use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
-use SimpleSAML\SAML2\XML\Comparison;
+use SimpleSAML\Module;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
-use SimpleSAML\SAML2\Exception\Protocol\{
-    NoAvailableIDPException,
-    NoPassiveException,
-    NoSupportedIDPException,
-    ProxyCountExceededException,
-    ProtocolViolationException,
-};
+use SimpleSAML\SAML2\Exception\Protocol\NoAvailableIDPException;
+use SimpleSAML\SAML2\Exception\Protocol\NoPassiveException;
+use SimpleSAML\SAML2\Exception\Protocol\NoSupportedIDPException;
+use SimpleSAML\SAML2\Exception\Protocol\ProtocolViolationException;
+use SimpleSAML\SAML2\Exception\Protocol\ProxyCountExceededException;
+use SimpleSAML\SAML2\XML\Comparison;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
+use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
 use SimpleSAML\SAML2\XML\saml\NameID;
-use SimpleSAML\SAML2\XML\saml\{AuthnContextClassRef};
-use SimpleSAML\SAML2\XML\samlp\{Extensions, IDPEntry, IDPList, RequestedAuthnContext, RequesterID};
+use SimpleSAML\SAML2\XML\samlp\Extensions;
+use SimpleSAML\SAML2\XML\samlp\IDPEntry;
+use SimpleSAML\SAML2\XML\samlp\IDPList;
+use SimpleSAML\SAML2\XML\samlp\RequestedAuthnContext;
+use SimpleSAML\SAML2\XML\samlp\RequesterID;
+use SimpleSAML\Session;
+use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
+use SimpleSAML\Utils;
 use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
-use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function array_intersect;
 use function array_key_exists;
@@ -481,6 +495,7 @@ class SP extends Auth\Source
         return $endpoints;
     }
 
+
     /**
      * Get the DiscoveryResponse endpoint available for a given local SP.
      * @throws \SimpleSAML\Error\CriticalConfigurationError
@@ -495,9 +510,10 @@ class SP extends Auth\Source
             0 => [
                 'Binding' => C::NS_IDPDISC,
                 'Location' => $location,
-            ]
+            ],
         ];
     }
+
 
     /**
      * Determine if the Request Initiator Protocol is enabled

@@ -5,10 +5,16 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth;
 
 use Exception;
-use SimpleSAML\{Auth, Configuration, Error, Logger, Module, Utils};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
+use SimpleSAML\Module;
 use SimpleSAML\SAML2\Constants as C;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Helper class for username/password authentication.
@@ -29,6 +35,7 @@ abstract class UserPassBase extends Auth\Source
      * The key of the AuthId field in the state.
      */
     public const AUTHID = '\SimpleSAML\Module\core\Auth\UserPassBase.AuthId';
+
 
     /**
      * Username we should force.
@@ -95,7 +102,7 @@ abstract class UserPassBase extends Auth\Source
      *
      * @param array $info  Information about this authentication source.
      * @param array &$config  Configuration for this authentication source.
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct(array $info, array &$config)
     {
@@ -133,6 +140,7 @@ abstract class UserPassBase extends Auth\Source
         Assert::nullOrString($forcedUsername);
         $this->forcedUsername = $forcedUsername;
     }
+
 
     /**
      * Return login links from configuration

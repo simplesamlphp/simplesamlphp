@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SimpleSAML\{Auth, Error};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
+use SimpleSAML\Error;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\XML\saml\NameID;
 
@@ -28,7 +29,6 @@ class NameIDAttribute extends Auth\ProcessingFilter
      * @var string
      */
     private string $attribute;
-
 
     /**
      * The format of the NameID in the attribute.

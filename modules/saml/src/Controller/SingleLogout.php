@@ -4,10 +4,16 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Controller;
 
-use SimpleSAML\{Configuration, Error, IdP, Logger, Module, Utils};
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\IdP;
+use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
+use SimpleSAML\Module;
 use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Controller class for the Single Logout Profile.

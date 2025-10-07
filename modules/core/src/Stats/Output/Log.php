@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Stats\Output;
 
 use Exception;
-use SimpleSAML\{Configuration, Logger};
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
 
 use function call_user_func;
 use function is_callable;

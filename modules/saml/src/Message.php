@@ -23,8 +23,8 @@ use SimpleSAML\Module\saml\Error as SAMLError;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\SignedElement;
 use SimpleSAML\SAML2\XML\Comparison;
-use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
+use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\SAML2\XML\samlp\AbstractMessage;
 use SimpleSAML\SAML2\XML\samlp\RequestedAuthnContext;
 use SimpleSAML\SAML2\XML\samlp\StatusCode;
@@ -33,13 +33,13 @@ use SimpleSAML\XMLSecurity\XML\ds\KeyInfo;
 use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
 use SimpleSAML\XMLSecurity\XML\ds\X509Data;
 
-use function array_key_exists;
 use function array_filter;
+use function array_key_exists;
 use function array_map;
 use function array_pop;
 use function array_values;
-use function count;
 use function chunk_split;
+use function count;
 use function filter_var;
 use function implode;
 use function in_array;
@@ -455,7 +455,7 @@ class Message
      *   The assertion containing any possibly encrypted attributes.
      *
      * @throws \SimpleSAML\Error\Exception if we cannot get the decryption keys or decryption fails.
-     * @throws Exception
+     * @throws \Exception
      */
     private static function decryptAttributes(
         Configuration $srcMetadata,
@@ -938,7 +938,7 @@ class Message
      * @return \RobRichards\XMLSecLibs\XMLSecurityKey  The encryption key.
      *
      * @throws \SimpleSAML\Error\Exception if there is no supported encryption key in the metadata of this entity.
-     * @throws Exception
+     * @throws \Exception
      */
     public static function getEncryptionKey(Configuration $metadata): XMLSecurityKey
     {

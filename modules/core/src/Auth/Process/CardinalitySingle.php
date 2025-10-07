@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\{Auth, Logger, Module, Utils};
+use SimpleSAML\Auth;
+use SimpleSAML\Logger;
+use SimpleSAML\Module;
+use SimpleSAML\Utils;
 
 use function array_key_exists;
 use function array_shift;

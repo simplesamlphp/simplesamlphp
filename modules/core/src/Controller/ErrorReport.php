@@ -5,9 +5,14 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Controller;
 
 use Exception as BuiltinException;
-use SimpleSAML\{Configuration, Error, Logger, Session, Utils};
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{RedirectResponse, Request};
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 use function dirname;
 use function filter_var;

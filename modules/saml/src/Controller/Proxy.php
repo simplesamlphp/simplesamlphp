@@ -5,12 +5,16 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Controller;
 
 use Exception;
-use SimpleSAML\{Auth, Configuration, Error, IdP};
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\IdP;
 use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\Module\saml\Error\NoAvailableIDP;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Controller class for the saml module.

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SimpleSAML\{Auth, Logger, Utils};
+use SimpleSAML\Auth;
+use SimpleSAML\Logger;
+use SimpleSAML\Utils;
 
 use function array_key_exists;
 use function explode;
@@ -30,6 +32,7 @@ class FilterScopes extends Auth\ProcessingFilter
         'eduPersonPrincipalName',
     ];
 
+
     /**
      * Constructor for the processing filter.
      *
@@ -44,6 +47,7 @@ class FilterScopes extends Auth\ProcessingFilter
             $this->scopedAttributes = $config['attributes'];
         }
     }
+
 
     /**
      * This method applies the filter, removing any values

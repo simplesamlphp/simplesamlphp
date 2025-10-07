@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SimpleSAML\{Auth, Error, Logger, Module, Utils};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
+use SimpleSAML\Module;
+use SimpleSAML\Utils;
 
 use function in_array;
 use function strval;
@@ -34,7 +38,6 @@ class ExpectedAuthnContextClassRef extends Auth\ProcessingFilter
      * @var array
      */
     private array $accepted;
-
 
     /**
      * AuthnContextClassRef of the assertion

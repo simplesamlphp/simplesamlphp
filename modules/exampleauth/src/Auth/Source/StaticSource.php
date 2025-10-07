@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
 use Exception;
-use SimpleSAML\{Auth, Utils};
-use Symfony\Component\HttpFoundation\{Request, Response};
+use SimpleSAML\Auth;
+use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Example authentication source.
@@ -30,7 +32,7 @@ class StaticSource extends Auth\Source
      *
      * @param array $info  Information about this authentication source.
      * @param array $config  Configuration.
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct(array $info, array $config)
     {

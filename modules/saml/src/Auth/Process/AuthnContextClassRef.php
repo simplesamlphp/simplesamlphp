@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SimpleSAML\{Auth, Error};
+use SimpleSAML\Auth;
+use SimpleSAML\Error;
 
 use function strval;
 

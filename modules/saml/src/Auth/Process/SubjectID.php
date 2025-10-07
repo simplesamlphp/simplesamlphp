@@ -4,18 +4,20 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SimpleSAML\{Auth, Logger, Utils};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
+use SimpleSAML\Logger;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ProtocolViolationException;
+use SimpleSAML\Utils;
 
 use function array_key_exists;
 use function explode;
 use function hash_hmac;
 use function preg_match;
+use function sprintf;
 use function strpos;
 use function strtolower;
-use function sprintf;
 
 /**
  * Filter to generate the subject ID attribute.
@@ -71,6 +73,7 @@ class SubjectID extends Auth\ProcessingFilter
      * @var string
      */
     public const WARN_PATTERN = '/^[a-z0-9][a-z0-9=-]{3,}@[a-z0-9][a-z0-9.-]+\.[a-z]{2,}$/Di';
+
 
     /**
      * The attribute we should generate the subject id from.

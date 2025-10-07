@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
-use SimpleSAML\{Auth, Logger};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
 use SimpleSAML\Locale\Language;
+use SimpleSAML\Logger;
 
 use function array_key_exists;
 

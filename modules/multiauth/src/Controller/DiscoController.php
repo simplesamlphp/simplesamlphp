@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\multiauth\Controller;
 
-use SimpleSAML\{Auth, Configuration, Error, Session};
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
+use SimpleSAML\Session;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function array_key_exists;
 use function is_null;

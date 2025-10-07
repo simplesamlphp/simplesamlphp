@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
-use SimpleSAML\{Auth, Configuration};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
 
 use function count;
 use function explode;

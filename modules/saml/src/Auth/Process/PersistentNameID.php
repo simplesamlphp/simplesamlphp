@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SimpleSAML\{Error, Logger, Utils};
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
 use SimpleSAML\Module\saml\BaseNameIDGenerator;
 use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\Utils;
 
 use function array_values;
 use function count;

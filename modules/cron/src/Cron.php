@@ -6,7 +6,9 @@ namespace SimpleSAML\Module\cron;
 
 use Exception;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\{Configuration, Logger, Module};
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
+use SimpleSAML\Module;
 
 use function in_array;
 use function is_null;
@@ -36,6 +38,7 @@ class Cron
         $this->cronconfig = $cronconfig;
     }
 
+
     /**
      * Invoke the cron hook for the given tag
      * @param string $tag The tag to use. Must be valid in the cronConfig
@@ -64,6 +67,7 @@ class Cron
         /** @psalm-suppress NullableReturnStatement */
         return $croninfo;
     }
+
 
     /**
      * @param string $tag

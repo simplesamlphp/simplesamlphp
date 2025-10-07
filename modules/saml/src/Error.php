@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml;
 
-use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Error as SSPError;
 use SimpleSAML\Module\saml\Error as SAMLError;
 use SimpleSAML\Module\saml\Error\NoPassive;
+use SimpleSAML\SAML2\Constants as C;
 use Throwable;
 
 use function strlen;
