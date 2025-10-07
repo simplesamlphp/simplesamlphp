@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Utils;
 
 use ReflectionObject;
-use SAML2\{AuthnRequest, Binding, LogoutRequest};
+use SAML2\AuthnRequest;
+use SAML2\Binding;
+use SAML2\LogoutRequest;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\saml\Auth\Source\SP;
 use Symfony\Component\HttpFoundation\Response;

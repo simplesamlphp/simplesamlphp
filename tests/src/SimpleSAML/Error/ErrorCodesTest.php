@@ -18,12 +18,14 @@ class ErrorCodesTest extends TestCase
         return new ErrorCodes();
     }
 
+
     public function testCanGetFallbackValuesForNonExistentErrorCode(): void
     {
         $nonExistentCode = 'nonexistent';
         $this->assertStringContainsString($nonExistentCode, $this->instance()->getTitle($nonExistentCode));
         $this->assertStringContainsString($nonExistentCode, $this->instance()->getDescription($nonExistentCode));
     }
+
 
     public function testCanGetDefaultErrorCodes(): void
     {

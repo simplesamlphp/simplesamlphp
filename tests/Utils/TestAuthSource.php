@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Utils;
 
 use SimpleSAML\Auth\Source;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class TestAuthSource extends Source
 {

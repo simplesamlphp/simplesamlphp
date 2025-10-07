@@ -9,7 +9,8 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Metadata\SAMLBuilder;
 use SimpleSAML\Module\saml\Auth\Source\SP;
-use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
+use SimpleSAML\XML\Chunk;
+use SimpleSAML\XML\DOMDocumentFactory;
 
 use function array_keys;
 
@@ -21,6 +22,7 @@ class SAMLBuilderTest extends TestCase
 {
     private const SECURITY = 'vendor/simplesamlphp/xml-security/resources';
 
+
     /**
      */
     protected function setUp(): void
@@ -28,12 +30,14 @@ class SAMLBuilderTest extends TestCase
         Configuration::loadFromArray([], '', 'simplesaml');
     }
 
+
     /**
      */
     protected function tearDown(): void
     {
         Configuration::clearInternalState();
     }
+
 
     /**
      * Test the requested attributes are valued correctly.
@@ -267,6 +271,7 @@ class SAMLBuilderTest extends TestCase
         );
     }
 
+
     /**
      * Test custom metadata extension (saml:Extensions).
      * @throws \DOMException
@@ -308,6 +313,7 @@ class SAMLBuilderTest extends TestCase
         $rt1 = $rt->item(0);
         $this->assertEquals($republishTargetContent, $rt1->textContent);
     }
+
 
     /**
      * Test adding contacts to metadata
@@ -403,6 +409,7 @@ class SAMLBuilderTest extends TestCase
         $this->assertEquals(1, $sn->length);
         $this->assertEquals("Doe", $sn->item(0)->nodeValue);
     }
+
 
     /*
      * Test certificate data.

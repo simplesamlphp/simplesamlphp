@@ -48,6 +48,7 @@ class ProcessingChainTest extends TestCase
         $this->assertInstanceOf(AttributeLimit::class, $filterInChain[2]);
     }
 
+
     /**
      * @throws \SimpleSAML\Error\Exception
      * @throws \Exception

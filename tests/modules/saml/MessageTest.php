@@ -40,6 +40,7 @@ class MessageTest extends TestCase
     /** @var string */
     protected string $acmeeCertificateMismatch;
 
+
     /**
      * Set up for each test.
      */
@@ -145,6 +146,7 @@ class MessageTest extends TestCase
         parent::setUp();
     }
 
+
     public function testCheckSignThrowsWhenBadCertificate(): void
     {
         $this->expectException(\Exception::class);
@@ -170,6 +172,7 @@ class MessageTest extends TestCase
         Message::checkSign($idpConfig, $authnRequest);
     }
 
+
     public function testCheckSignThrowsWhenMissingCertificate(): void
     {
         $this->expectException(SSP_Error\Exception::class);
@@ -193,6 +196,7 @@ class MessageTest extends TestCase
         // You may now use $authnRequest with checkSign:
         Message::checkSign($idpConfig, $authnRequest);
     }
+
 
     public function testCheckSignThrowsWhenCertificateMismatch(): void
     {
@@ -233,6 +237,7 @@ class MessageTest extends TestCase
         $parsed = new AuthnRequest($signedDomElement);
         Message::checkSign($idpConfig, $parsed);
     }
+
 
     public function testCheckSignSucceeds(): void
     {

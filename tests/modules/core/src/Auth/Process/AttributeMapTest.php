@@ -21,7 +21,7 @@ class AttributeMapTest extends TestCase
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
      * @return array  The state array after processing.
-     * @throws Exception
+     * @throws \Exception
      */
     private static function processFilter(array $config, array $request): array
     {
@@ -32,7 +32,7 @@ class AttributeMapTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testBasic(): void
     {
@@ -56,7 +56,7 @@ class AttributeMapTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testDuplicate(): void
     {
@@ -82,7 +82,7 @@ class AttributeMapTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testMultiple(): void
     {
@@ -107,7 +107,7 @@ class AttributeMapTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testMultipleDuplicate(): void
     {
@@ -134,7 +134,7 @@ class AttributeMapTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testCircular(): void
     {
@@ -161,7 +161,7 @@ class AttributeMapTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testMissingMap(): void
     {
@@ -241,7 +241,7 @@ class AttributeMapTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testOverwrite(): void
     {
@@ -266,7 +266,7 @@ class AttributeMapTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testOverwriteReversed(): void
     {

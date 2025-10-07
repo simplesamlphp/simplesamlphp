@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Utils;
 
 use InvalidArgumentException;
-use org\bovigo\vfs\{vfsStream, vfsStreamDirectory};
+use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Configuration, Error, Utils};
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Utils;
 
 use function file_put_contents;
 use function substr;
@@ -23,6 +26,7 @@ class CryptoTest extends TestCase
     private const ROOTDIRNAME = 'testdir';
 
     private const DEFAULTCERTDIR = 'certdir';
+
 
     /** @var \org\bovigo\vfs\vfsStreamDirectory */
     protected VfsStreamDirectory $root;
@@ -77,6 +81,7 @@ pfajpJ9ZzdyLIo6dVjdQtl+S1rpFCx7ziVN8tCCX4fAVCqRqZJaG/UMLvguVqayb
 -----END CERTIFICATE-----
 PHP;
 
+
     /**
      */
     public function setUp(): void
@@ -105,7 +110,6 @@ PHP;
 
     /**
      * Test that the pem2der() and der2pem() methods work correctly.
-     *
      */
     public function testFormatConversion(): void
     {

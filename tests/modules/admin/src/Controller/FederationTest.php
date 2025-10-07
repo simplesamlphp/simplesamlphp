@@ -6,13 +6,16 @@ namespace SimpleSAML\Test\Module\admin\Controller;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Auth, Configuration, Utils};
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\admin\Controller;
 use SimpleSAML\Module\saml\Auth\Source\SP;
+use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{Request, Response};
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function file_get_contents;
 
@@ -39,6 +42,7 @@ class FederationTest extends TestCase
     /** @var string */
     public const CERT_PUBLIC = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.crt';
 
+
     /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
@@ -56,6 +60,7 @@ class FederationTest extends TestCase
 
     /** @var string */
     private string $ssp_metadata = self::FRAMEWORK . '/metadata/simplesamlphp/saml20-idp-remote_cert_selfsigned.php';
+
 
     /**
      * Set up for each test.
@@ -117,6 +122,7 @@ class FederationTest extends TestCase
             {
             }
 
+
             public function getList(string $set = 'saml20-idp-remote', bool $showExpired = false): array
             {
                 if ($set === 'saml20-idp-hosted') {
@@ -151,11 +157,13 @@ class FederationTest extends TestCase
                 // stub
             }
 
+
             public function authenticate(Request $request, array &$state): ?Response
             {
                 // stub
                 return null;
             }
+
 
             public static function getSourcesOfType(string $type): array
             {
@@ -242,6 +250,7 @@ class FederationTest extends TestCase
         $this->assertTrue($response->isSuccessful());
         $this->assertNull($response->data['error']);
     }
+
 
     /**
      * @throws \Exception
@@ -338,11 +347,13 @@ class FederationTest extends TestCase
                 // stub
             }
 
+
             public function authenticate(Request $request, array &$state): ?Response
             {
                 // stub
                 return null;
             }
+
 
             public function getMetadata(): Configuration
             {
@@ -352,6 +363,7 @@ class FederationTest extends TestCase
                     'simplesaml',
                 );
             }
+
 
             public static function getById(string $authId, ?string $type = null): ?Auth\Source
             {
@@ -388,6 +400,7 @@ class FederationTest extends TestCase
             public function __construct()
             {
             }
+
 
             public function getMetaDataConfig(string $entityId, string $set): Configuration
             {
@@ -427,6 +440,7 @@ class FederationTest extends TestCase
             public function __construct()
             {
             }
+
 
             public function getMetaData(?string $entityId, string $set): array
             {

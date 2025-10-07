@@ -7,8 +7,9 @@ namespace SimpleSAML\Test\Auth;
 use PHPUnit\Framework\Attributes\CoversClass;
 use ReflectionClass;
 use SimpleSAML\Auth;
+use SimpleSAML\Test\Utils\TestAuthSource;
+use SimpleSAML\Test\Utils\TestAuthSourceFactory;
 use SimpleSAML\TestUtils\ClearStateTestCase;
-use SimpleSAML\Test\Utils\{TestAuthSource, TestAuthSourceFactory};
 
 /**
  * Tests for \SimpleSAML\Auth\Source

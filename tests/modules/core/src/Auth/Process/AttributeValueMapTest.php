@@ -22,7 +22,7 @@ class AttributeValueMapTest extends TestCase
      * @param array $request  The request state.
      * @return array  The state array after processing.
      * @throws \SimpleSAML\Error\Exception
-     * @throws Exception
+     * @throws \Exception
      */
     private static function processFilter(array $config, array $request): array
     {

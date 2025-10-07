@@ -7,14 +7,17 @@ namespace SimpleSAML\Test\XHTML;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
-use SimpleSAML\Locale\{Translate, TwigTranslator};
+use SimpleSAML\Locale\Translate;
+use SimpleSAML\Locale\TwigTranslator;
 use SimpleSAML\Module;
 use SimpleSAML\XHTML\Template;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
-use Symfony\Component\Finder\{Finder};
-use Twig\{Environment, TwigFilter, TwigFunction};
+use Symfony\Component\Finder\Finder;
+use Twig\Environment;
 use Twig\Extra\Intl\IntlExtension;
 use Twig\Loader\FilesystemLoader;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 /**
  */
@@ -45,6 +48,7 @@ class TemplateTranslationTest extends TestCase
         $this->assertStringContainsString('got 1 values, want 2', $html);
     }
 
+
     /**
      * @throws \SimpleSAML\Error\ConfigurationError
      * @throws \SimpleSAML\Error\CriticalConfigurationError
@@ -71,6 +75,7 @@ class TemplateTranslationTest extends TestCase
 
         $this->assertStringContainsString('value="h.c oersted"', $html);
     }
+
 
     /**
      * @throws \SimpleSAML\Error\ConfigurationError
@@ -111,6 +116,7 @@ class TemplateTranslationTest extends TestCase
         $this->assertStringContainsString('ze missing service', $html);
     }
 
+
     /**
      * @throws \SimpleSAML\Error\ConfigurationError
      * @throws \SimpleSAML\Error\CriticalConfigurationError
@@ -137,6 +143,7 @@ class TemplateTranslationTest extends TestCase
             $html,
         );
     }
+
 
     /**
      * @throws \Twig\Error\SyntaxError

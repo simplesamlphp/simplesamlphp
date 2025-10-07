@@ -90,7 +90,7 @@ class StateTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testValidateStateIdSimple(): void
     {
@@ -102,7 +102,7 @@ class StateTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testValidateStateIdWithReturnURL(): void
     {

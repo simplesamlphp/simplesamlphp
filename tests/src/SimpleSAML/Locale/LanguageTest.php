@@ -186,6 +186,7 @@ class LanguageTest extends TestCase
         $this->assertEquals('en', $l->getLanguage());
     }
 
+
     /**
      * @throws \SimpleSAML\Error\CannotSetCookie
      * @throws \Exception

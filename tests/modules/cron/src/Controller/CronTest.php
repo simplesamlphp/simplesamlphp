@@ -7,10 +7,14 @@ namespace SimpleSAML\Test\Module\cron\Controller;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Configuration, Error, Session, Utils};
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Module\cron\Controller;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Set of tests for the controllers in the "cron" module.

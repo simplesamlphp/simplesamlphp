@@ -6,8 +6,9 @@ namespace SimpleSAML\Test\Module\admin\Controller;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Configuration, Session};
+use SimpleSAML\Configuration;
 use SimpleSAML\Module\admin\Controller;
+use SimpleSAML\Session;
 use SimpleSAML\XHTML\Template;
 
 /**

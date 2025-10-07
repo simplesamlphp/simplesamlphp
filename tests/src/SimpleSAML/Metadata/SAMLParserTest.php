@@ -6,10 +6,11 @@ namespace SimpleSAML\Test\Metadata;
 
 use DOMDocument;
 use PHPUnit\Framework\Attributes\CoversClass;
-use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Metadata\SAMLParser;
+use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Test\SigningTestCase;
-use SimpleSAML\XML\{DOMDocumentFactory, Signer};
+use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\Signer;
 
 /**
  * Test SAML parsing
@@ -374,6 +375,7 @@ XML,
         $this->assertEquals($expected['name'], $metadata['name']);
     }
 
+
     /**
      * Test entity category hidden from discovery is parsed
      * @throws \Exception
@@ -407,6 +409,7 @@ XML,
         $this->assertTrue($metadata['hide.from.discovery']);
     }
 
+
     /**
      * Test entity category hidden from discovery is not returned when not present
      * @throws \Exception
@@ -438,6 +441,7 @@ XML,
         $metadata = $entities['theEntityID']->getMetadata20IdP();
         $this->assertArrayNotHasKey('hide.from.discovery', $metadata);
     }
+
 
     /**
      * Test entity category hidden from discovery is not returned when no mace dir entity categories present

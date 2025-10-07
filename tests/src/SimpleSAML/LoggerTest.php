@@ -7,7 +7,8 @@ namespace SimpleSAML\Test;
 use Exception;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Configuration, Logger};
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
 use SimpleSAML\TestUtils\ArrayLogger;
 
 class LoggerTest extends TestCase
@@ -50,7 +51,7 @@ class LoggerTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testCreateLoggingHandlerHonorsCustomHandler(): void
     {
@@ -65,7 +66,7 @@ class LoggerTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testCaptureLog(): void
     {

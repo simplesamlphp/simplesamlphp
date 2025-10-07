@@ -10,8 +10,10 @@ use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
-use SimpleSAML\{Configuration, Error, Utils};
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\TestUtils\ClearStateTestCase;
+use SimpleSAML\Utils;
 
 use function parse_url;
 use function strval;
@@ -80,6 +82,7 @@ class HTTPTest extends ClearStateTestCase
         $this->assertEquals($url . '&bar=foo', $httpUtils->addURLParameters($url, $params));
     }
 
+
     private function makeNativePath($s)
     {
         if (DIRECTORY_SEPARATOR == '\\') {
@@ -87,6 +90,7 @@ class HTTPTest extends ClearStateTestCase
         }
         return $s;
     }
+
 
     /**
      * Test SimpleSAML\Utils\HTTP::guessBasePath().
@@ -596,9 +600,10 @@ class HTTPTest extends ClearStateTestCase
         $this->assertEquals($supportsNone, $httpUtils->canSetSameSiteNone(), $userAgent ?? 'No user agent set');
     }
 
+
     public static function detectSameSiteProvider(): array
     {
-        // @codingStandardsIgnoreStart
+        // phpcs:disable Generic.Files.LineLength
         return [
             [null, true],
             ['some-new-browser', true],
@@ -632,6 +637,6 @@ class HTTPTest extends ClearStateTestCase
             // old embedded browser
             ['Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/605.1.15 (KHTML, like Gecko)', false],
         ];
-        // @codingStandardsIgnoreEnd
+        // phpcs:enable Generic.Files.LineLength
     }
 }

@@ -7,7 +7,8 @@ namespace SimpleSAML\Test;
 use Exception;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Configuration, Module};
+use SimpleSAML\Configuration;
+use SimpleSAML\Module;
 use Symfony\Component\Filesystem\Path;
 
 use function count;
@@ -21,7 +22,7 @@ class ModuleTest extends TestCase
 {
     /**
      * Test for SimpleSAML\Module::isModuleEnabled().
-     * @throws Exception
+     * @throws \Exception
      */
     public function testIsModuleEnabled(): void
     {
@@ -68,7 +69,7 @@ class ModuleTest extends TestCase
 
     /**
      * Test for SimpleSAML\Module::getModules().
-     * @throws Exception
+     * @throws \Exception
      */
     public function testGetModules(): void
     {
@@ -101,7 +102,7 @@ class ModuleTest extends TestCase
 
     /**
      * Test for SimpleSAML\Module::resolveClass(). It covers all the valid use cases.
-     * @throws Exception
+     * @throws \Exception
      */
     public function testResolveClass(): void
     {
@@ -122,6 +123,7 @@ class ModuleTest extends TestCase
         ));
     }
 
+
     /**
      * Test for SimpleSAML\Module::getModuleHooks(). It covers happy path.
      */
@@ -133,6 +135,7 @@ class ModuleTest extends TestCase
         $expectedFile = Path::canonicalize(dirname(__DIR__, 3) . '/modules/cron/hooks/hook_configpage.php');
         $this->assertEquals($expectedFile, $hooks['configpage']['file']);
     }
+
 
     /**
      * Test for SimpleSAML\Module::getModuleHooks(). It covers invalid hook names

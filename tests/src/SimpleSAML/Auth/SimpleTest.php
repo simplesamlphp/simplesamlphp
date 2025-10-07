@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Auth;
 
-use ReflectionClass;
 use PHPUnit\Framework\Attributes\CoversClass;
-use SimpleSAML\{Auth, Configuration};
+use ReflectionClass;
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 
 /**

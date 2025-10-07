@@ -7,7 +7,8 @@ namespace SimpleSAML\Test;
 use Exception;
 use PHPUnit\Framework\Attributes\CoversClass;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\{Configuration, Error};
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 
@@ -19,7 +20,7 @@ class ConfigurationTest extends ClearStateTestCase
 {
     /**
      * Test \SimpleSAML\Configuration::getVersion()
-     * @throws Exception
+     * @throws \Exception
      */
     public function testGetVersion(): void
     {
@@ -30,7 +31,7 @@ class ConfigurationTest extends ClearStateTestCase
 
     /**
      * Test that the default instance fails to load even if we previously loaded another instance.
-     * @throws Exception
+     * @throws \Exception
      */
     public function testLoadDefaultInstance(): void
     {
@@ -46,7 +47,7 @@ class ConfigurationTest extends ClearStateTestCase
     /**
      * Test that after a \SimpleSAML\Error\CriticalConfigurationError exception, a basic, self-survival configuration
      * is loaded.
-     * @throws Exception
+     * @throws \Exception
      */
     public function testCriticalConfigurationError(): void
     {
@@ -204,7 +205,7 @@ class ConfigurationTest extends ClearStateTestCase
 
     /**
      * Test \SimpleSAML\Configuration::resolvePath()
-     * @throws Exception
+     * @throws \Exception
      */
     public function testResolvePath(): void
     {
@@ -226,7 +227,7 @@ class ConfigurationTest extends ClearStateTestCase
 
     /**
      * Test \SimpleSAML\Configuration::getPathValue()
-     * @throws Exception
+     * @throws \Exception
      */
     public function testGetPathValue(): void
     {
@@ -719,7 +720,7 @@ class ConfigurationTest extends ClearStateTestCase
      * Test \SimpleSAML\Configuration::getDefaultEndpoint().
      *
      * Iterate over all different valid definitions of endpoints and check if the expected output is produced.
-     * @throws Exception
+     * @throws \Exception
      */
     public function testGetDefaultEndpoint(): void
     {
@@ -908,7 +909,7 @@ class ConfigurationTest extends ClearStateTestCase
 
     /**
      * Test \SimpleSAML\Configuration::getEndpoints().
-     * @throws Exception
+     * @throws \Exception
      */
     public function testGetEndpoints(): void
     {
@@ -1083,7 +1084,7 @@ class ConfigurationTest extends ClearStateTestCase
 
     /**
      * Test \SimpleSAML\Configuration::getConfig() preloaded nonexistent file
-     * @throws Exception
+     * @throws \Exception
      */
     public function testGetConfigNonexistentFilePreload(): void
     {
@@ -1099,7 +1100,7 @@ class ConfigurationTest extends ClearStateTestCase
 
     /**
      * @return void
-     * @throws Exception
+     * @throws \Exception
      */
     public function testCanLoadDefinedConfigFromFile(): void
     {
@@ -1113,7 +1114,7 @@ class ConfigurationTest extends ClearStateTestCase
 
     /**
      * @return void
-     * @throws Exception
+     * @throws \Exception
      */
     public function testCanLoadReturnedConfigFromFile(): void
     {
@@ -1124,9 +1125,10 @@ class ConfigurationTest extends ClearStateTestCase
         $this->assertArrayHasKey('returned', $config->toArray());
     }
 
+
     /**
      * @return void
-     * @throws Exception
+     * @throws \Exception
      */
     public function testLoadFromFileConfigurationError(): void
     {
@@ -1148,7 +1150,7 @@ class ConfigurationTest extends ClearStateTestCase
      * Test that Configuration objects can be initialized from an array.
      *
      * ATTENTION: this test must be kept the last.
-     * @throws Exception
+     * @throws \Exception
      */
     public function testLoadInstanceFromArray(): void
     {

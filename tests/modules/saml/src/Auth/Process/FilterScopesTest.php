@@ -86,6 +86,7 @@ class FilterScopesTest extends TestCase
         $this->assertEquals($request['Attributes'], $result['Attributes']);
     }
 
+
     /**
      * Test implicit scope matching on IdP hostname
      * @throws \Exception
@@ -116,6 +117,7 @@ class FilterScopesTest extends TestCase
         $result = $this->processFilter($config, $request);
         $this->assertEquals([], $result['Attributes']);
     }
+
 
     /**
      * Test invalid scopes.
@@ -165,6 +167,7 @@ class FilterScopesTest extends TestCase
         $this->assertEquals($request['Attributes'], $result['Attributes']);
     }
 
+
     /**
      * Test that implicit matching is not done when explicit scopes present
      * @throws \Exception
@@ -193,6 +196,7 @@ class FilterScopesTest extends TestCase
         $result = $this->processFilter($config, $request);
         $this->assertEquals([], $result['Attributes']);
     }
+
 
     /**
      * Test that the scope is considered to be the part after the first @ sign

@@ -7,8 +7,10 @@ namespace SimpleSAML\Test\Module\saml\IdP;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use SimpleSAML\{Configuration, Error, Store};
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Module\saml\IdP\SQLNameID;
+use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
 
 /**

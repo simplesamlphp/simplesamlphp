@@ -6,9 +6,12 @@ namespace SimpleSAML\Test\Module\admin\Controller;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Configuration, Session, Utils};
+use SimpleSAML\Configuration;
 use SimpleSAML\Module\admin\Controller;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Set of tests for the controllers in the "admin" module.

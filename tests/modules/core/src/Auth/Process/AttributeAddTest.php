@@ -21,7 +21,7 @@ class AttributeAddTest extends TestCase
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
      * @return array  The state array after processing.
-     * @throws Exception
+     * @throws \Exception
      */
     private static function processFilter(array $config, array $request): array
     {
@@ -33,7 +33,7 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test the most basic functionality.
-     * @throws Exception
+     * @throws \Exception
      */
     public function testBasic(): void
     {
@@ -52,7 +52,7 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test that existing attributes are left unmodified.
-     * @throws Exception
+     * @throws \Exception
      */
     public function testExistingNotModified(): void
     {
@@ -78,7 +78,7 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test single string as attribute value.
-     * @throws Exception
+     * @throws \Exception
      */
     public function testStringValue(): void
     {
@@ -97,7 +97,7 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test adding multiple attributes in one config.
-     * @throws Exception
+     * @throws \Exception
      */
     public function testAddMultiple(): void
     {
@@ -119,7 +119,7 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test behavior when appending attribute values.
-     * @throws Exception
+     * @throws \Exception
      */
     public function testAppend(): void
     {
@@ -139,7 +139,7 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test replacing attribute values.
-     * @throws Exception
+     * @throws \Exception
      */
     public function testReplace(): void
     {

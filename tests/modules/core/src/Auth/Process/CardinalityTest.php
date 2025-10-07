@@ -7,9 +7,10 @@ namespace SimpleSAML\Test\Module\core\Auth\Process;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Configuration, Utils};
+use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception as SspException;
 use SimpleSAML\Module\core\Auth\Process\Cardinality;
+use SimpleSAML\Utils;
 
 /**
  * Test for the core:Cardinality filter.

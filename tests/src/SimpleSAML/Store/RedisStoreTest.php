@@ -7,7 +7,8 @@ namespace SimpleSAML\Test\Store;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Predis\Client;
-use SimpleSAML\{Configuration, Store};
+use SimpleSAML\Configuration;
+use SimpleSAML\Store;
 
 use function array_key_exists;
 
@@ -46,28 +47,34 @@ class RedisStoreTest extends TestCase
             ) {
             }
 
+
             public function __deconstruct()
             {
             }
 
+
             public function disconnect(): void
             {
             }
+
 
             public function get(string $str): ?string
             {
                 return $this->unitTest->getMocked($str);
             }
 
+
             public function set(string $str, mixed $value): void
             {
                 $this->unitTest->setMocked($str, $value);
             }
 
+
             public function setEx(string $str, int $expire, mixed $value): void
             {
                 $this->unitTest->setExMocked($str, $expire, $value);
             }
+
 
             public function del(string $str): void
             {
@@ -132,6 +139,7 @@ class RedisStoreTest extends TestCase
         $this->assertInstanceOf(Store\RedisStore::class, $this->store);
     }
 
+
     /**
      */
     public function testRedisInstanceWithInsecureTLS(): void
@@ -145,6 +153,7 @@ class RedisStoreTest extends TestCase
 
         $this->assertInstanceOf(Store\RedisStore::class, $this->store);
     }
+
 
     /**
      */
@@ -162,6 +171,7 @@ class RedisStoreTest extends TestCase
         $this->assertInstanceOf(Store\RedisStore::class, $this->store);
     }
 
+
     /**
      */
     public function testRedisInstanceWithPassword(): void
@@ -174,6 +184,7 @@ class RedisStoreTest extends TestCase
 
         $this->assertInstanceOf(Store\RedisStore::class, $this->store);
     }
+
 
     /**
      */
@@ -189,6 +200,7 @@ class RedisStoreTest extends TestCase
         $this->assertInstanceOf(Store\RedisStore::class, $this->store);
     }
 
+
     /**
      */
     public function testRedisSentinelInstance(): void
@@ -201,6 +213,7 @@ class RedisStoreTest extends TestCase
         ], '[ARRAY]', 'simplesaml');
         $this->assertInstanceOf(Store\RedisStore::class, $this->store);
     }
+
 
     /**
      */

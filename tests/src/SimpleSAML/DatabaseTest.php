@@ -9,7 +9,8 @@ use PDO;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use SimpleSAML\{Configuration, Database};
+use SimpleSAML\Configuration;
+use SimpleSAML\Database;
 
 use function md5;
 use function rand;
@@ -58,7 +59,7 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function setUp(): void
     {
@@ -101,7 +102,7 @@ class DatabaseTest extends TestCase
 
     /**
      * @throws \ReflectionException
-     * @throws Exception
+     * @throws \Exception
      */
     public function testInstances(): void
     {
@@ -166,7 +167,7 @@ class DatabaseTest extends TestCase
 
     /**
      * @throws \ReflectionException
-     * @throws Exception
+     * @throws \Exception
      */
     public function testSecondaries(): void
     {
@@ -237,7 +238,7 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testQuerying(): void
     {
@@ -287,7 +288,7 @@ class DatabaseTest extends TestCase
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function tearDown(): void
     {

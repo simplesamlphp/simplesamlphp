@@ -7,20 +7,25 @@ namespace SimpleSAML\Test\Module\saml\Auth\Source;
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
-use SAML2\{AuthnRequest, LogoutRequest};
+use SAML2\AuthnRequest;
+use SAML2\LogoutRequest;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\SAML2\Constants as C;
-use SimpleSAML\SAML2\Exception\Protocol\{NoAvailableIDPException, NoSupportedIDPException};
+use SimpleSAML\SAML2\Exception\Protocol\NoAvailableIDPException;
+use SimpleSAML\SAML2\Exception\Protocol\NoSupportedIDPException;
 use SimpleSAML\SAML2\Utils\XPath;
 use SimpleSAML\SAML2\XML\saml\NameID;
-use SimpleSAML\SAML2\XML\samlp\{IDPEntry, IDPList};
+use SimpleSAML\SAML2\XML\samlp\IDPEntry;
+use SimpleSAML\SAML2\XML\samlp\IDPList;
 use SimpleSAML\Test\Metadata\MetaDataStorageSourceTest;
+use SimpleSAML\Test\Utils\ExitTestException;
+use SimpleSAML\Test\Utils\SpTester;
 use SimpleSAML\TestUtils\ClearStateTestCase;
-use SimpleSAML\Test\Utils\{ExitTestException, SpTester};
-use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
+use SimpleSAML\XML\Chunk;
+use SimpleSAML\XML\DOMDocumentFactory;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -43,6 +48,7 @@ class SPTest extends ClearStateTestCase
 
     /** @var string */
     public const CERT_OTHER_PUBLIC = '../' . self::SECURITY . '/certificates/other.simplesamlphp.org.crt';
+
 
     /** @var \SimpleSAML\Configuration|null $idpMetadata */
     private ?Configuration $idpMetadata = null;
@@ -383,7 +389,7 @@ class SPTest extends ClearStateTestCase
             $this->fail('Expected ExitTestException');
         } catch (ExitTestException $e) {
             $r = $e->getTestResult();
-            /** @var AuthnRequest $ar */
+            /** @var \SAML2\AuthnRequest $ar */
             $ar = $r['ar'];
             $xml = $ar->toSignedXML();
 
@@ -427,7 +433,7 @@ class SPTest extends ClearStateTestCase
             $this->fail('Expected ExitTestException');
         } catch (ExitTestException $e) {
             $r = $e->getTestResult();
-            /** @var AuthnRequest $ar */
+            /** @var \SAML2\AuthnRequest $ar */
             $ar = $r['ar'];
             $xml = $ar->toSignedXML();
 
@@ -482,6 +488,7 @@ class SPTest extends ClearStateTestCase
         $as->authenticate($request, $state);
     }
 
+
     /**
      * Basic test for the hosted metadata generation in a default config
      * @throws \SimpleSAML\Error\Exception
@@ -511,6 +518,7 @@ class SPTest extends ClearStateTestCase
         }
     }
 
+
     /**
      * Test that adding IDPList to the state (of an AuthRequest)
      * will result in that IDP being added to the scope
@@ -528,6 +536,7 @@ class SPTest extends ClearStateTestCase
         );
     }
 
+
     /**
      * Test that adding IDPList to the idp metadata
      * will result in that IDP being added to the scope
@@ -543,6 +552,7 @@ class SPTest extends ClearStateTestCase
             [$ar->getIDPList()['IDPEntry'][0]['ProviderID']],
         );
     }
+
 
     /**
      * Test that adding IDPList to the config
@@ -618,6 +628,7 @@ class SPTest extends ClearStateTestCase
         }
     }
 
+
     public static function getScopingOrders(): array
     {
         return [
@@ -654,6 +665,7 @@ class SPTest extends ClearStateTestCase
         ];
     }
 
+
     /**
      * Test for the hosted metadata generation with a custom entityID
      * @throws \SimpleSAML\Error\Exception
@@ -669,6 +681,7 @@ class SPTest extends ClearStateTestCase
         $md = $as->getHostedMetadata();
         $this->assertEquals('urn:example:mysp:001', $md['entityid']);
     }
+
 
     /**
      * Contacts in SP hosted config appear in metadata
@@ -739,6 +752,7 @@ class SPTest extends ClearStateTestCase
         $this->assertArrayNotHasKey('attributes', $contact);
     }
 
+
     /**
      * A globally set tech contact also appears in SP hosted metadata
      * @throws \SimpleSAML\Error\Exception
@@ -786,6 +800,7 @@ class SPTest extends ClearStateTestCase
         $this->assertArrayNotHasKey('SurName', $contact);
     }
 
+
     /**
      * The special value na@example.org global tech contact is not included in SP metadata
      * @throws \SimpleSAML\Error\Exception
@@ -817,8 +832,9 @@ class SPTest extends ClearStateTestCase
         $this->assertEquals(['mailto:j.doe@example.edu'], $md['contacts'][0]['EmailAddress']);
     }
 
+
     /**
-     * Contacts in SP hosted of unknown type throws Exceptiona
+     * Contacts in SP hosted of unknown type throws Exception
      * @throws \SimpleSAML\Error\Exception
      * @throws \Exception
      */
@@ -846,6 +862,7 @@ class SPTest extends ClearStateTestCase
 
         $md = $as->getHostedMetadata();
     }
+
 
     /**
      * SP acs.Bindings option overrides default bindigs
@@ -878,6 +895,7 @@ class SPTest extends ClearStateTestCase
         );
     }
 
+
     /**
      * SP acs.Bindings option with unsupported value should be skipped
      * @throws \SimpleSAML\Error\Exception
@@ -909,6 +927,7 @@ class SPTest extends ClearStateTestCase
         );
     }
 
+
     /**
      * SP SLO Bindings option overrides default bindigs
      * @throws \SimpleSAML\Error\Exception
@@ -932,6 +951,7 @@ class SPTest extends ClearStateTestCase
         );
     }
 
+
     /**
      * SP empty SLO Bindings option omits SLO in metadata
      * @throws \SimpleSAML\Error\Exception
@@ -950,6 +970,7 @@ class SPTest extends ClearStateTestCase
         $md = $as->getHostedMetadata();
         $this->assertCount(0, $md['SingleLogoutService']);
     }
+
 
     /**
      * SP SLO Bindings option with unknown value is accepted as-is
@@ -977,6 +998,7 @@ class SPTest extends ClearStateTestCase
         );
         $this->assertEquals('urn:this:doesnotexist', $md['SingleLogoutService'][1]['Binding']);
     }
+
 
     /**
      * SP SLO Location option is used as URL for all SLO Bindings
@@ -1007,6 +1029,7 @@ class SPTest extends ClearStateTestCase
         $this->assertEquals('https://sp.example.org/logout', $md['SingleLogoutService'][0]['Location']);
         $this->assertEquals('https://sp.example.org/logout', $md['SingleLogoutService'][1]['Location']);
     }
+
 
     /**
      * SP AssertionConsumerService option overrides default bindigs
@@ -1107,6 +1130,7 @@ class SPTest extends ClearStateTestCase
         $this->assertTrue($md['validate.authnrequest']);
     }
 
+
     /**
      * SP config option RegistrationInfo is reflected in metadata
      * @throws \SimpleSAML\Error\Exception
@@ -1138,6 +1162,7 @@ class SPTest extends ClearStateTestCase
         $this->assertEquals('http://sp.example.org/politica', $reginfo['policies']['es']);
     }
 
+
     /**
      * SP config option NameIDPolicy is reflected in metadata
      * @throws \SimpleSAML\Error\Exception
@@ -1162,6 +1187,7 @@ class SPTest extends ClearStateTestCase
         $this->assertEquals('urn:mace:shibboleth:1.0:nameIdentifier', $md['NameIDFormat']);
     }
 
+
     /**
      * SP config option NameIDPolicy specified without Format is reflected in metadata
      * @throws \SimpleSAML\Error\Exception
@@ -1182,6 +1208,7 @@ class SPTest extends ClearStateTestCase
         $this->assertArrayHasKey('NameIDFormat', $md);
         $this->assertEquals('urn:oasis:names:tc:SAML:2.0:nameid-format:transient', $md['NameIDFormat']);
     }
+
 
     /**
      * SP config option Organization* are reflected in metadata
@@ -1216,6 +1243,7 @@ class SPTest extends ClearStateTestCase
         $this->assertEquals('https://example.com/nl', $md['OrganizationURL']['nl']);
     }
 
+
     /**
      * SP config option Organization* without explicit DisplayName are reflected in metadata
      * @throws \SimpleSAML\Error\Exception
@@ -1243,6 +1271,7 @@ class SPTest extends ClearStateTestCase
         $this->assertEquals('https://example.com/nl', $md['OrganizationURL']['nl']);
     }
 
+
     /**
      * SP config option Organization* without URL is rejected with an Exception
      * @throws \SimpleSAML\Error\CriticalConfigurationError
@@ -1268,6 +1297,7 @@ class SPTest extends ClearStateTestCase
         $this->expectExceptionMessage('If OrganizationName is set, OrganizationURL must also be set.');
         $md = $as->getHostedMetadata();
     }
+
 
     /**
      * SP config option for UIInfo is reflected in metadata
@@ -1300,6 +1330,7 @@ class SPTest extends ClearStateTestCase
         $this->assertEquals('Descripción en Español', $md['UIInfo']['Description']['es']);
     }
 
+
     /**
      * SP config option for entity attribute extensions is reflected in metadata
      * @throws \SimpleSAML\Error\Exception
@@ -1321,6 +1352,7 @@ class SPTest extends ClearStateTestCase
         $this->assertArrayHasKey('EntityAttributes', $md);
         $this->assertEquals($ea, $md['EntityAttributes']);
     }
+
 
     /**
      * SP config option for Name, Description, Attributes is in metadata
@@ -1372,6 +1404,7 @@ class SPTest extends ClearStateTestCase
         );
     }
 
+
     /**
      * SP config option for Name, Description require attributes to be specified
      * @throws \SimpleSAML\Error\Exception
@@ -1398,6 +1431,7 @@ class SPTest extends ClearStateTestCase
         $this->assertArrayNotHasKey('description', $md);
     }
 
+
     /**
      * SP config for attributes also requires name in metadata
      * @throws \SimpleSAML\Error\Exception
@@ -1420,6 +1454,7 @@ class SPTest extends ClearStateTestCase
         $md = $as->getHostedMetadata();
         $this->assertArrayNotHasKey('attributes', $md);
     }
+
 
     /**
      * SP config for attributes with extra options
@@ -1452,6 +1487,7 @@ class SPTest extends ClearStateTestCase
         $this->assertEquals(true, $md['attributes.isDefault']);
     }
 
+
     /**
      * SP config for holder-of-key profile via ProtocolBinding is reflected in metadata
      * @throws \SimpleSAML\Error\Exception
@@ -1481,6 +1517,7 @@ class SPTest extends ClearStateTestCase
         $this->assertEquals('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect', $hok['hoksso:ProtocolBinding']);
     }
 
+
     /**
      * SP config with certificate are reflected in metadata
      * @throws \SimpleSAML\Error\Exception
@@ -1508,6 +1545,7 @@ class SPTest extends ClearStateTestCase
         $this->assertTrue($md['keys'][0]['signing']);
         $this->assertEquals('', $md['keys'][0]['prefix']);
     }
+
 
     /**
      * SP config with certificate in rollocer scenario are reflected in metadata
@@ -1544,6 +1582,7 @@ class SPTest extends ClearStateTestCase
         $this->assertEquals('', $md['keys'][1]['prefix']);
     }
 
+
     /**
      * We only support SAML 2.0 as a protocol with this auth source
      * @throws \SimpleSAML\Error\Exception
@@ -1561,6 +1600,7 @@ class SPTest extends ClearStateTestCase
         $this->assertCount(1, $protocols);
         $this->assertEquals('urn:oasis:names:tc:SAML:2.0:protocol', $protocols[0]);
     }
+
 
     /**
      * We only support SAML 2.0 as a protocol with this auth source
@@ -1595,6 +1635,7 @@ class SPTest extends ClearStateTestCase
         $this->assertCount(1, $protocols);
         $this->assertEquals('urn:oasis:names:tc:SAML:2.0:protocol', $protocols[0]);
     }
+
 
     /**
      * Test sending a LogoutRequest
@@ -1645,7 +1686,8 @@ class SPTest extends ClearStateTestCase
         $this->assertEquals('urn:some:namespace', $q[0]->firstChild->namespaceURI);
     }
 
-    /*
+
+    /**
      * Test using the entityID from config/authsources.php.dist
      */
     public function testSampleEntityIdException(): void

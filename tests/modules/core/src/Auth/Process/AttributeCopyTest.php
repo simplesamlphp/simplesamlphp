@@ -21,7 +21,7 @@ class AttributeCopyTest extends TestCase
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
      * @return array  The state array after processing.
-     * @throws Exception
+     * @throws \Exception
      */
     private static function processFilter(array $config, array $request): array
     {
@@ -33,7 +33,7 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test the most basic functionality.
-     * @throws Exception
+     * @throws \Exception
      */
     public function testBasic(): void
     {
@@ -53,7 +53,7 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test the most basic functionality.
-     * @throws Exception
+     * @throws \Exception
      */
     public function testArray(): void
     {
@@ -75,7 +75,7 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test that existing attributes are left unmodified.
-     * @throws Exception
+     * @throws \Exception
      */
     public function testExistingNotModified(): void
     {
@@ -102,7 +102,7 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test copying multiple attributes
-     * @throws Exception
+     * @throws \Exception
      */
     public function testCopyMultiple(): void
     {
@@ -124,7 +124,7 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test behaviour when target attribute exists (should be replaced).
-     * @throws Exception
+     * @throws \Exception
      */
     public function testCopyClash(): void
     {

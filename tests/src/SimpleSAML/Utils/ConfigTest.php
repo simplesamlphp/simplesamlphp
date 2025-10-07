@@ -6,7 +6,8 @@ namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Error, Utils};
+use SimpleSAML\Error;
+use SimpleSAML\Utils;
 
 use function dirname;
 use function putenv;
@@ -58,6 +59,7 @@ class ConfigTest extends TestCase
 
         $this->assertEquals($configDir, __DIR__);
     }
+
 
     /**
      * Test valid dir specified by env redirect var overrides default config dir

@@ -6,13 +6,16 @@ namespace SimpleSAML\Test\Module\saml\IdP;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\{Configuration, IdP};
+use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
-use SimpleSAML\Metadata\{MetaDataStorageHandlerSerialize};
+use SimpleSAML\IdP;
+use SimpleSAML\Metadata\MetaDataStorageHandlerSerialize;
 use SimpleSAML\Module\saml\IdP\SAML2;
 use SimpleSAML\TestUtils\ClearStateTestCase;
-use SimpleSAML\XML\{Chunk, DOMDocumentFactory};
-use Symfony\Component\HttpFoundation\{Request, Response};
+use SimpleSAML\XML\Chunk;
+use SimpleSAML\XML\DOMDocumentFactory;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function http_build_query;
 
@@ -29,6 +32,7 @@ class SAML2Test extends ClearStateTestCase
 
     /** @var string */
     public const CERT_PUBLIC = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.crt';
+
 
     /**
      * Default values for the state array expected to be generated at the start of logins
@@ -238,6 +242,7 @@ EOT;
         return $state;
     }
 
+
     /**
      * Perform needed setup to be able to provide an array config
      * of IdP-hosted metadata and be able to query this back from
@@ -333,6 +338,7 @@ EOT;
         $this->assertStringStartsWith('MIICxDCCAi2gAwI', $hostedMd['keys'][0]['X509Certificate']);
     }
 
+
     public function testIdPGetHostedKeyRollover(): void
     {
         $md = ['new_certificate' => self::CERT_PUBLIC, 'new_privatekey' => self::CERT_KEY];
@@ -352,6 +358,7 @@ EOT;
         $this->assertEquals('', $hostedMd['keys'][1]['prefix']);
         $this->assertStringStartsWith('MIICxDCCAi2gAwI', $hostedMd['keys'][1]['X509Certificate']);
     }
+
 
     public function testIdPGetHostedHttpsCertificate(): void
     {
@@ -373,6 +380,7 @@ EOT;
         $this->assertStringStartsWith('MIICxDCCAi2gAwI', $hostedMd['keys'][1]['X509Certificate']);
     }
 
+
     public function testIdPGetHostedMetadataArtifact(): void
     {
         $md = ['saml20.sendartifact' => true];
@@ -390,6 +398,7 @@ EOT;
             $hostedMd['ArtifactResolutionService'][0],
         );
     }
+
 
     public function testIdPGetHostedMetadataHolderOfKey(): void
     {
@@ -416,6 +425,7 @@ EOT;
         );
     }
 
+
     public function testIdPGetHostedMetadataECP(): void
     {
         $md = ['saml20.ecp' => true];
@@ -440,6 +450,7 @@ EOT;
             $hostedMd['SingleSignOnService'][1],
         );
     }
+
 
     /**
      * NameIDFormat option can be specified as string or array
@@ -472,6 +483,7 @@ EOT;
         $this->assertEquals('urn:oasis:names:tc:SAML:2.0:nameid-format:persistent', $hostedMd['NameIDFormat'][1]);
     }
 
+
     public function testIdPGetHostedScopes(): void
     {
         $md = [
@@ -486,6 +498,7 @@ EOT;
         // Unknown options are ignored
         $this->assertArrayNotHasKey('unknown-option', $hostedMd);
     }
+
 
     /**
      * IdP config option Organization* are reflected in metadata
@@ -514,6 +527,7 @@ EOT;
         $this->assertEquals('https://example.com/nl', $md['OrganizationURL']['nl']);
     }
 
+
     /**
      * IdP config option Organization* without explicit DisplayName are reflected in metadata
      * @throws \Exception
@@ -535,6 +549,7 @@ EOT;
         $this->assertEquals('https://example.com/nl', $md['OrganizationURL']['nl']);
     }
 
+
     /**
      * IdP config option Organization* without URL is rejected with an Exception
      * @throws \Exception
@@ -554,6 +569,7 @@ EOT;
         $this->expectExceptionMessage('If OrganizationName is set, OrganizationURL must also be set.');
         $md = $this->idpMetadataHandlerHelper($config);
     }
+
 
     /**
      * IdP config option for entity attributes is reflected in metadata
@@ -583,6 +599,7 @@ EOT;
         $this->assertArrayHasKey('hide.from.discovery', $md);
         $this->assertTrue($md['hide.from.discovery']);
     }
+
 
     /**
      * IdP config option for entity attribute extensions is reflected in metadata
@@ -614,6 +631,7 @@ EOT;
             $md['saml:Extensions'][0]->getXML()->firstChild->firstChild->textContent,
         );
     }
+
 
     /**
      * IdP config option for UIInfo is reflected in metadata
@@ -655,6 +673,7 @@ EOT;
         $this->assertEquals('geo:19.34343,12.342514', $md['DiscoHints']['GeolocationHint'][1]);
     }
 
+
     /**
      * IdP config option RegistrationInfo is reflected in metadata
      * @throws \Exception
@@ -683,6 +702,7 @@ EOT;
         $this->assertEquals('http://sp.example.org/politica', $reginfo['RegistrationPolicy']['es']);
     }
 
+
     /**
      * IdP config options wrt signing are reflected in metadata
      * @throws \Exception
@@ -701,6 +721,7 @@ EOT;
         $this->assertTrue($md['redirect.sign']);
         $this->assertArrayNotHasKey('redirect.validate', $md);
     }
+
 
     /**
      * Contacts in IdP hosted config appear in metadata
@@ -764,6 +785,7 @@ EOT;
         $this->assertArrayNotHasKey('attributes', $contact);
     }
 
+
     /**
      * A globally set tech contact also appears in IdP hosted metadata
      * @throws \Exception
@@ -804,6 +826,7 @@ EOT;
         $this->assertArrayNotHasKey('SurName', $contact);
     }
 
+
     /**
      * The special value na@example.org global tech contact is not included in IdP metadata
      * @throws \Exception
@@ -829,6 +852,7 @@ EOT;
         $this->assertCount(1, $md['contacts']);
         $this->assertEquals(['mailto:j.doe@example.edu'], $md['contacts'][0]['EmailAddress']);
     }
+
 
     /**
      * Contacts in IdP hosted of unknown type throws Exceptiona

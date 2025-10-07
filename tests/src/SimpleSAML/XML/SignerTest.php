@@ -7,11 +7,12 @@ namespace SimpleSAML\Test\XML;
 use DOMDocument;
 use DOMElement;
 use Exception;
-use ReflectionClass;
 use PHPUnit\Framework\Attributes\CoversClass;
+use ReflectionClass;
 use SimpleSAML\Configuration;
 use SimpleSAML\Test\SigningTestCase;
-use SimpleSAML\XML\{DOMDocumentFactory, Signer};
+use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\Signer;
 
 /**
  * Tests for SimpleSAML\XML\Signer.
@@ -48,6 +49,7 @@ d2udRIYG0WcjQTk86+EraXNGtuwUaknQ7WPKlJwLzypuZM8lk3F1FXxXWomHN3SH
 -----END CERTIFICATE-----
 NOWDOC;
 
+
     private const OTHER_CERTIFICATE = 'other_certificate.pem';
 
 
@@ -65,7 +67,7 @@ NOWDOC;
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testSignerBasic(): void
     {
@@ -76,13 +78,13 @@ NOWDOC;
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testSignBasic(): void
     {
         $node = DOMDocumentFactory::fromString('<node>value</node>');
 
-        /** @psalm-var DOMElement $element */
+        /** @psalm-var \DOMElement $element */
         $element = $node->getElementsByTagName("node")->item(0);
 
         $doc = new DOMDocument();
@@ -116,13 +118,13 @@ NOWDOC;
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testSignWithCertificate(): void
     {
         $node = DOMDocumentFactory::fromString('<node>value</node>');
 
-        /** @psalm-var DOMElement $element */
+        /** @psalm-var \DOMElement $element */
         $element = $node->getElementsByTagName("node")->item(0);
 
         $doc = new DOMDocument();
@@ -143,7 +145,7 @@ NOWDOC;
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testSignWithMultiCertificate(): void
     {
@@ -151,7 +153,7 @@ NOWDOC;
 
         $node = DOMDocumentFactory::fromString('<node>value</node>');
 
-        /** @psalm-var DOMElement $element */
+        /** @psalm-var \DOMElement $element */
         $element = $node->getElementsByTagName("node")->item(0);
 
         $doc = new DOMDocument();
@@ -175,13 +177,13 @@ NOWDOC;
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testSignMissingPrivateKey(): void
     {
         $node = DOMDocumentFactory::fromString('<node>value</node>');
 
-        /** @psalm-var DOMElement $element */
+        /** @psalm-var \DOMElement $element */
         $element = $node->getElementsByTagName("node")->item(0);
 
         $doc = new DOMDocument();

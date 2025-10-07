@@ -17,10 +17,15 @@ use Throwable;
 class ErrorTest extends TestCase
 {
     private ErrorCodes $errorCodes;
+
     private array|string $errorCodeSample;
+
     private ?int $httpCodeSample;
+
     private MockObject|Throwable|null $causeMock;
+
     private MockObject|ErrorCodes|null $errorCodesMock;
+
 
     /**
      * @throws \PHPUnit\Framework\MockObject\Exception
@@ -35,6 +40,7 @@ class ErrorTest extends TestCase
         $this->errorCodesMock = $this->createMock(ErrorCodes::class);
     }
 
+
     protected function mocked(): Error
     {
         return new Error(
@@ -44,6 +50,7 @@ class ErrorTest extends TestCase
             $this->errorCodesMock,
         );
     }
+
 
     public function testCanInstantiateWithErrorCodeString(): void
     {
@@ -63,6 +70,7 @@ class ErrorTest extends TestCase
             $error->getDictDescr(),
         );
     }
+
 
     public function testCanInstantiateWithErrorCodeParamsArray(): void
     {
@@ -88,6 +96,7 @@ class ErrorTest extends TestCase
         );
     }
 
+
     public function testCanUseInjectedMockedErrorCodes(): void
     {
         $testTitle = 'testTitle';
@@ -109,6 +118,7 @@ class ErrorTest extends TestCase
         $this->assertSame($testDescription, $error->getDictDescr());
     }
 
+
     public function testCanExtendWithCustomErrorCodes(): void
     {
         $customErrorCode = 'CUSTOMCODE';
@@ -120,10 +130,14 @@ class ErrorTest extends TestCase
                 return new class extends ErrorCodes
                 {
                     public const CUSTOMCODE = 'CUSTOMCODE';
+
+
                     public function getCustomTitles(): array
                     {
                         return [self::CUSTOMCODE => 'customCodeTitle'];
                     }
+
+
                     public function getCustomDescriptions(): array
                     {
                         return [self::CUSTOMCODE => 'customCodeDescription'];

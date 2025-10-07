@@ -7,13 +7,15 @@ namespace SimpleSAML\Test\Module\core\Auth\Source;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Auth, Configuration};
 use SimpleSAML\Assert\AssertionFailedException;
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\Module\core\Auth\Source\AbstractSourceSelector;
 use SimpleSAML\Module\core\Auth\Source\RequestedAuthnContextSelector;
 use SimpleSAML\SAML2\Exception\Protocol\NoAuthnContextException;
-use Symfony\Component\HttpFoundation\{Request, Response};
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  */

@@ -51,6 +51,7 @@ class LocalizationTest extends TestCase
         $this->assertEquals($newDomainLocaleDir, $registeredDomains[$newDomain]);
     }
 
+
     /**
      * Test SimpleSAML\Locale\Localization::addModuleDomains().
      * @throws \Exception
@@ -68,6 +69,7 @@ class LocalizationTest extends TestCase
         $this->assertEquals($newDomainLocaleDir, $registeredDomains['messages']);
         $this->assertEquals($newDomainLocaleDir, $registeredDomains['attributes']);
     }
+
 
     /**
      * Test SimpleSAML\Locale\Localization::addModuleDomains() with a theme.

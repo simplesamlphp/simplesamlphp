@@ -7,8 +7,9 @@ namespace SimpleSAML\Test;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use SimpleSAML\{Configuration, Store};
+use SimpleSAML\Configuration;
 use SimpleSAML\Error\CriticalConfigurationError;
+use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
 
 /**

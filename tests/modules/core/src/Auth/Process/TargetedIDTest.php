@@ -7,10 +7,11 @@ namespace SimpleSAML\Test\Module\core\Auth\Process;
 use Exception;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Configuration, Utils};
+use SimpleSAML\Configuration;
 use SimpleSAML\Module\core\Auth\Process\TargetedID;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\XML\saml\NameID;
+use SimpleSAML\Utils;
 
 /**
  * Test for the core:TargetedID filter.
@@ -23,6 +24,7 @@ class TargetedIDTest extends TestCase
 
     /** @var \SimpleSAML\Utils\Config */
     protected static Utils\Config $configUtils;
+
 
     /**
      * Set up for each test.
@@ -47,7 +49,7 @@ class TargetedIDTest extends TestCase
      * @param array $config  The filter configuration.
      * @param array $request  The request state.
      * @return array  The state array after processing.
-     * @throws Exception
+     * @throws \Exception
      */
     private static function processFilter(array $config, array $request): array
     {
@@ -60,7 +62,7 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test the most basic functionality
-     * @throws Exception
+     * @throws \Exception
      */
     public function testBasic(): void
     {
@@ -78,7 +80,7 @@ class TargetedIDTest extends TestCase
     /**
      * Test with src and dst entityIds.
      * Make sure to overwrite any present eduPersonTargetedId
-     * @throws Exception
+     * @throws \Exception
      */
     public function testWithSrcDst(): void
     {
@@ -108,7 +110,7 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test with nameId config option set.
-     * @throws Exception
+     * @throws \Exception
      */
     public function testNameIdGeneration(): void
     {
@@ -154,7 +156,7 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test the outcome to make sure the algorithm remains unchanged
-     * @throws Exception
+     * @throws \Exception
      */
     public function testOutcome(): void
     {
@@ -171,7 +173,7 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test the outcome when multiple values are given
-     * @throws Exception
+     * @throws \Exception
      */
     public function testOutcomeMultipleValues(): void
     {
@@ -188,7 +190,7 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test that Id is the same for subsequent invocations with same input.
-     * @throws Exception
+     * @throws \Exception
      */
     public function testIdIsPersistent(): void
     {
@@ -222,7 +224,7 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test that Id is different for two different usernames and two different sp's
-     * @throws Exception
+     * @throws \Exception
      */
     public function testIdIsUnique(): void
     {

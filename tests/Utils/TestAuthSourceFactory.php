@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Utils;
 
-use SimpleSAML\Auth\{Source, SourceFactory};
+use SimpleSAML\Auth\Source;
+use SimpleSAML\Auth\SourceFactory;
 
 class TestAuthSourceFactory implements SourceFactory
 {

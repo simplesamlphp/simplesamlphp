@@ -27,6 +27,7 @@ class ParserTest extends TestCase
 </Root>
 XML;
 
+
     /** @var \SimpleSAML\XML\Parser */
     private Parser $xml;
 
@@ -40,7 +41,7 @@ XML;
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testGetValue(): void
     {
@@ -53,7 +54,7 @@ XML;
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testGetEmptyValue(): void
     {
@@ -75,7 +76,7 @@ XML;
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testGetDefaultValue(): void
     {
@@ -88,7 +89,7 @@ XML;
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testGetValueAlternatives(): void
     {
@@ -108,7 +109,7 @@ XML;
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testGetEmptyValueAlternatives(): void
     {

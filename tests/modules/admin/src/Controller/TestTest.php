@@ -6,11 +6,17 @@ namespace SimpleSAML\Test\Module\admin\Controller;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Auth, Configuration, Error, Session, Utils};
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Module\admin\Controller\Test as TestController;
 use SimpleSAML\SAML2\XML\saml\NameID;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{RedirectResponse, Request, Response};
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Set of tests for the controllers in the "admin" module.
@@ -201,6 +207,7 @@ class TestTest extends TestCase
                 return true;
             }
 
+
             public function getAttributes(): array
             {
                 $nameId = new NameID(
@@ -241,10 +248,12 @@ class TestTest extends TestCase
                 ];
             }
 
+
             public function getAuthDataArray(): ?array
             {
                 return [];
             }
+
 
             public function getAuthData(string $name): mixed
             {

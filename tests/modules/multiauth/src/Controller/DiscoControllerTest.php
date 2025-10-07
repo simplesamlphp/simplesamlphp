@@ -5,12 +5,16 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\multiauth\Controller;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\{Configuration, Error, Session};
-use SimpleSAML\Auth\{Source, State};
+use SimpleSAML\Auth\Source;
+use SimpleSAML\Auth\State;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
 use SimpleSAML\Module\multiauth\Controller;
+use SimpleSAML\Session;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\{RedirectResponse, Request};
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Set of tests for the controllers in the "multiauth" module.
@@ -75,6 +79,7 @@ class DiscoControllerTest extends TestCase
             {
                 // stub
             }
+
 
             public static function getById(string $authId, ?string $type = null): ?Source
             {

@@ -100,7 +100,7 @@ class EMailTest extends ClearStateTestCase
 
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testInvalidTransportConfiguration(): void
     {
@@ -135,10 +135,11 @@ class EMailTest extends ClearStateTestCase
         $email->setTransportMethod('smtp');
     }
 
+
     /**
      * Test setting configuration.
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public function testGetDefaultMailAddress(): void
     {
