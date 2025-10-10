@@ -183,7 +183,7 @@ class TimeTest extends TestCase
             $timeUtils->parseDuration('abcdefg');
             $this->fail("Did not fail with invalid ISO 8601 duration.");
         } catch (AssertionFailedException $e) {
-            $this->assertStringMatchesFormat('\'%s\' is not a valid xs:duration', $e->getMessage());
+            $this->assertStringMatchesFormat('"%s" is not a valid xs:duration', $e->getMessage());
         }
 
         try {
@@ -191,7 +191,7 @@ class TimeTest extends TestCase
             $timeUtils->parseDuration('P1S');
             $this->fail("Did not fail with duration missing T delimiter.");
         } catch (AssertionFailedException $e) {
-            $this->assertStringMatchesFormat('\'%s\' is not a valid xs:duration', $e->getMessage());
+            $this->assertStringMatchesFormat('"%s" is not a valid xs:duration', $e->getMessage());
         }
     }
 }
