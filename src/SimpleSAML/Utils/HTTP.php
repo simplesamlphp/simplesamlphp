@@ -199,10 +199,7 @@ class HTTP
 
 
     /**
-     * This function redirects the user to the specified address.
-     *
-     * This function will use the "HTTP 303 See Other" redirection if the current request used the POST method and the
-     * HTTP version is 1.1. Otherwise, a "HTTP 302 Found" redirection will be used.
+     * This function redirects the user to the specified address using the "HTTP 303 See Other" redirection.
      *
      * The function will also generate a simple web page with a clickable link to the target page.
      *
