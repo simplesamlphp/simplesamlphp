@@ -11,6 +11,7 @@ use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
+use SimpleSAML\SAML2\Type\EntityIDValue;
 use SimpleSAML\SAML2\XML\md\AbstractIndexedEndpointType;
 use SimpleSAML\SAML2\XML\md\ArtifactResolutionService;
 use SimpleSAML\SAML2\XML\md\AssertionConsumerService;
@@ -89,8 +90,7 @@ class SAMLBuilder
         private ?int $maxCache = null,
         private ?int $maxDuration = null,
     ) {
-        $this->entityDescriptor = new EntityDescriptor();
-        $this->entityDescriptor->setEntityID($entityId);
+        $this->entityDescriptor = new EntityDescriptor(EntityIDValue::fromString($entityId));
     }
 
 
