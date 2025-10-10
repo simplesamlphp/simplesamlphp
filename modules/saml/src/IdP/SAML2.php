@@ -455,8 +455,8 @@ class SAML2
                 );
             }
 
-            if (isset($_REQUEST['username'])) {
-                $username = (string) $_REQUEST['username'];
+            if ($request->query->has('username')) {
+                $username = $request->query->get('username');
             }
 
             $issuer = $authnRequest->getIssuer();
