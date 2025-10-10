@@ -24,10 +24,6 @@
       "repository": "simplesamlphp/simplesamlphp-module-radius",
       "version": "dev-master"
     },
-    "statistics": {
-      "repository": "simplesamlphp/simplesamlphp-module-statistics",
-      "version": "dev-master"
-    },
     "sqlauth": {
       "repository": "simplesamlphp/simplesamlphp-module-sqlauth",
       "version": "dev-master"
