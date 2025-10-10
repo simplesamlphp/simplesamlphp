@@ -6,6 +6,13 @@ about: Create a report to help us improve
 
 # **Help us to keep this issue-tracker clean!  For questions or support, please refer to our [mailing lists](https://simplesamlphp.org/lists)**
 
+**Specifics of your environment**
+1. Are you acting as SP/IdP/proxy?
+2. SimpleSAMLphp: What version are you using?
+3. PHP: What version are you using?
+4. Platform: unix or Windows?
+5. Webserver: Apache/Nginx/ISS?
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 
