@@ -11,7 +11,7 @@ Released TBD - November 2025 - as soon as Symfony 7.4 is released
 
 `authorize`
 
-- Add entityID based filtering (simplesamlphp/simplesamlphp-module-authorize#30) (v1.7.0)
+* Add entityID based filtering (simplesamlphp/simplesamlphp-module-authorize#30) (v1.7.0)
 
 ## Version 2.4.3
 
