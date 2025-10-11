@@ -820,7 +820,7 @@ XML;
         $this->expectException(Error\MetadataNotFound::class);
         $exceptionMessage = [
             "errorCode" => "METADATANOTFOUND",
-            "%ENTITYID%" => "TheIssuer",
+            "%ENTITYID%" => "urn:x-simplesamlphp:issuer",
         ];
         $this->expectExceptionMessage(json_encode($exceptionMessage));
 

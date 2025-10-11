@@ -21,17 +21,26 @@ use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Module\saml\Message;
 use SimpleSAML\SAML2\Binding;
+use SimpleSAML\SAML2\Binding\HTTPRedirect;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
-use SimpleSAML\SAML2\HTTPRedirect;
+use SimpleSAML\SAML2\Type\SAMLAnyURIValue;
+use SimpleSAML\SAML2\Type\SAMLDateTimeValue;
+use SimpleSAML\SAML2\Type\SAMLStringValue;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\saml\Assertion;
+use SimpleSAML\SAML2\XML\saml\Attribute;
+use SimpleSAML\SAML2\XML\saml\AttributeStatement;
 use SimpleSAML\SAML2\XML\saml\AttributeValue;
 use SimpleSAML\SAML2\XML\saml\Audience;
+use SimpleSAML\SAML2\XML\saml\AudienceRestriction;
 use SimpleSAML\SAML2\XML\saml\AuthenticatingAuthority;
 use SimpleSAML\SAML2\XML\saml\AuthnContext;
 use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
+use SimpleSAML\SAML2\XML\saml\AuthnStatement;
+use SimpleSAML\SAML2\XML\saml\Conditions;
 use SimpleSAML\SAML2\XML\saml\EncryptedAssertion;
+use SimpleSAML\SAML2\XML\saml\EncryptedID;
 use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\SAML2\XML\saml\Subject;
@@ -47,6 +56,14 @@ use SimpleSAML\SAML2\XML\samlp\StatusMessage;
 use SimpleSAML\Stats;
 use SimpleSAML\Utils;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\Utils\Random;
+use SimpleSAML\XMLSchema\Type\IDValue;
+use SimpleSAML\XMLSchema\Type\NCNameValue;
+use SimpleSAML\XMLSecurity\Alg\Encryption\EncryptionAlgorithmFactory;
+use SimpleSAML\XMLSecurity\Alg\KeyTransport\KeyTransportAlgorithmFactory;
+use SimpleSAML\XMLSecurity\CryptoEncoding\PEM;
+use SimpleSAML\XMLSecurity\Key\PublicKey;
+use SimpleSAML\XMLSecurity\Key\SymmetricKey;
 use SimpleSAML\XMLSecurity\XML\ds\KeyInfo;
 use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
 use SimpleSAML\XMLSecurity\XML\ds\X509Data;
@@ -455,8 +472,8 @@ class SAML2
                 );
             }
 
-            if (isset($_REQUEST['username'])) {
-                $username = (string) $_REQUEST['username'];
+            if ($request->query->has('username')) {
+                $username = $request->query->get('username');
             }
 
             $issuer = $authnRequest->getIssuer();
@@ -1116,6 +1133,7 @@ class SAML2
         Configuration $spMetadata,
         array $attributes,
     ): array {
+        $attributeNameFormat = SAMLAnyURIValue::fromString(self::getAttributeNameFormat($idpMetadata, $spMetadata));
         $defaultEncoding = 'string';
 
         $srcEncodings = $idpMetadata->getOptionalArray('attributeencodings', []);
@@ -1129,7 +1147,7 @@ class SAML2
 
         $ret = [];
         foreach ($attributes as $name => $values) {
-            $ret[$name] = [];
+            $v = [];
             if (array_key_exists($name, $encodings)) {
                 $encoding = $encodings[$name];
             } else {
@@ -1168,8 +1186,14 @@ class SAML2
                         throw new Error\Exception('Invalid encoding for attribute ' .
                             var_export($name, true) . ': ' . var_export($encoding, true));
                 }
-                $ret[$name][] = $value;
+                $v[] = new AttributeValue($value);
             }
+
+            $ret[] = new Attribute(
+                name: SAMLStringValue::fromString($name),
+                nameFormat: $attributeNameFormat,
+                attributeValue: $v,
+            );
         }
 
         return $ret;
@@ -1236,12 +1260,6 @@ class SAML2
         Assert::notNull($state['saml:ConsumerURL']);
 
         $httpUtils = new Utils\HTTP();
-
-        $signAssertion = $spMetadata->getOptionalBoolean('saml20.sign.assertion', null);
-        if ($signAssertion === null) {
-            $signAssertion = $idpMetadata->getOptionalBoolean('saml20.sign.assertion', true);
-        }
-
         $config = Configuration::getInstance();
 
         $issuer = new Issuer(
@@ -1251,29 +1269,42 @@ class SAML2
 
         $nameId = self::generateNameId($idpMetadata, $spMetadata, $state);
         $state['saml:idp:NameID'] = $nameId;
-        $subject = new Subject($nameId);
 
-        $a = new Assertion($issuer, new \DateTimeImmutable('now', new \DateTimeZone('Z')), null, $subject);
-        if ($signAssertion) {
-            Message::addSign($idpMetadata, $spMetadata, $a);
+        $encryptNameId = $spMetadata->getOptionalBoolean('nameid.encryption', null);
+        if ($encryptNameId === null) {
+            $encryptNameId = $idpMetadata->getOptionalBoolean('nameid.encryption', false);
         }
 
-        $audiences = array_merge([$spMetadata->getString('entityid')], $spMetadata->getOptionalArray('audience', []));
-        $audiences = array_map(fn($audience): Audience => new Audience($audience), $audiences);
-        $a->setValidAudiences($audiences);
+        if ($encryptNameId) {
+            self::encryptNameID($spMetadata, $nameId);
+        }
 
-        $issuer = new Issuer();
-        $issuer->setValue($state['IdPMetadata']['entityid']);
-        $issuer->setFormat(Constants::NAMEID_ENTITY);
-        $a->setIssuer($issuer);
+        $systemClock = LocalizedClock::in(new DateTimeZone('Z'));
+        $now = $systemClock->now();
 
-        $a->setNotBefore(time() - 30);
+        $issueInstant = SAMLDateTimeValue::fromDateTime($now);
+
+        $audience = array_merge([$spMetadata->getString('entityid')], $spMetadata->getOptionalArray('audience', []));
+        $audience = array_map(fn($a): Audience => new Audience($a), $audience);
+
+        $issuer = new Issuer(
+            value: SAMLStringValue::fromString($state['IdPMetadata']['entityid']),
+            Format: SAMLAnyURIValue::fromString(C::NAMEID_ENTITY),
+        );
 
         $assertionLifetime = $spMetadata->getOptionalInteger('assertion.lifetime', null);
         if ($assertionLifetime === null) {
             $assertionLifetime = $idpMetadata->getOptionalInteger('assertion.lifetime', 300);
         }
-        $a->setNotOnOrAfter(time() + $assertionLifetime);
+
+        $conditions = new Conditions(
+            notBefore: SAMLDateTimeValue::fromDateTime($now->sub(new DateInterval('30s'))),
+            notOnOrAfter: SAMLDateTimeValue::fromDateTime(
+                $now->add(new DateInterval(sprintf('%ds', $assertionLifetime))),
+            ),
+            condition: [],
+            audienceRestriction: new AudienceRestriction($audience),
+        );
 
         $passAuthnContextClassRef = $config->getOptionalBoolean('proxymode.passAuthnContextClassRef', false);
         if (isset($state['saml:AuthnContextClassRef'])) {
@@ -1290,29 +1321,24 @@ class SAML2
             $authorities[] = new AuthenticatingAuthority($state['saml:AuthenticatingAuthority']);
         }
 
-        $a->setAuthnContext(
-            new AuthnContext(
-                authnContextClassRef: new AuthnContextClassRef($classRef),
-                authnContextDecl: null,
-                authnContextDeclRef: null,
-                authenticatingAuthorities: $authorities,
-            ),
+        $authnContext = new AuthnContext(
+            authnContextClassRef: new AuthnContextClassRef(SAMLAnyURIValue::fromString($classRef)),
+            authnContextDeclRef: null,
+            authnContextDecl: null,
+            authenticatingAuthorities: $authorities,
         );
 
-        $systemClock = LocalizedClock::in(new DateTimeZone('Z'));
-        $now = $systemClock->now();
-
-        $sessionStart = $now;
+        $sessionStart = $authnInstant = $now;
         if (isset($state['AuthnInstant'])) {
-            $a->setAuthnInstant($state['AuthnInstant']);
-            $sessionStart = $state['AuthnInstant'];
+            $sessionStart = $authnInstant = $state['AuthnInstant'];
         }
-
         $sessionLifetime = $config->getOptionalInteger('session.duration', 8 * 60 * 60);
-        $a->setSessionNotOnOrAfter($sessionStart + $sessionLifetime);
 
-        $randomUtils = new Utils\Random();
-        $a->setSessionIndex($randomUtils->generateID());
+        $authnStatement = new AuthnStatement(
+            authnContext: $authnContext,
+            authnInstant: $authnInstant,
+            sessionNotOnOrAfter: $sessionStart->add(new DateInterval(sprintf('%ds', $sessionLifetime))),
+        );
 
         // ProtcolBinding of SP's <AuthnRequest> overwrites IdP hosted metadata configuration
         $hokAssertion = null;
@@ -1363,10 +1389,12 @@ class SAML2
         }
 
         $scd = new SubjectConfirmationData(
-            notBefore: $now,
-            notOnOrAfter: $now->add(new DateInterval(sprintf('PT%dS', $assertionLifetime))),
-            recipient: $state['saml:ConsumerURL'],
-            inResponseTo: $state['saml:RequestId'],
+            notBefore: SAMLDateTimeValue::fromDateTime($now),
+            notOnOrAfter: SAMLDateTimeValue::fromDateTime(
+                $now->add(new DateInterval(sprintf('PT%dS', $assertionLifetime))),
+            ),
+            recipient: SAMLAnyURIValue::fromString($state['saml:ConsumerURL']),
+            inResponseTo: NCNameValue::fromString($state['saml:RequestId']),
             children: $children,
         );
 
@@ -1374,25 +1402,79 @@ class SAML2
             method: $method,
             subjectConfirmationData: $scd,
         );
-        $a->setSubjectConfirmation([$sc]);
+
+        $subject = new Subject($nameId, [$sc]);
 
         // add attributes
+        $attributes = [];
         if ($spMetadata->getOptionalBoolean('simplesaml.attributes', true)) {
-            $attributeNameFormat = self::getAttributeNameFormat($idpMetadata, $spMetadata);
-            $a->setAttributeNameFormat($attributeNameFormat);
             $attributes = self::encodeAttributes($idpMetadata, $spMetadata, $state['Attributes']);
-            $a->setAttributes($attributes);
+        }
+        $attributeStatement = new AttributeStatement([$attributes]);
+
+        $assertion = new Assertion(
+            issuer: $issuer,
+            issueInstant: $issueInstant,
+            id: IDValue::fromString((new Random())->generateID()),
+            subject: $subject,
+            conditions: $conditions,
+            statements: [$authnStatement, $attributeStatement],
+        );
+
+        $signAssertion = $spMetadata->getOptionalBoolean('saml20.sign.assertion', null);
+        if ($signAssertion === null) {
+            $signAssertion = $idpMetadata->getOptionalBoolean('saml20.sign.assertion', true);
         }
 
-        $encryptNameId = $spMetadata->getOptionalBoolean('nameid.encryption', null);
-        if ($encryptNameId === null) {
-            $encryptNameId = $idpMetadata->getOptionalBoolean('nameid.encryption', false);
-        }
-        if ($encryptNameId) {
-            $a->encryptNameId(Message::getEncryptionKey($spMetadata));
+        if ($signAssertion) {
+            Message::addSign($idpMetadata, $spMetadata, $assertion);
         }
 
-        return $a;
+        return $assertion;
+    }
+
+
+    /**
+     * Retrieve the encryption key for the given entity.
+     *
+     * @param \SimpleSAML\Configuration $metadata The metadata of the entity.
+     * @return \SimpleSAML\SAML2\Assertion\EncryptedID  The encrypted NameIDy.
+     *
+     * @throws \SimpleSAML\Error\Exception if there is no supported encryption key in the metadata of this entity.
+     */
+    public static function encryptNameID(Configuration $metadata, $nameId): EncryptedID
+    {
+        $sharedKey = $metadata->getOptionalString('sharedkey', null);
+        if ($sharedKey !== null) {
+            $sharedKeyAlgo = $metadata->getOptionalString('sharedkey_algorithm', C::BLOCK_ENC_AES256_GCM);
+
+            $encryptor = (new EncryptionAlgorithmFactory())->getAlgorithm(
+                $sharedKeyAlgo,
+                new SymmetricKey($sharedKey),
+            );
+            return $nameId->encrypt($encryptor);
+        }
+
+        $keys = $metadata->getPublicKeys('encryption', true);
+        foreach ($keys as $key) {
+            switch ($key['type']) {
+                case 'X509Certificate':
+                    $pemKey = "-----BEGIN CERTIFICATE-----\n" .
+                        chunk_split($key['X509Certificate'], 64) .
+                        "-----END CERTIFICATE-----\n";
+
+                    $encryptor = (new KeyTransportAlgorithmFactory())->getAlgorithm(
+                        KEY_TRANSPORT_OAEP_MGF1P,
+                        new PublicKey(PEM::fromString($pemKey)),
+                    );
+                    return $nameId->encrypt($encryptor);
+            }
+        }
+
+        throw new Error\Exception(sprintf(
+            'No supported encryption key in metadata for %s',
+            var_export($metadata->getString('entityid'), true),
+        ));
     }
 
 
@@ -1436,8 +1518,7 @@ class SAML2
             $nameIdFormat = C::NAMEID_TRANSIENT;
         }
 
-        $randomUtils = new Utils\Random();
-        $nameIdValue = $randomUtils->generateID();
+        $nameIdValue = (new Random())->generateID();
 
         $spNameQualifier = $spMetadata->getOptionalString('SPNameQualifier', null);
         if ($spNameQualifier === null) {

@@ -43,6 +43,7 @@ use function hash;
 use function in_array;
 use function is_null;
 use function sprintf;
+use function strval;
 use function time;
 use function var_export;
 
@@ -253,7 +254,7 @@ class ServiceProvider
             throw new Error\Exception('Source type changed?');
         }
 
-        return $source->startSSO($this->config, $idpEntityId, $state);
+        return $source->startSSO($this->config, strval($idpEntityId), $state);
     }
 
 
@@ -350,7 +351,7 @@ class ServiceProvider
 
         $idpMetadata = null;
         $state = null;
-        $stateId = $response->getInResponseTo();
+        $stateId = strval($response->getInResponseTo());
 
         if (!empty($stateId)) {
             // this should be a response to a request we sent earlier
@@ -393,7 +394,7 @@ class ServiceProvider
             }
         } else {
             // this is an unsolicited response
-            $relaystate = $spMetadata->getOptionalString('RelayState', $response->getRelayState());
+            $relaystate = $spMetadata->getOptionalString('RelayState', $b->getRelayState());
             $state = [
                 'saml:sp:isUnsolicited' => true,
                 'saml:sp:AuthId'        => $sourceId,
@@ -404,7 +405,7 @@ class ServiceProvider
         Logger::debug('Received SAML2 Response from ' . var_export($issuer, true) . '.');
 
         if (is_null($idpMetadata)) {
-            $idpMetadata = $source->getIdPmetadata($this->config, $issuer);
+            $idpMetadata = $source->getIdPmetadata($this->config, strval($issuer));
         }
 
         try {
@@ -598,7 +599,7 @@ class ServiceProvider
 
         $spEntityId = $source->getEntityId();
 
-        $idpMetadata = $source->getIdPMetadata($this->config, $idpEntityId);
+        $idpMetadata = $source->getIdPMetadata($this->config, strval($idpEntityId));
         $spMetadata = $source->getMetadata();
 
         Module\saml\Message::validateMessage($idpMetadata, $spMetadata, $message);
