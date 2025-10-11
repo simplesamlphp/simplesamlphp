@@ -186,7 +186,7 @@ class SAMLParser
     ) {
         $this->fileSystem = new Filesystem();
 
-        $this->entityId = $entityElement->getEntityID();
+        $this->entityId = strval($entityElement->getEntityID());
 
         $expireTime = self::getExpireTime($entityElement, $maxExpireTime);
 
@@ -435,7 +435,7 @@ class SAMLParser
     private static function getExpireTime(mixed $element, ?int $maxExpireTime): ?int
     {
         // validUntil may be null
-        $expire = $element->getValidUntil()?->getTimestamp();
+        $expire = $element->getValidUntil()?->toDateTime()->getTimestamp();
 
         if ($maxExpireTime !== null && ($expire === null || $maxExpireTime < $expire)) {
             $expire = $maxExpireTime;
@@ -1154,7 +1154,7 @@ class SAMLParser
         $ret = [];
 
         foreach ($this->spDescriptors as $spd) {
-            $sharedProtocols = array_intersect($protocols, $spd['protocols']);
+            $sharedProtocols = array_intersect($protocols, $spd['protocols']->toArray());
             if (count($sharedProtocols) > 0) {
                 $ret[] = $spd;
             }
@@ -1176,7 +1176,7 @@ class SAMLParser
         $ret = [];
 
         foreach ($this->idpDescriptors as $idpd) {
-            $sharedProtocols = array_intersect($protocols, $idpd['protocols']);
+            $sharedProtocols = array_intersect($protocols, $idpd['protocols']->toArray());
             if (count($sharedProtocols) > 0) {
                 $ret[] = $idpd;
             }

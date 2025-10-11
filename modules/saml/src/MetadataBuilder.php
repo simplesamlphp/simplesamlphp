@@ -7,10 +7,16 @@ namespace SimpleSAML\Module\saml;
 use Beste\Clock\LocalizedClock;
 use Exception;
 use Psr\Clock\ClockInterface;
-use SimpleSAML\{Configuration, Logger, Module, Utils};
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
+use SimpleSAML\SAML2\Type\AnyURIListValue;
+use SimpleSAML\SAML2\Type\EntityIDValue;
+use SimpleSAML\SAML2\Type\KeyTypesValue;
+use SimpleSAML\SAML2\Type\SAMLAnyURIValue;
+use SimpleSAML\SAML2\Type\SAMLStringValue;
 use SimpleSAML\SAML2\XML\md\AbstractIndexedEndpointType;
 use SimpleSAML\SAML2\XML\md\AbstractMetadataDocument;
 use SimpleSAML\SAML2\XML\md\ArtifactResolutionService;
@@ -21,17 +27,17 @@ use SimpleSAML\SAML2\XML\md\AttributeConsumingService;
 use SimpleSAML\SAML2\XML\md\AttributeService;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\md\EntityDescriptor;
-use SimpleSAML\SAML2\XML\md\IDPSSODescriptor;
-use SimpleSAML\SAML2\XML\md\SPSSODescriptor;
-use SimpleSAML\SAML2\XML\md\NameIDFormat;
-use SimpleSAML\SAML2\XML\md\KeyDescriptor;
 use SimpleSAML\SAML2\XML\md\Extensions;
+use SimpleSAML\SAML2\XML\md\IDPSSODescriptor;
+use SimpleSAML\SAML2\XML\md\KeyDescriptor;
+use SimpleSAML\SAML2\XML\md\NameIDFormat;
 use SimpleSAML\SAML2\XML\md\Organization;
 use SimpleSAML\SAML2\XML\md\RequestedAttribute;
 use SimpleSAML\SAML2\XML\md\ServiceDescription;
 use SimpleSAML\SAML2\XML\md\ServiceName;
 use SimpleSAML\SAML2\XML\md\SingleLogoutService;
 use SimpleSAML\SAML2\XML\md\SingleSignOnService;
+use SimpleSAML\SAML2\XML\md\SPSSODescriptor;
 use SimpleSAML\SAML2\XML\mdattr\EntityAttributes;
 use SimpleSAML\SAML2\XML\mdrpi\RegistrationInfo;
 use SimpleSAML\SAML2\XML\mdui\DiscoHints;
@@ -39,10 +45,19 @@ use SimpleSAML\SAML2\XML\mdui\UIInfo;
 use SimpleSAML\SAML2\XML\saml\Attribute;
 use SimpleSAML\SAML2\XML\saml\AttributeValue;
 use SimpleSAML\SAML2\XML\shibmd\Scope;
+use SimpleSAML\Utils;
 use SimpleSAML\XML\Chunk;
+use SimpleSAML\XML\Type\LangValue;
+use SimpleSAML\XMLSchema\Type\Base64BinaryValue;
+use SimpleSAML\XMLSchema\Type\BooleanValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
+use SimpleSAML\XMLSchema\Type\UnsignedShortValue;
 use SimpleSAML\XMLSecurity\Alg\Signature\SignatureAlgorithmFactory;
 use SimpleSAML\XMLSecurity\Key\PrivateKey;
-use SimpleSAML\XMLSecurity\XML\ds\{KeyInfo, KeyName, X509Certificate, X509Data};
+use SimpleSAML\XMLSecurity\XML\ds\KeyInfo;
+use SimpleSAML\XMLSecurity\XML\ds\KeyName;
+use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
+use SimpleSAML\XMLSecurity\XML\ds\X509Data;
 
 use function array_key_exists;
 use function array_keys;
@@ -69,7 +84,7 @@ class MetadataBuilder
      */
     public function __construct(
         protected Configuration $config,
-        protected Configuration $metadata
+        protected Configuration $metadata,
     ) {
         $this->clock = LocalizedClock::in('Z');
     }
@@ -86,7 +101,7 @@ class MetadataBuilder
         $roleDescriptor = $this->getRoleDescriptor();
 
         $entityDescriptor = new EntityDescriptor(
-            entityId: $entityId,
+            entityId: EntityIDValue::fromString($entityId),
             contactPerson: $contactPerson,
             organization: $organization,
             roleDescriptor: $roleDescriptor,
@@ -118,7 +133,7 @@ class MetadataBuilder
         if ($certArray !== null) {
             $keyInfo = new KeyInfo([
                 new X509Data([
-                    new X509Certificate($certArray['certData']),
+                    new X509Certificate(Base64BinaryValue::fromString($certArray['certData'])),
                 ]),
             ]);
         }
@@ -148,7 +163,10 @@ class MetadataBuilder
         try {
             $org = Organization::fromArray([
                 'OrganizationName' => $arrayUtils->arrayize($this->metadata->getArray('OrganizationName'), 'en'),
-                'OrganizationDisplayName' => $arrayUtils->arrayize($this->metadata->getArray('OrganizationDisplayName'), 'en'),
+                'OrganizationDisplayName' => $arrayUtils->arrayize(
+                    $this->metadata->getArray('OrganizationDisplayName'),
+                    'en',
+                ),
                 'OrganizationURL' => $arrayUtils->arrayize($this->metadata->getArray('OrganizationURL'), 'en'),
             ]);
         } catch (ArrayValidationException $e) {
@@ -255,13 +273,13 @@ class MetadataBuilder
 
         $nids = [];
         foreach ($this->metadata->getOptionalArrayizeString('NameIDFormat', []) as $nid) {
-            $nids[] = new NameIDFormat($nid);
+            $nids[] = new NameIDFormat(SAMLAnyURIValue::fromString($nid));
         }
 
-        return new AttributeAuthority(
-            protocolSupportEnumeration: [C::NS_SAMLP],
+        return new AttributeAuthorityDescriptor(
+            protocolSupportEnumeration: AnyURIListValue::fromArray([C::NS_SAMLP]),
             extensions: $extensions,
-            keyDescriptors: $keyDescriptor,
+            keyDescriptor: $keyDescriptor,
             nameIDFormat: $nids,
             attributeService: $attributeService,
             assertionIDRequestService: $assertionIDRequestService,
@@ -304,13 +322,15 @@ class MetadataBuilder
 
         $nids = [];
         foreach ($this->metadata->getOptionalArrayizeString('NameIDFormat', []) as $nid) {
-            $nids[] = new NameIDFormat($nid);
+            $nids[] = new NameIDFormat(SAMLAnyURIValue::fromString($nid));
         }
 
         return new SPSSODescriptor(
-            protocolSupportEnumeration: [C::NS_SAMLP],
-            authnRequestsSigned: $authnRequestsSigned,
-            wantAssertionsSigned: $wantAssertionsSigned,
+            protocolSupportEnumeration: AnyURIListValue::fromArray([C::NS_SAMLP]),
+            authnRequestsSigned: $authnRequestsSigned !== null
+                ? BooleanValue::fromBoolean($authnRequestsSigned) : null,
+            wantAssertionsSigned: $wantAssertionsSigned !== null
+                ? BooleanValue::fromBoolean($wantAssertionsSigned) : null,
             extensions: $extensions,
             keyDescriptors: $keyDescriptor,
             singleLogoutService: $singleLogoutService,
@@ -346,7 +366,7 @@ class MetadataBuilder
 
         $nids = [];
         foreach ($this->metadata->getOptionalArrayizeString('NameIDFormat', []) as $nid) {
-            $nids[] = new NameIDFormat($nid);
+            $nids[] = new NameIDFormat(SAMLAnyURIValue::fromString($nid));
         }
 
         $singleSignOnService = self::createEndpoints(
@@ -356,8 +376,9 @@ class MetadataBuilder
 
         return new IDPSSODescriptor(
             singleSignOnService: $singleSignOnService,
-            protocolSupportEnumeration: [C::NS_SAMLP],
-            wantAuthnRequestsSigned: $authnRequestsSigned,
+            protocolSupportEnumeration: AnyURIListValue::fromArray([C::NS_SAMLP]),
+            wantAuthnRequestsSigned: $authnRequestsSigned !== null
+                ? BooleanValue::fromBoolean($authnRequestsSigned) : null,
             extensions: $extensions,
             keyDescriptor: $keyDescriptor,
             artifactResolutionService: $artifactResolutionService,
@@ -388,11 +409,12 @@ class MetadataBuilder
 
         $requestedAttributes = [];
         foreach ($attributes as $friendlyName => $attribute) {
+            $isRequired = in_array($attribute, $attributesrequired, true);
             $requestedAttributes[] = new RequestedAttribute(
-                $attribute,
-                in_array($attribute, $attributesrequired, true) ?: null,
-                $nameFormat,
-                !is_int($friendlyName) ? $friendlyName : null,
+                SAMLStringValue::fromString($attribute),
+                $isRequired !== null ? BooleanValue::fromBoolean($isRequired) : null,
+                $nameFormat !== null ? SAMLAnyURIValue::fromString($nameFormat) : null,
+                !is_int($friendlyName) ? SAMLStringValue::fromString($friendlyName) : null,
             );
         }
 
@@ -401,21 +423,21 @@ class MetadataBuilder
          * of requested attributes
          */
         $attributeConsumingService = new AttributeConsumingService(
-            $this->metadata->getOptionalInteger('attributes.index', 0),
+            UnsignedShortValue::fromInteger($this->metadata->getOptionalInteger('attributes.index', 0)),
             array_map(
                 function ($lang, $sName) {
-                    return new ServiceName($lang, $sName);
+                    return new ServiceName(LangValue::fromString($lang), SAMLStringValue::fromString($sName));
                 },
                 array_keys($serviceName),
                 $serviceName,
             ),
             $requestedAttributes,
             $this->metadata->hasValue('attributes.isDefault')
-                ? $this->metadata->getOptionalBoolean('attributes.isDefault', false)
+                ? BooleanValue::fromBoolean($this->metadata->getOptionalBoolean('attributes.isDefault', false))
                 : null,
             array_map(
                 function ($lang, $sDesc) {
-                    return new ServiceDescription($lang, $sDesc);
+                    return new ServiceDescription(LangValue::fromString($lang), SAMLStringValue::fromString($sDesc));
                 },
                 array_keys($serviceDescription),
                 $serviceDescription,
@@ -489,7 +511,10 @@ class MetadataBuilder
         if ($this->metadata->hasValue('scope')) {
             foreach ($this->metadata->getArray('scope') as $scopetext) {
                 $isRegexpScope = (1 === preg_match('/[\$\^\)\(\*\|\\\\]/', $scopetext));
-                $extensions[] = new Scope($scopetext, $isRegexpScope);
+                $extensions[] = new Scope(
+                    SAMLStringValue::fromString($scopetext),
+                    BooleanValue::fromBoolean($isRegexpScope),
+                );
             }
         }
 
@@ -504,14 +529,16 @@ class MetadataBuilder
                 // Attribute names that is not URI is prefixed as this: '{nameformat}name'
                 if (preg_match('/^\{(.*?)\}(.*)$/', $attributeName, $matches)) {
                     $attr[] = new Attribute(
-                        name: $matches[2],
-                        nameFormat: $matches[1] === C::NAMEFORMAT_UNSPECIFIED ? null : $matches[1],
+                        name: SAMLStringValue::fromString($matches[2]),
+                        nameFormat: SAMLAnyURIValue::fromString(
+                            $matches[1] === C::NAMEFORMAT_UNSPECIFIED ? null : $matches[1],
+                        ),
                         attributeValue: $attrValues,
                     );
                 } else {
                     $attr[] = new Attribute(
-                        name: $attributeName,
-                        nameFormat: C::NAMEFORMAT_UNSPECIFIED,
+                        name: SAMLStringValue::fromString($attributeName),
+                        nameFormat: SAMLAnyURIValue::fromString(C::NAMEFORMAT_UNSPECIFIED),
                         attributeValue: $attrValues,
                     );
                 }
@@ -606,17 +633,17 @@ class MetadataBuilder
         Assert::oneOf($use, ['encryption', 'signing']);
         $info = [
             new X509Data([
-                new X509Certificate($x509Cert),
+                new X509Certificate(Base64BinaryValue::fromString($x509Cert)),
             ]),
         ];
 
         if ($keyName !== null) {
-            $info[] = new KeyName($keyName);
+            $info[] = new KeyName(StringValue::fromString($keyName));
         }
 
         return new KeyDescriptor(
             new KeyInfo($info),
-            $use,
+            KeyTypesValue::fromString($use),
         );
     }
 }
