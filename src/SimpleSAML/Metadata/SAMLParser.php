@@ -34,7 +34,7 @@ use SimpleSAML\SAML2\XML\saml\Attribute;
 use SimpleSAML\SAML2\XML\shibmd\Scope;
 use SimpleSAML\Utils;
 use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
 use SimpleSAML\XMLSecurity\XML\ds\X509Data;
 use Symfony\Component\Filesystem\Filesystem;
