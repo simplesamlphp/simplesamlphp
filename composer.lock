@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0848ca97578a8fae798770915b91cc98",
+    "content-hash": "966da5b18cab8e1473a11e30e14e7825",
     "packages": [
         {
             "name": "beste/clock",
@@ -1167,12 +1167,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "6f79cbc80a355aac369c4045d2eabbc4ff53a502"
+                "reference": "7fef41cf1251003dfd32a43826f1c08ec8e3400a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/6f79cbc80a355aac369c4045d2eabbc4ff53a502",
-                "reference": "6f79cbc80a355aac369c4045d2eabbc4ff53a502",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/7fef41cf1251003dfd32a43826f1c08ec8e3400a",
+                "reference": "7fef41cf1251003dfd32a43826f1c08ec8e3400a",
                 "shasum": ""
             },
             "require": {
@@ -1236,7 +1236,7 @@
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
                 "source": "https://github.com/simplesamlphp/saml2/tree/v5.1.0-rc1"
             },
-            "time": "2025-10-10T19:53:19+00:00"
+            "time": "2025-10-11T10:44:41+00:00"
         },
         {
             "name": "simplesamlphp/saml2-legacy",

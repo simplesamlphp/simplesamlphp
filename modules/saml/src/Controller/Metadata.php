@@ -11,6 +11,7 @@ use SimpleSAML\Metadata as SSPMetadata;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
+use SimpleSAML\Module\saml\MetadataBuilder;
 use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -102,14 +103,11 @@ class Metadata
             }
             $metaArray = SAML2_IdP::getHostedMetadata($idpentityid, $this->mdHandler);
 
-            $metaBuilder = new SSPMetadata\SAMLBuilder($idpentityid);
-            $metaBuilder->addMetadataIdP20($metaArray);
-            $metaBuilder->addOrganizationInfo($metaArray);
-
-            $metaxml = $metaBuilder->getEntityDescriptorText();
-
-            // sign the metadata if enabled
-            $metaxml = SSPMetadata\Signer::sign($metaxml, $metaArray, 'SAML 2 IdP');
+            $builder = new MetadataBuilder($this->config, Configuration::loadFromArray($metaArray));
+            $document = $builder->buildDocument()->toXML();
+            $document->ownerDocument->formatOutput = true;
+            $document->ownerDocument->encoding = 'UTF-8';
+            $metaxml = $document->ownerDocument->saveXML();
 
             $response = new Response();
             $response->setEtag(hash('sha256', $metaxml));

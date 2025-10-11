@@ -5,7 +5,7 @@ declare(strict_types=1);
 $metadata = [];
 
 $metadata['entityA'] = [
-    'entityid' => 'entityA',
+    'entityID' => 'entityA',
     'name' =>
         [
             'en' => 'entityA SP from source1',
@@ -24,7 +24,7 @@ $metadata['entityA'] = [
 ];
 
 $metadata['entityInBoth'] = [
-    'entityid' => 'entityInBoth',
+    'entityID' => 'entityInBoth',
     'name' =>
         [
             'en' => 'entityInBoth SP from source1',
@@ -43,7 +43,7 @@ $metadata['entityInBoth'] = [
 ];
 
 $metadata['expiredInSrc1InSrc2'] = [
-    'entityid' => 'expiredInSrc1InSrc2',
+    'entityID' => 'expiredInSrc1InSrc2',
     // This entity is expired in src1 but unexpired in src2
     'expire' => 1,
     'name' =>
@@ -64,7 +64,7 @@ $metadata['expiredInSrc1InSrc2'] = [
 ];
 
 $metadata['http://localhost/simplesaml'] = [
-    'entityid' => 'http://localhost/simplesaml',
+    'entityID' => 'http://localhost/simplesaml',
     'host' => 'localhost',
     'name' =>
         [

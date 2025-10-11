@@ -71,7 +71,9 @@ XML,
     <Extensions>
       <mdrpi:RegistrationInfo registrationAuthority="https://incommon.org"/>
     </Extensions>
-    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://ServiceProvider.com/SAML/SSO/POST" index="1"/>
+    </SPSSODescriptor>
   </EntityDescriptor>
 </EntitiesDescriptor>
 XML,
@@ -104,17 +106,23 @@ XML,
     <mdrpi:RegistrationInfo registrationAuthority="https://incommon.org"/>
   </Extensions>
   <EntityDescriptor entityID="theEntityID">
-    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://ServiceProvider.com/SAML/SSO/POST/TWO" index="2"/>
+    </SPSSODescriptor>
   </EntityDescriptor>
   <EntitiesDescriptor>
     <EntityDescriptor entityID="subEntityId">
-      <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+      <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://ServiceProvider.com/SAML/SSO/POST/THREE" index="3"/>
+      </SPSSODescriptor>
     </EntityDescriptor>
     <EntityDescriptor entityID="subEntityIdOverride">
       <Extensions>
         <mdrpi:RegistrationInfo registrationAuthority="overrides-are-ignored"/>
       </Extensions>
-      <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+      <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://ServiceProvider.com/SAML/SSO/POST" index="1"/>
+      </SPSSODescriptor>
     </EntityDescriptor>
   </EntitiesDescriptor>
 </EntitiesDescriptor>
@@ -159,7 +167,9 @@ XML,
         <mdrpi:RegistrationPolicy xml:lang="en">https://safire.ac.za/safire/policy/mrps/v20190207.html</mdrpi:RegistrationPolicy>
       </mdrpi:RegistrationInfo>
     </Extensions>
-    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://ServiceProvider.com/SAML/SSO/POST" index="1"/>
+    </SPSSODescriptor>
   </EntityDescriptor>
 </EntitiesDescriptor>
 XML,
@@ -192,7 +202,9 @@ XML,
     <Extensions>
       <mdrpi:RegistrationInfo registrationAuthority="https://safire.ac.za" registrationInstant="2023-02-08T13:06:55Z" />
     </Extensions>
-    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://ServiceProvider.com/SAML/SSO/POST" index="1"/>
+    </SPSSODescriptor>
   </EntityDescriptor>
 </EntitiesDescriptor>
 XML,
@@ -221,6 +233,7 @@ XML,
       <mdrpi:RegistrationInfo registrationAuthority="https://incommon.org"/>
     </Extensions>
     <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://ServiceProvider.com/SAML/SSO/POST" index="1"/>
       <AttributeConsumingService index="0">
         <ServiceName xml:lang="en">Example service</ServiceName>
         <ServiceDescription xml:lang="nl">Dit is een voorbeeld voor de unittest.</ServiceDescription>
@@ -266,7 +279,9 @@ XML,
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
   <EntityDescriptor entityID="theEntityID">
-    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+    <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://ServiceProvider.com/SAML/SSO/POST" index="1"/>
+    </SPSSODescriptor>
   </EntityDescriptor>
 </EntitiesDescriptor>
 XML,
@@ -396,7 +411,9 @@ XML,
         </saml:Attribute>
       </mdattr:EntityAttributes>
     </Extensions>
-    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <md:SingleSignOnService xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://simplesamlphp.org/some/endpoint" />
+    </IDPSSODescriptor>
   </EntityDescriptor>
 </EntitiesDescriptor>
 XML,
@@ -430,7 +447,9 @@ XML,
         </saml:Attribute>
       </mdattr:EntityAttributes>
     </Extensions>
-    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <md:SingleSignOnService xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://simplesamlphp.org/some/endpoint" />
+    </IDPSSODescriptor>
   </EntityDescriptor>
 </EntitiesDescriptor>
 XML,
@@ -460,7 +479,9 @@ XML,
         </saml:Attribute>
       </mdattr:EntityAttributes>
     </Extensions>
-    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <md:SingleSignOnService xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://simplesamlphp.org/some/endpoint" />
+    </IDPSSODescriptor>
   </EntityDescriptor>
 </EntitiesDescriptor>
 XML,
