@@ -16,6 +16,7 @@ use SimpleSAML\Module;
 use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\SAML2\Assertion;
 use SimpleSAML\SAML2\Binding;
+use SimpleSAML\Module\saml\MetadataBuilder;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
 use SimpleSAML\SAML2\HTTPArtifact;
@@ -741,11 +742,13 @@ class ServiceProvider
         $spconfig = $source->getMetadata();
         $metaArray20 = $source->getHostedMetadata();
 
-        $metaBuilder = new Metadata\SAMLBuilder($entityId);
-        $metaBuilder->addMetadataSP20($metaArray20, $source->getSupportedProtocols());
-        $metaBuilder->addOrganizationInfo($metaArray20);
+        $builder = new MetadataBuilder($this->config, Configuration::loadFromArray($metaArray20));
+        $entityDescriptor = $builder->buildDocument();
+        $document = $entityDescriptor->toXML();
+        $document->ownerDocument->formatOutput = true;
+        $document->ownerDocument->encoding = 'UTF-8';
 
-        $xml = $metaBuilder->getEntityDescriptorText();
+        $xml = $document->ownerDocument->saveXML();
 
         // sign the metadata if enabled
         $metaxml = Metadata\Signer::sign($xml, $spconfig->toArray(), 'SAML 2 SP');

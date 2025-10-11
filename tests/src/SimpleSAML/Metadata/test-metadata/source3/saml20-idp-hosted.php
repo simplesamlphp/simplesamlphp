@@ -9,5 +9,6 @@ declare(strict_types=1);
  */
 
 $metadata['urn:x-simplesamlphp:example-idp'] = [
+    'entityID' => 'urn:x-simplesamlphp:example-idp',
     'auth' => 'phpunit',
 ];
