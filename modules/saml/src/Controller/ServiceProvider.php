@@ -394,7 +394,7 @@ class ServiceProvider
             }
         } else {
             // this is an unsolicited response
-            $relaystate = $spMetadata->getOptionalString('RelayState', $response->getRelayState());
+            $relaystate = $spMetadata->getOptionalString('RelayState', $b->getRelayState());
             $state = [
                 'saml:sp:isUnsolicited' => true,
                 'saml:sp:AuthId'        => $sourceId,
