@@ -10,6 +10,8 @@ use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Module\admin\Controller\Test as TestController;
+use SimpleSAML\SAML2\Type\SAMLAnyURIValue;
+use SimpleSAML\SAML2\Type\SAMLStringValue;
 use SimpleSAML\SAML2\XML\saml\NameID;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
@@ -211,11 +213,11 @@ class TestTest extends TestCase
             public function getAttributes(): array
             {
                 $nameId = new NameID(
-                    value: '_b806c4f98188b42e48d3eb5444db613dbde463e2e8',
-                    SPProvidedID: 'some:entity',
-                    NameQualifier: 'some name qualifier',
-                    SPNameQualifier: 'some SP name qualifier',
-                    Format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
+                    value: SAMLStringValue::fromString('_b806c4f98188b42e48d3eb5444db613dbde463e2e8'),
+                    SPProvidedID: SAMLStringValue::fromString('some:entity'),
+                    NameQualifier: SAMLStringValue::fromString('some name qualifier'),
+                    SPNameQualifier: SAMLStringValue::fromString('some SP name qualifier'),
+                    Format: SAMLAnyURIValue::fromString('urn:oasis:names:tc:SAML:2.0:nameid-format:transient'),
                 );
 
                 /** @psalm-suppress PossiblyNullPropertyFetch */
@@ -258,11 +260,11 @@ class TestTest extends TestCase
             public function getAuthData(string $name): mixed
             {
                 $nameId = new NameID(
-                    value: '_b806c4f98188b42e48d3eb5444db613dbde463e2e8',
-                    SPProvidedID: 'some:entity',
-                    NameQualifier: 'some name qualifier',
-                    SPNameQualifier: 'some SP name qualifier',
-                    Format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
+                    value: SAMLStringValue::fromString('_b806c4f98188b42e48d3eb5444db613dbde463e2e8'),
+                    SPProvidedID: SAMLStringValue::fromString('some:entity'),
+                    NameQualifier: SAMLStringValue::fromString('some name qualifier'),
+                    SPNameQualifier: SAMLStringValue::fromString('some SP name qualifier'),
+                    Format: SAMLAnyURIValue::fromString('urn:oasis:names:tc:SAML:2.0:nameid-format:transient'),
                 );
 
                 return $nameId;
