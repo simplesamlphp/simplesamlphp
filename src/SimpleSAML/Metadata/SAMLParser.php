@@ -25,7 +25,6 @@ use SimpleSAML\SAML2\XML\md\IDPSSODescriptor;
 use SimpleSAML\SAML2\XML\md\KeyDescriptor;
 use SimpleSAML\SAML2\XML\md\Organization;
 use SimpleSAML\SAML2\XML\md\SPSSODescriptor;
-use SimpleSAML\SAML2\XML\md\SSODescriptorType;
 use SimpleSAML\SAML2\XML\mdattr\EntityAttributes;
 use SimpleSAML\SAML2\XML\mdrpi\RegistrationInfo;
 use SimpleSAML\SAML2\XML\mdui\DiscoHints;
