@@ -405,7 +405,7 @@ class ServiceProvider
         Logger::debug('Received SAML2 Response from ' . var_export($issuer, true) . '.');
 
         if (is_null($idpMetadata)) {
-            $idpMetadata = $source->getIdPmetadata($this->config, $issuer);
+            $idpMetadata = $source->getIdPmetadata($this->config, strval($issuer));
         }
 
         try {
