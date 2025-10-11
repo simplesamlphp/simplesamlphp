@@ -1021,11 +1021,11 @@ class SAMLParser
     private static function parseAttributeConsumerService(AttributeConsumingService $element, array &$sp): void
     {
         foreach ($element->getServiceName() as $sName) {
-            $sp['name'][$sName->getLanguage()] = $sName->getContent();
+            $sp['name'][$sName->getLanguage()->getValue()] = $sName->getContent();
         }
 
         foreach ($element->getServiceDescription() as $sDesc) {
-            $sp['description'][$sDesc->getLanguage()] = $sDesc->getContent();
+            $sp['description'][$sDesc->getLanguage()->getValue()] = $sDesc->getContent();
         }
 
         $format = null;
