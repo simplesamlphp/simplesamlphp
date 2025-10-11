@@ -337,7 +337,7 @@ class SAMLParser
      *
      * @param string $string The string with XML data.
      *
-     * @return \SimpleSAML\Metadata]SAMLParser[] An associative array of SAMLParser instances.
+     * @return \SimpleSAML\Metadata\SAMLParser[] An associative array of SAMLParser instances.
      *   The key of the array will be the entity id.
      * @throws \Exception If the string does not parse as XML.
      */
