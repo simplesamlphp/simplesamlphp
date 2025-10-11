@@ -25,7 +25,6 @@ use SimpleSAML\SAML2\XML\md\IDPSSODescriptor;
 use SimpleSAML\SAML2\XML\md\KeyDescriptor;
 use SimpleSAML\SAML2\XML\md\Organization;
 use SimpleSAML\SAML2\XML\md\SPSSODescriptor;
-use SimpleSAML\SAML2\XML\md\SSODescriptorType;
 use SimpleSAML\SAML2\XML\mdattr\EntityAttributes;
 use SimpleSAML\SAML2\XML\mdrpi\RegistrationInfo;
 use SimpleSAML\SAML2\XML\mdui\DiscoHints;
@@ -34,7 +33,7 @@ use SimpleSAML\SAML2\XML\saml\Attribute;
 use SimpleSAML\SAML2\XML\shibmd\Scope;
 use SimpleSAML\Utils;
 use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
 use SimpleSAML\XMLSecurity\XML\ds\X509Data;
 use Symfony\Component\Filesystem\Filesystem;
@@ -338,7 +337,7 @@ class SAMLParser
      *
      * @param string $string The string with XML data.
      *
-     * @return \SimpleSAML\Metadata]SAMLParser[] An associative array of SAMLParser instances.
+     * @return \SimpleSAML\Metadata\SAMLParser[] An associative array of SAMLParser instances.
      *   The key of the array will be the entity id.
      * @throws \Exception If the string does not parse as XML.
      */
@@ -1022,11 +1021,11 @@ class SAMLParser
     private static function parseAttributeConsumerService(AttributeConsumingService $element, array &$sp): void
     {
         foreach ($element->getServiceName() as $sName) {
-            $sp['name'][$sName->getLanguage()] = $sName->getContent();
+            $sp['name'][$sName->getLanguage()->getValue()] = $sName->getContent();
         }
 
         foreach ($element->getServiceDescription() as $sDesc) {
-            $sp['description'][$sDesc->getLanguage()] = $sDesc->getContent();
+            $sp['description'][$sDesc->getLanguage()->getValue()] = $sDesc->getContent();
         }
 
         $format = null;
