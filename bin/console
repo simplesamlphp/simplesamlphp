@@ -1,6 +1,8 @@
 #!/usr/bin/env php
 <?php
 
+declare(strict_types=1);
+
 use SimpleSAML\Console\Application;
 use SimpleSAML\Kernel;
 use Symfony\Component\Console\Input\ArgvInput;
