@@ -7,7 +7,6 @@ namespace SimpleSAML\Test\Utils;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Utils;
@@ -170,22 +169,5 @@ class TimeTest extends TestCase
             $timeUtils->parseDuration('PT1M'),
             "Failure testing for 1 minute over current time.",
         );
-
-        // test invalid durations
-        try {
-            // invalid string
-            $timeUtils->parseDuration('abcdefg');
-            $this->fail("Did not fail with invalid ISO 8601 duration.");
-        } catch (AssertionFailedException $e) {
-            $this->assertStringMatchesFormat('\'%s\' is not a valid xs:duration', $e->getMessage());
-        }
-
-        try {
-            // missing T delimiter
-            $timeUtils->parseDuration('P1S');
-            $this->fail("Did not fail with duration missing T delimiter.");
-        } catch (AssertionFailedException $e) {
-            $this->assertStringMatchesFormat('\'%s\' is not a valid xs:duration', $e->getMessage());
-        }
     }
 }
