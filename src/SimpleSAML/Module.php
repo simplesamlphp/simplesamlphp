@@ -584,7 +584,7 @@ class Module
     public static function callHooks(string $hook, mixed &$data = null): void
     {
         $modules = self::getModules();
-        $config = Configuration::getOptionalConfig()->getOptionalArray('module.enable', []);
+        $config = Configuration::getOptionalConfig()->getOptionalArray('module.enable', self::$core_modules);
         sort($modules);
         foreach ($modules as $module) {
             if (!self::isModuleEnabledWithConf($module, $config)) {
