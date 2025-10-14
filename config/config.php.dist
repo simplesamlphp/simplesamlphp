@@ -62,7 +62,6 @@ $config = [
      * - 'loggingdir': Where to write logs. MUST be set to NULL when using a logging
      *                 handler other than `file`.
      * - 'datadir': Storage of general data.
-     *   this directory if it doesn't exist.
      * When specified as a relative path, this is relative to the SimpleSAMLphp
      * root directory.
      */
