@@ -281,7 +281,17 @@ $config = [
      * Whenever you change any of these headers, make sure to validate your config by running your
      * hostname through a security-test like https://en.internet.nl
     'headers.security' => [
-        'Content-Security-Policy' => "default-src 'none'; frame-ancestors 'self'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'",
+        'Content-Security-Policy' =>
+            "default-src 'none'; " .
+            "frame-ancestors 'self'; " .
+            "object-src 'none'; " .
+            "script-src 'self'; " .
+            "style-src 'self'; " .
+            "font-src 'self'; " .
+            "connect-src 'self'; " .
+            "media-src data:; " .
+            "img-src 'self' data:; " .
+            "base-uri 'none'",
         'X-Frame-Options' => 'SAMEORIGIN',
         'X-Content-Type-Options' => 'nosniff',
         'Referrer-Policy' => 'origin-when-cross-origin',
