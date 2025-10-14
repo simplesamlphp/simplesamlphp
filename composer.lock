@@ -1300,16 +1300,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
-            "version": "v2.5.3",
+            "version": "v2.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-assets-base.git",
-                "reference": "c5a83d047c0b0a9bda253a033e095591da7d4eaf"
+                "reference": "39db948cb8f1b7f8310bef643379530754c2d3f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/c5a83d047c0b0a9bda253a033e095591da7d4eaf",
-                "reference": "c5a83d047c0b0a9bda253a033e095591da7d4eaf",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/39db948cb8f1b7f8310bef643379530754c2d3f5",
+                "reference": "39db948cb8f1b7f8310bef643379530754c2d3f5",
                 "shasum": ""
             },
             "require": {
@@ -1330,9 +1330,9 @@
             "description": "Assets for the SimpleSAMLphp main repository",
             "support": {
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-assets-base/issues",
-                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.5.3"
+                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.5.4"
             },
-            "time": "2025-09-18T16:58:14+00:00"
+            "time": "2025-10-12T01:18:09+00:00"
         },
         {
             "name": "simplesamlphp/xml-common",
