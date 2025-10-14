@@ -556,18 +556,18 @@ $config = [
      ***********/
 
     /*
-     * Configuration for enabling/disabling modules. By default the 'core', 'admin' and 'saml' modules are enabled.
+     * Configuration for enabling/disabling modules. By default, the 'core', 'admin' and 'saml' modules are enabled.
      *
      * Example:
      *
      * 'module.enable' => [
      *     'exampleauth' => true, // Setting to TRUE enables.
      *     'consent' => false, // Setting to FALSE disables.
-     *     'core' => null, // Unset or NULL uses default.
+     *     'core' => null, // Unset or NULL uses default from \SimpleSAML\Module::$core_modules.
      * ],
      */
-
     'module.enable' => [
+        'core' => true,
         'admin' => true,
         'saml' => true,
     ],
