@@ -100,6 +100,7 @@ class Module
      */
     public static array $core_modules = [
         'core' => true,
+        'admin' => true,
         'saml' => true,
     ];
 
