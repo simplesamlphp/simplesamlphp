@@ -244,7 +244,38 @@ class Error extends Exception
         $config = Configuration::getInstance();
 
         $data = [];
-        $data['showerrors'] = $config->getOptionalBoolean('showerrors', true);
+        $showErrorsConfig = $config->getOptionalBoolean('showerrors', false);
+        $debugOption = null;
+        if ($config->hasValue('debug')) {
+            $debugOption = $config->getOptionalArray('debug', []);
+        }
+        // we only surface the detailed debug information box if at least one debug action is enabled.
+        $debugOptionConfigured = false;
+        if (is_array($debugOption)) {
+            foreach ($debugOption as $key => $value) {
+                $optionEnabled = is_int($key) ? true : (bool) $value;
+                if ($optionEnabled) {
+                    $debugOptionConfigured = true;
+                    break;
+                }
+            }
+        }
+
+        // stack traces require the dedicated backtraces flag.
+        // ['backtraces' => true] or ['backtraces'] is considered as enabled.
+        $backtracesEnabled = false;
+        if ($debugOption !== null) {
+            if (array_key_exists('backtraces', $debugOption)) {
+                $backtracesEnabled = (bool) $debugOption['backtraces'];
+            } elseif (in_array('backtraces', $debugOption, true)) {
+                $backtracesEnabled = true;
+            }
+        }
+
+        // propagate the toggles through to the template so it can hide/show the message and trace blocks
+        $data['showerrors'] = $showErrorsConfig;
+        $data['showDebugInformation'] = $showErrorsConfig && $debugOptionConfigured;
+        $data['showBacktrace'] = $data['showDebugInformation'] && $backtracesEnabled;
         $data['error'] = $errorData;
         $data['errorCode'] = $this->errorCode;
         $data['parameters'] = $this->parameters;
