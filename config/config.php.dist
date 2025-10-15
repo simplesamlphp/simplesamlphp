@@ -341,13 +341,13 @@ $config = [
     ],
 
     /*
-     * When 'showerrors' is enabled, all error messages and stack traces will be output
-     * to the browser.
-     *
-     * When 'errorreporting' is enabled, a form will be presented for the user to report
-     * the error to 'technicalcontact_email'.
+     * Error display behaviour:
+     * - Enable 'showerrors' to allow detailed messages in the browser; leave it disabled for production.
+     * - Add at least one entry to the 'debug' option to surface those messages. Without any debug flags, no extra details appear.
+     * - Include 'backtraces' in the debug array when you also want stack traces rendered.
+     * - Set 'errorreporting' to true to show a reporting form that emails the configured technical contact.
      */
-    'showerrors' => true,
+    'showerrors' => false,
     'errorreporting' => true,
 
     /*
