@@ -397,8 +397,8 @@ class SAML2
                 );
             }
 
-            if ($request->query->has('username')) {
-                $username = $request->query->get('username');
+            if (isset($_REQUEST['username'])) {
+                $username = (string) $_REQUEST['username'];
             }
 
             $issuer = $request->getIssuer();
