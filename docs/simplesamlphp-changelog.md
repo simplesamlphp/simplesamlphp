@@ -5,6 +5,14 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
+## Version 2.5.0
+
+Released TBD - November 2025 - as soon as Symfony 7.4 is released
+
+`authorize`
+
+* Add entityID based filtering (simplesamlphp/simplesamlphp-module-authorize#30) (v1.7.0)
+
 ## Version 2.4.3
 
 Released TBD
@@ -22,13 +30,19 @@ Released TBD
 * Introduced a new assets.salt to allow cache busting without leaking version information (#2490)
 * If session.check_function is set and can not be called an error is raised (#2498)
 
+`authorize`
+
+* Remove reauthentication-button when reauthentication is disabled (simplesamlphp/simplesamlphp-module-authorize#24) (v1.6.2)
+
 ## Version 2.4.2
 
-Released TBD
+Released 2025-06-04
 
 * Fixed a bug where metadata-endpoints with isDefault set would not yield the expected metadata (#2439)
 * Fixed a backwards incompatibility that would throw an exception on an invalid entityID.
   The exception was downgraded to a warning in the log (#2448)
+* Fixed a security-issue where cron-jobs could be executed using the default key,
+  even if a different one was set (#2453)
 
 `memcacheMonitor`
 
@@ -47,7 +61,55 @@ Released 2025-05-14
 
 ## Version 2.4.0
 
-Released TBD
+Released 2025-04-16
+
+* Added a new feature flag `encryption.optional` to allow unencrypted assertions if the SP does
+  not provide an encryption certificate (#2208)
+* Make translations tool theme-aware (#2315)
+* Fix deprecation of Twig spaceless-filter (#2229)
+* Add possibility to provide connection context to XML storage-handler (#2332)
+* Throw user-friendly exception with the proper HTTP statuscode for incorrect HTTP-method (#2234)
+* Fixed build-workflow to only re-build the website once
+* Bugfix: Use entityID from state to allow overriding the issuer (#2345)
+* When only a single IdP is in scope, skip discovery screen (#2355)
+* Downgrade simplesamlphp/composer-module-installer to 1.3.x to keep things working with older (OS-supplied)
+  versions of composer
+* Skip test if xdebug.mode does not contain develop (#2419)
+* Add a console-script to clear cache (#2410)
+* PHP 8.4 Deprecation fixes (#2413)
+* Warn if a module has an unexpected translation-domain in its po file.
+* Add configuration that enables/disables twig template debug mode (#2406)
+* Add support for IDP Discovery protocol (#2402)
+* Destroy session cookies on logout (#2278)
+* A new module to allow debugging SP logins (#2381)
+* When only a single IdP is in scope, skip discovery screen (#2355)
+* Add authproc-filter to manipulate the Assertion's Issuer (#2346)
+* Many improvements to docs and translations
+* Updated dependencies
+
+`adfs`
+
+* The ADFS-module has been disconnected from the SSP release. To continue to use it, the module has to be manually installed.
+* The ADFS-module was completely rewritten and now uses our own XML-libraries for building, signing and encrypting XML (v3.0.0)
+
+`discopower`
+
+* Create discopower.po for italian locale (#22)
+* Hide tab list when there's only one tab
+* Fix for tags containing uppercase letters
+* Updated jQuery
+
+`ldap`
+
+* Add SASL-support (v2.4.0). Note that this required a newer version of symfony/ldap than the one packaged (v2.4.3)
+
+`metarefresh`
+
+* Fixed parsing of large metadata files (v1.2.4)
+
+`saml`
+
+* Stricter regexp to verify SubjectID/PairwiseID: disallow trailing spaces.
 
 ## Version 2.3.7
 
@@ -350,16 +412,23 @@ Released 2023-11-28
 
 ## Version 2.1.0
 
-Released 2023-07-31
+Released 2023-10-30
 
 * Functionality that before was provided by the sanitycheck-module is now implicit.
   The module has been archived and should no longer be used. (#1843)
+* Add support for conditional authproc-filters (#1836)
 * Add support for TLS configuration for Redis Store (#1828)
 * Add support for Metadata Deployment Profile for errorURL (#1841)
 * Raised minimum Symfony version to 6.0
 * Raise minimum PHP version to 8.0
 * Specified the allowed HTTP methods for each route
-* Our dependency on `composer/composer` was dropped in favour of a packaged phar-file.
+* Our dependency on `composer/composer` was dropped in favour of a packaged phar-file (#1857)
+* The `bin/pwgen.php` script was improved to used stronger encryption (#1849)
+* Fixed a missing Accept-header for metadata queries (#1865)
+* Changed the UNIQUE constraint for the SP LogoutStore database to PRIMARY KEY to
+  prevent confusing warnings in Drupal (#1862)
+* Add Accept HTTP headers to MDQ queries (#1865)
+* The custom error- and exception handlers were moved to their very own classes (#1858)
 
 ## Version 2.0.8
 
@@ -398,12 +467,34 @@ Released 2023-09-07
 
 ## Version 2.0.5
 
+Released 2023-07-31
+
+* Fixed link pointing to legacy endpoint (#1833)
+* Updated German translations (#1814)
+* Do not drop UIInfo from SSP array style metadata (#1808)
+* Fixed incorrect return types
+* Added removeEntry-method to MetadataStorageHandlerPdo (#1823)
+* Fixed SLO with signed response (#1812)
+* Fixed broken MetaDataStorageHandlerSerialize
+* Usernames are now trimmed (#1829)
 * Never expose the cron-API if secret is not properly configured (#1831)
 * Fixed a bug where IdP-initiated SLO using the HTTP-POST binding wasn't properly dealt with
 
+`admin`
+
+* Updated French translations (#1824)
+
+`cron`
+
+* Log a warning if secret is not properly configured (#1831)
+
+`metarefresh`
+
+* Added support for PDO storage (v0.11.0)
+
 ## Version 2.0.4
 
-Released TBD
+Released 2023-05-12
 
 * The source that was selected by the SourceSelector is now available in the state.
 * The zone that was selected by the SourceIPSelector is now available in the state.
@@ -413,6 +504,17 @@ Released TBD
 * Fixed a bug in MDQ metadata expiration
 * Resolved a possible object injection vulnerability in MDQ metadata cache
 * Restored the possibility to use HTTP-Artifact binding on AuthnRequests
+* Removed unused private method MetaDataStorageSource::getDynamicHostedUrl (leftover from entityid generation)
+* Bumped simplesamlphp-assets-base
+
+`ldap`
+
+* Fixed loading the options-array from configuration (v2.1.6)
+* Properly escape user-input in ldap filters (v2.1.7)
+
+`saml2`
+
+* Fixed a static call to a non-static function that caused a broken artifact binding (v4.6.8)
 
 ## Version 2.0.3
 
