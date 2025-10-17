@@ -35,11 +35,11 @@ If you do not want to start the SSO flow at the SP, you may use the IdP-first se
 
 Here is an example of such a URL:
 
-`https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice`
+`https://idp.example.org/simplesaml/saml2/idp/singleSignOnService?spentityid=urn:mace:feide.no:someservice`
 
 You can also add a `RelayState` parameter to the IdP-first URL:
 
-`https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice&RelayState=https://sp.example.org/somepage`
+`https://idp.example.org/simplesaml/saml2/idp/singleSignOnService?spentityid=urn:mace:feide.no:someservice&RelayState=https://sp.example.org/somepage`
 
 The `RelayState` parameter is often used to carry the URL the SP should redirect to after authentication. It is also possible to specify the Assertion
 Consumer URL with the `ConsumerURL` parameter.
@@ -53,7 +53,7 @@ IdP-initiated logout
 
 IdP-initiated logout can be initiated by visiting the URL:
 
-`https://idp.example.org/simplesaml/saml2/idp/SingleLogoutService.php?ReturnTo=<URL to return to after logout>`
+`https://idp.example.org/simplesaml/saml2/idp/initSingleLogout?ReturnTo=<URL to return to after logout>`
 
 It will send a logout request to each SP, and afterwards return the user to the URL specified in the `ReturnTo` parameter. Bear in mind that IdPs might disallow redirecting to URLs other than those of their own for security reasons, so in order to get the redirection to work, it might be necessary to ask the IdP to whitelist the URL we are planning to redirect to.
 
