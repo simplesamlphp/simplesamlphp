@@ -37,11 +37,11 @@ The `saml20-idp-remote` metadata for simpleSAMLphp SPs should contain something 
 'SingleSignOnService' => [
     0 => [
         'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-        'Location' => 'https://idp.example.org/simplesaml/saml2/idp/SSOService.php',
+        'Location' => 'https://idp.example.org/simplesaml/module.php/saml/idp/singleSignOnService',
     ],
     1 => [
         'index' => 0,
-        'Location' => 'https://didp.example.org/simplesaml/saml2/idp/SSOService.php',
+        'Location' => 'https://didp.example.org/simplesaml/module.php/saml/idp/singleSignOnService',
         'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP',
     ],
 ],
