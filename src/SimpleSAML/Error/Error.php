@@ -261,7 +261,7 @@ class Error extends Exception
         $config = Configuration::getInstance();
 
         $data = [];
-        $data['showerrors'] = $config->getOptionalBoolean('showerrors', true);
+        $data['showerrors'] = $config->getOptionalBoolean('showerrors', false);
         $data['error'] = $errorData;
         $data['errorCode'] = $this->errorCode;
         $data['parameters'] = $this->parameters;
