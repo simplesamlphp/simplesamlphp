@@ -209,10 +209,13 @@ class Error extends Exception
 
         $showerrors = $config->getOptionalBoolean('showerrors', true);
 
-        $whitelist = Configuration::getInstance()->getOptionalArray('showerrors.whitelist', ['*' => true]);
+        $whitelist = Configuration::getInstance()->getOptionalArray('showerrors.whitelist', ['*' => true]);        
         if (count($whitelist) == 1 && array_key_exists('*', $whitelist)) {
-            // no filtering
+            // no change to filtering
+            // everything is shown by default.
         } else {
+            // explicitly handle showing erorrs
+            // if not listed, do not show backtrace.
             $showRealError = false;
             if (array_key_exists($this->errorCode, $whitelist)) {
                 $showRealError = ($whitelist[$this->errorCode] == true);
