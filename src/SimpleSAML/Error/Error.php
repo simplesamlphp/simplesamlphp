@@ -225,6 +225,28 @@ class Error extends Exception
         } else {
             $referer = 'unknown';
         }
+
+        $showerrors = $config->getOptionalBoolean('showerrors', false);
+
+        $whitelist = Configuration::getInstance()->getOptionalArray('showerrors.whitelist', ['*' => true]);
+        if (count($whitelist) == 1 && array_key_exists('*', $whitelist)) {
+            // no change to filtering
+            // everything is shown by default.
+        } else {
+            // explicitly handle showing erorrs
+            // if not listed, do not show backtrace.
+            $showRealError = false;
+            if (array_key_exists($this->errorCode, $whitelist)) {
+                $showRealError = ($whitelist[$this->errorCode] == true);
+            }
+            if (!$showRealError) {
+                // they didn't select to show this message
+                $emsg = "secret";
+                $etrace = "trace";
+                $showerrors = false;
+            }
+        }
+
         $httpUtils = new Utils\HTTP();
         $errorData = [
             'exceptionMsg'   => $emsg,
@@ -234,6 +256,7 @@ class Error extends Exception
             'url'            => $httpUtils->getSelfURLNoQuery(),
             'version'        => $config->getVersion(),
             'referer'        => $referer,
+            'showerrors'     => $showerrors,
         ];
         $session->setData('core:errorreport', $reportId, $errorData);
 
@@ -261,7 +284,7 @@ class Error extends Exception
         $config = Configuration::getInstance();
 
         $data = [];
-        $data['showerrors'] = $config->getOptionalBoolean('showerrors', false);
+        $data['showerrors'] = $errorData['showerrors'];
         $data['error'] = $errorData;
         $data['errorCode'] = $this->errorCode;
         $data['parameters'] = $this->parameters;
