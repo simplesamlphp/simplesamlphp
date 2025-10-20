@@ -279,6 +279,14 @@ Here is an example of the configuration option:
 
 You can see [a list of Supported Timezones at php.net](http://php.net/manual/en/timezones.php).
 
+You might consider setting showerrors to `false` to hide error
+descriptions and backtraces from the browser.
+
+```php
+'showerrors' => false,
+```
+
+
 ## Configuring PHP
 
 ### Sending e-mails from PHP
