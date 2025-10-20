@@ -209,7 +209,7 @@ class Error extends Exception
 
         $showerrors = $config->getOptionalBoolean('showerrors', true);
 
-        $whitelist = Configuration::getInstance()->getOptionalArray('showerrors.whitelist', ['*' => true]);        
+        $whitelist = Configuration::getInstance()->getOptionalArray('showerrors.whitelist', ['*' => true]);
         if (count($whitelist) == 1 && array_key_exists('*', $whitelist)) {
             // no change to filtering
             // everything is shown by default.
