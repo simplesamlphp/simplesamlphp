@@ -286,7 +286,6 @@ descriptions and backtraces from the browser.
 'showerrors' => false,
 ```
 
-
 ## Configuring PHP
 
 ### Sending e-mails from PHP
