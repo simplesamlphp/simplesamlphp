@@ -214,7 +214,7 @@ jobs:
           --excludePackage=symfony/yaml
 
       - name: PHP Code Sniffer
-        run: phpcs
+        run: vendor/bin/phpcs
 
       - name: Psalm
         continue-on-error: true
