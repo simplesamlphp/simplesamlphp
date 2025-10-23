@@ -110,7 +110,7 @@ The following options can be set:
     the actual value used is fetched from metadata by the following
     priority:
 
-:  
+:
     1. SP Remote Metadata
     2. IdP Hosted Metadata
 

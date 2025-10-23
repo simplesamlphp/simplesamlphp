@@ -92,13 +92,13 @@ metadata file:
 $metadata['https://example.org/saml-idp'] = [
     'SingleSignOnService' => [
         [
-          'Location' => 'https://example.org/simplesaml/saml2/idp/SSOService.php',
+          'Location' => 'https://example.org/simplesaml/module.php/saml/idp/singleSignOnService',
           'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
         ],
     ],
     'SingleLogoutService' => [
         [
-          'Location' => 'https://example.org/simplesaml/saml2/idp/SingleLogoutService.php',
+          'Location' => 'https://example.org/simplesaml/module.php/saml/idp/singleLogout',
           'ResponseLocation' => 'https://sp.example.org/LogoutResponse',
           'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
         ],
