@@ -63,7 +63,7 @@ in the advanced features page.
         'ContactType'       => 'support',
         'EmailAddress'      => 'support@example.org',
         'GivenName'         => 'John',
-        'surName'           => 'Doe',
+        'SurName'           => 'Doe',
         'TelephoneNumber'   => '+31(0)12345678',
         'Company'           => 'Example Inc.',
     ],

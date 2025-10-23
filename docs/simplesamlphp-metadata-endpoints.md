@@ -12,6 +12,8 @@ Endpoint                       | Indexed | Default binding
 `SingleLogoutService`          | N       | HTTP-Redirect
 `SingleSignOnService`          | N       | HTTP-Redirect
 
+Note that `isDefault` is only available for indexed endpoints.
+
 The various endpoints can be specified in the following format:
 
     'AssertionConsumerService' => [
