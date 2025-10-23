@@ -18,9 +18,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['8.2', '8.3', '8.4']
+        php-version: ['8.2', '8.3', '8.4', '8.5']
 
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_phplinter.yml@v1.9.2
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_phplinter.yml@v1.10.3
     with:
       php-version: ${{ matrix.php-version }}
 
@@ -29,7 +29,7 @@ jobs:
     strategy:
       fail-fast: false
 
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_linter.yml@v1.9.2
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_linter.yml@v1.10.3
     with:
       enable_eslinter: true
       enable_jsonlinter: true
@@ -44,7 +44,7 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: ['8.2', '8.3', '8.4']
+        php-versions: ['8.2', '8.3', '8.4', '8.5']
 
     steps:
       - name: Setup PHP, with composer and extensions
@@ -90,15 +90,15 @@ jobs:
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Run unit tests with coverage
-        if: ${{ matrix.php-versions == '8.2' }}
+        if: ${{ matrix.php-versions == '8.5' }}
         run: ./vendor/bin/phpunit
 
       - name: Run unit tests (no coverage)
-        if: ${{ matrix.php-versions != '8.2' }}
+        if: ${{ matrix.php-versions != '8.5' }}
         run: ./vendor/bin/phpunit --no-coverage
 
       - name: Save coverage data
-        if: ${{ matrix.php-versions == '8.2' }}
+        if: ${{ matrix.php-versions == '8.5' }}
         uses: actions/upload-artifact@v4
         with:
           name: coverage-data
@@ -112,7 +112,7 @@ jobs:
       fail-fast: true
       matrix:
         operating-system: [windows-latest]
-        php-versions: ['8.2', '8.3', '8.4']
+        php-versions: ['8.2', '8.3', '8.4', '8.5']
 
     steps:
       - name: Setup PHP, with composer and extensions
@@ -165,7 +165,7 @@ jobs:
         # https://github.com/shivammathur/setup-php
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: '8.5'
           tools: composer, psalm
           extensions: mbstring, soap, xml
           coverage: none
