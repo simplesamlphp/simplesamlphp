@@ -85,7 +85,7 @@ Throwing SAML 2 errors will tie your code directly to the SAML 2 protocol, and i
 
 On the SP side, we want to convert SAML 2 errors to SimpleSAMLphp exceptions again.
 This is handled by the `toException()` method in `\SimpleSAML\Module\saml\Error`.
-The assertion consumer script of the SAML 2 authentication source (`modules/saml2/sp/acs.php`) uses this method.
+The assertion consumer service of the SAML 2 authentication source uses this method.
 The result is that generic exceptions are thrown from that authentication source.
 
 For example, `NoPassive` errors will be converted back to instances of `\SAML2\Exception\Protocol\NoPassiveException`.
