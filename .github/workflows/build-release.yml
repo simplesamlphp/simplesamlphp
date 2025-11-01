@@ -92,7 +92,7 @@ jobs:
           rm -rf "simplesamlphp-$VERSION"
 
       - name: Save tarball
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: release-${{ matrix.version }}
           path: "$TARGET"
