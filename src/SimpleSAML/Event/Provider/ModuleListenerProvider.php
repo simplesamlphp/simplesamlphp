@@ -26,13 +26,13 @@ class ModuleListenerProvider implements ListenerProviderInterface
                 continue;
             }
 
-            $listenerDir = __DIR__ . "/../../$moduleName/src/Event/Listener";
+            $listenerDir = dirname(__DIR__, 4) . "/modules/$moduleName/src/Event/Listener";
 
             if (!is_dir($listenerDir)) {
                 continue;
             }
 
-            foreach(glob("{listenerDir}/*.php") as $file) {
+            foreach(glob("{$listenerDir}/*.php") as $file) {
                 $className = $this->getClassNameFromFile($file, $moduleName);
 
                 if (!$className || !class_exists($className)) {
