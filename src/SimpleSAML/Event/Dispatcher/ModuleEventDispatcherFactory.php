@@ -15,7 +15,7 @@ class ModuleEventDispatcherFactory
     {
         if (self::$instance === null) {
             $config = Configuration::getInstance();
-            $enabledModules = $config->getArray('modules.enabled', []);
+            $enabledModules = $config->getArray('module.enable', []);
 
             $provider = new ModuleListenerProvider($enabledModules);
             self::$instance = new EventDispatcher($provider);
