@@ -48,20 +48,6 @@ class ModuleListenerProvider implements ListenerProviderInterface
     {
         $reflection = new \ReflectionClass($className);
 
-        // support __invoke pattern
-        if ($reflection->hasMethod('__invoke')) {
-            $method = $reflection->getMethod('__invoke');
-            $params = $method->getParameters();
-
-            if (count($params) > 0) {
-                $eventType = $params[0]->getType();
-                if ($eventType && !$eventType->isBuiltin()) {
-                    $eventClass = $eventType->getName();
-                    $this->addListener($eventClass, new $className());
-                }
-            }
-        }
-
         // support named methods with event type hints
         foreach ($reflection->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
             if ($method->getName() === '__construct') {
