@@ -9,6 +9,8 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+* store.redis.tls should apply to sentinels (#2557)
+
 ## Version 2.4.3
 
 Released 2025-10-05

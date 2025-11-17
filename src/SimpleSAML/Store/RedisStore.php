@@ -98,6 +98,7 @@ class RedisStore implements StoreInterface
                         'service' => $mastergroup,
                         'prefix' => $prefix,
                         'parameters' => [
+                            'scheme' => $scheme,
                             'database' => $database,
                         ]
                         + (!empty($ssl) ? ['ssl' => $ssl] : [])
