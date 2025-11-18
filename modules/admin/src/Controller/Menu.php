@@ -95,6 +95,7 @@ final class Menu
     {
         $template->data['menu'] = $this->options;
         $eventDispatcher = ModuleEventDispatcherFactory::getInstance();
+        /** @var AdminMenuEvent $event */
         $event = $eventDispatcher->dispatch(new AdminMenuEvent($template));
         $template = $event->getTemplate();
         Module::callHooks('adminmenu', $template);

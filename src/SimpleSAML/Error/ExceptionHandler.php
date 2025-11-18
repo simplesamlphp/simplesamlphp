@@ -31,6 +31,7 @@ class ExceptionHandler
     public function customExceptionHandler(Throwable $exception): void
     {
         $eventDispatcher = ModuleEventDispatcherFactory::getInstance();
+        /** @var ExceptionHandlerEvent $event */
         $event = $eventDispatcher->dispatch(new ExceptionHandlerEvent($exception));
         $exception = $event->getException();
 
