@@ -27,8 +27,6 @@ class Cron
      */
     private Configuration $cronconfig;
 
-    private readonly EventDispatcherInterface $eventDispatcher;
-
 
     /**
      * @param \SimpleSAML\Configuration $cronconfig The cron configuration to use. If not specified defaults
@@ -41,8 +39,6 @@ class Cron
             $cronconfig = Configuration::getConfig('module_cron.php');
         }
         $this->cronconfig = $cronconfig;
-
-        $this->eventDispatcher = ModuleEventDispatcherFactory::getInstance();
     }
 
 
@@ -67,8 +63,9 @@ class Cron
         // DEPRECATED: call the hook infrastructure
         Module::callHooks('cron', $croninfo);
         // NEW: dispatch the cron event
+        $eventDispatcher = ModuleEventDispatcherFactory::getInstance();
         /** @var CronEvent $event */
-        $event = $this->eventDispatcher->dispatch(new CronEvent($tag));
+        $event = $eventDispatcher->dispatch(new CronEvent($tag));
         // merge results from the event into $croninfo. Can be removed when hook infrastructure is removed.
         $croninfo['summary'] = array_merge($croninfo['summary'], array_map(
             fn ($result) => $result['message'],
