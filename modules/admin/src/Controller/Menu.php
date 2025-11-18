@@ -96,7 +96,7 @@ final class Menu
         $template->data['menu'] = $this->options;
         $eventDispatcher = ModuleEventDispatcherFactory::getInstance();
         $event = $eventDispatcher->dispatch(new AdminMenuEvent($template));
-        $t = $event->getTemplate();
+        $template = $event->getTemplate();
         Module::callHooks('adminmenu', $template);
 
         Assert::isInstanceOf($template, Template::class);
