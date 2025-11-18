@@ -60,6 +60,34 @@ class AttributeValueMapTest extends TestCase
 
 
     /**
+     * The most basic test of no match.
+     *
+     * @throws \SimpleSAML\Error\Exception
+     */
+    public function testBasicNoMatch(): void
+    {
+        $config = [
+            'sourceattribute' => 'memberOf',
+            'targetattribute' => 'eduPersonAffiliation',
+            'values' => [
+                'member' => [
+                    'nomatch',
+                ],
+            ],
+        ];
+        $request = [
+            'Attributes' => [
+                'memberOf' => ['theGroup'],
+            ],
+        ];
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayNotHasKey('memberOf', $attributes);
+        $this->assertArrayNotHasKey('eduPersonAffiliation', $attributes);
+    }
+
+
+    /**
      * Test basic functionality, remove duplicates
      *
      */
@@ -224,5 +252,64 @@ class AttributeValueMapTest extends TestCase
             ],
         ];
         self::processFilter($config, $request);
+    }
+
+
+    /**
+     * Basic regular expression functionality test.
+     *
+     * @throws \SimpleSAML\Error\Exception
+     */
+    public function testBasicRegex(): void
+    {
+        $config = [
+            'sourceattribute' => 'memberOf',
+            'targetattribute' => 'eduPersonAffiliation',
+            '%regex',
+            'values' => [
+                'member' => [
+                    '/^the/',
+                ],
+            ],
+        ];
+        $request = [
+            'Attributes' => [
+                'memberOf' => ['theGroup'],
+            ],
+        ];
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayNotHasKey('memberOf', $attributes);
+        $this->assertArrayHasKey('eduPersonAffiliation', $attributes);
+        $this->assertEquals($attributes['eduPersonAffiliation'], ['member']);
+    }
+
+
+    /**
+     * Basic regular expression functionality test of a "no match".
+     *
+     * @throws \SimpleSAML\Error\Exception
+     */
+    public function testBasicRegexNoMatch(): void
+    {
+        $config = [
+            'sourceattribute' => 'memberOf',
+            'targetattribute' => 'eduPersonAffiliation',
+            '%regex',
+            'values' => [
+                'member' => [
+                    '/^nomatch$/',
+                ],
+            ],
+        ];
+        $request = [
+            'Attributes' => [
+                'memberOf' => ['theGroup'],
+            ],
+        ];
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayNotHasKey('memberOf', $attributes);
+        $this->assertArrayNotHasKey('eduPersonAffiliation', $attributes);
     }
 }
