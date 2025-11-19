@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Event\Dispatcher;
 
-use SimpleSAML\Configuration;
 use SimpleSAML\Event\Provider\ModuleListenerProvider;
 
 class ModuleEventDispatcherFactory
@@ -14,10 +13,7 @@ class ModuleEventDispatcherFactory
     public static function getInstance(): EventDispatcher
     {
         if (self::$instance === null) {
-            $config = Configuration::getInstance();
-            $enabledModules = $config->getArray('module.enable', []);
-
-            $provider = new ModuleListenerProvider($enabledModules);
+            $provider = new ModuleListenerProvider();
             self::$instance = new EventDispatcher($provider);
         }
 

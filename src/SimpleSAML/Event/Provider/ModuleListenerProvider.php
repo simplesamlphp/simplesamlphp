@@ -5,23 +5,24 @@ declare(strict_types=1);
 namespace SimpleSAML\Event\Provider;
 
 use Psr\EventDispatcher\ListenerProviderInterface;
+use SimpleSAML\Configuration;
 
 class ModuleListenerProvider implements ListenerProviderInterface
 {
     /** @var array<string, list<callable>> */
     private array $listeners = [];
 
-    public function __construct(
-        private readonly array $enabledModules,
-    )
+    public function __construct()
     {
-        $this->discoverListeners();
+        $configuration = Configuration::getInstance();
+        $enabledModules = $configuration->getArray('module.enable', []);
+        $this->discoverListeners($enabledModules);
     }
 
 
-    private function discoverListeners(): void
+    private function discoverListeners(array $enabledModules): void
     {
-        foreach ($this->enabledModules as $moduleName => $enabled) {
+        foreach ($enabledModules as $moduleName => $enabled) {
             if (!$enabled) {
                 continue;
             }
