@@ -63,7 +63,7 @@
         "psr/log": "^3.0",
         "simplesamlphp/assert": "^1.9",
         "simplesamlphp/composer-module-installer": "^1.5",
-        "simplesamlphp/saml2": "^5.1.0-rc1",
+        "simplesamlphp/saml2": "~6.0",
         "simplesamlphp/saml2-legacy": "^4.19",
         "simplesamlphp/simplesamlphp-assets-base": "~2.5",
         "simplesamlphp/xml-common": "^2.0",
