@@ -5,7 +5,8 @@ Filter that creates a target attribute based on one or more value(s) in source a
 Besides the mapping of source values to target values, the filter has the following options:
 
 * `%replace` can be used to replace all existing values in target with new ones (any existing values will be lost)
-* `%keep` can be used to keep the source attribute, otherwise it will be removed.
+* `%keep` can be used to keep the source attribute, otherwise it will be removed (regardless of whether there is a match or not).
+* `%regex` can be used to evaluate the values as regular expressions instead of plain strings.
 
 **Examples**:
 
@@ -80,6 +81,28 @@ Replace any existing `affiliation` attribute values and keep the `groups` attrib
                     'cn=employees,o=some,o=organization,dc=org',
                     'cn=employee,o=other,o=organization,dc=org',
                     'cn=workers,o=any,o=organization,dc=org',
+                ],
+            ],
+        ],
+    ],
+
+## Regular expressions
+
+Will add eduPersonAffiliation containing value `student` if the `memberOf` attribute contains
+some value matching `/^cn=student,o=[a-z]+,o=organization,dc=org`
+(eg. `cn=student,o=some,o=organization,dc=org`).
+The `memberOf` attribute will be removed (use `%keep`, to keep it) and existing values in
+`eduPersonAffiliation` will be merged (use `%replace` to replace them).
+
+    'authproc' => [
+        50 => [
+            'class' => 'core:AttributeValueMap',
+            'sourceattribute' => 'memberOf',
+            'targetattribute' => 'eduPersonAffiliation',
+            '%regex',
+            'values' => [
+                'student' => [
+                    '/^cn=student,o=[a-z]+,o=organization,dc=org$/',
                 ],
             ],
         ],

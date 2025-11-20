@@ -46,6 +46,12 @@ class AttributeValueMap extends Auth\ProcessingFilter
      */
     private bool $replace = false;
 
+    /**
+     * Whether $sourceattribute values should be treated as regular expressions or not.
+     * @var bool
+     */
+    private bool $regex = false;
+
 
     /**
      * Initialize the filter.
@@ -66,6 +72,8 @@ class AttributeValueMap extends Auth\ProcessingFilter
                     $this->replace = true;
                 } elseif ($value === '%keep') {
                     $this->keep = true;
+                } elseif ($value === '%regex') {
+                    $this->regex = true;
                 } else {
                     // unknown configuration option, log it and ignore the error
                     Logger::warning(
@@ -129,7 +137,19 @@ class AttributeValueMap extends Auth\ProcessingFilter
                 if (!is_array($values)) {
                     $values = [$values];
                 }
-                if (count(array_intersect($values, $sourceattribute)) > 0) {
+                if ($this->regex) {
+                    foreach ($sourceattribute as $sourcevalue) {
+                        foreach ($values as $pattern) {
+                            if (preg_match($pattern, $sourcevalue) === 1) {
+                                Logger::debug("AttributeValueMap: regex match for '$value'");
+                                $targetvalues[] = $value;
+                                // no need to check other patterns for this sourceattribute value
+                                break 2;
+                            }
+                        }
+                    }
+                    continue;
+                } elseif (count(array_intersect($values, $sourceattribute)) > 0) {
                     Logger::debug("AttributeValueMap: intersect match for '$value'");
                     $targetvalues[] = $value;
                 }
