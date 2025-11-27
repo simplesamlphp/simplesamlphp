@@ -15,7 +15,7 @@ class ModuleListenerProvider implements ListenerProviderInterface
     public function __construct()
     {
         $configuration = Configuration::getInstance();
-        $enabledModules = $configuration->getArray('module.enable', []);
+        $enabledModules = $configuration->getOptionalArray('module.enable', []);
         $this->discoverListeners($enabledModules);
     }
 
