@@ -185,7 +185,137 @@ replaces `modules/core/templates/default/loginuserpass.php`.
 `templates/default/frontpage.php`. This theme can be activated by
 setting `theme.use` to `example:test`.
 
-## Hook interface
+## Event listeners (new Hooks)
+
+In SimpleSAMLphp 2.5 the hook interface was updated to use PSR-14
+events [PSR-14 events](https://www.php-fig.org/psr/psr-14) as well as
+the legacy custom "hook" interface. When hooks are called in 2.5 both
+the new PSR-14 event listeners are called followed by the older custom
+hook. You are likely better to create new event listeners in new
+configurations and might like to consider moving your hooks to event
+listeners over time.
+
+If you are using an older version of SimpleSAMLphp please see the
+below section for information on how to use the older interface.
+
+This section discusses how to make new event listeners with an
+eye toward moving an existing hook to become an event listener.
+
+The PSR events that can be used are defined in your module's
+src/Event subdirectory. For example, for the admin module you can
+see modules/admin/src/Event/ConfigPageEvent.php which defines 
+a class ConfigPageEvent in the `SimpleSAML\Module\admin\Event` namespace.
+
+That event takes some state in the constructor and likely has one or
+more access methods to later retrieve that state.
+
+The event might be listened to by the same or another module by
+defining a `Listener` class. In the running concrete example the class
+in modules/cron/src/Event/Listener/ConfigPageListener.php defines a
+`ConfigPageListener` class in the
+`SimpleSAML\Module\cron\Event\Listener` namespace. That listener class
+has an `__invoke` method that will be passed the `ConfigPageEvent`
+object and has no return value.
+
+The `ConfigPageEvent` is a reasonable starting point for testing your
+own listener. If you create a new listener for ConfigPageEvent you can
+use `Logger::error` to check that you get called and use the
+admin/config page through the admin module to trigger this event
+fairly easily. You might like to base your new listener on the
+ConfigPageListener for the cron module.
+
+To update a hook from a 2.4 release or below you will need to move
+your hook class from the `hooks` directory to the `src/Event/Listener`
+subdirectory. Considering the config page example again, the
+`hooks/hook_configpage.php` file should move to `src/Event/Listener`.
+That hook defined a single top level function with a specific funciton
+name `cron_hook_configpage`. In the event listener the new
+`src/Event/Listener/ConfigPageListener.php` file will need to be in
+the `SimpleSAML\Module\cron\Event\Listener` namespace and define a
+class `ConfigPageListener`. The single top level function is moved
+into a member function `__invoke` taking a single parameter
+`ConfigPageEvent`.
+
+The old hook function took a reference `Template &$template` directly
+as the single argument. The new PSR class takes a `ConfigPageEvent`
+object. The ConfigPageEvent object provides access to the template
+using the `getTemplate` method on the event.
+
+The old hook funciton in `hooks` might look like the following.
+
+```php
+// old hook interface
+function cron_hook_configpage(Template &$template): void
+{
+    $template->data['links'][] = [
+        'href' => Module::getModuleURL('cron/info'),
+        'text' => Translate::noop('Cron module information page'),
+    ];
+    ...
+}
+```
+
+The new Listener version in `src/Event/Listener` is shown below.
+
+```php
+class ConfigPageListener
+{
+    public function __invoke(ConfigPageEvent $event): void
+    {
+        $template = $event->getTemplate();
+        
+        $template->data['links'][] = [
+            'href' => \SimpleSAML\Module::getModuleURL('cron/info'),
+            'text' => \SimpleSAML\Locale\Translate::noop('Cron module information page'),
+        ];        
+        ...
+    }
+}
+```
+
+That `ConfigPageEvent` class is defined in
+`modules/admin/src/Event/ConfigPageEvent.php`.
+
+```php
+class ConfigPageEvent
+{
+    public function __construct(
+        private readonly XHTML\Template $template,
+    )
+    {}
+
+    public function getTemplate(): XHTML\Template
+    {
+        return $this->template;
+    }
+}
+```
+
+In summary to move a hook to the new PSR-14 events you have to move
+the hook file to your module's src/Event/Listener directory and have
+it take a new Event object that passes the function argument to it.
+The event will be a simple class defined in your `src/Event`
+directory.
+
+When you wish to call event listeners in your code you can use code
+like the following. The event dispatcher is passed an event which
+contains all of the state you wish to make available to the event
+listeners. You can then get the state which may have been updated by
+one or more listeners using a getter method and do something with the
+result.
+
+
+```php
+$eventDispatcher = ModuleEventDispatcherFactory::getInstance();
+$event = $eventDispatcher->dispatch(new ConfigPageEvent($t));
+$t = $event->getTemplate();
+```
+
+## Hook interface (SimpleSAMLphp 2.4 and below)
+
+Releases 2.4 and below use a custom hook interface to allow code to
+run when specific things of interest are happening. If you are using 
+SimpleSAMLphp 2.5 or above please see the above section on Event listeners instead.
 
 The hook interface allows you to call a hook function in all enabled
 modules which define that hook. Hook functions are stored in a
