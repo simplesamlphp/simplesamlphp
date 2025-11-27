@@ -203,7 +203,7 @@ eye toward moving an existing hook to become an event listener.
 
 The PSR events that can be used are defined in your module's
 src/Event subdirectory. For example, for the admin module you can
-see modules/admin/src/Event/ConfigPageEvent.php which defines 
+see modules/admin/src/Event/ConfigPageEvent.php which defines
 a class ConfigPageEvent in the `SimpleSAML\Module\admin\Event` namespace.
 
 That event takes some state in the constructor and likely has one or
@@ -304,7 +304,6 @@ listeners. You can then get the state which may have been updated by
 one or more listeners using a getter method and do something with the
 result.
 
-
 ```php
 $eventDispatcher = ModuleEventDispatcherFactory::getInstance();
 $event = $eventDispatcher->dispatch(new ConfigPageEvent($t));
@@ -314,7 +313,7 @@ $t = $event->getTemplate();
 ## Hook interface (SimpleSAMLphp 2.4 and below)
 
 Releases 2.4 and below use a custom hook interface to allow code to
-run when specific things of interest are happening. If you are using 
+run when specific things of interest are happening. If you are using
 SimpleSAMLphp 2.5 or above please see the above section on Event listeners instead.
 
 The hook interface allows you to call a hook function in all enabled
