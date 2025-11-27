@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\admin\Controller;
 
 use SimpleSAML\Configuration;
+use SimpleSAML\Event\Dispatcher\ModuleEventDispatcherFactory;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Module;
+use SimpleSAML\Module\admin\Event\ConfigPageEvent;
+use SimpleSAML\Module\admin\Event\SanityCheckEvent;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
@@ -144,6 +147,10 @@ class Config
             'modulelist' => $this->getModuleList(),
         ];
 
+        $eventDispatcher = ModuleEventDispatcherFactory::getInstance();
+        /** @var CronEvent $event */
+        $event = $eventDispatcher->dispatch(new ConfigPageEvent($t));
+        $t = $event->getTemplate();
         Module::callHooks('configpage', $t);
         $this->menu->addOption('logout', $this->authUtils->getAdminLogoutURL(), Translate::noop('Log out'));
         return $this->menu->insert($t);
@@ -372,8 +379,25 @@ class Config
 
 
         // Add module specific checks via the sanitycheck hook that a module can provide.
+        $eventDispatcher = ModuleEventDispatcherFactory::getInstance();
+        /** @var SanityCheckEvent $event */
+        $event = $eventDispatcher->dispatch(new SanityCheckEvent());
+        
         $hookinfo = [ 'info' => [], 'errors' => [] ];
         Module::callHooks('sanitycheck', $hookinfo);
+
+        // Merge results from the event into $hookinfo. Can be removed when hook infrastructure is removed.
+        $hookinfo = [
+            'info' => array_merge(
+                $event->getInfo(),
+                $hookinfo['info'],
+            ),
+            'errors' => array_merge(
+                $event->getErrors(),
+                $hookinfo['errors'],
+            ),
+        ];
+
         foreach (['info', 'errors'] as $resulttype) {
             foreach ($hookinfo[$resulttype] as $result) {
                 $matrix[] = [

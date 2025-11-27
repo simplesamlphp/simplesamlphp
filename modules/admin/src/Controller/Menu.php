@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\admin\Controller;
 
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\Event\Dispatcher\ModuleEventDispatcherFactory;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Module;
+use SimpleSAML\Module\admin\Event\AdminMenuEvent;
 use SimpleSAML\XHTML\Template;
 
 /**
@@ -87,6 +89,10 @@ final class Menu
     public function insert(Template $template): Template
     {
         $template->data['menu'] = $this->options;
+        $eventDispatcher = ModuleEventDispatcherFactory::getInstance();
+        /** @var AdminMenuEvent $event */
+        $event = $eventDispatcher->dispatch(new AdminMenuEvent($template));
+        $template = $event->getTemplate();
         Module::callHooks('adminmenu', $template);
 
         Assert::isInstanceOf($template, Template::class);
