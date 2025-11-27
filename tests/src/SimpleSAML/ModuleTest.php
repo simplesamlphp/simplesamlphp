@@ -148,8 +148,9 @@ class ModuleTest extends TestCase
         $eventDispatcher = ModuleEventDispatcherFactory::getInstance();
         $event = $eventDispatcher->dispatch(new ConfigPageEvent($t));
         $t = $event->getTemplate();
-        $this->assertEquals($t->data['links'][2]['text'],
-                            \SimpleSAML\Locale\Translate::noop('Cron module information page'));
+        $this->assertEquals(
+            \SimpleSAML\Locale\Translate::noop('Cron module information page'),
+            $t->data['links'][2]['text']);
 
     }
 
