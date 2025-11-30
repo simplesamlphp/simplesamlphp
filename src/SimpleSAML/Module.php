@@ -104,6 +104,7 @@ class Module
         'core' => true,
         'admin' => true,
         'saml' => true,
+        'cron' => true,
     ];
 
     /**
