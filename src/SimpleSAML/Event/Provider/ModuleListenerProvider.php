@@ -6,6 +6,7 @@ namespace SimpleSAML\Event\Provider;
 
 use Psr\EventDispatcher\ListenerProviderInterface;
 use SimpleSAML\Configuration;
+use SimpleSAML\Module;
 
 class ModuleListenerProvider implements ListenerProviderInterface
 {
@@ -15,7 +16,7 @@ class ModuleListenerProvider implements ListenerProviderInterface
     public function __construct()
     {
         $configuration = Configuration::getInstance();
-        $enabledModules = $configuration->getOptionalArray('module.enable', []);
+        $enabledModules = $configuration->getOptionalArray('module.enable', Module::$core_modules);
         $this->discoverListeners($enabledModules);
     }
 
