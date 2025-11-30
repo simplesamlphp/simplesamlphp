@@ -131,6 +131,7 @@ class ModuleTest extends TestCase
                 'assets' => [ 'salt' => '1234567890'],
                 'module.enable' => ['saml' => true, 'admin' => true, 'cron' => true,],
             ], '', 'simplesaml');
+        Configuration::setPreLoadedConfig($c);
         $t = new Template($c, 'admin:config.twig');
         $t->data = [
             'links' => [
