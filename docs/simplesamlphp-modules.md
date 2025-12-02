@@ -243,17 +243,17 @@ using the `getTemplate` method on the event.
 
 The old hook funciton in `hooks` might look like the following.
 
-```php
-// old hook interface
-function cron_hook_configpage(Template &$template): void
-{
-  $template->data['links'][] = [
-    'href' => Module::getModuleURL('cron/info'),
-    'text' => Translate::noop('Cron module information page'),
-  ];
-  ...
-}
-```
+
+    // old hook interface
+    function cron_hook_configpage(Template &$template): void
+    {
+      $template->data['links'][] = [
+          'href' => Module::getModuleURL('cron/info'),
+          'text' => Translate::noop('Cron module information page'),
+      ];
+      ...
+    }
+
 
 The new Listener version in `src/Event/Listener` is shown below.
 
