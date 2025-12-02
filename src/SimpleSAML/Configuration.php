@@ -365,7 +365,6 @@ class Configuration implements Utils\ClearableState
         if (array_key_exists($instancename, self::$instance)) {
             return self::$instance[$instancename];
         }
-
         if ($instancename === 'simplesaml') {
             try {
                 return self::getConfig();

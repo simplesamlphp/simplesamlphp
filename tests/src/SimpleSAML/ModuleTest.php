@@ -11,6 +11,11 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Module;
 use Symfony\Component\Filesystem\Path;
 
+use SimpleSAML\Event\Dispatcher\ModuleEventDispatcherFactory;
+use SimpleSAML\Module\admin\Event\ConfigPageEvent;
+use SimpleSAML\XHTML\Template;
+use SimpleSAML\Locale\Translate;
+
 /**
  */
 #[CoversClass(Module::class)]
@@ -121,11 +126,33 @@ class ModuleTest extends TestCase
      */
     public function testGetModuleHooks(): void
     {
-        $hooks = Module::getModuleHooks('cron');
-        $this->assertArrayHasKey('configpage', $hooks);
-        $this->assertEquals('cron_hook_configpage', $hooks['configpage']['func']);
-        $expectedFile = Path::canonicalize(dirname(__DIR__, 3) . '/modules/cron/hooks/hook_configpage.php');
-        $this->assertEquals($expectedFile, $hooks['configpage']['file']);
+        $c = Configuration::loadFromArray(
+            [
+                'assets' => [ 'salt' => '1234567890'],
+                'module.enable' => ['saml' => true, 'admin' => true, 'cron' => true,],
+            ], '', 'simplesaml');
+        Configuration::setPreLoadedConfig($c);
+        $t = new Template($c, 'admin:config.twig');
+        $t->data = [
+            'links' => [
+                [
+                    'href' => Module::getModuleURL('admin/diagnostics'),
+                    'text' => Translate::noop('Diagnostics on hostname, port and protocol'),
+                ],
+                [
+                    'href' => Module::getModuleURL('admin/phpinfo'),
+                    'text' => Translate::noop('Information on your PHP installation'),
+                ],
+            ],
+        ];
+
+        $eventDispatcher = ModuleEventDispatcherFactory::getInstance();
+        $event = $eventDispatcher->dispatch(new ConfigPageEvent($t));
+        $t = $event->getTemplate();
+        $this->assertEquals(
+            \SimpleSAML\Locale\Translate::noop('Cron module information page'),
+            $t->data['links'][2]['text']);
+
     }
 
 
