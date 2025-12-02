@@ -18,6 +18,10 @@ class ModuleListenerProvider implements ListenerProviderInterface
         $configuration = Configuration::getInstance();
         $enabledModules = $configuration->getOptionalArray('module.enable', Module::$core_modules);
         $this->discoverListeners($enabledModules);
+
+        var_dump("AAAAAAAAAA MLP conf");
+        var_dump($configuration->getOptionalArray('module.enable', []));
+        
     }
 
 
