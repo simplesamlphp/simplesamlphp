@@ -302,7 +302,6 @@ result.
     $event = $eventDispatcher->dispatch(new ConfigPageEvent($t));
     $t = $event->getTemplate();
 
-
 ## Hook interface (SimpleSAMLphp 2.4 and below)
 
 Releases 2.4 and below use a custom hook interface to allow code to
