@@ -243,7 +243,6 @@ using the `getTemplate` method on the event.
 
 The old hook funciton in `hooks` might look like the following.
 
-
     // old hook interface
     function cron_hook_configpage(Template &$template): void
     {
@@ -253,7 +252,6 @@ The old hook funciton in `hooks` might look like the following.
       ];
       ...
     }
-
 
 The new Listener version in `src/Event/Listener` is shown below.
 
