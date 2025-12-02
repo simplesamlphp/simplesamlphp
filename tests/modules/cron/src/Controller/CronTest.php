@@ -108,6 +108,13 @@ class CronTest extends TestCase
         $c = new Controller\Cron($this->config, $this->session);
         $response = $c->run('daily', 'verysecret');
 
+        $configuration = Configuration::getInstance();
+        var_dump("AAAAAAAAAA testRunCorrectKey this->conf");
+        var_dump($this->config->getOptionalArray('module.enable', []));
+        var_dump("AAAAAAAAAA testRunCorrectKey configuration");
+        var_dump($configuration->getOptionalArray('module.enable', []));
+        
+        
         $this->assertInstanceOf(Template::class, $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertEquals('daily', $response->data['tag']);
