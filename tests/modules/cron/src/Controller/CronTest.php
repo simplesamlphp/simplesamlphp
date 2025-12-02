@@ -13,6 +13,7 @@ use SimpleSAML\Module\cron\Controller;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
+use SimpleSAML\Event\Dispatcher\ModuleEventDispatcherFactory;
 
 /**
  * Set of tests for the controllers in the "cron" module.
@@ -105,6 +106,7 @@ class CronTest extends TestCase
      */
     public function testRunCorrectKey(): void
     {
+    
         $_SERVER['REQUEST_URI'] = '/module.php/cron/run/daily/verysecret';
 
         $configuration = Configuration::getInstance();
@@ -112,6 +114,7 @@ class CronTest extends TestCase
         var_dump($this->config->getOptionalArray('module.enable', []));
         var_dump("AAAAAAAAAA testRunCorrectKey1 configuration");
         var_dump($configuration->getOptionalArray('module.enable', []));
+        ModuleEventDispatcherFactory::testingRemakeInstance();
         
         $c = new Controller\Cron($this->config, $this->session);
 

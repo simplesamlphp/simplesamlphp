@@ -19,4 +19,12 @@ class ModuleEventDispatcherFactory
 
         return self::$instance;
     }
+
+    public static function testingRemakeInstance(): EventDispatcher
+    {
+        $provider = new ModuleListenerProvider();
+        self::$instance = new EventDispatcher($provider);
+        return self::$instance;
+    }
+    
 }
