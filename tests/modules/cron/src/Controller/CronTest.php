@@ -107,13 +107,26 @@ class CronTest extends TestCase
     {
         $_SERVER['REQUEST_URI'] = '/module.php/cron/run/daily/verysecret';
 
+        $configuration = Configuration::getInstance();
+        var_dump("AAAAAAAAAA testRunCorrectKey1 this->conf");
+        var_dump($this->config->getOptionalArray('module.enable', []));
+        var_dump("AAAAAAAAAA testRunCorrectKey1 configuration");
+        var_dump($configuration->getOptionalArray('module.enable', []));
+        
         $c = new Controller\Cron($this->config, $this->session);
+
+        $configuration = Configuration::getInstance();
+        var_dump("AAAAAAAAAA testRunCorrectKey2 this->conf");
+        var_dump($this->config->getOptionalArray('module.enable', []));
+        var_dump("AAAAAAAAAA testRunCorrectKey2 configuration");
+        var_dump($configuration->getOptionalArray('module.enable', []));
+        
         $response = $c->run('daily', 'verysecret');
 
         $configuration = Configuration::getInstance();
-        var_dump("AAAAAAAAAA testRunCorrectKey this->conf");
+        var_dump("AAAAAAAAAA testRunCorrectKey3 this->conf");
         var_dump($this->config->getOptionalArray('module.enable', []));
-        var_dump("AAAAAAAAAA testRunCorrectKey configuration");
+        var_dump("AAAAAAAAAA testRunCorrectKey3 configuration");
         var_dump($configuration->getOptionalArray('module.enable', []));
         
         
