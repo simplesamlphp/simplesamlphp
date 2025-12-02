@@ -255,39 +255,35 @@ The old hook funciton in `hooks` might look like the following.
 
 The new Listener version in `src/Event/Listener` is shown below.
 
-```php
-class ConfigPageListener
-{
-    public function __invoke(ConfigPageEvent $event): void
+    class ConfigPageListener
     {
-        $template = $event->getTemplate();
+        public function __invoke(ConfigPageEvent $event): void
+        {
+            $template = $event->getTemplate();
         
-        $template->data['links'][] = [
-            'href' => \SimpleSAML\Module::getModuleURL('cron/info'),
-            'text' => \SimpleSAML\Locale\Translate::noop('Cron module information page'),
-        ];        
-        ...
+            $template->data['links'][] = [
+                'href' => \SimpleSAML\Module::getModuleURL('cron/info'),
+                'text' => \SimpleSAML\Locale\Translate::noop('Cron module information page'),
+            ];
+            ...
+        }
     }
-}
-```
 
 That `ConfigPageEvent` class is defined in
 `modules/admin/src/Event/ConfigPageEvent.php`.
 
-```php
-class ConfigPageEvent
-{
-    public function __construct(
-        private readonly XHTML\Template $template,
-    )
-    {}
-
-    public function getTemplate(): XHTML\Template
+    class ConfigPageEvent
     {
-        return $this->template;
+        public function __construct(
+            private readonly XHTML\Template $template,
+        )
+        {}
+
+        public function getTemplate(): XHTML\Template
+        {
+            return $this->template;
+        }
     }
-}
-```
 
 In summary to move a hook to the new PSR-14 events you have to move
 the hook file to your module's src/Event/Listener directory and have
@@ -302,11 +298,10 @@ listeners. You can then get the state which may have been updated by
 one or more listeners using a getter method and do something with the
 result.
 
-```php
-$eventDispatcher = ModuleEventDispatcherFactory::getInstance();
-$event = $eventDispatcher->dispatch(new ConfigPageEvent($t));
-$t = $event->getTemplate();
-```
+    $eventDispatcher = ModuleEventDispatcherFactory::getInstance();
+    $event = $eventDispatcher->dispatch(new ConfigPageEvent($t));
+    $t = $event->getTemplate();
+
 
 ## Hook interface (SimpleSAMLphp 2.4 and below)
 
