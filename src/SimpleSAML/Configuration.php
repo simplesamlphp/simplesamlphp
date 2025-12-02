@@ -363,13 +363,8 @@ class Configuration implements Utils\ClearableState
     {
         // check if the instance exists already
         if (array_key_exists($instancename, self::$instance)) {
-
-            $c = self::$instance[$instancename];
-            var_dump("AAAAAAAAAA getInstance have instance!");
-            var_dump($c->getOptionalArray('module.enable', []));
             return self::$instance[$instancename];
         }
-var_dump("AAAAAAAAAA getInstance no default.");
         if ($instancename === 'simplesaml') {
             try {
                 return self::getConfig();

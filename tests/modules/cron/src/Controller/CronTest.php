@@ -40,8 +40,6 @@ class CronTest extends TestCase
     {
         parent::setUp();
 
-        var_dump("AAAAAAAAAA cron setup");
-        
         $this->config = Configuration::loadFromArray(
             [
                 'module.enable' => ['cron' => true],
@@ -77,6 +75,9 @@ class CronTest extends TestCase
             'module_cron.php',
             'simplesaml',
         );
+
+        ModuleEventDispatcherFactory::testingRemakeInstance();
+
     }
 
 
@@ -109,30 +110,9 @@ class CronTest extends TestCase
     
         $_SERVER['REQUEST_URI'] = '/module.php/cron/run/daily/verysecret';
 
-        $configuration = Configuration::getInstance();
-        var_dump("AAAAAAAAAA testRunCorrectKey1 this->conf");
-        var_dump($this->config->getOptionalArray('module.enable', []));
-        var_dump("AAAAAAAAAA testRunCorrectKey1 configuration");
-        var_dump($configuration->getOptionalArray('module.enable', []));
-        ModuleEventDispatcherFactory::testingRemakeInstance();
-        
         $c = new Controller\Cron($this->config, $this->session);
-
-        $configuration = Configuration::getInstance();
-        var_dump("AAAAAAAAAA testRunCorrectKey2 this->conf");
-        var_dump($this->config->getOptionalArray('module.enable', []));
-        var_dump("AAAAAAAAAA testRunCorrectKey2 configuration");
-        var_dump($configuration->getOptionalArray('module.enable', []));
-        
         $response = $c->run('daily', 'verysecret');
 
-        $configuration = Configuration::getInstance();
-        var_dump("AAAAAAAAAA testRunCorrectKey3 this->conf");
-        var_dump($this->config->getOptionalArray('module.enable', []));
-        var_dump("AAAAAAAAAA testRunCorrectKey3 configuration");
-        var_dump($configuration->getOptionalArray('module.enable', []));
-        
-        
         $this->assertInstanceOf(Template::class, $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertEquals('daily', $response->data['tag']);
