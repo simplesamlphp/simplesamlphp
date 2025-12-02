@@ -39,6 +39,8 @@ class CronTest extends TestCase
     {
         parent::setUp();
 
+        var_dump("AAAAAAAAAA cron setup");
+        
         $this->config = Configuration::loadFromArray(
             [
                 'module.enable' => ['cron' => true],
