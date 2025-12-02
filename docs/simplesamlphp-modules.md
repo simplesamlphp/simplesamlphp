@@ -228,7 +228,7 @@ To update a hook from a 2.4 release or below you will need to move
 your hook class from the `hooks` directory to the `src/Event/Listener`
 subdirectory. Considering the config page example again, the
 `hooks/hook_configpage.php` file should move to `src/Event/Listener`.
-That hook defined a single top level function with a specific funciton
+That hook defined a single top level function with a specific function
 name `cron_hook_configpage`. In the event listener the new
 `src/Event/Listener/ConfigPageListener.php` file will need to be in
 the `SimpleSAML\Module\cron\Event\Listener` namespace and define a
@@ -241,7 +241,7 @@ as the single argument. The new PSR class takes a `ConfigPageEvent`
 object. The ConfigPageEvent object provides access to the template
 using the `getTemplate` method on the event.
 
-The old hook funciton in `hooks` might look like the following.
+The old hook function in `hooks` might look like the following.
 
     // old hook interface
     function cron_hook_configpage(Template &$template): void
