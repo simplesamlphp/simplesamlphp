@@ -6,7 +6,7 @@
     },
     "consent": {
       "repository": "simplesamlphp/simplesamlphp-module-consent",
-      "version": "~1.4.1"
+      "version": "~1.4.2"
     },
     "consentadmin": {
       "repository": "simplesamlphp/simplesamlphp-module-consentadmin",
@@ -18,11 +18,11 @@
     },
     "ldap": {
       "repository": "simplesamlphp/simplesamlphp-module-ldap",
-      "version": "~2.4.3"
+      "version": "~2.4.10"
     },
     "metarefresh": {
       "repository": "simplesamlphp/simplesamlphp-module-metarefresh",
-      "version": "~1.2.4"
+      "version": "~1.2.5"
     },
     "radius": {
       "repository": "simplesamlphp/simplesamlphp-module-radius",
