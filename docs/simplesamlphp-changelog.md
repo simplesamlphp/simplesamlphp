@@ -5,11 +5,17 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.3.10
+## Version 2.3.11
 
 Released TBD
 
+## Version 2.3.10
+
+Released 2025-12-08
+
 * store.redis.tls should apply to sentinels (#2557)
+* Fix unhandled canonicalization failure (CVE-2025-66475)
+* Bump dependencies
 
 ## Version 2.3.9
 
