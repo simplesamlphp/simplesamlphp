@@ -111,7 +111,7 @@ class Translate
                     // try attributes.po
                     if ($text === $original) {
                         // @TODO: Fix this to be compatible with PHP 8.4 - domain cannot be an empty string
-                        $text = TranslatorFunctions::getTranslator()->dgettext("", $original);
+                        $text = TranslatorFunctions::getTranslator()->dgettext("attributes", $original);
                     }
                 }
             }
