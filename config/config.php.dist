@@ -462,6 +462,8 @@ $config = [
      ***********************/
 
     /*
+     * @DEPRECATED: set your proxy using environment variables.
+     *
      * Proxy to use for retrieving URLs.
      *
      * Example:
