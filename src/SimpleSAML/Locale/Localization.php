@@ -89,6 +89,7 @@ class Localization
         $this->language = new Language($configuration);
         $this->langcode = $this->language->getPosixLanguage($this->language->getLanguage());
         $this->setupL10N();
+        $this->addAttributeDomains();
     }
 
 
