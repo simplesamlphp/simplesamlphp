@@ -86,7 +86,7 @@ class ExceptionTest extends TestCase
         Logger::setCaptureLog(false);
 
         $log = Logger::getCapturedLog();
-        self::assertCount(7, $log);
+        self::assertCount(9, $log);
 
         self::assertStringContainsString(
             "A Service Provider reported the following error during authentication:  "
