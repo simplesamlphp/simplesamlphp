@@ -52,7 +52,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: intl, mbstring, mysql, pdo, pdo_sqlite, soap, xml
+          extensions: intl, mbstring, mysql, pdo, pdo_sqlite, soap, sodium, xml
           tools: composer:v2
           ini-values: error_reporting=E_ALL
           coverage: xdebug
@@ -120,7 +120,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: intl, mbstring, mysql, pdo, pdo_sqlite, soap, xml
+          extensions: intl, mbstring, mysql, pdo, pdo_sqlite, soap, sodium, xml
           tools: composer:v2
           ini-values: error_reporting=E_ALL
           coverage: none
@@ -195,7 +195,8 @@ jobs:
         run: composer validate
 
       - name: Install Composer dependencies
-        run: composer install --no-progress --prefer-dist --optimize-autoloader
+        run: composer install --no-progress --prefer-dist --optimize-autoloader \
+          --ignore-platform-req=maglnet/composer-require-checker
 
       - name: PHP Code Sniffer
         run: vendor/bin/phpcs
