@@ -482,7 +482,9 @@ class HTTP
      * @throws \InvalidArgumentException If the input parameters are invalid.
      * @throws \SimpleSAML\Error\Exception If the file or URL cannot be retrieved.
      *
+     * @deprecated Use an HTTP client instead (see createHttpClient method)
      */
+    #[Deprecated]
     public function fetch(string $url, array $context = [], bool $getHeaders = false)
     {
         $config = Configuration::getInstance();
