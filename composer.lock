@@ -7455,22 +7455,22 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
-            "version": "v1.10.6",
+            "version": "v1.10.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-test-framework.git",
-                "reference": "b33c1108738ab06fb40314cd1449445da402095f"
+                "reference": "22eb8ef8b24fe4ef5da855718330843c7f6cae9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/b33c1108738ab06fb40314cd1449445da402095f",
-                "reference": "b33c1108738ab06fb40314cd1449445da402095f",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/22eb8ef8b24fe4ef5da855718330843c7f6cae9a",
+                "reference": "22eb8ef8b24fe4ef5da855718330843c7f6cae9a",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "icanhazstring/composer-unused": "^0.9",
-                "maglnet/composer-require-checker": "^4",
+                "maglnet/composer-require-checker": "^4.18.0",
                 "php": "^8.2",
                 "phpstan/extension-installer": "^1.4",
                 "phpstan/phpstan": "^2.1",
@@ -7479,11 +7479,11 @@
                 "phpunit/phpunit": "^11.5 || ^12.3",
                 "psr/log": "^3.0",
                 "slevomat/coding-standard": "^8.20",
-                "squizlabs/php_codesniffer": "^3.13 || ^4.0",
+                "squizlabs/php_codesniffer": "^4.0",
                 "symfony/phpunit-bridge": "^7.3 || ^8.0"
             },
             "require-dev": {
-                "simplesamlphp/simplesamlphp": "^2.4"
+                "simplesamlphp/simplesamlphp": "^2.5@dev"
             },
             "type": "project",
             "autoload": {
@@ -7509,7 +7509,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-test-framework"
             },
-            "time": "2025-11-29T21:53:08+00:00"
+            "time": "2025-12-16T15:25:19+00:00"
         },
         {
             "name": "slevomat/coding-standard",
