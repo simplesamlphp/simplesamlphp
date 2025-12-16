@@ -13,7 +13,6 @@ use SimpleSAML\Module\admin\Event\SanityCheckEvent;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -463,16 +462,7 @@ class Config
             $latest = $this->session->getData(self::LATEST_VERSION_STATE_KEY, "version");
 
             if (!$latest) {
-                $proxy = $this->config->getOptionalString('proxy', null);
-                $proxyAuth = $this->config->getOptionalString('proxy.auth', null);
-                if ($proxyAuth !== null) {
-                    $scheme = parse_url($proxy,  PHP_URL_SCHEME);
-                    $proxy = str_replace($scheme . '://', $scheme . '://' . $proxyAuth . '@', $proxy);
-                }
-
-                $client = HttpClient::create([
-                    'proxy' => $proxy,
-                ]);
+                $client = $this->httpUtils->createHttpClient();
                 $response = $client->request('GET', self::RELEASES_API);
 
                 if ($response->getStatusCode() === 200) {
