@@ -13,6 +13,11 @@ use SimpleSAML\XHTML\Template;
 use SimpleSAML\XMLSecurity\Alg\Encryption\AES;
 use SimpleSAML\XMLSecurity\Constants as C;
 use SimpleSAML\XMLSecurity\Key\SymmetricKey;
+use Symfony\Component\HttpClient\HttpClient;
+
+use function array_merge;
+use function parse_url;
+use function str_replace;
 
 /**
  * HTTP-related utility methods.
@@ -21,6 +26,26 @@ use SimpleSAML\XMLSecurity\Key\SymmetricKey;
  */
 class HTTP
 {
+    /**
+     * Instantiate an HTTP Client
+     *
+     * @var array $options
+     */
+    public function createHttpClient(array $options = []): HttpClient
+    {
+        $proxy = $this->config->getOptionalString('proxy', null);
+        $proxyAuth = $this->config->getOptionalString('proxy.auth', null);
+        if ($proxyAuth !== null) {
+            $scheme = parse_url($proxy,  PHP_URL_SCHEME);
+            $proxy = ['proxy' => str_replace($scheme . '://', $scheme . '://' . $proxyAuth . '@', $proxy)];
+
+            $options = array_merge($proxy, $options);
+        }
+
+        return HttpClient::create($options);
+    }
+
+
     /**
      * Determine if the user agent can support cookies being sent with SameSite equal to "None".
      * Browsers without support may drop the cookie and or treat it as stricter setting
