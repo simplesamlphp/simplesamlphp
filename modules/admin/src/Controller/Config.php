@@ -476,7 +476,7 @@ class Config
                 $response = $client->request('GET', self::RELEASES_API);
 
                 if ($response->getStatusCode() === 200) {
-                    $latest = $response->toArray()();
+                    $latest = $response->toArray();
                     $this->session->setData(self::LATEST_VERSION_STATE_KEY, 'version', $latest);
                 }
             }
