@@ -15,6 +15,7 @@ use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 
 use function curl_close;
 use function curl_exec;
@@ -465,9 +466,13 @@ class Config
                 $client = $this->httpUtils->createHttpClient();
                 $response = $client->request('GET', self::RELEASES_API);
 
-                if ($response->getStatusCode() === 200) {
+                try {
                     $latest = $response->toArray();
                     $this->session->setData(self::LATEST_VERSION_STATE_KEY, 'version', $latest);
+                } catch (ExceptionInterface $e) {
+                    $message = sprintf("Unable to check for updates; %s", $e->getMessage());
+                    Logger::warning($message);
+                    $warnings[] = Translate::noop($message);
                 }
             }
 
