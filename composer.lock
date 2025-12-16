@@ -1267,16 +1267,16 @@
         },
         {
             "name": "simplesamlphp/xml-common",
-            "version": "v2.4.2",
+            "version": "v2.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-common.git",
-                "reference": "2155a18021fc09ed9796dc9a1f6ea48818d1bb6a"
+                "reference": "faa3768dfcc79de39f39e9b9eae03effc459b09f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/2155a18021fc09ed9796dc9a1f6ea48818d1bb6a",
-                "reference": "2155a18021fc09ed9796dc9a1f6ea48818d1bb6a",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/faa3768dfcc79de39f39e9b9eae03effc459b09f",
+                "reference": "faa3768dfcc79de39f39e9b9eae03effc459b09f",
                 "shasum": ""
             },
             "require": {
@@ -1288,6 +1288,7 @@
                 "ext-pcre": "*",
                 "ext-spl": "*",
                 "php": "^8.2",
+                "psr/clock": "~1.0",
                 "simplesamlphp/assert": "~1.9",
                 "simplesamlphp/composer-xmlprovider-installer": "~1.2"
             },
@@ -1326,7 +1327,7 @@
                 "issues": "https://github.com/simplesamlphp/xml-common/issues",
                 "source": "https://github.com/simplesamlphp/xml-common"
             },
-            "time": "2025-12-08T23:28:08+00:00"
+            "time": "2025-12-15T17:01:30+00:00"
         },
         {
             "name": "simplesamlphp/xml-security",
@@ -4200,16 +4201,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.22.1",
+            "version": "v3.22.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "1de2ec1fc43ab58a4b7e80b214b96bfc895750f3"
+                "reference": "946ddeafa3c9f4ce279d1f34051af041db0e16f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/1de2ec1fc43ab58a4b7e80b214b96bfc895750f3",
-                "reference": "1de2ec1fc43ab58a4b7e80b214b96bfc895750f3",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/946ddeafa3c9f4ce279d1f34051af041db0e16f2",
+                "reference": "946ddeafa3c9f4ce279d1f34051af041db0e16f2",
                 "shasum": ""
             },
             "require": {
@@ -4263,7 +4264,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.22.1"
+                "source": "https://github.com/twigphp/Twig/tree/v3.22.2"
             },
             "funding": [
                 {
@@ -4275,7 +4276,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-11-16T16:01:12+00:00"
+            "time": "2025-12-14T11:28:47+00:00"
         },
         {
             "name": "webmozart/assert",
