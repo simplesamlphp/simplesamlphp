@@ -52,6 +52,26 @@ class AttributeConditionalAddTest extends TestCase
 
 
     /**
+     * Test single string as attribute value.
+     */
+    public function testStringValue(): void
+    {
+        $config = [
+            'attributes' => [
+                'test' => 'value',
+            ],
+        ];
+        $request = [
+            'Attributes' => [],
+        ];
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey('test', $attributes);
+        $this->assertEquals($attributes['test'], ['value']);
+    }
+
+
+    /**
      * Test no conditions at all on existing attributes (unconditional append)
      */
     public function testUnconditionalAppend(): void
