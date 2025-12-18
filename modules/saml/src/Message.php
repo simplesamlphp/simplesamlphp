@@ -22,10 +22,10 @@ use SimpleSAML\Logger;
 use SimpleSAML\Module\saml\Error as SAMLError;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\SignedElement;
-use SimpleSAML\SAML2\XML\Comparison;
 use SimpleSAML\SAML2\XML\saml\AuthnContextClassRef;
 use SimpleSAML\SAML2\XML\saml\Issuer;
 use SimpleSAML\SAML2\XML\samlp\AbstractMessage;
+use SimpleSAML\SAML2\XML\samlp\AuthnContextComparisonTypeEnum;
 use SimpleSAML\SAML2\XML\samlp\RequestedAuthnContext;
 use SimpleSAML\SAML2\XML\samlp\StatusCode;
 use SimpleSAML\Utils;
@@ -33,6 +33,7 @@ use SimpleSAML\XMLSecurity\XML\ds\KeyInfo;
 use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
 use SimpleSAML\XMLSecurity\XML\ds\X509Data;
 
+use function array_column;
 use function array_filter;
 use function array_key_exists;
 use function array_map;
@@ -572,8 +573,8 @@ class Message
             $accr = $spMetadata->getArrayizeString('AuthnContextClassRef');
             $comp = $spMetadata->getOptionalValueValidate(
                 'AuthnContextComparison',
-                array_column(Comparison::cases(), 'value'),
-                Comparison::EXACT->value,
+                array_column(AuthnContextComparisonTypeEnum::cases(), 'value'),
+                AuthnContextComparisonTypeEnum::Exact->value,
             );
 
             $ar->setRequestedAuthnContext(
