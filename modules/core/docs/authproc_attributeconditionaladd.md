@@ -28,11 +28,9 @@ is optional. If it is specified, it contains a list of conditions that determine
         ],
     ],
 
-
 ## Conditions
 
 Conditions are optional. If there are one or more conditions specified, the attributes will only be added if all of the conditions evaluate to true. By default, all `conditions` must evaluate to true, unless the `%anycondition` flag is specified, in which case the attributes will be added if any of the `conditions` are true.
-
 
 ### attrExistsAny
 
@@ -54,7 +52,6 @@ In the below example, if there is an attribute named **either** `customerId` OR 
             ],
         ],
     ],
-
 
 ### attrExistsAll
 
@@ -140,7 +137,6 @@ In the below example, if the user has the `departmentName` attribute set, and on
         ],
     ],
 
-
 ### attrValueIsAll
 
 If the current attributes includes all of the listed attribute names, and each of those attributes include all of the listed values for that attribute, the new attributes in the `attributes` section will be added.
@@ -164,7 +160,6 @@ In the below example, only the Dean of the Physics department will have the `new
         ],
     ],
 
-
 ### attrValueIsRegexAny
 
 If the current attributes includes any of the listed attribute names, and has at least one existing value for those attributes that matches any of the listed regular expressions for that attribute, the new attributes in the `attributes` section will be added.
@@ -184,7 +179,6 @@ In the below example, if the user has the `qualifications` attribute set, and on
             ],
         ],
     ],
-
 
 ### attrValueIsRegexAll
 
@@ -206,7 +200,6 @@ In the below example, if the user has the `email` attribute set, and all email a
         ],
     ],
 
-
 ## Flags
 
 `%replace`
@@ -217,7 +210,6 @@ In the below example, if the user has the `email` attribute set, and all email a
 
 `%anycondition`
 :   if there are multiple `conditions`, any of those conditions evaluating to true will cause the `attributes` to be added. Without this flag being specified, the default behaviour is that all those conditions must be true for the values in the `attributes` section to be added.
-
 
 ## Examples
 
