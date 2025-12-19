@@ -1298,7 +1298,7 @@ class SAML2
         }
 
         $conditions = new Conditions(
-            notBefore: SAMLDateTimeValue::fromDateTime($now->sub(new DateInterval('30s'))),
+            notBefore: null,
             notOnOrAfter: SAMLDateTimeValue::fromDateTime(
                 $now->add(new DateInterval(sprintf('%ds', $assertionLifetime))),
             ),
