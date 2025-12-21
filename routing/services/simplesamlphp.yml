@@ -16,3 +16,6 @@ services:
     arguments:
       - '@SimpleSAML\Configuration'
       - '@SimpleSAML\Session'
+
+  SimpleSAML\Utils\HTTP:
+    class: SimpleSAML\Utils\HTTP

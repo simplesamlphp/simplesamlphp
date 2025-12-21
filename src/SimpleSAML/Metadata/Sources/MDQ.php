@@ -12,6 +12,7 @@ use SimpleSAML\Metadata\MetaDataStorageSource;
 use SimpleSAML\Metadata\SAMLParser;
 use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 
 use function array_key_exists;
 use function error_get_last;
@@ -297,30 +298,24 @@ class MDQ extends MetaDataStorageSource
         // look at Metadata Query Protocol: https://github.com/iay/md-query/blob/master/draft-young-md-query.txt
         $mdq_url = $this->server . '/entities/' . urlencode($entityId);
 
-        Logger::debug(sprintf('%s: downloading metadata for "%s" from [%s]', __CLASS__, $entityId, $mdq_url));
         $httpUtils = new Utils\HTTP();
-        $context = [
-            'http' => [
-                'header' => 'Accept: application/samlmetadata+xml',
-            ],
-        ];
-        try {
-            $xmldata = $httpUtils->fetch($mdq_url, $context);
-        } catch (Exception $e) {
-            // Avoid propagating the exception, make sure we can handle the error later
-            $xmldata = false;
-        }
+        $client = $httpUtils->createHttpClient([
+            'headers' => ['Accept', 'application/samlmetadata+xml'],
+        ]);
 
-        if (empty($xmldata)) {
-            $error = error_get_last();
-            Logger::info(sprintf(
-                'Unable to fetch metadata for "%s" from %s: %s',
-                $entityId,
-                $mdq_url,
-                (is_array($error) ? $error['message'] : 'no error available'),
-            ));
+        Logger::debug(sprintf('%s: downloading metadata for "%s" from [%s]', __CLASS__, $entityId, $mdq_url));
+        $response = $client->request('GET', $mdq_url);
+
+        try {
+            $response->getHeaders();
+        } catch (ExceptionInterface $e) {
+            Logger::info(
+                sprintf('Unable to fetch metadata for "%s" from %s: %s', $entityId, $mdq_url, $e->getMessage()),
+            );
             return null;
         }
+
+        $xmldata = $response->getContent();
 
         /** @var string $xmldata */
         $entity = SAMLParser::parseString($xmldata);

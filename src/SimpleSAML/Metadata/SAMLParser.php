@@ -38,6 +38,7 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 
 use function array_diff;
 use function array_intersect;
@@ -229,6 +230,7 @@ class SAMLParser
      * @return \SimpleSAML\Metadata\SAMLParser An instance of this class with the metadata loaded.
      * @throws \Exception If the file does not parse as XML.
      */
+    #[\Deprecated('Will be removed in 3.0. No replacement was suggested', '16-12-2025')]
     public static function parseFile(string $file): SAMLParser
     {
         $httpUtils = new Utils\HTTP();
@@ -306,6 +308,7 @@ class SAMLParser
      * @return \SimpleSAML\Metadata\SAMLParser[] An array of SAMLParser instances.
      * @throws \Exception If the file does not parse as XML.
      */
+    #[\Deprecated('Will be removed in 3.0. No replacement was suggested', '16-12-2025')]
     public static function parseDescriptorsFile(string $file, array $context = []): array
     {
         if (empty($file)) {

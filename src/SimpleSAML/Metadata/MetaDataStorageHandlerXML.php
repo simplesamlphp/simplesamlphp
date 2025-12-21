@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
+use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
+use SimpleSAML\Utils;
+use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 
 /**
  * This class implements a metadata source which loads metadata from XML files.
@@ -43,30 +46,33 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
             // get the configuration
             $globalConfig = Configuration::getInstance();
             $src = $globalConfig->resolvePath($config['file']);
+            $srcXml = file_get_contents($src);
         } elseif (array_key_exists('url', $config)) {
             $src = $config['url'];
             if (array_key_exists('context', $config)) {
                 Assert::isArray($config['context']);
                 $context = $config['context'];
             }
+            $httpUtils = new Utils\HTTP();
+            $client = $httpUtils->createHttpClient($context);
+            $response = $client->request('GET', $src);
+
+            try {
+                $response->getHeaders();
+                $srcXML = $response->getContent();
+            } catch (ExceptionInterface $e) {
+            }
         } elseif (array_key_exists('xml', $config)) {
             $srcXml = $config['xml'];
         } else {
-            throw new \Exception("Missing one of 'file', 'url' and 'xml' in XML metadata source configuration.");
+            throw new Exception("Missing one of 'file', 'url' and 'xml' in XML metadata source configuration.");
         }
-
 
         $SP20 = [];
         $IdP20 = [];
         $AAD = [];
 
-        if (isset($src)) {
-            $entities = SAMLParser::parseDescriptorsFile($src, $context);
-        } elseif (isset($srcXml)) {
-            $entities = SAMLParser::parseDescriptorsString($srcXml);
-        } else {
-            throw new \Exception("Neither source file path/URI nor string data provided");
-        }
+        $entities = SAMLParser::parseDescriptorsString($srcXml);
         foreach ($entities as $entityId => $entity) {
             $md = $entity->getMetadata20SP();
             if ($md !== null) {
