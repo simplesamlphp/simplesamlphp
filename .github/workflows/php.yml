@@ -21,7 +21,7 @@ jobs:
       matrix:
         php-version: ['8.2', '8.3', '8.4', '8.5']
 
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_phplinter.yml@v1.10.6
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_phplinter.yml@v1.11.0
     with:
       php-version: ${{ matrix.php-version }}
 
@@ -30,7 +30,7 @@ jobs:
     strategy:
       fail-fast: false
 
-    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_linter.yml@v1.10.6
+    uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_linter.yml@v1.11.0
     with:
       enable_eslinter: true
       enable_jsonlinter: true
@@ -69,7 +69,7 @@ jobs:
           git config --global core.autocrlf false
           git config --global core.eol lf
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Copy config.php.dist to config.php
         run: cp config/config.php.dist config/config.php
@@ -81,7 +81,7 @@ jobs:
         run: echo COMPOSER_CACHE="$(composer config cache-files-dir)" >> "$GITHUB_ENV"
 
       - name: Cache composer dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ env.COMPOSER_CACHE }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -100,7 +100,7 @@ jobs:
 
       - name: Save coverage data
         if: ${{ matrix.php-versions == '8.5' }}
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: coverage-data
           path: ${{ github.workspace }}/build
@@ -137,13 +137,13 @@ jobs:
           git config --global core.autocrlf false
           git config --global core.eol lf
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Get composer cache directory
         run: echo COMPOSER_CACHE="$(composer config cache-files-dir)" >> "$env:GITHUB_ENV"
 
       - name: Cache composer dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ env.COMPOSER_CACHE }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -177,7 +177,7 @@ jobs:
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Copy config.php.dist to config.php
         run: cp config/config.php.dist config/config.php
@@ -189,7 +189,7 @@ jobs:
         run: echo COMPOSER_CACHE="$(composer config cache-files-dir)" >> "$GITHUB_ENV"
 
       - name: Cache composer dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ env.COMPOSER_CACHE }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -262,7 +262,7 @@ jobs:
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Copy config.php.dist to config.php
         run: cp config/config.php.dist config/config.php
@@ -274,7 +274,7 @@ jobs:
         run: echo COMPOSER_CACHE="$(composer config cache-files-dir)" >> "$GITHUB_ENV"
 
       - name: Cache composer dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ env.COMPOSER_CACHE }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -297,9 +297,9 @@ jobs:
     runs-on: [ubuntu-latest]
     needs: [unit-tests-linux]
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         with:
           name: coverage-data
           path: ${{ github.workspace }}/build

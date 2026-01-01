@@ -32,7 +32,7 @@ jobs:
           php-version: '8.4'
           coverage: none
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           # token: ${{ secrets.PAT_TOKEN }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
@@ -69,7 +69,7 @@ jobs:
         if: steps.changes.outputs.files_changed == 'true' || steps.changes.outputs.packages_changed
         run: zip build.zip -r .
 
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         if: steps.changes.outputs.files_changed == 'true' || steps.changes.outputs.packages_changed
         with:
           name: build
@@ -83,7 +83,7 @@ jobs:
     runs-on: [ubuntu-latest]
 
     steps:
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         with:
           name: build
 
