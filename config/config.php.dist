@@ -324,7 +324,7 @@ $config = [
      * can debug any possible errors happening in SimpleSAMLphp.
      *
      * - 'validatexml': this action allows you to validate SAML documents against all
-     * the relevant XML schemas. SAML 1.1 messages or SAML metadata parsed with
+     * the relevant XML schemas. SAML 2.0 messages or SAML metadata parsed with
      * the XML to SimpleSAMLphp metadata converter or the metaedit module will
      * validate the SAML documents if this option is enabled.
      *
