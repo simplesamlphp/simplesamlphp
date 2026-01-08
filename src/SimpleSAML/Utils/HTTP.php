@@ -29,7 +29,9 @@ class HTTP
     /**
      * Instantiate an HTTP Client
      *
-     * @var array $options
+     * @var array $options See Symfony\Contracts\HttpClient\HttpClientInterface::OPTIONS_DEFAULTS for possible values
+     *
+     * https://github.com/symfony/symfony/blob/d1ebc450128b626d4b9822f6baf97f530eb3b4d1/src/Symfony/Contracts/HttpClient/HttpClientInterface.php#L26
      */
     public function createHttpClient(array $options = []): HttpClient
     {
