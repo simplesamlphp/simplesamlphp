@@ -222,6 +222,9 @@ XML,
         <RequestedAttribute FriendlyName="eduPersonPrincipalName" Name="urn:mace:dir:attribute-def:eduPersonPrincipalName" NameFormat="urn:mace:shibboleth:1.0:attributeNamespace:uri" isRequired="true"/>
         <RequestedAttribute FriendlyName="mail" Name="urn:mace:dir:attribute-def:mail" NameFormat="urn:mace:shibboleth:1.0:attributeNamespace:uri"/>
         <RequestedAttribute FriendlyName="displayName" Name="urn:mace:dir:attribute-def:displayName" NameFormat="urn:mace:shibboleth:1.0:attributeNamespace:uri"/>
+        <RequestedAttribute FriendlyName="eduPersonEntitlement" Name="urn:oid:1.3.6.1.4.1.5923.1.1.1.7" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+          <saml:AttributeValue xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">urn:mace:dir:entitlement:common-lib-terms</saml:AttributeValue>
+        </RequestedAttribute>
       </AttributeConsumingService>
     </SPSSODescriptor>
 
@@ -243,6 +246,9 @@ XML,
             "urn:mace:dir:attribute-def:eduPersonPrincipalName",
             "urn:mace:dir:attribute-def:mail",
             "urn:mace:dir:attribute-def:displayName",
+            "urn:oid:1.3.6.1.4.1.5923.1.1.1.7" => [
+                "urn:mace:dir:entitlement:common-lib-terms",
+            ],
         ];
         $expected_r = ["urn:mace:dir:attribute-def:eduPersonPrincipalName"];
 
