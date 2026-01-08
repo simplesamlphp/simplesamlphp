@@ -234,11 +234,17 @@ class SAMLParser
     public static function parseFile(string $file): SAMLParser
     {
         $httpUtils = new Utils\HTTP();
-        /** @var string $data */
-        $data = $httpUtils->fetch($file);
-
+        $client = $httpUtils->createHttpClient();
+        $response = $client->request('GET', $file);
+        
         try {
+            $response->getHeaders();
+            /** @var string $data */
+            $data = $response->getContent();
             $doc = DOMDocumentFactory::fromString($data);
+            
+        } catch (ExceptionInterface $e) {
+            throw new Exception('Failed to read XML from file: ' . $file);
         } catch (Exception $e) {
             throw new Exception('Failed to read XML from file: ' . $file);
         }
@@ -315,12 +321,18 @@ class SAMLParser
             throw new Exception('Cannot open file; file name not specified.');
         }
 
-        /** @var string $data */
         $httpUtils = new Utils\HTTP();
-        $data = $httpUtils->fetch($file, $context);
-
+        $client = $httpUtils->createHttpClient($context);
+        $response = $client->request('GET', $file);
+        
         try {
+            $response->getHeaders();
+            /** @var string $data */
+            $data = $response->getContent();
             $doc = DOMDocumentFactory::fromString($data);
+            
+        } catch (ExceptionInterface $e) {
+            throw new Exception('Failed to read XML from file: ' . $file);
         } catch (Exception $e) {
             throw new Exception('Failed to read XML from file: ' . $file);
         }

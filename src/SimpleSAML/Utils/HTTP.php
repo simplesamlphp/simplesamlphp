@@ -527,37 +527,24 @@ class HTTP
             }
         }
 
-        $context = stream_context_create($context);
-        $data = @file_get_contents($url, false, $context);
-        if ($data === false) {
-            $error = error_get_last();
-            throw new Error\Exception('Error fetching ' . var_export($url, true) . ':' .
-                (is_array($error) ? $error['message'] : 'no error available'));
-        }
+        $client = $this->createHttpClient($context);
+        $response = $client->request('GET', $url);
+        
+        try {
+            $headers = $response->getHeaders();
+            /** @var string $data */
+            $data = $response->getContent();
 
-        // data and headers
-        if ($getHeaders) {
-            if (!empty($http_response_header)) {
-                $headers = [];
-                foreach ($http_response_header as $h) {
-                    if (preg_match('@^HTTP/1\.[01]\s+\d{3}\s+@', $h)) {
-                        $headers = []; // reset
-                        $headers[0] = $h;
-                        continue;
-                    }
-                    $bits = explode(':', $h, 2);
-                    if (count($bits) === 2) {
-                        $headers[strtolower($bits[0])] = trim($bits[1]);
-                    }
-                }
-            } else {
-                // no HTTP headers, probably a different protocol, e.g. file
-                $headers = null;
+            // data and headers
+            if ($getHeaders) {
+                return [$data, $headers];
             }
-            return [$data, $headers];
-        }
 
-        return $data;
+            return $data;
+            
+        } catch (Exception $e) {
+            throw new Exception('Error fetching ' . var_export($url, true) . ':' . $e->getMessage());
+        }
     }
 
 
