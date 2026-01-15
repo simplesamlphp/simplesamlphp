@@ -537,7 +537,7 @@ class HTTP
             if (PHP_VERSION_ID > 80500) {
                 $http_response_headers = http_get_last_response_headers();
             } else {
-                $http_response_headers = $http_response_header;
+                $http_response_headers = $http_response_header ?? [];
             }
             if (!empty($http_response_headers)) {
                 $headers = [];
