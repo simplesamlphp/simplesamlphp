@@ -24,6 +24,19 @@ class AttributeAdd extends Auth\ProcessingFilter
     private bool $replace = false;
 
     /**
+     * Flag which indicates only to add the new attribute if one of this list of attributes already exists.
+     * @var array
+     */
+    private array $if_attr_exists = [];
+
+    /**
+     * Flag which indicates only to add the new attribute if one of the regular expressions in this list
+     * matches one of the existing attributes.
+     * @var array
+     */
+    private array $if_attr_regex_matches = [];
+
+    /**
      * Attributes which should be added/appended.
      *
      * Associative array of arrays.
@@ -48,6 +61,21 @@ class AttributeAdd extends Auth\ProcessingFilter
                     $this->replace = true;
                 } else {
                     throw new Exception('Unknown flag: ' . var_export($values, true));
+                }
+                continue;
+            } elseif (str_starts_with($name, "%")) {
+                if ($name === '%if_attr_exists') {
+                    if (!is_array($values)) {
+                        $values = [$values];
+                    }
+                    $this->if_attr_exists = $values;
+                } elseif ($name === '%if_attr_regex_matches') {
+                    if (!is_array($values)) {
+                        $values = [$values];
+                    }
+                    $this->if_attr_regex_matches = $values;
+                } else {
+                    throw new Exception('Unknown option: ' . var_export($name, true));
                 }
                 continue;
             }
@@ -80,6 +108,26 @@ class AttributeAdd extends Auth\ProcessingFilter
         Assert::keyExists($state, 'Attributes');
 
         $attributes = &$state['Attributes'];
+
+        $shouldAdd = empty($this->if_attr_exists) && empty($this->if_attr_regex_matches);
+        foreach ($this->if_attr_exists as $attrName) {
+            if (array_key_exists($attrName, $attributes)) {
+                $shouldAdd = true;
+                break;
+            }
+        }
+        foreach ($this->if_attr_regex_matches as $regex) {
+            foreach (array_keys($attributes) as $attrName) {
+                if (preg_match($regex, $attrName) === 1) {
+                    $shouldAdd = true;
+                    break 2;
+                }
+            }
+        }
+
+        if (!$shouldAdd) {
+            return;
+        }
 
         foreach ($this->attributes as $name => $values) {
             if ($this->replace === true || !array_key_exists($name, $attributes)) {

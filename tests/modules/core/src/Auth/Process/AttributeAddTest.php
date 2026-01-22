@@ -187,4 +187,94 @@ class AttributeAddTest extends TestCase
         ];
         self::processFilter($config, $request);
     }
+
+
+    /**
+     * Test the most basic functionality.
+     */
+    public function testBasicAttrExists(): void
+    {
+        $config = [
+            '%if_attr_exists' => ['memberOf'],
+            'test' => ['value1', 'value2'],
+        ];
+        $request = [
+            'Attributes' => [
+                'memberOf' => ['theGroup'],
+            ],
+        ];
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey('test', $attributes);
+        $this->assertArrayHasKey('memberOf', $attributes);
+        $this->assertEquals($attributes['test'], ['value1', 'value2']);
+        $this->assertEquals($attributes['memberOf'], ['theGroup']);
+    }
+
+
+    /**
+     * Test the most basic functionality.
+     */
+    public function testBasicAttrExistsFail(): void
+    {
+        $config = [
+            '%if_attr_exists' => ['someOtherAttr'],
+            'test' => ['value1', 'value2'],
+        ];
+        $request = [
+            'Attributes' => [
+                'memberOf' => ['theGroup'],
+            ],
+        ];
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayNotHasKey('test', $attributes);
+        $this->assertArrayHasKey('memberOf', $attributes);
+        $this->assertEquals($attributes['memberOf'], ['theGroup']);
+    }
+
+
+    /**
+     * Test the most basic functionality.
+     */
+    public function testBasicRegexMatches(): void
+    {
+        $config = [
+            '%if_attr_regex_matches' => ['/^member/'],
+            'test' => ['value1', 'value2'],
+        ];
+        $request = [
+            'Attributes' => [
+                'memberOf' => ['theGroup'],
+            ],
+        ];
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey('test', $attributes);
+        $this->assertArrayHasKey('memberOf', $attributes);
+        $this->assertEquals($attributes['test'], ['value1', 'value2']);
+        $this->assertEquals($attributes['memberOf'], ['theGroup']);
+    }
+
+
+    /**
+     * Test the most basic functionality.
+     */
+    public function testBasicRegexMatchesFail(): void
+    {
+        $config = [
+            '%if_attr_regex_matches' => ['/^someOther/'],
+            'test' => ['value1', 'value2'],
+        ];
+        $request = [
+            'Attributes' => [
+                'memberOf' => ['theGroup'],
+            ],
+        ];
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayNotHasKey('test', $attributes);
+        $this->assertArrayHasKey('memberOf', $attributes);
+        $this->assertEquals($attributes['memberOf'], ['theGroup']);
+    }
 }
