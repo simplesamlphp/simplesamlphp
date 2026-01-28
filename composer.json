@@ -98,7 +98,7 @@
         "gettext/php-scanner": "~2.0",
         "mikey179/vfsstream": "~1.6",
         "predis/predis": "~3.3",
-        "simplesamlphp/simplesamlphp-test-framework": "~1.10",
+        "simplesamlphp/simplesamlphp-test-framework": "~1.11",
         "symfony/translation": "~7.4"
     },
     "suggest": {
