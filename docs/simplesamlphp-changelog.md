@@ -16,7 +16,6 @@ Released 2025-12-08
 * store.redis.tls should apply to sentinels (#2557)
 * Fix unhandled canonicalization failure (CVE-2025-66475)
 * Bump dependencies
-* NameIDType attributes are now JSON-serializable - these objects might appear in the array returned by getAuthDataArray() 
 
 ## Version 2.4.3
 
@@ -37,6 +36,7 @@ Released 2025-10-05
 * Introduced a new assets.salt to allow cache busting without leaking version information (#2490)
 * If session.check_function is set and can not be called an error is raised (#2498)
 * Fix FontAwesome icon names (#2509)
+* NameIDType attributes are now JSON-serializable - these objects might appear in the array returned by getAuthDataArray() 
 
 `authorize`
 
