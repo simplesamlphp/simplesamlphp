@@ -16,6 +16,7 @@ Released 2025-12-08
 * store.redis.tls should apply to sentinels (#2557)
 * Fix unhandled canonicalization failure (CVE-2025-66475)
 * Bump dependencies
+* NameIDType attributes are now JSON-serializable - these objects might appear in the array returned by getAuthDataArray() 
 
 ## Version 2.4.3
 
