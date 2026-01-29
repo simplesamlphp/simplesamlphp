@@ -1028,22 +1028,30 @@ class SAMLParser
 
         $format = null;
         foreach ($element->getRequestedAttribute() as $child) {
-            $attrname = $child->getName();
-            $sp['attributes'][] = $attrname;
-
-            if ($child->getIsRequired() === true) {
-                $sp['attributes.required'][] = $attrname;
+            $attrName = $child->getName();
+            $attrNameFormat = $child->getNameFormat();
+            $attrValue = $child->getAttributeValues();
+            if (empty($attrValue)) {
+                $sp['attributes'][] = $attrName;
+            } else {
+                $values = [];
+                foreach ($attrValue as $attrval) {
+                    $values[] = $attrval->getValue();
+                }
+                $sp['attributes'][$attrName] = $values;
             }
 
-            if ($child->getNameFormat() !== null) {
-                $attrformat = $child->getNameFormat();
-            } else {
-                $attrformat = C::NAMEFORMAT_UNSPECIFIED;
+            if ($child->getIsRequired() === true) {
+                $sp['attributes.required'][] = $attrName;
+            }
+
+            if ($attrNameFormat === null) {
+                $attrNameFormat = C::NAMEFORMAT_UNSPECIFIED;
             }
 
             if ($format === null) {
-                $format = $attrformat;
-            } elseif ($format !== $attrformat) {
+                $format = $attrNameFormat;
+            } elseif ($format !== $attrNameFormat) {
                 $format = C::NAMEFORMAT_UNSPECIFIED;
             }
         }
