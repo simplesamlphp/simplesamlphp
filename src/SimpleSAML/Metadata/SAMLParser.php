@@ -1075,7 +1075,16 @@ class SAMLParser
         $sp['attributes.required'] = [];
         foreach ($element->getRequestedAttribute() as $child) {
             $attrname = $child->getName();
-            $sp['attributes'][] = $attrname;
+            $attrvalue = $child->getAttributeValue();
+            if (empty($attrvalue)) {
+                $sp['attributes'][] = $attrname;
+            } else {
+                $values = [];
+                foreach ($attrvalue as $attrval) {
+                    $values[] = $attrval->getString();
+                }
+                $sp['attributes'][$attrname] = $values;
+            }
 
             if ($child->getIsRequired() === true) {
                 $sp['attributes.required'][] = $attrname;
