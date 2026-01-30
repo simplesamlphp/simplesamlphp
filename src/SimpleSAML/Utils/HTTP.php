@@ -833,12 +833,7 @@ class HTTP
                 $port = $this->getServerPort();
             }
 
-            $suffix = $requestPath . ($requestQuery !== '' ? '?' . $requestQuery : '');
-            if ($requestFragment !== '') {
-                $suffix .= '#' . $requestFragment;
-            }
-
-            return $protocol . '://' . $hostname . $port . $suffix;
+            return $protocol . '://' . $hostname . $port . $_SERVER['REQUEST_URI'];
         }
 
         // Normal case: baseURL + script-relative path + remaining path, plus query if present
