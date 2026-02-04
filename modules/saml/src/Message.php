@@ -25,8 +25,10 @@ use SimpleSAML\Error\ErrorCodes;
 use SimpleSAML\Logger;
 use SimpleSAML\Module\saml\Error as SAMLError;
 use SimpleSAML\SAML2\Constants;
-use SimpleSAML\SAML2\XML\Comparison;
+use SimpleSAML\SAML2\XML\samlp\AuthnContextComparisonTypeEnum;
 use SimpleSAML\Utils;
+
+use function array_column;
 
 /**
  * Common code for building SAML 2 messages based on the available metadata.
@@ -522,8 +524,8 @@ class Message
             $accr = $spMetadata->getArrayizeString('AuthnContextClassRef');
             $comp = $spMetadata->getOptionalValueValidate(
                 'AuthnContextComparison',
-                array_column(Comparison::cases(), 'value'),
-                Comparison::EXACT->value,
+                array_column(AuthnContextComparisonTypeEnum::cases(), 'value'),
+                AuthnContextComparisonTypeEnum::Exact->value,
             );
             $ar->setRequestedAuthnContext(['AuthnContextClassRef' => $accr, 'Comparison' => $comp]);
         }

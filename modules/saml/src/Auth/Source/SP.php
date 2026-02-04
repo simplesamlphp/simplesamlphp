@@ -26,6 +26,9 @@ use SimpleSAML\Session;
 use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
+use SimpleSAML\SAML2\XML\samlp\AuthnContextComparisonTypeEnum;
+
+use function array_column;
 
 class SP extends Auth\Source
 {
@@ -507,17 +510,16 @@ class SP extends Auth\Source
         }
 
         if ($accr !== null) {
-            $comp = Constants::COMPARISON_EXACT;
+            $comp = AuthnContextComparisonTypeEnum::Exact;
             if ($idpMetadata->getOptionalString('AuthnContextComparison', null) !== null) {
                 $comp = $idpMetadata->getString('AuthnContextComparison');
             } elseif (
                 isset($state['saml:AuthnContextComparison'])
-                && in_array($state['saml:AuthnContextComparison'], [
-                    Constants::COMPARISON_EXACT,
-                    Constants::COMPARISON_MINIMUM,
-                    Constants::COMPARISON_MAXIMUM,
-                    Constants::COMPARISON_BETTER,
-                ], true)
+                && in_array(
+                    $state['saml:AuthnContextComparison'],
+                    array_column(AuthnContextComparisonTypeEnum::cases(), 'value'),
+                    true,
+                )
             ) {
                 $comp = $state['saml:AuthnContextComparison'];
             }
@@ -531,12 +533,7 @@ class SP extends Auth\Source
                 isset($state['saml:RequestedAuthnContext']['Comparison'])
                 && in_array(
                     $state['saml:RequestedAuthnContext']['Comparison'],
-                    [
-                        Constants::COMPARISON_EXACT,
-                        Constants::COMPARISON_MINIMUM,
-                        Constants::COMPARISON_MAXIMUM,
-                        Constants::COMPARISON_BETTER,
-                    ],
+                    array_column(AuthnContextComparisonTypeEnum::cases(), 'value'),
                     true,
                 )
             ) {
@@ -911,7 +908,7 @@ class SP extends Auth\Source
         if (
             $this->passAuthnContextClassRef
             && isset($state['saml:RequestedAuthnContext'])
-            && $state['saml:RequestedAuthnContext']['Comparison'] === Constants::COMPARISON_EXACT
+            && $state['saml:RequestedAuthnContext']['Comparison'] === AuthnContextComparisonTypeEnum::Exact->value
             && isset($data['saml:sp:AuthnContext'])
             && $state['saml:RequestedAuthnContext']['AuthnContextClassRef'][0] !== $data['saml:sp:AuthnContext']
         ) {
