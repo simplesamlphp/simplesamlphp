@@ -279,4 +279,21 @@ class SystemTest extends TestCase
         $reflectedInstance->setValue($service, []);
         $reflectedInstance->setAccessible(false);
     }
+
+
+    /**
+     */
+    public function testUNCpaths(): void
+    {
+        if (DIRECTORY_SEPARATOR == '\\') {
+
+            $base = null;
+            $path = "\\some-pc\some-share\some.key";
+
+            $res = $this->sysUtils->resolvePath($path, $base);
+            $expected = "//some-pc/some-share/some.key";
+
+            $this->assertEquals($expected, $res);
+        }
+    }
 }
