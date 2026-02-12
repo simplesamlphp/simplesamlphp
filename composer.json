@@ -97,6 +97,7 @@
         "mikey179/vfsstream": "~1.6",
         "predis/predis": "^2.2",
         "simplesamlphp/simplesamlphp-test-framework": "^1.9.2",
+        "phpunit/phpunit": "^10.5.63",
         "symfony/translation": "^6.4"
     },
     "suggest": {
