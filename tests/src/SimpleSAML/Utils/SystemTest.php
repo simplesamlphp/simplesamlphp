@@ -271,6 +271,7 @@ class SystemTest extends TestCase
      */
     protected function clearInstance(Configuration $service, string $className): void
     {
+        // no merge
         $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');
         $reflectedInstance->setAccessible(true);
