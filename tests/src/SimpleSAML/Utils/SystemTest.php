@@ -285,7 +285,7 @@ class SystemTest extends TestCase
      */
     public function testUNCpaths(): void
     {
-        if (DIRECTORY_SEPARATOR == '\\') {
+        if (DIRECTORY_SEPARATOR === '\\') {
 
             $base = null;
             $path = "\\some-pc\some-share\some.key";
