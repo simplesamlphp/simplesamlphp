@@ -18,9 +18,9 @@
 
 {% embed '_table.twig' -%}
 
-    {% block namecol -%}
+    {% block namecol %}
     {% set translated = name|trans %}
-    <td class="attrname">{% if translated != name %} {{ translated }} <br>{% endif %} <samp>{{ name }}</samp></td>
+    <td class="attrname">{% if translated != name %} {{ translated }} <br>{% endif %}<samp>{{ name }}</samp></td>
     {% endblock %}
 
 
@@ -28,7 +28,7 @@
     {% if name =='jpegPhoto'-%}
         <img src="data:image/jpeg;base64,{{ value }}" />
     {% else %}{{ value }}{% endif -%}
-    {% endblock %}
+    {% endblock -%}
 
 {%- endembed %}
 
