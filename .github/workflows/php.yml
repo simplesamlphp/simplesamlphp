@@ -307,4 +307,3 @@ jobs:
       - uses: geekyeggo/delete-artifact@v5
         with:
           name: coverage-data
-
