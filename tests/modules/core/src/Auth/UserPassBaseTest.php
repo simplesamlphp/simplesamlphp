@@ -31,12 +31,12 @@ class UserPassBaseTest extends TestCase
         $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
             ->onlyMethods(['login'])
-            ->getMockForAbstractClass();
+            ->getMock();
 
         $stub->expects($this->once())
             ->method('login')
             ->with($username, $password)
-            ->will($this->returnValue($attributes));
+            ->willReturn($attributes);
 
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->authenticate($state);
@@ -61,7 +61,8 @@ class UserPassBaseTest extends TestCase
 
         $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
-            ->getMockForAbstractClass();
+            ->onlyMethods(['login'])
+            ->getMock();
 
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->authenticate($state);
@@ -84,7 +85,8 @@ class UserPassBaseTest extends TestCase
 
         $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
-            ->getMockForAbstractClass();
+            ->onlyMethods(['login'])
+            ->getMock();
 
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->authenticate($state);
@@ -113,7 +115,7 @@ class UserPassBaseTest extends TestCase
         $stub->expects($this->once())
             ->method('login')
             ->with($forcedUsername, $password)
-            ->will($this->returnValue($attributes));
+            ->willReturn($attributes);
 
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->setForcedUsername($forcedUsername);
