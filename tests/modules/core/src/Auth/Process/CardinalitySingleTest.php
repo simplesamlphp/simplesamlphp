@@ -47,7 +47,7 @@ class CardinalitySingleTest extends TestCase
     protected function setUp(): void
     {
         Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
-        $this->httpUtils = $this->createStub(Utils\HTTP::class);
+        $this->httpUtils = $this->getMockBuilder(Utils\HTTP::class)->getMock();
     }
 
 
@@ -154,7 +154,6 @@ class CardinalitySingleTest extends TestCase
     /**
      * Test abort
      */
-    #[DoesNotPerformAssertions]
     public function testAbort(): void
     {
         $config = [
