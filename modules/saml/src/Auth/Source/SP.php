@@ -510,7 +510,7 @@ class SP extends Auth\Source
         }
 
         if ($accr !== null) {
-            $comp = AuthnContextComparisonTypeEnum::Exact;
+            $comp = AuthnContextComparisonTypeEnum::Exact->value;
             if ($idpMetadata->getOptionalString('AuthnContextComparison', null) !== null) {
                 $comp = $idpMetadata->getString('AuthnContextComparison');
             } elseif (
