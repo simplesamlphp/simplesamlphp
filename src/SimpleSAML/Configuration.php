@@ -1493,6 +1493,5 @@ class Configuration implements Utils\ClearableState
         self::$configDirs = [];
         self::$instance = [];
         self::$loadedConfigs = [];
-        $nothing = 1;
     }
 }
