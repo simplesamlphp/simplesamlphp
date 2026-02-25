@@ -5,5 +5,5 @@ The following changes are relevant for installers and/or developers.
 
 ## Software requirements
 
-- The minimum PHP version required is now PHP 8.2.
+- The minimum PHP version required is now PHP 8.3.
 - Symfony was upgraded to 7.4 (LTS).
