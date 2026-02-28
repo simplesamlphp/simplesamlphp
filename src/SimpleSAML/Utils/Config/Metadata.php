@@ -248,7 +248,7 @@ class Metadata
     {
         if ($nameIdPolicy === null) {
             // when NameIDPolicy is unset or set to null, default to transient
-            return ['Format' => Constants::NAMEID_TRANSIENT, 'AllowCreate' => true];
+            return ['Format' => Constants::NAMEID_TRANSIENT, 'AllowCreate' => false];
         }
 
         if ($nameIdPolicy === []) {
@@ -260,7 +260,7 @@ class Metadata
         $nameIdPolicy_cf = Configuration::loadFromArray($nameIdPolicy);
         $policy = [
             'Format'      => $nameIdPolicy_cf->getOptionalString('Format', Constants::NAMEID_TRANSIENT),
-            'AllowCreate' => $nameIdPolicy_cf->getOptionalBoolean('AllowCreate', true),
+            'AllowCreate' => $nameIdPolicy_cf->getOptionalBoolean('AllowCreate', false),
         ];
         $spNameQualifier = $nameIdPolicy_cf->getOptionalString('SPNameQualifier', null);
         if ($spNameQualifier !== null) {
