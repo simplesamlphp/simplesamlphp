@@ -9,11 +9,11 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
+use SimpleSAML\Event\Dispatcher\ModuleEventDispatcherFactory;
 use SimpleSAML\Module\cron\Controller;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use SimpleSAML\Event\Dispatcher\ModuleEventDispatcherFactory;
 
 /**
  * Set of tests for the controllers in the "cron" module.
@@ -77,7 +77,6 @@ class CronTest extends TestCase
         );
 
         ModuleEventDispatcherFactory::testingRemakeInstance();
-
     }
 
 
@@ -107,7 +106,6 @@ class CronTest extends TestCase
      */
     public function testRunCorrectKey(): void
     {
-    
         $_SERVER['REQUEST_URI'] = '/module.php/cron/run/daily/verysecret';
 
         $c = new Controller\Cron($this->config, $this->session);
@@ -119,7 +117,7 @@ class CronTest extends TestCase
         $this->assertFalse($response->data['mail_required']);
         $this->assertArrayHasKey('time', $response->data);
         $this->assertCount(1, $response->data['summary']);
-        
+
         $this->assertEquals('Cron did run tag [daily] at ' . $response->data['time'], $response->data['summary']['cron info']);
     }
 

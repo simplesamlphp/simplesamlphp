@@ -50,7 +50,7 @@ d2udRIYG0WcjQTk86+EraXNGtuwUaknQ7WPKlJwLzypuZM8lk3F1FXxXWomHN3SH
 NOWDOC;
 
 
-    private const OTHER_CERTIFICATE = 'other_certificate.pem';
+    private const string OTHER_CERTIFICATE = 'other_certificate.pem';
 
 
     /**

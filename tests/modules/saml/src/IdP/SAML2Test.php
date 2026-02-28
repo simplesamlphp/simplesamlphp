@@ -19,14 +19,11 @@ use SimpleSAML\TestUtils\ClearStateTestCase;
 #[CoversClass(SAML2::class)]
 class SAML2Test extends ClearStateTestCase
 {
-    /** @var string */
-    private const SECURITY = 'vendor/simplesamlphp/xml-security/resources';
+    private const string SECURITY = 'vendor/simplesamlphp/xml-security/resources';
 
-    /** @var string */
-    public const CERT_KEY = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.key';
+    public const string CERT_KEY = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.key';
 
-    /** @var string */
-    public const CERT_PUBLIC = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.crt';
+    public const string CERT_PUBLIC = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.crt';
 
 
     /**

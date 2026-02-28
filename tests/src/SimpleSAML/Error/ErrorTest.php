@@ -126,7 +126,7 @@ class ErrorTest extends TestCase
             {
                 return new class extends ErrorCodes
                 {
-                    public const CUSTOMCODE = 'CUSTOMCODE';
+                    public const string CUSTOMCODE = 'CUSTOMCODE';
 
 
                     public function getCustomTitles(): array

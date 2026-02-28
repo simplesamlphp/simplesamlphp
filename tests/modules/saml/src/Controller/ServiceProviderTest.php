@@ -47,8 +47,7 @@ class ServiceProviderTest extends TestCase
     protected Utils\HTTP $httpUtils;
 
 
-    /** @var string */
-    public const RELAY_STATE = 'https://example.org';
+    public const string RELAY_STATE = 'https://example.org';
 
 
     /**
