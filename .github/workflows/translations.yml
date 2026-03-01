@@ -69,7 +69,7 @@ jobs:
         if: steps.changes.outputs.files_changed == 'true' || steps.changes.outputs.packages_changed
         run: zip build.zip -r .
 
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         if: steps.changes.outputs.files_changed == 'true' || steps.changes.outputs.packages_changed
         with:
           name: build
@@ -83,7 +83,7 @@ jobs:
     runs-on: [ubuntu-latest]
 
     steps:
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           name: build
 

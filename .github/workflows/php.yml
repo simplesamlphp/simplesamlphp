@@ -100,7 +100,7 @@ jobs:
 
       - name: Save coverage data
         if: ${{ matrix.php-versions == '8.5' }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: coverage-data
           path: ${{ github.workspace }}/build
@@ -299,7 +299,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           name: coverage-data
           path: ${{ github.workspace }}/build
