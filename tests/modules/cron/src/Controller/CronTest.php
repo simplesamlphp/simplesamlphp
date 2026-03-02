@@ -119,8 +119,7 @@ class CronTest extends TestCase
         $this->assertCount(1, $response->data['summary']);
         $this->assertEquals(
             'Cron did run tag [daily] at ' . $response->data['time'],
-            $response->data['summary']['cron info'],
-        );
+            $response->data['summary']['cron info']);
     }
 
 
