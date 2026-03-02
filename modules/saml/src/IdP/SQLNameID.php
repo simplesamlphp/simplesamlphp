@@ -22,11 +22,11 @@ use SimpleSAML\Store\StoreFactory;
  */
 class SQLNameID
 {
-    public const TABLE_VERSION = 1;
+    public const int TABLE_VERSION = 1;
 
-    public const DEFAULT_TABLE_PREFIX = '';
+    public const string DEFAULT_TABLE_PREFIX = '';
 
-    public const TABLE_SUFFIX = '_saml_PersistentNameID';
+    public const string TABLE_SUFFIX = '_saml_PersistentNameID';
 
 
     /**

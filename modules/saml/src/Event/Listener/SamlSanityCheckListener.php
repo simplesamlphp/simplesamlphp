@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -70,7 +70,10 @@ class SamlSanityCheckListener
         }
     }
 
-    function matchingKeyPair(
+    /* Previously there was no visibility modifier on this method, but it is only used within this class,
+     * so we can make it private.
+     */
+    private function matchingKeyPair(
         string $publicKey,
         string $privateKey,
         #[\SensitiveParameter]

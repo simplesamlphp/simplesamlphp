@@ -10,10 +10,12 @@ class AdminMenuEvent
 {
     private XHTML\Template $template;
 
+
     public function __construct(XHTML\Template $template)
     {
         $this->template = $template;
     }
+
 
     public function getTemplate(): XHTML\Template
     {

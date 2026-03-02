@@ -21,10 +21,8 @@ class Language
 {
     /**
      * The final fallback language to use when no current or default available
-     *
-     * @var string
      */
-    public const FALLBACKLANGUAGE = 'en';
+    public const string FALLBACKLANGUAGE = 'en';
 
 
     /**

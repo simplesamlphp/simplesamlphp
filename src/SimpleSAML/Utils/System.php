@@ -14,21 +14,21 @@ use SimpleSAML\Error;
  */
 class System
 {
-    public const WINDOWS = 1;
+    public const int WINDOWS = 1;
 
-    public const LINUX = 2;
+    public const int LINUX = 2;
 
-    public const OSX = 3;
+    public const int OSX = 3;
 
-    public const HPUX = 4;
+    public const int HPUX = 4;
 
-    public const UNIX = 5;
+    public const int UNIX = 5;
 
-    public const BSD = 6;
+    public const int BSD = 6;
 
-    public const IRIX = 7;
+    public const int IRIX = 7;
 
-    public const SUNOS = 8;
+    public const int SUNOS = 8;
 
 
     /**

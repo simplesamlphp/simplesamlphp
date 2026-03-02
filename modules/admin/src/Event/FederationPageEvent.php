@@ -10,7 +10,9 @@ class FederationPageEvent
 {
     public function __construct(
         private readonly XHTML\Template $template,
-    ) {}
+    ) {
+    }
+
 
     public function getTemplate(): XHTML\Template
     {

@@ -41,19 +41,17 @@ class Configuration implements Utils\ClearableState
     /**
      * The release version of this package
      */
-    public const VERSION = '2.5.0';
+    public const string VERSION = '2.5.0';
 
     /**
      * A default value which means that the given option is required.
-     *
-     * @var string
      */
-    public const REQUIRED_OPTION = '___REQUIRED_OPTION___';
+    public const string REQUIRED_OPTION = '___REQUIRED_OPTION___';
 
     /**
      * The default security-headers to be sent on responses.
      */
-    public const DEFAULT_SECURITY_HEADERS = [
+    public const array DEFAULT_SECURITY_HEADERS = [
         'Content-Security-Policy' =>
             "default-src 'none'; " .
             "frame-ancestors 'self'; " .
