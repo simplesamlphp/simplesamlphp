@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Event\Dispatcher;
 
-use Psr\EventDispatcher\{EventDispatcherInterface, ListenerProviderInterface, StoppableEventInterface};
+use Psr\EventDispatcher\EventDispatcherInterface;
+use Psr\EventDispatcher\ListenerProviderInterface;
+use Psr\EventDispatcher\StoppableEventInterface;
 
 class EventDispatcher implements EventDispatcherInterface
 {
@@ -12,6 +14,7 @@ class EventDispatcher implements EventDispatcherInterface
         private readonly ListenerProviderInterface $listenerProvider,
     ) {
     }
+
 
     public function dispatch(object $event): object
     {

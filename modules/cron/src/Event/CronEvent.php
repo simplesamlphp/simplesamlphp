@@ -8,15 +8,18 @@ class CronEvent
 {
     private array $results = [];
 
+
     public function __construct(
         private readonly string $tag,
-    )
-    {}
+    ) {
+    }
+
 
     public function getTag(): string
     {
         return $this->tag;
     }
+
 
     public function addResult(string $taskName, bool $success, string $message = ''): void
     {
@@ -26,10 +29,12 @@ class CronEvent
         ];
     }
 
+
     public function getResults(): array
     {
         return $this->results;
     }
+
 
     public function hasFailures(): bool
     {

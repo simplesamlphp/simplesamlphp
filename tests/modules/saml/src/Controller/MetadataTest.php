@@ -24,10 +24,8 @@ use Symfony\Component\HttpFoundation\Response;
 #[CoversClass(Controller\Metadata::class)]
 class MetadataTest extends TestCase
 {
-    /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
-    /** @var \SimpleSAML\Utils\Auth */
     protected Utils\Auth $authUtils;
 
     protected MetaDataStorageHandler $mdh;

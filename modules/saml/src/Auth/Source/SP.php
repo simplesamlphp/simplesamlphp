@@ -22,11 +22,11 @@ use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Module\saml\Error\ProxyCountExceeded;
+use SimpleSAML\SAML2\XML\samlp\AuthnContextComparisonTypeEnum;
 use SimpleSAML\Session;
 use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
-use SimpleSAML\SAML2\XML\samlp\AuthnContextComparisonTypeEnum;
 
 use function array_column;
 

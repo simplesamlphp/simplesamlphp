@@ -23,17 +23,17 @@ class RequestedAuthnContextSelector extends AbstractSourceSelector
     /**
      * The key of the AuthId field in the state.
      */
-    public const AUTHID = '\SimpleSAML\Module\core\Auth\Source\RequestedAuthnContextSelector.AuthId';
+    public const string AUTHID = '\SimpleSAML\Module\core\Auth\Source\RequestedAuthnContextSelector.AuthId';
 
     /**
      * The string used to identify our states.
      */
-    public const STAGEID = '\SimpleSAML\Module\core\Auth\Source\RequestedAuthnContextSelector.StageId';
+    public const string STAGEID = '\SimpleSAML\Module\core\Auth\Source\RequestedAuthnContextSelector.StageId';
 
     /**
      * The key where the sources is saved in the state.
      */
-    public const SOURCESID = '\SimpleSAML\Module\core\Auth\Source\RequestedAuthnContextSelector.SourceId';
+    public const string SOURCESID = '\SimpleSAML\Module\core\Auth\Source\RequestedAuthnContextSelector.SourceId';
 
 
     /**

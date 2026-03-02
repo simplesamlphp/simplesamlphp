@@ -15,8 +15,6 @@ use SimpleSAML\Module\admin\Event\ConfigPageEvent;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\Filesystem\Path;
 
-/**
- */
 #[CoversClass(Module::class)]
 class ModuleTest extends TestCase
 {

@@ -6,8 +6,8 @@ namespace SimpleSAML\Error;
 
 use Error as BuiltinError;
 use Exception as BuiltinException;
-use SimpleSAML\Event\ExceptionHandlerEvent;
 use SimpleSAML\Event\Dispatcher\ModuleEventDispatcherFactory;
+use SimpleSAML\Event\ExceptionHandlerEvent;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
@@ -29,7 +29,7 @@ class ExceptionHandler
     public function customExceptionHandler(Throwable $exception): void
     {
         $eventDispatcher = ModuleEventDispatcherFactory::getInstance();
-        /** @var ExceptionHandlerEvent $event */
+        /** @var \SimpleSAML\Event\ExceptionHandlerEvent $event */
         $event = $eventDispatcher->dispatch(new ExceptionHandlerEvent($exception));
         $exception = $event->getException();
 

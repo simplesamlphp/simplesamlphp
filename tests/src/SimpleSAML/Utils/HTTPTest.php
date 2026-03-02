@@ -758,6 +758,7 @@ class HTTPTest extends ClearStateTestCase
         ];
     }
 
+
     /**
      * Ensure getSelfURL() returns the externally visible URL when SimpleSAMLphp
      * is reached via a rewritten path (e.g. /cas/login -> /simplesaml/module.php/...),

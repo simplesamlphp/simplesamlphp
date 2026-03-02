@@ -42,10 +42,8 @@ class ScopedIssuer extends Auth\ProcessingFilter
 {
     /**
      * The regular expression to match the scope
-     *
-     * @var string
      */
-    public const SCOPE_PATTERN = '/^[a-z0-9][a-z0-9.-]{0,126}$/Di';
+    public const string SCOPE_PATTERN = '/^[a-z0-9][a-z0-9.-]{0,126}$/Di';
 
 
     /**

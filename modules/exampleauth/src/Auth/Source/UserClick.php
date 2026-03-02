@@ -29,12 +29,12 @@ class UserClick extends Auth\Source
     /**
      * The string used to identify our states.
      */
-    public const STAGEID = '\SimpleSAML\Module\exampleauth\Auth\UserClick.state';
+    public const string STAGEID = '\SimpleSAML\Module\exampleauth\Auth\UserClick.state';
 
     /**
      * The key of the AuthId field in the state.
      */
-    public const AUTHID = '\SimpleSAML\Module\exampleauth\Auth\UserClick.AuthId';
+    public const string AUTHID = '\SimpleSAML\Module\exampleauth\Auth\UserClick.AuthId';
 
 
     /**

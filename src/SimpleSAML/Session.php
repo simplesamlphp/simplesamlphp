@@ -33,7 +33,7 @@ class Session implements Utils\ClearableState
      * This is a timeout value for setData, which indicates that the data
      * should never be deleted, i.e. lasts the whole session lifetime.
      */
-    public const DATA_TIMEOUT_SESSION_END = 'sessionEndTimeout';
+    public const string DATA_TIMEOUT_SESSION_END = 'sessionEndTimeout';
 
 
     /**

@@ -16,81 +16,81 @@ use function array_merge;
  */
 class ErrorCodes
 {
-    final public const ACSPARAMS = 'ACSPARAMS';
+    final public const string ACSPARAMS = 'ACSPARAMS';
 
-    final public const ADMINNOTHASHED = 'ADMINNOTHASHED';
+    final public const string ADMINNOTHASHED = 'ADMINNOTHASHED';
 
-    final public const ARSPARAMS = 'ARSPARAMS';
+    final public const string ARSPARAMS = 'ARSPARAMS';
 
-    final public const AUTHSOURCEERROR = 'AUTHSOURCEERROR';
+    final public const string AUTHSOURCEERROR = 'AUTHSOURCEERROR';
 
-    final public const BADREQUEST = 'BADREQUEST';
+    final public const string BADREQUEST = 'BADREQUEST';
 
-    final public const CASERROR = 'CASERROR';
+    final public const string CASERROR = 'CASERROR';
 
-    final public const CONFIG = 'CONFIG';
+    final public const string CONFIG = 'CONFIG';
 
-    final public const CREATEREQUEST = 'CREATEREQUEST';
+    final public const string CREATEREQUEST = 'CREATEREQUEST';
 
-    final public const DISCOPARAMS = 'DISCOPARAMS';
+    final public const string DISCOPARAMS = 'DISCOPARAMS';
 
-    final public const GENERATEAUTHNRESPONSE = 'GENERATEAUTHNRESPONSE';
+    final public const string GENERATEAUTHNRESPONSE = 'GENERATEAUTHNRESPONSE';
 
-    final public const INVALIDCERT = 'INVALIDCERT';
+    final public const string INVALIDCERT = 'INVALIDCERT';
 
-    final public const LDAPERROR = 'LDAPERROR';
+    final public const string LDAPERROR = 'LDAPERROR';
 
-    final public const LOGOUTINFOLOST = 'LOGOUTINFOLOST';
+    final public const string LOGOUTINFOLOST = 'LOGOUTINFOLOST';
 
-    final public const LOGOUTREQUEST = 'LOGOUTREQUEST';
+    final public const string LOGOUTREQUEST = 'LOGOUTREQUEST';
 
-    final public const MEMCACHEDOWN = 'MEMCACHEDOWN';
+    final public const string MEMCACHEDOWN = 'MEMCACHEDOWN';
 
-    final public const METADATA = 'METADATA';
+    final public const string METADATA = 'METADATA';
 
-    final public const METADATANOTFOUND = 'METADATANOTFOUND';
+    final public const string METADATANOTFOUND = 'METADATANOTFOUND';
 
-    final public const METHODNOTALLOWED = 'METHODNOTALLOWED';
+    final public const string METHODNOTALLOWED = 'METHODNOTALLOWED';
 
-    final public const NOACCESS = 'NOACCESS';
+    final public const string NOACCESS = 'NOACCESS';
 
-    final public const NOCERT = 'NOCERT';
+    final public const string NOCERT = 'NOCERT';
 
-    final public const NORELAYSTATE = 'NORELAYSTATE';
+    final public const string NORELAYSTATE = 'NORELAYSTATE';
 
-    final public const NOSTATE = 'NOSTATE';
+    final public const string NOSTATE = 'NOSTATE';
 
-    final public const NOTFOUND = 'NOTFOUND';
+    final public const string NOTFOUND = 'NOTFOUND';
 
-    final public const NOTFOUNDREASON = 'NOTFOUNDREASON';
+    final public const string NOTFOUNDREASON = 'NOTFOUNDREASON';
 
-    final public const NOTSET = 'NOTSET';
+    final public const string NOTSET = 'NOTSET';
 
-    final public const NOTVALIDCERT = 'NOTVALIDCERT';
+    final public const string NOTVALIDCERT = 'NOTVALIDCERT';
 
-    final public const NOTVALIDCERTSIGNATURE = 'NOTVALIDCERTSIGNATURE';
+    final public const string NOTVALIDCERTSIGNATURE = 'NOTVALIDCERTSIGNATURE';
 
-    final public const PROCESSASSERTION = 'PROCESSASSERTION';
+    final public const string PROCESSASSERTION = 'PROCESSASSERTION';
 
-    final public const PROCESSAUTHNREQUEST = 'PROCESSAUTHNREQUEST';
+    final public const string PROCESSAUTHNREQUEST = 'PROCESSAUTHNREQUEST';
 
-    final public const RESPONSESTATUSNOSUCCESS = 'RESPONSESTATUSNOSUCCESS';
+    final public const string RESPONSESTATUSNOSUCCESS = 'RESPONSESTATUSNOSUCCESS';
 
-    final public const SLOSERVICEPARAMS = 'SLOSERVICEPARAMS';
+    final public const string SLOSERVICEPARAMS = 'SLOSERVICEPARAMS';
 
-    final public const SSOPARAMS = 'SSOPARAMS';
+    final public const string SSOPARAMS = 'SSOPARAMS';
 
-    final public const UNHANDLEDEXCEPTION = 'UNHANDLEDEXCEPTION';
+    final public const string UNHANDLEDEXCEPTION = 'UNHANDLEDEXCEPTION';
 
-    final public const UNKNOWNCERT = 'UNKNOWNCERT';
+    final public const string UNKNOWNCERT = 'UNKNOWNCERT';
 
-    final public const USERABORTED = 'USERABORTED';
+    final public const string USERABORTED = 'USERABORTED';
 
-    final public const WRONGUSERPASS = 'WRONGUSERPASS';
+    final public const string WRONGUSERPASS = 'WRONGUSERPASS';
 
-    final public const KEY_TITLE = 'title';
+    final public const string KEY_TITLE = 'title';
 
-    final public const KEY_DESCRIPTION = 'descr';
+    final public const string KEY_DESCRIPTION = 'descr';
 
 
     /**
