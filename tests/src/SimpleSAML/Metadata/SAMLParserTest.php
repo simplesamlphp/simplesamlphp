@@ -7,9 +7,9 @@ namespace SimpleSAML\Test\Metadata;
 use DOMDocument;
 use PHPUnit\Framework\Attributes\CoversClass;
 use SAML2\Constants;
-use SAML2\DOMDocumentFactory;
 use SimpleSAML\Metadata\SAMLParser;
 use SimpleSAML\Test\SigningTestCase;
+use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\Signer;
 
 /**

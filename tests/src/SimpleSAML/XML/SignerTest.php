@@ -9,9 +9,9 @@ use DOMElement;
 use Exception;
 use PHPUnit\Framework\Attributes\CoversClass;
 use ReflectionClass;
-use SAML2\DOMDocumentFactory;
 use SimpleSAML\Configuration;
 use SimpleSAML\Test\SigningTestCase;
+use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\Signer;
 
 /**

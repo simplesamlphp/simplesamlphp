@@ -11,7 +11,6 @@ use SAML2\Assertion;
 use SAML2\AuthnRequest;
 use SAML2\Binding;
 use SAML2\Constants;
-use SAML2\DOMDocumentFactory;
 use SAML2\EncryptedAssertion;
 use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SAML2\HTTPRedirect;
@@ -37,6 +36,7 @@ use SimpleSAML\Module;
 use SimpleSAML\Module\saml\Message;
 use SimpleSAML\Stats;
 use SimpleSAML\Utils;
+use SimpleSAML\XML\DOMDocumentFactory;
 
 /**
  * IdP implementation for SAML 2.0 protocol.

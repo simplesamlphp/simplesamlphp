@@ -9,12 +9,10 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use SAML2\AuthnRequest;
 use SAML2\Constants;
-use SAML2\DOMDocumentFactory;
 use SAML2\Exception\Protocol\NoAvailableIDPException;
 use SAML2\Exception\Protocol\NoSupportedIDPException;
 use SAML2\LogoutRequest;
 use SAML2\Utils;
-use SAML2\XML\Chunk;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
@@ -24,6 +22,8 @@ use SimpleSAML\Test\Metadata\MetaDataStorageSourceTest;
 use SimpleSAML\Test\Utils\ExitTestException;
 use SimpleSAML\Test\Utils\SpTester;
 use SimpleSAML\TestUtils\ClearStateTestCase;
+use SimpleSAML\XML\Chunk;
+use SimpleSAML\XML\DOMDocumentFactory;
 
 /**
  * Set of test cases for \SimpleSAML\Module\saml\Auth\Source\SP.

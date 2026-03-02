@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\saml\Controller;
 use Exception;
 use SAML2\ArtifactResolve;
 use SAML2\ArtifactResponse;
-use SAML2\DOMDocumentFactory;
 use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SAML2\SOAP;
 use SAML2\XML\saml\Issuer;
@@ -20,6 +19,7 @@ use SimpleSAML\Logger;
 use SimpleSAML\Metadata;
 use SimpleSAML\Module;
 use SimpleSAML\Store\StoreFactory;
+use SimpleSAML\XML\DOMDocumentFactory;
 
 /**
  * Controller class for the Web Browser Single Sign On profile.

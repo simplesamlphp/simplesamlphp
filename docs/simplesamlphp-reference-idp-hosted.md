@@ -403,7 +403,7 @@ See the documentation for those extensions for more details:
 For other metadata extensions, you can use the `saml:Extensions` option:
 
 `saml:Extensions`
-:   An array of `\SAML2\XML\Chunk`s to include in the IdP metadata extensions, at the same level as `EntityAttributes`.
+:   An array of `\SimpleSAML\XML\Chunk`s to include in the IdP metadata extensions, at the same level as `EntityAttributes`.
 
 `Examples`:
 
@@ -438,11 +438,11 @@ $metadata['https://example.org/saml-idp'] = [
 ```php
 <?php
 
-$dom = \SAML2\DOMDocumentFactory::create();
+$dom = \SimpleSAML\XML\DOMDocumentFactory::create();
 $republishRequest = $dom->createElementNS('http://eduid.cz/schema/metadata/1.0', 'eduidmd:RepublishRequest');
 $republishTarget = $dom->createElementNS('http://eduid.cz/schema/metadata/1.0', 'eduidmd:RepublishTarget', 'http://edugain.org/');
 $republishRequest->appendChild($republishTarget);
-$ext = [new \SAML2\XML\Chunk($republishRequest)];
+$ext = [new \SimpleSAML\XML\Chunk($republishRequest)];
 
 $metadata['https://example.org/saml-idp'] = [
     'host' => '__DEFAULT__',

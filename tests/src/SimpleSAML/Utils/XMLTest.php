@@ -11,8 +11,8 @@ use DOMText;
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SAML2\DOMDocumentFactory;
 use SimpleSAML\Utils;
+use SimpleSAML\XML\DOMDocumentFactory;
 
 /**
  * Tests for SimpleSAML\Utils\XML.
