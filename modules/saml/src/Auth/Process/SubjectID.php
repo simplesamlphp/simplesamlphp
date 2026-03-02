@@ -51,28 +51,25 @@ class SubjectID extends Auth\ProcessingFilter
      *
      * @var string
      */
-    public const NAME = 'SubjectID';
+    public const string NAME = 'SubjectID';
 
     /**
      * The regular expression to match the scope
      *
-     * @var string
      */
-    public const SCOPE_PATTERN = '/^[a-z0-9][a-z0-9.-]{0,126}$/Di';
+    public const string SCOPE_PATTERN = '/^[a-z0-9][a-z0-9.-]{0,126}$/Di';
 
     /**
      * The regular expression to match the specifications
      *
-     * @var string
      */
-    public const SPEC_PATTERN = '/^[a-z0-9][a-z0-9=-]{0,126}@[a-z0-9][a-z0-9.-]{0,126}$/Di';
+    public const string SPEC_PATTERN = '/^[a-z0-9][a-z0-9=-]{0,126}@[a-z0-9][a-z0-9.-]{0,126}$/Di';
 
     /**
      * The regular expression to match worrisome identifiers that need to raise a warning
      *
-     * @var string
      */
-    public const WARN_PATTERN = '/^[a-z0-9][a-z0-9=-]{3,}@[a-z0-9][a-z0-9.-]+\.[a-z]{2,}$/Di';
+    public const string WARN_PATTERN = '/^[a-z0-9][a-z0-9=-]{3,}@[a-z0-9][a-z0-9.-]+\.[a-z]{2,}$/Di';
 
 
     /**

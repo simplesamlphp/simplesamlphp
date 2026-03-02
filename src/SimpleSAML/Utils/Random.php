@@ -17,7 +17,7 @@ class Random
     /**
      * The fixed length of random identifiers.
      */
-    public const ID_LENGTH = 43;
+    public const int ID_LENGTH = 43;
 
 
     /**

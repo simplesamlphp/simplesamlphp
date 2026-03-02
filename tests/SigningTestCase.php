@@ -168,17 +168,17 @@ NOWDOC;
     protected Configuration $config;
 
 
-    protected const ROOTDIRNAME = 'testdir';
+    protected const string ROOTDIRNAME = 'testdir';
 
-    protected const DEFAULTCERTDIR = 'certdir';
+    protected const string DEFAULTCERTDIR = 'certdir';
 
-    protected const CA_PRIVATE_KEY = 'ca.key.pem';
+    protected const string CA_PRIVATE_KEY = 'ca.key.pem';
 
-    protected const CA_CERTIFICATE = 'ca.cert.pem';
+    protected const string CA_CERTIFICATE = 'ca.cert.pem';
 
-    protected const GOOD_PRIVATE_KEY = 'good.key.pem';
+    protected const string GOOD_PRIVATE_KEY = 'good.key.pem';
 
-    protected const GOOD_CERTIFICATE = 'good.cert.pem';
+    protected const string GOOD_CERTIFICATE = 'good.cert.pem';
 
 
     /**

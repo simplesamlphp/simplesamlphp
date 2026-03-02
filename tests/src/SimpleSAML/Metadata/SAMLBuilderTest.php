@@ -20,7 +20,7 @@ use function array_keys;
 #[CoversClass(SAMLBuilder::class)]
 class SAMLBuilderTest extends TestCase
 {
-    private const SECURITY = 'vendor/simplesamlphp/xml-security/resources';
+    private const string SECURITY = 'vendor/simplesamlphp/xml-security/resources';
 
 
     /**

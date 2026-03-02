@@ -38,9 +38,9 @@ use function version_compare;
  */
 class Config
 {
-    public const LATEST_VERSION_STATE_KEY = 'core:latest_simplesamlphp_version';
+    public const string LATEST_VERSION_STATE_KEY = 'core:latest_simplesamlphp_version';
 
-    public const RELEASES_API = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases/latest';
+    public const string RELEASES_API = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases/latest';
 
 
     /** @var \SimpleSAML\Utils\Auth */
@@ -166,7 +166,7 @@ class Config
         ];
 
         $eventDispatcher = ModuleEventDispatcherFactory::getInstance();
-        /** @var CronEvent $event */
+        /** @var \SimpleSAML\Module\admin\Controller\CronEvent $event */
         $event = $eventDispatcher->dispatch(new ConfigPageEvent($t));
         $t = $event->getTemplate();
         Module::callHooks('configpage', $t);
@@ -406,9 +406,9 @@ class Config
 
         // Add module specific checks via the sanitycheck hook that a module can provide.
         $eventDispatcher = ModuleEventDispatcherFactory::getInstance();
-        /** @var SanityCheckEvent $event */
+        /** @var \SimpleSAML\Module\admin\Event\SanityCheckEvent $event */
         $event = $eventDispatcher->dispatch(new SanityCheckEvent());
-        
+
         $hookinfo = [ 'info' => [], 'errors' => [] ];
         Module::callHooks('sanitycheck', $hookinfo);
 

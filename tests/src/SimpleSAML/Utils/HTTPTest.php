@@ -640,6 +640,127 @@ class HTTPTest extends ClearStateTestCase
         // phpcs:enable Generic.Files.LineLength
     }
 
+
+    /**
+     * submitPOSTData() should throw Error\Exception for an invalid destination URL.
+     */
+    public function testSubmitPOSTDataThrowsOnInvalidURL(): void
+    {
+        $httpUtils = new Utils\HTTP();
+
+        // Minimal configuration to satisfy internals; won’t be used since we fail early.
+        Configuration::loadFromArray([
+            'baseurlpath' => 'https://example.com/simplesaml/',
+        ], '[ARRAY]', 'simplesaml');
+
+        $this->expectException(Error\Exception::class);
+        $this->expectExceptionMessage('Invalid destination URL: not-a-url');
+
+        $httpUtils->submitPOSTData('not-a-url', ['a' => 'b']);
+    }
+
+
+    /**
+     * When enable.http_post = true, destination is http:// and current request is HTTPS, we must redirect.
+     * We assert a Location header is sent pointing to a postredirect URL.
+     */
+    #[Depends('testXdebugMode')]
+    #[RunInSeparateProcess]
+    public function testSubmitPOSTDataRedirectsFromHttpsToHttp(): void
+    {
+        $httpUtils = new Utils\HTTP();
+
+        // Configure base URL and allow http post.
+        Configuration::loadFromArray([
+            'baseurlpath'      => 'https://idp.example.org/simplesaml/',
+            'enable.http_post' => true,
+            'secretsalt' => 'abc',
+        ], '[ARRAY]', 'simplesaml');
+
+        // Simulate the current request being HTTPS
+        $this->setupEnvFromURL('https://idp.example.org/simplesaml/module.php/core/someaction?x=1');
+
+        // Destination is explicitly http://
+        $destination = 'http://sp.example.com/acs';
+        $post = ['SAMLResponse' => 'abc', 'RelayState' => 'xyz'];
+
+        try {
+            $httpUtils->submitPOSTData($destination, $post);
+        } catch (\Throwable $e) {
+        }
+
+        $headers = function_exists('xdebug_get_headers') ? xdebug_get_headers() : [];
+
+        // Find the Location header
+        $locationHeader = null;
+        foreach ($headers as $h) {
+            if (stripos($h, 'Location: ') === 0) {
+                $locationHeader = substr($h, 10);
+                break;
+            }
+        }
+
+        $this->assertNotNull($locationHeader, 'Expected a Location header to be sent');
+        $this->assertStringStartsWith('http://', $locationHeader, 'Location should be http://');
+        $this->assertStringContainsString('/core/postredirect', $locationHeader);
+        $this->assertTrue(
+            (str_contains($locationHeader, 'RedirInfo=')),
+            'Location should contain RedirInfo parameter',
+        );
+    }
+
+
+    /**
+     * submitPOSTData() should pass slow_post_delay_ms to the template:
+     * - default 30000 when config key missing
+     * - default 30000 when config value < 0
+     * - exact value when config value is 10000
+     */
+    #[DataProvider('slowPostDelayProvider')]
+    #[RunInSeparateProcess]
+    public function testSubmitPOSTDataSlowPostDelay(?int $configured, int $expected): void
+    {
+        $httpUtils = new Utils\HTTP();
+
+        // Base config
+        $config = [
+            'baseurlpath' => 'https://idp.example.org/simplesaml/',
+            'enable.http_post' => false,
+        ];
+        if ($configured !== null) {
+            $config['slow_post_delay_ms'] = $configured;
+        }
+        Configuration::loadFromArray($config, '[ARRAY]', 'simplesaml');
+
+        // Use https destination to bypass the http-redirect branch entirely
+        $destination = 'https://sp.example.com/acs';
+        $post = ['k' => 'v'];
+
+        // Capture output
+        ob_start();
+        try {
+            $httpUtils->submitPOSTData($destination, $post);
+        } catch (\Throwable $e) {
+        }
+        $html = ob_get_clean();
+
+        // The template writes the delay into data-slow-post-delay attribute
+        $needle = 'data-slow-post-delay="' . $expected . '"';
+        $this->assertStringContainsString($needle, $html);
+    }
+
+
+    public static function slowPostDelayProvider(): array
+    {
+        return [
+            // [configured, expected]
+            'missing config => default' => [null, 30000],
+            'negative config => default' => [-5, 30000],
+            'positive config 10000 => 10000' => [10000, 10000],
+        ];
+    }
+
+
     /**
      * Ensure getSelfURL() returns the externally visible URL when SimpleSAMLphp
      * is reached via a rewritten path (e.g. /cas/login -> /simplesaml/module.php/...),

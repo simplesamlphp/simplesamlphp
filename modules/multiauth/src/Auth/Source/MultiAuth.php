@@ -34,22 +34,22 @@ class MultiAuth extends Auth\Source
     /**
      * The key of the AuthId field in the state.
      */
-    public const AUTHID = '\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth.AuthId';
+    public const string AUTHID = '\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth.AuthId';
 
     /**
      * The string used to identify our states.
      */
-    public const STAGEID = '\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth.StageId';
+    public const string STAGEID = '\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth.StageId';
 
     /**
      * The key where the sources is saved in the state.
      */
-    public const SOURCESID = '\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth.SourceId';
+    public const string SOURCESID = '\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth.SourceId';
 
     /**
      * The key where the selected source is saved in the session.
      */
-    public const SESSION_SOURCE = 'multiauth:selectedSource';
+    public const string SESSION_SOURCE = 'multiauth:selectedSource';
 
 
     /**

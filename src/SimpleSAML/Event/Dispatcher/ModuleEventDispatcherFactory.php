@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -10,6 +10,7 @@ class ModuleEventDispatcherFactory
 {
     private static ?EventDispatcher $instance = null;
 
+
     public static function getInstance(): EventDispatcher
     {
         if (self::$instance === null) {
@@ -17,6 +18,14 @@ class ModuleEventDispatcherFactory
             self::$instance = new EventDispatcher($provider);
         }
 
+        return self::$instance;
+    }
+
+
+    public static function testingRemakeInstance(): EventDispatcher
+    {
+        $provider = new ModuleListenerProvider();
+        self::$instance = new EventDispatcher($provider);
         return self::$instance;
     }
 }

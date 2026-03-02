@@ -34,7 +34,12 @@ use function urlencode;
  */
 class Exception
 {
-    public const CODES = ['IDENTIFICATION_FAILURE', 'AUTHENTICATION_FAILURE', 'AUTHORIZATION_FAILURE', 'OTHER_ERROR'];
+    public const array CODES = [
+        'IDENTIFICATION_FAILURE',
+        'AUTHENTICATION_FAILURE',
+        'AUTHORIZATION_FAILURE',
+        'OTHER_ERROR',
+    ];
 
 
     /**

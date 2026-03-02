@@ -12,6 +12,7 @@ class ModuleListenerProvider implements ListenerProviderInterface
     /** @var array<string, list<callable>> */
     private array $listeners = [];
 
+
     public function __construct()
     {
         $configuration = Configuration::getInstance();
@@ -33,7 +34,7 @@ class ModuleListenerProvider implements ListenerProviderInterface
                 continue;
             }
 
-            foreach(glob("{$listenerDir}/*.php") as $file) {
+            foreach (glob("{$listenerDir}/*.php") as $file) {
                 $className = $this->getClassNameFromFile($file, $moduleName);
 
                 if (!$className || !class_exists($className)) {
@@ -44,6 +45,7 @@ class ModuleListenerProvider implements ListenerProviderInterface
             }
         }
     }
+
 
     private function registerListenerClass(string $className): void
     {
@@ -67,6 +69,7 @@ class ModuleListenerProvider implements ListenerProviderInterface
         }
     }
 
+
     public function addListener(string $eventClass, callable $listener, int $priority = 0): void
     {
         if (!isset($this->listeners[$eventClass])) {
@@ -83,6 +86,7 @@ class ModuleListenerProvider implements ListenerProviderInterface
             return $b['priority'] <=> $a['priority'];
         });
     }
+
 
     /**
      * Get the listeners for a specific event type.
@@ -120,6 +124,7 @@ class ModuleListenerProvider implements ListenerProviderInterface
             }
         }
     }
+
 
     private function getClassNameFromFile(string $file, string $moduleName): ?string
     {

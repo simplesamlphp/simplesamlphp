@@ -23,9 +23,9 @@ use function trim;
 #[CoversClass(Utils\Crypto::class)]
 class CryptoTest extends TestCase
 {
-    private const ROOTDIRNAME = 'testdir';
+    private const string ROOTDIRNAME = 'testdir';
 
-    private const DEFAULTCERTDIR = 'certdir';
+    private const string DEFAULTCERTDIR = 'certdir';
 
 
     /** @var \org\bovigo\vfs\vfsStreamDirectory */

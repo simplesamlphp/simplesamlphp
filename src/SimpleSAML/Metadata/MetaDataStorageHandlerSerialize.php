@@ -31,10 +31,8 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
 {
     /**
      * The file extension we use for our metadata files.
-     *
-     * @var string
      */
-    public const EXTENSION = '.serialized';
+    public const string EXTENSION = '.serialized';
 
 
     /**

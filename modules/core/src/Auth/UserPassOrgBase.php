@@ -32,17 +32,17 @@ abstract class UserPassOrgBase extends Auth\Source
     /**
      * The string used to identify our states.
      */
-    public const STAGEID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.state';
+    public const string STAGEID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.state';
 
     /**
      * The key of the AuthId field in the state.
      */
-    public const AUTHID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.AuthId';
+    public const string AUTHID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.AuthId';
 
     /**
      * The key of the OrgId field in the state, identifies which org was selected.
      */
-    public const ORGID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.SelectedOrg';
+    public const string ORGID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.SelectedOrg';
 
 
     /**

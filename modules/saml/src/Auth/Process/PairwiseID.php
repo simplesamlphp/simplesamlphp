@@ -40,7 +40,7 @@ class PairwiseID extends SubjectID
      *
      * @var string
      */
-    public const NAME = 'PairwiseID';
+    public const string NAME = 'PairwiseID';
 
 
     /**

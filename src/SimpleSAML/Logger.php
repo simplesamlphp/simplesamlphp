@@ -42,34 +42,24 @@ class Logger
     /**
      * This constant defines the string we set the track ID to while we are fetching the track ID from the session
      * class. This is used to prevent infinite recursion.
-     *
-     * @var string
      */
-    public const NO_TRACKID = '_NOTRACKIDYET_';
+    public const string NO_TRACKID = '_NOTRACKIDYET_';
 
-    /** @var int */
-    public const EMERG = 0;
+    public const int EMERG = 0;
 
-    /** @var int */
-    public const ALERT = 1;
+    public const int ALERT = 1;
 
-    /** @var int */
-    public const CRIT = 2;
+    public const int CRIT = 2;
 
-    /** @var int */
-    public const ERR = 3;
+    public const int ERR = 3;
 
-    /** @var int */
-    public const WARNING = 4;
+    public const int WARNING = 4;
 
-    /** @var int */
-    public const NOTICE = 5;
+    public const int NOTICE = 5;
 
-    /** @var int */
-    public const INFO = 6;
+    public const int INFO = 6;
 
-    /** @var int */
-    public const DEBUG = 7;
+    public const int DEBUG = 7;
 
 
     /**

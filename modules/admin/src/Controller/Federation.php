@@ -29,7 +29,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\VarExporter\VarExporter;
 
-
 use function array_merge;
 use function array_pop;
 use function array_values;
@@ -194,7 +193,7 @@ class Federation
         ];
 
         $eventDispatcher = ModuleEventDispatcherFactory::getInstance();
-        /** @var FederationPageEvent $event */
+        /** @var \SimpleSAML\Module\admin\Event\FederationPageEvent $event */
         $event = $eventDispatcher->dispatch(new FederationPageEvent($t));
         $t = $event->getTemplate();
 

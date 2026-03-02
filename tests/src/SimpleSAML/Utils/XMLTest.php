@@ -20,7 +20,7 @@ use SimpleSAML\XML\DOMDocumentFactory;
 #[CoversClass(Utils\XML::class)]
 class XMLTest extends TestCase
 {
-    private const FRAMEWORK = 'vendor/simplesamlphp/saml2/tests/resources/xml';
+    private const string FRAMEWORK = 'vendor/simplesamlphp/saml2/tests/resources/xml';
 
 
     /**

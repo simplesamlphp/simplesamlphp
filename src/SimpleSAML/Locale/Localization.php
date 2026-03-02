@@ -30,12 +30,10 @@ class Localization
 {
     /**
      * The default gettext domain.
-     *
-     * @var string
      */
-    public const DEFAULT_DOMAIN = 'messages';
+    public const string DEFAULT_DOMAIN = 'messages';
 
-    public const CORE_DOMAIN = 'core';
+    public const string CORE_DOMAIN = 'core';
 
 
     /**

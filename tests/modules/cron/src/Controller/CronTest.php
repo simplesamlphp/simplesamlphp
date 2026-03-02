@@ -127,7 +127,10 @@ class CronTest extends TestCase
         $this->assertFalse($response->data['mail_required']);
         $this->assertArrayHasKey('time', $response->data);
         $this->assertCount(1, $response->data['summary']);
-        $this->assertEquals('Cron did run tag [daily] at ' . $response->data['time'], $response->data['summary'][0]);
+        $this->assertEquals(
+            'Cron did run tag [daily] at ' . $response->data['time'],
+            $response->data['summary']['cron info'],
+        );
     }
 
 

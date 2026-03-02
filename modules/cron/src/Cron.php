@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\cron;
 
 use Exception;
-use Psr\EventDispatcher\EventDispatcherInterface;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Event\Dispatcher\ModuleEventDispatcherFactory;
@@ -64,12 +63,12 @@ class Cron
         Module::callHooks('cron', $croninfo);
         // NEW: dispatch the cron event
         $eventDispatcher = ModuleEventDispatcherFactory::getInstance();
-        /** @var CronEvent $event */
+        /** @var \SimpleSAML\Module\cron\Event\CronEvent $event */
         $event = $eventDispatcher->dispatch(new CronEvent($tag));
         // merge results from the event into $croninfo. Can be removed when hook infrastructure is removed.
         $croninfo['summary'] = array_merge($croninfo['summary'], array_map(
             fn ($result) => $result['message'],
-            $event->getResults()
+            $event->getResults(),
         ));
         Assert::isArray($croninfo);
 
