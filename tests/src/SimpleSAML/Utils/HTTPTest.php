@@ -757,4 +757,54 @@ class HTTPTest extends ClearStateTestCase
             'positive config 10000 => 10000' => [10000, 10000],
         ];
     }
+
+    /**
+     * Ensure getSelfURL() returns the externally visible URL when SimpleSAMLphp
+     * is reached via a rewritten path (e.g. /cas/login -> /simplesaml/module.php/...),
+     * and the internal script name (module.php) appears only in the query string.
+     *
+     * This simulates an Apache mod_rewrite rule like:
+     *   RewriteRule ^/cas/login(.*) /${SSP_APACHE_ALIAS}module.php/casserver/login.php$1 [PT]
+     *
+     * In this scenario the public URL is /cas/login?... while the actual script is
+     * public/module.php.
+     */
+    public function testGetSelfURLWithRewrittenCasLogin(): void
+    {
+        $originalServer = $_SERVER;
+
+        $httpUtils = new Utils\HTTP();
+
+        $cfg = Configuration::loadFromArray([
+            'baseurlpath' => 'https://tr-monitor-okta2.qa.athena-institute.net/simplesaml/',
+        ], '[ARRAY]', 'simplesaml');
+        $baseDir = $cfg->getBaseDir();
+
+        $_SERVER = [
+            'HTTPS'           => 'on',
+            'HTTP_HOST'       => 'tr-monitor-okta2.qa.athena-institute.net',
+            'SERVER_NAME'     => 'tr-monitor-okta2.qa.athena-institute.net',
+            'SERVER_PORT'     => 443,
+            'SCRIPT_URI'      => 'https://tr-monitor-okta2.qa.athena-institute.net/cas/login',
+            'SCRIPT_NAME'     => '/module.php',
+            'SCRIPT_FILENAME' => $baseDir . 'public' . DIRECTORY_SEPARATOR . 'module.php',
+            'PATH_TRANSLATED' => $baseDir . 'public' . DIRECTORY_SEPARATOR . 'casserver/login.php',
+            'PHP_SELF'        => '/module.php/casserver/login.php',
+            'QUERY_STRING'    => 'service='
+                . 'https%3A%2F%2Fcas-test-bridge.bridge.qa.cirrusidentity.com%2Fmodule.php%2Fcas%2Flinkback.php'
+                . '%3FstateId%3D_somestate',
+            'REQUEST_URI'     => '/cas/login?service='
+                . 'https%3A%2F%2Fcas-test-bridge.bridge.qa.cirrusidentity.com%2Fmodule.php%2Fcas%2Flinkback.php'
+                . '%3FstateId%3D_somestate',
+        ];
+
+        $expected = 'https://tr-monitor-okta2.qa.athena-institute.net'
+            . '/cas/login'
+            . '?service=https%3A%2F%2Fcas-test-bridge.bridge.qa.cirrusidentity.com%2Fmodule.php%2Fcas%2Flinkback.php'
+            . '%3FstateId%3D_somestate';
+
+        $this->assertSame($expected, $httpUtils->getSelfURL());
+
+        $_SERVER = $originalServer;
+    }
 }

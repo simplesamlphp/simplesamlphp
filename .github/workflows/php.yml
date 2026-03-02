@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['8.2', '8.3', '8.4', '8.5']
+        php-version: ['8.3', '8.4', '8.5']
 
     uses: simplesamlphp/simplesamlphp-test-framework/.github/workflows/reusable_phplinter.yml@v1.10.6
     with:
@@ -44,7 +44,7 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: ['8.2', '8.3', '8.4', '8.5']
+        php-versions: ['8.3', '8.4', '8.5']
 
     steps:
       - name: Setup PHP, with composer and extensions
@@ -112,7 +112,7 @@ jobs:
       fail-fast: true
       matrix:
         operating-system: [windows-latest]
-        php-versions: ['8.2', '8.3', '8.4', '8.5']
+        php-versions: ['8.3', '8.4', '8.5']
 
     steps:
       - name: Setup PHP, with composer and extensions
@@ -195,8 +195,11 @@ jobs:
         run: composer validate
 
       - name: Install Composer dependencies
-        run: composer install --no-progress --prefer-dist --optimize-autoloader \
-          --ignore-platform-req=maglnet/composer-require-checker
+        run: |
+          composer install \
+            --no-progress \
+            --prefer-dist --optimize-autoloader \
+            --ignore-platform-req=maglnet/composer-require-checker
 
       - name: PHP Code Sniffer
         run: vendor/bin/phpcs
@@ -239,7 +242,7 @@ jobs:
         # https://github.com/shivammathur/setup-php
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: '8.3'
           extensions: mbstring, soap, xml
           tools: composer:v2
           coverage: none

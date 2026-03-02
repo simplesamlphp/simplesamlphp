@@ -785,12 +785,19 @@ class HTTP
         $cur_path = realpath($_SERVER['SCRIPT_FILENAME']);
         // make sure we got a string from realpath()
         $cur_path = is_string($cur_path) ? $cur_path : '';
+
         // find the path to the current script relative to the public/ directory of SimpleSAMLphp
         $rel_path = str_replace($baseDir . 'public' . DIRECTORY_SEPARATOR, '', $cur_path);
-        // convert that relative path to an HTTP query
+
         $url_path = str_replace(DIRECTORY_SEPARATOR, '/', $rel_path);
-        // find where the relative path starts in the current request URI
-        $uri_pos = (!empty($url_path)) ? strpos($_SERVER['REQUEST_URI'] ?? '', $url_path) : false;
+
+        $requestUri = (string)($_SERVER['REQUEST_URI'] ?? '');
+        $requestPath = (string)parse_url($requestUri, PHP_URL_PATH);
+        $requestQuery = (string)parse_url($requestUri, PHP_URL_QUERY);
+        $requestFragment = (string)parse_url($requestUri, PHP_URL_FRAGMENT);
+
+        // Match script-relative path only against the path part of the request
+        $uri_pos = (!empty($url_path)) ? strpos($requestPath, $url_path) : false;
 
         if ($cur_path == $rel_path || $uri_pos === false) {
             /*
@@ -799,12 +806,13 @@ class HTTP
              * - $_SERVER['SCRIPT_FILENAME'] points to a script that doesn't exist. E.g. functional testing. In this
              *   case, realpath() returns false and str_replace an empty string, so we compare them loosely.
              *
-             * - The URI requested does not belong to a script in the public/ directory of SimpleSAMLphp. In that case,
-             *   removing SimpleSAMLphp's base dir from the current path yields the same path, so $cur_path and
+             * - The script is not located under the public/ directory of SimpleSAMLphp. In that case, removing
+             *   SimpleSAMLphp's base dir and public/ from the current path yields the same path, so $cur_path and
              *   $rel_path are equal.
              *
-             * - The request URI does not match the current script. Even if the current script is located in the
-             *   public/ directory of SimpleSAMLphp, the URI does not contain its relative path, and $uri_pos is false.
+             * - The request path does not match the current script. Even if the current script is located in the
+             *   public/ directory of SimpleSAMLphp, the request path (without query string) does not contain its
+             *   relative path, and $uri_pos is false.
              *
              * It doesn't matter which one of those cases we have. We just know we can't apply our base URL to the
              * current URI, so we need to build it back from the PHP environment, unless we have a base URL specified
@@ -814,20 +822,33 @@ class HTTP
             $appurl = ($appcfg !== null) ? $appcfg->getOptionalString('baseURL', null) : null;
 
             if (!empty($appurl)) {
-                $protocol = parse_url($appurl, PHP_URL_SCHEME);
-                $hostname = parse_url($appurl, PHP_URL_HOST);
-                $port = parse_url($appurl, PHP_URL_PORT);
-                $port = !empty($port) ? ':' . $port : '';
+                $protocol = (string)parse_url($appurl, PHP_URL_SCHEME);
+                $hostname = (string)parse_url($appurl, PHP_URL_HOST);
+                $portNum = parse_url($appurl, PHP_URL_PORT);
+                $port = !empty($portNum) ? ':' . $portNum : '';
             } else {
                 // no base URL specified for app, just use the current URL
                 $protocol = $this->getServerHTTPS() ? 'https' : 'http';
                 $hostname = $this->getServerHost();
                 $port = $this->getServerPort();
             }
+
             return $protocol . '://' . $hostname . $port . $_SERVER['REQUEST_URI'];
         }
 
-        return $this->getBaseURL() . $url_path . substr($_SERVER['REQUEST_URI'], $uri_pos + strlen($url_path));
+        // Normal case: baseURL + script-relative path + remaining path, plus query if present
+        $suffix = substr($requestPath, $uri_pos + strlen($url_path));
+        $url = $this->getBaseURL() . $url_path . $suffix;
+
+        if ($requestQuery !== '') {
+            $url .= '?' . $requestQuery;
+        }
+
+        if ($requestFragment !== '') {
+            $url .= '#' . $requestFragment;
+        }
+
+        return $url;
     }
 
 
