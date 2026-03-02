@@ -24,10 +24,8 @@ use Symfony\Component\HttpFoundation\Response;
 #[CoversClass(Controller\Metadata::class)]
 class MetadataTest extends TestCase
 {
-    /** @var \SimpleSAML\Configuration */
     protected Configuration $config;
 
-    /** @var \SimpleSAML\Utils\Auth */
     protected Utils\Auth $authUtils;
 
     protected MetaDataStorageHandler $mdh;
@@ -41,14 +39,11 @@ class MetadataTest extends TestCase
         parent::setUp();
 
         $this->mdh = new class () extends MetaDataStorageHandler {
-            /** @var string */
-            private const XMLSEC = '../vendor/simplesamlphp/xml-security/resources';
+            private const string XMLSEC = '../vendor/simplesamlphp/xml-security/resources';
 
-            /** @var string */
-            public const CERT_KEY = self::XMLSEC . '/certificates/selfsigned.simplesamlphp.org.key';
+            public const string CERT_KEY = self::XMLSEC . '/certificates/selfsigned.simplesamlphp.org.key';
 
-            /** @var string */
-            public const CERT_PUBLIC = self::XMLSEC . '/certificates/selfsigned.simplesamlphp.org.crt';
+            public const string CERT_PUBLIC = self::XMLSEC . '/certificates/selfsigned.simplesamlphp.org.crt';
 
 
             /** @var array<mixed> */

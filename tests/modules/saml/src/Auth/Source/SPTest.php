@@ -31,20 +31,15 @@ use SimpleSAML\TestUtils\ClearStateTestCase;
 #[CoversClass(SP::class)]
 class SPTest extends ClearStateTestCase
 {
-    /** @var string */
-    private const SECURITY = 'vendor/simplesamlphp/xml-security/resources';
+    private const string SECURITY = 'vendor/simplesamlphp/xml-security/resources';
 
-    /** @var string */
-    public const CERT_KEY = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.key';
+    public const string CERT_KEY = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.key';
 
-    /** @var string */
-    public const CERT_PUBLIC = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.crt';
+    public const string CERT_PUBLIC = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.crt';
 
-    /** @var string */
-    public const CERT_OTHER_KEY = '../' . self::SECURITY . '/certificates/other.simplesamlphp.org.key';
+    public const string CERT_OTHER_KEY = '../' . self::SECURITY . '/certificates/other.simplesamlphp.org.key';
 
-    /** @var string */
-    public const CERT_OTHER_PUBLIC = '../' . self::SECURITY . '/certificates/other.simplesamlphp.org.crt';
+    public const string CERT_OTHER_PUBLIC = '../' . self::SECURITY . '/certificates/other.simplesamlphp.org.crt';
 
 
     /** @var \SimpleSAML\Configuration|null $idpMetadata */

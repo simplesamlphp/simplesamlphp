@@ -15,7 +15,7 @@ use SimpleSAML\XHTML\Template;
 #[CoversClass(Template::class)]
 class TemplateTest extends TestCase
 {
-    private const TEMPLATE = 'sandbox.twig';
+    private const string TEMPLATE = 'sandbox.twig';
 
 
     public function testSetup(): void

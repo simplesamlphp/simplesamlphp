@@ -16,7 +16,7 @@ use SimpleSAML\Module\saml\Auth\Source\SP;
 #[CoversClass(SAMLBuilder::class)]
 class SAMLBuilderTest extends TestCase
 {
-    private const SECURITY = 'vendor/simplesamlphp/xml-security/resources';
+    private const string SECURITY = 'vendor/simplesamlphp/xml-security/resources';
 
 
     /**

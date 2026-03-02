@@ -8,16 +8,13 @@ use Exception;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
-use SimpleSAML\Module;
-use Symfony\Component\Filesystem\Path;
-
 use SimpleSAML\Event\Dispatcher\ModuleEventDispatcherFactory;
+use SimpleSAML\Locale\Translate;
+use SimpleSAML\Module;
 use SimpleSAML\Module\admin\Event\ConfigPageEvent;
 use SimpleSAML\XHTML\Template;
-use SimpleSAML\Locale\Translate;
+use Symfony\Component\Filesystem\Path;
 
-/**
- */
 #[CoversClass(Module::class)]
 class ModuleTest extends TestCase
 {
@@ -130,7 +127,10 @@ class ModuleTest extends TestCase
             [
                 'assets' => [ 'salt' => '1234567890'],
                 'module.enable' => ['saml' => true, 'admin' => true, 'cron' => true,],
-            ], '', 'simplesaml');
+            ],
+            '',
+            'simplesaml',
+        );
         Configuration::setPreLoadedConfig($c);
         $t = new Template($c, 'admin:config.twig');
         $t->data = [
@@ -151,8 +151,8 @@ class ModuleTest extends TestCase
         $t = $event->getTemplate();
         $this->assertEquals(
             \SimpleSAML\Locale\Translate::noop('Cron module information page'),
-            $t->data['links'][2]['text']);
-
+            $t->data['links'][2]['text'],
+        );
     }
 
 

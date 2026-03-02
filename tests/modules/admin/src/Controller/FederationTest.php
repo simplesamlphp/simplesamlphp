@@ -23,20 +23,15 @@ use Symfony\Component\HttpFoundation\Request;
 #[CoversClass(Controller\Federation::class)]
 class FederationTest extends TestCase
 {
-    /** @var string */
-    private const SECURITY = 'vendor/simplesamlphp/xml-security/resources';
+    private const string SECURITY = 'vendor/simplesamlphp/xml-security/resources';
 
-    /** @var string */
-    private const FRAMEWORK = 'vendor/simplesamlphp/simplesamlphp-test-framework';
+    private const string FRAMEWORK = 'vendor/simplesamlphp/simplesamlphp-test-framework';
 
-    /** @var string */
-    private const LIBRARY = 'vendor/simplesamlphp/saml2/tests/resources';
+    private const string LIBRARY = 'vendor/simplesamlphp/saml2/tests/resources';
 
-    /** @var string */
-    public const CERT_KEY = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.key';
+    public const string CERT_KEY = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.key';
 
-    /** @var string */
-    public const CERT_PUBLIC = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.crt';
+    public const string CERT_PUBLIC = '../' . self::SECURITY . '/certificates/selfsigned.simplesamlphp.org.crt';
 
 
     /** @var \SimpleSAML\Configuration */

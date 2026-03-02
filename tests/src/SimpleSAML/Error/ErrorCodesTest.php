@@ -132,7 +132,7 @@ class ErrorCodesTest extends TestCase
     {
         $customErrorCodes = new class extends ErrorCodes
         {
-            public const CUSTOMCODE = 'CUSTOMCODE';
+            public const string CUSTOMCODE = 'CUSTOMCODE';
 
 
             public static string $customTitle = 'customTitle';
@@ -199,7 +199,7 @@ class ErrorCodesTest extends TestCase
     {
         $customErrorCodes = new class extends ErrorCodes
         {
-            public const CUSTOMCODE = 'CUSTOMCODE';
+            public const string CUSTOMCODE = 'CUSTOMCODE';
 
 
             public static string $customTitle = 'customTitle';
