@@ -339,13 +339,12 @@ class ServiceProviderTest extends TestCase
         if ($expectingException) {
             $this->expectException(\SimpleSAML\Error\Exception::class);
             $this->expectExceptionMessage('URL not allowed: https://evil.com');
-            /** @psalm-suppress UndefinedMethod method defined in anonymous class */
+            /** @phpstan-ignore method.notFound */
             $this->serviceProvider->callHandleLogin($request, $as, $spSource, $this->httpUtils);
         } else {
             $as->expects($this->once())->method('requireAuth')->with($options);
-            /** @psalm-suppress UndefinedMethod method defined in anonymous class */
-            $returnsTo = $this->serviceProvider
-                              ->callHandleLogin($request, $as, $spSource, $this->httpUtils);
+            /** @phpstan-ignore method.notFound */
+            $returnsTo = $this->serviceProvider->callHandleLogin($request, $as, $spSource, $this->httpUtils);
             $this->assertEquals($options['ReturnTo'], $returnsTo);
         }
     }
@@ -461,7 +460,7 @@ class ServiceProviderTest extends TestCase
         if ($expectingException) {
             $this->expectException(\SimpleSAML\Error\Exception::class);
             $this->expectExceptionMessage('URL not allowed: https://evil.com');
-            /** @psalm-suppress UndefinedMethod method defined in anonymous class */
+            /** @phpstan-ignore method.notFound */
             $this->serviceProvider->callHandleLogin($request, $as, $spSource, $this->httpUtils);
         } else {
             if ($expectLoginCalled) {
@@ -469,9 +468,8 @@ class ServiceProviderTest extends TestCase
             } else {
                 $as->expects($this->never())->method('login');
             }
-            /** @psalm-suppress UndefinedMethod method defined in anonymous class */
-            $returnsTo = $this->serviceProvider
-                              ->callHandleLogin($request, $as, $spSource, $this->httpUtils);
+            /** @phpstan-ignore method.notFound */
+            $returnsTo = $this->serviceProvider->callHandleLogin($request, $as, $spSource, $this->httpUtils);
             $this->assertEquals($options['ReturnTo'], $returnsTo);
         }
     }
@@ -790,7 +788,7 @@ XML;
 
         if ($protected && !$authenticated) {
             $this->assertInstanceOf(RunnableResponse::class, $result);
-            /** @psalm-var array $callable */
+            /** @var callable $callable */
             $callable = $result->getCallable();
             $this->assertEquals("requireAdmin", $callable[1]);
         } else {

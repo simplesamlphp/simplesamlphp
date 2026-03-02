@@ -23,7 +23,7 @@ use SimpleSAML\Database;
  * @package SimpleSAMLphp
  */
 #[CoversClass(Database::class)]
-class DatabaseTest extends TestCase
+final class DatabaseTest extends TestCase
 {
     /**
      * @var \SimpleSAML\Configuration

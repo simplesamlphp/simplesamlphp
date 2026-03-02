@@ -132,6 +132,7 @@ class DiscoControllerTest extends TestCase
             public function authenticate(array &$state): never
             {
                 // stub
+                exit();
             }
 
 
@@ -188,6 +189,7 @@ class DiscoControllerTest extends TestCase
             public function authenticate(array &$state): never
             {
                 // stub
+                exit();
             }
 
 
@@ -246,6 +248,7 @@ class DiscoControllerTest extends TestCase
             public function authenticate(array &$state): never
             {
                 // stub
+                exit();
             }
 
 
@@ -304,6 +307,7 @@ class DiscoControllerTest extends TestCase
             public function authenticate(array &$state): never
             {
                 // stub
+                exit();
             }
 
 
@@ -360,6 +364,7 @@ class DiscoControllerTest extends TestCase
             public function authenticate(array &$state): never
             {
                 // stub
+                exit();
             }
 
 

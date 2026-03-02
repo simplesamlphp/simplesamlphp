@@ -36,7 +36,7 @@ XML;
      */
     protected function setUp(): void
     {
-        $this->xml = new Parser(static::XMLDOC);
+        $this->xml = new Parser(self::XMLDOC);
     }
 
 

@@ -34,12 +34,7 @@ class TemplateTranslationTest extends TestCase
             'test 2' => [1, 2],
         ];
 
-        $getContent = function (): string {
-            /** @var \SimpleSAML\XHTML\Template $this */
-            return $this->getContents();
-        };
-        $html = $getContent->call($t);
-
+        $html = $t->getContents();
         $this->assertStringContainsString('got 0 values, want 1', $html);
         $this->assertStringContainsString('got 1 values, want 2', $html);
     }
@@ -59,12 +54,7 @@ class TemplateTranslationTest extends TestCase
         $t->data['AuthState'] = '_abc123';
         $t->data['formURL'] = Module::getModuleURL('core/loginuserpass');
 
-        $getContent = function (): string {
-            /** @var \SimpleSAML\XHTML\Template $this */
-            return $this->getContents();
-        };
-        $html = $getContent->call($t);
-
+        $html = $t->getContents();
         $this->assertStringContainsString('value="h.c oersted"', $html);
     }
 
@@ -94,12 +84,7 @@ class TemplateTranslationTest extends TestCase
             ],
         ];
 
-        $getContent = function (): string {
-            /** @var \SimpleSAML\XHTML\Template $this */
-            return $this->getContents();
-        };
-        $html = $getContent->call($t);
-
+        $html = $t->getContents();
         $this->assertStringContainsString('You are now successfully logged out from ze testing service.', $html);
         $this->assertStringContainsString('ze missing service', $html);
     }
@@ -116,12 +101,7 @@ class TemplateTranslationTest extends TestCase
         $t->data['trackid'] = '';
         $t->data['authData'] = false;
 
-        $getContent = function (): string {
-            /** @var \SimpleSAML\XHTML\Template $this */
-            return $this->getContents();
-        };
-        $html = $getContent->call($t);
-
+        $html = $t->getContents();
         $this->assertStringContainsString(
             'Your session is valid for ' . $t->data['remaining'] . ' seconds from now.',
             $html,

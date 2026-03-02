@@ -345,11 +345,9 @@ class SAMLBuilderTest extends TestCase
         $samlBuilder->addMetadata($set, $metadata);
 
         $spDesc = $samlBuilder->getEntityDescriptor();
-        /** @psalm-var \DOMNodeList $acs */
         $contacts = $spDesc->getElementsByTagName("ContactPerson");
         $this->assertEquals(2, $contacts->length);
 
-        /** @psalm-var \DOMElement $first */
         $first = $contacts->item(0);
         $this->assertTrue($first->hasAttribute("contactType"));
         $this->assertEquals("other", $first->getAttribute("contactType"));

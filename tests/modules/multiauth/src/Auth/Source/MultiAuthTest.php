@@ -26,6 +26,8 @@ class MultiAuthTest extends ClearStateTestCase
      */
     public function setUp(): void
     {
+        parent::setUp();
+
         $this->config = Configuration::loadFromArray(
             ['module.enable' => ['multiauth' => true]],
             '[ARRAY]',

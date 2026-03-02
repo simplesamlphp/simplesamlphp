@@ -125,16 +125,13 @@ class SPTest extends ClearStateTestCase
         $config = ['entityID' => 'urn:x-simplesamlphp:example-sp'];
         $as = new SpTester($info, $config);
 
-        /** @var \SAML2\AuthnRequest $ar */
-        $ar = null;
         try {
             $as->startSSO2Test($this->getIdpMetadata(), $state);
-            $this->assertTrue(false, 'Expected ExitTestException');
+            $this->fail('Expected ExitTestException');
         } catch (ExitTestException $e) {
             $r = $e->getTestResult();
-            $ar = $r['ar'];
+            return $r['ar'];
         }
-        return $ar;
     }
 
 
@@ -152,16 +149,13 @@ class SPTest extends ClearStateTestCase
         $config = ['entityID' => 'urn:x-simplesamlphp:example-sp'];
         $as = new SpTester($info, $config);
 
-        /** @var \SAML2\LogoutRequest $lr */
-        $lr = null;
         try {
             $as->startSLO2($state);
-            $this->assertTrue(false, 'Expected ExitTestException');
+            $this->fail('Expected ExitTestException');
         } catch (ExitTestException $e) {
             $r = $e->getTestResult();
-            $lr = $r['lr'];
+            return $r['lr'];
         }
-        return $lr;
     }
 
 
@@ -514,10 +508,9 @@ class SPTest extends ClearStateTestCase
         ];
         $as = new SpTester($info, $config);
 
-        /** @var \SAML2\AuthnRequest $ar */
         try {
             $as->startSSO2Test($this->getIdpMetadata(), []);
-            $this->assertTrue(false, 'Expected ExitTestException');
+            $this->fail('Expected ExitTestException');
         } catch (ExitTestException $e) {
             ['ar' => $ar] = $e->getTestResult();
             $this->assertContains(
@@ -557,10 +550,9 @@ class SPTest extends ClearStateTestCase
 
         $as = new SpTester($info, $config);
 
-        /** @var \SAML2\AuthnRequest $ar */
         try {
             $as->startSSO2Test($this->getIdpMetadata(), $state);
-            $this->assertTrue(false, 'Expected ExitTestException');
+            $this->fail('Expected ExitTestException');
         } catch (ExitTestException $e) {
             ['ar' => $ar] = $e->getTestResult();
 
@@ -1540,7 +1532,7 @@ class SPTest extends ClearStateTestCase
 
         $lr = $this->createLogoutRequest($state);
 
-        /** @var \SAML2\XML\samlp\Extensions $extensions */
+        /** @var \SimpleSAML\XML\Chunk[] $extensions */
         $extensions = $lr->getExtensions();
         $this->assertcount(1, $state['saml:logout:Extensions']);
 

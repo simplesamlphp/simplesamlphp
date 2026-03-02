@@ -36,7 +36,10 @@ class SessionHandlerPHPTest extends ClearStateTestCase
      */
     protected function setUp(): void
     {
+        parent::setUp();
+
         $this->original = $_SERVER;
+
         $_SERVER['HTTP_HOST'] = 'example.com';
         $_SERVER['SERVER_NAME'] = 'example.com';
         $_SERVER['HTTPS'] = 'on';

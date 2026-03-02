@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\admin\Controller;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\admin\Controller;
@@ -26,8 +27,8 @@ class ConfigTest extends TestCase
     /** @var \SimpleSAML\Utils\Auth */
     protected Utils\Auth $authUtils;
 
-    /** @var \SimpleSAML\Session */
-    protected Session $session;
+    /** @var \SimpleSAML\Session&\PHPUnit\Framework\MockObject\MockObject */
+    protected Session&MockObject $session;
 
 
     /**
@@ -69,7 +70,6 @@ class ConfigTest extends TestCase
         $session = $this->createMock(Session::class);
         $session->method('getData')->willReturn(['tag_name' => 'v1.18.7', 'html_url' => 'https://example.org']);
 
-        /** @var \SimpleSAML\Session $session */
         $this->session = $session;
     }
 

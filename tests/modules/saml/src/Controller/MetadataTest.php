@@ -168,7 +168,7 @@ class MetadataTest extends TestCase
 
         if ($protected && !$authenticated) {
             $this->assertInstanceOf(RunnableResponse::class, $result);
-            /** @psalm-var array $callable */
+            /** @var callable $callable */
             $callable = $result->getCallable();
             $this->assertEquals("requireAdmin", $callable[1]);
         } else {
