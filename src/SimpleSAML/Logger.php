@@ -479,7 +479,6 @@ class Logger
         self::$format = $config->getOptionalString('logging.format', self::$format);
 
         try {
-            /** @var \SimpleSAML\Logger\LoggingHandlerInterface */
             self::$loggingHandler = new $handler($config);
             self::$loggingHandler->setLogFormat(self::$format);
             self::$initializing = false;

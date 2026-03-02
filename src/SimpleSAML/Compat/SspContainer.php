@@ -94,7 +94,7 @@ class SspContainer extends AbstractContainer
     /**
      * {@inheritdoc}
      * @param string $filename
-     * @param string $date
+     * @param string $data
      * @param int|null $mode
      */
     public function writeFile(string $filename, string $data, ?int $mode = null): void

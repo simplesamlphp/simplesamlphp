@@ -1068,7 +1068,7 @@ class Configuration implements Utils\ClearableState
     {
         $ret = $this->getOptionalArrayize($name, $default);
 
-        Assert::nullOrAllString(
+        Assert::allNullOrString(
             $ret,
             sprintf(
                 '%s: The option %s must be null, a string or an array of strings.',
@@ -1342,7 +1342,6 @@ class Configuration implements Utils\ClearableState
      * The default language returned is always 'en'.
      *
      * @param string $name The name of the option.
-     * @param array  $default The default value.
      *
      * @return array Associative array with language => string pairs.
      *

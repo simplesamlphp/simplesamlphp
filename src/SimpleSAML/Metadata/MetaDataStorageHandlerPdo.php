@@ -58,6 +58,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      * - 'password':                Password for the database user.
      *
      * @param array $config An associative array with the configuration for this handler.
+     * @phpstan-ignore constructor.unusedParameter
      */
     public function __construct(/** @scrutinizer ignore-unused */ array $config)
     {

@@ -60,6 +60,7 @@ class ModuleListenerProvider implements ListenerProviderInterface
 
             $params = $method->getParameters();
             if (count($params) > 0) {
+                /** @var \ReflectionNamedType $eventType */
                 $eventType = $params[0]->getType();
                 if ($eventType && !$eventType->isBuiltin()) {
                     $eventClass = $eventType->getName();

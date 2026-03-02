@@ -50,6 +50,7 @@ abstract class ProcessingFilter
      *
      * @param array &$config  Configuration for this filter.
      * @param mixed $reserved  For future use.
+     * @phpstan-ignore constructor.unusedParameter
      */
     public function __construct(array &$config, /** @scrutinizer ignore-unused */ $reserved)
     {

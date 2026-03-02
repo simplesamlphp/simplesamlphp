@@ -83,11 +83,6 @@ class Translate
      * which will pass the following arguments.
      * The $id will match $original above but there are other arguments which may also be used in this method.
      *
-     * @param string $id
-     * @param array $parameters
-     * @param string|null $domain
-     * @param string|null $locale
-     *
      * @return string The translated string.
      */
     public static function translateSingularGettext(?string $original): string

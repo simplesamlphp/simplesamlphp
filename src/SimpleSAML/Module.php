@@ -486,7 +486,7 @@ class Module
     /**
      * Create an object of a class returned by resolveNonModuleClass() or resolveClass().
      *
-     * @param string The classname.
+     * @param string $className The classname.
      * @param string|null $subclass The class should be a subclass of this class. Optional.
      *
      * @return object The new object

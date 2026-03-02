@@ -20,7 +20,6 @@ class ErrorHandler
     * @param string $errstr
     * @param string|null $errfile
     * @param int $errline
-    * @param string|null $errcontext
     * @return false
     */
     public function customErrorHandler(

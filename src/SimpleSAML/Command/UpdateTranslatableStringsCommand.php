@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Command;
 
+use ArrayIterator;
 use Gettext\Generator\PoGenerator;
 use Gettext\Loader\PoLoader;
 use Gettext\Merge;
@@ -82,10 +83,10 @@ class UpdateTranslatableStringsCommand extends Command
      * This can be useful as the entries are cloned in the iterator order.
      *
      * @param \Gettext\Translations $ret
-     * @param iterable $iterator
-     * @return $ret
+     * @param \ArrayIterator $iterator
+     * @return \Gettext\Translations $ret
      */
-    protected function cloneIteratorToTranslations(Translations $ret, iterable $iterator): Translations
+    protected function cloneIteratorToTranslations(Translations $ret, ArrayIterator $iterator): Translations
     {
         while ($iterator->valid()) {
             $ret->addOrMerge(
@@ -219,6 +220,7 @@ class UpdateTranslatableStringsCommand extends Command
                         //
                         // Sort the translations in a predictable way
                         //
+                        /** @var \ArrayIterator $iter */
                         $iter = $merged->getIterator();
                         $iter->ksort();
                         $merged = $this->cloneIteratorToTranslations(

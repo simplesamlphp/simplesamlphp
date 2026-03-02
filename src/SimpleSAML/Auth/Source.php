@@ -39,6 +39,7 @@ abstract class Source
      *
      * @param array $info Information about this authentication source.
      * @param array &$config Configuration for this authentication source.
+     * @phpstan-ignore constructor.unusedParameter
      */
     public function __construct(array $info, array &$config)
     {

@@ -8,8 +8,6 @@ use DOMDocument;
 use DOMElement;
 use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
-use SAML2\Constants;
-use SAML2\DOMDocumentFactory;
 use SAML2\SignedElementHelper;
 use SAML2\XML\ds\X509Certificate;
 use SAML2\XML\ds\X509Data;
@@ -36,7 +34,9 @@ use SAML2\XML\saml\Attribute;
 use SAML2\XML\shibmd\Scope;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Logger;
+use SimpleSAML\SAML2\Constants;
 use SimpleSAML\Utils;
+use SimpleSAML\XML\DOMDocumentFactory;
 use Symfony\Component\Filesystem\Filesystem;
 
 use function array_diff;
@@ -312,8 +312,8 @@ class SAMLParser
             throw new Exception('Cannot open file; file name not specified.');
         }
 
-        /** @var string $data */
         $httpUtils = new Utils\HTTP();
+        /** @var string $data */
         $data = $httpUtils->fetch($file, $context);
 
         try {
@@ -333,7 +333,7 @@ class SAMLParser
      *
      * @param string $string The string with XML data.
      *
-     * @return \SimpleSAML\Metadata]SAMLParser[] An associative array of SAMLParser instances.
+     * @return \SimpleSAML\Metadata\SAMLParser[] An associative array of SAMLParser instances.
      *   The key of the array will be the entity id.
      * @throws \Exception If the string does not parse as XML.
      */

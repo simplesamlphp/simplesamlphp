@@ -17,12 +17,13 @@ use DOMException;
 use DOMNode;
 use DOMText;
 use Exception;
-use SAML2\Constants as C;
-use SAML2\DOMDocumentFactory;
+use InvalidArgumentException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
+use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\Errors;
 
 class XML
@@ -44,7 +45,7 @@ class XML
     {
         $allowed_types = ['saml20', 'saml-meta'];
         if (!in_array($type, $allowed_types, true)) {
-            throw new \InvalidArgumentException('Invalid input parameters.');
+            throw new InvalidArgumentException('Invalid input parameters.');
         }
 
         // a SAML message should not contain a doctype-declaration
@@ -271,7 +272,7 @@ class XML
         if ($nsURI[0] === '@') {
             // the defined shortcuts
             $shortcuts = [
-                '@ds'      => 'http://www.w3.org/2000/09/xmldsig#',
+                '@ds'      => C::NS_XDSIG,
                 '@md'      => C::NS_MD,
                 '@saml2'   => C::NS_SAML,
                 '@saml2p'  => C::NS_SAMLP,
@@ -279,7 +280,7 @@ class XML
 
             // check if it is a valid shortcut
             if (!array_key_exists($nsURI, $shortcuts)) {
-                throw new \InvalidArgumentException('Unknown namespace shortcut: ' . $nsURI);
+                throw new InvalidArgumentException('Unknown namespace shortcut: ' . $nsURI);
             }
 
             // expand the shortcut
@@ -351,7 +352,7 @@ class XML
                 },
             );
 
-            /** @psalm-suppress PossiblyUndefinedVariable */
+            /** @phpstan-ignore variable.undefined */
             $res = $dom->schemaValidate($schemaFile);
             if ($res) {
                 Errors::end();

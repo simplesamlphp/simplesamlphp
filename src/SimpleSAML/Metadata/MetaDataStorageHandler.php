@@ -27,7 +27,7 @@ class MetaDataStorageHandler implements ClearableState
      *
      * @var \SimpleSAML\Metadata\MetaDataStorageHandler|null
      */
-    private static ?MetadataStorageHandler $metadataHandler = null;
+    private static ?MetaDataStorageHandler $metadataHandler = null;
 
     /**
      * This is a list of all the metadata sources we have in our metadata

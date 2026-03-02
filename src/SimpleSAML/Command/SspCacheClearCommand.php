@@ -7,6 +7,7 @@ namespace SimpleSAML\Command;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\CriticalConfigurationError;
 use SimpleSAML\Kernel;
+use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\RuntimeException;
@@ -20,6 +21,8 @@ use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpKernel\CacheClearer\CacheClearerInterface;
+use Symfony\Component\HttpKernel\Kernel as BaseKernel;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\HttpKernel\RebootableInterface;
 
 #[AsCommand(
@@ -34,6 +37,9 @@ class SspCacheClearCommand extends Command
     /** @var array */
     private array $enabledModules;
 
+    /** @var \Symfony\Component\HttpKernel\KernelInterface */
+    private KernelInterface $temporaryKernel;
+
 
     /**
      * @param \Symfony\Component\HttpKernel\CacheClearer\CacheClearerInterface $cacheClearer
@@ -45,6 +51,24 @@ class SspCacheClearCommand extends Command
     ) {
         parent::__construct();
         $this->filesystem = $filesystem ?? new Filesystem();
+
+        $this->temporaryKernel = new class ('test', true) extends BaseKernel {
+            public function registerBundles(): iterable
+            {
+                return [];
+            }
+
+
+            public function registerContainerConfiguration(LoaderInterface $loader): void
+            {
+            }
+
+
+            public function getContainerClass(): string
+            {
+                return parent::getContainerClass();
+            }
+        };
     }
 
 
@@ -71,7 +95,7 @@ EOF,);
 
     /**
      * @param \Symfony\Component\Console\Input\InputInterface $input
-     * @param \Symfony\Component\Console\Input\OutputInterface $output
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
      * @throws \Symfony\Component\Console\Exception\ExceptionInterface
      */
@@ -292,7 +316,7 @@ EOF,);
     private function warmup(string $warmupDir, string $realBuildDir): void
     {
         // create a temporary kernel
-        $kernel = $this->getApplication()->getKernel();
+        $kernel = $this->temporaryKernel;
         if (!$kernel instanceof RebootableInterface) {
             $throwMessage = 'Calling "cache:clear" with a kernel that does not implement '
             . '"Symfony\Component\HttpKernel\RebootableInterface" is not supported.';
@@ -309,7 +333,7 @@ EOF,);
      */
     private function warmupOptionals(string $cacheDir, string $warmupDir, SymfonyStyle $io): void
     {
-        $kernel = $this->getApplication()->getKernel();
+        $kernel = $this->temporaryKernel;
         $warmer = $kernel->getContainer()->get('cache_warmer');
         // non optional warmers already ran during container compilation
         $warmer->enableOnlyOptionalWarmers();

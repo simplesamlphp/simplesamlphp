@@ -513,7 +513,7 @@ class HTTP
             if (PHP_VERSION_ID > 80500) {
                 $http_response_headers = http_get_last_response_headers();
             } else {
-                $http_response_headers = $http_response_header ?? [];
+                $http_response_headers = $http_response_header;
             }
             if (!empty($http_response_headers)) {
                 $headers = [];
@@ -743,7 +743,7 @@ class HTTP
     {
         $url = $this->getBaseURL();
 
-        /** @var int $colon getBaseURL() will always return a valid URL */
+        /** @var int<0, max>|false $colon getBaseURL() will always return a valid URL */
         $colon = strpos($url, '://');
         $start = $colon + 3;
         $length = strcspn($url, '/', $start);
@@ -862,7 +862,7 @@ class HTTP
     {
         $url = $this->getSelfURL();
 
-        /** @var int $colon getBaseURL() will always return a valid URL */
+        /** @var int<0, max>|false $colon getBaseURL() will always return a valid URL */
         $colon = strpos($url, '://');
         $start = $colon + 3;
         $length = strcspn($url, '/', $start) + $start;

@@ -17,6 +17,7 @@ abstract class Output
      * Initialize the output.
      *
      * @param \SimpleSAML\Configuration $config The configuration for this output.
+     * @phpstan-ignore constructor.unusedParameter
      */
     public function __construct(/** @scrutinizer ignore-unused */ Configuration $config)
     {

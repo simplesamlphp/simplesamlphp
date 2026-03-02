@@ -7,10 +7,10 @@ namespace SimpleSAML\Metadata;
 use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
-use SAML2\DOMDocumentFactory;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Utils;
+use SimpleSAML\XML\DOMDocumentFactory;
 
 use function array_key_exists;
 use function hash;

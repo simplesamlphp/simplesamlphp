@@ -326,7 +326,6 @@ class ProcessingChain
 
     /**
      * @param array $state
-     * @psalm-param array{"\\\SimpleSAML\\\Auth\\\ProcessingChain.filters": array} $state
      * @param \SimpleSAML\Auth\ProcessingFilter[] $authProcs
      */
     public static function insertFilters(array &$state, array $authProcs): void
@@ -347,7 +346,6 @@ class ProcessingChain
 
     /**
      * @param array $state
-     * @psalm-param array{"\\\SimpleSAML\\\Auth\\\ProcessingChain.filters": array} $state
      * @param array $authProcConfigs
      * @return \SimpleSAML\Auth\ProcessingFilter[]
      */

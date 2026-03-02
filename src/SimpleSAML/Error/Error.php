@@ -122,7 +122,7 @@ class Error extends Exception
      * This has to be public to allow Login to get an object
      * containing custom error codes if they in use.
      *
-     * @return \SimpleSAML\Erorr\ErrorCodes
+     * @return \SimpleSAML\Error\ErrorCodes
      */
     public function getErrorCodes(): ErrorCodes
     {
