@@ -463,6 +463,7 @@ $config = [
 
     /*
      * @DEPRECATED: set your proxy using environment variables.
+     * @see: https://symfony.com/doc/current/http_client.html#http-proxies
      *
      * Proxy to use for retrieving URLs.
      *
