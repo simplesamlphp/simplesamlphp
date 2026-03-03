@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
+use Exception;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
@@ -14,6 +15,7 @@ use SimpleSAML\XMLSecurity\Alg\Encryption\AES;
 use SimpleSAML\XMLSecurity\Constants as C;
 use SimpleSAML\XMLSecurity\Key\SymmetricKey;
 use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 use function array_merge;
 use function parse_url;
@@ -26,21 +28,30 @@ use function str_replace;
  */
 class HTTP
 {
+    protected Configuration $config;
+
+
     /**
      * Instantiate an HTTP Client
      *
-     * @var array $options See Symfony\Contracts\HttpClient\HttpClientInterface::OPTIONS_DEFAULTS for possible values
-     *
      * https://github.com/symfony/symfony/blob/d1ebc450128b626d4b9822f6baf97f530eb3b4d1/src/Symfony/Contracts/HttpClient/HttpClientInterface.php#L26
+     *
+     * @param array $options See Symfony\Contracts\HttpClient\HttpClientInterface::OPTIONS_DEFAULTS for possible values
      */
-    public function createHttpClient(array $options = []): HttpClient
+    public function createHttpClient(array $options = []): HttpClientInterface
     {
-        $proxy = $this->config->getOptionalString('proxy', null);
-        $proxyAuth = $this->config->getOptionalString('proxy.auth', null);
-        if ($proxyAuth !== null) {
-            $scheme = parse_url($proxy,  PHP_URL_SCHEME);
-            $proxy = ['proxy' => str_replace($scheme . '://', $scheme . '://' . $proxyAuth . '@', $proxy)];
+        $config = Configuration::getInstance();
+        $proxy = $config->getOptionalString('proxy', null);
 
+        if ($proxy !== null) {
+            $proxyAuth = $config->getOptionalString('proxy.auth', null);
+            $scheme = parse_url($proxy,  PHP_URL_SCHEME);
+
+            if ($proxyAuth !== null) {
+                $proxy = ['proxy' => str_replace($scheme . '://', $scheme . '://' . $proxyAuth . '@', $proxy)];
+            } elseif ($proxy !== null) {
+                $proxy = ['proxy' => str_replace($scheme . '://', 'http://', $proxy)];
+            }
             $options = array_merge($proxy, $options);
         }
 
@@ -542,7 +553,7 @@ class HTTP
 
             return $data;
         } catch (Exception $e) {
-            throw new Exception('Error fetching ' . var_export($url, true) . ':' . $e->getMessage());
+            throw new Error\Exception('Error fetching ' . var_export($url, true) . ':' . $e->getMessage());
         }
     }
 

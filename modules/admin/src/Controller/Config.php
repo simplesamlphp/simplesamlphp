@@ -7,6 +7,7 @@ namespace SimpleSAML\Module\admin\Controller;
 use SimpleSAML\Configuration;
 use SimpleSAML\Event\Dispatcher\ModuleEventDispatcherFactory;
 use SimpleSAML\Locale\Translate;
+use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Module\admin\Event\ConfigPageEvent;
 use SimpleSAML\Module\admin\Event\SanityCheckEvent;
@@ -463,7 +464,7 @@ class Config
             $latest = $this->session->getData(self::LATEST_VERSION_STATE_KEY, "version");
 
             if (!$latest) {
-                $client = $this->httpUtils->createHttpClient();
+                $client = $this->httpUtils->createHttpClient(['timeout' => 3]);
                 $response = $client->request('GET', self::RELEASES_API);
 
                 try {
