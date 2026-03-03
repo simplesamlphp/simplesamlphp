@@ -45,7 +45,7 @@ class HTTP
 
         if ($proxy !== null) {
             $proxyAuth = $config->getOptionalString('proxy.auth', null);
-            $scheme = parse_url($proxy,  PHP_URL_SCHEME);
+            $scheme = parse_url($proxy, PHP_URL_SCHEME);
 
             if ($proxyAuth !== null) {
                 $proxy = ['proxy' => str_replace($scheme . '://', $scheme . '://' . $proxyAuth . '@', $proxy)];

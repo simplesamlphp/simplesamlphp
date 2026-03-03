@@ -18,14 +18,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 
-use function curl_close;
-use function curl_exec;
-use function curl_getinfo;
-use function curl_init;
-use function curl_setopt;
 use function explode;
 use function function_exists;
-use function json_decode;
 use function ltrim;
 use function phpversion;
 use function version_compare;
