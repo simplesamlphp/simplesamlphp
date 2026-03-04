@@ -20,7 +20,7 @@
 
     {% block namecol %}
     {% set translated = name|trans %}
-    <td class="attrname">{% if translated != name %} {{ translated }} <br>{% endif %}<samp>{{ name }}</samp></td>
+    <td class="attrname">{% if translated != name %}{{ translated }}<br>{% endif %}<samp>{{ name }}</samp></td>
     {% endblock %}
 
 
