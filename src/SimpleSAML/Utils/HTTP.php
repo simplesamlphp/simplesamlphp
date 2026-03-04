@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
+use Exception;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
@@ -13,6 +14,12 @@ use SimpleSAML\XHTML\Template;
 use SimpleSAML\XMLSecurity\Alg\Encryption\AES;
 use SimpleSAML\XMLSecurity\Constants as C;
 use SimpleSAML\XMLSecurity\Key\SymmetricKey;
+use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
+
+use function array_merge;
+use function parse_url;
+use function str_replace;
 
 /**
  * HTTP-related utility methods.
@@ -21,6 +28,37 @@ use SimpleSAML\XMLSecurity\Key\SymmetricKey;
  */
 class HTTP
 {
+    protected Configuration $config;
+
+
+    /**
+     * Instantiate an HTTP Client
+     *
+     * https://github.com/symfony/symfony/blob/d1ebc450128b626d4b9822f6baf97f530eb3b4d1/src/Symfony/Contracts/HttpClient/HttpClientInterface.php#L26
+     *
+     * @param array $options See Symfony\Contracts\HttpClient\HttpClientInterface::OPTIONS_DEFAULTS for possible values
+     */
+    public function createHttpClient(array $options = []): HttpClientInterface
+    {
+        $config = Configuration::getInstance();
+        $proxy = $config->getOptionalString('proxy', null);
+
+        if ($proxy !== null) {
+            $proxyAuth = $config->getOptionalString('proxy.auth', null);
+            $scheme = parse_url($proxy, PHP_URL_SCHEME);
+
+            if ($proxyAuth !== null) {
+                $proxy = ['proxy' => str_replace($scheme . '://', $scheme . '://' . $proxyAuth . '@', $proxy)];
+            } elseif ($proxy !== null) {
+                $proxy = ['proxy' => str_replace($scheme . '://', 'http://', $proxy)];
+            }
+            $options = array_merge($proxy, $options);
+        }
+
+        return HttpClient::create($options);
+    }
+
+
     /**
      * Determine if the user agent can support cookies being sent with SameSite equal to "None".
      * Browsers without support may drop the cookie and or treat it as stricter setting
@@ -456,8 +494,8 @@ class HTTP
      *  otherwise.
      * @throws \InvalidArgumentException If the input parameters are invalid.
      * @throws \SimpleSAML\Error\Exception If the file or URL cannot be retrieved.
-     *
      */
+    #[\Deprecated('Use an HTTP client instead (see createHttpClient method)', '16-12-2025')]
     public function fetch(string $url, array $context = [], bool $getHeaders = false)
     {
         $config = Configuration::getInstance();
@@ -500,42 +538,23 @@ class HTTP
             }
         }
 
-        $context = stream_context_create($context);
-        $data = @file_get_contents($url, false, $context);
-        if ($data === false) {
-            $error = error_get_last();
-            throw new Error\Exception('Error fetching ' . var_export($url, true) . ':' .
-                (is_array($error) ? $error['message'] : 'no error available'));
-        }
+        $client = $this->createHttpClient($context);
+        $response = $client->request('GET', $url);
 
-        // data and headers
-        if ($getHeaders) {
-            if (PHP_VERSION_ID > 80500) {
-                $http_response_headers = http_get_last_response_headers();
-            } else {
-                $http_response_headers = $http_response_header;
-            }
-            if (!empty($http_response_headers)) {
-                $headers = [];
-                foreach ($http_response_headers as $h) {
-                    if (preg_match('@^HTTP/1\.[01]\s+\d{3}\s+@', $h)) {
-                        $headers = []; // reset
-                        $headers[0] = $h;
-                        continue;
-                    }
-                    $bits = explode(':', $h, 2);
-                    if (count($bits) === 2) {
-                        $headers[strtolower($bits[0])] = trim($bits[1]);
-                    }
-                }
-            } else {
-                // no HTTP headers, probably a different protocol, e.g. file
-                $headers = null;
-            }
-            return [$data, $headers];
-        }
+        try {
+            $headers = $response->getHeaders();
+            /** @var string $data */
+            $data = $response->getContent();
 
-        return $data;
+            // data and headers
+            if ($getHeaders) {
+                return [$data, $headers];
+            }
+
+            return $data;
+        } catch (Exception $e) {
+            throw new Error\Exception('Error fetching ' . var_export($url, true) . ':' . $e->getMessage());
+        }
     }
 
 

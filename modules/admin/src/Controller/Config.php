@@ -7,6 +7,7 @@ namespace SimpleSAML\Module\admin\Controller;
 use SimpleSAML\Configuration;
 use SimpleSAML\Event\Dispatcher\ModuleEventDispatcherFactory;
 use SimpleSAML\Locale\Translate;
+use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Module\admin\Event\ConfigPageEvent;
 use SimpleSAML\Module\admin\Event\SanityCheckEvent;
@@ -15,15 +16,10 @@ use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 
-use function curl_close;
-use function curl_exec;
-use function curl_getinfo;
-use function curl_init;
-use function curl_setopt;
 use function explode;
 use function function_exists;
-use function json_decode;
 use function ltrim;
 use function phpversion;
 use function version_compare;
@@ -37,7 +33,7 @@ use function version_compare;
  */
 class Config
 {
-    public const string LATEST_VERSION_STATE_KEY = 'core:latest_simplesamlphp_version';
+    public const string LATEST_VERSION_STATE_KEY = 'admin:latest_simplesamlphp_version';
 
     public const string RELEASES_API = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases/latest';
 
@@ -453,47 +449,38 @@ class Config
             );
         }
 
-        /*
+        /**
          * Check for updates. Store the remote result in the session so we don't need to fetch it on every access to
          * this page.
          */
         $checkforupdates = $this->config->getOptionalBoolean('admin.checkforupdates', true);
         if (($checkforupdates === true) && $this->config->getVersion() !== 'master') {
-            if (!function_exists('curl_init')) {
-                $warnings[] = Translate::noop(
-                    'The cURL PHP extension is missing. Cannot check for SimpleSAMLphp updates.',
-                );
-            } else {
-                $latest = $this->session->getData(self::LATEST_VERSION_STATE_KEY, "version");
+            $latest = $this->session->getData(self::LATEST_VERSION_STATE_KEY, "version");
 
-                if (!$latest) {
-                    $ch = curl_init(self::RELEASES_API);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                    curl_setopt($ch, CURLOPT_USERAGENT, 'SimpleSAMLphp');
-                    curl_setopt($ch, CURLOPT_TIMEOUT, 2);
-                    curl_setopt($ch, CURLOPT_PROXY, $this->config->getOptionalString('proxy', null));
-                    curl_setopt($ch, CURLOPT_PROXYUSERPWD, $this->config->getOptionalValue('proxy.auth', null));
-                    $response = curl_exec($ch);
+            if (!$latest) {
+                $client = $this->httpUtils->createHttpClient(['timeout' => 3]);
+                $response = $client->request('GET', self::RELEASES_API);
 
-                    if (curl_getinfo($ch, CURLINFO_RESPONSE_CODE) === 200) {
-                        /** @psalm-var string $response */
-                        $latest = json_decode($response, true);
-                        $this->session->setData(self::LATEST_VERSION_STATE_KEY, 'version', $latest);
-                    }
-                    curl_close($ch);
+                try {
+                    $latest = $response->toArray();
+                    $this->session->setData(self::LATEST_VERSION_STATE_KEY, 'version', $latest);
+                } catch (ExceptionInterface $e) {
+                    $message = sprintf("Unable to check for updates; %s", $e->getMessage());
+                    Logger::warning($message);
+                    $warnings[] = Translate::noop($message);
                 }
+            }
 
-                if ($latest && version_compare($this->config->getVersion(), ltrim($latest['tag_name'], 'v'), 'lt')) {
-                    $warnings[] = [
-                        Translate::noop(
-                            'You are running an outdated version of SimpleSAMLphp. Please update to <a href="' .
-                            '%latest%">the latest version</a> as soon as possible.',
-                        ),
-                        [
-                            '%latest%' => $latest['html_url'],
-                        ],
-                    ];
-                }
+            if ($latest && version_compare($this->config->getVersion(), ltrim($latest['tag_name'], 'v'), 'lt')) {
+                $warnings[] = [
+                    Translate::noop(
+                        'You are running an outdated version of SimpleSAMLphp. Please update to <a href="' .
+                        '%latest%">the latest version</a> as soon as possible.',
+                    ),
+                    [
+                        '%latest%' => $latest['html_url'],
+                    ],
+                ];
             }
         }
 
