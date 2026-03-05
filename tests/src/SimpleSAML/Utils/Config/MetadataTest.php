@@ -265,7 +265,7 @@ class MetadataTest extends TestCase
         ];
         $this->assertEquals([
             'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:persistent',
-            'AllowCreate' => false,
+            'AllowCreate' => true,
         ], Metadata::parseNameIdPolicy($nameIdPolicy));
 
         $nameIdPolicy = [
