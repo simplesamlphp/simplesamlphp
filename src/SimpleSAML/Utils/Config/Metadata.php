@@ -259,7 +259,7 @@ class Metadata
         // handle configurations specifying an array in the NameIDPolicy config option
         $nameIdPolicy_cf = Configuration::loadFromArray($nameIdPolicy);
         $format = $nameIdPolicy_cf->getOptionalString('Format', Constants::NAMEID_TRANSIENT);
-        $allowCreate = $nameIdPolicy_cf->getOptionalBoolean('AllowCreate', false);
+        $allowCreate = $nameIdPolicy_cf->getOptionalBoolean('AllowCreate', true);
         //  SAML Version 2.0 Errata 05 lines 252-255 (pg 12)
         if ($format === Constants::NAMEID_TRANSIENT) {
             if ($allowCreate) {
