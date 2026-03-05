@@ -133,7 +133,7 @@ class Metadata
     {
         if ($nameIdPolicy === null) {
             // when NameIDPolicy is unset or set to null, default to transient
-            return NameIDPolicy::fromArray(['Format' => C::NAMEID_TRANSIENT, 'AllowCreate' => true]);
+            return NameIDPolicy::fromArray(['Format' => C::NAMEID_TRANSIENT, 'AllowCreate' => false]);
         }
 
         if ($nameIdPolicy === []) {
@@ -143,9 +143,17 @@ class Metadata
 
         // handle configurations specifying an array in the NameIDPolicy config option
         $nameIdPolicy_cf = Configuration::loadFromArray($nameIdPolicy);
+        $format = $nameIdPolicy_cf->getOptionalString('Format', Constants::NAMEID_TRANSIENT);
+        $allowCreate = $nameIdPolicy_cf->getOptionalBoolean('AllowCreate', true);
+        //  SAML Version 2.0 Errata 05 lines 252-255 (pg 12)
+        if ($format === Constants::NAMEID_TRANSIENT) {
+            if ($allowCreate) {
+                $allowCreate = false;
+            }
+        }
         $policy = [
-            'Format'      => $nameIdPolicy_cf->getOptionalString('Format', C::NAMEID_TRANSIENT),
-            'AllowCreate' => $nameIdPolicy_cf->getOptionalBoolean('AllowCreate', true),
+            'Format'      => $format,
+            'AllowCreate' => $allowCreate,
         ];
         $spNameQualifier = $nameIdPolicy_cf->getOptionalString('SPNameQualifier', null);
         if ($spNameQualifier !== null) {

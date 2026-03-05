@@ -639,6 +639,8 @@ class SP extends Auth\Source
 
         if (!empty($state['saml:NameIDPolicy'])) {
             $ar->setNameIdPolicy($state['saml:NameIDPolicy']);
+        } else {
+            $ar->setNameIdPolicy($this->metadata->getOptionalArray('NameIDPolicy', []));
         }
 
         $proxyCount = $idpList = null;

@@ -185,7 +185,7 @@ class SPTest extends ClearStateTestCase
      */
     public function testAuthnRequest(): void
     {
-        $ar = $this->createAuthnRequest();
+        $ar = $this->createAuthnRequest(['NameIDPolicy' => ['AllowCreate' => false]]);
 
         $xml = $ar->toSignedXML();
 

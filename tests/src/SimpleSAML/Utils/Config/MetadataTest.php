@@ -68,6 +68,57 @@ class MetadataTest extends TestCase
             'AllowCreate' => false,
             'SPNameQualifier' => 'TEST',
         ];
+
         $this->assertInstanceOf(NameIDPolicy::class, Metadata::parseNameIdPolicy($nameIdPolicy));
+        $this->assertEquals([
+            'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:persistent',
+            'AllowCreate' => false,
+            'SPNameQualifier' => 'TEST',
+        ], Metadata::parseNameIdPolicy($nameIdPolicy));
+    }
+
+
+    /**
+     * Test \SimpleSAML\Utils\Config\Metadata::parseNameIdPolicy().
+     * Test with settings that produce the fallback defaults.
+     */
+    public function testParseNameIdPolicyDefaults(): void
+    {
+        // Test null or unset
+        $nameIdPolicy = null;
+        $this->assertEquals([
+            'Format' => Constants::NAMEID_TRANSIENT,
+            'AllowCreate' => false,
+        ], Metadata::parseNameIdPolicy($nameIdPolicy));
+
+        $nameIdPolicy = [
+            'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:persistent',
+        ];
+        $this->assertEquals([
+            'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:persistent',
+            'AllowCreate' => true,
+        ], Metadata::parseNameIdPolicy($nameIdPolicy));
+
+        $nameIdPolicy = [
+            'AllowCreate' => false,
+        ];
+        $this->assertEquals([
+            'Format' => Constants::NAMEID_TRANSIENT,
+            'AllowCreate' => false,
+        ], Metadata::parseNameIdPolicy($nameIdPolicy));
+    }
+
+
+    /**
+     * Test \SimpleSAML\Utils\Config\Metadata::parseNameIdPolicy().
+     * Test with setting to empty array (meaning to not send any NameIdPolicy).
+     */
+    public function testParseNameIdPolicyEmpty(): void
+    {
+        $nameIdPolicy = [];
+        $this->assertEquals(
+            [],
+            Metadata::parseNameIdPolicy($nameIdPolicy),
+        );
     }
 }
