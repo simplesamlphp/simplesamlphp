@@ -130,7 +130,9 @@ The code must return either `true` to run the filter, or `false` to skip it.
 The following filters are included in the SimpleSAMLphp distribution:
 
 * [`core:AttributeAdd`](./core:authproc_attributeadd): Add attributes to the response.
+* [`core:AttributeConditionalAdd`](./core:authproc_attributeconditionaladd): Add attributes to the response if certain conditions are met.
 * [`core:AttributeCopy`](./core:authproc_attributecopy): Copy existing attributes to the response.
+* [`core:AttributeDump`](./core:authproc_attributedump): Dump attribute values to the log file.
 * [`core:AttributeAlter`](./core:authproc_attributealter): Do search-and-replace on attributevalues.
 * [`core:AttributeLimit`](./core:authproc_attributelimit): Limit the attributes in the response.
 * [`core:AttributeMap`](./core:authproc_attributemap): Change the name of the attributes.
