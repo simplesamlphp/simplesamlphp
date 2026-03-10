@@ -21,7 +21,7 @@ Parameters
     in this list are to be output to the SimpleSAMLphp logs.
     If not specified, and `attributes` is also not specified, all attributes will be output.
 
-`prefix`
+`logPrefix`
 :   A string to prefix each log line to be outputted.
     Defaults to "AttributeDump".
 
@@ -79,7 +79,7 @@ Optionally, you can specify a prefix to the log message and a log level to log a
 
         50 => [
             'class' => 'core:AttributeDump',
-            'prefix' => 'After running AttributeAdd but before applying AttributeLimit filter',
+            'logPrefix' => 'After running AttributeAdd but before applying AttributeLimit filter',
             'logLevel' => 'debug',
         ],
 
