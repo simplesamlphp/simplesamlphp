@@ -155,7 +155,7 @@ class Login
 
         $organizations = $organization = null;
         if ($source instanceof UserPassOrgBase) {
-            $organizations = UserPassOrgBase::listOrganizations($authStateId);
+            $organizations = $source::listOrganizations($authStateId);
             $organization = $this->getOrganizationFromRequest($request, $source, $state);
         }
 
@@ -209,7 +209,7 @@ class Login
                 if (($source instanceof UserPassBase) && $source->isRememberMeEnabled()) {
                     if ($request->request->has('remember_me') && ($request->request->get('remember_me') === 'Yes')) {
                         $state['RememberMe'] = true;
-                        $authStateId = Auth\State::saveState($state, UserPassBase::STAGEID);
+                        $authStateId = Auth\State::saveState($state, $source::STAGEID);
                     }
                 }
 
@@ -238,9 +238,9 @@ class Login
 
                 try {
                     if ($source instanceof UserPassOrgBase) {
-                        UserPassOrgBase::handleLogin($authStateId, $username, $password, $organization);
+                        $source::handleLogin($authStateId, $username, $password, $organization);
                     } else {
-                        UserPassBase::handleLogin($authStateId, $username, $password);
+                        $source::handleLogin($authStateId, $username, $password);
                     }
                 } catch (Error\Error $e) {
                     // Login failed. Extract error code and parameters, to display the error
