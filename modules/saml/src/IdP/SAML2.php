@@ -474,6 +474,10 @@ class SAML2
 
             if ($request->query->has('username')) {
                 $username = $request->query->get('username');
+            } elseif ($request->query->has('login_hint')) {
+                $username = $request->query->get('login_hint');
+            } elseif ($request->query->has('LoginHint')) {
+                $username = $request->query->get('LoginHint');
             }
 
             $issuer = $authnRequest->getIssuer();
