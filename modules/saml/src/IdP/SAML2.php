@@ -399,6 +399,10 @@ class SAML2
 
             if (isset($_REQUEST['username'])) {
                 $username = (string) $_REQUEST['username'];
+            } elseif (isset($_REQUEST['login_hint'])) {
+                $username = (string) $_REQUEST['login_hint'];
+            } elseif (isset($_REQUEST['LoginHint'])) {
+                $username = (string) $_REQUEST['LoginHint'];
             }
 
             $issuer = $request->getIssuer();
