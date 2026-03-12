@@ -185,6 +185,11 @@ $config = [
      *
      * A possible way to generate a random salt is by running the following command from a unix shell:
      * LC_ALL=C tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
+     *
+     * If you alter this value on a live system then your old admin-password will
+     * no longer work if you have a hashed password. If you use persistent NameIDs
+     * they will be different and also subject-id / pairwise-id will change.
+     * It will also invalidate all sessions.
      */
     'secretsalt' => 'defaultsecretsalt',
 
