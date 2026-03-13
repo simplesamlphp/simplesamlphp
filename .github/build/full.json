@@ -18,7 +18,7 @@
     },
     "ldap": {
       "repository": "simplesamlphp/simplesamlphp-module-ldap",
-      "version": "~2.3.0"
+      "version": "~2.3.7"
     },
     "metarefresh": {
       "repository": "simplesamlphp/simplesamlphp-module-metarefresh",
@@ -26,7 +26,7 @@
     },
     "radius": {
       "repository": "simplesamlphp/simplesamlphp-module-radius",
-      "version": "~2.0.2"
+      "version": "~2.0.3"
     },
     "statistics": {
       "repository": "simplesamlphp/simplesamlphp-module-statistics",

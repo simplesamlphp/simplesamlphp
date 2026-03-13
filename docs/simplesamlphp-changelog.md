@@ -5,9 +5,16 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.3.11
+## Version 2.3.12
 
 Released TBD
+
+## Version 2.3.11
+
+Released 2026-03-13
+
+* Bump robrichards/xmlseclibs (CVE-2026-32313)
+* Bump all other dependencies
 
 ## Version 2.3.10
 
