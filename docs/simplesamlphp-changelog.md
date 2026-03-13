@@ -5,9 +5,17 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.4.5
+## Version 2.4.6
 
 Released TBD
+
+## Version 2.4.5
+
+Released 2026-03-13
+
+* Bump robrichards/xmlseclibs (CVE-2026-32313)
+* Bump all other dependencies
+* Fixed a bug that allowed to set an illegal NameIDPolicy (#2603)
 
 ## Version 2.4.4
 
@@ -36,7 +44,7 @@ Released 2025-10-05
 * Introduced a new assets.salt to allow cache busting without leaking version information (#2490)
 * If session.check_function is set and can not be called an error is raised (#2498)
 * Fix FontAwesome icon names (#2509)
-* NameIDType attributes are now JSON-serializable - these objects might appear in the array returned by getAuthDataArray() 
+* NameIDType attributes are now JSON-serializable - these objects might appear in the array returned by getAuthDataArray()
 
 `authorize`
 
