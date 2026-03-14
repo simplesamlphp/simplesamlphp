@@ -81,10 +81,10 @@ class DiscoController
      * delegateAuthentication method on it.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
+     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\Response
      *   An HTML template or a redirection if we are not authenticated.
      */
-    public function discovery(Request $request): Response
+    public function discovery(Request $request): Template|Response
     {
         // Retrieve the authentication state
         $authStateId = $request->query->get('AuthState', null);
@@ -103,8 +103,8 @@ class DiscoController
         }
 
         // Get a preselected source either from the URL or the discovery page
-        $urlSource = $request->get('source', null);
-        $discoSource = $request->get('sourceChoice', null);
+        $urlSource = $request->query->get('source', null);
+        $discoSource = $request->query->get('sourceChoice', null);
 
         $selectedSource = null;
         if ($urlSource !== null) {
