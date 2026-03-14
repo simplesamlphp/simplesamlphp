@@ -14,6 +14,7 @@ use SimpleSAML\Module\core\Auth\UserPassOrgBase;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -101,6 +102,7 @@ class Login
      * username/password authentication.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function loginuserpass(Request $request): Response
     {
@@ -147,6 +149,7 @@ class Login
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \SimpleSAML\Module\core\Auth\UserPassBase|\SimpleSAML\Module\core\Auth\UserPassOrgBase $source
      * @param array $state
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     private function handleLogin(Request $request, UserPassBase|UserPassOrgBase $source, array $state): Response
     {
@@ -238,9 +241,9 @@ class Login
 
                 try {
                     if ($source instanceof UserPassOrgBase) {
-                        $source::handleLogin($authStateId, $username, $password, $organization);
+                        return $source::handleLogin($authStateId, $username, $password, $organization);
                     } else {
-                        $source::handleLogin($authStateId, $username, $password);
+                        return $source::handleLogin($authStateId, $username, $password);
                     }
                 } catch (Error\Error $e) {
                     // Login failed. Extract error code and parameters, to display the error
@@ -362,6 +365,7 @@ class Login
      * username/password/organization authentication.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function loginuserpassorg(Request $request): Response
     {
@@ -506,8 +510,9 @@ class Login
      * This clears the user's IdP discovery choices.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this login operation.
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function cleardiscochoices(Request $request): void
+    public function cleardiscochoices(Request $request): RedirectResponse
     {
         $httpUtils = new Utils\HTTP();
 
@@ -527,6 +532,6 @@ class Login
         $returnTo = $this->getReturnPath($request);
 
         // Redirect to destination.
-        $httpUtils->redirectTrustedURL($returnTo);
+        return $httpUtils->redirectTrustedURL($returnTo);
     }
 }

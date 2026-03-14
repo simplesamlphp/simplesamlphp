@@ -12,6 +12,8 @@ use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Helper class for username/password authentication.
@@ -194,9 +196,11 @@ abstract class UserPassBase extends Auth\Source
      * This function saves the information about the login, and redirects to a
      * login page.
      *
+     * @param \Symfony\Component\HttpFoundation\Request  The current request
      * @param array &$state  Information about the current authentication.
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function authenticate(array &$state): void
+    public function authenticate(Request $request, array &$state): ?Response
     {
         /*
          * Save the identifier of this authentication source, so that we can
@@ -236,7 +240,7 @@ abstract class UserPassBase extends Auth\Source
             $attributes = $this->login($username, $password);
             $state['Attributes'] = $attributes;
 
-            return;
+            return null;
         }
 
         // Save the $state-array, so that we can restore it after a redirect
@@ -249,10 +253,7 @@ abstract class UserPassBase extends Auth\Source
         $url = Module::getModuleURL('core/loginuserpass');
         $params = ['AuthState' => $id];
         $httpUtils = new Utils\HTTP();
-        $httpUtils->redirectTrustedURL($url, $params);
-
-        // The previous function never returns, so this code is never executed.
-        Assert::true(false);
+        return $httpUtils->redirectTrustedURL($url, $params);
     }
 
 
@@ -283,7 +284,7 @@ abstract class UserPassBase extends Auth\Source
      * @param string $username  The username the user wrote.
      * @param string $password  The password the user wrote.
      */
-    public static function handleLogin(string $authStateId, string $username, string $password): void
+    public static function handleLogin(string $authStateId, string $username, string $password): Response
     {
         // Here we retrieve the state array we saved in the authenticate-function.
         $state = Auth\State::loadState($authStateId, self::STAGEID);
@@ -316,6 +317,6 @@ abstract class UserPassBase extends Auth\Source
         $state['Attributes'] = $attributes;
 
         // Return control to SimpleSAMLphp after successful authentication.
-        Auth\Source::completeAuth($state);
+        return parent::completeAuth($state);
     }
 }

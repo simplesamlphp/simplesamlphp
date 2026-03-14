@@ -19,6 +19,7 @@ use SimpleSAML\Stats;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function call_user_func;
 use function in_array;
@@ -74,19 +75,15 @@ class Logout
      *
      * @param \Symfony\Components\HttpFoundation\Request $request The request that lead to this logout operation.
      * @param string $as The name of the auth source.
-     *
-     * @return \SimpleSAML\HTTP\RunnableResponse A runnable response which will actually perform logout.
+     * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
-    public function logout(Request $request, string $as): RunnableResponse
+    public function logout(Request $request, string $as): Response
     {
         $auth = new Auth\Simple($as);
         $returnTo = $this->getReturnPath($request);
-        return new RunnableResponse(
-            [$auth, 'logout'],
-            [$returnTo],
-        );
+        return $auth->logout($returnTo);
     }
 
 
@@ -113,9 +110,9 @@ class Logout
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this logout operation.
-     * @return \SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function logoutIframeDone(Request $request): RunnableResponse
+    public function logoutIframeDone(Request $request): Response
     {
         if (!$request->query->has('id')) {
             throw new Error\BadRequest('Missing required parameter: id');
@@ -174,15 +171,15 @@ class Logout
         }
 
         // we are done
-        return new RunnableResponse([$idp, 'finishLogout'], [$state]);
+        return $idp->finishLogout($state);
     }
 
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this logout operation.
-     * @return \SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function logoutIframePost(Request $request): RunnableResponse
+    public function logoutIframePost(Request $request): Response
     {
         if (!$request->query->has('idp')) {
             throw new Error\BadRequest('Missing required parameter: idp');
@@ -240,7 +237,9 @@ class Logout
         $lr->setDestination($dst['Location']);
         $lr->setRelayState($relayState);
 
-        return new RunnableResponse([$binding, 'send'], [$lr]);
+        $psrResponse = $binding->send($lr);
+        $httpFoundationFactory = new HttpFoundationFactory();
+        return $httpFoundationFactory->createResponse($psrResponse);
     }
 
 
@@ -392,9 +391,9 @@ class Logout
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this logout operation.
-     * @return \SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function resumeLogout(Request $request): RunnableResponse
+    public function resumeLogout(Request $request): Response
     {
         if (!$request->query->has('id')) {
             throw new Error\BadRequest('Missing required parameter: id');
@@ -405,6 +404,7 @@ class Logout
         $idp = IdP::getByState($state);
 
         $assocId = $state['core:TerminatedAssocId'];
-        return new RunnableResponse([$idp->getLogoutHandler(), 'startLogout'], [&$state, $assocId]);
+        $logoutHandler = $idp->getLogoutHandler();
+        return $logoutHandler->startLogout($state, $assocId);
     }
 }

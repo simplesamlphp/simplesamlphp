@@ -12,6 +12,7 @@ use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -45,9 +46,9 @@ class ErrorReport
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
+     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function main(Request $request): Response
+    public function main(Request $request): Template|RedirectResponse
     {
         // this page will redirect to itself after processing a POST request and sending the email
         if ($request->server->get('REQUEST_METHOD') !== 'POST') {
@@ -103,6 +104,6 @@ class ErrorReport
 
         // redirect the user back to this page to clear the POST request
         $httpUtils = new Utils\HTTP();
-        return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$httpUtils->getSelfURLNoQuery()]);
+        return $httpUtils->redirectTrustedURL($httpUtils->getSelfURLNoQuery());
     }
 }

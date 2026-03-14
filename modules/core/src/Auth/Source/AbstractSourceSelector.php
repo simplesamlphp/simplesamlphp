@@ -8,6 +8,8 @@ use Exception;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Authentication source which delegates authentication to secondary
@@ -51,9 +53,10 @@ abstract class AbstractSourceSelector extends Auth\Source
      * save the state, and at a later stage, load the state, update it with the authentication
      * information about the user, and call completeAuth with the state array.
      *
+     * @param \Symfony\Component\HttpFoundation\Request  The current request
      * @param array &$state Information about the current authentication.
      */
-    public function authenticate(array &$state): void
+    public function authenticate(Request $request, array &$state): ?Response
     {
         $source = $this->selectAuthSource($state);
         $as = Auth\Source::getById($source);
@@ -62,19 +65,22 @@ abstract class AbstractSourceSelector extends Auth\Source
         }
 
         $state['sourceSelector:selected'] = $source;
-        static::doAuthentication($as, $state);
+        return static::doAuthentication($as, $state);
     }
 
 
     /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \SimpleSAML\Auth\Source $as
      * @param array $state
-     * @return void
      */
-    public static function doAuthentication(Auth\Source $as, array &$state): void
+    public static function doAuthentication(Request $request, Auth\Source $as, array &$state): ?Response
     {
         try {
-            $as->authenticate($state);
+            $response = $as->authenticate($request, $state);
+            if ($response instanceof Response) {
+                return $response;
+            }
         } catch (Error\Exception $e) {
             Auth\State::throwException($state, $e);
         } catch (Exception $e) {
@@ -82,7 +88,7 @@ abstract class AbstractSourceSelector extends Auth\Source
             Auth\State::throwException($state, $e);
         }
 
-        Auth\Source::completeAuth($state);
+        return parent::completeAuth($state);
     }
 
 
