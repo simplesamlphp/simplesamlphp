@@ -5,13 +5,37 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
+## Version 2.5.1
+
+Released TBD
+
 ## Version 2.5.0
 
-Released TBD - November 2025 - as soon as Symfony 7.4 is released
+Released 2026-03-14
+
+* Add ProfileAuth authsource (#2499)
+* Ukrainian translation for simplesamlphp (#2501)
+* Use PSR-14 events to replace hook infrastructure (#2560)
+* Add regular expression support to AttributeValueMap authproc filter (#2558)
+* Replaced several uses of guzzlehttp and curl with Symfony's HTTP-client (#2574)
+* Many small improvements to code and documentation
 
 `authorize`
 
 * Add entityID based filtering (simplesamlphp/simplesamlphp-module-authorize#30) (v1.7.0)
+
+`discopower`
+
+* Add Italian translations (simplesamlphp/simplesamlphp-module-discopower#22) (v1.5.0)
+* Make tab-names case-insensitive (v1.5.1)
+
+`ldap`
+
+* Verify attribute value is a string before calling strlen (simplesamlphp/simplesamlphp-module-ldap#64) (v2.5.2)
+
+`radius`
+
+* Always set the NAS identifier; if not set fall back to the hostname (simplesamlphp/simplesamlphp-module-radius#28) (v2.1.1)
 
 ## Version 2.4.3
 

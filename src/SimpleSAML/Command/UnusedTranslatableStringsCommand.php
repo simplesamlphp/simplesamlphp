@@ -17,6 +17,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 use Symfony\Component\Finder\Finder;
 
 use function array_diff;
@@ -85,7 +86,7 @@ class UnusedTranslatableStringsCommand extends Command
         if (in_array('all', $inputModules) || $inputModules === []) {
             $modules = array_merge([''], $registeredModules);
         } elseif (in_array('main', $inputModules)) {
-            $modules = array_merge([''], ['core', 'admin', 'cron', 'exampleauth', 'multiauth', 'saml']);
+            $modules = array_merge([''], ['core', 'admin', 'cron', 'debugsp', 'exampleauth', 'multiauth', 'saml']);
         } else {
             $known = array_intersect($registeredModules, $inputModules);
             $unknown = array_diff($inputModules, $registeredModules);
@@ -172,7 +173,14 @@ class UnusedTranslatableStringsCommand extends Command
                 $domain = $domain ?: 'messages';
 
                 $finder = new Finder();
-                foreach ($finder->files()->in($moduleLocalesDir . '**/LC_MESSAGES/')->name("{$domain}.po") as $poFile) {
+                try {
+                    $poFiles = $finder->files()->in($moduleLocalesDir . '**/LC_MESSAGES/')->name("{$domain}.po");
+                } catch (DirectoryNotFoundException $e) {
+                    $output->writeln($e->getMessage() . ";  skipping.");
+                    continue;
+                }
+
+                foreach ($poFiles as $poFile) {
                     $current = $loader->loadFile($poFile->getPathName());
                     foreach ($current->getTranslations() as $t) {
                         if (!$template->find(null, $t->getOriginal())) {

@@ -465,9 +465,8 @@ class Config
                     $latest = $response->toArray();
                     $this->session->setData(self::LATEST_VERSION_STATE_KEY, 'version', $latest);
                 } catch (ExceptionInterface $e) {
-                    $message = sprintf("Unable to check for updates; %s", $e->getMessage());
-                    Logger::warning($message);
-                    $warnings[] = Translate::noop($message);
+                    Logger::warning(sprintf("Unable to check for updates; %s", $e->getMessage()));
+                    $warnings[] = Translate::noop("Unable to check for updates; see logs for details.");
                 }
             }
 

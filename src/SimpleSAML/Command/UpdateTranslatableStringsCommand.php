@@ -112,7 +112,7 @@ class UpdateTranslatableStringsCommand extends Command
         if (in_array('all', $inputModules) || $inputModules === []) {
             $modules = array_merge([''], $registeredModules);
         } elseif (in_array('main', $inputModules)) {
-            $modules = array_merge([''], ['core', 'admin', 'cron', 'exampleauth', 'multiauth', 'saml']);
+            $modules = array_merge([''], ['core', 'admin', 'cron', 'debugsp', 'exampleauth', 'multiauth', 'saml']);
         } else {
             $known = array_intersect($registeredModules, $inputModules);
             $unknown = array_diff($inputModules, $registeredModules);
