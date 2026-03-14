@@ -51,10 +51,13 @@ class StaticSource extends Auth\Source
     /**
      * Log in using static attributes.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request  The current request
      * @param array &$state  Information about the current authentication.
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function authenticate(array &$state): void
+    public function authenticate(Request $request, array &$state): ?Response
     {
         $state['Attributes'] = $this->attributes;
+        return null;
     }
 }
