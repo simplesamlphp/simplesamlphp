@@ -129,7 +129,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.5.0.x-dev"
+            "dev-master": "2.6.0.x-dev"
         }
     },
     "scripts": {
@@ -145,6 +145,5 @@
         "post-install-cmd": [
             "echo 'Post-install tasks completed!'"
         ]
-    },
-    "version": "v2.5.0"
+    }
 }
