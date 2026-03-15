@@ -498,46 +498,6 @@ class HTTP
     #[\Deprecated('Use an HTTP client instead (see createHttpClient method)', '16-12-2025')]
     public function fetch(string $url, array $context = [], bool $getHeaders = false)
     {
-        $config = Configuration::getInstance();
-
-        $proxy = $config->getOptionalString('proxy', null);
-        if ($proxy !== null) {
-            if (!isset($context['http']['proxy'])) {
-                $context['http']['proxy'] = $proxy;
-            }
-            $proxy_auth = $config->getOptionalString('proxy.auth', null);
-            if ($proxy_auth !== null) {
-                $context['http']['header'] = "Proxy-Authorization: Basic " . base64_encode($proxy_auth);
-            }
-            if (!isset($context['http']['request_fulluri'])) {
-                $context['http']['request_fulluri'] = true;
-            }
-            /*
-             * If the remote endpoint over HTTPS uses the SNI extension (Server Name Indication RFC 4366), the proxy
-             * could introduce a mismatch between the names in the Host: HTTP header and the SNI_server_name in TLS
-             * negotiation (thanks to Cristiano Valli @ GARR-IDEM to have pointed this problem).
-             * See: https://bugs.php.net/bug.php?id=63519
-             * These controls will force the same value for both fields.
-             * Marco Ferrante (marco@csita.unige.it), Nov 2012
-             */
-            if (
-                preg_match('#^https#i', $url)
-                && defined('OPENSSL_TLSEXT_SERVER_NAME')
-                && OPENSSL_TLSEXT_SERVER_NAME
-            ) {
-                // extract the hostname
-                $hostname = parse_url($url, PHP_URL_HOST);
-                if (!empty($hostname)) {
-                    $context['ssl'] = [
-                        'SNI_server_name' => $hostname,
-                        'SNI_enabled'     => true,
-                    ];
-                } else {
-                    Logger::warning('Invalid URL format or local URL used through a proxy');
-                }
-            }
-        }
-
         $client = $this->createHttpClient($context);
         $response = $client->request('GET', $url);
 
