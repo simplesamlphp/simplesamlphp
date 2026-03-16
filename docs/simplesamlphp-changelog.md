@@ -9,6 +9,8 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+* Fix missing trackid error in debugsp-module
+
 ## Version 2.5.0
 
 Released 2026-03-14
