@@ -107,6 +107,7 @@ class ExpectedAuthnContextClassRef extends ProcessingFilter
         );
 
         $httpUtils = new Utils\HTTP();
-        $httpUtils->redirectTrustedURL($url, ['StateId' => $id]);
+        $response = $httpUtils->redirectTrustedURL($url, ['StateId' => $id]);
+        $response->send();
     }
 }

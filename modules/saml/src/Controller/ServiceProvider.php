@@ -30,6 +30,7 @@ use SimpleSAML\Session;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -105,10 +106,10 @@ class ServiceProvider
      * @param   \Symfony\Component\HttpFoundation\Request  $request
      * @param   string                                     $sourceId
      *
-     * @return \SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws \SimpleSAML\Error\Exception
      */
-    public function login(Request $request, string $sourceId): RunnableResponse
+    public function login(Request $request, string $sourceId): RedirectResponse
     {
         // Initialize all the dependencies
         $authSource = new Auth\Simple($sourceId);
@@ -123,7 +124,7 @@ class ServiceProvider
         $returnTo = $this->loginHandler($request, $authSource, $spSource, $httpUtils);
 
         // Redirect to the returnTo destination
-        return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$returnTo]);
+        return $httpUtils->redirectTrustedURL($returnTo);
     }
 
 
@@ -213,9 +214,9 @@ class ServiceProvider
      * Handler for response from IdP discovery service.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function discoResponse(Request $request): RunnableResponse
+    public function discoResponse(Request $request): Response
     {
         if (!$request->query->has('AuthID')) {
             throw new Error\BadRequest('Missing AuthID to discovery service response handler');
@@ -242,7 +243,7 @@ class ServiceProvider
             throw new Error\Exception('Source type changed?');
         }
 
-        return new RunnableResponse([$source, 'startSSO'], [$idpEntityId, $state]);
+        return $source->startSSO($idpEntityId, $state);
     }
 
 
@@ -359,7 +360,7 @@ class ServiceProvider
             // check that the issuer is the one we are expecting
             Assert::keyExists($state, 'ExpectedIssuer');
             if ($state['ExpectedIssuer'] !== $issuer) {
-                $idpMetadata = $source->getIdPMetadata($issuer);
+                $idpMetadata = $source->getIdPMetadata($this->config, $issuer);
                 $idplist = $idpMetadata->getOptionalArrayize('IDPList', []);
                 if (!in_array($state['ExpectedIssuer'], $idplist, true)) {
                     Logger::warning(
@@ -380,7 +381,7 @@ class ServiceProvider
         Logger::debug('Received SAML2 Response from ' . var_export($issuer, true) . '.');
 
         if (is_null($idpMetadata)) {
-            $idpMetadata = $source->getIdPmetadata($issuer);
+            $idpMetadata = $source->getIdPmetadata($this->config, $issuer);
         }
 
         try {
@@ -561,7 +562,7 @@ class ServiceProvider
 
         $spEntityId = $source->getEntityId();
 
-        $idpMetadata = $source->getIdPMetadata($idpEntityId);
+        $idpMetadata = $source->getIdPMetadata($this->config, $idpEntityId);
         $spMetadata = $source->getMetadata();
 
         Module\saml\Message::validateMessage($idpMetadata, $spMetadata, $message);
@@ -688,13 +689,16 @@ class ServiceProvider
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $sourceId
-     * @return \Symfony\Component\HttpFoundation\Response|\SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function metadata(Request $request, string $sourceId): Response
     {
         $protectedMetadata = $this->config->getOptionalBoolean('admin.protectmetadata', false);
         if ($protectedMetadata && !$this->authUtils->isAdmin()) {
-            return new RunnableResponse([$this->authUtils, 'requireAdmin']);
+            $response = $this->authUtils->requireAdmin();
+            if ($response instanceof Response) {
+                return $response;
+            }
         }
 
         $source = Auth\Source::getById($sourceId);
