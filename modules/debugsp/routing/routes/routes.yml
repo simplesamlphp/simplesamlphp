@@ -1,5 +1,14 @@
 ---
 
+debugsp-shortcut:
+  path: /
+  defaults: {
+    _controller: 'SimpleSAML\Module\debugsp\Controller\Test::main',
+    path: /test,
+    permanent: true
+  }
+  methods: [GET]
+
 debugsp-test:
   path: /test/{as}
   defaults: {
