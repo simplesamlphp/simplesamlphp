@@ -708,7 +708,7 @@ class SAMLParser
     /**
      * Retrieve AttributeAuthorities from the metadata.
      *
-     * @return \SAML2\XML\md\AttributeAuthorityDescriptor[] Array of AttributeAuthorityDescriptor entries.
+     * @return array<mixed> Array of AttributeAuthorityDescriptor entries.
      */
     public function getAttributeAuthorities(): array
     {
