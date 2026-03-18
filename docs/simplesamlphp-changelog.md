@@ -11,6 +11,10 @@ Released TBD
 
 * Fix missing trackid error in debugsp-module
 
+`metarefresh`
+
+* Fix compatibility with SSP 2.5 (v1.3.1)
+
 ## Version 2.5.0
 
 Released 2026-03-14
