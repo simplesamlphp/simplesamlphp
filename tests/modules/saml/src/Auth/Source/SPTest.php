@@ -628,10 +628,10 @@ class SPTest extends ClearStateTestCase
             'contacts' => [
                 [
                     'contactType'       => 'other',
-                    'emailAddress'      => 'csirt@example.com',
-                    'surName'           => 'CSIRT',
-                    'telephoneNumber'   => '+31SECOPS',
-                    'company'           => 'Acme Inc',
+                    'EmailAddress'      => 'csirt@example.com',
+                    'SurName'           => 'CSIRT',
+                    'TelephoneNumber'   => '+31SECOPS',
+                    'Company'           => 'Acme Inc',
                     'attributes'        => [
                         'xmlns:remd'        => 'http://refeds.org/metadata',
                         'remd:contactType'  => 'http://refeds.org/metadata/contactType/security',
@@ -639,9 +639,9 @@ class SPTest extends ClearStateTestCase
                 ],
                 [
                     'contactType'       => 'administrative',
-                    'emailAddress'      => 'j.doe@example.edu',
-                    'givenName'         => 'Jane',
-                    'surName'           => 'Doe',
+                    'EmailAddress'      => 'j.doe@example.edu',
+                    'GivenName'         => 'Jane',
+                    'SurName'           => 'Doe',
                 ],
             ],
         ];
@@ -657,10 +657,10 @@ class SPTest extends ClearStateTestCase
 
         $this->assertIsArray($contact);
         $this->assertEquals('other', $contact['contactType']);
-        $this->assertEquals('CSIRT', $contact['surName']);
-        $this->assertArrayNotHasKey('givenName', $contact);
-        $this->assertEquals('+31SECOPS', $contact['telephoneNumber']);
-        $this->assertEquals('Acme Inc', $contact['company']);
+        $this->assertEquals('CSIRT', $contact['SurName']);
+        $this->assertArrayNotHasKey('GivenName', $contact);
+        $this->assertEquals('+31SECOPS', $contact['TelephoneNumber']);
+        $this->assertEquals('Acme Inc', $contact['Company']);
         $this->assertIsArray($contact['attributes']);
         $attrs = [
             'xmlns:remd' => 'http://refeds.org/metadata',
@@ -671,7 +671,7 @@ class SPTest extends ClearStateTestCase
         $contact = $md['contacts'][1];
         $this->assertIsArray($contact);
         $this->assertEquals('administrative', $contact['contactType']);
-        $this->assertEquals('j.doe@example.edu', $contact['emailAddress']);
+        $this->assertEquals('j.doe@example.edu', $contact['EmailAddress']);
         $this->assertArrayNotHasKey('attributes', $contact);
     }
 
@@ -693,9 +693,9 @@ class SPTest extends ClearStateTestCase
             'contacts' => [
                 [
                     'contactType'       => 'technical',
-                    'emailAddress'      => 'j.doe@example.edu',
-                    'givenName'         => 'Jane',
-                    'surName'           => 'Doe',
+                    'EmailAddress'      => 'j.doe@example.edu',
+                    'GivenName'         => 'Jane',
+                    'SurName'           => 'Doe',
                 ],
             ],
         ];
@@ -711,14 +711,14 @@ class SPTest extends ClearStateTestCase
 
         $this->assertIsArray($contact);
         $this->assertEquals('technical', $contact['contactType']);
-        $this->assertEquals('Doe', $contact['surName']);
+        $this->assertEquals('Doe', $contact['SurName']);
 
         $contact = $md['contacts'][1];
         $this->assertIsArray($contact);
         $this->assertEquals('technical', $contact['contactType']);
-        $this->assertEquals('someone.somewhere@example.org', $contact['emailAddress']);
-        $this->assertEquals('Someone von Somewhere', $contact['givenName']);
-        $this->assertArrayNotHasKey('surName', $contact);
+        $this->assertEquals('someone.somewhere@example.org', $contact['EmailAddress']);
+        $this->assertEquals('Someone von Somewhere', $contact['GivenName']);
+        $this->assertArrayNotHasKey('SurName', $contact);
     }
 
 
@@ -739,8 +739,8 @@ class SPTest extends ClearStateTestCase
             'contacts' => [
                 [
                     'contactType'       => 'technical',
-                    'emailAddress'      => 'j.doe@example.edu',
-                    'surName'           => 'Doe',
+                    'EmailAddress'      => 'j.doe@example.edu',
+                    'SurName'           => 'Doe',
                 ],
             ],
         ];
@@ -748,7 +748,7 @@ class SPTest extends ClearStateTestCase
 
         $md = $as->getHostedMetadata();
         $this->assertCount(1, $md['contacts']);
-        $this->assertEquals('j.doe@example.edu', $md['contacts'][0]['emailAddress']);
+        $this->assertEquals('j.doe@example.edu', $md['contacts'][0]['EmailAddress']);
     }
 
 
@@ -764,9 +764,9 @@ class SPTest extends ClearStateTestCase
             'contacts' => [
                 [
                    'contactType'       => 'anything',
-                   'emailAddress'      => 'j.doe@example.edu',
-                   'givenName'         => 'Jane',
-                   'surName'           => 'Doe',
+                   'EmailAddress'      => 'j.doe@example.edu',
+                   'GivenName'         => 'Jane',
+                   'SurName'           => 'Doe',
                 ],
             ],
         ];
@@ -791,9 +791,9 @@ class SPTest extends ClearStateTestCase
             'contacts' => [
                 [
                     'contactType'       => 'administrative',
-                    'emailAddress'      => 'j.doe@example.edu',
-                    'givenName'         => 'Jane',
-                    'surName'           => 'Doe',
+                    'EmailAddress'      => 'j.doe@example.edu',
+                    'GivenName'         => 'Jane',
+                    'SurName'           => 'Doe',
                 ],
             ],
             'acs.Bindings' => ['urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST'],
@@ -821,9 +821,9 @@ class SPTest extends ClearStateTestCase
             'contacts' => [
                 [
                     'contactType'       => 'administrative',
-                    'emailAddress'      => 'j.doe@example.edu',
-                    'givenName'         => 'Jane',
-                    'surName'           => 'Doe',
+                    'EmailAddress'      => 'j.doe@example.edu',
+                    'GivenName'         => 'Jane',
+                    'SurName'           => 'Doe',
                 ],
             ],
             'acs.Bindings' => ['urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST', 'urn:this:doesnotexist'],

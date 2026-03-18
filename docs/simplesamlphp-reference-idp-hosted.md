@@ -61,11 +61,11 @@ in the advanced features page.
 'contacts' => [
     [
         'contactType'       => 'support',
-        'emailAddress'      => 'support@example.org',
-        'givenName'         => 'John',
-        'surName'           => 'Doe',
-        'telephoneNumber'   => '+31(0)12345678',
-        'company'           => 'Example Inc.',
+        'EmailAddress'      => 'support@example.org',
+        'GivenName'         => 'John',
+        'SurName'           => 'Doe',
+        'TelephoneNumber'   => '+31(0)12345678',
+        'Company'           => 'Example Inc.',
     ],
 ],
 ```
@@ -76,11 +76,11 @@ in the advanced features page.
 'contacts' => [
     [
         'contactType'       => 'other',
-        'emailAddress'      => 'mailto:abuse@example.org',
-        'givenName'         => 'John',
-        'surName'           => 'Doe',
-        'telephoneNumber'   => '+31(0)12345678',
-        'company'           => 'Example Inc.',
+        'EmailAddress'      => 'mailto:abuse@example.org',
+        'GivenName'         => 'John',
+        'SurName'           => 'Doe',
+        'TelephoneNumber'   => '+31(0)12345678',
+        'Company'           => 'Example Inc.',
         'attributes' => [
             [
                 'namespaceURI' => 'http://refeds.org/metadata',

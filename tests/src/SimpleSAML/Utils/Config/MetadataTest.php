@@ -50,106 +50,106 @@ class MetadataTest extends TestCase
             ];
             $parsed = Metadata::getContact($contact);
             $this->assertArrayHasKey('contactType', $parsed);
-            $this->assertArrayNotHasKey('givenName', $parsed);
-            $this->assertArrayNotHasKey('surName', $parsed);
+            $this->assertArrayNotHasKey('GivenName', $parsed);
+            $this->assertArrayNotHasKey('SurName', $parsed);
         }
 
-        // test givenName
+        // test GivenName
         $contact = [
             'contactType' => 'technical',
         ];
         $invalid_types = [0, [0], 0.1, true, false];
         foreach ($invalid_types as $type) {
-            $contact['givenName'] = $type;
+            $contact['GivenName'] = $type;
             try {
                 Metadata::getContact($contact);
             } catch (InvalidArgumentException $e) {
-                $this->assertEquals('"givenName" must be a string and cannot be empty.', $e->getMessage());
+                $this->assertEquals('"GivenName" must be a string and cannot be empty.', $e->getMessage());
             }
         }
 
-        // test surName
+        // test SurName
         $contact = [
             'contactType' => 'technical',
         ];
         $invalid_types = [0, [0], 0.1, true, false];
         foreach ($invalid_types as $type) {
-            $contact['surName'] = $type;
+            $contact['SurName'] = $type;
             try {
                 Metadata::getContact($contact);
             } catch (InvalidArgumentException $e) {
-                $this->assertEquals('"surName" must be a string and cannot be empty.', $e->getMessage());
+                $this->assertEquals('"SurName" must be a string and cannot be empty.', $e->getMessage());
             }
         }
 
-        // test company
+        // test Company
         $contact = [
             'contactType' => 'technical',
         ];
         $invalid_types = [0, [0], 0.1, true, false];
         foreach ($invalid_types as $type) {
-            $contact['company'] = $type;
+            $contact['Company'] = $type;
             try {
                 Metadata::getContact($contact);
             } catch (InvalidArgumentException $e) {
-                $this->assertEquals('"company" must be a string and cannot be empty.', $e->getMessage());
+                $this->assertEquals('"Company" must be a string and cannot be empty.', $e->getMessage());
             }
         }
 
-        // test emailAddress
+        // test EmailAddress
         $contact = [
             'contactType' => 'technical',
         ];
         $invalid_types = [0, 0.1, true, false, []];
         foreach ($invalid_types as $type) {
-            $contact['emailAddress'] = $type;
+            $contact['EmailAddress'] = $type;
             try {
                 Metadata::getContact($contact);
             } catch (InvalidArgumentException $e) {
                 $this->assertEquals(
-                    '"emailAddress" must be a string or an array and cannot be empty.',
+                    '"EmailAddress" must be a string or an array and cannot be empty.',
                     $e->getMessage(),
                 );
             }
         }
         $invalid_types = [["string", true], ["string", 0]];
         foreach ($invalid_types as $type) {
-            $contact['emailAddress'] = $type;
+            $contact['EmailAddress'] = $type;
             try {
                 Metadata::getContact($contact);
             } catch (InvalidArgumentException $e) {
                 $this->assertEquals(
-                    '"emailAddress" must be a string or an array and cannot be empty.',
+                    '"EmailAddress" must be a string or an array and cannot be empty.',
                     $e->getMessage(),
                 );
             }
         }
         $valid_types = ['email@example.com', ['email1@example.com', 'email2@example.com']];
         foreach ($valid_types as $type) {
-            $contact['emailAddress'] = $type;
+            $contact['EmailAddress'] = $type;
             $parsed = Metadata::getContact($contact);
-            $this->assertEquals($type, $parsed['emailAddress']);
+            $this->assertEquals($type, $parsed['EmailAddress']);
         }
 
-        // test telephoneNumber
+        // test TelephoneNumber
         $contact = [
             'contactType' => 'technical',
         ];
         $invalid_types = [0, 0.1, true, false, []];
         foreach ($invalid_types as $type) {
-            $contact['telephoneNumber'] = $type;
+            $contact['TelephoneNumber'] = $type;
             try {
                 Metadata::getContact($contact);
             } catch (InvalidArgumentException $e) {
                 $this->assertEquals(
-                    '"telephoneNumber" must be a string or an array and cannot be empty.',
+                    '"TelephoneNumber" must be a string or an array and cannot be empty.',
                     $e->getMessage(),
                 );
             }
         }
         $invalid_types = [["string", true], ["string", 0]];
         foreach ($invalid_types as $type) {
-            $contact['telephoneNumber'] = $type;
+            $contact['TelephoneNumber'] = $type;
             try {
                 Metadata::getContact($contact);
             } catch (InvalidArgumentException $e) {
@@ -158,9 +158,9 @@ class MetadataTest extends TestCase
         }
         $valid_types = ['1234', ['1234', '5678']];
         foreach ($valid_types as $type) {
-            $contact['telephoneNumber'] = $type;
+            $contact['TelephoneNumber'] = $type;
             $parsed = Metadata::getContact($contact);
-            $this->assertEquals($type, $parsed['telephoneNumber']);
+            $this->assertEquals($type, $parsed['TelephoneNumber']);
         }
 
         // test completeness
