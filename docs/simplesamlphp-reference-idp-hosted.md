@@ -60,12 +60,12 @@ in the advanced features page.
 ```php
 'contacts' => [
     [
-        'ContactType'       => 'support',
-        'EmailAddress'      => 'support@example.org',
-        'GivenName'         => 'John',
-        'SurName'           => 'Doe',
-        'TelephoneNumber'   => '+31(0)12345678',
-        'Company'           => 'Example Inc.',
+        'contactType'       => 'support',
+        'emailAddress'      => 'support@example.org',
+        'givenName'         => 'John',
+        'surName'           => 'Doe',
+        'telephoneNumber'   => '+31(0)12345678',
+        'company'           => 'Example Inc.',
     ],
 ],
 ```
@@ -75,12 +75,12 @@ in the advanced features page.
 ```php
 'contacts' => [
     [
-        'ContactType'       => 'other',
-        'EmailAddress'      => 'mailto:abuse@example.org',
-        'GivenName'         => 'John',
-        'SurName'           => 'Doe',
-        'TelephoneNumber'   => '+31(0)12345678',
-        'Company'           => 'Example Inc.',
+        'contactType'       => 'other',
+        'emailAddress'      => 'mailto:abuse@example.org',
+        'givenName'         => 'John',
+        'surName'           => 'Doe',
+        'telephoneNumber'   => '+31(0)12345678',
+        'company'           => 'Example Inc.',
         'attributes' => [
             [
                 'namespaceURI' => 'http://refeds.org/metadata',
