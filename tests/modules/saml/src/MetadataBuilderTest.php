@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\saml;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\saml\Auth\Source\SP;
@@ -129,11 +130,11 @@ final class MetadataBuilderTest extends TestCase
             'metadata-set' => 'saml20-sp-remote',
             'contacts' => [
                 [
-                    'ContactType'       => 'other',
-                    'EmailAddress'      => ['mailto:csirt@example.com'],
-                    'SurName'           => 'CSIRT',
-                    'TelephoneNumber'   => ['+31SECOPS'],
-                    'Company'           => 'Acme Inc',
+                    'contactType'       => 'other',
+                    'emailAddress'      => ['mailto:csirt@example.com'],
+                    'surName'           => 'CSIRT',
+                    'telephoneNumber'   => ['+31SECOPS'],
+                    'company'           => 'Acme Inc',
                     'attributes' => [
                         [
                             'namespaceURI' => 'http://refeds.org/metadata',
@@ -144,10 +145,10 @@ final class MetadataBuilderTest extends TestCase
                     ],
                 ],
                 [
-                    'ContactType'       => 'administrative',
-                    'EmailAddress'      => ['mailto:j.doe@example.edu'],
-                    'GivenName'         => 'Jane',
-                    'SurName'           => 'Doe',
+                    'contactType'       => 'administrative',
+                    'emailAddress'      => ['mailto:j.doe@example.edu'],
+                    'givenName'         => 'Jane',
+                    'surName'           => 'Doe',
                 ],
             ],
         ];
@@ -155,6 +156,7 @@ final class MetadataBuilderTest extends TestCase
         $entityDescriptor = $this->getEntityDescriptor($info, $metadata);
 
         $contacts = $entityDescriptor->getContactPerson();
+
         $this->assertCount(2, $contacts);
         $this->assertEquals($metadata['contacts'][0], $contacts[0]->toArray());
         $this->assertEquals($metadata['contacts'][1], $contacts[1]->toArray());
@@ -267,8 +269,8 @@ final class MetadataBuilderTest extends TestCase
 
 
     /**
-     * @dataProvider nameFormatProvider
      */
+    #[DataProvider('nameFormatProvider')]
     public function testAttributesNameFormat(?string $format): void
     {
         $info = ['AuthId' => 'default-sp'];
