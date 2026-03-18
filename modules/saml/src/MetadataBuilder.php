@@ -12,9 +12,9 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\Exception\ArrayValidationException;
-use SimpleSAML\SAML2\Type\AnyURIListValue;
 use SimpleSAML\SAML2\Type\EntityIDValue;
 use SimpleSAML\SAML2\Type\KeyTypesValue;
+use SimpleSAML\SAML2\Type\SAMLAnyURIListValue;
 use SimpleSAML\SAML2\Type\SAMLAnyURIValue;
 use SimpleSAML\SAML2\Type\SAMLStringValue;
 use SimpleSAML\SAML2\XML\md\AbstractIndexedEndpointType;
@@ -277,7 +277,7 @@ class MetadataBuilder
         }
 
         return new AttributeAuthorityDescriptor(
-            protocolSupportEnumeration: AnyURIListValue::fromArray([C::NS_SAMLP]),
+            protocolSupportEnumeration: SAMLAnyURIListValue::fromArray([C::NS_SAMLP]),
             extensions: $extensions,
             keyDescriptor: $keyDescriptor,
             nameIDFormat: $nids,
@@ -326,7 +326,7 @@ class MetadataBuilder
         }
 
         return new SPSSODescriptor(
-            protocolSupportEnumeration: AnyURIListValue::fromArray([C::NS_SAMLP]),
+            protocolSupportEnumeration: SAMLAnyURIListValue::fromArray([C::NS_SAMLP]),
             authnRequestsSigned: $authnRequestsSigned !== null
                 ? BooleanValue::fromBoolean($authnRequestsSigned) : null,
             wantAssertionsSigned: $wantAssertionsSigned !== null
@@ -376,7 +376,7 @@ class MetadataBuilder
 
         return new IDPSSODescriptor(
             singleSignOnService: $singleSignOnService,
-            protocolSupportEnumeration: AnyURIListValue::fromArray([C::NS_SAMLP]),
+            protocolSupportEnumeration: SAMLAnyURIListValue::fromArray([C::NS_SAMLP]),
             wantAuthnRequestsSigned: $authnRequestsSigned !== null
                 ? BooleanValue::fromBoolean($authnRequestsSigned) : null,
             extensions: $extensions,

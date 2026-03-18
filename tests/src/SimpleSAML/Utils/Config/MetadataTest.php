@@ -119,7 +119,7 @@ class MetadataTest extends TestCase
                 Metadata::getContact($contact);
             } catch (InvalidArgumentException $e) {
                 $this->assertEquals(
-                    'Email addresses must be a string and cannot be empty.',
+                    '"emailAddress" must be a string or an array and cannot be empty.',
                     $e->getMessage(),
                 );
             }
@@ -153,7 +153,7 @@ class MetadataTest extends TestCase
             try {
                 Metadata::getContact($contact);
             } catch (InvalidArgumentException $e) {
-                $this->assertEquals('Telephone numbers must be a string and cannot be empty.', $e->getMessage());
+                $this->assertEquals('"TelephoneNumber" must be a string and cannot be empty.', $e->getMessage());
             }
         }
         $valid_types = ['1234', ['1234', '5678']];
