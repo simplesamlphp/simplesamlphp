@@ -41,11 +41,11 @@ class Metadata
      */
     public static array $VALID_CONTACT_OPTIONS = [
         'contactType',
-        'emailAddress',
-        'givenName',
-        'surName',
-        'telephoneNumber',
-        'company',
+        'EmailAddress',
+        'GivenName',
+        'SurName',
+        'TelephoneNumber',
+        'Company',
         'attributes',
     ];
 
@@ -103,61 +103,61 @@ class Metadata
             }
         }
 
-        // check givenName
+        // check GivenName
         if (
-            isset($contact['givenName'])
-            && (empty($contact['givenName']) || !is_string($contact['givenName']))
+            isset($contact['GivenName'])
+            && (empty($contact['GivenName']) || !is_string($contact['GivenName']))
         ) {
-            throw new \InvalidArgumentException('"givenName" must be a string and cannot be empty.');
+            throw new \InvalidArgumentException('"GivenName" must be a string and cannot be empty.');
         }
 
         // check surName
         if (
-            isset($contact['surName'])
-            && (empty($contact['surName']) || !is_string($contact['surName']))
+            isset($contact['SurName'])
+            && (empty($contact['SurName']) || !is_string($contact['SurName']))
         ) {
-            throw new \InvalidArgumentException('"surName" must be a string and cannot be empty.');
+            throw new \InvalidArgumentException('"SurName" must be a string and cannot be empty.');
         }
 
         // check company
         if (
-            isset($contact['company'])
-            && (empty($contact['company']) || !is_string($contact['company']))
+            isset($contact['Company'])
+            && (empty($contact['Company']) || !is_string($contact['Company']))
         ) {
-            throw new \InvalidArgumentException('"company" must be a string and cannot be empty.');
+            throw new \InvalidArgumentException('"Company" must be a string and cannot be empty.');
         }
 
-        // check emailAddress
-        if (isset($contact['emailAddress'])) {
+        // check EmailAddress
+        if (isset($contact['EmailAddress'])) {
             if (
-                empty($contact['emailAddress'])
-                || !(is_string($contact['emailAddress']) || is_array($contact['emailAddress']))
+                empty($contact['EmailAddress'])
+                || !(is_string($contact['EmailAddress']) || is_array($contact['EmailAddress']))
             ) {
-                throw new \InvalidArgumentException('"emailAddress" must be a string or an array and cannot be empty.');
+                throw new \InvalidArgumentException('"EmailAddress" must be a string or an array and cannot be empty.');
             }
-            if (is_array($contact['emailAddress'])) {
-                foreach ($contact['emailAddress'] as $address) {
+            if (is_array($contact['EmailAddress'])) {
+                foreach ($contact['EmailAddress'] as $address) {
                     if (!is_string($address) || empty($address)) {
                         throw new \InvalidArgumentException(
-                            '"emailAddress" must be a string or an array and cannot be empty.',
+                            '"EmailAddress" must be a string or an array and cannot be empty.',
                         );
                     }
                 }
             }
         }
 
-        // check telephoneNumber
-        if (isset($contact['telephoneNumber'])) {
+        // check TelephoneNumber
+        if (isset($contact['TelephoneNumber'])) {
             if (
-                empty($contact['telephoneNumber'])
-                || !(is_string($contact['telephoneNumber']) || is_array($contact['telephoneNumber']))
+                empty($contact['TelephoneNumber'])
+                || !(is_string($contact['TelephoneNumber']) || is_array($contact['TelephoneNumber']))
             ) {
                 throw new \InvalidArgumentException(
-                    '"telephoneNumber" must be a string or an array and cannot be empty.',
+                    '"TelephoneNumber" must be a string or an array and cannot be empty.',
                 );
             }
-            if (is_array($contact['telephoneNumber'])) {
-                foreach ($contact['telephoneNumber'] as $address) {
+            if (is_array($contact['TelephoneNumber'])) {
+                foreach ($contact['TelephoneNumber'] as $address) {
                     if (!is_string($address) || empty($address)) {
                         throw new \InvalidArgumentException(
                             '"TelephoneNumber" must be a string and cannot be empty.',
