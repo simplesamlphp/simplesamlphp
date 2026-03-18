@@ -40,6 +40,7 @@ class MetadataParserTest extends SigningTestCase
     <Extensions>
       <idpdisc:DiscoveryResponse xmlns:idpdisc="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://simplesamlphp.org/some/endpoint" index="43" isDefault="false" />
     </Extensions>
+    <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://ServiceProvider.com/SAML/SSO/POST" index="1"/>
   </SPSSODescriptor>
 </EntityDescriptor>
 XML,

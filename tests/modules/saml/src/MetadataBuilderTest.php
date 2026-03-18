@@ -229,11 +229,10 @@ final class MetadataBuilderTest extends TestCase
         ];
 
         $entityDescriptor = $this->getEntityDescriptor($info, $metadata);
-
         $roleDescriptors = $entityDescriptor->getRoleDescriptor();
+var_dump($roleDescriptors[0]);
         $this->assertCount(1, $roleDescriptors);
         $spSSODescriptor = $roleDescriptors[0];
-        /** @psalm-var \SimpleSAML\SAML2\XML\samlp\Extensions $extensions */
         $extensions = $spSSODescriptor->getExtensions();
         $this->assertCount(1, $extensions->getList());
 
