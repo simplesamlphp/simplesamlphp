@@ -12,6 +12,9 @@ on:  # yamllint disable-line rule:truthy
     paths-ignore:
       - '**.md'
 
+env:
+  COMPOSER_ROOT_VERSION: dev-${{ github.ref_name }}
+
 jobs:
   phplinter:
     name: 'PHP-Linter'
