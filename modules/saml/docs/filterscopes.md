@@ -31,6 +31,9 @@ Here are the options available for the filter:
 :   An array containing a list of attributes that are scoped and therefore should be evaluated.
     Defaults to _eduPersonPrincipalName_ and _eduPersonScopedAffiliation_.
 
+`allowNonScoped`
+:   Boolean defaults to true. Set to false to avoid copying attributes without a scope.
+
 Examples
 --------
 
