@@ -39,11 +39,6 @@ use function var_export;
 class Configuration implements Utils\ClearableState
 {
     /**
-     * The release version of this package
-     */
-    public const string VERSION = '2.5.0';
-
-    /**
      * A default value which means that the given option is required.
      */
     public const string REQUIRED_OPTION = '___REQUIRED_OPTION___';
@@ -384,7 +379,14 @@ class Configuration implements Utils\ClearableState
      */
     public function getVersion(): string
     {
-        return self::VERSION;
+        $version = \Composer\InstalledVersions::getRootPackage()['pretty_version'];
+        // If the returned version is in format `vX.Y.Z`, remove leading
+        // `v` to keep the compatibility with the previously used
+        // format `X.Y.Z`.
+        if (preg_match('/^v\d+\.\d+\.\d+/', $version)) {
+            return substr($version, 1);
+        }
+        return $version;
     }
 
 

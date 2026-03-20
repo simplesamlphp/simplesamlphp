@@ -222,4 +222,33 @@ class FilterScopesTest extends TestCase
         $result = $this->processFilter($config, $request);
         $this->assertEquals($request['Attributes'], $result['Attributes']);
     }
+
+
+    /**
+     * Test that non-scoped values pass or not depending on default or filter config setting.
+     */
+    public function testNonScopedValuesRemovedWhenDisallowed(): void
+    {
+        $config = [
+            // Explicitly disallow non-scoped values
+            'allowNonScoped' => false,
+        ];
+
+        $request = [
+            'Source' => [
+                'SingleSignOnService' => [
+                    [
+                        'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+                        'Location' => 'https://example.org/saml2/idp/SSOService.php',
+                    ],
+                ],
+            ],
+            'Attributes' => [
+                'eduPersonPrincipalName' => ['jdoe'], // no scope part
+            ],
+        ];
+
+        $result = $this->processFilter($config, $request);
+        $this->assertEquals([], $result['Attributes']);
+    }
 }

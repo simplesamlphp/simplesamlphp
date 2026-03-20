@@ -24,7 +24,11 @@ class ConfigurationTest extends ClearStateTestCase
     public function testGetVersion(): void
     {
         $c = Configuration::getOptionalConfig();
-        $this->assertEquals($c->getVersion(), Configuration::VERSION);
+        $version = \Composer\InstalledVersions::getRootPackage()['pretty_version'];
+        if (preg_match('/^v\d+\.\d+\.\d+/', $version)) {
+            $version = substr($version, 1);
+        }
+        $this->assertEquals($c->getVersion(), $version);
     }
 
 
