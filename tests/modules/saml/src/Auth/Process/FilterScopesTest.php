@@ -223,10 +223,11 @@ class FilterScopesTest extends TestCase
         $this->assertEquals($request['Attributes'], $result['Attributes']);
     }
 
+
     /**
      * Test that non-scoped values pass or not depending on default or filter config setting.
      */
-   public function testNonScopedValuesRemovedWhenDisallowed(): void
+    public function testNonScopedValuesRemovedWhenDisallowed(): void
     {
         $config = [
             // Explicitly disallow non-scoped values

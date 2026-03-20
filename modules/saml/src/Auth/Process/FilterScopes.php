@@ -34,6 +34,7 @@ class FilterScopes extends ProcessingFilter
      */
     private bool $allowNonScoped = true;
 
+
     /**
      * Constructor for the processing filter.
      *
