@@ -45,7 +45,7 @@ Released 2026-03-14
 
 ## Version 2.4.3
 
-Released TBD
+Released 2025-10-06
 
 * Update and improve Indonesian translations (#2462)
 * Update and improve Thai translations (#2464)
@@ -144,7 +144,7 @@ Released 2025-04-16
 
 ## Version 2.3.7
 
-Released TBD
+Released 2025-03-11
 
 * Fixed loading translations for themes where there is no explicit X-Domain set in the po file.
 
