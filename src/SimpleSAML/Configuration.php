@@ -38,7 +38,6 @@ use function var_export;
  */
 class Configuration implements Utils\ClearableState
 {
-
     /**
      * A default value which means that the given option is required.
      */
