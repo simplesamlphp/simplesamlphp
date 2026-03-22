@@ -219,7 +219,6 @@ git merge master
 git push
 ```
 
-
 ## Making a release
 
 The release process is documented on the wiki
