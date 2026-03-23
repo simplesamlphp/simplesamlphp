@@ -60,6 +60,7 @@
         "ext-SPL": "*",
         "ext-zlib": "*",
 
+        "composer-runtime-api": "^2.2",
         "gettext/gettext": "~5.7",
         "gettext/php-scanner": "^2.0",
         "gettext/translator": "~1.2",
