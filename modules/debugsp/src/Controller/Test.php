@@ -159,7 +159,7 @@ class Test
                 'authData' => $authData,
                 'remaining' => isset($authData['Expire']) ? $authData['Expire'] - time() : null,
                 'nameid' => $nameId,
-                'trackId' => $this->session->getTrackID(),
+                'trackid' => $this->session->getTrackID(),
                 'logouturl' => $httpUtils->getSelfURLNoQuery() . '?as=' . urlencode($as) . '&logout',
             ];
         }
