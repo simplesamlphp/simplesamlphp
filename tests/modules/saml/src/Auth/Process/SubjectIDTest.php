@@ -7,11 +7,11 @@ namespace SimpleSAML\Test\Module\saml\Auth\Process;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
-use SAML2\Constants as C;
-use SAML2\Exception\ProtocolViolationException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Module\saml\Auth\Process\SubjectID;
+use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\Exception\ProtocolViolationException;
 use SimpleSAML\Utils;
 
 /**

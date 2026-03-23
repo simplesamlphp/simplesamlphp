@@ -15,7 +15,7 @@ class SamlSanityCheckListener
 {
     public function __invoke(SanityCheckEvent $event): void
     {
-        define('MODID', '[saml] ');
+        $prefix = '[saml] ';
         $config = Configuration::getInstance();
         $cryptoUtils = new Utils\Crypto();
 
@@ -25,7 +25,7 @@ class SamlSanityCheckListener
             try {
                 $metadata = $handler->getMetaDataCurrent('saml20-idp-hosted');
             } catch (Exception $e) {
-                $event->addError(MODID . Translate::noop('Hosted IdP metadata present'));
+                $event->addError($prefix . Translate::noop('Hosted IdP metadata present'));
             }
 
             if (isset($metadata)) {
@@ -34,7 +34,7 @@ class SamlSanityCheckListener
                 $public = $cryptoUtils->loadPublicKey($metadata_config, false);
 
                 $matches = $this->matchingKeyPair($public['PEM'], $private['PEM'], $private['password']);
-                $message = MODID .
+                $message = $prefix .
                     Translate::noop('Matching key-pair for signing assertions');
                 if ($matches) {
                     $event->addInfo($message);
@@ -46,8 +46,7 @@ class SamlSanityCheckListener
                 if ($private !== null) {
                     $public = $cryptoUtils->loadPublicKey($metadata_config, false, 'new_');
                     $matches = $this->matchingKeyPair($public['PEM'], $private['PEM'], $private['password']);
-                    $message = MODID .
-                        Translate::noop('Matching key-pair for signing assertions (rollover key)');
+                    $message = $prefix . Translate::noop('Matching key-pair for signing assertions (rollover key)');
                     if ($matches) {
                         $event->addInfo($message);
                     } else {
@@ -61,7 +60,7 @@ class SamlSanityCheckListener
             $private = $cryptoUtils->loadPrivateKey($config, true, 'metadata.sign.');
             $public = $cryptoUtils->loadPublicKey($config, true, 'metadata.sign.');
             $matches = $this->matchingKeyPair($public['PEM'], $private['PEM'], $private['password']);
-            $message = MODID . Translate::noop('Matching key-pair for signing metadata');
+            $message = $prefix . Translate::noop('Matching key-pair for signing metadata');
             if ($matches) {
                 $event->addInfo($message);
             } else {

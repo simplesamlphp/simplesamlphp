@@ -31,7 +31,7 @@ jobs:
       - name: Setup problem matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # Store the version, stripping any v-prefix
       - name: Write release version
@@ -88,7 +88,7 @@ jobs:
           rm -rf "simplesamlphp-$VERSION"
 
       - name: Save tarball
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: release-${{ matrix.version }}
           path: "/tmp/simplesamlphp-${{ env.VERSION }}-${{ matrix.version }}.tar.gz"
