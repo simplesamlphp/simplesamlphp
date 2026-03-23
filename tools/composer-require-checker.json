@@ -6,6 +6,8 @@
     "PDOException",
     "PDOStatement",
     "posix_getuid",
-    "Predis\\Client"
+    "Predis\\Client",
+    "SimpleSAML\\Module\\adfs\\IdP\\ADFS",
+    "SimpleSAML\\TestUtils\\ArrayLogger"
   ]
 }
