@@ -166,7 +166,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.5'
-          tools: composer
+          tools: composer, composer-require-checker
           extensions: mbstring, soap, xml
           coverage: none
 
@@ -195,22 +195,16 @@ jobs:
         run: composer validate
 
       - name: Install Composer dependencies
-        run: |
-          composer install \
-            --no-progress \
-            --prefer-dist --optimize-autoloader \
-            --ignore-platform-req=maglnet/composer-require-checker
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: PHP Code Sniffer
         run: vendor/bin/phpcs
 
       - name: PHPStan
-        run: |
-          vendor/bin/phpstan analyze -c phpstan.neon
+        run: vendor/bin/phpstan analyze -c phpstan.neon
 
       - name: PHPStan (testsuite)
-        run: |
-          vendor/bin/phpstan analyze -c phpstan-dev.neon
+        run: vendor/bin/phpstan analyze -c phpstan-dev.neon
 
       - name: Check for unused translations
         continue-on-error: true
