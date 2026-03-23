@@ -6,6 +6,6 @@
     "PDOException",
     "PDOStatement",
     "posix_getuid",
-    "Predis\Client"
+    "Predis\\Client"
   ]
 }
