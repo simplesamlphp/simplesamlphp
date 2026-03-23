@@ -44,13 +44,12 @@ class HTTP
         $proxy = $config->getOptionalString('proxy', null);
 
         if ($proxy !== null) {
+            $proxy = preg_replace('/^(tcp:\/\/)+/i', 'http://', $proxy);
             $proxyAuth = $config->getOptionalString('proxy.auth', null);
             $scheme = parse_url($proxy, PHP_URL_SCHEME);
 
             if ($proxyAuth !== null) {
                 $proxy = ['proxy' => str_replace($scheme . '://', $scheme . '://' . $proxyAuth . '@', $proxy)];
-            } elseif ($proxy !== null) {
-                $proxy = ['proxy' => str_replace($scheme . '://', 'http://', $proxy)];
             }
             $options = array_merge($proxy, $options);
         }
