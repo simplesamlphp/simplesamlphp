@@ -154,6 +154,71 @@ cd ./node_modules/.bin
 You will probably want to make a script or alias to the above command
 and apply it before pushing documentation changes to github.
 
+## Branches
+
+There will be a `master` branch, a `current-release-branch`, and a
+`next-release-branch`. As at March 2026 these might be `2.5` and `2.6`
+for current and next release.
+
+New code will mostly go into the `master` branch. This can then be
+replicated into the `current-release-branch` with the following
+(assuming 2.5 is the current release).
+
+```bash
+# After some commits have been added to master intended for v2.5.*...
+git checkout simplesamlphp-2.5
+git merge master
+```
+
+New code that the project does not want in the
+`current-release-branch` should be committed directly into the
+`next-release-branch`. In this example the 2.6 release will be the
+target of that merge or PR.
+
+Periodically the `next-release-branch` will want to bring in changes
+from `master` (and thus from the `current-release-branch`). This can
+be done by merging master into the `next-release-branch` as shown
+below. This might require conflicts between master and the new code in
+`next-release-branch` to be resolved. The more frequently the merge is
+performed the less work will be required each time.
+
+```bash
+# After some commits have been added to master and "next-release-branch" separately...
+git checkout simplesamlphp-2.6
+git merge master
+# This might have conflicts, but those should be easy to resolve, since we know what did we do for next release ...
+```
+
+When we want to make the `next-release-branch` the current branch (for
+example, releasing 2.6.0 in this running example) then the branch is
+merged back into master. Firstly, merge `master` into
+`next-release-branch` as shown above. Then the `next-release-branch`
+can be made the `current-release-branch` by running the following
+merge.
+
+```bash
+# When we are ready to make "next-release-branch" the current release
+git checkout master
+git merge simplesamlphp-2.6
+# This should go without any conflicts, since we kept merging the "next-release-branch" with master
+```
+
+The following script will merge master into the current and next
+release branches. Only when a next release branch becomes the current
+branch is anything needing to be merged back into master.
+
+```bash
+git checkout master
+git pull
+git checkout simplesamlphp-2.5
+git merge master
+git push
+
+git checkout simplesamlphp-2.6
+git merge master
+git push
+```
+
 ## Making a release
 
 The release process is documented on the wiki
