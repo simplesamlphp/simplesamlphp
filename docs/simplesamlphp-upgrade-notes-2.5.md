@@ -16,7 +16,8 @@ The following changes are relevant for installers and/or developers.
   your use-case. The old `tcp://` scheme may no longer work correctly for all use-cases.
 
   To be even more future-proof, set the proxy-configuration to `null` and use environment-
-  variables instead. See: https://symfony.com/doc/current/http_client.html#http-proxies
+  variables instead. See the [Symfony documentation](https://symfony.com/doc/current/http_client.html#http-proxies)
+  for more information
 
 ## General Upgrade Advice
 
