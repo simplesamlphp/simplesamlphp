@@ -69,7 +69,6 @@
         "psr/log": "~3.0",
         "robrichards/xmlseclibs": "^3.1.5",
         "simplesamlphp/assert": "~2.0",
-        "simplesamlphp/composer-module-installer": "~1.7",
         "simplesamlphp/saml2": "~6.1",
         "simplesamlphp/saml2-legacy": "~4.20",
         "simplesamlphp/simplesamlphp-assets-base": "~2.5.0",
@@ -96,7 +95,6 @@
         "symfony/translation-contracts": "~3.6",
         "symfony/twig-bridge": "~7.4",
         "symfony/var-exporter": "~7.4",
-        "symfony/yaml": "~7.4",
         "twig/intl-extra": "~3.21",
         "twig/twig": "~3.21"
     },
