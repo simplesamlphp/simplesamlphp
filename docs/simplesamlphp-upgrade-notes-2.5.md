@@ -8,6 +8,17 @@ The following changes are relevant for installers and/or developers.
 - The minimum PHP version required is now PHP 8.3.
 - Symfony was upgraded to 7.4 (LTS).
 
+## Web-proxy
+
+- This release replaces several cases of `file_get_contents()` and direct use of
+  `curl_`-functions with the Symfony HTTP-client. If you have a proxy set in `config.php`,
+  please ensure that is has `http://` or `https://` as a scheme, appropriate to
+  your use-case. The old `tcp://` scheme may no longer work correctly for all use-cases.
+
+  To be even more future-proof, set the proxy-configuration to `null` and use environment-
+  variables instead. See the [Symfony documentation](https://symfony.com/doc/current/http_client.html#http-proxies)
+  for more information
+
 ## General Upgrade Advice
 
 When updating SimpleSAMLphp you might like to run the following to
