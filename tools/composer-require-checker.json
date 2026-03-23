@@ -1,0 +1,11 @@
+{
+  "symbol-whitelist": [
+    "Memcached",
+    "opcache_invalidate",
+    "PDO",
+    "PDOException",
+    "PDOStatement",
+    "posix_getuid",
+    "Predis\Client"
+  ]
+}
