@@ -6,9 +6,9 @@ namespace SimpleSAML\Test\Module\saml\Auth\Process;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SAML2\Exception\ProtocolViolationException;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Module\saml\Auth\Process\ScopedIssuer;
+use SimpleSAML\SAML2\Exception\ProtocolViolationException;
 
 /**
  * Test for the saml:ScopedIssuer filter.

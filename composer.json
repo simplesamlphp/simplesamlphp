@@ -25,6 +25,7 @@
             "SimpleSAML\\Module\\admin\\": "modules/admin/src",
             "SimpleSAML\\Module\\core\\": "modules/core/src",
             "SimpleSAML\\Module\\cron\\": "modules/cron/src",
+            "SimpleSAML\\Module\\debugsp\\": "modules/debugsp/src",
             "SimpleSAML\\Module\\exampleauth\\": "modules/exampleauth/src",
             "SimpleSAML\\Module\\multiauth\\": "modules/multiauth/src",
             "SimpleSAML\\Module\\saml\\": "modules/saml/src"
@@ -37,6 +38,7 @@
             "SimpleSAML\\Test\\Module\\admin\\": ["tests//modules/admin/src"],
             "SimpleSAML\\Test\\Module\\core\\": ["tests/modules/core/src"],
             "SimpleSAML\\Test\\Module\\cron\\": ["tests/modules/cron/src"],
+            "SimpleSAML\\Test\\Module\\debugsp\\": ["tests/modules/debugsp/src"],
             "SimpleSAML\\Test\\Module\\exampleauth\\": ["tests/modules/exampleauth/src"],
             "SimpleSAML\\Test\\Module\\multiauth\\": ["tests/modules/multiauth/src"],
             "SimpleSAML\\Test\\Module\\saml\\": ["tests/modules/saml/src"]
@@ -69,7 +71,6 @@
         "psr/log": "~3.0",
         "robrichards/xmlseclibs": "^3.1.5",
         "simplesamlphp/assert": "~2.0",
-        "simplesamlphp/composer-module-installer": "~1.7",
         "simplesamlphp/saml2": "~6.1",
         "simplesamlphp/saml2-legacy": "~4.20",
         "simplesamlphp/simplesamlphp-assets-base": "~2.5.0",
@@ -92,10 +93,10 @@
         "symfony/password-hasher": "~7.4",
         "symfony/polyfill-intl-icu": "~1.33",
         "symfony/routing": "~7.4",
+        "symfony/translation": "~7.4",
         "symfony/translation-contracts": "~3.6",
         "symfony/twig-bridge": "~7.4",
         "symfony/var-exporter": "~7.4",
-        "symfony/yaml": "~7.4",
         "twig/intl-extra": "~3.21",
         "twig/twig": "~3.21"
     },
@@ -135,7 +136,8 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.5.0.x-dev"
+            "dev-master": "2.5.x-dev",
+            "dev-simplesamlphp-2.5": "2.5.x-dev"
         }
     },
     "scripts": {
