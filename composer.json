@@ -141,6 +141,9 @@
             "dev-simplesamlphp-2.6": "2.6.x-dev"
         }
     },
+    "replace": {
+        "simplesamlphp/simplesamlphp": "self.version"
+    },
     "scripts": {
         "translations:unused": "./bin/translations translations:unused",
         "translations:update:translatable": "./bin/translations translations:update:translatable",
