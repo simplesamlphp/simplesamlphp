@@ -1383,16 +1383,16 @@
         },
         {
             "name": "simplesamlphp/xml-common",
-            "version": "v2.7.2",
+            "version": "v2.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-common.git",
-                "reference": "219b76fc2189ea36f26ff2ed642afd19e12143ea"
+                "reference": "61ec392b5fd7a1d14889912f05b3033b1806a763"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/219b76fc2189ea36f26ff2ed642afd19e12143ea",
-                "reference": "219b76fc2189ea36f26ff2ed642afd19e12143ea",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/61ec392b5fd7a1d14889912f05b3033b1806a763",
+                "reference": "61ec392b5fd7a1d14889912f05b3033b1806a763",
                 "shasum": ""
             },
             "require": {
@@ -1413,6 +1413,11 @@
                 "simplesamlphp/simplesamlphp-test-framework": "~1.11"
             },
             "type": "simplesamlphp-xmlprovider",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "v2.8.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "SimpleSAML\\XML\\": "src/XML/",
@@ -1446,7 +1451,7 @@
                 "issues": "https://github.com/simplesamlphp/xml-common/issues",
                 "source": "https://github.com/simplesamlphp/xml-common"
             },
-            "time": "2026-03-11T16:16:22+00:00"
+            "time": "2026-03-24T22:01:04+00:00"
         },
         {
             "name": "simplesamlphp/xml-security",
@@ -5610,11 +5615,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.42",
+            "version": "2.1.43",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/1279e1ce86ba768f0780c9d889852b4e02ff40d0",
-                "reference": "1279e1ce86ba768f0780c9d889852b4e02ff40d0",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/d01bebe3edfd4d49b9666ee5b8271ddca561042f",
+                "reference": "d01bebe3edfd4d49b9666ee5b8271ddca561042f",
                 "shasum": ""
             },
             "require": {
@@ -5659,7 +5664,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-17T14:58:32+00:00"
+            "time": "2026-03-24T20:40:50+00:00"
         },
         {
             "name": "phpstan/phpstan-mockery",
