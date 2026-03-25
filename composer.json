@@ -140,8 +140,8 @@
             "dev-simplesamlphp-2.5": "2.5.x-dev"
         }
     },
-    "replace": {
-        "simplesamlphp/simplesamlphp": "self.version"
+    "provide": {
+        "simplesamlphp/simplesamlphp": "2.5.x-dev"
     },
     "scripts": {
         "translations:unused": "./bin/translations translations:unused",
