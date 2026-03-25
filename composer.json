@@ -136,7 +136,9 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.6.0.x-dev"
+            "dev-master": "2.5.x-dev",
+            "dev-simplesamlphp-2.5": "2.5.x-dev",
+            "dev-simplesamlphp-2.6": "2.6.x-dev"
         }
     },
     "scripts": {
