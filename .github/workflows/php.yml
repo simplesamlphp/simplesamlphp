@@ -151,6 +151,7 @@ jobs:
         run: echo COMPOSER_CACHE="$(composer config cache-files-dir)" >> "$env:GITHUB_ENV"
 
       - name: Get COMPOSER_ROOT_VERSION from composer.json branch alias
+        shell: bash
         run: |
             ROOT_VERSION=$(composer config extra.branch-alias.dev-master)
             if [ -z "$ROOT_VERSION" ]; then
