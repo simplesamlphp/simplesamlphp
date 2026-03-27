@@ -233,7 +233,8 @@ jobs:
           composer-unused \
             --excludePackage=simplesamlphp/simplesamlphp-assets-base \
             --excludePackage=symfony/expression-language \
-            --excludePackage=symfony/polyfill-intl-icu
+            --excludePackage=symfony/polyfill-intl-icu \
+            --excludePackage=symfony/yaml
 
       - name: PHP Code Sniffer
         run: vendor/bin/phpcs
