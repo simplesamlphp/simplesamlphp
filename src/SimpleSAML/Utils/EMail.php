@@ -50,7 +50,7 @@ class EMail
     ) {
         $this->mail = new PHPMailer(true);
         $this->mail->Subject = $subject;
-        $this->mail->setFrom($from ?: $this->getDefaultMailAddress());
+        $this->mail->setFrom($from ?: $this->getMailSenderAddress() ?: $this->getDefaultMailAddress());
         $this->mail->addAddress($to ?: $this->getDefaultMailAddress());
 
         $this->initFromConfig($this);
@@ -59,8 +59,6 @@ class EMail
 
     /**
      * Get the default e-mail address from the configuration
-     * This is used both as source and destination address
-     * unless something else is provided at the constructor.
      *
      * It will refuse to return the SimpleSAMLphp default address,
      * which is na@example.org.
@@ -76,6 +74,19 @@ class EMail
             throw new \Exception('technicalcontact_email must be changed from the default value');
         }
         return $address;
+    }
+
+
+    /**
+     * Get the envelope sender address from the configuration
+     *
+     * @return string Default mail address
+     */
+    public function getMailSenderAddress(): ?string
+    {
+        $config = Configuration::getInstance();
+        $options = $config->getOptionalArray('mail.transport.options', []);
+        return $options['sender'] ?: null;
     }
 
 
