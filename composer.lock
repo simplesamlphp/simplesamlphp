@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "78fa5256fcfecec1974f09950dfc1bf2",
+    "content-hash": "0c96b768e523e702174df3e36c28ab7f",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -1383,16 +1383,16 @@
         },
         {
             "name": "simplesamlphp/xml-common",
-            "version": "v2.7.3",
+            "version": "v2.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/xml-common.git",
-                "reference": "61ec392b5fd7a1d14889912f05b3033b1806a763"
+                "reference": "d55d6f855945b65043905fae5b9e1bd6adad8326"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/61ec392b5fd7a1d14889912f05b3033b1806a763",
-                "reference": "61ec392b5fd7a1d14889912f05b3033b1806a763",
+                "url": "https://api.github.com/repos/simplesamlphp/xml-common/zipball/d55d6f855945b65043905fae5b9e1bd6adad8326",
+                "reference": "d55d6f855945b65043905fae5b9e1bd6adad8326",
                 "shasum": ""
             },
             "require": {
@@ -1451,7 +1451,7 @@
                 "issues": "https://github.com/simplesamlphp/xml-common/issues",
                 "source": "https://github.com/simplesamlphp/xml-common"
             },
-            "time": "2026-03-24T22:01:04+00:00"
+            "time": "2026-03-26T19:12:30+00:00"
         },
         {
             "name": "simplesamlphp/xml-security",
@@ -4543,6 +4543,82 @@
             "time": "2025-09-11T10:15:23+00:00"
         },
         {
+            "name": "symfony/yaml",
+            "version": "v7.4.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "58751048de17bae71c5aa0d13cb19d79bca26391"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/58751048de17bae71c5aa0d13cb19d79bca26391",
+                "reference": "58751048de17bae71c5aa0d13cb19d79bca26391",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2",
+                "symfony/deprecation-contracts": "^2.5|^3",
+                "symfony/polyfill-ctype": "^1.8"
+            },
+            "conflict": {
+                "symfony/console": "<6.4"
+            },
+            "require-dev": {
+                "symfony/console": "^6.4|^7.0|^8.0"
+            },
+            "bin": [
+                "Resources/bin/yaml-lint"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Yaml\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Loads and dumps YAML files",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/yaml/tree/v7.4.6"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2026-02-09T09:33:46+00:00"
+        },
+        {
             "name": "twig/intl-extra",
             "version": "v3.24.0",
             "source": {
@@ -5615,11 +5691,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.43",
+            "version": "2.1.44",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/d01bebe3edfd4d49b9666ee5b8271ddca561042f",
-                "reference": "d01bebe3edfd4d49b9666ee5b8271ddca561042f",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/4a88c083c668b2c364a425c9b3171b2d9ea5d218",
+                "reference": "4a88c083c668b2c364a425c9b3171b2d9ea5d218",
                 "shasum": ""
             },
             "require": {
@@ -5664,7 +5740,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-24T20:40:50+00:00"
+            "time": "2026-03-25T17:34:21+00:00"
         },
         {
             "name": "phpstan/phpstan-mockery",
