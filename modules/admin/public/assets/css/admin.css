@@ -54,3 +54,12 @@ ul.modulelist {
 div.code-box-content {
   padding: 0;
 }
+
+.wrapping-menu {
+  white-space: normal;
+}
+
+.wrapping-menu .pure-menu-list {
+  display: flex;
+  flex-wrap: wrap;
+}
