@@ -142,6 +142,7 @@
         }
     },
     "scripts": {
+        "assets:publish": "./bin/console assets:publish",
         "translations:unused": "./bin/translations translations:unused",
         "translations:update:translatable": "./bin/translations translations:update:translatable",
         "clear-symfony-cache": [

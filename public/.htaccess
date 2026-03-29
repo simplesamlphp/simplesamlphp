@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Let the web server serve published assets directly.
+RewriteCond %{REQUEST_URI} ^/assets/
+RewriteRule ^ - [L]
+
+# Route all other requests through the single front controller unless they refer to a real file.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]

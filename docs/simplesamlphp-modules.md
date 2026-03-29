@@ -102,18 +102,15 @@ themes
     `modules/example/themes/blue/core/loginuserpass.twig`.
 
 public
-:   All files stored in this directory will be available by
-    accessing the URL
-    `https://.../simplesamlphp/module.php/<module name>/<file name>`.
-    For example, if a script named `login.php` is stored in
-    `modules/example/public/`, it can be accessed by the URL
-    `https://.../simplesamlphp/module.php/example/login.php`.
+:   This directory is reserved for browser assets only. Static files
+    stored below `modules/<module>/public/assets/` are published to
+    `public/assets/<module>/...` and are then available at URLs on the
+    form `https://.../simplesamlphp/assets/<module>/<file>`.
 
-:   To retrieve this URL, the
-    `SimpleSAML\Module::getModuleURL($resource)`-function can be used.
-    This function takes in a resource on the form `<module>/<file>`.
-    This function will then return a URL to the given file in the
-    `public`-directory of `module`.
+:   Dynamic PHP scripts in `modules/<module>/public/` are no longer
+    supported. Dynamic module behavior must be implemented with
+    controllers and routes, which are exposed under
+    `https://.../simplesamlphp/module/<module>/...`.
 
 ## Authentication sources
 

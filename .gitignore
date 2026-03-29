@@ -7,6 +7,16 @@ metadata/*
 !/metadata/*.dist
 !/public/assets/.gitkeep
 /public/assets/*
+!/public/assets/admin/
+!/public/assets/core/
+!/public/assets/cron/
+!/public/assets/debugsp/
+!/public/assets/exampleauth/
+!/public/assets/admin/**
+!/public/assets/core/**
+!/public/assets/cron/**
+!/public/assets/debugsp/**
+!/public/assets/exampleauth/**
 .phpunit.cache/
 .phpunit.result.cache
 phpunit.xml.bak

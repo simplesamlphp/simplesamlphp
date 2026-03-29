@@ -66,7 +66,7 @@ In the `modules/mymodule/themes/fancytheme/default/_header.twig` file, type in s
 
 ## Adding resource files
 
-You can put resource files within the `public/assets` folder of your module, to make your module completely independent with included css, icons etc.
+You can put resource files within the `public/assets` folder of your module, to make your module completely independent with included css, icons etc. These assets are published to `public/assets/<module>/...` and served directly by the web server.
 
 ```bash
 modules

@@ -1,5 +1,17 @@
 ---
 
+frontpage:
+  path: /
+  defaults:
+    _controller: 'SimpleSAML\Controller\FrontpageController::redirect'
+  methods: [GET]
+
+frontpage-index:
+  path: /index.php
+  defaults:
+    _controller: 'SimpleSAML\Controller\FrontpageController::redirect'
+  methods: [GET]
+
 remove_trailing_slash:
   path: /{module}/{url}
   defaults: {

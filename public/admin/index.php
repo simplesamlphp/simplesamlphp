@@ -10,7 +10,7 @@ $config = Configuration::getInstance();
 $httpUtils = new Utils\HTTP();
 
 $headers = $config->getOptionalArray('headers.security', Configuration::DEFAULT_SECURITY_HEADERS);
-$redirect = Module::getModuleURL('admin/');
+$redirect = $config->getBasePath() . 'admin';
 $response =  new HTTP\RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$redirect]);
 foreach ($headers as $header => $value) {
     // Some pages may have specific requirements that we must follow. Don't touch them.
