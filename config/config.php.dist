@@ -149,22 +149,17 @@ $config = [
         'username' => 'user@example.org', // optional: if set, enables smtp authentication
         'password' => 'password', // optional: if set, enables smtp authentication
         'security' => 'tls', // optional: defaults to no smtp security
+        'sender' => 'no-reply@example.org', // optional: (envelope) from address
         'smtpOptions' => [], // optional: passed to stream_context_create when connecting via SMTP
     ],
 
     // sendmail mail transport options
     /*
     'mail.transport.options' => [
-        'path' => '/usr/sbin/sendmail' // optional: defaults to php.ini path
+        'path' => '/usr/sbin/sendmail', // optional: defaults to php.ini path
+        'sender' => 'no-reply@example.org' // optional: (envelope) from address
     ],
     */
-
-    /*
-     * The envelope from address for outgoing emails.
-     * This should be in a domain that has your application's IP addresses in its SPF record
-     * to prevent it from being rejected by mail filters.
-     */
-    //'sendmail_from' => 'no-reply@example.org',
 
     /*
      * The timezone of the server. This option should be set to the timezone you want

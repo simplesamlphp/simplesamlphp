@@ -154,4 +154,27 @@ class EMailTest extends ClearStateTestCase
         $mail = new EMail('test', null, 'phpunit@simplesamlphp.org');
         $this->assertEquals('gamaarna@example.org', $mail->getDefaultMailAddress());
     }
+
+
+    /**
+     * Test setting configuration of (envelope) sender.
+     *
+     */
+    public function testGetSenderMailAddress(): void
+    {
+        Configuration::loadFromArray([
+            'technicalcontact_email' => 'gamaarna@example.org',
+            'mail.transport.options' => ['sender' => 'noreply@example.org'],
+        ], '[ARRAY]', 'simplesaml');
+
+        $mail = new EMail('test');
+        $this->assertEquals('noreply@example.org', $mail->getMailSenderAddress());
+
+        Configuration::loadFromArray([
+            'technicalcontact_email' => 'gamaarna@example.org',
+        ], '[ARRAY]', 'simplesaml');
+
+        $mail = new EMail('test', null, 'phpunit@simplesamlphp.org');
+        $this->assertNull($mail->getMailSenderAddress());
+    }
 }
