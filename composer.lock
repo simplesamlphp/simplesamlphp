@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0c96b768e523e702174df3e36c28ab7f",
+    "content-hash": "e820c88499e9fb8e1f1830d43a392ed4",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -1213,16 +1213,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v6.1.3",
+            "version": "v6.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "dc37bd320d1a7d36688cb2549cd3b5163c1f4ff9"
+                "reference": "45aaa2f946b7964188fd139dd384cbe6d38c7eb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/dc37bd320d1a7d36688cb2549cd3b5163c1f4ff9",
-                "reference": "dc37bd320d1a7d36688cb2549cd3b5163c1f4ff9",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/45aaa2f946b7964188fd139dd384cbe6d38c7eb7",
+                "reference": "45aaa2f946b7964188fd139dd384cbe6d38c7eb7",
                 "shasum": ""
             },
             "require": {
@@ -1283,9 +1283,9 @@
             "description": "SAML2 PHP library from SimpleSAMLphp",
             "support": {
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
-                "source": "https://github.com/simplesamlphp/saml2/tree/v6.1.3"
+                "source": "https://github.com/simplesamlphp/saml2/tree/v6.1.4"
             },
-            "time": "2026-03-16T20:18:24+00:00"
+            "time": "2026-03-30T16:23:58+00:00"
         },
         {
             "name": "simplesamlphp/saml2-legacy",
@@ -1347,16 +1347,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
-            "version": "v2.5.13",
+            "version": "v2.5.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-assets-base.git",
-                "reference": "b59015c77c52e477bcfb2452f8c0f8755c13be1d"
+                "reference": "0b9185712983e55ac461dc433172bc8efbbc2782"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/b59015c77c52e477bcfb2452f8c0f8755c13be1d",
-                "reference": "b59015c77c52e477bcfb2452f8c0f8755c13be1d",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/0b9185712983e55ac461dc433172bc8efbbc2782",
+                "reference": "0b9185712983e55ac461dc433172bc8efbbc2782",
                 "shasum": ""
             },
             "require": {
@@ -1377,9 +1377,9 @@
             "description": "Assets for the SimpleSAMLphp main repository",
             "support": {
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-assets-base/issues",
-                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.5.13"
+                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.5.14"
             },
-            "time": "2026-03-04T16:48:40+00:00"
+            "time": "2026-03-29T02:09:37+00:00"
         },
         {
             "name": "simplesamlphp/xml-common",
@@ -5691,11 +5691,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.44",
+            "version": "2.1.45",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/4a88c083c668b2c364a425c9b3171b2d9ea5d218",
-                "reference": "4a88c083c668b2c364a425c9b3171b2d9ea5d218",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f8cdfd9421b7edb7686a2d150a234870464eac70",
+                "reference": "f8cdfd9421b7edb7686a2d150a234870464eac70",
                 "shasum": ""
             },
             "require": {
@@ -5740,7 +5740,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-25T17:34:21+00:00"
+            "time": "2026-03-30T13:22:02+00:00"
         },
         {
             "name": "phpstan/phpstan-mockery",
