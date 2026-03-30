@@ -231,6 +231,7 @@ jobs:
       - name: Check code for unused dependencies in composer.json
         run: |
           composer-unused \
+            --excludePackage=simplesamlphp/composer-module-installer \
             --excludePackage=simplesamlphp/simplesamlphp-assets-base \
             --excludePackage=symfony/expression-language \
             --excludePackage=symfony/polyfill-intl-icu \
