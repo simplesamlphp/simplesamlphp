@@ -46,7 +46,7 @@ class KernelTest extends TestCase
         $samlMetadata = $routes->get('saml-sp-metadata');
 
         $this->assertInstanceOf(Route::class, $adminMain);
-        $this->assertEquals('/module/admin/', $adminMain->getPath());
+        $this->assertEquals('/module/admin', $adminMain->getPath());
 
         $this->assertInstanceOf(Route::class, $samlMetadata);
         $this->assertEquals('/module/saml/sp/metadata/{sourceId}', $samlMetadata->getPath());

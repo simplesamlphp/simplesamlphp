@@ -34,7 +34,7 @@ admin-shortcut:
   path: /admin
   defaults: {
     _controller: 'SimpleSAML\Module\admin\Controller\Config::main',
-    path: /admin,
+    path: /module/admin,
     permanent: true
   }
   methods: [GET]

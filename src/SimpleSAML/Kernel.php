@@ -153,7 +153,7 @@ class Kernel extends BaseKernel
         foreach ($this->getModulesForKernel() as $module) {
             $confDir = Module::getModuleDir($module) . '/routing/routes';
             if (is_dir($confDir)) {
-                $routes->import($confDir . '/**/*' . self::CONFIG_EXTS)->prefix('/module/' . $module);
+                $routes->import($confDir . '/**/*' . self::CONFIG_EXTS)->prefix('/module/' . $module, false);
             }
         }
     }
