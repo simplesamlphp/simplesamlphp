@@ -158,7 +158,7 @@ jobs:
               echo "Could not read extra.branch-alias.dev-master from composer.json" >&2
               exit 1
             fi
-            echo "COMPOSER_ROOT_VERSION=$ROOT_VERSION" >> "$GITHUB_ENV"
+            echo "COMPOSER_ROOT_VERSION=$ROOT_VERSION" >> "$env:GITHUB_ENV"
 
       - name: Cache composer dependencies
         uses: actions/cache@v5
