@@ -1,3 +1,6 @@
+1
+2
+3
 cert/*
 config/*
 metadata/*
@@ -7,6 +10,7 @@ metadata/*
 !/metadata/*.dist
 !/public/assets/.gitkeep
 /public/assets/*
+.phplint.cache/
 .phpunit.cache/
 .phpunit.result.cache
 phpunit.xml.bak
