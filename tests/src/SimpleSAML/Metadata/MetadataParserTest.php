@@ -16,7 +16,7 @@ use SimpleSAML\XML\Signer;
 /**
  * Test SAML parsing
  */
-#[CoversClass(MetadataParserTest::class)]
+#[CoversClass(MetadataParser::class)]
 class MetadataParserTest extends SigningTestCase
 {
     /**
