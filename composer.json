@@ -102,7 +102,7 @@
         "gettext/php-scanner": "~2.0",
         "mikey179/vfsstream": "~1.6",
         "predis/predis": "~3.3",
-        "simplesamlphp/simplesamlphp-test-framework": "~1.11 || dev-master",
+        "simplesamlphp/simplesamlphp-test-framework": "~1.11.5 || dev-master",
         "symfony/translation": "~7.4"
     },
     "suggest": {
@@ -131,7 +131,8 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.6.0.x-dev"
+            "dev-master": "2.5.x-dev",
+            "dev-simplesamlphp-2.5": "2.5.x-dev"
         }
     },
     "scripts": {

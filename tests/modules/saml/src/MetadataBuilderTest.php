@@ -131,10 +131,10 @@ final class MetadataBuilderTest extends TestCase
             'contacts' => [
                 [
                     'contactType'       => 'other',
-                    'emailAddress'      => ['mailto:csirt@example.com'],
-                    'surName'           => 'CSIRT',
-                    'telephoneNumber'   => ['+31SECOPS'],
-                    'company'           => 'Acme Inc',
+                    'EmailAddress'      => ['mailto:csirt@example.com'],
+                    'SurName'           => 'CSIRT',
+                    'TelephoneNumber'   => ['+31SECOPS'],
+                    'Company'           => 'Acme Inc',
                     'attributes' => [
                         [
                             'namespaceURI' => 'http://refeds.org/metadata',
@@ -146,9 +146,9 @@ final class MetadataBuilderTest extends TestCase
                 ],
                 [
                     'contactType'       => 'administrative',
-                    'emailAddress'      => ['mailto:j.doe@example.edu'],
-                    'givenName'         => 'Jane',
-                    'surName'           => 'Doe',
+                    'EmailAddress'      => ['mailto:j.doe@example.edu'],
+                    'GivenName'         => 'Jane',
+                    'SurName'           => 'Doe',
                 ],
             ],
         ];
@@ -230,7 +230,6 @@ final class MetadataBuilderTest extends TestCase
 
         $entityDescriptor = $this->getEntityDescriptor($info, $metadata);
         $roleDescriptors = $entityDescriptor->getRoleDescriptor();
-var_dump($roleDescriptors[0]);
         $this->assertCount(1, $roleDescriptors);
         $spSSODescriptor = $roleDescriptors[0];
         $extensions = $spSSODescriptor->getExtensions();

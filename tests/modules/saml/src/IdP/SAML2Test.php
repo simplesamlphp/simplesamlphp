@@ -766,9 +766,9 @@ EOT;
         $config = ['contacts' => [
             [
                'contactType'       => 'technical',
-               'emailAddress'      => 'j.doe@example.edu',
-               'givenName'         => 'Jane',
-               'surName'           => 'Doe',
+               'EmailAddress'      => 'j.doe@example.edu',
+               'GivenName'         => 'Jane',
+               'SurName'           => 'Doe',
             ],
         ]];
         $md = $this->idpMetadataHandlerHelper($config, $globalConfig);
@@ -815,7 +815,7 @@ EOT;
         $md = $this->idpMetadataHandlerHelper($config, $globalConfig);
 
         $this->assertCount(1, $md['contacts']);
-        $this->assertEquals('j.doe@example.edu', $md['contacts'][0]['emailAddress']);
+        $this->assertEquals('j.doe@example.edu', $md['contacts'][0]['EmailAddress']);
     }
 
 

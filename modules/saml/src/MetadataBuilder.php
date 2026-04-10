@@ -492,7 +492,7 @@ class MetadataBuilder
         $contacts = [];
 
         foreach ($this->metadata->getOptionalArray('contacts', []) as $contact) {
-            if (array_key_exists('ContactType', $contact) && array_key_exists('EmailAddress', $contact)) {
+            if (array_key_exists('contactType', $contact) && array_key_exists('EmailAddress', $contact)) {
                 $contacts[] = ContactPerson::fromArray($contact);
             }
         }
