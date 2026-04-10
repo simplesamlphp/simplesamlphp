@@ -12,9 +12,6 @@ on:  # yamllint disable-line rule:truthy
     paths-ignore:
       - '**.md'
 
-env:
-  COMPOSER_ROOT_VERSION: dev-${{ github.ref_name }}
-
 jobs:
   phplinter:
     name: 'PHP-Linter'
@@ -285,12 +282,21 @@ jobs:
 
       - name: Get COMPOSER_ROOT_VERSION from composer.json branch alias
         run: |
+<<<<<<< HEAD
           ROOT_VERSION=$(composer config extra.branch-alias.dev-master)
           if [ -z "$ROOT_VERSION" ]; then
             echo "Could not read extra.branch-alias.dev-master from composer.json" >&2
             exit 1
           fi
           echo "COMPOSER_ROOT_VERSION=$ROOT_VERSION" >> "$GITHUB_ENV"
+=======
+            ROOT_VERSION=$(composer config extra.branch-alias.dev-master)
+            if [ -z "$ROOT_VERSION" ]; then
+              echo "Could not read extra.branch-alias.dev-master from composer.json" >&2
+              exit 1
+            fi
+            echo "COMPOSER_ROOT_VERSION=$ROOT_VERSION" >> "$GITHUB_ENV"
+>>>>>>> 3ee2b601c (Attempted fix CI)
 
       - name: Cache composer dependencies
         uses: actions/cache@v5
