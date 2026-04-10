@@ -99,9 +99,11 @@ class MetadataBuilder
         $contactPerson = $this->getContactPerson();
         $organization = $this->getOrganization();
         $roleDescriptor = $this->getRoleDescriptor();
+        $extensions = $this->getEntityDescriptorExtensions();
 
         $entityDescriptor = new EntityDescriptor(
             entityId: EntityIDValue::fromString($entityId),
+            extensions: $extensions,
             contactPerson: $contactPerson,
             organization: $organization,
             roleDescriptor: $roleDescriptor,
@@ -257,7 +259,7 @@ class MetadataBuilder
      */
     private function getAttributeAuthority(): AttributeAuthorityDescriptor
     {
-        $extensions = $this->getExtensions();
+        $extensions = $this->getRoleDescriptorExtensions();
         $keyDescriptor = $this->getKeyDescriptor();
 
 
@@ -294,7 +296,7 @@ class MetadataBuilder
     {
         $authnRequestsSigned = $this->authnRequestsSigned();
         $wantAssertionsSigned = $this->wantAssertionsSigned();
-        $extensions = $this->getExtensions();
+        $extensions = $this->getRoleDescriptorExtensions();
         $keyDescriptor = $this->getKeyDescriptor();
         $attributeConsumingService = $this->getAttributeConsumingService();
 
@@ -348,7 +350,7 @@ class MetadataBuilder
     private function getIDPSSODescriptor(): IDPSSODescriptor
     {
         $authnRequestsSigned = $this->wantsAuthnRequestsSigned();
-        $extensions = $this->getExtensions();
+        $extensions = $this->getRoleDescriptorExtensions();
         $keyDescriptor = $this->getKeyDescriptor();
 
         $artifactResolutionService = [];
@@ -502,21 +504,11 @@ class MetadataBuilder
 
 
     /**
-     * This method builds the md:Extensions, if any
+     * This method builds the md:Extensions for the EntityDescriptor, if any
      */
-    private function getExtensions(): ?Extensions
+    private function getEntityDescriptorExtensions(): ?Extensions
     {
         $extensions = [];
-
-        if ($this->metadata->hasValue('scope')) {
-            foreach ($this->metadata->getArray('scope') as $scopetext) {
-                $isRegexpScope = (1 === preg_match('/[\$\^\)\(\*\|\\\\]/', $scopetext));
-                $extensions[] = new Scope(
-                    SAMLStringValue::fromString($scopetext),
-                    BooleanValue::fromBoolean($isRegexpScope),
-                );
-            }
-        }
 
         if ($this->metadata->hasValue('EntityAttributes')) {
             $attr = [];
@@ -558,6 +550,31 @@ class MetadataBuilder
                 $extensions[] = RegistrationInfo::fromArray($this->metadata->getArray('RegistrationInfo'));
             } catch (ArrayValidationException $err) {
                 Logger::error('Metadata: invalid content found in RegistrationInfo: ' . $err->getMessage());
+            }
+        }
+
+        if ($extensions !== []) {
+            return new Extensions($extensions);
+        }
+
+        return null;
+    }
+
+
+    /**
+     * This method builds the md:Extensions for the RoleDescriptor, if any
+     */
+    private function getRoleDescriptorExtensions(): ?Extensions
+    {
+        $extensions = [];
+
+        if ($this->metadata->hasValue('scope')) {
+            foreach ($this->metadata->getArray('scope') as $scopetext) {
+                $isRegexpScope = (1 === preg_match('/[\$\^\)\(\*\|\\\\]/', $scopetext));
+                $extensions[] = new Scope(
+                    SAMLStringValue::fromString($scopetext),
+                    BooleanValue::fromBoolean($isRegexpScope),
+                );
             }
         }
 
