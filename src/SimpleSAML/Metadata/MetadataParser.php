@@ -28,6 +28,8 @@ use SimpleSAML\SAML2\XML\md\RoleDescriptor;
 use SimpleSAML\SAML2\XML\md\SPSSODescriptor;
 use SimpleSAML\SAML2\XML\md\AbstractSSODescriptor;
 use SimpleSAML\SAML2\XML\md\AbstractRoleDescriptorType;
+use SimpleSAML\SAML2\XML\md\AbstractMetadataDocument;
+use SimpleSAML\SAML2\XML\md\AbstractRoleDescriptor;
 use SimpleSAML\SAML2\XML\mdattr\EntityAttributes;
 use SimpleSAML\SAML2\XML\mdrpi\RegistrationInfo;
 use SimpleSAML\SAML2\XML\mdui\DiscoHints;
@@ -36,6 +38,7 @@ use SimpleSAML\SAML2\XML\mdui\UIInfo;
 use SimpleSAML\SAML2\XML\saml\Attribute;
 use SimpleSAML\SAML2\XML\shibmd\Scope;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\SAML2\XML\saml\AttributeValue;
 
 use SimpleSAML\Logger;
 use SimpleSAML\SAML2\Constants;
@@ -55,8 +58,7 @@ class MetadataParser
      * This is the list with the SAML 2.0 protocol.
      *
      * @var string[]
-     */
-    private static array $SAML20Protocols = [
+     */    private static array $SAML20Protocols = [
         Constants::NS_SAMLP,
     ];
 
@@ -376,8 +378,7 @@ class MetadataParser
             
             return self::processDescriptorsElement($entityDescriptor);
         } elseif ($xmlUtils->isDOMNodeOfType($element, 'EntitiesDescriptor', '@md') === true) {
-            throw new Exception('FIXME Implement me');
-            return self::processDescriptorsElement(new EntitiesDescriptor($element));
+            return self::processDescriptorsElement(EntitiesDescriptor::fromXML($element));
         } else {
             throw new Exception('Unexpected root node: [' . $element->namespaceURI . ']:' . $element->localName);
         }
@@ -394,7 +395,7 @@ class MetadataParser
      * @return \SimpleSAML\Metadata\MetadataParser[] Array of MetadataParser instances.
      */
     private static function processDescriptorsElement(
-        EntityDescriptor $element,
+        AbstractMetadataDocument $element,
         ?int $maxExpireTime = null,
         array $validators = [],
         array $parentExtensions = [],
@@ -414,10 +415,16 @@ class MetadataParser
         $validators[] = $element;
 
         $ret = [];
-        foreach ($element->getChildren() as $child) {
+        $children = EntityDescriptor::getChildrenOfClass($element->toUnsignedXML());
+        foreach ($children as $child) {
             $ret += self::processDescriptorsElement($child, $expTime, $validators, $extensions);
         }
 
+        $children = EntitiesDescriptor::getChildrenOfClass($element->toUnsignedXML());
+        foreach ($children as $child) {
+            $ret += self::processDescriptorsElement($child, $expTime, $validators, $extensions);
+        }
+        
         return $ret;
     }
 
@@ -510,7 +517,7 @@ class MetadataParser
             $metadata['EntityAttributes'] = $this->entityAttributes;
 
             // check for entity categories
-            if (Utils\Config\Metadata::isHiddenFromDiscovery($metadata)) {
+            if (Utils\Config\Metadata::isHiddenFromDiscoveryAV($metadata)) {
                 $metadata['hide.from.discovery'] = true;
             }
         }
@@ -580,11 +587,47 @@ class MetadataParser
 
         // add the list of attributes the SP should receive
         if (array_key_exists('attributes', $spd)) {
-            $ret['attributes'] = $spd['attributes'];
+            //            $ret['attributes'] = $spd['attributes'];
+            $a = [];
+            foreach($spd['attributes'] as $k => $d) {
+                if( is_array($d)) {
+                    $flat = [];
+                    foreach($d as $cc) {
+                        if( $cc instanceof \SimpleSAML\SAML2\XML\saml\AttributeValue) {
+                            $flat[] = $cc->getValue();
+                        }
+                    }
+                    $d = $flat;
+                }
+                $a[$k] = $d;
+            }
+            $ret['attributes'] = $a;
+            
         }
         if (array_key_exists('attributes.required', $spd)) {
-            $ret['attributes.required'] = $spd['attributes.required'];
+            //            $ret['attributes.required'] = $spd['attributes.required'];
+
+            $a = [];
+            foreach($spd['attributes.required'] as $k => $d) {
+                if( is_array($d)) {
+                    $flat = [];
+                    foreach($d as $cc) {
+                        if( $cc instanceof \SimpleSAML\SAML2\XML\saml\AttributeValue) {
+                            $flat[] = $cc->getValue();
+                        }
+                    }
+                    $d = $flat;
+                }
+                $a[$k] = $d;
+            }
+            $ret['attributes.required'] = $a;
+            
         }
+        else
+        {
+            $ret['attributes.required'] = [];
+        }
+        
         if (array_key_exists('attributes.NameFormat', $spd)) {
             $ret['attributes.NameFormat'] = $spd['attributes.NameFormat'];
         }
@@ -597,10 +640,18 @@ class MetadataParser
 
         // add name & description
         if (array_key_exists('name', $spd)) {
-            $ret['name'] = $spd['name'];
+            $a = [];
+            foreach($spd['name'] as $d) {
+                $a = array_merge($a,$d->toArray());
+            }
+            $ret['name'] = $a;
         }
         if (array_key_exists('description', $spd)) {
-            $ret['description'] = $spd['description'];
+            $a = [];
+            foreach($spd['description'] as $d) {
+                $a = array_merge($a,$d->toArray());
+            }
+            $ret['description'] = $a;
         }
 
         // add public keys
@@ -873,7 +924,24 @@ class MetadataParser
         $this->attributeAuthorityDescriptors[] = $aad;
     }
 
+    private static function flatten( $arr ): array
+    {
+        $a = [];
+        foreach($arr as $d) {
+            $a = array_merge($a,$d->toArray());
+        }
+        return $a;
+    }
 
+    private static function flattenValues( $arr ): array
+    {
+        $a = [];
+        foreach($arr as $d) {
+            $a = array_merge($a,[strval($d)]);
+        }
+        return $a;
+    }
+    
     /**
      * Parse an Extensions element. Extensions may appear in multiple elements and certain extension may get inherited
      * from a parent element.
@@ -909,7 +977,7 @@ class MetadataParser
         }
         foreach ($elist as $e) {
             if ($e instanceof Scope) {
-                $ret['scope'][] = $e->getScope();
+                $ret['scope'] = array_merge($ret['scope'],$e->toArray());
                 continue;
             }
 
@@ -930,15 +998,19 @@ class MetadataParser
                             . "' with '{$e->getRegistrationAuthority()}'",
                         );
                     } else {
-                        $ret['RegistrationInfo']['authority'] = $e->getRegistrationAuthority();
+                        $ret['RegistrationInfo']['authority'] = $e->getRegistrationAuthority()->getValue();
                     }
                     $registrationInstant = $e->getRegistrationInstant();
                     if ($registrationInstant !== null) {
-                        $ret['RegistrationInfo']['instant'] = $registrationInstant;
+                        $ret['RegistrationInfo']['instant'] = $registrationInstant->toDateTime()->format("U");
                     }
                     $registrationPolicy = $e->getRegistrationPolicy();
                     if (!empty($registrationPolicy)) {
-                        $ret['RegistrationInfo']['policies'] = $registrationPolicy;
+                        $policies = [];
+                        foreach($registrationPolicy as $rp) {
+                            $policies = array_merge($policies,$rp->toArray());
+                        }
+                        $ret['RegistrationInfo']['policies'] = $policies;
                     }
                 }
                 if ($e instanceof EntityAttributes && !empty($e->getChildren())) {
@@ -948,7 +1020,7 @@ class MetadataParser
                         if ($attr instanceof Attribute) {
                             $attrName = $attr->getName();
                             $attrNameFormat = $attr->getNameFormat();
-                            $attrValue = $attr->getAttributeValue();
+                            $attrValue = $attr->getAttributeValues();
 
                             if ($attrName === null || $attrValue === []) {
                                 continue;
@@ -964,7 +1036,7 @@ class MetadataParser
 
                             $values = [];
                             foreach ($attrValue as $attrval) {
-                                $values[] = $attrval->getString();
+                                $values[] = $attrval->getValue()->getValue();
                             }
 
                             $ret['EntityAttributes'][$name] = $values;
@@ -981,12 +1053,12 @@ class MetadataParser
             }
 
             // UIInfo elements are only allowed at RoleDescriptor level extensions
-            if ($element instanceof RoleDescriptor) {
+            if ($element instanceof AbstractRoleDescriptorType) {
                 if ($e instanceof UIInfo) {
-                    $ret['UIInfo']['DisplayName'] = $e->getDisplayName();
-                    $ret['UIInfo']['Description'] = $e->getDescription();
-                    $ret['UIInfo']['InformationURL'] = $e->getInformationURL();
-                    $ret['UIInfo']['PrivacyStatementURL'] = $e->getPrivacyStatementURL();
+                    $ret['UIInfo']['DisplayName'] = self::flatten($e->getDisplayName());
+                    $ret['UIInfo']['Description'] = self::flatten($e->getDescription());
+                    $ret['UIInfo']['InformationURL'] = self::flatten($e->getInformationURL());
+                    $ret['UIInfo']['PrivacyStatementURL'] = self::flatten($e->getPrivacyStatementURL());
 
                     foreach ($e->getKeywords() as $uiItem) {
                         $keywords = $uiItem->getKeywords();
@@ -1000,11 +1072,7 @@ class MetadataParser
                         if (!($uiItem instanceof Logo)) {
                             continue;
                         }
-                        $logo = [
-                            'url'    => $uiItem->getUrl(),
-                            'height' => $uiItem->getHeight(),
-                            'width'  => $uiItem->getWidth(),
-                        ];
+                        $logo = $uiItem->toArray();
                         if ($uiItem->getLanguage() !== null) {
                             $logo['lang'] = $uiItem->getLanguage();
                         }
@@ -1016,9 +1084,9 @@ class MetadataParser
             // DiscoHints elements are only allowed at IDPSSODescriptor level extensions
             if ($element instanceof IDPSSODescriptor) {
                 if ($e instanceof DiscoHints) {
-                    $ret['DiscoHints']['IPHint'] = $e->getIPHint();
-                    $ret['DiscoHints']['DomainHint'] = $e->getDomainHint();
-                    $ret['DiscoHints']['GeolocationHint'] = $e->getGeolocationHint();
+                    $ret['DiscoHints']['IPHint'] = self::flatten($e->getIPHint());
+                    $ret['DiscoHints']['DomainHint'] = self::flatten($e->getDomainHint());
+                    $ret['DiscoHints']['GeolocationHint'] = self::flatten($e->getGeolocationHint());
                 }
             }
         }
@@ -1086,22 +1154,24 @@ class MetadataParser
         $sp['attributes'] = [];
         $sp['attributes.required'] = [];
         foreach ($element->getRequestedAttribute() as $child) {
-            $attrname = $child->getName();
-            $attrvalue = $child->getAttributeValue();
+            $attrname = $child->getName()->getValue();
+            $attrvalue = $child->getAttributeValues();
             if (empty($attrvalue)) {
                 $sp['attributes'][] = $attrname;
             } else {
-                $values = [];
-                foreach ($attrvalue as $attrval) {
-                    $values[] = $attrval->getString();
-                }
-                $sp['attributes'][$attrname] = $values;
+//                $values = [];
+//                foreach ($attrvalue as $attrval) {
+//                    $values[] = $attrval->getString();
+//                }
+                $sp['attributes'][$attrname] = $attrvalue;
             }
 
-            if ($child->getIsRequired() === true) {
+            if ($child->getIsRequired()?->toBoolean() === true) {
                 $sp['attributes.required'][] = $attrname;
             }
-
+//            if( $attrname == "urn:mace:dir:attribute-def:eduPersonPrincipalName") {
+//                $sp['attributes.required'][] = $attrname;
+//            }
             if ($child->getNameFormat() !== null) {
                 $attrformat = $child->getNameFormat();
             } else {
@@ -1244,7 +1314,7 @@ class MetadataParser
         $ret = [];
 
         foreach ($this->idpDescriptors as $idpd) {
-            $sharedProtocols = array_intersect($protocols, $idpd['protocols']);
+            $sharedProtocols = array_intersect($protocols, $idpd['protocols']->toArray());
             if (count($sharedProtocols) > 0) {
                 $ret[] = $idpd;
             }

@@ -69,7 +69,7 @@ XML,
         $document = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
-  <EntityDescriptor entityID="theEntityID">
+  <EntityDescriptor entityID="uri:theEntityID">
     <Extensions>
       <mdrpi:RegistrationInfo registrationAuthority="https://incommon.org"/>
     </Extensions>
@@ -79,11 +79,12 @@ XML,
 XML,
         );
 
-        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
-        $this->assertArrayHasKey('theEntityID', $entities);
+        $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
+//        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
+        $this->assertArrayHasKey('uri:theEntityID', $entities);
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
         /** @var array $metadata */
-        $metadata = $entities['theEntityID']->getMetadata20SP();
+        $metadata = $entities['uri:theEntityID']->getMetadata20SP();
         $this->assertEquals($expected, $metadata['RegistrationInfo']);
     }
 
@@ -104,14 +105,14 @@ XML,
   <Extensions>
     <mdrpi:RegistrationInfo registrationAuthority="https://incommon.org"/>
   </Extensions>
-  <EntityDescriptor entityID="theEntityID">
+  <EntityDescriptor entityID="uri:theEntityID">
     <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
   </EntityDescriptor>
   <EntitiesDescriptor>
-    <EntityDescriptor entityID="subEntityId">
+    <EntityDescriptor entityID="uri:subEntityId">
       <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
     </EntityDescriptor>
-    <EntityDescriptor entityID="subEntityIdOverride">
+    <EntityDescriptor entityID="uri:subEntityIdOverride">
       <Extensions>
         <mdrpi:RegistrationInfo registrationAuthority="overrides-are-ignored"/>
       </Extensions>
@@ -122,20 +123,21 @@ XML,
 XML,
         );
 
-        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
-        $this->assertArrayHasKey('theEntityID', $entities);
-        $this->assertArrayHasKey('subEntityId', $entities);
+        $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
+//        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
+        $this->assertArrayHasKey('uri:theEntityID', $entities);
+        $this->assertArrayHasKey('uri:subEntityId', $entities);
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
         /** @var array $metadata */
-        $metadata = $entities['theEntityID']->getMetadata20SP();
+        $metadata = $entities['uri:theEntityID']->getMetadata20SP();
         $this->assertEquals($expected, $metadata['RegistrationInfo']);
 
         /** @var array $metadata */
-        $metadata = $entities['subEntityId']->getMetadata20SP();
+        $metadata = $entities['uri:subEntityId']->getMetadata20SP();
         $this->assertEquals($expected, $metadata['RegistrationInfo']);
 
         /** @var array $metadata */
-        $metadata = $entities['subEntityIdOverride']->getMetadata20SP();
+        $metadata = $entities['uri:subEntityIdOverride']->getMetadata20SP();
         $this->assertEquals($expected, $metadata['RegistrationInfo']);
     }
 
@@ -153,7 +155,7 @@ XML,
         $document = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
-  <EntityDescriptor entityID="theEntityID">
+  <EntityDescriptor entityID="uri:theEntityID">
     <Extensions>
       <mdrpi:RegistrationInfo registrationAuthority="https://safire.ac.za">
         <mdrpi:RegistrationPolicy xml:lang="en">https://safire.ac.za/safire/policy/mrps/v20190207.html</mdrpi:RegistrationPolicy>
@@ -165,11 +167,12 @@ XML,
 XML,
         );
 
-        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
-        $this->assertArrayHasKey('theEntityID', $entities);
+        $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
+//        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
+        $this->assertArrayHasKey('uri:theEntityID', $entities);
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
         /** @var array $metadata */
-        $metadata = $entities['theEntityID']->getMetadata20SP();
+        $metadata = $entities['uri:theEntityID']->getMetadata20SP();
         $this->assertEquals($expected, $metadata['RegistrationInfo']);
     }
 
@@ -187,7 +190,7 @@ XML,
         $document = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
-  <EntityDescriptor entityID="theEntityID">
+  <EntityDescriptor entityID="uri:theEntityID">
     <Extensions>
       <mdrpi:RegistrationInfo registrationAuthority="https://safire.ac.za" registrationInstant="2023-02-08T13:06:55Z" />
     </Extensions>
@@ -197,11 +200,12 @@ XML,
 XML,
         );
 
-        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
-        $this->assertArrayHasKey('theEntityID', $entities);
+        $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
+//        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
+        $this->assertArrayHasKey('uri:theEntityID', $entities);
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
         /** @var array $metadata */
-        $metadata = $entities['theEntityID']->getMetadata20SP();
+        $metadata = $entities['uri:theEntityID']->getMetadata20SP();
         $this->assertEquals($expected, $metadata['RegistrationInfo']);
     }
 
@@ -214,7 +218,7 @@ XML,
         $document = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
-  <EntityDescriptor entityID="theEntityID">
+  <EntityDescriptor entityID="uri:theEntityID">
     <Extensions>
       <mdrpi:RegistrationInfo registrationAuthority="https://incommon.org"/>
     </Extensions>
@@ -237,12 +241,12 @@ XML,
 XML,
         );
 
-        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
-        $this->assertArrayHasKey('theEntityID', $entities);
+        $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
+//        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
+        $this->assertArrayHasKey('uri:theEntityID', $entities);
 
         /** @var array $metadata */
-        $metadata = $entities['theEntityID']->getMetadata20SP();
-
+        $metadata = $entities['uri:theEntityID']->getMetadata20SP();
         $this->assertEquals("Example service", $metadata['name']['en']);
         $this->assertEquals("Dit is een voorbeeld voor de unittest.", $metadata['description']['nl']);
 
@@ -269,7 +273,7 @@ XML,
         $doc = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
-  <EntityDescriptor entityID="theEntityID">
+  <EntityDescriptor entityID="uri:theEntityID">
     <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
   </EntityDescriptor>
 </EntitiesDescriptor>
@@ -316,7 +320,7 @@ XML,
                 ],
             ],
             'DiscoHints' => [
-                'IPHint' => ['127.0.0.1', '127.0.0.2'],
+                'IPHint' => ['127.0.0.1/32', '127.0.0.2/32'],
                 'DomainHint' => ['example.net', 'example.org'],
                 'GeolocationHint' => ['geo:-29.00000,24.00000;u=830000'],
             ],
@@ -326,7 +330,7 @@ XML,
         $document = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi" xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui">
-  <EntityDescriptor entityID="theEntityID">
+  <EntityDescriptor entityID="uri:theEntityID">
     <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
         <Extensions>
           <shibmd:Scope regexp="false">example.org</shibmd:Scope>
@@ -341,8 +345,8 @@ XML,
             <mdui:Logo width="1" height="2">data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==</mdui:Logo>
           </mdui:UIInfo>
           <mdui:DiscoHints>
-            <mdui:IPHint>127.0.0.1</mdui:IPHint>
-            <mdui:IPHint>127.0.0.2</mdui:IPHint>
+            <mdui:IPHint>127.0.0.1/32</mdui:IPHint>
+            <mdui:IPHint>127.0.0.2/32</mdui:IPHint>
             <mdui:DomainHint>example.net</mdui:DomainHint>
             <mdui:DomainHint>example.org</mdui:DomainHint>
             <mdui:GeolocationHint>geo:-29.00000,24.00000;u=830000</mdui:GeolocationHint>
@@ -355,11 +359,12 @@ XML,
 XML,
         );
 
-        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
-        $this->assertArrayHasKey('theEntityID', $entities);
+        $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
+//        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
+        $this->assertArrayHasKey('uri:theEntityID', $entities);
         // Various MDUI elements are accessible
         /** @var array $metadata */
-        $metadata = $entities['theEntityID']->getMetadata20IdP();
+        $metadata = $entities['uri:theEntityID']->getMetadata20IdP();
         $this->assertEquals(
             $expected['scope'],
             $metadata['scope'],
@@ -387,7 +392,7 @@ XML,
         $document = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute">
-  <EntityDescriptor entityID="theEntityID">
+  <EntityDescriptor entityID="uri:theEntityID">
     <Extensions>
       <mdattr:EntityAttributes>
         <saml:Attribute Name="http://macedir.org/entity-category" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
@@ -398,15 +403,18 @@ XML,
         </saml:Attribute>
       </mdattr:EntityAttributes>
     </Extensions>
-    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://IdentityProvider.com/SAML/SSO/Browser"/>
+    </IDPSSODescriptor>
   </EntityDescriptor>
 </EntitiesDescriptor>
 XML,
         );
 
-        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
-        $this->assertArrayHasKey('theEntityID', $entities);
-        $metadata = $entities['theEntityID']->getMetadata20IdP();
+        $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
+//        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
+        $this->assertArrayHasKey('uri:theEntityID', $entities);
+        $metadata = $entities['uri:theEntityID']->getMetadata20IdP();
         $this->assertArrayHasKey('hide.from.discovery', $metadata);
         $this->assertTrue($metadata['hide.from.discovery']);
     }
@@ -420,7 +428,7 @@ XML,
         $document = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
-  <EntityDescriptor entityID="theEntityID">
+  <EntityDescriptor entityID="uri:theEntityID">
     <Extensions>
       <mdrpi:RegistrationInfo registrationAuthority="https://safire.ac.za">
         <mdrpi:RegistrationPolicy xml:lang="en">https://safire.ac.za/safire/policy/mrps/v20190207.html</mdrpi:RegistrationPolicy>
@@ -431,15 +439,18 @@ XML,
         </saml:Attribute>
       </mdattr:EntityAttributes>
     </Extensions>
-    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://IdentityProvider.com/SAML/SSO/Browser"/>
+    </IDPSSODescriptor>
   </EntityDescriptor>
 </EntitiesDescriptor>
 XML,
         );
 
-        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
-        $this->assertArrayHasKey('theEntityID', $entities);
-        $metadata = $entities['theEntityID']->getMetadata20IdP();
+        $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
+//        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
+        $this->assertArrayHasKey('uri:theEntityID', $entities);
+        $metadata = $entities['uri:theEntityID']->getMetadata20IdP();
         $this->assertArrayNotHasKey('hide.from.discovery', $metadata);
     }
 
@@ -452,7 +463,7 @@ XML,
         $document = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute">
-  <EntityDescriptor entityID="theEntityID">
+  <EntityDescriptor entityID="uri:theEntityID">
     <Extensions>
       <mdattr:EntityAttributes>
         <saml:Attribute Name="http://macedir.org/entity-category-support" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
@@ -460,15 +471,18 @@ XML,
         </saml:Attribute>
       </mdattr:EntityAttributes>
     </Extensions>
-    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"/>
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://IdentityProvider.com/SAML/SSO/Browser"/>
+    </IDPSSODescriptor>
   </EntityDescriptor>
 </EntitiesDescriptor>
 XML,
         );
 
-        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
-        $this->assertArrayHasKey('theEntityID', $entities);
-        $metadata = $entities['theEntityID']->getMetadata20IdP();
+       $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
+//        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
+//        $this->assertArrayHasKey('uri:theEntityID', $entities);
+        $metadata = $entities['uri:theEntityID']->getMetadata20IdP();
         $this->assertArrayNotHasKey('hide.from.discovery', $metadata);
     }
 }
