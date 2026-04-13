@@ -70,6 +70,10 @@ class IndexTest extends TestCase
         // test most basic redirection
         $this->updateConfig([
             'baseurlpath' => 'http://example.org/simplesaml/',
+            'cachedir' => sys_get_temp_dir(),
+            'tempdir' => sys_get_temp_dir(),
+            'logging.handler' => 'errorlog',
+            'secretsalt' => 'test-secret',
         ]);
         $resp = self::$server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
@@ -83,6 +87,10 @@ class IndexTest extends TestCase
         // test non-default path and https
         $this->updateConfig([
             'baseurlpath' => 'https://example.org/',
+            'cachedir' => sys_get_temp_dir(),
+            'tempdir' => sys_get_temp_dir(),
+            'logging.handler' => 'errorlog',
+            'secretsalt' => 'test-secret',
         ]);
         $resp = self::$server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
@@ -96,6 +104,10 @@ class IndexTest extends TestCase
         // test URL guessing
         $this->updateConfig([
             'baseurlpath' => '/simplesaml/',
+            'cachedir' => sys_get_temp_dir(),
+            'tempdir' => sys_get_temp_dir(),
+            'logging.handler' => 'errorlog',
+            'secretsalt' => 'test-secret',
         ]);
         $resp = self::$server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
@@ -115,10 +127,15 @@ class IndexTest extends TestCase
     {
         $this->updateConfig([
             'frontpage.redirect' => 'https://www.example.edu/',
+            'cachedir' => sys_get_temp_dir(),
+            'tempdir' => sys_get_temp_dir(),
+            'logging.handler' => 'errorlog',
+            'secretsalt' => 'test-secret',
         ]);
         $resp = self::$server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
         ]);
+
         $this->assertEquals('303', $resp['code']);
         $this->assertEquals(
             'https://www.example.edu/',
@@ -142,6 +159,7 @@ class IndexTest extends TestCase
         $resp = self::$server->get('/index.php/module/doesnotexist', [], [
             CURLOPT_FOLLOWLOCATION => 0,
         ]);
+        dd($resp);
 
         $this->assertEquals('404', $resp['code']);
         $this->assertArrayNotHasKey('Location', $resp['headers']);
