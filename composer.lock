@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "581c7c926d95c11b0e24aeaf59217592",
+    "content-hash": "41060b1b63ef4090b2328f8899248310",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -543,16 +543,16 @@
         },
         {
             "name": "phpmailer/phpmailer",
-            "version": "v6.12.0",
+            "version": "v7.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "d1ac35d784bf9f5e61b424901d5a014967f15b12"
+                "reference": "ebf1655bd5b99b3f97e1a3ec0a69e5f4cd7ea088"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/d1ac35d784bf9f5e61b424901d5a014967f15b12",
-                "reference": "d1ac35d784bf9f5e61b424901d5a014967f15b12",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/ebf1655bd5b99b3f97e1a3ec0a69e5f4cd7ea088",
+                "reference": "ebf1655bd5b99b3f97e1a3ec0a69e5f4cd7ea088",
                 "shasum": ""
             },
             "require": {
@@ -566,13 +566,14 @@
                 "doctrine/annotations": "^1.2.6 || ^1.13.3",
                 "php-parallel-lint/php-console-highlighter": "^1.0.0",
                 "php-parallel-lint/php-parallel-lint": "^1.3.2",
-                "phpcompatibility/php-compatibility": "^9.3.5",
-                "roave/security-advisories": "dev-latest",
-                "squizlabs/php_codesniffer": "^3.7.2",
+                "phpcompatibility/php-compatibility": "^10.0.0@dev",
+                "squizlabs/php_codesniffer": "^3.13.5",
                 "yoast/phpunit-polyfills": "^1.0.4"
             },
             "suggest": {
                 "decomplexity/SendOauth2": "Adapter for using XOAUTH2 authentication",
+                "directorytree/imapengine": "For uploading sent messages via IMAP, see gmail example",
+                "ext-imap": "Needed to support advanced email address parsing according to RFC822",
                 "ext-mbstring": "Needed to send email in multibyte encoding charset or decode encoded addresses",
                 "ext-openssl": "Needed for secure SMTP sending and DKIM signing",
                 "greew/oauth2-azure-provider": "Needed for Microsoft Azure XOAUTH2 authentication",
@@ -612,7 +613,7 @@
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
             "support": {
                 "issues": "https://github.com/PHPMailer/PHPMailer/issues",
-                "source": "https://github.com/PHPMailer/PHPMailer/tree/v6.12.0"
+                "source": "https://github.com/PHPMailer/PHPMailer/tree/v7.0.2"
             },
             "funding": [
                 {
@@ -620,7 +621,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-10-15T16:49:08+00:00"
+            "time": "2026-01-09T18:02:33+00:00"
         },
         {
             "name": "psr/cache",
@@ -1213,16 +1214,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v6.1.3",
+            "version": "v6.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "dc37bd320d1a7d36688cb2549cd3b5163c1f4ff9"
+                "reference": "45aaa2f946b7964188fd139dd384cbe6d38c7eb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/dc37bd320d1a7d36688cb2549cd3b5163c1f4ff9",
-                "reference": "dc37bd320d1a7d36688cb2549cd3b5163c1f4ff9",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/45aaa2f946b7964188fd139dd384cbe6d38c7eb7",
+                "reference": "45aaa2f946b7964188fd139dd384cbe6d38c7eb7",
                 "shasum": ""
             },
             "require": {
@@ -1283,9 +1284,9 @@
             "description": "SAML2 PHP library from SimpleSAMLphp",
             "support": {
                 "issues": "https://github.com/simplesamlphp/saml2/issues",
-                "source": "https://github.com/simplesamlphp/saml2/tree/v6.1.3"
+                "source": "https://github.com/simplesamlphp/saml2/tree/v6.1.4"
             },
-            "time": "2026-03-16T20:18:24+00:00"
+            "time": "2026-03-30T16:23:58+00:00"
         },
         {
             "name": "simplesamlphp/saml2-legacy",
@@ -1347,16 +1348,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
-            "version": "v2.5.13",
+            "version": "v2.5.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-assets-base.git",
-                "reference": "b59015c77c52e477bcfb2452f8c0f8755c13be1d"
+                "reference": "0b9185712983e55ac461dc433172bc8efbbc2782"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/b59015c77c52e477bcfb2452f8c0f8755c13be1d",
-                "reference": "b59015c77c52e477bcfb2452f8c0f8755c13be1d",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/0b9185712983e55ac461dc433172bc8efbbc2782",
+                "reference": "0b9185712983e55ac461dc433172bc8efbbc2782",
                 "shasum": ""
             },
             "require": {
@@ -1377,9 +1378,9 @@
             "description": "Assets for the SimpleSAMLphp main repository",
             "support": {
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-assets-base/issues",
-                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.5.13"
+                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.5.14"
             },
-            "time": "2026-03-04T16:48:40+00:00"
+            "time": "2026-03-29T02:09:37+00:00"
         },
         {
             "name": "simplesamlphp/xml-common",
@@ -5691,11 +5692,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.44",
+            "version": "2.1.45",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/4a88c083c668b2c364a425c9b3171b2d9ea5d218",
-                "reference": "4a88c083c668b2c364a425c9b3171b2d9ea5d218",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f8cdfd9421b7edb7686a2d150a234870464eac70",
+                "reference": "f8cdfd9421b7edb7686a2d150a234870464eac70",
                 "shasum": ""
             },
             "require": {
@@ -5740,7 +5741,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-25T17:34:21+00:00"
+            "time": "2026-03-30T13:22:02+00:00"
         },
         {
             "name": "phpstan/phpstan-mockery",

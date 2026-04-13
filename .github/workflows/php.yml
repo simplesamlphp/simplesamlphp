@@ -158,13 +158,13 @@ jobs:
               echo "Could not read extra.branch-alias.dev-master from composer.json" >&2
               exit 1
             fi
-            echo "COMPOSER_ROOT_VERSION=$ROOT_VERSION" >> "$GITHUB_ENV"
+            echo "COMPOSER_ROOT_VERSION=$ROOT_VERSION" >> "$env:GITHUB_ENV"
 
       - name: Cache composer dependencies
         uses: actions/cache@v5
         with:
           path: ${{ env.COMPOSER_CACHE }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**\composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install Composer dependencies
@@ -231,6 +231,7 @@ jobs:
       - name: Check code for unused dependencies in composer.json
         run: |
           composer-unused \
+            --excludePackage=simplesamlphp/composer-module-installer \
             --excludePackage=simplesamlphp/simplesamlphp-assets-base \
             --excludePackage=symfony/expression-language \
             --excludePackage=symfony/polyfill-intl-icu \
