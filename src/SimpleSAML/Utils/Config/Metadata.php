@@ -243,6 +243,15 @@ class Metadata
         return in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY], true);
     }
 
+    public static function isHiddenFromDiscoveryAV(array $metadata): bool
+    {
+        $cat = "{urn:oasis:names:tc:SAML:2.0:attrname-format:uri}http://macedir.org/entity-category";
+        if (!isset($metadata['EntityAttributes'][$cat])) {
+            return false;
+        }
+        return in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][$cat], true);
+    }
+    
 
     /**
      * This method parses the different possible values of the NameIDPolicy metadata configuration.
