@@ -144,7 +144,6 @@ class HTTPTest extends ClearStateTestCase
         $this->assertEquals('/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/simplesaml/some/dir/in/www/script.php';
-        unset($_SERVER['SCRIPT_NAME']);
         $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/www/some/dir/in/www/script.php');
         $this->assertEquals('/simplesaml/', $httpUtils->guessBasePath());
 
