@@ -164,7 +164,7 @@ jobs:
         uses: actions/cache@v5
         with:
           path: ${{ env.COMPOSER_CACHE }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**\composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install Composer dependencies
