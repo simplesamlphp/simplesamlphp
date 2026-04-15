@@ -25,7 +25,6 @@ use function is_dir;
 use function is_subclass_of;
 use function rtrim;
 use function str_replace;
-use function strtolower;
 use function strval;
 
 /**
@@ -148,6 +147,7 @@ class Module
         throw new Error\NotFound('The module.php entry point is no longer supported.');
     }
 
+
     /**
      * Get absolute URL to a published module asset.
      *
@@ -160,8 +160,7 @@ class Module
         string $module,
         string $asset,
         array $parameters = [],
-    ): string
-    {
+    ): string {
         $httpUtils = new Utils\HTTP();
         $url = $httpUtils->getBaseURL() . 'assets/' . $module . '/' . ltrim($asset, '/');
 
