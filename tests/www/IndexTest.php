@@ -159,7 +159,6 @@ class IndexTest extends TestCase
         $resp = self::$server->get('/index.php/module/doesnotexist', [], [
             CURLOPT_FOLLOWLOCATION => 0,
         ]);
-        dd($resp);
 
         $this->assertEquals('404', $resp['code']);
         $this->assertArrayNotHasKey('Location', $resp['headers']);
