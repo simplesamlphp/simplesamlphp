@@ -32,19 +32,8 @@ class Kernel extends BaseKernel
     public const string CONFIG_EXTS = '.{php,xml,yaml,yml}';
 
 
-    /**
-     * @var string|null
-     */
-    private ?string $module;
-
-
-    /**
-     * @param string|null $module
-     */
-    public function __construct(?string $module = null)
+    public function __construct()
     {
-        $this->module = $module;
-
         $env = getenv('APP_ENV') ?: (getenv('SYMFONY_ENV') ?: 'prod');
 
         parent::__construct($env, false);
@@ -63,7 +52,7 @@ class Kernel extends BaseKernel
         $cacheDir = $cache ?? $temp;
 
         Assert::notNull($cacheDir, "Missing cachedir parameter in config.php");
-        $cachePath = $cacheDir . DIRECTORY_SEPARATOR . ($this->module ?? 'global');
+        $cachePath = $cacheDir . DIRECTORY_SEPARATOR . 'global';
 
         $sysUtils = new System();
         if ($sysUtils->isAbsolutePath($cachePath)) {
@@ -104,17 +93,6 @@ class Kernel extends BaseKernel
 
 
     /**
-     * Get the module loaded in this kernel, or null in global mode.
-     *
-     * @return string|null
-     */
-    public function getModule(): ?string
-    {
-        return $this->module;
-    }
-
-
-    /**
      * Configures the container.
      *
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
@@ -125,7 +103,7 @@ class Kernel extends BaseKernel
         $configuration = Configuration::getInstance();
         $baseDir = $configuration->getBaseDir();
         $loader->load($baseDir . '/routing/services/*' . self::CONFIG_EXTS, 'glob');
-        foreach ($this->getModulesForKernel() as $module) {
+        foreach ($this->getEnabledModules() as $module) {
             $confDir = Module::getModuleDir($module) . '/routing/services';
             if (is_dir($confDir)) {
                 $loader->load($confDir . '/**/*' . self::CONFIG_EXTS, 'glob');
@@ -150,7 +128,7 @@ class Kernel extends BaseKernel
         $configuration = Configuration::getInstance();
         $baseDir = $configuration->getBaseDir();
         $routes->import($baseDir . '/routing/routes/*' . self::CONFIG_EXTS);
-        foreach ($this->getModulesForKernel() as $module) {
+        foreach ($this->getEnabledModules() as $module) {
             $confDir = Module::getModuleDir($module) . '/routing/routes';
             if (is_dir($confDir)) {
                 $routes->import($confDir . '/**/*' . self::CONFIG_EXTS)->prefix('/module/' . $module, false);
@@ -164,7 +142,7 @@ class Kernel extends BaseKernel
      */
     private function registerModuleControllers(ContainerBuilder $container): void
     {
-        foreach ($this->getModulesForKernel() as $module) {
+        foreach ($this->getEnabledModules() as $module) {
             try {
                 $definition = new Definition();
                 $definition->setAutowired(true);
@@ -194,12 +172,8 @@ class Kernel extends BaseKernel
     /**
      * @return string[]
      */
-    private function getModulesForKernel(): array
+    private function getEnabledModules(): array
     {
-        if ($this->module !== null) {
-            return [$this->module];
-        }
-
         $modules = [];
         foreach (Module::getModules() as $module) {
             if (Module::isModuleEnabled($module)) {
