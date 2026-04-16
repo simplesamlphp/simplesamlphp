@@ -138,7 +138,8 @@
         "branch-alias": {
             "dev-master": "2.5.x-dev",
             "dev-simplesamlphp-2.5": "2.5.x-dev",
-            "dev-simplesamlphp-2.6": "2.6.x-dev"
+            "dev-simplesamlphp-2.6": "2.6.x-dev",
+            "dev-simplesamlphp-3.0": "3.0.x-dev"
         }
     },
     "scripts": {
