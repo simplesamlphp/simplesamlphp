@@ -111,6 +111,10 @@ public
     `public/assets/<module>/...` and are then available at URLs on the
     form `https://.../simplesamlphp/assets/<module>/<file>`.
 
+:   After adding or changing files in `modules/<module>/public/assets/`,
+    run `composer assets:publish` (or `php bin/console assets:publish`)
+    so the published copies in `public/assets/<module>/` are updated.
+
 :   Dynamic PHP scripts in `modules/<module>/public/` are no longer
     supported. Dynamic module behavior must be implemented with
     controllers and routes, which are exposed under

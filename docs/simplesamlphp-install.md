@@ -95,6 +95,31 @@ Most likely the metadata format is backwards compatible. If not, you should rece
 startup indicating how and what you need to update. You should look through the metadata in the `metadata-templates`
 directory after the upgrade to see whether recommended defaults have been changed.
 
+### Publishing module assets
+
+If you use modules that ship browser assets in
+`modules/<module>/public/assets/`, publish them after installing or
+upgrading SimpleSAMLphp:
+
+```sh
+composer assets:publish
+```
+
+This command copies module assets into `public/assets/<module>/`,
+where they can be served directly by the web server.
+
+Run it whenever:
+
+- you install or upgrade SimpleSAMLphp
+- you add, remove, or update a module that provides browser assets
+- you change files under `modules/<module>/public/assets/`
+
+If you prefer not to use Composer scripts, the equivalent command is:
+
+```sh
+php bin/console assets:publish
+```
+
 ## Configuration
 
 ### Location of configuration files
