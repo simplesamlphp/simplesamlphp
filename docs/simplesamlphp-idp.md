@@ -183,16 +183,16 @@ This is a minimal example of a `metadata/saml20-sp-remote.php` metadata file for
 ```php
 <?php
 
-$metadata['https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp'] = [
+$metadata['https://sp.example.org/simplesaml/module/saml/sp/metadata/default-sp'] = [
     'AssertionConsumerService' => [
         [
-            'Location' => 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
+            'Location' => 'https://sp.example.org/simplesaml/module/saml/sp/saml2-acs.php/default-sp',
             'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
         ],
     ],
     'SingleLogoutService' => [
         [
-            'Location' => 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',
+            'Location' => 'https://sp.example.org/simplesaml/module/saml/sp/saml2-logout.php/default-sp',
             'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
         ],
     ],
@@ -200,13 +200,13 @@ $metadata['https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/def
 ```
 
 Note that the URI in the entityID and the URLs to the AssertionConsumerService and SingleLogoutService endpoints change between different service providers.
-If you have the metadata of the remote SP as an XML file, you can use the built-in XML to SimpleSAMLphp metadata converter, which by default is available as `/module.php/admin/federation/metadata-converter` in your SimpleSAMLphp installation.
+If you have the metadata of the remote SP as an XML file, you can use the built-in XML to SimpleSAMLphp metadata converter, which by default is available as `/module/admin/federation/metadata-converter` in your SimpleSAMLphp installation.
 
 For more information about available options in the sp-remote metadata files, see the [SP remote reference](simplesamlphp-reference-sp-remote).
 
 ## Adding this IdP to other SPs
 
-The method for adding this IdP to a SP varies between different types of SPs. In general, most SPs need some metadata from the IdP. This should be available from `/saml2/idp/metadata.php`.
+The method for adding this IdP to a SP varies between different types of SPs. In general, most SPs need some metadata from the IdP. This should be available from `/module/saml/idp/metadata`.
 
 ## Testing the IdP
 
@@ -232,14 +232,14 @@ If you do not want to start the SSO flow at the SP, you may use the IdP-first se
 
 Here is an example of such a URL:
 
-`https://idp.example.org/simplesaml/module.php/saml/idp/singleSignOnService?spentityid=sp.example.org`
+`https://idp.example.org/simplesaml/module/saml/idp/singleSignOnService?spentityid=sp.example.org`
 
 If the SP is a SimpleSAMLphp SP, you must also specify a `RelayState` parameter for the SP.
 This must be set to a URL the user should be redirected to after authentication.
 The `RelayState` parameter can be specified in the [SP configuration](./saml:sp), or it can be sent from the IdP.
 To send the RelayState parameter from a SimpleSAMLphp IdP, specify it in the query string to SSOService.php:
 
-`https://idp.example.org/simplesaml/module.php/saml/idp/singleSignOnService?spentityid=sp.example.org&RelayState=https://sp.example.org/welcome.php`
+`https://idp.example.org/simplesaml/module/saml/idp/singleSignOnService?spentityid=sp.example.org&RelayState=https://sp.example.org/welcome.php`
 
 To set it in the SP configuration, add it to `authsources.php`:
 

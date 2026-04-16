@@ -4,7 +4,7 @@
 
 ## Testing a SimpleSAMLphp installation
 
-The admin interface available as `/module.php/admin/` on your site
+The admin interface available as `/module/admin` on your site
 allows for testing logins to the authentication sources available on
 your installation.
 
@@ -33,7 +33,7 @@ method allows for login without password so should be disabled in any
 non testing environment.
 
 The ProfileAuth functionality can be accessed through the path
-`/module.php/admin/test` page using for example a `profileauth`
+`/module/admin/test` page using for example a `profileauth`
 authentication source with the following `config.php` fragment.
 
 The module must be enabled (and admin to get to it easily) and a small

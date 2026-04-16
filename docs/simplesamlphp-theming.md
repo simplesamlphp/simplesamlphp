@@ -156,8 +156,8 @@ If you need to make more extensive customizations to the base template, you shou
 cp templates/base.twig modules/mymodule/themes/fancytheme/default/
 ```
 
-Any references to `$this->data['baseurlpath']` in old-style templates can be replaced with `{{baseurlpath}}` in Twig templates. Likewise, references to `\SimpleSAML\Module::getModuleURL()` can be replaced with `{{baseurlpath}}module.php/mymodule/...` or the `asset()` function like shown above.
-If you want to use the `asset()` function, you need to move the asserts from `public/` to `public/assets/`.
+Any references to `$this->data['baseurlpath']` in old-style templates can be replaced with `{{baseurlpath}}` in Twig templates. Likewise, references to `\SimpleSAML\Module::getModuleURL()` should be replaced with routed URLs under `{{ baseurlpath }}module/...` or with the `asset()` function like shown above.
+If you want to use the `asset()` function, you need to move the assets from `public/` to `public/assets/`.
 
 Within templates each module is defined as a separate namespace matching the module name. This allows one template to reference templates from other modules using Twig's `@namespace_name/template_path` notation. For instance, a template in `mymodule` can include the widget template from the `yourmodule` module using the notation `@yourmodule/widget.twig`. A special namespace, `__parent__`, exists to allow theme developers to more easily extend a module's stock template.
 

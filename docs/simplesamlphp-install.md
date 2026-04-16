@@ -119,6 +119,10 @@ The only subdirectory of `SimpleSAMLphp` that needs to be accessible from the we
 exposing SimpleSAMLphp depending on the way web sites are structured on your Apache web server. The following is just
 one possible configuration.
 
+SimpleSAMLphp handles supported dynamic requests through
+`public/index.php`. Static files, such as published module assets under
+`public/assets/`, should be served directly by the web server.
+
 Find the Apache configuration file for the virtual hosts where you want to run SimpleSAMLphp. The configuration may
 look like this:
 
@@ -133,6 +137,7 @@ look like this:
 
     <Directory /var/simplesamlphp/public>
         Require all granted
+        AllowOverride All
     </Directory>
 </VirtualHost>
 ```
@@ -159,6 +164,10 @@ variable, and SimpleSAMLphp will then look for the `config` directory inside its
 your configuration to a different location, you can use this environment variable to tell SimpleSAMLphp where to look
 for configuration files. This works only for the `config` directory. If you need your metadata to be in a different
 directory too, use the `metadatadir` configuration option to specify the location.
+
+If you do not want to rely on `.htaccess`, configure equivalent
+rewrite rules directly in the virtual host so that non-file requests
+below `/simplesaml` are sent to `index.php`.
 
 This is just the basic configuration to get things working. For a checklist
 further completing your documentation, please see
@@ -190,20 +199,28 @@ server {
 
     location ^~ /simplesaml {
         alias /var/simplesamlphp/public;
+        try_files $uri $uri/ /simplesaml/index.php$is_args$args;
+    }
 
-        location ~^(?<prefix>/simplesaml)(?<phpfile>.+?\.php)(?<pathinfo>/.*)?$ {
-            include          fastcgi_params;
-            fastcgi_pass     $fastcgi_pass;
-            fastcgi_param SCRIPT_FILENAME $document_root$phpfile;
-
-            # Must be prepended with the baseurlpath
-            fastcgi_param SCRIPT_NAME /simplesaml$phpfile;
-
-            fastcgi_param PATH_INFO $pathinfo if_not_empty;
-        }
+    location = /simplesaml/index.php {
+        include          fastcgi_params;
+        fastcgi_pass     $fastcgi_pass;
+        fastcgi_param SCRIPT_FILENAME /var/simplesamlphp/public/index.php;
+        fastcgi_param SCRIPT_NAME /simplesaml/index.php;
+        fastcgi_param PATH_INFO "";
     }
 }
 ```
+
+This configuration serves static files directly from `public/` and
+routes other requests through `public/index.php`. If you expose
+SimpleSAMLphp under a different base path, update both the `alias` and
+`SCRIPT_NAME` values accordingly.
+
+Legacy deployments sometimes mapped requests to individual PHP scripts
+such as `module.php` or `public/saml2/idp/*.php`. Those entrypoints are
+no longer supported; use front-controller routing through `index.php`
+instead.
 
 ## SimpleSAMLphp configuration: config.php
 

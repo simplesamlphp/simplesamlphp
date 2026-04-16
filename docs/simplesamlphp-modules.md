@@ -21,6 +21,10 @@ specific times. More than one thing can be stored in a single module.
 There is also support for storing supporting files, such as templates
 and dictionaries, in modules.
 
+Enabled module routes, services, and controllers are loaded by the
+global SimpleSAMLphp kernel and are reached through the front
+controller in `public/index.php`.
+
 The different functionalities which can be created as modules will be
 described in more detail in the following sections; what follows is a
 short introduction to what you can do with them:
