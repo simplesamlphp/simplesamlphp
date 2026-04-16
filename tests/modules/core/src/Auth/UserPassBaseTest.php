@@ -38,7 +38,7 @@ class UserPassBaseTest extends TestCase
             ->with($username, $password)
             ->willReturn($attributes);
 
-        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
+        /** @var \SimpleSAML\Module\core\Auth\UserPassBase&\PHPUnit\Framework\MockObject\MockObject $stub */
         $stub->authenticate($state);
 
         $this->assertSame($attributes, $state['Attributes']);
@@ -64,7 +64,7 @@ class UserPassBaseTest extends TestCase
             ->onlyMethods(['login'])
             ->getMock();
 
-        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
+        /** @var \SimpleSAML\Module\core\Auth\UserPassBase&\PHPUnit\Framework\MockObject\MockObject $stub */
         $stub->authenticate($state);
     }
 
@@ -88,7 +88,7 @@ class UserPassBaseTest extends TestCase
             ->onlyMethods(['login'])
             ->getMock();
 
-        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
+        /** @var \SimpleSAML\Module\core\Auth\UserPassBase&\PHPUnit\Framework\MockObject\MockObject $stub */
         $stub->authenticate($state);
     }
 
@@ -117,7 +117,7 @@ class UserPassBaseTest extends TestCase
             ->with($forcedUsername, $password)
             ->willReturn($attributes);
 
-        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
+        /** @var \SimpleSAML\Module\core\Auth\UserPassBase&\PHPUnit\Framework\MockObject\MockObject $stub */
         $stub->setForcedUsername($forcedUsername);
         $stub->authenticate($state);
     }
