@@ -255,10 +255,10 @@ $config = [
      * If you have some SP's on HTTP and IdP is normally on HTTPS, this option
      * enables secure POSTing to HTTP endpoint without warning from browser.
      *
-     * For this to work, module.php/core/postredirect.php must be accessible
+     * For this to work, /module/core/postredirect must be accessible
      * also via HTTP on IdP, e.g. if your IdP is on
      * https://idp.example.org/ssp/, then
-     * http://idp.example.org/ssp/module.php/core/postredirect.php must be accessible.
+     * http://idp.example.org/ssp/module/core/postredirect must be accessible.
      */
     'enable.http_post' => false,
 

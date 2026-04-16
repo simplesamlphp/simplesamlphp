@@ -50,15 +50,30 @@ class ModuleTest extends TestCase
             'baseurlpath' => 'https://example.com/simplesaml/',
         ], '', 'simplesaml');
         $this->assertEquals(
-            'https://example.com/simplesaml/module.php/module/script.php',
+            'https://example.com/simplesaml/module/module/script.php',
             Module::getModuleURL('module/script.php'),
         );
         $this->assertEquals(
-            'https://example.com/simplesaml/module.php/module/script.php?param1=value1&param2=value2',
+            'https://example.com/simplesaml/module/module/script.php?param1=value1&param2=value2',
             Module::getModuleURL('module/script.php', [
                 'param1' => 'value1',
                 'param2' => 'value2',
             ]),
+        );
+    }
+
+
+    /**
+     * Test for SimpleSAML\Module::getModuleAssetUrl().
+     */
+    public function testGetModuleAssetUrl(): void
+    {
+        Configuration::loadFromArray([
+            'baseurlpath' => 'https://example.com/simplesaml/',
+        ], '', 'simplesaml');
+        $this->assertEquals(
+            'https://example.com/simplesaml/assets/admin/css/admin.css',
+            Module::getModuleAssetUrl('admin', 'css/admin.css'),
         );
     }
 
@@ -100,6 +115,12 @@ class ModuleTest extends TestCase
      */
     public function testResolveClass(): void
     {
+        Module::$module_info = [];
+        $config = Configuration::loadFromArray([
+            'module.enable' => ['cron' => true],
+        ], '', 'simplesaml');
+        Configuration::setPreLoadedConfig($config);
+
         // most basic test
         $this->assertEquals('SimpleSAML\Module\cron\Cron', Module::resolveClass('cron:Cron', ''));
 

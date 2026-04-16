@@ -1,0 +1,23 @@
+h2 {
+    margin-bottom: 0;
+}
+
+h2:hover {
+    margin-bottom: 0;
+}
+
+a {
+    text-decoration: unset;
+}
+
+a:hover {
+    color: unset;
+}
+
+table.profile {
+    font-size: smaller;
+}
+
+.profile td.key {
+    padding-right: 10px;
+}

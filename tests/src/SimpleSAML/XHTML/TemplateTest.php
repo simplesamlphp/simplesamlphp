@@ -182,7 +182,7 @@ class TemplateTest extends TestCase
         $tagModule = $moduleTemplate->asset('css/admin.css', 'admin', false);
         $this->assertStringNotContainsString('?tag=', $tagModule);
         $this->assertEquals(
-            'http://localhost/simplesaml/module.php/admin/assets/css/admin.css',
+            'http://localhost/simplesaml/assets/admin/css/admin.css',
             $tagModule,
         );
     }

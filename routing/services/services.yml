@@ -12,6 +12,10 @@ services:
   Symfony\Component\HttpFoundation\RequestStack:
     alias: request_stack
 
+  SimpleSAML\Controller\FrontpageController:
+    public: true
+    autowire: true
+
   file_locator:
     class: Symfony\Component\Config\FileLocator
 

@@ -11,6 +11,7 @@ use SimpleSAML\Event\ExceptionHandlerEvent;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 use function class_exists;
@@ -37,6 +38,9 @@ class ExceptionHandler
 
         if ($exception instanceof MethodNotAllowedHttpException) {
             $e = new MethodNotAllowed($exception);
+            $e->show(Logger::DEBUG, true);
+        } elseif ($exception instanceof NotFoundHttpException) {
+            $e = new NotFound();
             $e->show(Logger::DEBUG, true);
         } elseif ($exception instanceof Error) {
             $exception->show();

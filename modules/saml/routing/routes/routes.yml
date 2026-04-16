@@ -76,7 +76,7 @@ saml-legacy-sp-metadata:
   path: /sp/metadata.php/{sourceId}
   defaults: {
     _controller: 'SimpleSAML\Module\saml\Controller\ServiceProvider::metadata',
-    path: /saml/sp/metadata, permanent: true
+    path: /module/saml/sp/metadata, permanent: true
   }
   methods: [GET]
 

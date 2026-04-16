@@ -32,17 +32,8 @@ class Kernel extends BaseKernel
     public const string CONFIG_EXTS = '.{php,xml,yaml,yml}';
 
 
-    /** @var string */
-    private string $module;
-
-
-    /**
-     * @param string $module
-     */
-    public function __construct(string $module)
+    public function __construct()
     {
-        $this->module = $module;
-
         $env = getenv('APP_ENV') ?: (getenv('SYMFONY_ENV') ?: 'prod');
 
         parent::__construct($env, false);
@@ -61,7 +52,7 @@ class Kernel extends BaseKernel
         $cacheDir = $cache ?? $temp;
 
         Assert::notNull($cacheDir, "Missing cachedir parameter in config.php");
-        $cachePath = $cacheDir . DIRECTORY_SEPARATOR . $this->module;
+        $cachePath = $cacheDir . DIRECTORY_SEPARATOR . 'global';
 
         $sysUtils = new System();
         if ($sysUtils->isAbsolutePath($cachePath)) {
@@ -102,17 +93,6 @@ class Kernel extends BaseKernel
 
 
     /**
-     * Get the module loaded in this kernel.
-     *
-     * @return string
-     */
-    public function getModule(): string
-    {
-        return $this->module;
-    }
-
-
-    /**
      * Configures the container.
      *
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
@@ -123,9 +103,11 @@ class Kernel extends BaseKernel
         $configuration = Configuration::getInstance();
         $baseDir = $configuration->getBaseDir();
         $loader->load($baseDir . '/routing/services/*' . self::CONFIG_EXTS, 'glob');
-        $confDir = Module::getModuleDir($this->module) . '/routing/services';
-        if (is_dir($confDir)) {
-            $loader->load($confDir . '/**/*' . self::CONFIG_EXTS, 'glob');
+        foreach ($this->getEnabledModules() as $module) {
+            $confDir = Module::getModuleDir($module) . '/routing/services';
+            if (is_dir($confDir)) {
+                $loader->load($confDir . '/**/*' . self::CONFIG_EXTS, 'glob');
+            }
         }
 
         $container->loadFromExtension('framework', [
@@ -146,9 +128,11 @@ class Kernel extends BaseKernel
         $configuration = Configuration::getInstance();
         $baseDir = $configuration->getBaseDir();
         $routes->import($baseDir . '/routing/routes/*' . self::CONFIG_EXTS);
-        $confDir = Module::getModuleDir($this->module) . '/routing/routes';
-        if (is_dir($confDir)) {
-            $routes->import($confDir . '/**/*' . self::CONFIG_EXTS)->prefix($this->module);
+        foreach ($this->getEnabledModules() as $module) {
+            $confDir = Module::getModuleDir($module) . '/routing/routes';
+            if (is_dir($confDir)) {
+                $routes->import($confDir . '/**/*' . self::CONFIG_EXTS)->prefix('/module/' . $module, false);
+            }
         }
     }
 
@@ -158,27 +142,45 @@ class Kernel extends BaseKernel
      */
     private function registerModuleControllers(ContainerBuilder $container): void
     {
-        try {
-            $definition = new Definition();
-            $definition->setAutowired(true);
-            $definition->setPublic(true);
+        foreach ($this->getEnabledModules() as $module) {
+            try {
+                $definition = new Definition();
+                $definition->setAutowired(true);
+                $definition->setPublic(true);
 
-            $controllerDir = Module::getModuleDir($this->module) . '/src/Controller';
+                $controllerDir = Module::getModuleDir($module) . '/src/Controller';
 
-            if (!is_dir($controllerDir)) {
-                return;
+                if (!is_dir($controllerDir)) {
+                    continue;
+                }
+
+                $loader = new DirectoryLoader(
+                    $container,
+                    new FileLocator($controllerDir . '/'),
+                );
+                $loader->registerClasses(
+                    $definition,
+                    'SimpleSAML\\Module\\' . $module . '\\Controller\\',
+                    $controllerDir . '/*',
+                );
+            } catch (FileLocatorFileNotFoundException $e) {
             }
-
-            $loader = new DirectoryLoader(
-                $container,
-                new FileLocator($controllerDir . '/'),
-            );
-            $loader->registerClasses(
-                $definition,
-                'SimpleSAML\\Module\\' . $this->module . '\\Controller\\',
-                $controllerDir . '/*',
-            );
-        } catch (FileLocatorFileNotFoundException $e) {
         }
+    }
+
+
+    /**
+     * @return string[]
+     */
+    private function getEnabledModules(): array
+    {
+        $modules = [];
+        foreach (Module::getModules() as $module) {
+            if (Module::isModuleEnabled($module)) {
+                $modules[] = $module;
+            }
+        }
+
+        return $modules;
     }
 }

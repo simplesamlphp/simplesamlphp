@@ -18,8 +18,16 @@ use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 use function array_merge;
+use function basename;
+use function dirname;
+use function is_string;
 use function parse_url;
+use function realpath;
+use function rtrim;
 use function str_replace;
+use function str_starts_with;
+use function strlen;
+use function substr;
 
 /**
  * HTTP-related utility methods.
@@ -596,16 +604,24 @@ class HTTP
         if (!array_key_exists('REQUEST_URI', $_SERVER) || !array_key_exists('SCRIPT_FILENAME', $_SERVER)) {
             return '/';
         }
+
+        $requestPath = (string) parse_url((string) $_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $scriptName = (string) ($_SERVER['SCRIPT_NAME'] ?? '');
+        if ($scriptName !== '' && basename($scriptName) === 'index.php') {
+            $basePath = str_replace(DIRECTORY_SEPARATOR, '/', dirname($scriptName));
+            return rtrim($basePath, '/') . '/';
+        }
+
         // get the name of the current script
-        $path = explode(DIRECTORY_SEPARATOR, $_SERVER['SCRIPT_FILENAME']);
+        $path = explode(DIRECTORY_SEPARATOR, (string) $_SERVER['SCRIPT_FILENAME']);
         $script = array_pop($path);
 
         // get the portion of the URI up to the script, i.e.: /simplesaml/some/directory/script.php
-        if (!preg_match('#^/(?:[^/]+/)*' . $script . '#', $_SERVER['REQUEST_URI'], $matches)) {
+        if (!preg_match('#^/(?:[^/]+/)*' . $script . '#', $requestPath, $matches)) {
             return '/';
         }
         $uri_s = explode('/', $matches[0]);
-        $file_s = explode(DIRECTORY_SEPARATOR, $_SERVER['SCRIPT_FILENAME']);
+        $file_s = explode(DIRECTORY_SEPARATOR, (string) $_SERVER['SCRIPT_FILENAME']);
 
         // compare both arrays from the end, popping elements matching out of them
         while ($uri_s[count($uri_s) - 1] === $file_s[count($file_s) - 1]) {
@@ -748,9 +764,9 @@ class HTTP
     /**
      * Retrieve the current URL using the base URL in the configuration, if possible.
      *
-     * This method will try to see if the current script is part of SimpleSAMLphp. In that case, it will use the
-     * 'baseurlpath' configuration option to rebuild the current URL based on that. If the current script is NOT
-     * part of SimpleSAMLphp, it will just return the current URL.
+     * If the current request is being handled by SimpleSAMLphp's front controller, this method rebuilds the URL from
+     * the configured base path and the current request URI. If SimpleSAMLphp is being called from another
+     * application script, it returns that application's current request URL instead.
      *
      * Note that this method does NOT make use of the HTTP X-Forwarded-* set of headers.
      *
@@ -759,64 +775,31 @@ class HTTP
     public function getSelfURL(): string
     {
         $cfg = Configuration::getInstance();
-        $baseDir = $cfg->getBaseDir();
-        $cur_path = realpath($_SERVER['SCRIPT_FILENAME']);
-        // make sure we got a string from realpath()
-        $cur_path = is_string($cur_path) ? $cur_path : '';
-
-        // find the path to the current script relative to the public/ directory of SimpleSAMLphp
-        $rel_path = str_replace($baseDir . 'public' . DIRECTORY_SEPARATOR, '', $cur_path);
-
-        $url_path = str_replace(DIRECTORY_SEPARATOR, '/', $rel_path);
 
         $requestUri = (string)($_SERVER['REQUEST_URI'] ?? '');
         $requestPath = (string)parse_url($requestUri, PHP_URL_PATH);
         $requestQuery = (string)parse_url($requestUri, PHP_URL_QUERY);
         $requestFragment = (string)parse_url($requestUri, PHP_URL_FRAGMENT);
 
-        // Match script-relative path only against the path part of the request
-        $uri_pos = (!empty($url_path)) ? strpos($requestPath, $url_path) : false;
-
-        if ($cur_path == $rel_path || $uri_pos === false) {
-            /*
-             * We were accessed from an external script. This can happen in the following cases:
-             *
-             * - $_SERVER['SCRIPT_FILENAME'] points to a script that doesn't exist. E.g. functional testing. In this
-             *   case, realpath() returns false and str_replace an empty string, so we compare them loosely.
-             *
-             * - The script is not located under the public/ directory of SimpleSAMLphp. In that case, removing
-             *   SimpleSAMLphp's base dir and public/ from the current path yields the same path, so $cur_path and
-             *   $rel_path are equal.
-             *
-             * - The request path does not match the current script. Even if the current script is located in the
-             *   public/ directory of SimpleSAMLphp, the request path (without query string) does not contain its
-             *   relative path, and $uri_pos is false.
-             *
-             * It doesn't matter which one of those cases we have. We just know we can't apply our base URL to the
-             * current URI, so we need to build it back from the PHP environment, unless we have a base URL specified
-             * for this case in the configuration. First, check if that's the case.
-             */
-            $appcfg = $cfg->getOptionalConfigItem('application', null);
-            $appurl = ($appcfg !== null) ? $appcfg->getOptionalString('baseURL', null) : null;
-
-            if (!empty($appurl)) {
-                $protocol = (string)parse_url($appurl, PHP_URL_SCHEME);
-                $hostname = (string)parse_url($appurl, PHP_URL_HOST);
-                $portNum = parse_url($appurl, PHP_URL_PORT);
-                $port = !empty($portNum) ? ':' . $portNum : '';
-            } else {
-                // no base URL specified for app, just use the current URL
-                $protocol = $this->getServerHTTPS() ? 'https' : 'http';
-                $hostname = $this->getServerHost();
-                $port = $this->getServerPort();
-            }
-
-            return $protocol . '://' . $hostname . $port . $_SERVER['REQUEST_URI'];
+        if (!$this->isSimpleSamlFrontControllerRequest($cfg)) {
+            return $this->buildExternalApplicationURL($cfg, $requestUri);
         }
 
-        // Normal case: baseURL + script-relative path + remaining path, plus query if present
-        $suffix = substr($requestPath, $uri_pos + strlen($url_path));
-        $url = $this->getBaseURL() . $url_path . $suffix;
+        $basePath = $cfg->getBasePath();
+        $trimmedBasePath = rtrim($basePath, '/');
+
+        if ($requestPath === $trimmedBasePath) {
+            $suffix = '';
+        } elseif ($basePath === '/' || str_starts_with($requestPath, $basePath)) {
+            $suffix = ltrim(substr($requestPath, strlen($basePath)), '/');
+        } else {
+            return $this->buildExternalApplicationURL($cfg, $requestUri);
+        }
+
+        $url = $this->getBaseURL();
+        if ($suffix !== '') {
+            $url .= $suffix;
+        }
 
         if ($requestQuery !== '') {
             $url .= '?' . $requestQuery;
@@ -827,6 +810,45 @@ class HTTP
         }
 
         return $url;
+    }
+
+
+    /**
+     * Check if the current request is being handled by SimpleSAMLphp's front controller.
+     */
+    private function isSimpleSamlFrontControllerRequest(Configuration $cfg): bool
+    {
+        if (!array_key_exists('SCRIPT_FILENAME', $_SERVER)) {
+            return false;
+        }
+
+        $currentScript = realpath((string) $_SERVER['SCRIPT_FILENAME']);
+        $frontController = realpath($cfg->getBaseDir() . 'public' . DIRECTORY_SEPARATOR . 'index.php');
+
+        return is_string($currentScript) && is_string($frontController) && $currentScript === $frontController;
+    }
+
+
+    /**
+     * Build a URL for requests handled by an embedding application instead of SimpleSAMLphp's front controller.
+     */
+    private function buildExternalApplicationURL(Configuration $cfg, string $requestUri): string
+    {
+        $appcfg = $cfg->getOptionalConfigItem('application', null);
+        $appurl = ($appcfg !== null) ? $appcfg->getOptionalString('baseURL', null) : null;
+
+        if (!empty($appurl)) {
+            $protocol = (string) parse_url($appurl, PHP_URL_SCHEME);
+            $hostname = (string) parse_url($appurl, PHP_URL_HOST);
+            $portNum = parse_url($appurl, PHP_URL_PORT);
+            $port = !empty($portNum) ? ':' . $portNum : '';
+        } else {
+            $protocol = $this->getServerHTTPS() ? 'https' : 'http';
+            $hostname = $this->getServerHost();
+            $port = $this->getServerPort();
+        }
+
+        return $protocol . '://' . $hostname . $port . $requestUri;
     }
 
 

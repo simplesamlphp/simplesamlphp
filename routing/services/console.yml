@@ -10,3 +10,6 @@ services:
     arguments:
       $cacheClearer: '@cache_clearer'
       $filesystem: '@filesystem'
+
+  SimpleSAML\Command\AssetsPublishCommand:
+    tags: ['console.command']
