@@ -106,11 +106,9 @@
         "ext-curl": "*",
         "ext-pdo_sqlite": "*",
 
-        "gettext/php-scanner": "~2.0",
         "mikey179/vfsstream": "~1.6",
         "predis/predis": "~3.3",
-        "simplesamlphp/simplesamlphp-test-framework": "~1.11.5 || dev-master",
-        "symfony/translation": "~7.4"
+        "simplesamlphp/simplesamlphp-test-framework": "~1.11.5 || dev-master"
     },
     "suggest": {
         "predis/predis": "Needed if a Redis server is used to store session information",
