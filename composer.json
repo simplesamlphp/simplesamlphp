@@ -66,7 +66,7 @@
         "gettext/gettext": "~5.7",
         "gettext/php-scanner": "^2.0",
         "gettext/translator": "~1.2",
-        "phpmailer/phpmailer": "~6.10 || ~7.0",
+        "phpmailer/phpmailer": "~7.0",
         "psr/event-dispatcher": "~1.0",
         "psr/log": "~3.0",
         "robrichards/xmlseclibs": "^3.1.5",
@@ -137,7 +137,9 @@
     "extra": {
         "branch-alias": {
             "dev-master": "2.5.x-dev",
-            "dev-simplesamlphp-2.5": "2.5.x-dev"
+            "dev-simplesamlphp-2.5": "2.5.x-dev",
+            "dev-simplesamlphp-2.6": "2.6.x-dev",
+            "dev-simplesamlphp-3.0": "3.0.x-dev"
         }
     },
     "scripts": {
