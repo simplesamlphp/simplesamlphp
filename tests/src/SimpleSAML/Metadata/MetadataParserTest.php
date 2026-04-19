@@ -184,7 +184,7 @@ XML,
     {
         $expected = [
             'authority' => 'https://safire.ac.za',
-            'instant' => 1675861615,
+            'instant' => '2023-02-08T13:06:55Z'
         ];
 
         $document = DOMDocumentFactory::fromString(
