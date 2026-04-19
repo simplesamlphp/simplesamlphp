@@ -1002,7 +1002,7 @@ class MetadataParser
                     }
                     $registrationInstant = $e->getRegistrationInstant();
                     if ($registrationInstant !== null) {
-                        $ret['RegistrationInfo']['instant'] = $registrationInstant->toDateTime()->format("U");
+                        $ret['RegistrationInfo']['instant'] = $registrationInstant->getValue();
                     }
                     $registrationPolicy = $e->getRegistrationPolicy();
                     if (!empty($registrationPolicy)) {
