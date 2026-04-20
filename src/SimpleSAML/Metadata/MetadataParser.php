@@ -869,9 +869,9 @@ class MetadataParser
         }
 
         // check WantAssertionsSigned
-//        if ($element->wantAssertionsSigned() !== null) {
-//            $sp['WantAssertionsSigned'] = $element->wantAssertionsSigned();
-//        }
+        if ($element->getWantAssertionsSigned() !== null) {
+            $sp['WantAssertionsSigned'] = $element->getWantAssertionsSigned();
+        }
 
         $this->spDescriptors[] = $sp;
     }
