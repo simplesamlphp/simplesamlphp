@@ -1170,9 +1170,6 @@ class MetadataParser
             if ($child->getIsRequired()?->toBoolean() === true) {
                 $sp['attributes.required'][] = $attrname;
             }
-//            if( $attrname == "urn:mace:dir:attribute-def:eduPersonPrincipalName") {
-//                $sp['attributes.required'][] = $attrname;
-//            }
             if ($child->getNameFormat() !== null) {
                 $attrformat = $child->getNameFormat();
             } else {
