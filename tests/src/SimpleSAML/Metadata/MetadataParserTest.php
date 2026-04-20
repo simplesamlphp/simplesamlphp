@@ -485,4 +485,45 @@ XML,
         $metadata = $entities['uri:theEntityID']->getMetadata20IdP();
         $this->assertArrayNotHasKey('hide.from.discovery', $metadata);
     }
+
+
+    public function testKeyInfo(): void
+    {
+        $expected = "MIICxDCCAi2gAwIBAgIUZ9QDx+SBFHednUWDFGm9tyVKrgQwDQYJKoZIhvcNAQELBQAwczElMCMGA1UEAwwcc2VsZnNpZ25lZC5zaW1wbGVzYW1scGhwLm9yZzEZMBcGA1UECgwQU2ltcGxlU0FNTHBocCBIUTERMA8GA1UEBwwISG9ub2x1bHUxDzANBgNVBAgMBkhhd2FpaTELMAkGA1UEBhMCVVMwIBcNMjIxMjAzMTAzNTQwWhgPMjEyMjExMDkxMDM1NDBaMHMxJTAjBgNVBAMMHHNlbGZzaWduZWQuc2ltcGxlc2FtbHBocC5vcmcxGTAXBgNVBAoMEFNpbXBsZVNBTUxwaHAgSFExETAPBgNVBAcMCEhvbm9sdWx1MQ8wDQYDVQQIDAZIYXdhaWkxCzAJBgNVBAYTAlVTMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDessdFRVDTMQQW3Na81B1CjJV1tmY3nopoIhZrkbDxLa+pv7jGDRcYreyu1DoQxEs06V2nHLoyOPhqJXSFivqtUwVYhR6NYgbNI6RRSsIJCweH0YOdlHna7gULPcLX0Bfbi4odStaFwG9yzDySwSEPtsKxm5pENPjNVGh+jJ+H/QIDAQABo1MwUTAdBgNVHQ4EFgQUvV75t8EoQo2fVa0E9otdtIGK5X0wHwYDVR0jBBgwFoAUvV75t8EoQo2fVa0E9otdtIGK5X0wDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOBgQANQUeiwPJXkWMXuaDHToEBKcezYGqGEYnGUi9LMjeb+Kln7X8nn5iknlz4k77rWCbSwLPC/WDr0ySYQA+HagaeUaFpoiYFJKS6uFlK1HYWnM3W4PUiGHg1/xeZlMO44wTwybXVo0y9KMhchfB5XNbDdoJcqWYvi6xtmZZNRbxUyw==";
+
+        $document = DOMDocumentFactory::fromString(
+            <<<XML
+<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="urn:x-simplesamlphp:example-sp">
+  <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <md:KeyDescriptor use="signing">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <ds:X509Certificate>MIICxDCCAi2gAwIBAgIUZ9QDx+SBFHednUWDFGm9tyVKrgQwDQYJKoZIhvcNAQELBQAwczElMCMGA1UEAwwcc2VsZnNpZ25lZC5zaW1wbGVzYW1scGhwLm9yZzEZMBcGA1UECgwQU2ltcGxlU0FNTHBocCBIUTERMA8GA1UEBwwISG9ub2x1bHUxDzANBgNVBAgMBkhhd2FpaTELMAkGA1UEBhMCVVMwIBcNMjIxMjAzMTAzNTQwWhgPMjEyMjExMDkxMDM1NDBaMHMxJTAjBgNVBAMMHHNlbGZzaWduZWQuc2ltcGxlc2FtbHBocC5vcmcxGTAXBgNVBAoMEFNpbXBsZVNBTUxwaHAgSFExETAPBgNVBAcMCEhvbm9sdWx1MQ8wDQYDVQQIDAZIYXdhaWkxCzAJBgNVBAYTAlVTMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDessdFRVDTMQQW3Na81B1CjJV1tmY3nopoIhZrkbDxLa+pv7jGDRcYreyu1DoQxEs06V2nHLoyOPhqJXSFivqtUwVYhR6NYgbNI6RRSsIJCweH0YOdlHna7gULPcLX0Bfbi4odStaFwG9yzDySwSEPtsKxm5pENPjNVGh+jJ+H/QIDAQABo1MwUTAdBgNVHQ4EFgQUvV75t8EoQo2fVa0E9otdtIGK5X0wHwYDVR0jBBgwFoAUvV75t8EoQo2fVa0E9otdtIGK5X0wDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOBgQANQUeiwPJXkWMXuaDHToEBKcezYGqGEYnGUi9LMjeb+Kln7X8nn5iknlz4k77rWCbSwLPC/WDr0ySYQA+HagaeUaFpoiYFJKS6uFlK1HYWnM3W4PUiGHg1/xeZlMO44wTwybXVo0y9KMhchfB5XNbDdoJcqWYvi6xtmZZNRbxUyw==</ds:X509Certificate>
+        </ds:X509Data>
+        <ds:KeyName>my-key-name</ds:KeyName>
+      </ds:KeyInfo>
+    </md:KeyDescriptor>
+    <md:KeyDescriptor use="encryption">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <ds:X509Certificate>MIICxDCCAi2gAwIBAgIUZ9QDx+SBFHednUWDFGm9tyVKrgQwDQYJKoZIhvcNAQELBQAwczElMCMGA1UEAwwcc2VsZnNpZ25lZC5zaW1wbGVzYW1scGhwLm9yZzEZMBcGA1UECgwQU2ltcGxlU0FNTHBocCBIUTERMA8GA1UEBwwISG9ub2x1bHUxDzANBgNVBAgMBkhhd2FpaTELMAkGA1UEBhMCVVMwIBcNMjIxMjAzMTAzNTQwWhgPMjEyMjExMDkxMDM1NDBaMHMxJTAjBgNVBAMMHHNlbGZzaWduZWQuc2ltcGxlc2FtbHBocC5vcmcxGTAXBgNVBAoMEFNpbXBsZVNBTUxwaHAgSFExETAPBgNVBAcMCEhvbm9sdWx1MQ8wDQYDVQQIDAZIYXdhaWkxCzAJBgNVBAYTAlVTMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDessdFRVDTMQQW3Na81B1CjJV1tmY3nopoIhZrkbDxLa+pv7jGDRcYreyu1DoQxEs06V2nHLoyOPhqJXSFivqtUwVYhR6NYgbNI6RRSsIJCweH0YOdlHna7gULPcLX0Bfbi4odStaFwG9yzDySwSEPtsKxm5pENPjNVGh+jJ+H/QIDAQABo1MwUTAdBgNVHQ4EFgQUvV75t8EoQo2fVa0E9otdtIGK5X0wHwYDVR0jBBgwFoAUvV75t8EoQo2fVa0E9otdtIGK5X0wDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOBgQANQUeiwPJXkWMXuaDHToEBKcezYGqGEYnGUi9LMjeb+Kln7X8nn5iknlz4k77rWCbSwLPC/WDr0ySYQA+HagaeUaFpoiYFJKS6uFlK1HYWnM3W4PUiGHg1/xeZlMO44wTwybXVo0y9KMhchfB5XNbDdoJcqWYvi6xtmZZNRbxUyw==</ds:X509Certificate>
+        </ds:X509Data>
+        <ds:KeyName>my-key-name</ds:KeyName>
+      </ds:KeyInfo>
+    </md:KeyDescriptor>
+    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="http://localhost/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://localhost/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp" index="0"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="http://localhost/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp" index="1"/>
+  </md:SPSSODescriptor>
+</md:EntityDescriptor>
+XML,
+        );
+
+        $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
+        $metadata = $entities['urn:x-simplesamlphp:example-sp']->getMetadata20SP();
+
+        $this->assertEquals(2, count($metadata['keys']));
+        $this->assertEquals($expected, $metadata['keys'][0]['X509Certificate']);
+    }
+    
 }
