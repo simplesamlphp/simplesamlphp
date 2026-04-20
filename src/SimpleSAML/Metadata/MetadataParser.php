@@ -39,6 +39,7 @@ use SimpleSAML\SAML2\XML\saml\Attribute;
 use SimpleSAML\SAML2\XML\shibmd\Scope;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\XML\saml\AttributeValue;
+use SimpleSAML\SAML2\Type\SAMLAnyURIValue;
 
 use SimpleSAML\Logger;
 use SimpleSAML\SAML2\Constants;
@@ -787,7 +788,7 @@ class MetadataParser
             $ret['expire'] = $expireTime;
         }
 
-        $ret['protocols'] = $element->getProtocolSupportEnumeration();
+        $ret['protocols'] = self::flattenValues($element->getProtocolSupportEnumeration()->toArray());
 
         // process KeyDescriptor elements
         $ret['keys'] = [];
@@ -1290,12 +1291,11 @@ class MetadataParser
     private function getSPDescriptors(array $protocols): array
     {
         $ret = [];
-
         foreach ($this->spDescriptors as $spd) {
-//            $sharedProtocols = array_intersect($protocols, $spd['protocols']->toArray());
-//            if (count($sharedProtocols) > 0) {
+            $sharedProtocols = array_intersect($protocols, $spd['protocols']);
+            if (count($sharedProtocols) > 0) {
                 $ret[] = $spd;
-//            }
+            }
         }
 
         return $ret;
@@ -1314,7 +1314,7 @@ class MetadataParser
         $ret = [];
 
         foreach ($this->idpDescriptors as $idpd) {
-            $sharedProtocols = array_intersect($protocols, $idpd['protocols']->toArray());
+            $sharedProtocols = array_intersect($protocols, $idpd['protocols']);
             if (count($sharedProtocols) > 0) {
                 $ret[] = $idpd;
             }
