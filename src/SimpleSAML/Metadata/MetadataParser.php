@@ -1160,10 +1160,6 @@ class MetadataParser
             if (empty($attrvalue)) {
                 $sp['attributes'][] = $attrname;
             } else {
-//                $values = [];
-//                foreach ($attrvalue as $attrval) {
-//                    $values[] = $attrval->getString();
-//                }
                 $sp['attributes'][$attrname] = $attrvalue;
             }
 
