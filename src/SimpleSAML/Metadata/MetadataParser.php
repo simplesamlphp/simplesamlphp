@@ -9,7 +9,10 @@ use DOMElement;
 use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 //use SAML2\SignedElementHelper;
-//use SimpleSAML\SAML2\Certificate\X509;
+use SimpleSAML\SAML2\Certificate\X509;
+use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
+use SimpleSAML\XMLSecurity\XML\ds\X509Data;
+use SimpleSAML\XMLSecurity\XML\ds\KeyInfo;
 use SimpleSAML\SAML2\XML\idpdisc\DiscoveryResponse;
 use SimpleSAML\SAML2\XML\md\AttributeAuthorityDescriptor;
 use SimpleSAML\SAML2\XML\md\AttributeConsumingService;
@@ -151,6 +154,8 @@ class MetadataParser
     /**
      * This is an array of elements that may be used to validate this element.
      *
+     * FIXME: SignedElementHelper has disappeared saml2-legacy -> saml2
+     * 
      * @var \SAML2\SignedElementHelper[]
      */
     private array $validators = [];
@@ -1262,8 +1267,9 @@ class MetadataParser
             if ($i instanceof X509Data) {
                 foreach ($i->getData() as $d) {
                     if ($d instanceof X509Certificate) {
+                        $certDetails = $d->getContent()->getValue();
                         $r['type'] = 'X509Certificate';
-                        $r['X509Certificate'] = $d->getCertificate();
+                        $r['X509Certificate'] = $certDetails;
                         return $r;
                     }
                 }
