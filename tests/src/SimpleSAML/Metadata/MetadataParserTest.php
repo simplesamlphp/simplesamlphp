@@ -313,8 +313,14 @@ XML,
     {
         $expected = [
             'scope' => [
-                'example.org',
-                'example.net',
+                [
+                    'scope' => 'example.org',
+                    'isRegexpScope' => false,
+                ],
+                [
+                    'scope' => 'example.net',
+                    'isRegexpScope' => false,
+                ],
             ],
             'UIInfo' => [
                 'DisplayName' => ['en' => 'DisplayName', 'af' => 'VertoonNaam'],
