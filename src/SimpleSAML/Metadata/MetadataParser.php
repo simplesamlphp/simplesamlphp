@@ -939,6 +939,24 @@ class MetadataParser
         return $a;
     }
 
+    private static function flatten_append( $arr ): array
+    {
+        $a = [];
+        foreach($arr as $d) {
+            $a[] = $d->toArray();
+        }
+        return $a;
+    }
+
+    private static function flatten_append_key( $arr, $k ): array
+    {
+        $a = [];
+        foreach($arr as $d) {
+            $a[] = $d->toArray()[$k];
+        }
+        return $a;
+    }
+    
     private static function flattenValues( $arr ): array
     {
         $a = [];
@@ -983,7 +1001,7 @@ class MetadataParser
         }
         foreach ($elist as $e) {
             if ($e instanceof Scope) {
-                $ret['scope'] = array_merge($ret['scope'],$e->toArray());
+                $ret['scope'][] = $e->toArray();
                 continue;
             }
 
@@ -1090,12 +1108,13 @@ class MetadataParser
             // DiscoHints elements are only allowed at IDPSSODescriptor level extensions
             if ($element instanceof IDPSSODescriptor) {
                 if ($e instanceof DiscoHints) {
-                    $ret['DiscoHints']['IPHint'] = self::flatten($e->getIPHint());
-                    $ret['DiscoHints']['DomainHint'] = self::flatten($e->getDomainHint());
-                    $ret['DiscoHints']['GeolocationHint'] = self::flatten($e->getGeolocationHint());
+                    $ret['DiscoHints']['IPHint'] = self::flatten_append_key($e->getIPHint(), 'hint');
+                    $ret['DiscoHints']['DomainHint'] = self::flatten_append_key($e->getDomainHint(), 'hint');
+                    $ret['DiscoHints']['GeolocationHint'] = self::flatten_append_key($e->getGeolocationHint(), 'hint');
                 }
             }
         }
+
         return $ret;
     }
 
