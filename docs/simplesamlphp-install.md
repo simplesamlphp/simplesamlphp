@@ -110,9 +110,9 @@ where they can be served directly by the web server.
 
 Run it whenever:
 
-- you install or upgrade SimpleSAMLphp
-- you add, remove, or update a module that provides browser assets
-- you change files under `modules/<module>/public/assets/`
+* you install or upgrade SimpleSAMLphp
+* you add, remove, or update a module that provides browser assets
+* you change files under `modules/<module>/public/assets/`
 
 If you prefer not to use Composer scripts, the equivalent command is:
 
