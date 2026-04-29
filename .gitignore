@@ -11,6 +11,16 @@ metadata/*
 !/public/assets/.gitkeep
 /public/assets/*
 .phplint.cache/
+!/public/assets/admin/
+!/public/assets/core/
+!/public/assets/cron/
+!/public/assets/debugsp/
+!/public/assets/exampleauth/
+!/public/assets/admin/**
+!/public/assets/core/**
+!/public/assets/cron/**
+!/public/assets/debugsp/**
+!/public/assets/exampleauth/**
 .phpunit.cache/
 .phpunit.result.cache
 phpunit.xml.bak

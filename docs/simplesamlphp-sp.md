@@ -92,13 +92,13 @@ metadata file:
 $metadata['https://example.org/saml-idp'] = [
     'SingleSignOnService' => [
         [
-          'Location' => 'https://example.org/simplesaml/module.php/saml/idp/singleSignOnService',
+          'Location' => 'https://example.org/simplesaml/module/saml/idp/singleSignOnService',
           'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
         ],
     ],
     'SingleLogoutService' => [
         [
-          'Location' => 'https://example.org/simplesaml/module.php/saml/idp/singleLogout',
+          'Location' => 'https://example.org/simplesaml/module/saml/idp/singleLogout',
           'ResponseLocation' => 'https://sp.example.org/LogoutResponse',
           'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
         ],
@@ -115,7 +115,7 @@ files, see the [IdP remote reference](simplesamlphp-reference-idp-remote).
 
 If you have the metadata of the remote IdP as an XML file, you can use the
 built-in XML to SimpleSAMLphp metadata converter, which by default is
-available at `/module.php/admin/federation/metadata-converter` in
+available at `/module/admin/federation/metadata-converter` in
 your SimpleSAMLphp installation.
 
 Note that the idp-remote file lists all IdPs you trust.

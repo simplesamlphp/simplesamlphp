@@ -143,6 +143,7 @@
         }
     },
     "scripts": {
+        "assets:publish": "./bin/console assets:publish",
         "translations:unused": "./bin/translations translations:unused",
         "translations:update:translatable": "./bin/translations translations:update:translatable",
         "clear-symfony-cache": [
@@ -154,6 +155,13 @@
         ],
         "post-install-cmd": [
             "echo 'Post-install tasks completed!'"
+        ],
+        "pre-commit": [
+            "vendor/bin/phpcbf -pn",
+            "vendor/bin/phpcs -p",
+            "vendor/bin/phpstan analyze -c phpstan.neon --memory-limit=1024M",
+            "vendor/bin/phpstan analyze -c phpstan-dev.neon --memory-limit=1024M",
+            "vendor/bin/phpunit"
         ]
     }
 }

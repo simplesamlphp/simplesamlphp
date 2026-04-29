@@ -6,43 +6,26 @@ namespace SimpleSAML;
 
 use Exception;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\Kernel;
 use SimpleSAML\Utils;
-use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\ResponseHeaderBag;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-use function array_filter;
 use function array_key_exists;
 use function class_exists;
 use function count;
 use function dirname;
 use function explode;
-use function function_exists;
 use function in_array;
 use function is_bool;
 use function is_callable;
 use function is_dir;
-use function is_file;
-use function is_null;
 use function is_subclass_of;
-use function mb_strtolower;
-use function mime_content_type;
-use function preg_match;
 use function rtrim;
 use function str_replace;
-use function strlen;
-use function strpos;
-use function strtolower;
 use function strval;
-use function substr;
 
 /**
  * Helper class for accessing information about modules.
@@ -151,207 +134,41 @@ class Module
 
 
     /**
-     * Handler for module requests.
-     *
-     * This controller receives requests for pages hosted by modules, and processes accordingly. Depending on the
-     * configuration and the actual request, it will run a PHP script and exit, or return a Response produced either
-     * by another controller or by a static file.
+     * Legacy handler for the removed module.php entry point.
      *
      * @param \Symfony\Component\HttpFoundation\Request|null $request
      *   The request to process. Defaults to the current one.
-     * @return (
-     *   \Symfony\Component\HttpFoundation\Response|
-     *   \Symfony\Component\HttpFoundation\BinaryFileResponse
-     * ) Returns a Response object that can be sent to the browser.
+     * @return never
      *
-     * @throws \SimpleSAML\Error\BadRequest In case the request URI is malformed.
-     * @throws \SimpleSAML\Error\NotFound
-     *   In case the request URI is invalid or the resource it points to cannot be found.
+     * @throws \SimpleSAML\Error\NotFound Always, because module.php is no longer supported.
      */
-    public static function process(?Request $request = null): Response
+    public static function process(?Request $request = null): never
     {
-        if ($request === null) {
-            $request = Request::createFromGlobals();
+        throw new Error\NotFound('The module.php entry point is no longer supported.');
+    }
+
+
+    /**
+     * Get absolute URL to a published module asset.
+     *
+     * @param string $module Module name.
+     * @param string $asset Asset path relative to the module assets directory.
+     * @param array $parameters Extra parameters which should be added to the URL. Optional.
+     * @return string
+     */
+    public static function getModuleAssetUrl(
+        string $module,
+        string $asset,
+        array $parameters = [],
+    ): string {
+        $httpUtils = new Utils\HTTP();
+        $url = $httpUtils->getBaseURL() . 'assets/' . $module . '/' . ltrim($asset, '/');
+
+        if (!empty($parameters)) {
+            $url = $httpUtils->addURLParameters($url, $parameters);
         }
 
-        if ($request->server->get('PATH_INFO') === '/' || $request->server->get('PATH_INFO') === null) {
-            throw new Error\NotFound('No PATH_INFO to module.php');
-        }
-
-        $url = $request->server->get('PATH_INFO');
-        Assert::same(substr($url, 0, 1), '/');
-
-        /* clear the PATH_INFO option, so that a script can detect whether it is called with anything following the
-         *'.php'-ending.
-         */
-        unset($_SERVER['PATH_INFO']);
-
-        $modEnd = strpos($url, '/', 1);
-        if ($modEnd === false) {
-            $modEnd = strlen($url);
-            $module = substr($url, 1);
-            $url = '';
-        } else {
-            $module = substr($url, 1, $modEnd - 1);
-            $url = substr($url, $modEnd + 1);
-        }
-
-        if (!self::isModuleEnabled($module)) {
-            throw new Error\NotFound(sprintf("The module '%s' was either not found, or wasn't enabled.", $module));
-        }
-
-        /* Make sure that the request isn't suspicious (contains references to current directory or parent directory or
-         * anything like that. Searching for './' in the URL will detect both '../' and './'. Searching for '\' will
-         * detect attempts to use Windows-style paths.
-         */
-        if (strpos($url, '\\') !== false) {
-            throw new Error\BadRequest('Requested URL contained a backslash.');
-        } elseif (strpos($url, './') !== false) {
-            throw new Error\BadRequest('Requested URL contained \'./\'.');
-        }
-
-        $config = Configuration::getInstance();
-
-        // rebuild REQUEST_URI and SCRIPT_NAME just in case we need to.
-        // This is needed for server aliases and rewrites
-        $translated_uri = $config->getBasePath() . 'module.php/' . $module . '/' . $url;
-        $request->server->set('REQUEST_URI', $translated_uri);
-        $request->server->set('SCRIPT_NAME', $config->getBasePath() . 'module.php');
-        // strip any NULL files (form file fields with nothing selected)
-        // because initialize() will throw an error on them
-        $request_files = array_filter(
-            $request->files->all(),
-            function ($val) {
-                return !is_null($val);
-            },
-        );
-        $request->initialize(
-            $request->query->all(),
-            $request->request->all(),
-            $request->attributes->all(),
-            $request->cookies->all(),
-            $request_files,
-            $request->server->all(),
-            $request->getContent(),
-        );
-
-        try {
-            $kernel = new Kernel($module);
-            $response = $kernel->handle($request);
-            $kernel->terminate($request, $response);
-
-            return $response;
-        } catch (FileLocatorFileNotFoundException $e) {
-            // no routes configured for this module, fall back to the old system
-        } catch (NotFoundHttpException $e) {
-            // this module has been migrated, but the route wasn't found
-        }
-
-        $moduleDir = self::getModuleDir($module) . '/public/';
-
-        // check for '.php/' in the path, the presence of which indicates that another php-script should handle the
-        // request
-        for ($phpPos = strpos($url, '.php/'); $phpPos !== false; $phpPos = strpos($url, '.php/', $phpPos + 1)) {
-            $newURL = substr($url, 0, $phpPos + 4);
-            $param = substr($url, $phpPos + 4);
-
-            if (is_file($moduleDir . $newURL)) {
-                /* $newPath points to a normal file. Point execution to that file, and save the remainder of the path
-                 * in PATH_INFO.
-                 */
-                $url = $newURL;
-                $request->server->set('PATH_INFO', $param);
-                $_SERVER['PATH_INFO'] = $param;
-                break;
-            }
-        }
-
-        $path = $moduleDir . $url;
-        $fileSystem = new Filesystem();
-
-        if ($path[strlen($path) - 1] === '/') {
-            // path ends with a slash - directory reference. Attempt to find index file in directory
-            foreach (self::$indexFiles as $if) {
-                if ($fileSystem->exists($path . $if)) {
-                    $path .= $if;
-                    break;
-                }
-            }
-        }
-
-        if (is_dir($path)) {
-            /* Path is a directory - maybe no index file was found in the previous step, or maybe the path didn't end
-             * with a slash. Either way, we don't do directory listings.
-             */
-            throw new Error\NotFound('Directory listing not available.');
-        }
-
-        if (!$fileSystem->exists($path)) {
-            // file not found
-            Logger::info('Could not find file \'' . $path . '\'.');
-            throw new Error\NotFound("The URL wasn't found in the module.");
-        }
-
-        if (mb_strtolower(substr($path, -4), 'UTF-8') === '.php') {
-            // PHP file - attempt to run it
-
-            /* In some environments, $_SERVER['SCRIPT_NAME'] is already set with $_SERVER['PATH_INFO']. Check for that
-             * case, and append script name only if necessary.
-             *
-             * Contributed by Travis Hegner.
-             */
-            $script = "/$module/$url";
-            if (strpos($request->getScriptName(), $script) === false) {
-                $request->server->set('SCRIPT_NAME', $request->getScriptName() . '/' . $module . '/' . $url);
-            }
-
-            require($path);
-            exit();
-        }
-
-        // some other file type - attempt to serve it
-
-        // find MIME type for file, based on extension
-        $contentType = null;
-        if (preg_match('#\.([^/\.]+)$#D', $path, $type)) {
-            $type = strtolower($type[1]);
-            if (array_key_exists($type, self::$mimeTypes)) {
-                $contentType = self::$mimeTypes[$type];
-            }
-        }
-
-        if ($contentType === null) {
-            /* We were unable to determine the MIME type from the file extension. Fall back to mime_content_type (if it
-             * exists).
-             */
-            if (function_exists('mime_content_type')) {
-                $contentType = mime_content_type($path);
-            } else {
-                // mime_content_type doesn't exist. Return a default MIME type
-                Logger::warning('Unable to determine mime content type of file: ' . $path);
-                $contentType = 'application/octet-stream';
-            }
-        }
-
-
-        $assetConfig = $config->getOptionalConfigItem('assets', []);
-        $cacheConfig = $assetConfig->getOptionalConfigItem('caching', []);
-        $response = new BinaryFileResponse($path);
-        $response->setCache([
-            // "public" allows response caching even if the request was authenticated,
-            // which is exactly what we want for static resources
-            'public' => true,
-            'max_age' => strval($cacheConfig->getOptionalInteger('max_age', 86400)),
-        ]);
-        $response->setAutoLastModified();
-        if ($cacheConfig->getOptionalBoolean('etag', false)) {
-            $response->setAutoEtag();
-        }
-        $response->isNotModified($request);
-        $response->headers->set('Content-Type', $contentType);
-        $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_INLINE);
-        $response->prepare($request);
-        return $response;
+        return $url;
     }
 
 
@@ -521,7 +338,7 @@ class Module
         Assert::notSame($resource[0], '/');
 
         $httpUtils = new Utils\HTTP();
-        $url = $httpUtils->getBaseURL() . 'module.php/' . $resource;
+        $url = $httpUtils->getBaseURL() . 'module/' . $resource;
         if (!empty($parameters)) {
             $url = $httpUtils->addURLParameters($url, $parameters);
         }
