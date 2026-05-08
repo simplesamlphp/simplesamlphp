@@ -1,7 +1,7 @@
 # SimpleSAMLphp developer information
 
-<!-- 
-	This file is written in Markdown syntax. 
+<!--
+	This file is written in Markdown syntax.
 	For more information about how to use the Markdown syntax, read here:
 	http://daringfireball.net/projects/markdown/syntax
 -->
@@ -65,6 +65,15 @@ package.
 The dependencies are updated using github actions in
 simplesamlphp-assets-base. Select a recent branch such as release-2.2
 and dig into the .github directory for details.
+
+### Primary Module Assets
+
+If a primary module (a module included in the main repository) contains public
+assets inside its `public/assets/` directory, these assets must be explicitly
+allowed in the repository's root `.gitignore` file. Because `/public/assets/*`
+is ignored by default, you must add `!/public/assets/<module>/` and
+`!/public/assets/<module>/**` to the `.gitignore` file to ensure the deployed
+assets for that module can be tracked by Git.
 
 ## Following a simple login
 
