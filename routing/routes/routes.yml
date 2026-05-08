@@ -21,20 +21,16 @@ remove_trailing_slash:
     url: ".*/$"
   methods: [GET]
 
-add_trailing_slash:
-  path: /{url}
-  defaults: {
-    _controller: SimpleSAML\Module::addTrailingSlash
-  }
-  requirements:
-    url: "[a-zA-Z0-9_-]+[^/]$"
-  methods: [GET]
-
 admin-shortcut:
   path: /admin
-  defaults: {
-    _controller: 'SimpleSAML\Module\admin\Controller\Config::main',
-    path: /module/admin,
-    permanent: true
-  }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+  defaults:
+    route: admin-main
+  methods: [GET]
+
+legacy-route-redirect-admin-index:
+  path: /admin/index.php
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+  defaults:
+    route: admin-main
   methods: [GET]
