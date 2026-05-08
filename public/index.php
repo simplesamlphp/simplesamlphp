@@ -9,7 +9,6 @@ require_once('_include.php');
 $kernel = new Kernel();
 $request = \Symfony\Component\HttpFoundation\Request::createFromGlobals();
 $response = $kernel->handle($request);
-$kernel->terminate($request, $response);
 
 $config = Configuration::getInstance();
 $headers = $config->getOptionalArray('headers.security', Configuration::DEFAULT_SECURITY_HEADERS);
@@ -20,3 +19,4 @@ foreach ($headers as $header => $value) {
     }
 }
 $response->send();
+$kernel->terminate($request, $response);
