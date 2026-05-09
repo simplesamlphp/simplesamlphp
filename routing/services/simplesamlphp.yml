@@ -19,3 +19,6 @@ services:
 
   SimpleSAML\Utils\HTTP:
     class: SimpleSAML\Utils\HTTP
+
+  SimpleSAML\EventSubscriber\ExceptionSubscriber:
+    tags: ['kernel.event_subscriber']

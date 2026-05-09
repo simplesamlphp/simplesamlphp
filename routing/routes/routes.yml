@@ -12,15 +12,6 @@ frontpage-index:
     _controller: 'SimpleSAML\Controller\FrontpageController::redirect'
   methods: [GET]
 
-remove_trailing_slash:
-  path: /{module}/{url}
-  defaults: {
-    _controller: SimpleSAML\Module::removeTrailingSlash
-  }
-  requirements:
-    url: ".*/$"
-  methods: [GET]
-
 admin-shortcut:
   path: /admin
   controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
