@@ -492,8 +492,8 @@ XML,
 XML,
         );
 
-       $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
-//        $this->assertArrayHasKey('uri:theEntityID', $entities);
+        $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
+        $this->assertArrayHasKey('uri:theEntityID', $entities);
         $metadata = $entities['uri:theEntityID']->getMetadata20IdP();
         $this->assertArrayNotHasKey('hide.from.discovery', $metadata);
     }
