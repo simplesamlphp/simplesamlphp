@@ -1,5 +1,13 @@
 <?php
 
+/*
+
+   TODO
+
+   * cleaner handling of the flatten* methods.
+
+
+*/
 declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
@@ -8,7 +16,6 @@ use DOMDocument;
 use DOMElement;
 use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
-//use SAML2\SignedElementHelper;
 use SimpleSAML\SAML2\Certificate\X509;
 use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
 use SimpleSAML\XMLSecurity\XML\ds\X509Data;
@@ -18,13 +25,10 @@ use SimpleSAML\SAML2\XML\md\AttributeAuthorityDescriptor;
 use SimpleSAML\SAML2\XML\md\AttributeConsumingService;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\SAML2\XML\md\AbstractEndpointType;
-//use SimpleSAML\SAML2\XML\md\AbstractEndpointType;
-//use SimpleSAML\SAML2\XML\md\AbstractMdElement;
 use SimpleSAML\SAML2\XML\md\EntitiesDescriptor;
 use SimpleSAML\SAML2\XML\md\EntityDescriptor;
 use SimpleSAML\SAML2\Type\EntityIDValue;
 use SimpleSAML\SAML2\XML\md\IDPSSODescriptor;
-//use SimpleSAML\SAML2\XML\md\IndexedEndpointType;
 use SimpleSAML\SAML2\XML\md\KeyDescriptor;
 use SimpleSAML\SAML2\XML\md\Organization;
 use SimpleSAML\SAML2\XML\md\RoleDescriptor;
