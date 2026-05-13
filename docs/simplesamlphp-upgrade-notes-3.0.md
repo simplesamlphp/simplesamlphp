@@ -40,6 +40,19 @@ Some legacy routes still redirect to their routed equivalents to ease
 transition, but 3.0 documentation should treat the routed paths as the
 supported interface.
 
+## Custom error rendering
+
+The `errors.show_function` configuration option has been removed.
+Custom error rendering is now handled through Symfony's event system.
+
+To customize error pages, create a `kernel.exception` event subscriber
+in your module and register it with a priority higher than 200 (which
+is the priority used by SimpleSAMLphp's built-in error handler).
+
+See [Error Handling](./simplesamlphp-errorhandling.md) for details and
+a complete example.
+
+
 ## Installer and operator impact
 
 Your web server must route non-file requests in `public/` to
@@ -90,4 +103,7 @@ When upgrading an existing deployment:
 4. Review any custom modules for direct PHP entry scripts in
    `modules/<module>/public/` and move that behavior into routed
    controllers.
-5. Clear the Symfony cache after deployment.
+5. Remove `error.show_function` option from `config/config.php` if present.
+   If you used custom error function, move the implementation to event
+   subscribers instead.
+6. Clear the Symfony cache after deployment.

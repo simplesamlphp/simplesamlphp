@@ -38,8 +38,8 @@ class ExceptionSubscriber implements EventSubscriberInterface
         $exception = $event->getThrowable();
 
         $handler = new ExceptionHandler();
-        // This delegates to the existing SimpleSAMLphp error display logic,
-        // which renders the error page template and terminates the process.
-        $handler->customExceptionHandler($exception);
+        $response = $handler->handleException($exception);
+
+        $event->setResponse($response);
     }
 }

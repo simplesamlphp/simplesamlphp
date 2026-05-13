@@ -196,18 +196,59 @@ An exception which isn't a subclass of `\SimpleSAML\Error\Exception` will be con
 This happens regardless of whether the exception is delivered directly or through the error handler.
 This is done to be consistent in what the application receives - now it will always receive the same exception, regardless of whether it is delivered directly or through a redirect.
 
-## Custom error show function
+## Custom error rendering
 
-Optional custom error show function, called from \SimpleSAML\Error\Error::show, is defined with 'errors.show_function' in config.php.
+SimpleSAMLphp 3.0 uses Symfony's event system for error rendering. To customize how errors are displayed, you can register a custom event subscriber that listens for the `kernel.exception` event.
 
-Example code for this function, which implements the same functionality as \SimpleSAML\Error\Error::show, looks something like:
+### Creating a custom error subscriber
+
+Create a class that implements `\Symfony\Component\EventDispatcher\EventSubscriberInterface`. Your subscriber should have a priority higher than 200 to ensure it runs before the default SimpleSAMLphp error handler.
+
+Example:
 
 ```php
-public static function show(\SimpleSAML\Configuration $config, array $data)
+<?php
+
+namespace SimpleSAML\Module\mymodule\EventSubscriber;
+
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Event\ExceptionEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
+
+class CustomErrorSubscriber implements EventSubscriberInterface
 {
-    $t = new \SimpleSAML\XHTML\Template($config, 'error.twig', 'errors');
-    $t->data = array_merge($t->data, $data);
-    $t->send();
-    exit;
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            // Priority > 200 to run before SimpleSAMLphp's default handler
+            KernelEvents::EXCEPTION => ['onKernelException', 250],
+        ];
+    }
+
+    public function onKernelException(ExceptionEvent $event): void
+    {
+        $exception = $event->getThrowable();
+
+        // Your custom error rendering logic
+        $response = new Response(
+            '<html><body><h1>Custom Error</h1><p>' .
+            htmlspecialchars($exception->getMessage()) .
+            '</p></body></html>',
+            500,
+        );
+
+        $event->setResponse($response);
+    }
 }
+```
+
+### Registering the subscriber
+
+Register your subscriber as a service in your module's `routing/services/` directory (e.g., `routing/services/mymodule.yml`):
+
+```yaml
+services:
+  SimpleSAML\Module\mymodule\EventSubscriber\CustomErrorSubscriber:
+    tags: ['kernel.event_subscriber']
 ```
