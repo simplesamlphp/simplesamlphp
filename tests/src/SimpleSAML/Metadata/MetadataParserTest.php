@@ -82,7 +82,6 @@ XML,
         );
 
         $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
-//        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('uri:theEntityID', $entities);
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
         /** @var array $metadata */
@@ -132,7 +131,6 @@ XML,
         );
 
         $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
-//        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('uri:theEntityID', $entities);
         $this->assertArrayHasKey('uri:subEntityId', $entities);
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
@@ -178,7 +176,6 @@ XML,
         );
 
         $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
-//        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('uri:theEntityID', $entities);
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
         /** @var array $metadata */
@@ -213,7 +210,6 @@ XML,
         );
 
         $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
-//        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('uri:theEntityID', $entities);
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
         /** @var array $metadata */
@@ -255,7 +251,6 @@ XML,
         );
 
         $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
-//        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('uri:theEntityID', $entities);
 
         /** @var array $metadata */
@@ -381,7 +376,6 @@ XML,
         );
 
         $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
-//        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('uri:theEntityID', $entities);
         // Various MDUI elements are accessible
         /** @var array $metadata */
@@ -433,7 +427,6 @@ XML,
         );
 
         $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
-//        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('uri:theEntityID', $entities);
         $metadata = $entities['uri:theEntityID']->getMetadata20IdP();
         $this->assertArrayHasKey('hide.from.discovery', $metadata);
@@ -469,7 +462,6 @@ XML,
         );
 
         $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
-//        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('uri:theEntityID', $entities);
         $metadata = $entities['uri:theEntityID']->getMetadata20IdP();
         $this->assertArrayNotHasKey('hide.from.discovery', $metadata);
@@ -501,7 +493,6 @@ XML,
         );
 
        $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
-//        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
 //        $this->assertArrayHasKey('uri:theEntityID', $entities);
         $metadata = $entities['uri:theEntityID']->getMetadata20IdP();
         $this->assertArrayNotHasKey('hide.from.discovery', $metadata);
