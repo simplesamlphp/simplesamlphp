@@ -1075,6 +1075,9 @@ class MetadataParser
                     $ret['UIInfo']['InformationURL'] = self::flatten($e->getInformationURL());
                     $ret['UIInfo']['PrivacyStatementURL'] = self::flatten($e->getPrivacyStatementURL());
 
+                    // this does the same thing as flatten() though I would say it was a bit messier code to repeat.
+                    // $ret['UIInfo']['DisplayName'] = array_merge(...array_map( fn($v): array => $v->toArray(), $e->getDisplayName()));
+                    
                     foreach ($e->getKeywords() as $uiItem) {
                         $keywords = $uiItem->getKeywords();
                         $language = $uiItem->getLanguage();
