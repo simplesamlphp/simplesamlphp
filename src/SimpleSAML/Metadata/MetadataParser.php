@@ -4,7 +4,8 @@
 
    TODO
 
-   * cleaner handling of the flatten* methods.
+ * cleaner handling of the flatten* methods.
+ * FIXME: $validators, SignedElementHelper has disappeared saml2-legacy -> saml2
 
 
 */
@@ -771,7 +772,6 @@ class MetadataParser
         return $this->attributeAuthorityDescriptors;
     }
 
-
     /**
      * Parse a RoleDescriptorType element.
      *
@@ -797,7 +797,10 @@ class MetadataParser
             $ret['expire'] = $expireTime;
         }
 
-        $ret['protocols'] = self::flattenValues($element->getProtocolSupportEnumeration()->toArray());
+        // convert SAMLAnyURIListValue items to string in array
+        $ret['protocols'] = array_map( fn($v): string => strval($v),
+                                       $element->getProtocolSupportEnumeration()->toArray()
+        );
 
         // process KeyDescriptor elements
         $ret['keys'] = [];
@@ -943,14 +946,6 @@ class MetadataParser
         return $a;
     }
 
-    private static function flatten_append( $arr ): array
-    {
-        $a = [];
-        foreach($arr as $d) {
-            $a[] = $d->toArray();
-        }
-        return $a;
-    }
 
     private static function flatten_append_key( $arr, $k ): array
     {
@@ -961,14 +956,6 @@ class MetadataParser
         return $a;
     }
     
-    private static function flattenValues( $arr ): array
-    {
-        $a = [];
-        foreach($arr as $d) {
-            $a = array_merge($a,[strval($d)]);
-        }
-        return $a;
-    }
     
     /**
      * Parse an Extensions element. Extensions may appear in multiple elements and certain extension may get inherited
@@ -1253,6 +1240,8 @@ class MetadataParser
         return array_map([self::class, 'parseGenericEndpoint'], $endpoints);
     }
 
+
+    
 
     /**
      * This function parses a KeyDescriptor element. It currently only supports keys with a single
