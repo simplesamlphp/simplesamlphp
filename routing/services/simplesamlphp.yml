@@ -22,3 +22,8 @@ services:
 
   SimpleSAML\EventSubscriber\ExceptionSubscriber:
     tags: ['kernel.event_subscriber']
+
+  SimpleSAML\EventSubscriber\SecurityHeadersSubscriber:
+    arguments:
+      - '@SimpleSAML\Configuration'
+    tags: ['kernel.event_subscriber']

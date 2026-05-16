@@ -8,9 +8,9 @@ use SimpleSAML\Event\Dispatcher\ModuleEventDispatcherFactory;
 use SimpleSAML\Event\ExceptionHandlerEvent;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
 /**
