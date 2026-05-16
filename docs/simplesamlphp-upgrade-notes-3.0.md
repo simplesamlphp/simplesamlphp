@@ -52,7 +52,6 @@ is the priority used by SimpleSAMLphp's built-in error handler).
 See [Error Handling](./simplesamlphp-errorhandling.md) for details and
 a complete example.
 
-
 ## Installer and operator impact
 
 Your web server must route non-file requests in `public/` to
