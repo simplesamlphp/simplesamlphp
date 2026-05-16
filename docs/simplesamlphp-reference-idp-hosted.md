@@ -306,12 +306,12 @@ The following SAML 2.0 options are available:
 `SingleSignOnService`
 :   Override the default URL for the SingleSignOnService for this
     IdP. This is an absolute URL. The default value is
-    `<SimpleSAMLphp-root>/module.php/saml/idp/singleSignOnService`
+    `<SimpleSAMLphp-root>/module/saml/idp/singleSignOnService`
 
 :   Note that this only changes the values in the generated
     metadata and in the messages sent to others. You must also
-    configure your webserver to deliver this URL to the correct PHP
-    page.
+    configure your webserver to route this URL through the
+    front controller in `public/index.php`.
 
 `SingleSignOnServiceBinding`
 :   List of SingleSignOnService bindings that the IdP will claim support for.
@@ -327,12 +327,12 @@ The following SAML 2.0 options are available:
 `SingleLogoutService`
 :   Override the default URL for the SingleLogoutService for this
     IdP. This is an absolute URL. The default value is
-    `<SimpleSAMLphp-root>/module.php/saml/idp/singleLogout`
+    `<SimpleSAMLphp-root>/module/saml/idp/singleLogout`
 
 :   Note that this only changes the values in the generated
     metadata and in the messages sent to others. You must also
-    configure your webserver to deliver this URL to the correct PHP
-    page.
+    configure your webserver to route this URL through the
+    front controller in `public/index.php`.
 
 `SingleLogoutServiceBinding`
 :   List of SingleLogoutService bindings the IdP will claim support for.

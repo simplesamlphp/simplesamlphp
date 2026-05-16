@@ -108,31 +108,38 @@ class HTTPTest extends ClearStateTestCase
         $original = $_SERVER;
         $httpUtils = new Utils\HTTP();
 
-        $_SERVER['REQUEST_URI'] = '/simplesaml/module.php';
-        $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/public/module.php');
+        $_SERVER['REQUEST_URI'] = '/simplesaml/index.php';
+        $_SERVER['SCRIPT_NAME'] = '/simplesaml/index.php';
+        $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/public/index.php');
         $this->assertEquals('/simplesaml/', $httpUtils->guessBasePath());
 
-        $_SERVER['REQUEST_URI'] = '/simplesaml/module.php/some/path/to/other/script.php';
-        $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/public/module.php');
+        $_SERVER['REQUEST_URI'] = '/simplesaml/module/admin';
+        $_SERVER['SCRIPT_NAME'] = '/simplesaml/index.php';
+        $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/public/index.php');
         $this->assertEquals('/simplesaml/', $httpUtils->guessBasePath());
 
-        $_SERVER['REQUEST_URI'] = '/module.php';
-        $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/public/module.php');
+        $_SERVER['REQUEST_URI'] = '/index.php';
+        $_SERVER['SCRIPT_NAME'] = '/index.php';
+        $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/public/index.php');
         $this->assertEquals('/', $httpUtils->guessBasePath());
 
-        $_SERVER['REQUEST_URI'] = '/module.php/some/path/to/other/script.php';
-        $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/public/module.php');
+        $_SERVER['REQUEST_URI'] = '/module/admin';
+        $_SERVER['SCRIPT_NAME'] = '/index.php';
+        $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/public/index.php');
         $this->assertEquals('/', $httpUtils->guessBasePath());
 
-        $_SERVER['REQUEST_URI'] = '/some/path/module.php';
-        $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/public/module.php');
+        $_SERVER['REQUEST_URI'] = '/some/path/index.php';
+        $_SERVER['SCRIPT_NAME'] = '/some/path/index.php';
+        $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/public/index.php');
         $this->assertEquals('/some/path/', $httpUtils->guessBasePath());
 
-        $_SERVER['REQUEST_URI'] = '/some/path/module.php/some/path/to/other/script.php';
-        $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/public/module.php');
+        $_SERVER['REQUEST_URI'] = '/some/path/module/admin';
+        $_SERVER['SCRIPT_NAME'] = '/some/path/index.php';
+        $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/public/index.php');
         $this->assertEquals('/some/path/', $httpUtils->guessBasePath());
 
         $_SERVER['REQUEST_URI'] = '/some/dir/in/www/script.php';
+        unset($_SERVER['SCRIPT_NAME']);
         $_SERVER['SCRIPT_FILENAME'] = self::makeNativePath('/some/path/simplesamlphp/www/some/dir/in/www/script.php');
         $this->assertEquals('/', $httpUtils->guessBasePath());
 
@@ -217,12 +224,13 @@ class HTTPTest extends ClearStateTestCase
         $this->assertTrue($httpUtils->isHTTPS());
         $this->assertEquals('https://' . $httpUtils->getSelfHostWithNonStandardPort(), $httpUtils->getSelfURLHost());
 
-        // test a request URI that doesn't match the current script
+        // test a request URI that doesn't match the configured SimpleSAMLphp base path
         $cfg = Configuration::loadFromArray([
             'baseurlpath' => 'https://example.org/simplesaml/',
         ], '[ARRAY]', 'simplesaml');
         $baseDir = $cfg->getBaseDir();
-        $_SERVER['SCRIPT_FILENAME'] = $baseDir . 'public/module.php';
+        $_SERVER['SCRIPT_FILENAME'] = $baseDir . 'public/index.php';
+        $_SERVER['SCRIPT_NAME'] = '/simplesaml/index.php';
         $this->setupEnvFromURL('http://www.example.com/protected/resource.asp?foo=bar');
         $this->assertEquals('http://www.example.com/protected/resource.asp?foo=bar', $httpUtils->getSelfURL());
         $this->assertEquals('http://www.example.com', $httpUtils->getSelfURLHost());
@@ -235,14 +243,16 @@ class HTTPTest extends ClearStateTestCase
         Configuration::loadFromArray([
             'baseurlpath' => 'https://example.com/simplesaml/',
         ], '[ARRAY]', 'simplesaml');
-        $this->setupEnvFromURL('http://www.example.org/module.php/module/file.php?foo=bar');
+        $_SERVER['SCRIPT_FILENAME'] = $baseDir . 'public/index.php';
+        $_SERVER['SCRIPT_NAME'] = '/simplesaml/index.php';
+        $this->setupEnvFromURL('http://www.example.org/simplesaml/module/module/file.php?foo=bar');
         $this->assertEquals(
-            'https://example.com/simplesaml/module.php/module/file.php?foo=bar',
+            'https://example.com/simplesaml/module/module/file.php?foo=bar',
             $httpUtils->getSelfURL(),
         );
         $this->assertEquals('https://example.com', $httpUtils->getSelfURLHost());
         $this->assertEquals(
-            'https://example.com/simplesaml/module.php/module/file.php',
+            'https://example.com/simplesaml/module/module/file.php',
             $httpUtils->getSelfURLNoQuery(),
         );
         $this->assertTrue($httpUtils->isHTTPS());
@@ -253,12 +263,12 @@ class HTTPTest extends ClearStateTestCase
             'baseurlpath' => 'https://example.com/simplesaml',
         ], '[ARRAY]', 'simplesaml');
         $this->assertEquals(
-            'https://example.com/simplesaml/module.php/module/file.php?foo=bar',
+            'https://example.com/simplesaml/module/module/file.php?foo=bar',
             $httpUtils->getSelfURL(),
         );
         $this->assertEquals('https://example.com', $httpUtils->getSelfURLHost());
         $this->assertEquals(
-            'https://example.com/simplesaml/module.php/module/file.php',
+            'https://example.com/simplesaml/module/module/file.php',
             $httpUtils->getSelfURLNoQuery(),
         );
         $this->assertTrue($httpUtils->isHTTPS());
@@ -268,12 +278,14 @@ class HTTPTest extends ClearStateTestCase
         Configuration::loadFromArray([
             'baseurlpath' => 'https://example.com',
         ], '[ARRAY]', 'simplesaml');
+        $_SERVER['SCRIPT_NAME'] = '/index.php';
+        $this->setupEnvFromURL('http://www.example.org/module/module/file.php?foo=bar');
         $this->assertEquals(
-            'https://example.com/module.php/module/file.php?foo=bar',
+            'https://example.com/module/module/file.php?foo=bar',
             $httpUtils->getSelfURL(),
         );
         $this->assertEquals('https://example.com', $httpUtils->getSelfURLHost());
-        $this->assertEquals('https://example.com/module.php/module/file.php', $httpUtils->getSelfURLNoQuery());
+        $this->assertEquals('https://example.com/module/module/file.php', $httpUtils->getSelfURLNoQuery());
         $this->assertTrue($httpUtils->isHTTPS());
         $this->assertEquals('https://' . $httpUtils->getSelfHostWithNonStandardPort(), $httpUtils->getSelfURLHost());
 
@@ -281,14 +293,15 @@ class HTTPTest extends ClearStateTestCase
         Configuration::loadFromArray([
             'baseurlpath' => '/simplesaml/',
         ], '[ARRAY]', 'simplesaml');
-        $this->setupEnvFromURL('http://www.example.org/simplesaml/module.php/module/file.php?foo=bar');
+        $_SERVER['SCRIPT_NAME'] = '/simplesaml/index.php';
+        $this->setupEnvFromURL('http://www.example.org/simplesaml/module/module/file.php?foo=bar');
         $this->assertEquals(
-            'http://www.example.org/simplesaml/module.php/module/file.php?foo=bar',
+            'http://www.example.org/simplesaml/module/module/file.php?foo=bar',
             $httpUtils->getSelfURL(),
         );
         $this->assertEquals('http://www.example.org', $httpUtils->getSelfURLHost());
         $this->assertEquals(
-            'http://www.example.org/simplesaml/module.php/module/file.php',
+            'http://www.example.org/simplesaml/module/module/file.php',
             $httpUtils->getSelfURLNoQuery(),
         );
         $this->assertFalse($httpUtils->isHTTPS());
@@ -298,14 +311,15 @@ class HTTPTest extends ClearStateTestCase
         Configuration::loadFromArray([
             'baseurlpath' => '/simplesaml/',
         ], '[ARRAY]', 'simplesaml');
-        $this->setupEnvFromURL('http://example.org:8080/simplesaml/module.php/module/file.php?foo=bar');
+        $_SERVER['SCRIPT_NAME'] = '/simplesaml/index.php';
+        $this->setupEnvFromURL('http://example.org:8080/simplesaml/module/module/file.php?foo=bar');
         $this->assertEquals(
-            'http://example.org:8080/simplesaml/module.php/module/file.php?foo=bar',
+            'http://example.org:8080/simplesaml/module/module/file.php?foo=bar',
             $httpUtils->getSelfURL(),
         );
         $this->assertEquals('http://example.org:8080', $httpUtils->getSelfURLHost());
         $this->assertEquals(
-            'http://example.org:8080/simplesaml/module.php/module/file.php',
+            'http://example.org:8080/simplesaml/module/module/file.php',
             $httpUtils->getSelfURLNoQuery(),
         );
         $this->assertFalse($httpUtils->isHTTPS());
@@ -315,14 +329,15 @@ class HTTPTest extends ClearStateTestCase
         Configuration::loadFromArray([
             'baseurlpath' => '/simplesaml/',
         ], '[ARRAY]', 'simplesaml');
-        $this->setupEnvFromURL('https://example.org:8080/simplesaml/module.php/module/file.php?foo=bar');
+        $_SERVER['SCRIPT_NAME'] = '/simplesaml/index.php';
+        $this->setupEnvFromURL('https://example.org:8080/simplesaml/module/module/file.php?foo=bar');
         $this->assertEquals(
-            'https://example.org:8080/simplesaml/module.php/module/file.php?foo=bar',
+            'https://example.org:8080/simplesaml/module/module/file.php?foo=bar',
             $httpUtils->getSelfURL(),
         );
         $this->assertEquals('https://example.org:8080', $httpUtils->getSelfURLHost());
         $this->assertEquals(
-            'https://example.org:8080/simplesaml/module.php/module/file.php',
+            'https://example.org:8080/simplesaml/module/module/file.php',
             $httpUtils->getSelfURLNoQuery(),
         );
         $this->assertTrue($httpUtils->isHTTPS());
@@ -344,7 +359,7 @@ class HTTPTest extends ClearStateTestCase
             'trusted.url.regex' => false,
         ], '[ARRAY]', 'simplesaml');
 
-        $_SERVER['REQUEST_URI'] = '/module.php';
+        $_SERVER['REQUEST_URI'] = '/index.php';
 
         $allowed = [
             'https://sp.example.com/',
@@ -377,7 +392,7 @@ class HTTPTest extends ClearStateTestCase
             'trusted.url.regex' => true,
         ], '[ARRAY]', 'simplesaml');
 
-        $_SERVER['REQUEST_URI'] = '/module.php';
+        $_SERVER['REQUEST_URI'] = '/index.php';
 
         $allowed = [
             'https://sp.example.com/',
@@ -460,7 +475,7 @@ class HTTPTest extends ClearStateTestCase
             'trusted.url.regex' => true,
         ], '[ARRAY]', 'simplesaml');
 
-        $_SERVER['REQUEST_URI'] = '/module.php';
+        $_SERVER['REQUEST_URI'] = '/index.php';
 
         $this->expectException(Error\Exception::class);
         $httpUtils->checkURLAllowed('https://app.example.com.evil.com');
@@ -676,7 +691,7 @@ class HTTPTest extends ClearStateTestCase
         ], '[ARRAY]', 'simplesaml');
 
         // Simulate the current request being HTTPS
-        $this->setupEnvFromURL('https://idp.example.org/simplesaml/module.php/core/someaction?x=1');
+        $this->setupEnvFromURL('https://idp.example.org/simplesaml/module/core/someaction?x=1');
 
         // Destination is explicitly http://
         $destination = 'http://sp.example.com/acs';
@@ -761,14 +776,14 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * Ensure getSelfURL() returns the externally visible URL when SimpleSAMLphp
-     * is reached via a rewritten path (e.g. /cas/login -> /simplesaml/module.php/...),
-     * and the internal script name (module.php) appears only in the query string.
+     * is reached via a rewritten path (e.g. /cas/login -> /simplesaml/index.php),
+     * and the front controller path is not part of the externally visible URL.
      *
      * This simulates an Apache mod_rewrite rule like:
-     *   RewriteRule ^/cas/login(.*) /${SSP_APACHE_ALIAS}module.php/casserver/login.php$1 [PT]
+     *   RewriteRule ^/cas/login(.*) /${SSP_APACHE_ALIAS}index.php [PT]
      *
      * In this scenario the public URL is /cas/login?... while the actual script is
-     * public/module.php.
+     * public/index.php.
      */
     public function testGetSelfURLWithRewrittenCasLogin(): void
     {
@@ -787,21 +802,21 @@ class HTTPTest extends ClearStateTestCase
             'SERVER_NAME'     => 'tr-monitor-okta2.qa.athena-institute.net',
             'SERVER_PORT'     => 443,
             'SCRIPT_URI'      => 'https://tr-monitor-okta2.qa.athena-institute.net/cas/login',
-            'SCRIPT_NAME'     => '/module.php',
-            'SCRIPT_FILENAME' => $baseDir . 'public' . DIRECTORY_SEPARATOR . 'module.php',
-            'PATH_TRANSLATED' => $baseDir . 'public' . DIRECTORY_SEPARATOR . 'casserver/login.php',
-            'PHP_SELF'        => '/module.php/casserver/login.php',
+            'SCRIPT_NAME'     => '/simplesaml/index.php',
+            'SCRIPT_FILENAME' => $baseDir . 'public' . DIRECTORY_SEPARATOR . 'index.php',
+            'PATH_TRANSLATED' => $baseDir . 'public' . DIRECTORY_SEPARATOR . 'index.php',
+            'PHP_SELF'        => '/simplesaml/index.php',
             'QUERY_STRING'    => 'service='
-                . 'https%3A%2F%2Fcas-test-bridge.bridge.qa.cirrusidentity.com%2Fmodule.php%2Fcas%2Flinkback.php'
+                . 'https%3A%2F%2Fcas-test-bridge.bridge.qa.cirrusidentity.com%2Fmodule%2Fcas%2Flinkback'
                 . '%3FstateId%3D_somestate',
             'REQUEST_URI'     => '/cas/login?service='
-                . 'https%3A%2F%2Fcas-test-bridge.bridge.qa.cirrusidentity.com%2Fmodule.php%2Fcas%2Flinkback.php'
+                . 'https%3A%2F%2Fcas-test-bridge.bridge.qa.cirrusidentity.com%2Fmodule%2Fcas%2Flinkback'
                 . '%3FstateId%3D_somestate',
         ];
 
         $expected = 'https://tr-monitor-okta2.qa.athena-institute.net'
             . '/cas/login'
-            . '?service=https%3A%2F%2Fcas-test-bridge.bridge.qa.cirrusidentity.com%2Fmodule.php%2Fcas%2Flinkback.php'
+            . '?service=https%3A%2F%2Fcas-test-bridge.bridge.qa.cirrusidentity.com%2Fmodule%2Fcas%2Flinkback'
             . '%3FstateId%3D_somestate';
 
         $this->assertSame($expected, $httpUtils->getSelfURL());

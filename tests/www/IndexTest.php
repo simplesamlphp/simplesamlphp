@@ -70,39 +70,51 @@ class IndexTest extends TestCase
         // test most basic redirection
         $this->updateConfig([
             'baseurlpath' => 'http://example.org/simplesaml/',
+            'cachedir' => sys_get_temp_dir(),
+            'tempdir' => sys_get_temp_dir(),
+            'logging.handler' => 'errorlog',
+            'secretsalt' => 'test-secret',
         ]);
         $resp = self::$server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
         ]);
         $this->assertEquals('303', $resp['code']);
         $this->assertEquals(
-            'http://example.org/simplesaml/module.php/core/welcome',
+            'http://example.org/simplesaml/module/core/welcome',
             $resp['headers']['Location'],
         );
 
         // test non-default path and https
         $this->updateConfig([
             'baseurlpath' => 'https://example.org/',
+            'cachedir' => sys_get_temp_dir(),
+            'tempdir' => sys_get_temp_dir(),
+            'logging.handler' => 'errorlog',
+            'secretsalt' => 'test-secret',
         ]);
         $resp = self::$server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
         ]);
         $this->assertEquals('303', $resp['code']);
         $this->assertEquals(
-            'https://example.org/module.php/core/welcome',
+            'https://example.org/module/core/welcome',
             $resp['headers']['Location'],
         );
 
         // test URL guessing
         $this->updateConfig([
             'baseurlpath' => '/simplesaml/',
+            'cachedir' => sys_get_temp_dir(),
+            'tempdir' => sys_get_temp_dir(),
+            'logging.handler' => 'errorlog',
+            'secretsalt' => 'test-secret',
         ]);
         $resp = self::$server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
         ]);
         $this->assertEquals('303', $resp['code']);
         $this->assertEquals(
-            'http://' . self::$server_addr . '/simplesaml/module.php/core/welcome',
+            'http://' . self::$server_addr . '/simplesaml/module/core/welcome',
             $resp['headers']['Location'],
         );
     }
@@ -115,15 +127,41 @@ class IndexTest extends TestCase
     {
         $this->updateConfig([
             'frontpage.redirect' => 'https://www.example.edu/',
+            'cachedir' => sys_get_temp_dir(),
+            'tempdir' => sys_get_temp_dir(),
+            'logging.handler' => 'errorlog',
+            'secretsalt' => 'test-secret',
         ]);
         $resp = self::$server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
         ]);
+
         $this->assertEquals('303', $resp['code']);
         $this->assertEquals(
             'https://www.example.edu/',
             $resp['headers']['Location'],
         );
+    }
+
+
+    /**
+     * Test that module URLs are handled by the front controller branch instead of being redirected.
+     */
+    public function testModulePathIsHandledByFrontController(): void
+    {
+        $this->updateConfig([
+            'baseurlpath' => 'http://example.org/simplesaml/',
+            'cachedir' => sys_get_temp_dir(),
+            'tempdir' => sys_get_temp_dir(),
+            'logging.handler' => 'errorlog',
+            'secretsalt' => 'test-secret',
+        ]);
+        $resp = self::$server->get('/index.php/module/doesnotexist', [], [
+            CURLOPT_FOLLOWLOCATION => 0,
+        ]);
+
+        $this->assertEquals('404', $resp['code']);
+        $this->assertArrayNotHasKey('Location', $resp['headers']);
     }
 
 

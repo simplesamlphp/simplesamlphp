@@ -86,7 +86,7 @@ class EMail
     {
         $config = Configuration::getInstance();
         $options = $config->getOptionalArray('mail.transport.options', []);
-        return $options['sender'] ?: null;
+        return is_string($sender = $options['sender'] ?? null) ? $sender : null;
     }
 
 

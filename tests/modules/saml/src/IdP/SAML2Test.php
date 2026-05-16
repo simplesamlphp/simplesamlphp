@@ -60,7 +60,7 @@ class SAML2Test extends ClearStateTestCase
 
         $this->assertStringStartsWith(
             // phpcs:ignore Generic.Files.LineLength.TooLong
-            'http://idp.examlple.com/module.php/saml/idp/singleSignOnService?spentityid=https%3A%2F%2Fsome-sp-entity-id&cookie',
+            'http://idp.examlple.com/module/saml/idp/singleSignOnService?spentityid=https%3A%2F%2Fsome-sp-entity-id&cookie',
             $state['\SimpleSAML\Auth\State.restartURL'],
         );
         unset($state['saml:AuthnRequestReceivedAt']); // timestamp can't be tested in equality assertion
@@ -91,7 +91,7 @@ class SAML2Test extends ClearStateTestCase
 
         //currently only spentityid and relay state are used in the restart url.
         $this->assertStringStartsWith(
-            'http://idp.examlple.com/module.php/saml/idp/singleSignOnService?'
+            'http://idp.examlple.com/module/saml/idp/singleSignOnService?'
             . 'spentityid=https%3A%2F%2Fsome-sp-entity-id&RelayState=http%3A%2F%2Frelay&cookieTime',
             $state['\SimpleSAML\Auth\State.restartURL'],
         );
@@ -121,7 +121,7 @@ class SAML2Test extends ClearStateTestCase
 
         $this->assertStringStartsWith(
             // phpcs:ignore Generic.Files.LineLength.TooLong
-            'http://idp.examlple.com/module.php/saml/idp/singleSignOnService?spentityid=https%3A%2F%2Fsome-sp-entity-id&cookie',
+            'http://idp.examlple.com/module/saml/idp/singleSignOnService?spentityid=https%3A%2F%2Fsome-sp-entity-id&cookie',
             $state['\SimpleSAML\Auth\State.restartURL'],
         );
         unset($state['saml:AuthnRequestReceivedAt']); // timestamp can't be tested in equality assertion
@@ -150,7 +150,7 @@ class SAML2Test extends ClearStateTestCase
 
         //currently only spentityid and relay state are used in the restart url.
         $this->assertStringStartsWith(
-            'http://idp.examlple.com/module.php/saml/idp/singleSignOnService?'
+            'http://idp.examlple.com/module/saml/idp/singleSignOnService?'
             . 'spentityid=https%3A%2F%2Fsome-sp-entity-id&RelayState=http%3A%2F%2Frelay&cookieTime',
             $state['\SimpleSAML\Auth\State.restartURL'],
         );
@@ -209,7 +209,7 @@ EOT;
         // won't line up perfectly
         $_REQUEST = $_REQUEST + $queryParams;
         $_SERVER['HTTP_HOST'] = 'idp.examlple.com';
-        $_SERVER['REQUEST_URI'] = '/module.php/saml/idp/singleSignOnService?' . http_build_query($queryParams);
+        $_SERVER['REQUEST_URI'] = '/module/saml/idp/singleSignOnService?' . http_build_query($queryParams);
 
 
         $state = [];
@@ -302,7 +302,7 @@ EOT;
         $this->assertEquals(
             [
                 'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService',
+                'Location' => 'http://localhost/simplesaml/module/saml/idp/singleSignOnService',
             ],
             $hostedMd['SingleSignOnService'][0],
         );
@@ -312,7 +312,7 @@ EOT;
         $this->assertEquals(
             [
                 'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleLogout',
+                'Location' => 'http://localhost/simplesaml/module/saml/idp/singleLogout',
             ],
             $hostedMd['SingleLogoutService'][0],
         );
@@ -382,7 +382,7 @@ EOT;
             [
                 'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP',
                 'index' => 0,
-                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/artifactResolutionService',
+                'Location' => 'http://localhost/simplesaml/module/saml/idp/artifactResolutionService',
             ],
             $hostedMd['ArtifactResolutionService'][0],
         );
@@ -400,7 +400,7 @@ EOT;
         $this->assertEquals(
             [
                 'Binding' => 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser',
-                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService',
+                'Location' => 'http://localhost/simplesaml/module/saml/idp/singleSignOnService',
                 'hoksso:ProtocolBinding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
             ],
             $hostedMd['SingleSignOnService'][0],
@@ -408,7 +408,7 @@ EOT;
         $this->assertEquals(
             [
                 'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService',
+                'Location' => 'http://localhost/simplesaml/module/saml/idp/singleSignOnService',
             ],
             $hostedMd['SingleSignOnService'][1],
         );
@@ -426,7 +426,7 @@ EOT;
         $this->assertEquals(
             [
                 'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService',
+                'Location' => 'http://localhost/simplesaml/module/saml/idp/singleSignOnService',
             ],
             $hostedMd['SingleSignOnService'][0],
         );
@@ -434,7 +434,7 @@ EOT;
             [
                 'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP',
                 'index' => 0,
-                'Location' => 'http://localhost/simplesaml/module.php/saml/idp/singleSignOnService',
+                'Location' => 'http://localhost/simplesaml/module/saml/idp/singleSignOnService',
             ],
             $hostedMd['SingleSignOnService'][1],
         );
