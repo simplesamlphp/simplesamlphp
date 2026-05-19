@@ -17,8 +17,13 @@ use DOMDocument;
 use DOMElement;
 use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
+use SimpleSAML\SAML2\Utilities\ArrayCollection;
 use SimpleSAML\SAML2\Certificate\X509;
-use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
+use SimpleSAML\XMLSecurity\Key\PublicKey;
+use SimpleSAML\XMLSecurity\Key\X509Certificate;
+use SimpleSAML\XMLSecurity\Alg\Signature\SignatureAlgorithmFactory;
+use SimpleSAML\XMLSecurity\CryptoEncoding\PEM;
+//use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
 use SimpleSAML\XMLSecurity\XML\ds\X509Data;
 use SimpleSAML\XMLSecurity\XML\ds\KeyInfo;
 use SimpleSAML\SAML2\XML\idpdisc\DiscoveryResponse;
@@ -55,6 +60,8 @@ use SimpleSAML\Utils;
 use SimpleSAML\XML\DOMDocumentFactory;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
+
+use SimpleSAML\XMLSecurity\TestUtils\PEMCertificatesMock;
 
 /**
  * This is class for parsing of SAML 2.0 metadata.
@@ -435,7 +442,7 @@ class MetadataParser
         foreach ($children as $child) {
             $ret += self::processDescriptorsElement($child, $expTime, $validators, $extensions);
         }
-        
+
         return $ret;
     }
 
@@ -1363,7 +1370,28 @@ class MetadataParser
     }
 
     /**
+     * If you are looking to treat unsigned metadata as an error you need to be able to see if
+     * there are 1+ signautes in the metadata. Call here and throw an error if only signed
+     * metadata should be allowed.
+     */
+    public function hasSignatures(): bool
+    {
+        $signaturesFound = 0;
+        foreach ($validators as $validator) {
+
+            $element = $validator;
+            if($element->getSignature()) {
+                $signaturesFound++;
+            }
+        }
+        return $signaturesFound;
+    }
+    
+    /**
      * If this EntityDescriptor was signed this function use the public key to check the signature.
+     *
+     * If there were no signatures then this method returns false
+     * If not all signatures validate then this method returns false
      *
      * @param array $certificates One ore more certificates with the public key. This makes it possible
      *                      to do a key rollover.
@@ -1371,35 +1399,70 @@ class MetadataParser
      * @return boolean True if it is possible to check the signature with the certificate, false otherwise.
      * @throws \Exception If the certificate location cannot be found.
      */
-    public function validateSignature(array $certificates): bool
+    public function validateSignature(ArrayCollection $pemCandidates): bool
     {
-        $cryptoUtils = new Utils\Crypto();
+        $result = false;
+        $signaturesVerified = 0;
+        $signaturesFound = 0;
+        $lastException = null;
 
-        foreach ($certificates as $certLocation) {
-            Assert::string($certLocation);
+        $element = null;
+        $validators = $this->validators;
 
-            $certData = $cryptoUtils->retrieveCertificate($certLocation);
-            if ($certData === null) {
-                throw new Exception(sprintf(
-                    'Could not find certificate location [%s], which is needed to validate signature',
-                    $certLocation,
-                ));
-            }
+        foreach ($pemCandidates as $index => $candidateKey) {
 
-            foreach ($this->validators as $validator) {
-                $key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, ['type' => 'public']);
-                $key->loadKey($certData);
-                try {
-                    if ($validator->validate($key)) {
-                        return true;
+            foreach ($validators as $validator) {
+
+                $element = $validator;
+
+                if($element->getSignature()) {
+
+                    $signaturesFound++;
+                
+                    $verifier = (new SignatureAlgorithmFactory([]))->getAlgorithm(
+                        $element->getSignature()?->getSignedInfo()->getSignatureMethod()->getAlgorithm()->getValue(),
+                        $candidateKey,
+                    );
+                    
+                    
+                    try {
+                        /*
+                         * Make sure that we have a valid signature on either the response or the assertion.
+                         */
+                        $sigValid = $element->verify($verifier);
+                        if ($sigValid) {
+                            printf('Validation with key "#%d" succeeded\n', $index);
+                            $signaturesVerified++; 
+                        } else {
+                            printf('Validation with key "#%d" failed without exception.\n', $index);
+                        }
+                    } catch (Exception $e) {
+                        printf(
+                            'Validation with key "#%d" failed with exception: %s\n',
+                            $index,
+                            $e->getMessage(),
+                        );
+
+                        $lastException = $e;
                     }
-                } catch (Exception $e) {
-                    // this certificate did not sign this element, skip
                 }
             }
         }
-        Logger::debug('Could not validate signature');
-        return false;
+
+        echo "signaturesVerified $signaturesVerified\n";
+        echo "   signaturesFound $signaturesFound\n";
+        
+        if ($lastException !== null) {
+            throw $lastException;
+        } else {
+            if($signaturesFound > 0 ) {
+                if( $signaturesVerified === $signaturesFound ) {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
+    
 };
 
