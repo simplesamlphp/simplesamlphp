@@ -809,6 +809,7 @@ class HTTPTest extends ClearStateTestCase
         $_SERVER = $originalServer;
     }
 
+
     /**
      * Reproducer guard: when SimpleSAMLphp is invoked from an external
      * script (script outside its own public/ directory) behind a
@@ -852,6 +853,7 @@ class HTTPTest extends ClearStateTestCase
 
         $_SERVER = $original;
     }
+
 
     /**
      * Companion guard: when baseurlpath declares https for a DIFFERENT
@@ -920,6 +922,7 @@ class HTTPTest extends ClearStateTestCase
         $_SERVER = $original;
     }
 
+
     /**
      * Critical preservation guard: an admin's explicit $_SERVER['HTTPS']
      * = 'off' (IIS convention for "no HTTPS for this request") must
@@ -952,6 +955,7 @@ class HTTPTest extends ClearStateTestCase
         $_SERVER = $original;
     }
 
+
     /**
      * Host comparison must be case-insensitive (DNS hostnames are
      * case-insensitive). Without this, an admin who writes baseurlpath
@@ -980,6 +984,7 @@ class HTTPTest extends ClearStateTestCase
 
         $_SERVER = $original;
     }
+
 
     /**
      * When the current request's HTTP_HOST includes a port (because
@@ -1012,6 +1017,7 @@ class HTTPTest extends ClearStateTestCase
         $_SERVER = $original;
     }
 
+
     /**
      * A relative-path baseurlpath (the default `simplesaml/`, or any
      * value not starting with https://) must NOT trigger the fallback.
@@ -1042,6 +1048,7 @@ class HTTPTest extends ClearStateTestCase
         $_SERVER = $original;
     }
 
+
     /**
      * An http:// (not https://) baseurlpath must NOT trigger the
      * fallback. The fallback only honours an explicit https
@@ -1070,5 +1077,4 @@ class HTTPTest extends ClearStateTestCase
 
         $_SERVER = $original;
     }
-
 }
