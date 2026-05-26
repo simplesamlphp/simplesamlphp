@@ -209,13 +209,7 @@ class HTTP
         // virtual host the library knows about is configured for HTTPS.
         //
         // No client-controlled header is read at any point.
-        try {
-            $cfg = Configuration::getInstance();
-        } catch (\Exception $e) {
-            // Configuration not yet loaded — nothing more to check.
-            return false;
-        }
-
+        $cfg = Configuration::getInstance();
         $baseURL = $cfg->getOptionalString('baseurlpath', null);
         if (
             $baseURL !== null
