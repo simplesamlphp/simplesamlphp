@@ -300,7 +300,7 @@ class MDQ extends MetaDataStorageSource
 
         $httpUtils = new Utils\HTTP();
         $client = $httpUtils->createHttpClient([
-            'headers' => ['Accept', 'application/samlmetadata+xml'],
+            'headers' => ['Accept' => 'application/samlmetadata+xml'],
         ]);
 
         Logger::debug(sprintf('%s: downloading metadata for "%s" from [%s]', __CLASS__, $entityId, $mdq_url));
