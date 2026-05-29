@@ -76,6 +76,9 @@ class SPTest extends ClearStateTestCase
     protected function setUp(): void
     {
         parent::setUp();
+        $_SERVER['REQUEST_URI'] = '/dummy';
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+
         $this->idpConfigArray = [
             'metadata-set'        => 'saml20-idp-remote',
             'entityid'            => 'https://engine.surfconext.nl/authentication/idp/metadata',

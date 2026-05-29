@@ -173,7 +173,28 @@ class Message
                 Logger::debug('Validation with key #' . $i . ' failed without exception.');
             } catch (\Exception $e) {
                 Logger::debug('Validation with key #' . $i . ' failed with exception: ' . $e->getMessage());
-                $lastException = $e;
+
+                $issuerValue = null;
+                if (method_exists($element, 'getIssuer')) {
+                    $issuer = $element->getIssuer();
+                    if ($issuer instanceof Issuer) {
+                        $issuerValue = $issuer->getValue();
+                    } elseif (is_string($issuer)) {
+                        $issuerValue = $issuer;
+                    }
+                }
+
+                // Clone the exception and improve the message
+                $lastException = new SSP_Error\Error(
+                    [
+                        ErrorCodes::NOTVALIDCERTSIGNATURE,
+                        '%MESSAGE%' => (new ErrorCodes())->getMessage(ErrorCodes::NOTVALIDCERTSIGNATURE),
+                        '%ELEMENT%' => get_class($element),
+                        '%ISSUER%' => $issuerValue ?? '',
+                        '%ENTITYID%' => $srcMetadata->getString('entityid'),
+                    ],
+                    $e->getPrevious(),
+                );
             }
         }
 
@@ -217,7 +238,7 @@ class Message
         // If not specifically set to false, the signature must be checked to conform to SAML2INT
         if (
             (isset($_REQUEST['Signature'])
-            || $message->isMessageConstructedWithSignature() === true)
+                || $message->isMessageConstructedWithSignature() === true)
             && ($enabled !== false)
         ) {
             $enabled = true;
@@ -573,6 +594,15 @@ class Message
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the service provider.
      * @param \SimpleSAML\Configuration $idpMetadata The metadata of the identity provider.
      * @param \SAML2\Response $response The response.
+     * @param string|null $expectedRequestId
+     *    The AuthnRequest ID that this Response is expected to correlate with (solicited / SP-initiated flow).
+     *    Caller guarantee: when $isUnsolicited is false, this MUST be the original AuthnRequest ID the SP created.
+     * @param bool $isUnsolicited
+     *    Whether the Response is processed as unsolicited (IdP-initiated).
+     * @param string|null $expectedIssuer
+     *    If set, the Response (or Assertion, if Response Issuer is missing) MUST be issued by this entityID.
+     *    This prevents misuse where callers validate a Response using metadata for a different IdP than the one
+     *    the SP state was created for.
      *
      * @return array Array with \SAML2\Assertion objects, containing valid assertions from the response.
      *
@@ -583,6 +613,9 @@ class Message
         Configuration $spMetadata,
         Configuration $idpMetadata,
         Response $response,
+        ?string $expectedRequestId = null,
+        bool $isUnsolicited = false,
+        ?string $expectedIssuer = null,
     ): array {
         if (!$response->isSuccess()) {
             throw self::getResponseError($response);
@@ -593,11 +626,79 @@ class Message
         $currentURL = $httpUtils->getSelfURLNoQuery();
         $msgDestination = $response->getDestination();
         if ($msgDestination !== null && $msgDestination !== $currentURL) {
-            throw new \Exception('Destination in response doesn\'t match the current URL. Destination is "' .
-                $msgDestination . '", current URL is "' . $currentURL . '".');
+            throw new \Exception(sprintf(
+                'Destination in response doesn\'t match the current URL. Destination is "%s", current URL is "%s".',
+                $msgDestination,
+                $currentURL,
+            ));
+        }
+
+        // Resolve issuer (Response Issuer MAY be missing; fall back to first unencrypted Assertion issuer)
+        $issuer = $response->getIssuer();
+        if ($issuer === null) {
+            foreach ($response->getAssertions() as $a) {
+                if ($a instanceof Assertion) {
+                    $issuer = $a->getIssuer();
+                    break;
+                }
+            }
+        }
+        $issuerValue = $issuer?->getValue();
+
+        // Expected issuer binding (when provided, issuer must be resolvable and must match)
+        if ($expectedIssuer !== null) {
+            if ($issuerValue === null) {
+                throw new SSP_Error\Exception(sprintf(
+                    'Missing issuer in Response/Assertion; cannot enforce expected issuer %s.',
+                    var_export($expectedIssuer, true),
+                ));
+            }
+
+            if ($issuerValue !== $expectedIssuer) {
+                throw new SSP_Error\Exception(sprintf(
+                    'Issuer mismatch. Expected %s, got %s.',
+                    var_export($expectedIssuer, true),
+                    var_export($issuerValue, true),
+                ));
+            }
         }
 
         $responseSigned = self::checkSign($idpMetadata, $response);
+
+        // Project policy: Response MUST be signed (SAML2Int)
+        $saml2IntConfig = Configuration::getOptionalConfig('saml2int.conf.php');
+        $requireSignedResponse = $saml2IntConfig->getOptionalBoolean('response.require_signed', false);
+        if ($requireSignedResponse && $responseSigned !== true) {
+            throw new SSP_Error\Exception('Response must be signed.');
+        }
+
+        $responseInResponseTo = $response->getInResponseTo();
+
+        // Hard policy:
+        // - unsolicited: MUST NOT contain Response/@InResponseTo
+        // - solicited: MUST contain Response/@InResponseTo and MUST match the expected request ID
+        if ($isUnsolicited) {
+            if ($responseInResponseTo !== null) {
+                throw new SSP_Error\Exception(sprintf(
+                    'Unsolicited Response MUST NOT contain InResponseTo. Got: %s',
+                    var_export($responseInResponseTo, true),
+                ));
+            }
+        } else {
+            if ($expectedRequestId === null || $expectedRequestId === '') {
+                throw new SSP_Error\Exception('Missing expected request ID for solicited Response validation.');
+            }
+            if ($responseInResponseTo === null) {
+                throw new SSP_Error\Exception('Solicited Response must contain InResponseTo.');
+            }
+            if ($responseInResponseTo !== $expectedRequestId) {
+                throw new SSP_Error\Exception(sprintf(
+                    'Response InResponseTo does not match expected request ID. Expected %s, got %s.',
+                    var_export($expectedRequestId, true),
+                    var_export($responseInResponseTo, true),
+                ));
+            }
+        }
 
         /*
          * When we get this far, the response itself is valid.
@@ -610,7 +711,15 @@ class Message
 
         $ret = [];
         foreach ($assertion as $a) {
-            $ret[] = self::processAssertion($spMetadata, $idpMetadata, $response, $a, $responseSigned);
+            $ret[] = self::processAssertion(
+                $spMetadata,
+                $idpMetadata,
+                $response,
+                $a,
+                $responseSigned,
+                $expectedRequestId,
+                $isUnsolicited,
+            );
         }
 
         return $ret;
@@ -625,6 +734,8 @@ class Message
      * @param \SAML2\Response $response The response containing the assertion.
      * @param \SAML2\Assertion|\SAML2\EncryptedAssertion $assertion The assertion.
      * @param bool $responseSigned Whether the response is signed.
+     * @param string|null $expectedRequestId The AuthnRequest ID we expect this response to be correlated with.
+     * @param bool $isUnsolicited Whether this response is being processed as unsolicited (IdP-initiated).
      *
      * @return \SAML2\Assertion The assertion, if it is valid.
      *
@@ -639,6 +750,8 @@ class Message
         Response $response,
         Assertion|EncryptedAssertion $assertion,
         bool $responseSigned,
+        ?string $expectedRequestId,
+        bool $isUnsolicited,
     ): Assertion {
         $assertion = self::decryptAssertion($idpMetadata, $spMetadata, $assertion);
         self::decryptAttributes($idpMetadata, $spMetadata, $assertion);
@@ -651,175 +764,63 @@ class Message
 
         $httpUtils = new Utils\HTTP();
         $currentURL = $httpUtils->getSelfURLNoQuery();
+        $now = time();
 
         // check various properties of the assertion
         $config = Configuration::getInstance();
         $allowed_clock_skew = $config->getOptionalInteger('assertion.allowed_clock_skew', 180);
-        $options = [
-            'options' => [
-                'default' => 180,
-                'min_range' => 180,
-                'max_range' => 300,
-            ],
-        ];
-        $allowed_clock_skew = filter_var($allowed_clock_skew, FILTER_VALIDATE_INT, $options);
-        $notBefore = $assertion->getNotBefore();
-        if ($notBefore !== null && $notBefore > time() + $allowed_clock_skew) {
-            throw new SSP_Error\Exception(
-                'Received an assertion that is valid in the future. Check clock synchronization on IdP and SP.',
-            );
-        }
-        $notOnOrAfter = $assertion->getNotOnOrAfter();
-        if ($notOnOrAfter !== null && $notOnOrAfter <= time() - $allowed_clock_skew) {
-            throw new SSP_Error\Exception(
-                'Received an assertion that has expired. Check clock synchronization on IdP and SP.',
-            );
-        }
-        $sessionNotOnOrAfter = $assertion->getSessionNotOnOrAfter();
-        if ($sessionNotOnOrAfter !== null && $sessionNotOnOrAfter <= time() - $allowed_clock_skew) {
-            throw new SSP_Error\Exception(
-                'Received an assertion with a session that has expired. Check clock synchronization on IdP and SP.',
-            );
-        }
-        $validAudiences = $assertion->getValidAudiences();
-        if ($validAudiences !== null) {
-            $spEntityId = $spMetadata->getString('entityid');
-            if (!in_array($spEntityId, $validAudiences, true)) {
-                $candidates = '[' . implode('], [', $validAudiences) . ']';
-                throw new SSP_Error\Exception(
-                    'This SP [' . $spEntityId .
-                    ']  is not a valid audience for the assertion. Candidates were: ' . $candidates,
-                );
-            }
-        }
+        $allowed_clock_skew = max(180, min(300, $allowed_clock_skew));
+
+        /**
+         * Validate assertion time constraints and audience restriction.
+         *
+         * Uses the following extracted assertion values:
+         * - Assertion/Conditions/@NotBefore (via {@see \SAML2\Assertion::getNotBefore()})
+         * - Assertion/Conditions/@NotOnOrAfter (via {@see \SAML2\Assertion::getNotOnOrAfter()})
+         * - Assertion/AuthnStatement/@SessionNotOnOrAfter (via {@see \SAML2\Assertion::getSessionNotOnOrAfter()})
+         * - Assertion/Conditions/AudienceRestriction/Audience (via {@see \SAML2\Assertion::getValidAudiences()})
+         *
+         * Uses the following local values:
+         * - $now: current Unix timestamp used as the comparison baseline
+         * - $allowed_clock_skew: allowed clock skew in seconds
+         *
+         * @throws \SimpleSAML\Error\Exception When the assertion is not yet valid, is expired, the session is expired,
+         *   or the SP entityID is not an allowed audience.
+         */
+        self::validateAssertionTimingAndAudience(
+            $assertion,
+            $spMetadata,
+            $now,
+            $allowed_clock_skew,
+        );
+
+        // is SSO with HoK enabled? IdP remote metadata overwrites SP metadata configuration
+        $hok = $spMetadata->getOptionalBoolean('saml20.hok.assertion', false);
 
         $found = false;
         $lastError = 'No SubjectConfirmation element in Subject.';
-        $validSCMethods = [Constants::CM_BEARER, Constants::CM_HOK, Constants::CM_VOUCHES];
+
         foreach ($assertion->getSubjectConfirmation() as $sc) {
-            $method = $sc->getMethod();
-            if (!in_array($method, $validSCMethods, true)) {
-                $lastError = 'Invalid Method on SubjectConfirmation: ' . var_export($method, true);
+            try {
+                self::validateSubjectConfirmation(
+                    $sc,
+                    $hok,
+                    $httpUtils,
+                    $currentURL,
+                    $response,
+                    $now,
+                    $expectedRequestId,
+                    $isUnsolicited,
+                );
+
+                $found = true;
+                break;
+            } catch (\SimpleSAML\Error\Exception $e) {
+                $lastError = $e->getMessage();
                 continue;
             }
-
-            // is SSO with HoK enabled? IdP remote metadata overwrites SP metadata configuration
-            $hok = $idpMetadata->getOptionalBoolean('saml20.hok.assertion', null);
-            if ($hok === null) {
-                $hok = $spMetadata->getOptionalBoolean('saml20.hok.assertion', false);
-            }
-            if ($method === Constants::CM_BEARER && $hok) {
-                $lastError = 'Bearer SubjectConfirmation received, but Holder-of-Key SubjectConfirmation needed';
-                continue;
-            }
-            if ($method === Constants::CM_HOK && !$hok) {
-                $lastError = 'Holder-of-Key SubjectConfirmation received, ' .
-                    'but the Holder-of-Key profile is not enabled.';
-                continue;
-            }
-
-            $scd = $sc->getSubjectConfirmationData();
-            if ($method === Constants::CM_HOK) {
-                // check HoK Assertion
-                if ($httpUtils->isHTTPS() === false) {
-                    $lastError = 'No HTTPS connection, but required for Holder-of-Key SSO';
-                    continue;
-                }
-                if (isset($_SERVER['SSL_CLIENT_CERT']) && empty($_SERVER['SSL_CLIENT_CERT'])) {
-                    $lastError = 'No client certificate provided during TLS Handshake with SP';
-                    continue;
-                }
-                // extract certificate data (if this is a certificate)
-                $clientCert = $_SERVER['SSL_CLIENT_CERT'];
-                $pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
-                if (!preg_match($pattern, $clientCert, $matches)) {
-                    $lastError = 'Error while looking for client certificate during TLS handshake with SP, ' .
-                        'the client certificate does not have the expected structure';
-                    continue;
-                }
-                // we have a valid client certificate from the browser
-                $clientCert = str_replace(["\r", "\n", " "], '', $matches[1]);
-
-                $keyInfo = [];
-                foreach ($scd->getInfo() as $thing) {
-                    if ($thing instanceof KeyInfo) {
-                        $keyInfo[] = $thing;
-                    }
-                }
-                if (count($keyInfo) != 1) {
-                    $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:KeyInfo> element in ' .
-                        '<SubjectConfirmationData> allowed';
-                    continue;
-                }
-
-                $x509data = [];
-                foreach ($keyInfo[0]->getInfo() as $thing) {
-                    if ($thing instanceof X509Data) {
-                        $x509data[] = $thing;
-                    }
-                }
-                if (count($x509data) != 1) {
-                    $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:X509Data> element in ' .
-                        '<ds:KeyInfo> within <SubjectConfirmationData> allowed';
-                    continue;
-                }
-
-                $x509cert = [];
-                foreach ($x509data[0]->getData() as $thing) {
-                    if ($thing instanceof X509Certificate) {
-                        $x509cert[] = $thing;
-                    }
-                }
-                if (count($x509cert) != 1) {
-                    $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:X509Certificate> element in ' .
-                        '<ds:X509Data> within <SubjectConfirmationData> allowed';
-                    continue;
-                }
-
-                $HoKCertificate = $x509cert[0]->getCertificate();
-                if ($HoKCertificate !== $clientCert) {
-                    $lastError = 'Provided client certificate does not match the certificate bound to the ' .
-                        'Holder-of-Key assertion';
-                    continue;
-                }
-            }
-
-            // if no SubjectConfirmationData then don't do anything.
-            if ($scd === null) {
-                $lastError = 'No SubjectConfirmationData provided';
-                continue;
-            }
-
-            $notBefore = $scd->getNotBefore();
-            if (is_int($notBefore) && $notBefore > time() + 60) {
-                $lastError = 'NotBefore in SubjectConfirmationData is in the future: ' . $notBefore;
-                continue;
-            }
-            $notOnOrAfter = $scd->getNotOnOrAfter();
-            if (is_int($notOnOrAfter) && $notOnOrAfter <= time() - 60) {
-                $lastError = 'NotOnOrAfter in SubjectConfirmationData is in the past: ' . $notOnOrAfter;
-                continue;
-            }
-            $recipient = $scd->getRecipient();
-            if ($recipient !== null && $recipient !== $currentURL) {
-                $lastError = 'Recipient in SubjectConfirmationData does not match the current URL. Recipient is ' .
-                    var_export($recipient, true) . ', current URL is ' . var_export($currentURL, true) . '.';
-                continue;
-            }
-            $inResponseTo = $scd->getInResponseTo();
-            if (
-                $inResponseTo !== null
-                && $response->getInResponseTo() !== null
-                && $inResponseTo !== $response->getInResponseTo()
-            ) {
-                $lastError = 'InResponseTo in SubjectConfirmationData does not match the Response. Response has ' .
-                    var_export($response->getInResponseTo(), true) .
-                    ', SubjectConfirmationData has ' . var_export($inResponseTo, true) . '.';
-                continue;
-            }
-            $found = true;
-            break;
         }
+
         if (!$found) {
             throw new SSP_Error\Exception('Error validating SubjectConfirmation in Assertion: ' . $lastError);
         }
@@ -853,6 +854,289 @@ class Message
         }
 
         return $assertion;
+    }
+
+
+    /**
+     * Validates the timing constraints and audience restrictions in the SAML assertion.
+     *
+     * @param \SAML2\Assertion $assertion The SAML assertion to validate.
+     * @param \SimpleSAML\Configuration $spMetadata The metadata of the service provider.
+     * @param int $now The current timestamp used for validation.
+     * @param int $allowedClockSkew The maximum allowed clock skew, in seconds, for timing validations.
+     *
+     * @throws \SimpleSAML\Error\Exception If the assertion is invalid due to timing constraints or audience issues.
+     */
+    private static function validateAssertionTimingAndAudience(
+        Assertion $assertion,
+        Configuration $spMetadata,
+        int $now,
+        int $allowedClockSkew,
+    ): void {
+        $timingChecks = [
+            [
+                'value' => $assertion->getNotBefore(),
+                'invalid' => static fn (int $value): bool => $value > ($now + $allowedClockSkew),
+                // phpcs:ignore Generic.Files.LineLength
+                'message' => 'Received an assertion that is valid in the future. Check clock synchronization on IdP and SP.',
+            ],
+            [
+                'value' => $assertion->getNotOnOrAfter(),
+                'invalid' => static fn (int $value): bool => $value <= ($now - $allowedClockSkew),
+                'message' => 'Received an assertion that has expired. Check clock synchronization on IdP and SP.',
+            ],
+            [
+                'value' => $assertion->getSessionNotOnOrAfter(),
+                'invalid' => static fn (int $value): bool => $value <= ($now - $allowedClockSkew),
+                // phpcs:ignore Generic.Files.LineLength
+                'message' => 'Received an assertion with a session that has expired. Check clock synchronization on IdP and SP.',
+            ],
+        ];
+
+        foreach ($timingChecks as $check) {
+            $value = $check['value'];
+            if ($value === null) {
+                continue;
+            }
+
+            /** @var \Closure(int):bool $isInvalid */
+            $isInvalid = $check['invalid'];
+            if ($isInvalid($value)) {
+                throw new SSP_Error\Exception($check['message']);
+            }
+        }
+
+        $validAudiences = $assertion->getValidAudiences();
+        if ($validAudiences === null) {
+            return;
+        }
+
+        $spEntityId = $spMetadata->getString('entityid');
+        if (!in_array($spEntityId, $validAudiences, true)) {
+            $candidates = '[' . implode('], [', $validAudiences) . ']';
+            throw new SSP_Error\Exception(sprintf(
+                'This SP [%s] is not a valid audience for the assertion. Candidates were: %s',
+                $spEntityId,
+                $candidates,
+            ));
+        }
+    }
+
+
+    /**
+     * Validates a SubjectConfirmation element in a SAML assertion and checks whether it is valid
+     * according to the SAML2 specification and binding-specific policies.
+     *
+     * This method handles validation of Bearer and Holder-of-Key profiles, ensuring criteria such as:
+     * - The SubjectConfirmation method is valid for the current SP configuration.
+     * - Time constraints like NotBefore and NotOnOrAfter are met.
+     * - The Recipient URL and InResponseTo values are correctly set when applicable.
+     *
+     * @param \SAML2\XML\saml\SubjectConfirmation $sc
+     *   The SubjectConfirmation element to validate.
+     * @param bool $hok
+     *   Whether the Holder-of-Key (HoK) profile is enabled for this SP.
+     * @param \SimpleSAML\Utils\HTTP $httpUtils
+     *   Utility for accessing HTTP-related data.
+     * @param string $currentURL
+     *   The current URL used to validate the recipient of the assertion.
+     * @param \SAML2\Response $response
+     *   The SAML response containing the assertion.
+     * @param int $now
+     *   The current timestamp for time-based validations.
+     * @param string|null $expectedRequestId
+     *   The ID of the original AuthnRequest this response is related to, or null for unsolicited responses.
+     * @param bool $isUnsolicited
+     *   Whether the response was unsolicited (IdP-initiated).
+     *
+     * @throws \SimpleSAML\Error\Exception When the SubjectConfirmation is invalid.
+     */
+    private static function validateSubjectConfirmation(
+        \SAML2\XML\saml\SubjectConfirmation $sc,
+        bool $hok,
+        Utils\HTTP $httpUtils,
+        string $currentURL,
+        Response $response,
+        int $now,
+        ?string $expectedRequestId,
+        bool $isUnsolicited,
+    ): void {
+        $method = $sc->getMethod();
+        $scd = $sc->getSubjectConfirmationData();
+
+        $validSCMethods = [Constants::CM_BEARER, Constants::CM_HOK, Constants::CM_VOUCHES];
+
+        $rejectReason = match (true) {
+            !in_array($method, $validSCMethods, true)
+            => sprintf('Invalid Method on SubjectConfirmation: %s', var_export($method, true)),
+
+            $method === Constants::CM_BEARER && $hok
+            => 'Bearer SubjectConfirmation received, but Holder-of-Key SubjectConfirmation needed',
+
+            $method === Constants::CM_HOK && !$hok
+            => 'Holder-of-Key SubjectConfirmation received, but the Holder-of-Key profile is not enabled.',
+
+            $scd === null
+            => 'No SubjectConfirmationData provided',
+
+            default
+            => null,
+        };
+
+        if ($rejectReason !== null) {
+            throw new SSP_Error\Exception($rejectReason);
+        }
+
+        /** @var \SAML2\XML\saml\SubjectConfirmationData $scd */
+        if ($method === Constants::CM_HOK) {
+            $hokError = self::validateHolderOfKeySubjectConfirmationData($scd, $httpUtils);
+            if ($hokError !== null) {
+                throw new SSP_Error\Exception($hokError);
+            }
+        }
+
+        $notBefore = $scd->getNotBefore();
+        if (is_int($notBefore) && $notBefore > $now + 60) {
+            throw new SSP_Error\Exception(
+                sprintf('NotBefore in SubjectConfirmationData is in the future: %s', $notBefore),
+            );
+        }
+
+        $notOnOrAfter = $scd->getNotOnOrAfter();
+        if (is_int($notOnOrAfter) && $notOnOrAfter <= $now - 60) {
+            throw new SSP_Error\Exception(
+                sprintf('NotOnOrAfter in SubjectConfirmationData is in the past: %s', $notOnOrAfter),
+            );
+        }
+
+        $recipient = $scd->getRecipient();
+        if ($recipient !== null && $recipient !== $currentURL) {
+            $errorMessage = sprintf(
+            // phpcs:ignore Generic.Files.LineLength
+                'Recipient in SubjectConfirmationData does not match the current URL. Recipient is %s, current URL is %s.',
+                var_export($recipient, true),
+                var_export($currentURL, true),
+            );
+            throw new SSP_Error\Exception($errorMessage);
+        }
+
+        $inResponseTo = $scd->getInResponseTo();
+        $responseInResponseTo = $response->getInResponseTo();
+
+        // Hard policy: unsolicited responses MUST NOT contain any InResponseTo values.
+        if ($isUnsolicited) {
+            if ($inResponseTo !== null) {
+                throw new SSP_Error\Exception(
+                    'Unsolicited Response MUST NOT contain SubjectConfirmationData InResponseTo.',
+                );
+            }
+
+            if ($responseInResponseTo !== null) {
+                throw new SSP_Error\Exception('Unsolicited Response MUST NOT contain Response InResponseTo.');
+            }
+
+            return;
+        }
+
+        if ($expectedRequestId === null || $expectedRequestId === '') {
+            throw new SSP_Error\Exception('Missing expected request ID for solicited Response validation.');
+        }
+
+        // Hard policy for solicited responses:
+        // SubjectConfirmationData MUST contain InResponseTo and MUST match the request ID, and MUST match Response.
+        if ($inResponseTo === null) {
+            throw new SSP_Error\Exception('Solicited Response requires SubjectConfirmationData InResponseTo.');
+        }
+
+        if ($inResponseTo !== $expectedRequestId) {
+            throw new SSP_Error\Exception(sprintf(
+                'InResponseTo in SubjectConfirmationData does not match expected request ID. Expected %s, got %s.',
+                var_export($expectedRequestId, true),
+                var_export($inResponseTo, true),
+            ));
+        }
+
+        if ($responseInResponseTo === null) {
+            throw new SSP_Error\Exception('Solicited Response must contain Response InResponseTo.');
+        }
+
+        if ($inResponseTo !== $responseInResponseTo) {
+            $errorMessage = sprintf(
+            // phpcs:ignore Generic.Files.LineLength
+                'InResponseTo in SubjectConfirmationData does not match the Response. Response has %s, SubjectConfirmationData has %s.',
+                var_export($responseInResponseTo, true),
+                var_export($inResponseTo, true),
+            );
+            throw new SSP_Error\Exception($errorMessage);
+        }
+    }
+
+
+    /**
+     * Validate Holder-of-Key (HoK) proof material inside SubjectConfirmationData.
+     * Returns null when valid, or an error message when invalid.
+     */
+    private static function validateHolderOfKeySubjectConfirmationData(
+        \SAML2\XML\saml\SubjectConfirmationData $scd,
+        Utils\HTTP $httpUtils,
+    ): ?string {
+        if ($httpUtils->isHTTPS() === false) {
+            return 'No HTTPS connection, but required for Holder-of-Key SSO';
+        }
+
+        if (isset($_SERVER['SSL_CLIENT_CERT']) && empty($_SERVER['SSL_CLIENT_CERT'])) {
+            return 'No client certificate provided during TLS Handshake with SP';
+        }
+
+        $clientCert = $_SERVER['SSL_CLIENT_CERT'];
+        $pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
+        if (!preg_match($pattern, $clientCert, $matches)) {
+            return 'Error while looking for client certificate during TLS handshake with SP, ' .
+                'the client certificate does not have the expected structure';
+        }
+
+        $clientCert = str_replace(["\r", "\n", " "], '', $matches[1]);
+
+        $keyInfo = [];
+        foreach ($scd->getInfo() as $thing) {
+            if ($thing instanceof KeyInfo) {
+                $keyInfo[] = $thing;
+            }
+        }
+        if (count($keyInfo) != 1) {
+            return 'Error validating Holder-of-Key assertion: Only one <ds:KeyInfo> element in ' .
+                '<SubjectConfirmationData> allowed';
+        }
+
+        $x509data = [];
+        foreach ($keyInfo[0]->getInfo() as $thing) {
+            if ($thing instanceof X509Data) {
+                $x509data[] = $thing;
+            }
+        }
+        if (count($x509data) != 1) {
+            return 'Error validating Holder-of-Key assertion: Only one <ds:X509Data> element in ' .
+                '<ds:KeyInfo> within <SubjectConfirmationData> allowed';
+        }
+
+        $x509cert = [];
+        foreach ($x509data[0]->getData() as $thing) {
+            if ($thing instanceof X509Certificate) {
+                $x509cert[] = $thing;
+            }
+        }
+        if (count($x509cert) != 1) {
+            return 'Error validating Holder-of-Key assertion: Only one <ds:X509Certificate> element in ' .
+                '<ds:X509Data> within <SubjectConfirmationData> allowed';
+        }
+
+        $HoKCertificate = $x509cert[0]->getCertificate();
+        if ($HoKCertificate !== $clientCert) {
+            return 'Provided client certificate does not match the certificate bound to the ' .
+                'Holder-of-Key assertion';
+        }
+
+        return null;
     }
 
 

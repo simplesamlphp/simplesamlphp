@@ -36,7 +36,6 @@ use function array_merge;
 use function count;
 use function end;
 use function get_class;
-use function in_array;
 use function is_null;
 use function time;
 use function var_export;
@@ -141,6 +140,10 @@ class ServiceProvider
         Auth\Source $spSource,
         Utils\HTTP $httpUtils,
     ): string {
+        if (!$spSource instanceof SP) {
+            throw new Error\Exception('Expected a SAML SP auth source, got ' . $spSource::class . '.');
+        }
+
         $options = [];
 
         if ($spSource->isRequestInitiation()) {
@@ -187,7 +190,7 @@ class ServiceProvider
             if (
                 // Check the IdP we are currently authenticated to
                 (isset($authData['saml:sp:IdP'], $options['saml:idp'])
-                 && $options['saml:idp'] !== $authData['saml:sp:IdP'])
+                    && $options['saml:idp'] !== $authData['saml:sp:IdP'])
                 ||
                 (isset($options['ForceAuthn']) && $options['ForceAuthn'])
             ) {
@@ -326,6 +329,16 @@ class ServiceProvider
         $state = null;
         $stateId = $response->getInResponseTo();
 
+        /**
+         * "Solicited" (SP-initiated) response:
+         *   The IdP response is associated with a specific AuthnRequest the SP previously sent.
+         *   In practice, we consider the response solicited when Response/@InResponseTo is present and
+         *   we can load the outstanding request state using that ID.
+         *
+         * "Unsolicited" (IdP-initiated) response:
+         *   The SP has no outstanding AuthnRequest state for this response (no/unknown InResponseTo),
+         *   so the response is processed as not associated with a request (if enabled by configuration).
+         */
         if (!empty($stateId)) {
             // this should be a response to a request we sent earlier
             try {
@@ -354,16 +367,17 @@ class ServiceProvider
                 );
             }
 
-            // check that the issuer is the one we are expecting
+            // check that the issuer is the one we are expecting (strict binding for SP-initiated flows)
             Assert::keyExists($state, 'ExpectedIssuer');
             if ($state['ExpectedIssuer'] !== $issuer) {
-                $idpMetadata = $source->getIdPMetadata($issuer);
-                $idplist = $idpMetadata->getOptionalArrayize('IDPList', []);
-                if (!in_array($state['ExpectedIssuer'], $idplist, true)) {
-                    Logger::warning(
-                        'The issuer of the response not match to the identity provider we sent the request to.',
-                    );
-                }
+                Logger::error(
+                    'The issuer of the response does not match the identity provider we sent the request to.',
+                );
+
+                throw new Error\Exception(
+                    'Issuer mismatch: expected ' . var_export($state['ExpectedIssuer'], true) .
+                    ', got ' . var_export($issuer, true) . '.',
+                );
             }
         } else {
             // this is an unsolicited response
@@ -381,13 +395,24 @@ class ServiceProvider
             $idpMetadata = $source->getIdPmetadata($issuer);
         }
 
+        $assertions = [];
         try {
-            $assertions = Module\saml\Message::processResponse($spMetadata, $idpMetadata, $response);
+            $isUnsolicited = (bool) ($state['saml:sp:isUnsolicited'] ?? false);
+            $expectedRequestId = $isUnsolicited ? null : ($stateId ?: null);
+
+            $assertions = Module\saml\Message::processResponse(
+                $spMetadata,
+                $idpMetadata,
+                $response,
+                $expectedRequestId,
+                $isUnsolicited,
+                $isUnsolicited ? null : ($state['ExpectedIssuer'] ?? null),
+            );
         } catch (Module\saml\Error $e) {
             // the status of the response wasn't "success"
-            $e = $e->toException();
-            $this->authState::throwException($state, $e);
-            Assert::true(false);
+            $ex = $e->toException();
+            $this->authState::throwException($state, $ex);
+            throw $ex;
         }
 
         $authenticatingAuthority = null;
@@ -440,6 +465,7 @@ class ServiceProvider
                 $foundAuthnStatement = true;
             }
         }
+
         $assertion = end($assertions);
 
         if (!$foundAuthnStatement) {
