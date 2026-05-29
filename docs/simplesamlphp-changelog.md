@@ -11,6 +11,7 @@ Released TBD
 
 * Fix missing trackid error in debugsp-module
 * Fix Accept header for MDQ-requests (#2639)
+* Have getServerHTTPS() honor https baseurlpath when $_SERVER['HTTPS'] is absent (#2638)
 
 `metarefresh`
 
