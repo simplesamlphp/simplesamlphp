@@ -9,6 +9,8 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+* Have getServerHTTPS() honor https baseurlpath when $_SERVER['HTTPS'] is absent (#2638)
+
 ## Version 2.4.5
 
 Released 2026-03-13
