@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "64966c824c2e1a148ad98479ce8df827",
+    "content-hash": "122e0165db8a63772a4271825784b07a",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -6404,16 +6404,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
-            "version": "v1.9.3",
+            "version": "v1.9.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-test-framework.git",
-                "reference": "8dd14bb338573710165e6c237ec36378fa18eadb"
+                "reference": "7f7d99d152b1d59f5fbe1b832e22474621f6fe16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/8dd14bb338573710165e6c237ec36378fa18eadb",
-                "reference": "8dd14bb338573710165e6c237ec36378fa18eadb",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/7f7d99d152b1d59f5fbe1b832e22474621f6fe16",
+                "reference": "7f7d99d152b1d59f5fbe1b832e22474621f6fe16",
                 "shasum": ""
             },
             "require": {
@@ -6454,7 +6454,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-test-framework"
             },
-            "time": "2025-07-14T17:03:27+00:00"
+            "time": "2026-05-29T11:38:01+00:00"
         },
         {
             "name": "slevomat/coding-standard",
