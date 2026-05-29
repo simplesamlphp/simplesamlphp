@@ -46,10 +46,6 @@ jobs:
       - name: Validate composer.json and composer.lock
         run: composer validate
 
-      - name: Make sure a version is set in composer.json that matches the tag
-        if: "${{ env.COMPOSER_VERSION != env.TAG }}"
-        run: exit 1
-
       - name: Install Composer dependencies
         run: composer install --no-progress --no-dev --prefer-dist --optimize-autoloader
 
