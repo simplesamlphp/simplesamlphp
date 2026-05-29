@@ -808,4 +808,273 @@ class HTTPTest extends ClearStateTestCase
 
         $_SERVER = $originalServer;
     }
+
+
+    /**
+     * Reproducer guard: when SimpleSAMLphp is invoked from an external
+     * script (script outside its own public/ directory) behind a
+     * TLS-terminating reverse proxy that does not set $_SERVER['HTTPS'],
+     * getServerHTTPS() must honor an https:// baseurlpath whose host
+     * matches the current request's host. Without this, isHTTPS()
+     * returns false and setting a secure cookie raises
+     * CriticalConfigurationError ("Setting secure cookie on plain HTTP").
+     */
+    public function testGetServerHTTPSHonorsHttpsBaseurlpathBehindProxy(): void
+    {
+        $original = $_SERVER;
+        $httpUtils = new Utils\HTTP();
+
+        Configuration::loadFromArray([
+            'baseurlpath' => 'https://app.example.test/simplesaml/',
+        ], '[ARRAY]', 'simplesaml');
+
+        $_SERVER = [
+            'HTTP_HOST'              => 'app.example.test',
+            'HTTP_X_FORWARDED_PROTO' => 'https',
+            'REQUEST_URI'            => '/app/sp.php?foo=bar',
+            'SCRIPT_FILENAME'        => '/var/www/app/sp.php',
+            'SERVER_PORT'            => '80',
+        ];
+
+        $this->assertTrue(
+            $httpUtils->getServerHTTPS(),
+            'getServerHTTPS() must return true when baseurlpath declares https for the current host, '
+            . 'even when $_SERVER[HTTPS] is empty (TLS-terminating-proxy topology).',
+        );
+        $this->assertTrue(
+            $httpUtils->isHTTPS(),
+            'isHTTPS() must return true in the same topology, otherwise secure-cookie setup fails.',
+        );
+        $this->assertStringStartsWith(
+            'https://',
+            $httpUtils->getSelfURL(),
+            'getSelfURL() must return an https:// URL when baseurlpath declares https for the current host.',
+        );
+
+        $_SERVER = $original;
+    }
+
+
+    /**
+     * Companion guard: when baseurlpath declares https for a DIFFERENT
+     * host than the current request, the host-match guard must prevent
+     * the new fallback from triggering — getServerHTTPS() must fall
+     * through to the original $_SERVER-based detection (which here
+     * yields false because $_SERVER['HTTPS'] is unset).
+     */
+    public function testGetServerHTTPSBaseurlpathHostMismatchDoesNotForceHTTPS(): void
+    {
+        $original = $_SERVER;
+        $httpUtils = new Utils\HTTP();
+
+        Configuration::loadFromArray([
+            'baseurlpath' => 'https://different-host.example.test/simplesaml/',
+        ], '[ARRAY]', 'simplesaml');
+
+        $_SERVER = [
+            'HTTP_HOST'       => 'app.example.test',
+            'REQUEST_URI'     => '/app/sp.php',
+            'SCRIPT_FILENAME' => '/var/www/app/sp.php',
+            'SERVER_PORT'     => '80',
+        ];
+
+        $this->assertFalse(
+            $httpUtils->getServerHTTPS(),
+            'getServerHTTPS() must NOT be coerced to true when baseurlpath declares https for a different host.',
+        );
+
+        $_SERVER = $original;
+    }
+
+
+    /**
+     * Branch A regression guard: when $_SERVER['HTTPS'] is set to 'on',
+     * the existing short-circuit must continue to return true regardless
+     * of any baseurlpath configuration. This guards against a future
+     * refactor that accidentally reorders the checks.
+     */
+    public function testGetServerHTTPSReturnsTrueWhenHttpsEnvIsSet(): void
+    {
+        $original = $_SERVER;
+        $httpUtils = new Utils\HTTP();
+
+        // No baseurlpath at all; HTTPS=on must still be honoured.
+        Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
+
+        $_SERVER = [
+            'HTTPS'           => 'on',
+            'HTTP_HOST'       => 'app.example.test',
+            'REQUEST_URI'     => '/',
+            'SCRIPT_FILENAME' => '/var/www/app/sp.php',
+            'SERVER_PORT'     => '443',
+        ];
+        $this->assertTrue($httpUtils->getServerHTTPS());
+
+        // HTTPS=on with a totally unrelated baseurlpath also stays true.
+        Configuration::loadFromArray([
+            'baseurlpath' => 'http://different-host.example.test/simplesaml/',
+        ], '[ARRAY]', 'simplesaml');
+        $this->assertTrue(
+            $httpUtils->getServerHTTPS(),
+            'HTTPS=on env must win over a conflicting (http) baseurlpath.',
+        );
+
+        $_SERVER = $original;
+    }
+
+
+    /**
+     * Critical preservation guard: an admin's explicit $_SERVER['HTTPS']
+     * = 'off' (IIS convention for "no HTTPS for this request") must
+     * still return false, even when baseurlpath declares https for the
+     * matching host. The fallback only applies when HTTPS is absent
+     * from $_SERVER, not when it is explicitly off.
+     */
+    public function testGetServerHTTPSRespectsExplicitHttpsOff(): void
+    {
+        $original = $_SERVER;
+        $httpUtils = new Utils\HTTP();
+
+        Configuration::loadFromArray([
+            'baseurlpath' => 'https://app.example.test/simplesaml/',
+        ], '[ARRAY]', 'simplesaml');
+
+        $_SERVER = [
+            'HTTPS'           => 'off',
+            'HTTP_HOST'       => 'app.example.test',
+            'REQUEST_URI'     => '/',
+            'SCRIPT_FILENAME' => '/var/www/app/sp.php',
+            'SERVER_PORT'     => '80',
+        ];
+
+        $this->assertFalse(
+            $httpUtils->getServerHTTPS(),
+            'Explicit $_SERVER[HTTPS]=off must not be silently overridden by an https baseurlpath.',
+        );
+
+        $_SERVER = $original;
+    }
+
+
+    /**
+     * Host comparison must be case-insensitive (DNS hostnames are
+     * case-insensitive). Without this, an admin who writes baseurlpath
+     * with capital letters would see the fallback silently fail.
+     */
+    public function testGetServerHTTPSCaseInsensitiveHostMatch(): void
+    {
+        $original = $_SERVER;
+        $httpUtils = new Utils\HTTP();
+
+        Configuration::loadFromArray([
+            'baseurlpath' => 'https://APP.Example.Test/simplesaml/',
+        ], '[ARRAY]', 'simplesaml');
+
+        $_SERVER = [
+            'HTTP_HOST'       => 'app.example.test',
+            'REQUEST_URI'     => '/',
+            'SCRIPT_FILENAME' => '/var/www/app/sp.php',
+            'SERVER_PORT'     => '80',
+        ];
+
+        $this->assertTrue(
+            $httpUtils->getServerHTTPS(),
+            'Host comparison must be case-insensitive.',
+        );
+
+        $_SERVER = $original;
+    }
+
+
+    /**
+     * When the current request's HTTP_HOST includes a port (because
+     * the public listener uses a non-standard port and the proxy
+     * preserved the Host header), getServerHost() strips the port; the
+     * fallback host match should still succeed when baseurlpath
+     * declares the same host without a port.
+     */
+    public function testGetServerHTTPSHostWithPortInRequest(): void
+    {
+        $original = $_SERVER;
+        $httpUtils = new Utils\HTTP();
+
+        Configuration::loadFromArray([
+            'baseurlpath' => 'https://app.example.test/simplesaml/',
+        ], '[ARRAY]', 'simplesaml');
+
+        $_SERVER = [
+            'HTTP_HOST'       => 'app.example.test:8443',
+            'REQUEST_URI'     => '/',
+            'SCRIPT_FILENAME' => '/var/www/app/sp.php',
+            'SERVER_PORT'     => '8443',
+        ];
+
+        $this->assertTrue(
+            $httpUtils->getServerHTTPS(),
+            'Host with port in HTTP_HOST must still match baseurlpath without port (port stripped by getServerHost()).',
+        );
+
+        $_SERVER = $original;
+    }
+
+
+    /**
+     * A relative-path baseurlpath (the default `simplesaml/`, or any
+     * value not starting with https://) must NOT trigger the fallback.
+     * This guards against a future regex loosening that could
+     * false-positive on relative paths.
+     */
+    public function testGetServerHTTPSIgnoresRelativeBaseurlpath(): void
+    {
+        $original = $_SERVER;
+        $httpUtils = new Utils\HTTP();
+
+        Configuration::loadFromArray([
+            'baseurlpath' => 'simplesaml/',
+        ], '[ARRAY]', 'simplesaml');
+
+        $_SERVER = [
+            'HTTP_HOST'       => 'app.example.test',
+            'REQUEST_URI'     => '/',
+            'SCRIPT_FILENAME' => '/var/www/app/sp.php',
+            'SERVER_PORT'     => '80',
+        ];
+
+        $this->assertFalse(
+            $httpUtils->getServerHTTPS(),
+            'Relative-path baseurlpath must not trigger the HTTPS fallback.',
+        );
+
+        $_SERVER = $original;
+    }
+
+
+    /**
+     * An http:// (not https://) baseurlpath must NOT trigger the
+     * fallback. The fallback only honours an explicit https
+     * declaration, never an http one.
+     */
+    public function testGetServerHTTPSIgnoresHttpBaseurlpath(): void
+    {
+        $original = $_SERVER;
+        $httpUtils = new Utils\HTTP();
+
+        Configuration::loadFromArray([
+            'baseurlpath' => 'http://app.example.test/simplesaml/',
+        ], '[ARRAY]', 'simplesaml');
+
+        $_SERVER = [
+            'HTTP_HOST'       => 'app.example.test',
+            'REQUEST_URI'     => '/',
+            'SCRIPT_FILENAME' => '/var/www/app/sp.php',
+            'SERVER_PORT'     => '80',
+        ];
+
+        $this->assertFalse(
+            $httpUtils->getServerHTTPS(),
+            'An http:// baseurlpath must not be coerced into HTTPS by the fallback.',
+        );
+
+        $_SERVER = $original;
+    }
 }
