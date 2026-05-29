@@ -8,9 +8,11 @@ To keep SAML2Int policy settings separate from the global `config.php`, SAML2Int
 - **Local configuration:** `config/saml2int.conf.php`
 
 Create your local config by copying the dist file:
+
 ```bash
 cp config/saml2int.conf.php.dist config/saml2int.conf.php
 ```
+
 ## Options
 
 ### `response.require_signed` (bool)
@@ -23,6 +25,7 @@ When set to `true`, the Service Provider (SP) will reject SAML `<Response>` mess
 This is stricter than “assertion is signed”, because Response-level fields (for example `Destination`, `InResponseTo`, and `Status`) are not necessarily protected by an Assertion-only signature.
 
 Example:
+
 ```php
 <?php
 
@@ -32,8 +35,8 @@ return [
     'response.require_signed' => true,
 ];
 ```
+
 ## Notes
 
 - This configuration file is loaded from the standard SimpleSAMLphp configuration directory (usually `config/`).
 - Only the settings in `saml2int.conf.php` are used for SAML2Int enforcement. Configure SAML2Int-related options here, not in `config.php`.
-
