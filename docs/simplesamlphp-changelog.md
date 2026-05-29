@@ -5,11 +5,20 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.4.6
+## Version 2.4.7
 
 Released TBD
 
+## Version 2.4.6
+
+Released 2026-06-29
+
 * Have getServerHTTPS() honor https baseurlpath when $_SERVER['HTTPS'] is absent (#2638)
+
+`saml2`
+
+* Possible DoS via XPath Transform (CVE-2026-49289)
+* HTTP-Artifact TLS validator confusion allows cross-IdP authentication bypass (CVE-2026-49283 )
 
 ## Version 2.4.5
 
