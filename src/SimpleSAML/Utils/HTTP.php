@@ -178,18 +178,71 @@ class HTTP
      */
     public function getServerHTTPS(): bool
     {
-        if (!array_key_exists('HTTPS', $_SERVER)) {
-            // not an https-request
+        // When $_SERVER['HTTPS'] is set — by a web server that terminates
+        // TLS itself — it is the authoritative signal. Preserve the
+        // existing three-case interpretation exactly, so an admin's
+        // explicit 'off' (IIS convention) still wins.
+        if (array_key_exists('HTTPS', $_SERVER)) {
+            if ($_SERVER['HTTPS'] === 'off') {
+                return false;
+            }
+            return !empty($_SERVER['HTTPS']);
+        }
+
+        // $_SERVER['HTTPS'] is COMPLETELY ABSENT. This is the typical
+        // php-fpm case behind a TLS-terminating reverse proxy: nginx's
+        // stock fastcgi_params line `fastcgi_param HTTPS $https
+        // if_not_empty;` only sends the param when $https itself is
+        // non-empty, which only happens when nginx terminates TLS.
+        //
+        // Fall back to the admin-set baseurlpath. We trust it only when:
+        //   (a) it is a full URL starting with https://, AND
+        //   (b) its host exactly matches the current request's host.
+        //
+        // (a) restricts to deployments where the admin has explicitly
+        // declared an HTTPS deployment scheme (the maintainer-prescribed
+        // form for reverse-proxy setups, e.g. as in
+        // github.com/simplesamlphp/simplesamlphp/pull/795).
+        //
+        // (b) prevents a multi-host SimpleSAMLphp installation from
+        // over-promoting unrelated requests to HTTPS just because some
+        // virtual host the library knows about is configured for HTTPS.
+        //
+        // No client-controlled header is read at any point.
+        $cfg = Configuration::getInstance();
+        $baseURL = $cfg->getOptionalString('baseurlpath', null);
+        if (
+            $baseURL !== null
+            && preg_match('#^https://([^/:]+)(?::([0-9]+))?#', $baseURL, $matches)
+        ) {
+            $configuredHost = strtolower($matches[1]);
+            $currentHost = strtolower($this->getServerHost());
+            if ($configuredHost === $currentHost) {
+                Logger::debug(
+                    "getServerHTTPS(): no \$_SERVER['HTTPS']; treating the request as HTTPS "
+                    . "because the 'baseurlpath' host '" . $configuredHost
+                    . "' matches the current host.",
+                );
+
+                return true;
+            }
+
+            Logger::debug(
+                "getServerHTTPS(): no \$_SERVER['HTTPS']; not treating the request as HTTPS "
+                . "because the 'baseurlpath' host '" . $configuredHost
+                . "' does not match the current host '" . $currentHost . "'.",
+            );
+
             return false;
         }
 
-        if ($_SERVER['HTTPS'] === 'off') {
-            // IIS with HTTPS off
-            return false;
-        }
+        Logger::debug(
+            "getServerHTTPS(): no \$_SERVER['HTTPS'] and 'baseurlpath' is not a full https:// "
+            . "URL, so the request is not treated as HTTPS. If TLS is terminated at an upstream "
+            . "proxy, set 'baseurlpath' (or 'application.baseURL') to your full https:// URL.",
+        );
 
-        // otherwise, HTTPS will be non-empty
-        return !empty($_SERVER['HTTPS']);
+        return false;
     }
 
 
