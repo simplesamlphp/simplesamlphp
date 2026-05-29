@@ -290,16 +290,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "2.10.3",
+            "version": "2.10.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "7c1472269227dc6f18930bd903d7a88fe6c52130"
+                "reference": "d2a1a094e396da8957e797489fddaf860c340cfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/7c1472269227dc6f18930bd903d7a88fe6c52130",
-                "reference": "7c1472269227dc6f18930bd903d7a88fe6c52130",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/d2a1a094e396da8957e797489fddaf860c340cfc",
+                "reference": "d2a1a094e396da8957e797489fddaf860c340cfc",
                 "shasum": ""
             },
             "require": {
@@ -387,7 +387,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/2.10.3"
+                "source": "https://github.com/guzzle/psr7/tree/2.10.4"
             },
             "funding": [
                 {
@@ -403,7 +403,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-05-27T11:48:20+00:00"
+            "time": "2026-05-29T12:59:07+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -7295,12 +7295,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-test-framework.git",
-                "reference": "ebfcef261d2f6392ee6e323e5cedb0865ed24e0a"
+                "reference": "9765f07a19b32a7d6079a2ad5b446766a11e26e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/ebfcef261d2f6392ee6e323e5cedb0865ed24e0a",
-                "reference": "ebfcef261d2f6392ee6e323e5cedb0865ed24e0a",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/9765f07a19b32a7d6079a2ad5b446766a11e26e7",
+                "reference": "9765f07a19b32a7d6079a2ad5b446766a11e26e7",
                 "shasum": ""
             },
             "require": {
@@ -7345,7 +7345,7 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-test-framework/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp-test-framework"
             },
-            "time": "2026-05-29T12:19:18+00:00"
+            "time": "2026-05-29T15:08:52+00:00"
         },
         {
             "name": "slevomat/coding-standard",
