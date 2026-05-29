@@ -218,9 +218,29 @@ class HTTP
             $configuredHost = strtolower($matches[1]);
             $currentHost = strtolower($this->getServerHost());
             if ($configuredHost === $currentHost) {
+                Logger::debug(
+                    "getServerHTTPS(): no \$_SERVER['HTTPS']; treating the request as HTTPS "
+                    . "because the 'baseurlpath' host '" . $configuredHost
+                    . "' matches the current host.",
+                );
+
                 return true;
             }
+
+            Logger::debug(
+                "getServerHTTPS(): no \$_SERVER['HTTPS']; not treating the request as HTTPS "
+                . "because the 'baseurlpath' host '" . $configuredHost
+                . "' does not match the current host '" . $currentHost . "'.",
+            );
+
+            return false;
         }
+
+        Logger::debug(
+            "getServerHTTPS(): no \$_SERVER['HTTPS'] and 'baseurlpath' is not a full https:// "
+            . "URL, so the request is not treated as HTTPS. If TLS is terminated at an upstream "
+            . "proxy, set 'baseurlpath' (or 'application.baseURL') to your full https:// URL.",
+        );
 
         return false;
     }
