@@ -5,15 +5,35 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.5.1
+## Version 2.5.2
 
 Released TBD
 
+## Version 2.5.1
+
+Released 2026-05-29
+
 * Fix missing trackid error in debugsp-module
+* Fix Accept header for MDQ-requests (#2639)
+* Have getServerHTTPS() honor https baseurlpath when $_SERVER['HTTPS'] is absent (#2638)
+* Fix attributemap fox Entra ID (#2633)
+* Expand support range for PHPmailer (#2627)
+* Restore functionality to specify email from of outgoing messages. (#2625)
+* Fix HTTP-client when using a proxy (#2622)
+* Make FilterScopes handling of non-scoped values configurable (#2615)
+
+`admin`
+
+* Allow admin menu to wrap (#2623)
 
 `metarefresh`
 
 * Fix compatibility with SSP 2.5 (v1.3.1)
+
+`saml2`
+
+* Possible DoS via XPath Transform (CVE-2026-49289)
+* HTTP-Artifact TLS validator confusion allows cross-IdP authentication bypass (CVE-2026-49283 )
 
 ## Version 2.5.0
 

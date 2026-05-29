@@ -1,0 +1,18 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * SAML2Int enforcement policy.
+ *
+ * Keep settings here so we can grow the list of enforced SAML2Int requirements over time.
+ */
+return [
+    /*
+     * When true:
+     * - Incoming SAML <Response> messages MUST be signed (SAML2Int V2.0 requirement: [SDP-IDP30]).
+     * - A signed Assertion inside an unsigned Response is NOT sufficient.
+     */
+    'response.require_signed' => false,
+];
+
