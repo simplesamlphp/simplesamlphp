@@ -14,6 +14,8 @@ Released TBD
 Released 2026-06-29
 
 * Have getServerHTTPS() honor https baseurlpath when $_SERVER['HTTPS'] is absent (#2638)
+* SP accepts a response from an unexpected IdP when unsigned `Response/InResponseTo`
+  is combined with a signed assertion lacking `SubjectConfirmationData/InResponseTo` (CVE-2026-49284)
 
 `saml2`
 
