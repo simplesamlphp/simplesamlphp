@@ -44,6 +44,7 @@ class IndexTest extends TestCase
     {
         self::$server = new BuiltInServer('configLoader');
         self::$server_addr = self::$server->start();
+        sleep(2);
         self::$server_pid = self::$server->getPid();
 
         self::$shared_file = sys_get_temp_dir() . '/' . self::$server_pid . '.lock';

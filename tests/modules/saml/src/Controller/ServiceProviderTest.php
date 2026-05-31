@@ -329,22 +329,23 @@ class ServiceProviderTest extends TestCase
 
         $spSource = new Source\SP($info, $config);
 
-
-        $as = $this->getMockBuilder(Auth\Simple::class)
-                   ->disableOriginalConstructor()
-                   ->getMock();
-        $as->method('isAuthenticated')->willReturn(false);
-        $as->method('getAuthSource')->willReturn($spSource);
-
         if ($expectingException) {
+            $asStub = $this->createStub(Auth\Simple::class);
+            $asStub->method('isAuthenticated')->willReturn(false);
+            $asStub->method('getAuthSource')->willReturn($spSource);
             $this->expectException(\SimpleSAML\Error\Exception::class);
             $this->expectExceptionMessage('URL not allowed: https://evil.com');
             /** @phpstan-ignore method.notFound */
-            $this->serviceProvider->callHandleLogin($request, $as, $spSource, $this->httpUtils);
+            $this->serviceProvider->callHandleLogin($request, $asStub, $spSource, $this->httpUtils);
         } else {
-            $as->expects($this->once())->method('requireAuth')->with($options);
+            $asMock = $this->getMockBuilder(Auth\Simple::class)
+                ->disableOriginalConstructor()
+                ->getMock();
+            $asMock->method('isAuthenticated')->willReturn(false);
+            $asMock->method('getAuthSource')->willReturn($spSource);
+            $asMock->expects($this->once())->method('requireAuth')->with($options);
             /** @phpstan-ignore method.notFound */
-            $returnsTo = $this->serviceProvider->callHandleLogin($request, $as, $spSource, $this->httpUtils);
+            $returnsTo = $this->serviceProvider->callHandleLogin($request, $asMock, $spSource, $this->httpUtils);
             $this->assertEquals($options['ReturnTo'], $returnsTo);
         }
     }
@@ -450,26 +451,29 @@ class ServiceProviderTest extends TestCase
 
         $spSource = new Source\SP($info, $config);
 
-        $as = $this->getMockBuilder(Auth\Simple::class)
-                   ->disableOriginalConstructor()
-                   ->getMock();
-        $as->method('isAuthenticated')->willReturn(true);
-        $as->method('getAuthSource')->willReturn($spSource);
-        $as->method('getAuthDataArray')->willReturn(['saml:sp:IdP' => 'example.edu']);
-
         if ($expectingException) {
+            $asStub = $this->createStub(Auth\Simple::class);
+            $asStub->method('isAuthenticated')->willReturn(true);
+            $asStub->method('getAuthSource')->willReturn($spSource);
+            $asStub->method('getAuthDataArray')->willReturn(['saml:sp:IdP' => 'example.edu']);
             $this->expectException(\SimpleSAML\Error\Exception::class);
             $this->expectExceptionMessage('URL not allowed: https://evil.com');
             /** @phpstan-ignore method.notFound */
-            $this->serviceProvider->callHandleLogin($request, $as, $spSource, $this->httpUtils);
+            $this->serviceProvider->callHandleLogin($request, $asStub, $spSource, $this->httpUtils);
         } else {
+            $asMock = $this->getMockBuilder(Auth\Simple::class)
+                ->disableOriginalConstructor()
+                ->getMock();
+            $asMock->method('isAuthenticated')->willReturn(true);
+            $asMock->method('getAuthSource')->willReturn($spSource);
+            $asMock->method('getAuthDataArray')->willReturn(['saml:sp:IdP' => 'example.edu']);
             if ($expectLoginCalled) {
-                $as->expects($this->once())->method('requireAuth')->with($options);
+                $asMock->expects($this->once())->method('requireAuth')->with($options);
             } else {
-                $as->expects($this->never())->method('login');
+                $asMock->expects($this->never())->method('login');
             }
             /** @phpstan-ignore method.notFound */
-            $returnsTo = $this->serviceProvider->callHandleLogin($request, $as, $spSource, $this->httpUtils);
+            $returnsTo = $this->serviceProvider->callHandleLogin($request, $asMock, $spSource, $this->httpUtils);
             $this->assertEquals($options['ReturnTo'], $returnsTo);
         }
     }
@@ -869,5 +873,57 @@ XML;
         $result = $c->metadata($request, 'phpunit');
         $this->assertTrue($result->headers->has('ETag'));
         $this->assertEquals('public', $result->headers->get('Cache-Control'));
+    }
+
+
+    /**
+     * Test that accessing the ACS-endpoint with a Response that correlates to saved SP state (solicited),
+     * but whose issuer does not match state ExpectedIssuer, hard-fails.
+     *
+     * This covers the strict issuer/state binding added in ServiceProvider::assertionConsumerService().
+     *
+     * @return void
+     */
+    public function testACSExpectedIssuerMismatchHardFails(): void
+    {
+        $expectedIssuer = 'https://idp-a.example.org/metadata';
+        $actualIssuer = 'https://idp-b.example.org/metadata';
+
+        $state = [
+            'saml:sp:AuthId' => 'phpunit',
+            'ExpectedIssuer' => $expectedIssuer,
+        ];
+
+        $stateId = Auth\State::saveState($state, 'saml:sp:sso', true);
+
+        $xml = <<<XML
+<samlp:Response xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
+               xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+               ID="_resp_1"
+               Version="2.0"
+               IssueInstant="2026-05-22T12:34:56Z"
+               InResponseTo="{$stateId}">
+  <saml:Issuer>{$actualIssuer}</saml:Issuer>
+  <samlp:Status>
+    <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"/>
+  </samlp:Status>
+  <saml:Assertion ID="_a1" Version="2.0" IssueInstant="2026-05-22T12:34:56Z">
+    <saml:Issuer>{$actualIssuer}</saml:Issuer>
+  </saml:Assertion>
+</samlp:Response>
+XML;
+
+        $_SERVER['REQUEST_METHOD'] = 'POST';
+        $_SERVER['QUERY_STRING'] = '';
+        $_POST = [
+            'SAMLResponse' => base64_encode($xml),
+        ];
+
+        $c = new Controller\ServiceProvider($this->config, $this->session);
+
+        $this->expectException(Error\Exception::class);
+        $this->expectExceptionMessage('Issuer mismatch: expected');
+
+        $c->assertionConsumerService('phpunit');
     }
 }

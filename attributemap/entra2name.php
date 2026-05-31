@@ -8,8 +8,8 @@ $attributemap = [
     "http://schemas.microsoft.com/identity/claims/displayname" => 'displayName',
     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname" => 'givenName',
     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname" => 'sn',
-    "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress" => 'emailAddress',
-    "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name" => 'mail',
+    "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress" => 'mail',
+    "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name" => 'userPrincipalName',
     
     /**
      * Additional/Optional Claim, using default value

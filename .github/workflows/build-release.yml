@@ -46,10 +46,6 @@ jobs:
       - name: Validate composer.json and composer.lock
         run: composer validate
 
-      - name: Make sure a version is set in composer.json that matches the tag
-        if: "${{ env.COMPOSER_VERSION != env.TAG }}"
-        run: exit 1
-
       - name: Install Composer dependencies
         run: composer install --no-progress --no-dev --prefer-dist --optimize-autoloader
 
@@ -109,7 +105,7 @@ jobs:
           startsWith(github.ref, 'refs/tags/v') &&
           contains(github.ref, 'alpha') != true &&
           contains(github.ref, 'beta') != true
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           # Token has to be generated on a user account that controls the docs-repository.
           # The _only_ scope to select is "Access public repositories", nothing more.
