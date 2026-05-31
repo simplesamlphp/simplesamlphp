@@ -74,7 +74,7 @@
         "simplesamlphp/composer-module-installer": "~1.7",
         "simplesamlphp/saml2": "~6.1",
         "simplesamlphp/saml2-legacy": "~4.20",
-        "simplesamlphp/simplesamlphp-assets-base": "~2.5.0",
+        "simplesamlphp/simplesamlphp-assets-base": "~2.6.0",
         "simplesamlphp/xml-common": "~2.7",
         "simplesamlphp/xml-security": "~2.3",
         "symfony/cache": "~7.4",
