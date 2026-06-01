@@ -5,13 +5,19 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.4.7
+## Version 2.4.8
 
 Released TBD
 
+## Version 2.4.7
+
+Released 2026-06-01
+
+* Fix incorrect/missing use-statements that were breaking the previous release.
+
 ## Version 2.4.6
 
-Released 2026-06-29
+Released 2026-05-29
 
 * Have getServerHTTPS() honor https baseurlpath when $_SERVER['HTTPS'] is absent (#2638)
 * SP accepts a response from an unexpected IdP when unsigned `Response/InResponseTo`

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "308f84847ff4594fba8adc4ab8a3fa13",
+    "content-hash": "c04f5547b960e251f9e5ecef70b19f25",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -1225,16 +1225,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
-            "version": "v2.4.6",
+            "version": "v2.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-assets-base.git",
-                "reference": "2fa86646a39d85cc5d5a220e017698c84ae2c288"
+                "reference": "4837aa3408f669e48c62e8b146b3ad2a27d8336d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/2fa86646a39d85cc5d5a220e017698c84ae2c288",
-                "reference": "2fa86646a39d85cc5d5a220e017698c84ae2c288",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-assets-base/zipball/4837aa3408f669e48c62e8b146b3ad2a27d8336d",
+                "reference": "4837aa3408f669e48c62e8b146b3ad2a27d8336d",
                 "shasum": ""
             },
             "require": {
@@ -1255,9 +1255,9 @@
             "description": "Assets for the SimpleSAMLphp main repository",
             "support": {
                 "issues": "https://github.com/simplesamlphp/simplesamlphp-assets-base/issues",
-                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.4.6"
+                "source": "https://github.com/simplesamlphp/simplesamlphp-assets-base/tree/v2.4.8"
             },
-            "time": "2026-03-04T16:48:26+00:00"
+            "time": "2026-05-31T18:02:29+00:00"
         },
         {
             "name": "simplesamlphp/xml-common",
@@ -4185,16 +4185,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.27.0",
+            "version": "v3.27.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "04ae1bfe9463c816cf72ca0abe7eae2c77a9a9ed"
+                "reference": "ae2071bffb38f04847fc0864d730c94b9cb8ab74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/04ae1bfe9463c816cf72ca0abe7eae2c77a9a9ed",
-                "reference": "04ae1bfe9463c816cf72ca0abe7eae2c77a9a9ed",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ae2071bffb38f04847fc0864d730c94b9cb8ab74",
+                "reference": "ae2071bffb38f04847fc0864d730c94b9cb8ab74",
                 "shasum": ""
             },
             "require": {
@@ -4249,7 +4249,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.27.0"
+                "source": "https://github.com/twigphp/Twig/tree/v3.27.1"
             },
             "funding": [
                 {
@@ -4261,7 +4261,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-05-27T13:05:51+00:00"
+            "time": "2026-05-30T17:09:26+00:00"
         },
         {
             "name": "webmozart/assert",

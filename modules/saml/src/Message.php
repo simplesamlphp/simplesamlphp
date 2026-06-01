@@ -187,8 +187,8 @@ class Message
                 // Clone the exception and improve the message
                 $lastException = new SSP_Error\Error(
                     [
-                        ErrorCodes::NOTVALIDCERTSIGNATURE,
-                        '%MESSAGE%' => (new ErrorCodes())->getMessage(ErrorCodes::NOTVALIDCERTSIGNATURE),
+                        SSP_Error\ErrorCodes::NOTVALIDCERTSIGNATURE,
+                        '%MESSAGE%' => (new SSP_Error\ErrorCodes())->getMessage(SSP_Error\ErrorCodes::NOTVALIDCERTSIGNATURE),
                         '%ELEMENT%' => get_class($element),
                         '%ISSUER%' => $issuerValue ?? '',
                         '%ENTITYID%' => $srcMetadata->getString('entityid'),
