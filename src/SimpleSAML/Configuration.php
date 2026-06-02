@@ -379,7 +379,7 @@ class Configuration implements Utils\ClearableState
      */
     public function getVersion(): string
     {
-        $version = \Composer\InstalledVersions::getRootPackage()['pretty_version'];
+        $version = \Composer\InstalledVersions::getPrettyVersion('simplesamlphp/simplesamlphp');
         // If the returned version is in format `vX.Y.Z`, remove leading
         // `v` to keep the compatibility with the previously used
         // format `X.Y.Z`.
