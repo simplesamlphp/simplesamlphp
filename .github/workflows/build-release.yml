@@ -46,12 +46,6 @@ jobs:
       - name: Validate composer.json and composer.lock
         run: composer validate
 
-      # This has to happen before installing the modules
-      - name: Set version number
-        run: |
-          composer config version "$TAG"
-          composer update --lock
-
       - name: Install Composer dependencies
         run: composer install --no-progress --no-dev --prefer-dist --optimize-autoloader
 
