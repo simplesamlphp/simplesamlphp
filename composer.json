@@ -155,5 +155,6 @@
         "post-install-cmd": [
             "echo 'Post-install tasks completed!'"
         ]
-    }
+    },
+    "version": "v2.5.2"
 }
