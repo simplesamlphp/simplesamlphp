@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\core\Auth\Process;
 use SimpleSAML\Auth;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
-use SimpleSAML\Utils;
 
 /**
  * Give a warning to the user if we receive multiple requests in a short time.
@@ -52,7 +51,7 @@ class WarnShortSSOInterval extends Auth\ProcessingFilter
         // Save state and redirect
         $id = Auth\State::saveState($state, 'core:short_sso_interval');
         $url = Module::getModuleURL('core/short_sso_interval');
-        $httpUtils = new Utils\HTTP();
-        $httpUtils->redirectTrustedURL($url, ['StateId' => $id]);
+        $response = $httpUtils->redirectTrustedURL($url, ['StateId' => $id]);
+        $response->send();
     }
 }

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Auth\ProcessingFilter;
 use SimpleSAML\Logger;
+use SimpleSAML\SAML2\Constants as C;
 
 /**
  * Authentication processing filter to create the eduPersonTargetedID attribute from the persistent NameID.

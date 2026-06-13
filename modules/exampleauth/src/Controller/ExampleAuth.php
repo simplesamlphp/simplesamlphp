@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\exampleauth\Controller;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\exampleauth\Auth\Source\External;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
@@ -67,8 +66,7 @@ class ExampleAuth
      * Auth testpage.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
-     *
-     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function authpage(Request $request): Response
     {
@@ -145,7 +143,7 @@ class ExampleAuth
                 $session->set('mail', $user['mail']);
                 $session->set('type', $user['type']);
 
-                return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$returnTo]);
+                return $httpUtils->redirectTrustedURL($returnTo);
             }
         }
 
@@ -162,10 +160,9 @@ class ExampleAuth
      * Redirect testpage.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
-     *
-     * @return \SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function redirecttest(Request $request): RunnableResponse
+    public function redirecttest(Request $request): Response
     {
         /**
          * Request handler for redirect filter test.
@@ -178,7 +175,7 @@ class ExampleAuth
         $state = $this->authState::loadState($stateId, 'exampleauth:redirectfilter-test');
         $state['Attributes']['RedirectTest2'] = ['OK'];
 
-        return new RunnableResponse([Auth\ProcessingChain::class, 'resumeProcessing'], [$state]);
+        return Auth\ProcessingChain::resumeProcessing($state);
     }
 
 
@@ -186,10 +183,9 @@ class ExampleAuth
      * Resume testpage.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
-     *
-     * @return \SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function resume(Request $request): RunnableResponse
+    public function resume(Request $request): Response
     {
         /**
          * This page serves as the point where the user's authentication
@@ -197,6 +193,6 @@ class ExampleAuth
          *
          * It simply passes control back to the class.
          */
-        return new RunnableResponse([External::class, 'resume'], [$request]);
+        return External::resume($request, $this->authState);
     }
 }

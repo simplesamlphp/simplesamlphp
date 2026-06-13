@@ -34,17 +34,19 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
      *           base directory.
      * - 'url': URL we should download the metadata from. This is only meant for testing.
      *
+     * @param \SimpleSAML\Configuration $globalConfig
      * @param array $config The configuration for this instance of the XML metadata source.
      *
      * @throws \Exception If neither the 'file' or 'url' options are defined in the configuration.
      */
-    protected function __construct(array $config)
+    protected function __construct(Configuration $globalConfig, array $config)
     {
+        parent::__construct();
+
         $src = $srcXml = null;
         $context = [];
         if (array_key_exists('file', $config)) {
             // get the configuration
-            $globalConfig = Configuration::getInstance();
             $src = $globalConfig->resolvePath($config['file']);
             $srcXml = file_get_contents($src);
         } elseif (array_key_exists('url', $config)) {

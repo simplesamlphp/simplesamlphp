@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\saml\Controller;
 use Exception;
 use SAML2\ArtifactResolve;
 use SAML2\ArtifactResponse;
-use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SAML2\SOAP;
 use SAML2\XML\saml\Issuer;
 use SimpleSAML\Assert\Assert;
@@ -18,6 +17,7 @@ use SimpleSAML\IdP;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata;
 use SimpleSAML\Module;
+use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\XML\DOMDocumentFactory;
 
@@ -55,7 +55,7 @@ class WebBrowserSingleSignOn
             throw new Error\Error(Error\ErrorCodes::NOACCESS, null, 403);
         }
 
-        $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler();
+        $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler($this->config);
         $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
         $idpMetadata = $metadata->getMetaDataConfig($idpEntityId, 'saml20-idp-hosted');
 
@@ -123,9 +123,9 @@ class WebBrowserSingleSignOn
             throw new Error\Error(Error\ErrorCodes::NOACCESS, null, 403);
         }
 
-        $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler();
+        $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler($this->config);
         $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-        $idp = IdP::getById('saml2:' . $idpEntityId);
+        $idp = IdP::getById($this->config, 'saml2:' . $idpEntityId);
 
         try {
             return new RunnableResponse([Module\saml\IdP\SAML2::class, 'receiveAuthnRequest'], [$idp]);

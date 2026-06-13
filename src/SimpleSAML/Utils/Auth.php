@@ -7,6 +7,7 @@ namespace SimpleSAML\Utils;
 use SimpleSAML\Auth as Authentication;
 use SimpleSAML\Error;
 use SimpleSAML\Session;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Auth-related utility methods.
@@ -49,19 +50,20 @@ class Auth
      * This is a helper function for limiting a page to those with administrative access. It will redirect the user to
      * a login page if the current user doesn't have admin access.
      *
-     * @throws \SimpleSAML\Error\Exception If no "admin" authentication source was configured.
+     * @return \Symfony\Component\HttpFoundation\Response|null
      *
+     * @throws \SimpleSAML\Error\Exception If no "admin" authentication source was configured.
      */
-    public function requireAdmin(): void
+    public function requireAdmin(): ?Response
     {
         if ($this->isAdmin()) {
-            return;
+            return null;
         }
 
         // not authenticated as admin user, start authentication
         if (Authentication\Source::getById('admin') !== null) {
             $as = new Authentication\Simple('admin');
-            $as->login();
+            return $as->login();
         } else {
             throw new Error\Exception(
                 'Cannot find "admin" auth source, and admin privileges are required.',

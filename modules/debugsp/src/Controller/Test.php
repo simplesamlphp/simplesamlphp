@@ -8,7 +8,6 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
@@ -102,7 +101,7 @@ class Test
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string|null $as
-     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function main(Request $request, ?string $as = null): Response
     {
@@ -127,7 +126,7 @@ class Test
             }
 
             if (!is_null($request->query->get('logout'))) {
-                return new RunnableResponse([$authsource, 'logout'], [Module::getModuleURL('debugsp/logout')]);
+                return $authsource->logout(Module::getModuleURL('debugsp/logout'));
             } elseif (!is_null($request->query->get(Auth\State::EXCEPTION_PARAM))) {
                 // This is just a simple example of an error
                 /** @var array $state */
@@ -143,7 +142,8 @@ class Test
                     'ReturnTo' => $url,
                     Auth\State::RESTART => $url,
                 ];
-                return new RunnableResponse([$authsource, 'login'], [$params]);
+
+                return $authsource->login($params);
             }
 
             $attributes = $authsource->getAttributes();
@@ -172,7 +172,7 @@ class Test
      * Page to show after logout completed
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \SimpleSAML\XHTML\Template
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function logout(Request $request): Template
     {
