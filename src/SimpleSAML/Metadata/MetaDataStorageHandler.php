@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
-use SAML2\Constants;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
+use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Utils;
 use SimpleSAML\Utils\ClearableState;
 
@@ -20,6 +20,11 @@ use SimpleSAML\Utils\ClearableState;
 
 class MetaDataStorageHandler implements ClearableState
 {
+    /**
+     * The configuration
+     */
+    protected Configuration $globalConfig;
+
     /**
      * This static variable contains a reference to the current
      * instance of the metadata handler. This variable will be null if
@@ -48,7 +53,7 @@ class MetaDataStorageHandler implements ClearableState
     public static function getMetadataHandler(): MetaDataStorageHandler
     {
         if (self::$metadataHandler === null) {
-            self::$metadataHandler = new MetaDataStorageHandler();
+            self::$metadataHandler = new MetaDataStorageHandler(Configuration::getInstance());
         }
 
         return self::$metadataHandler;
@@ -58,12 +63,14 @@ class MetaDataStorageHandler implements ClearableState
     /**
      * This constructor initializes this metadata storage handler. It will load and
      * parse the configuration, and initialize the metadata source list.
+     *
+     * @param \SimpleSAML\Configuration $globalConfig
      */
-    protected function __construct()
+    protected function __construct(Configuration $globalConfig)
     {
-        $config = Configuration::getInstance();
+        $this->globalConfig = $globalConfig;
 
-        $sourcesConfig = $config->getOptionalArray('metadata.sources', [['type' => 'flatfile']]);
+        $sourcesConfig = $this->globalConfig->getOptionalArray('metadata.sources', [['type' => 'flatfile']]);
 
         try {
             $this->sources = MetaDataStorageSource::parseSources($sourcesConfig);
@@ -102,16 +109,15 @@ class MetaDataStorageHandler implements ClearableState
         }
 
         // get the configuration
-        $config = Configuration::getInstance();
         $httpUtils = new Utils\HTTP();
-        $baseurl = $httpUtils->getSelfURLHost() . $config->getBasePath();
+        $baseurl = $httpUtils->getSelfURLHost() . $this->globalConfig->getBasePath();
         if ($overrideHost !== null) {
             $baseurl = str_replace('://' . $httpUtils->getSelfHost() . '/', '://' . $overrideHost . '/', $baseurl);
         }
 
         if ($set == 'saml20-sp-hosted') {
             if ($property === 'SingleLogoutServiceBinding') {
-                return Constants::BINDING_HTTP_REDIRECT;
+                return C::BINDING_HTTP_REDIRECT;
             }
         } elseif ($set == 'saml20-idp-hosted') {
             switch ($property) {
@@ -119,13 +125,13 @@ class MetaDataStorageHandler implements ClearableState
                     return $baseurl . 'module.php/saml/idp/singleSignOnService';
 
                 case 'SingleSignOnServiceBinding':
-                    return Constants::BINDING_HTTP_REDIRECT;
+                    return C::BINDING_HTTP_REDIRECT;
 
                 case 'SingleLogoutService':
                     return $baseurl . 'module.php/saml/idp/singleLogout';
 
                 case 'SingleLogoutServiceBinding':
-                    return Constants::BINDING_HTTP_REDIRECT;
+                    return C::BINDING_HTTP_REDIRECT;
             }
         }
 

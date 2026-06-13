@@ -27,6 +27,8 @@ use SimpleSAML\Session;
 use SimpleSAML\Store;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function array_column;
 
@@ -38,6 +40,13 @@ class SP extends Auth\Source
      * @var string
      */
     private string $entityId;
+
+    /**
+     * The global configuration
+     *
+     * @var \SimpleSAML\Configuration
+     */
+    private Configuration $config;
 
     /**
      * The metadata of this SP.
@@ -126,6 +135,7 @@ class SP extends Auth\Source
             'Please set a valid and unique SP entityID',
         );
 
+        $this->config = Configuration::getInstance();
         $this->entityId = $entityId;
         $this->idp = $this->metadata->getOptionalString('idp', null);
         $this->discoURL = $this->metadata->getOptionalString('discoURL', null);
@@ -232,12 +242,11 @@ class SP extends Auth\Source
         }
 
         // add technical contact
-        $globalConfig = Configuration::getInstance();
-        $email = $globalConfig->getOptionalString('technicalcontact_email', 'na@example.org');
+        $email = $this->config->getOptionalString('technicalcontact_email', 'na@example.org');
         if (!empty($email) && $email !== 'na@example.org') {
             $contact = [
                 'emailAddress' => $email,
-                'givenName' => $globalConfig->getOptionalString('technicalcontact_name', null),
+                'givenName' => $this->config->getOptionalString('technicalcontact_name', null),
                 'contactType' => 'technical',
             ];
             $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
@@ -320,17 +329,18 @@ class SP extends Auth\Source
     /**
      * Retrieve the metadata of an IdP.
      *
+     * @param \SimpleSAML\Configuration $config  The configuration
      * @param string $entityId  The entity id of the IdP.
      * @return \SimpleSAML\Configuration  The metadata of the IdP.
      */
-    public function getIdPMetadata(string $entityId): Configuration
+    public function getIdPMetadata(Configuration $config, string $entityId): Configuration
     {
         if ($this->idp !== null && $this->idp !== $entityId) {
             throw new Error\Exception('Cannot retrieve metadata for IdP ' .
                 var_export($entityId, true) . ' because it isn\'t a valid IdP for this SP.');
         }
 
-        $metadataHandler = MetaDataStorageHandler::getMetadataHandler();
+        $metadataHandler = MetaDataStorageHandler::getMetadataHandler($config);
 
         return $metadataHandler->getMetaDataConfig($entityId, 'saml20-idp-remote');
     }
@@ -423,8 +433,7 @@ class SP extends Auth\Source
      */
     private function getSLOEndpoints(): array
     {
-        $config = Configuration::getInstance();
-        $storeType = $config->getOptionalString('store.type', 'phpsession');
+        $storeType = $this->config->getOptionalString('store.type', 'phpsession');
 
         $store = StoreFactory::getInstance($storeType);
         $bindings = $this->metadata->getOptionalArray(
@@ -685,13 +694,11 @@ class SP extends Auth\Source
                 ],
             );
         }
-        $ar->setDestination($dst['Location']);
 
+        $ar->setDestination($dst['Location']);
         $b = Binding::getBinding($dst['Binding']);
 
         $this->sendSAML2AuthnRequest($b, $ar);
-
-        Assert::true(false);
     }
 
 
@@ -744,8 +751,9 @@ class SP extends Auth\Source
      * Start an IdP discovery service operation.
      *
      * @param array $state  The state array.
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    private function startDisco(array $state): never
+    private function startDisco(array $state): Response
     {
         $id = Auth\State::saveState($state, 'saml:sp:sso');
 
@@ -772,7 +780,7 @@ class SP extends Auth\Source
         }
 
         $httpUtils = new Utils\HTTP();
-        $httpUtils->redirectTrustedURL($discoURL, $params);
+        return $httpUtils->redirectTrustedURL($discoURL, $params);
     }
 
 
@@ -781,9 +789,11 @@ class SP extends Auth\Source
      *
      * This function saves the information about the login, and redirects to the IdP.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request  The current request
      * @param array &$state  Information about the current authentication.
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function authenticate(array &$state): never
+    public function authenticate(Request $request, array &$state): Response
     {
         // We are going to need the authId in order to retrieve this authentication source later
         $state['saml:sp:AuthId'] = $this->authId;
@@ -796,7 +806,7 @@ class SP extends Auth\Source
 
         if (isset($state['saml:IDPList']) && sizeof($state['saml:IDPList']) > 0) {
             // we have a SAML IDPList (we are a proxy): filter the list of IdPs available
-            $mdh = MetaDataStorageHandler::getMetadataHandler();
+            $mdh = MetaDataStorageHandler::getMetadataHandler($this->config);
             $matchedEntities = $mdh->getMetaDataForEntities($state['saml:IDPList'], 'saml20-idp-remote');
 
             if (empty($matchedEntities)) {
@@ -820,10 +830,13 @@ class SP extends Auth\Source
         }
 
         if ($idp === null) {
-            $this->startDisco($state);
+            $response = $this->startDisco($state);
         } else {
             $this->startSSO($idp, $state);
+            Assert::true(false);
         }
+
+        return $response;
     }
 
 
@@ -861,7 +874,7 @@ class SP extends Auth\Source
              * First, check if we recognize any of the IdPs requested.
              */
 
-            $mdh = MetaDataStorageHandler::getMetadataHandler();
+            $mdh = MetaDataStorageHandler::getMetadataHandler($this->config);
             $known_idps = $mdh->getList();
             $intersection = array_intersect($state['saml:IDPList'], array_keys($known_idps));
 
@@ -896,9 +909,10 @@ class SP extends Auth\Source
                 $state['core:SP'],
             ));
 
-            $state['saml:sp:IdPMetadata'] = $this->getIdPMetadata($state['saml:sp:IdP']);
+            $state['saml:sp:IdPMetadata'] = $this->getIdPMetadata($this->config, $state['saml:sp:IdP']);
             $state['saml:sp:AuthId'] = $this->authId;
-            self::askForIdPChange($state);
+            $response = self::askForIdPChange($state);
+            $response->send();
         }
 
         /*
@@ -943,10 +957,11 @@ class SP extends Auth\Source
      * - 'saml:sp:AuthId': the identifier of the current authentication source.
      * - 'core:IdP': the identifier of the local IdP.
      * - 'SPMetadata': an array with the metadata of this local SP.
+     * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @throws \SAML2\Exception\Protocol\NoPassiveException In case the authentication request was passive.
+     * @throws \SimpleSAML\SAML2\Exception\Protocol\NoPassiveException In case the authentication request was passive.
      */
-    public static function askForIdPChange(array &$state): never
+    public static function askForIdPChange(array &$state): Response
     {
         Assert::keyExists($state, 'saml:sp:IdPMetadata');
         Assert::keyExists($state, 'saml:sp:AuthId');
@@ -965,7 +980,7 @@ class SP extends Auth\Source
         $url = Module::getModuleURL('saml/proxy/invalidSession');
 
         $httpUtils = new Utils\HTTP();
-        $httpUtils->redirectTrustedURL($url, ['AuthState' => $id]);
+        return $httpUtils->redirectTrustedURL($url, ['AuthState' => $id]);
     }
 
 
@@ -1002,11 +1017,10 @@ class SP extends Auth\Source
     /**
      * Log the user out before logging in again.
      *
-     * This method will never return.
-     *
+     * @param \SimpleSAML\Configuration $config  The configuration
      * @param array $state The state array.
      */
-    public static function reauthLogout(array $state): never
+    public static function reauthLogout(Configuration $config, array $state): Response
     {
         Logger::debug('Proxy: logging the user out before re-authentication.');
 
@@ -1015,8 +1029,8 @@ class SP extends Auth\Source
         }
         $state['Responder'] = [SP::class, 'reauthPostLogout'];
 
-        $idp = IdP::getByState($state);
-        $idp->handleLogoutRequest($state, null);
+        $idp = IdP::getByState($config, $state);
+        return $idp->handleLogoutRequest($state, null);
     }
 
 
@@ -1024,8 +1038,9 @@ class SP extends Auth\Source
      * Complete login operation after re-authenticating the user on another IdP.
      *
      * @param array $state  The authentication state.
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public static function reauthPostLogin(array $state): never
+    public static function reauthPostLogin(array $state): Response
     {
         Assert::keyExists($state, 'ReturnCallback');
 
@@ -1035,7 +1050,7 @@ class SP extends Auth\Source
         $session->doLogin($authId, Auth\State::getPersistentAuthData($state));
 
         // resume the login process
-        call_user_func($state['ReturnCallback'], $state);
+        return call_user_func($state['ReturnCallback'], $state);
     }
 
 
@@ -1046,8 +1061,9 @@ class SP extends Auth\Source
      *
      * @param \SimpleSAML\IdP $idp The IdP we are logging out from.
      * @param array &$state The state array with the state during logout.
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public static function reauthPostLogout(IdP $idp, array $state): never
+    public static function reauthPostLogout(IdP $idp, array $state): Response
     {
         Assert::keyExists($state, 'saml:sp:AuthId');
 
@@ -1058,19 +1074,21 @@ class SP extends Auth\Source
         }
 
         /** @var \SimpleSAML\Module\saml\Auth\Source\SP $sp */
-        $sp = Auth\Source::getById($state['saml:sp:AuthId'], Module\saml\Auth\Source\SP::class);
+        $sp = Auth\Source::getById($state['saml:sp:AuthId'], selfSP::class);
 
         Logger::debug('Proxy: logging in again.');
-        $sp->authenticate($state);
+        $request = Request::createFromGlobals();
+        return $sp->authenticate($request, $state);
     }
 
 
     /**
      * Start a SAML 2 logout operation.
      *
+     * @param \SimpleSAML\Configuration $config  The configuration
      * @param array $state  The logout state.
      */
-    public function startSLO2(array &$state): void
+    public function startSLO2(Configuration $config, array &$state): void
     {
         Assert::keyExists($state, 'saml:logout:IdP');
         Assert::keyExists($state, 'saml:logout:NameID');
@@ -1082,7 +1100,7 @@ class SP extends Auth\Source
         $nameId = $state['saml:logout:NameID'];
         $sessionIndex = $state['saml:logout:SessionIndex'];
 
-        $idpMetadata = $this->getIdPMetadata($idp);
+        $idpMetadata = $this->getIdPMetadata($config, $idp);
 
         /** @var array $endpoint */
         $endpoint = $idpMetadata->getEndpointPrioritizedByBinding(
@@ -1128,8 +1146,9 @@ class SP extends Auth\Source
      * Start logout operation.
      *
      * @param array $state  The logout state.
+     * @return \Symfony\Component\HttpFoundation\Response|null
      */
-    public function logout(array &$state): void
+    public function logout(array &$state): ?Response
     {
         Assert::keyExists($state, 'saml:logout:Type');
 
@@ -1138,10 +1157,10 @@ class SP extends Auth\Source
 
         // State variable saml:logout:Type is set to saml1 by us if we cannot properly logout the user
         if ($logoutType === 'saml1') {
-            return;
+            return null;
         }
 
-        $this->startSLO2($state);
+        return new RunnableResponse([$this, 'startSLO2'], [$this->config, $state]);
     }
 
 
@@ -1157,7 +1176,7 @@ class SP extends Auth\Source
         Assert::keyExists($state, 'LogoutState');
         Assert::keyExists($state['LogoutState'], 'saml:logout:Type');
 
-        $idpMetadata = $this->getIdPMetadata($idp);
+        $idpMetadata = $this->getIdPMetadata($this->config, $idp);
 
         $spMetadataArray = $this->metadata->toArray();
         $idpMetadataArray = $idpMetadata->toArray();
@@ -1195,11 +1214,12 @@ class SP extends Auth\Source
      * Handle a logout request from an IdP.
      *
      * @param string $idpEntityId  The entity ID of the IdP.
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function handleLogout(string $idpEntityId): never
+    public function handleLogout(string $idpEntityId): ?Response
     {
         /* Call the logout callback we registered in onProcessingCompleted(). */
-        $this->callLogoutCallback($idpEntityId);
+        return $this->callLogoutCallback($idpEntityId);
     }
 
 
@@ -1223,7 +1243,8 @@ class SP extends Auth\Source
         $session->doLogin($authId, Auth\State::getPersistentAuthData($state));
 
         $httpUtils = new Utils\HTTP();
-        $httpUtils->redirectUntrustedURL($redirectTo);
+        $response = $httpUtils->redirectUntrustedURL($redirectTo);
+        $response->send();
     }
 
 
@@ -1231,8 +1252,9 @@ class SP extends Auth\Source
      * Called when we have completed the procssing chain.
      *
      * @param array $authProcState  The processing chain state.
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public static function onProcessingCompleted(array $authProcState): never
+    public static function onProcessingCompleted(array $authProcState): Response
     {
         Assert::keyExists($authProcState, 'saml:sp:IdP');
         Assert::keyExists($authProcState, 'saml:sp:State');
@@ -1264,6 +1286,6 @@ class SP extends Auth\Source
             self::handleUnsolicitedAuth($sourceId, $state, $redirectTo);
         }
 
-        Auth\Source::completeAuth($state);
+        return parent::completeAuth($state);
     }
 }

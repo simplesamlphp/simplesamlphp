@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Controller;
 
-use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
@@ -12,6 +11,7 @@ use SimpleSAML\IdP;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
+use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
 use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -44,7 +44,7 @@ class SingleLogout
     public function __construct(
         protected Configuration $config,
     ) {
-        $this->mdHandler = MetaDataStorageHandler::getMetadataHandler();
+        $this->mdHandler = MetaDataStorageHandler::getMetadataHandler($config);
     }
 
 
@@ -87,7 +87,7 @@ class SingleLogout
 
         $httpUtils = new Utils\HTTP();
         $idpEntityId = $this->mdHandler->getMetaDataCurrentEntityID('saml20-idp-hosted');
-        $idp = $this->idp::getById('saml2:' . $idpEntityId);
+        $idp = $this->idp::getById($this->config, 'saml2:' . $idpEntityId);
 
         if ($request->query->has('ReturnTo')) {
             return new RunnableResponse(
@@ -123,7 +123,7 @@ class SingleLogout
         }
 
         $idpEntityId = $this->mdHandler->getMetaDataCurrentEntityID('saml20-idp-hosted');
-        $idp = $this->idp::getById('saml2:' . $idpEntityId);
+        $idp = $this->idp::getById($this->config, 'saml2:' . $idpEntityId);
 
         if (!$request->query->has('RelayState')) {
             throw new Error\Error(Error\ErrorCodes::NORELAYSTATE);

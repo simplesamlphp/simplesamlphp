@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\core\Controller;
 use Exception as BuiltinException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
@@ -45,7 +44,7 @@ class ErrorReport
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function main(Request $request): Response
     {
@@ -103,6 +102,6 @@ class ErrorReport
 
         // redirect the user back to this page to clear the POST request
         $httpUtils = new Utils\HTTP();
-        return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$httpUtils->getSelfURLNoQuery()]);
+        return $httpUtils->redirectTrustedURL($httpUtils->getSelfURLNoQuery());
     }
 }

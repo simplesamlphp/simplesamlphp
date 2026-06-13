@@ -5,14 +5,13 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml\Controller;
 
 use Exception;
-use SAML2\Constants;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\IdP;
 use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\Module\saml\Error\NoAvailableIDP;
+use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -62,7 +61,7 @@ class Proxy
      * Service Provider, since the authenticating IdP is not in the list of IdPs allowed by the SP.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function invalidSession(Request $request): Response
     {
@@ -85,8 +84,8 @@ class Proxy
             $state = $this->authState::loadState($stateId, 'core:Logout:afterbridge');
 
             // success! Try to continue with reauthentication, since we no longer have a valid session here
-            $idp = IdP::getById($state['core:IdP']);
-            return new RunnableResponse([SP::class, 'reauthPostLogout'], [$idp, $state]);
+            $idp = IdP::getById($this->config, $state['core:IdP']);
+            return SP::reauthPostLogout($idp, $state);
         }
 
         if ($request->request->has('cancel')) {
@@ -94,7 +93,7 @@ class Proxy
             $this->authState::throwException(
                 $state,
                 new NoAvailableIDP(
-                    Constants::STATUS_RESPONDER,
+                    C::STATUS_RESPONDER,
                     'User refused to reauthenticate with any of the IdPs requested.',
                 ),
             );
@@ -105,7 +104,7 @@ class Proxy
             $as = new \SimpleSAML\Auth\Simple($state['saml:sp:AuthId']);
 
             // log the user out before being able to login again
-            return new RunnableResponse([$as, 'login'], [$state]);
+            return $as->login($state);
         }
 
         $template = new Template($this->config, 'saml:proxy/invalid_session.twig');

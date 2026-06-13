@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\saml\Controller;
 use Exception;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Metadata as SSPMetadata;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
@@ -43,7 +42,7 @@ class Metadata
         protected Configuration $config,
     ) {
         $this->authUtils = new Utils\Auth();
-        $this->mdHandler = MetaDataStorageHandler::getMetadataHandler();
+        $this->mdHandler = MetaDataStorageHandler::getMetadataHandler($config);
     }
 
 
@@ -71,7 +70,7 @@ class Metadata
      * This endpoint will offer the SAML 2.0 IdP metadata.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \SimpleSAML\HTTP\RunnableResponse|\Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function metadata(Request $request): Response
     {
@@ -82,7 +81,10 @@ class Metadata
         // check if valid local session exists
         $protectedMetadata = $this->config->getOptionalBoolean('admin.protectmetadata', false);
         if ($protectedMetadata && !$this->authUtils->isAdmin()) {
-            return new RunnableResponse([$this->authUtils, 'requireAdmin']);
+            $response = $this->authUtils->requireAdmin();
+            if ($response instanceof Response) {
+                return $response;
+            }
         }
 
         try {
