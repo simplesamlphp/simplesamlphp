@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SAML2\Constants;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth\ProcessingFilter;
 use SimpleSAML\Error;
+use SimpleSAML\SAML2\Constants as C;
 
 /**
  * Authentication processing filter to create an attribute from a NameID.
@@ -120,7 +120,7 @@ class NameIDAttribute extends ProcessingFilter
         Assert::notNull($rep->getValue());
 
         if ($rep->getFormat() === null) {
-            $rep->setFormat(Constants::NAMEID_UNSPECIFIED);
+            $rep->setFormat(C::NAMEID_UNSPECIFIED);
         }
 
         if ($rep->getSPNameQualifier() === null) {

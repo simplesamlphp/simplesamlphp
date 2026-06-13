@@ -15,6 +15,8 @@ use SimpleSAML\XMLSecurity\Alg\Encryption\AES;
 use SimpleSAML\XMLSecurity\Constants as C;
 use SimpleSAML\XMLSecurity\Key\SymmetricKey;
 use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 use function array_merge;
@@ -301,12 +303,13 @@ class HTTP
      *     name of the parameter is the array index. The value of the parameter is the value stored in the index. Both
      *     the name and the value will be urlencoded. If the value is NULL, then the parameter will be encoded as just
      *     the name, without a value.
+     * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \InvalidArgumentException If $url is not a string or is empty, or $parameters is not an array.
      * @throws \SimpleSAML\Error\Exception If $url is not a valid HTTP URL.
      *
      */
-    private function redirect(string $url, array $parameters = []): void
+    private function redirect(string $url, array $parameters = []): Response
     {
         if (empty($url)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
@@ -324,38 +327,7 @@ class HTTP
             Logger::warning('Redirecting to a URL longer than 2048 bytes.');
         }
 
-        if (!headers_sent()) {
-            // set the location header
-            header('Location: ' . $url, true, 303);
-
-            // disable caching of this response
-            header('Pragma: no-cache');
-            header('Cache-Control: no-cache, no-store, must-revalidate');
-        }
-
-        // show a minimal web page with a clickable link to the URL
-        echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
-        echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"';
-        echo ' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">' . "\n";
-        echo '<html xmlns="http://www.w3.org/1999/xhtml">' . "\n";
-        echo "  <head>\n";
-        echo '    <meta http-equiv="content-type" content="text/html; charset=utf-8">' . "\n";
-        echo '    <meta http-equiv="refresh" content="0;URL=\'' . htmlspecialchars($url) . '\'">' . "\n";
-        echo "    <title>Redirect</title>\n";
-        echo "  </head>\n";
-        echo "  <body>\n";
-        echo "    <h1>Redirect</h1>\n";
-        echo '      <p>You were redirected to: <a id="redirlink" href="' . htmlspecialchars($url) . '">';
-        echo htmlspecialchars($url) . "</a>\n";
-        echo '        <script type="text/javascript">document.getElementById("redirlink").focus();</script>' . "\n";
-        echo "      </p>\n";
-        echo "  </body>\n";
-        echo '</html>';
-
-        // end script execution
-        if (!defined('SIMPLESAMLPHP_TEST_NOEXIT')) {
-            exit;
-        }
+        return new RedirectResponse($url, 303);
     }
 
 
@@ -425,9 +397,7 @@ class HTTP
      *
      * @param string|null $retryURL The URL the user should access to retry the operation. Defaults to null.
      *
-     *     page telling about the missing cookie.
      * @throws \InvalidArgumentException If $retryURL is neither a string nor null.
-     *
      */
     public function checkSessionCookie(?string $retryURL = null): void
     {
@@ -437,12 +407,13 @@ class HTTP
         }
 
         // we didn't have a session cookie. Redirect to the no-cookie page
-
         $url = Module::getModuleURL('core/error/nocookie');
         if ($retryURL !== null) {
             $url = $this->addURLParameters($url, ['retryURL' => $retryURL]);
         }
-        $this->redirectTrustedURL($url);
+
+        $response = $this->redirectTrustedURL($url);
+        $response->send();
     }
 
 
@@ -994,19 +965,20 @@ class HTTP
      * The function will also generate a simple web page with a clickable  link to the target URL.
      *
      * @param string   $url The URL we should redirect to. This URL may include query parameters. If this URL is a
-     * relative URL (starting with '/'), then it will be turned into an absolute URL by prefixing it with the absolute
-     * URL to the root of the website.
+     *   relative URL (starting with '/'), then it will be turned into an absolute URL by prefixing it with the absolute
+     *   URL to the root of the website.
      * @param string[] $parameters An array with extra query string parameters which should be appended to the URL. The
-     * name of the parameter is the array index. The value of the parameter is the value stored in the index. Both the
-     * name and the value will be urlencoded. If the value is NULL, then the parameter will be encoded as just the
-     * name, without a value.
+     *   name of the parameter is the array index. The value of the parameter is the value stored in the index. Both the
+     *   name and the value will be urlencoded. If the value is NULL, then the parameter will be encoded as just the
+     *   name, without a value.
+     * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
      */
-    public function redirectTrustedURL(string $url, array $parameters = []): void
+    public function redirectTrustedURL(string $url, array $parameters = []): Response
     {
         $url = $this->normalizeURL($url);
-        $this->redirect($url, $parameters);
+        return $this->redirect($url, $parameters);
     }
 
 
@@ -1019,19 +991,20 @@ class HTTP
      * to it. If the site is not trusted, an exception will be thrown.
      *
      * @param string   $url The URL we should redirect to. This URL may include query parameters. If this URL is a
-     * relative URL (starting with '/'), then it will be turned into an absolute URL by prefixing it with the absolute
-     * URL to the root of the website.
+     *   relative URL (starting with '/'), then it will be turned into an absolute URL by prefixing it with the absolute
+     *   URL to the root of the website.
      * @param string[] $parameters An array with extra query string parameters which should be appended to the URL. The
-     * name of the parameter is the array index. The value of the parameter is the value stored in the index. Both the
-     * name and the value will be urlencoded. If the value is NULL, then the parameter will be encoded as just the
-     * name, without a value.
+     *   name of the parameter is the array index. The value of the parameter is the value stored in the index. Both the
+     *   name and the value will be urlencoded. If the value is NULL, then the parameter will be encoded as just the
+     *   name, without a value.
+     * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \InvalidArgumentException If $url is not a string or $parameters is not an array.
      */
-    public function redirectUntrustedURL(string $url, array $parameters = []): void
+    public function redirectUntrustedURL(string $url, array $parameters = []): Response
     {
         $url = $this->checkURLAllowed($url);
-        $this->redirect($url, $parameters);
+        return $this->redirect($url, $parameters);
     }
 
 
@@ -1230,11 +1203,12 @@ class HTTP
      *
      * @param string $destination The destination URL.
      * @param array  $data An associative array with the data to be posted to $destination.
+     * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \InvalidArgumentException If $destination is not a string or $data is not an array.
      * @throws \SimpleSAML\Error\Exception If $destination is not a valid HTTP URL.
      */
-    public function submitPOSTData(string $destination, array $data): void
+    public function submitPOSTData(string $destination, array $data): Response
     {
         if (!$this->isValidURL($destination)) {
             throw new Error\Exception('Invalid destination URL: ' . $destination);
@@ -1245,8 +1219,7 @@ class HTTP
 
         if ($allowed && preg_match("#^http:#", $destination) && $this->isHTTPS()) {
             // we need to post the data to HTTP
-            $this->redirect($this->getSecurePOSTRedirectURL($destination, $data));
-            return;
+            return $this->redirect($this->getSecurePOSTRedirectURL($destination, $data));
         }
 
         $p = new Template($config, 'post.twig');
@@ -1260,9 +1233,6 @@ class HTTP
         }
         $p->data['slow_post_delay_ms'] = $delay;
 
-        $p->send();
-        if (!defined('SIMPLESAMLPHP_TEST_NOEXIT')) {
-            exit(0);
-        }
+        return $p;
     }
 }
