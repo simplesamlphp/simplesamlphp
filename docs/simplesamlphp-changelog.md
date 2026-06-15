@@ -5,9 +5,15 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.5.2
+## Version 2.5.3
 
 Released TBD
+
+## Version 2.5.2
+
+Released 2026-06-01
+
+* Fixed an issue that made it impossible to install any modules
 
 ## Version 2.5.1
 
