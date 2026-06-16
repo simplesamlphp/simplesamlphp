@@ -51,6 +51,17 @@ class KernelTest extends TestCase
         $this->assertInstanceOf(Route::class, $samlMetadata);
         $this->assertEquals('/module/saml/sp/metadata/{sourceId}', $samlMetadata->getPath());
 
+        // Every module route is also served natively (no redirect) under the legacy
+        // "module.php" path prefix, so peers holding pre-3.0 SAML metadata keep working.
+        $legacyAdminMain = $routes->get('legacy-admin-main');
+        $legacySamlMetadata = $routes->get('legacy-saml-sp-metadata');
+
+        $this->assertInstanceOf(Route::class, $legacyAdminMain);
+        $this->assertEquals('/module.php/admin', $legacyAdminMain->getPath());
+
+        $this->assertInstanceOf(Route::class, $legacySamlMetadata);
+        $this->assertEquals('/module.php/saml/sp/metadata/{sourceId}', $legacySamlMetadata->getPath());
+
         $kernel->shutdown();
     }
 }

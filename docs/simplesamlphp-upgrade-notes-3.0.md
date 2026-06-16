@@ -12,7 +12,10 @@ SimpleSAMLphp now handles supported web requests through
 
 - Dynamic module endpoints are exposed under `/module/<module>/...`.
 - Module browser assets are published under `/assets/<module>/...`.
-- The legacy `public/module.php` entrypoint is no longer supported.
+- The legacy `public/module.php` PHP entry script is no longer present;
+  all requests are handled by `public/index.php`. (Legacy
+  `module.php/...` *URLs* are still handled during the transition period — see
+  [Legacy `module.php` URL compatibility](#legacy-modulephp-url-compatibility) below.)
 - The legacy `public/saml2/idp/*.php` scripts are no longer supported.
 
 If your deployment previously linked directly to `module.php` or other
@@ -36,9 +39,30 @@ Examples:
   - old: `/simplesaml/module.php/mymodule/assets/app.css`
   - new: `/simplesaml/assets/mymodule/app.css`
 
-Some legacy routes still redirect to their routed equivalents to ease
-transition, but 3.0 documentation should treat the routed paths as the
-supported interface.
+### Legacy `module.php` URL compatibility
+
+Changing the route of every endpoint also changes the URLs that appear
+in SAML metadata — for example an IdP's SingleSignOnService, an SP's
+AssertionConsumerService and SingleLogoutService, and the metadata
+endpoints published by protocol modules such as `saml`, `oidc`, `casserver`
+and `adfs`. Because authentication protocols typically work by exchanging
+metadata between entities, a peer that still holds your pre-3.0 metadata
+would otherwise send requests and responses to URLs that no longer exist,
+breaking authentication until every peer refreshes its metadata.
+
+To keep existing federations working across the upgrade, v3.0 serves
+every module route under both the new `/module/<module>/...` path and
+the legacy `/module.php/<module>/...` path. The legacy paths are served
+**natively by the same controllers** — they are not HTTP redirects.
+
+This compatibility layer is always on in v3.0 and requires no
+configuration. However, **It is deprecated and scheduled for removal in a
+future release.** Treat v3.0 as the transition window: republish your metadata
+(and ask your federation peers to refresh theirs) with the new
+`/module/...` URLs. Once all peers consume the updated metadata, the
+legacy URLs are no longer needed, and a later release will remove them.
+Also, make sure to update any hardcoded URLs in your own external applications,
+templates, and modules, that call SimpleSAMLphp endpoints.
 
 ## Custom error rendering
 

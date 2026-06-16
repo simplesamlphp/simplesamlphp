@@ -132,6 +132,21 @@ class Kernel extends BaseKernel
             $confDir = Module::getModuleDir($module) . '/routing/routes';
             if (is_dir($confDir)) {
                 $routes->import($confDir . '/**/*' . self::CONFIG_EXTS)->prefix('/module/' . $module, false);
+
+                /**
+                 * Transition compatibility: also serve every module route under the legacy
+                 * "module.php" path prefix that peers may still hold in exchanged metadata
+                 * (e.g. SSO, ACS, SLO, and metadata endpoints, including those published
+                 * by modules such as oidc, casserver adfs, or any other custom module).
+                 *
+                 * @deprecated Scheduled for removal in a future major release; see the v3.0 upgrade
+                 *             notes. Implementers should republish metadata with the new URLs.
+                 *
+                 * @todo Remove legacy 'module.php' routes in a future major release.
+                 */
+                $routes->import($confDir . '/**/*' . self::CONFIG_EXTS)
+                    ->prefix('/module.php/' . $module, false)
+                    ->namePrefix('legacy-');
             }
         }
     }
