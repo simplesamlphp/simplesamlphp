@@ -87,9 +87,10 @@ class ServiceProviderTest extends TestCase
         Configuration::setPreLoadedConfig($this->authsources, 'authsources.php');
 
         $this->authUtils = new class () extends Utils\Auth {
-            public function requireAdmin(): void
+            public function requireAdmin(): ?Response
             {
                 // stub
+                return null;
             }
         };
 

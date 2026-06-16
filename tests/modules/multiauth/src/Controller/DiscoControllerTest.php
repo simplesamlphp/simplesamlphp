@@ -129,10 +129,10 @@ class DiscoControllerTest extends TestCase
             }
 
 
-            public function authenticate(array &$state): never
+            public function authenticate(array &$state): ?Response
             {
                 // stub
-                exit();
+                return null;
             }
 
 
@@ -186,10 +186,10 @@ class DiscoControllerTest extends TestCase
             }
 
 
-            public function authenticate(array &$state): never
+            public function authenticate(array &$state): ?Response
             {
                 // stub
-                exit();
+                return null;
             }
 
 
@@ -245,10 +245,10 @@ class DiscoControllerTest extends TestCase
             }
 
 
-            public function authenticate(array &$state): never
+            public function authenticate(array &$state): ?Response
             {
                 // stub
-                exit();
+                return null;
             }
 
 
@@ -304,10 +304,10 @@ class DiscoControllerTest extends TestCase
             }
 
 
-            public function authenticate(array &$state): never
+            public function authenticate(array &$state): ?Response
             {
                 // stub
-                exit();
+                return null;
             }
 
 
@@ -361,10 +361,10 @@ class DiscoControllerTest extends TestCase
             }
 
 
-            public function authenticate(array &$state): never
+            public function authenticate(array &$state): ?Response
             {
                 // stub
-                exit();
+                return null;
             }
 
 
