@@ -243,6 +243,78 @@ class CustomErrorSubscriber implements EventSubscriberInterface
 }
 ```
 
+### Rendering the error page with a Twig template
+
+SimpleSAMLphp's `\SimpleSAML\XHTML\Template` class extends
+Symfony's `Response`, so a template can be returned directly from the event.
+
+First, add a Twig template to your module, for example
+`modules/mymodule/templates/error.twig`:
+
+```twig
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Custom error page</title>
+  </head>
+  <body>
+    <h1>Custom Error</h1>
+    <p>{{ errorMessage|escape('html') }}</p>
+  </body>
+</html>
+```
+
+Then build and return that template from the subscriber. The template name uses
+the `<module>:<file>.twig` convention, variables are passed through the public
+`$data` array, and the status code is set with the usual `Response` method:
+
+```php
+<?php
+
+namespace SimpleSAML\Module\mymodule\EventSubscriber;
+
+use SimpleSAML\Configuration;
+use SimpleSAML\XHTML\Template;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\Event\ExceptionEvent;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+use Symfony\Component\HttpKernel\KernelEvents;
+
+class CustomErrorSubscriber implements EventSubscriberInterface
+{
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            // Priority > 200 to run before SimpleSAMLphp's default handler
+            KernelEvents::EXCEPTION => ['onKernelException', 250],
+        ];
+    }
+
+    public function onKernelException(ExceptionEvent $event): void
+    {
+        $exception = $event->getThrowable();
+
+        // Template extends Symfony's Response, so it can be returned straight
+        // from the event.
+        $template = new Template(Configuration::getInstance(), 'mymodule:error.twig');
+
+        // Variables are passed to Twig through the public $data array.
+        $template->data['errorMessage'] = $exception->getMessage();
+
+        // Reuse the exception's HTTP status code when it has one (e.g. a 404
+        // NotFoundHttpException), otherwise fall back to 500.
+        $template->setStatusCode(
+            $exception instanceof HttpExceptionInterface ? $exception->getStatusCode() : 500,
+        );
+
+        $event->setResponse($template);
+    }
+}
+```
+
+The subscriber is registered as in the inline example below.
+
 ### Registering the subscriber
 
 Register your subscriber as a service in your module's `routing/services/` directory (e.g., `routing/services/mymodule.yml`):
