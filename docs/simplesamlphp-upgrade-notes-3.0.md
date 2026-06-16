@@ -112,7 +112,43 @@ routes, and controllers for all enabled modules.
   `module.php/...` URLs.
 
 For module URLs, use the URL helpers provided by SimpleSAMLphp instead
-of hardcoding legacy paths. For assets, use the published asset URLs.
+of hardcoding legacy paths. Use `\SimpleSAML\Module::getModuleURL()`,
+which builds a `/module/...` URL under the configured `baseurlpath`. The
+`$resource` argument is the module-relative path (without a leading
+slash), and optional query parameters can be passed as the second
+argument:
+
+```php
+use SimpleSAML\Module;
+
+// before (legacy): .../simplesaml/module.php/saml/sp/metadata.php/default-sp
+// after:           .../simplesaml/module/saml/sp/metadata/default-sp
+$url = Module::getModuleURL('saml/sp/metadata/default-sp');
+
+// with query parameters
+$url = Module::getModuleURL('core/logout', ['ReturnTo' => $returnTo]);
+```
+
+For assets, use the published asset URLs instead of the legacy
+`module.php/<module>/...` paths. Use
+`\SimpleSAML\Module::getModuleAssetUrl()`, which builds an
+`/assets/<module>/...` URL under the configured `baseurlpath`:
+
+```php
+use SimpleSAML\Module;
+
+// before (legacy): .../simplesaml/module.php/mymodule/assets/css/style.css
+// after:           .../simplesaml/assets/mymodule/css/style.css
+$url = Module::getModuleAssetUrl('mymodule', 'css/style.css');
+```
+
+In Twig templates, the same helpers are exposed as the `moduleURL()` and
+`asset()` functions, so templates do not need to hardcode paths either:
+
+```twig
+<link rel="stylesheet" href="{{ asset('css/style.css', 'mymodule') }}">
+<a href="{{ moduleURL('saml/sp/metadata/default-sp') }}">Metadata</a>
+```
 
 ## General upgrade advice
 
