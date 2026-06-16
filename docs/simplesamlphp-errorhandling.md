@@ -324,3 +324,21 @@ services:
   SimpleSAML\Module\mymodule\EventSubscriber\CustomErrorSubscriber:
     tags: ['kernel.event_subscriber']
 ```
+
+### Verifying the subscriber is registered
+
+After registering the service and clearing the cache, you can confirm
+that your subscriber is actually wired up — and check its priority
+relative to SimpleSAMLphp's built-in handler (priority 200) — with:
+
+```sh
+php bin/console debug:event-dispatcher kernel.exception
+```
+
+This lists every listener registered for the `kernel.exception` event in
+the order they run. Your subscriber should appear with the priority you
+configured; a priority higher than 200 confirms it runs before (and can
+therefore override) SimpleSAMLphp's default error handler. If it does
+not appear at all, the service definition was not loaded — check that it
+lives under your module's `routing/services/` directory, that the module
+is enabled, and that the cache has been cleared.
