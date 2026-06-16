@@ -51,6 +51,8 @@ class WarnShortSSOInterval extends Auth\ProcessingFilter
         // Save state and redirect
         $id = Auth\State::saveState($state, 'core:short_sso_interval');
         $url = Module::getModuleURL('core/short_sso_interval');
+
+        $httpUtils = new Utils\HTTP();
         $response = $httpUtils->redirectTrustedURL($url, ['StateId' => $id]);
         $response->send();
     }

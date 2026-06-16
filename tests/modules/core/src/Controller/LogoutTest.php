@@ -8,9 +8,9 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\core\Controller;
 use SimpleSAML\TestUtils\ClearStateTestCase;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -66,12 +66,8 @@ class LogoutTest extends ClearStateTestCase
 
         $response = $c->logout($request, 'example-authsource');
 
-        $this->assertInstanceOf(RunnableResponse::class, $response);
-        $this->assertTrue($response->isSuccessful());
-        /** @var callable $callable */
-        $callable = $response->getCallable();
-        $this->assertInstanceOf(Auth\Simple::class, $callable[0]);
-        $this->assertEquals('logout', $callable[1]);
+        $this->assertInstanceOf(RedirectResponse::class, $response);
+        $this->assertTrue($response->isRedirection());
     }
 
 

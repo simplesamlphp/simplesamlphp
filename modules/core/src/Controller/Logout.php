@@ -82,7 +82,7 @@ class Logout
     public function logout(Request $request, string $as): Response
     {
         $auth = new Auth\Simple($as);
-        return $auth->login($this->getReturnPath($request));
+        return $auth->logout($this->getReturnPath($request));
     }
 
 
