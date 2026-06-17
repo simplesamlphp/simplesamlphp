@@ -90,7 +90,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
         $info = ['AuthId' => 'selector'];
         $config = $this->sourceConfig->getArray('selector');
 
-        $selector = RequestedAuthnContextSelector($info, $config);
+        $selector = new RequestedAuthnContextSelector($info, $config);
         $state = ['saml:RequestedAuthnContext' => ['AuthnContextClassRef' => null]];
         $request = Request::createFromGlobals();
         $selector->authenticate($request, $state);
@@ -175,7 +175,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
              * @param array $state
              * @param \Symfony\Component\HttpFoundation\Response|null
              */
-            public static function doAuthentication(Request $request, Auth\Source $as, array $state): ?Response
+            public static function doAuthentication(Request $request, Auth\Source $as, array &$state): ?Response
             {
                 // Dummy
                 return null;
