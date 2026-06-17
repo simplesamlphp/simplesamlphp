@@ -21,6 +21,10 @@ specific times. More than one thing can be stored in a single module.
 There is also support for storing supporting files, such as templates
 and dictionaries, in modules.
 
+Enabled module routes, services, and controllers are loaded by the
+global SimpleSAMLphp kernel and are reached through the front
+controller in `public/index.php`.
+
 The different functionalities which can be created as modules will be
 described in more detail in the following sections; what follows is a
 short introduction to what you can do with them:
@@ -102,18 +106,19 @@ themes
     `modules/example/themes/blue/core/loginuserpass.twig`.
 
 public
-:   All files stored in this directory will be available by
-    accessing the URL
-    `https://.../simplesamlphp/module.php/<module name>/<file name>`.
-    For example, if a script named `login.php` is stored in
-    `modules/example/public/`, it can be accessed by the URL
-    `https://.../simplesamlphp/module.php/example/login.php`.
+:   This directory is reserved for browser assets only. Static files
+    stored below `modules/<module>/public/assets/` are published to
+    `public/assets/<module>/...` and are then available at URLs on the
+    form `https://.../simplesamlphp/assets/<module>/<file>`.
 
-:   To retrieve this URL, the
-    `SimpleSAML\Module::getModuleURL($resource)`-function can be used.
-    This function takes in a resource on the form `<module>/<file>`.
-    This function will then return a URL to the given file in the
-    `public`-directory of `module`.
+:   After adding or changing files in `modules/<module>/public/assets/`,
+    run `composer assets:publish` (or `php bin/console assets:publish`)
+    so the published copies in `public/assets/<module>/` are updated.
+
+:   Dynamic PHP scripts in `modules/<module>/public/` are no longer
+    supported. Dynamic module behavior must be implemented with
+    controllers and routes, which are exposed under
+    `https://.../simplesamlphp/module/<module>/...`.
 
 ## Authentication sources
 

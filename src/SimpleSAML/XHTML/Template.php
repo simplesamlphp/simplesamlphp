@@ -186,12 +186,9 @@ class Template extends Response
         if (is_null($module)) {
             $file = $baseDir . 'public/assets/base/' . $asset;
             $path = $basePath . 'assets/base/' . $asset;
-        } elseif (file_exists($baseDir . 'public/assets/' . $module)) {
-            $file = $baseDir . '/public/assets/' . $module . '/' . $asset;
-            $path = $basePath . 'assets/' . $module . '/' . $asset;
         } else {
-            $file = $baseDir . 'modules/' . $module . '/public/assets/' . $asset;
-            $path = Module::getModuleUrl($module . '/assets/' . $asset);
+            $file = $baseDir . '/public/assets/' . $module . '/' . $asset;
+            $path = Module::getModuleAssetUrl($module, $asset);
         }
 
         if (!$this->fileSystem->exists($file)) {

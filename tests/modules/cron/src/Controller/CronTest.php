@@ -84,7 +84,7 @@ class CronTest extends TestCase
      */
     public function testInfo(): void
     {
-        $_SERVER['REQUEST_URI'] = '/module.php/cron/info';
+        $_SERVER['REQUEST_URI'] = '/module/cron/info';
 
         $c = new Controller\Cron($this->config, $this->session);
         $c->setAuthUtils($this->authUtils);
@@ -92,8 +92,8 @@ class CronTest extends TestCase
 
         $this->assertTrue($response->isSuccessful());
         $expect = [
-            'exec_href' => 'http://localhost/simplesaml/module.php/cron/run/daily/verysecret',
-            'href' => 'http://localhost/simplesaml/module.php/cron/run/daily/verysecret/xhtml',
+            'exec_href' => 'http://localhost/simplesaml/module/cron/run/daily/verysecret',
+            'href' => 'http://localhost/simplesaml/module/cron/run/daily/verysecret/xhtml',
             'tag' => 'daily',
             'int' => '02 0 * * *',
         ];
@@ -106,7 +106,7 @@ class CronTest extends TestCase
      */
     public function testRunCorrectKey(): void
     {
-        $_SERVER['REQUEST_URI'] = '/module.php/cron/run/daily/verysecret';
+        $_SERVER['REQUEST_URI'] = '/module/cron/run/daily/verysecret';
 
         $c = new Controller\Cron($this->config, $this->session);
         $response = $c->run('daily', 'verysecret');
@@ -128,7 +128,7 @@ class CronTest extends TestCase
      */
     public function testRunWrongKey(): void
     {
-        $_SERVER['REQUEST_URI'] = '/module.php/cron/run/daily/nodice';
+        $_SERVER['REQUEST_URI'] = '/module/cron/run/daily/nodice';
 
         $c = new Controller\Cron($this->config, $this->session);
 
@@ -144,7 +144,7 @@ class CronTest extends TestCase
     #[DataProvider('provideDefaultSecret')]
     public function testRunDefaultSecret(string $secret): void
     {
-        $_SERVER['REQUEST_URI'] = '/module.php/cron/run/daily/' . $secret;
+        $_SERVER['REQUEST_URI'] = '/module/cron/run/daily/' . $secret;
 
         $c = new Controller\Cron($this->config, $this->session);
 
@@ -174,7 +174,7 @@ class CronTest extends TestCase
             'simplesaml',
         );
 
-        $_SERVER['REQUEST_URI'] = '/module.php/cron/run/daily/verysecret';
+        $_SERVER['REQUEST_URI'] = '/module/cron/run/daily/verysecret';
 
         $c = new Controller\Cron($this->config, $this->session);
 

@@ -3,7 +3,8 @@
 services:
   # default configuration for services in *this* file
   _defaults:
-    public: false
+    autowire: true
+    autoconfigure: true
 
   SimpleSAML\Configuration:
     factory: ['SimpleSAML\Configuration', 'getInstance']
@@ -11,11 +12,12 @@ services:
   SimpleSAML\Session:
     factory: ['SimpleSAML\Session', 'getSessionFromRequest']
 
-  SimpleSAML\Auth\AuthenticationFactory:
-    class: SimpleSAML\Auth\AuthenticationFactory
-    arguments:
-      - '@SimpleSAML\Configuration'
-      - '@SimpleSAML\Session'
+  SimpleSAML\Auth\AuthenticationFactory: ~
 
-  SimpleSAML\Utils\HTTP:
-    class: SimpleSAML\Utils\HTTP
+  SimpleSAML\Utils\HTTP: ~
+
+  SimpleSAML\EventSubscriber\ExceptionSubscriber:
+    tags: ['kernel.event_subscriber']
+
+  SimpleSAML\EventSubscriber\SecurityHeadersSubscriber:
+    tags: ['kernel.event_subscriber']

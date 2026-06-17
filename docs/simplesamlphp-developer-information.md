@@ -1,7 +1,7 @@
 # SimpleSAMLphp developer information
 
-<!-- 
-	This file is written in Markdown syntax. 
+<!--
+	This file is written in Markdown syntax.
 	For more information about how to use the Markdown syntax, read here:
 	http://daringfireball.net/projects/markdown/syntax
 -->
@@ -66,18 +66,31 @@ The dependencies are updated using github actions in
 simplesamlphp-assets-base. Select a recent branch such as release-2.2
 and dig into the .github directory for details.
 
+### Primary Module Assets
+
+If a primary module (a module included in the main repository) contains public
+assets inside its `public/assets/` directory, these assets must be explicitly
+allowed in the repository's root `.gitignore` file. Because `/public/assets/*`
+is ignored by default, you must add `!/public/assets/<module>/` and
+`!/public/assets/<module>/**` to the `.gitignore` file to ensure the deployed
+assets for that module can be tracked by Git.
+
 ## Following a simple login
 
 The `SimpleSAML\Auth\Simple` class takes the authentication_source
 name and can be used to find a login URL with `getLoginURL()`. The
 getLoginURL method takes the return URL as it's only parameter. The
-URL returned from `getLoginURL()` will be a request to module.php and
-include the return URL information.
+URL returned from `getLoginURL()` points at a routed module endpoint,
+typically under `/module/saml/...`, and includes the return URL
+information.
 
-The module.php code `Module::process`. The `process` method uses
-Symfony to dispatch the request. This may result in a call to
-modules/core/src/Controller/Login.php in `Login::loginuserpass()`. The
-code flows through `handleLogin()` which may call
+SimpleSAMLphp now handles supported web requests through the front
+controller in `public/index.php`. The global kernel loads the routes,
+services, and controllers from all enabled modules and uses Symfony to
+dispatch the request. A simple login request may therefore resolve to
+`modules/saml/src/Controller/ServiceProvider.php` and then into the
+configured authentication source. The code flows through
+`handleLogin()` which may call
 `UserPassBase::handleLogin(authstateid, username, password)`. The
 `handleLogin` method looks up the `$as = Auth\Source` and passes the
 login credentials to the `$as->login( username, password )` method.
@@ -86,6 +99,9 @@ For an SQL based login this would be in
 modules/sqlauth/src/Auth/Source/SQL.php and the `SQL::login` method.
 This `login` method either returns the user attributes on success or
 throws an exception on login failure.
+
+Similarly, `getLogoutURL()` now returns a routed logout endpoint under
+`/module/core/...`.
 
 ## Documentation
 
