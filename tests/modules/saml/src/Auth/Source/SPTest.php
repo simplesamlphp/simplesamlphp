@@ -24,6 +24,7 @@ use SimpleSAML\Test\Utils\SpTester;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Set of test cases for \SimpleSAML\Module\saml\Auth\Source\SP.
@@ -73,6 +74,7 @@ class SPTest extends ClearStateTestCase
     protected function setUp(): void
     {
         parent::setUp();
+
         $_SERVER['REQUEST_URI'] = '/dummy';
         $_SERVER['REQUEST_METHOD'] = 'GET';
 
@@ -172,13 +174,14 @@ class SPTest extends ClearStateTestCase
         $xml = $ar->toSignedXML();
 
         /** @var \DOMAttr[] $q */
-        $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/@Destination');
+        $xpCache = XPath::getXPath($xml);
+        $q = XPath::xpQuery($xml, '/samlp:AuthnRequest/@Destination', $xpCache);
         $this->assertEquals(
             $this->idpConfigArray['SingleSignOnService'][0]['Location'],
             $q[0]->value,
         );
 
-        $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Issuer');
+        $q = XPath::xpQuery($xml, '/samlp:AuthnRequest/saml:Issuer', $xpCache);
         $this->assertEquals(
             'urn:x-simplesamlphp:example-sp',
             $q[0]->textContent,
@@ -204,14 +207,26 @@ class SPTest extends ClearStateTestCase
 
         $xml = $ar->toSignedXML();
 
+        $xpCache = XPath::getXPath($xml);
         /** @var \DOMAttr[] $q */
-        $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Subject/saml:NameID/@Format');
+        $q = XPath::xpQuery(
+            $xml,
+            '/samlp:AuthnRequest/saml:Subject/saml:NameID/@Format',
+            $xpQuery,
+        );
+
         $this->assertEquals(
             $state['saml:NameID']['Format'],
             $q[0]->value,
         );
 
-        $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Subject/saml:NameID');
+        $xpCache = XPath::getXPath($xml);
+        $q = XPath::xpQuery(
+            $xml,
+            '/samlp:AuthnRequest/saml:Subject/saml:NameID',
+            $xpQuery,
+        );
+
         $this->assertEquals(
             $state['saml:NameID']['Value'],
             $q[0]->textContent,
@@ -239,7 +254,13 @@ class SPTest extends ClearStateTestCase
 
         $xml = $ar->toSignedXML();
 
-        $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/samlp:RequestedAuthnContext/saml:AuthnContextClassRef');
+        $xpCache = XPath::getXPath($xml);
+        $q = XPath::xpQuery(
+            $xml,
+            '/samlp:AuthnRequest/samlp:RequestedAuthnContext/saml:AuthnContextClassRef',
+            $xpCache,
+        );
+
         $this->assertEquals(
             $state['saml:AuthnContextClassRef'],
             $q[0]->textContent,
@@ -266,8 +287,9 @@ class SPTest extends ClearStateTestCase
 
         $xml = $ar->toSignedXML();
 
+        $xpCache = XPath::getXPath($xml);
         /** @var \DOMAttr[] $q */
-        $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/@ForceAuthn');
+        $q = XPath::xpQuery($xml, '/samlp:AuthnRequest/@ForceAuthn', $xpCache);
         $this->assertEquals(
             $state['ForceAuthn'] ? 'true' : 'false',
             $q[0]->value,
@@ -287,8 +309,10 @@ class SPTest extends ClearStateTestCase
 
         $info = ['AuthId' => 'default-sp'];
         $config = ['entityID' => 'urn:x-simplesamlphp:example-sp'];
+
+        $request = Request::createFromGlobals();
         $as = new SpTester($info, $config);
-        $as->authenticate($state);
+        $as->authenticate($request, $state);
     }
 
 
@@ -315,8 +339,10 @@ class SPTest extends ClearStateTestCase
             'entityID' => 'urn:x-simplesamlphp:example-sp',
             'idp' => 'https://engine.surfconext.nl/authentication/idp/metadata',
         ];
+
+        $request = Request::createFromGlobals();
         $as = new SpTester($info, $config);
-        $as->authenticate($state);
+        $as->authenticate($request, $state);
     }
 
 
@@ -342,18 +368,23 @@ class SPTest extends ClearStateTestCase
             'entityID' => 'urn:x-simplesamlphp:example-sp',
             'idp' => $entityId,
         ];
+
         $as = new SpTester($info, $config);
+        $request = Request::createFromGlobals();
+
         try {
-            $as->authenticate($state);
+            $as->authenticate($request, $state);
             $this->fail('Expected ExitTestException');
         } catch (ExitTestException $e) {
             $r = $e->getTestResult();
+
             /** @var \SAML2\AuthnRequest $ar */
             $ar = $r['ar'];
             $xml = $ar->toSignedXML();
 
+            $xpCache = XPath::getXPath($xml);
             /** @var \DOMAttr[] $q */
-            $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/@Destination');
+            $q = XPath::xpQuery($xml, '/samlp:AuthnRequest/@Destination', $xpCache);
             $this->assertEquals(
                 'https://saml.idp/sso/',
                 $q[0]->value,
@@ -382,8 +413,10 @@ class SPTest extends ClearStateTestCase
         $info = ['AuthId' => 'default-sp'];
         $config = ['entityID' => 'urn:x-simplesamlphp:example-sp'];
         $as = new SpTester($info, $config);
+        $request = Request::createFromGlobals();
+
         try {
-            $as->authenticate($state);
+            $as->authenticate($request, $state);
             $this->fail('Expected ExitTestException');
         } catch (ExitTestException $e) {
             $r = $e->getTestResult();
@@ -391,8 +424,9 @@ class SPTest extends ClearStateTestCase
             $ar = $r['ar'];
             $xml = $ar->toSignedXML();
 
+            $xpCache = XPath::getXPath($xml);
             /** @var \DOMAttr[] $q */
-            $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/@Destination');
+            $q = XPath::xpQuery($xml, '/samlp:AuthnRequest/@Destination', $xpCache);
             $this->assertEquals(
                 'https://saml.idp/sso/',
                 $q[0]->value,
@@ -418,6 +452,7 @@ class SPTest extends ClearStateTestCase
                 ["type" => "xml", "xml" => $xml1],
             ],
         ];
+
         Configuration::loadFromArray($c, '', 'simplesaml');
         $state = [
             'saml:IDPList' => ['noSuchIdp', $entityId, $entityId1],
@@ -430,10 +465,13 @@ class SPTest extends ClearStateTestCase
             // otherwise it will call exit
             'discoURL' => 'smtp://invalidurl',
         ];
+
         // Http redirect util library requires a request_uri to be set.
+        $request = Request::createFromGlobals();
         $_SERVER['REQUEST_URI'] = 'https://l.example.com/';
+
         $as = new SpTester($info, $config);
-        $as->authenticate($state);
+        $as->authenticate($request, $state);
     }
 
 
@@ -1524,7 +1562,7 @@ class SPTest extends ClearStateTestCase
                 ["type" => "xml", "xml" => $xml],
             ],
         ];
-        Configuration::loadFromArray($c, '', 'simplesaml');
+        $this->config = Configuration::loadFromArray($c, '', 'simplesaml');
 
         $state = [
             'saml:logout:IdP' => $entityId,
@@ -1541,11 +1579,12 @@ class SPTest extends ClearStateTestCase
 
         $xml = $lr->toSignedXML();
 
-        $q = Utils::xpQuery($xml, '/samlp:LogoutRequest/saml:NameID');
+        $xpCache = XPath::getXPath($xml);
+        $q = XPath::xpQuery($xml, '/samlp:LogoutRequest/saml:NameID', $xpQuery);
         $this->assertCount(1, $q);
         $this->assertEquals('someone@example.com', $q[0]->nodeValue);
 
-        $q = Utils::xpQuery($xml, '/samlp:LogoutRequest/samlp:Extensions');
+        $q = XPath::xpQuery($xml, '/samlp:LogoutRequest/samlp:Extensions', $xpQuery);
         $this->assertCount(1, $q);
         $this->assertCount(1, $q[0]->childNodes);
         $this->assertEquals('MyLogoutExtension', $q[0]->firstChild->localName);
