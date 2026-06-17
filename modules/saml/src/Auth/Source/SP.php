@@ -12,6 +12,7 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
+use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\IdP;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
@@ -1074,7 +1075,7 @@ class SP extends Auth\Source
         }
 
         /** @var \SimpleSAML\Module\saml\Auth\Source\SP $sp */
-        $sp = Auth\Source::getById($state['saml:sp:AuthId'], selfSP::class);
+        $sp = Auth\Source::getById($state['saml:sp:AuthId'], self::class);
 
         Logger::debug('Proxy: logging in again.');
         $request = Request::createFromGlobals();

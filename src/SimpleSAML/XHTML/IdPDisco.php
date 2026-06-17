@@ -418,7 +418,7 @@ class IdPDisco
             return false;
         }
 
-        if ($this->request->request->has('remember')) {
+        if ($this->request->query->has('remember')) {
             return true;
         }
 
@@ -518,7 +518,7 @@ class IdPDisco
     /**
      * Check if an IdP is set or if the request is passive, and redirect accordingly.
      *
-     * @preturn \Symfony\Component\HttpFoundation\Response|null
+     * @return \Symfony\Component\HttpFoundation\Response|null
      */
     protected function start(): ?Response
     {

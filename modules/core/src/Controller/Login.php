@@ -101,7 +101,7 @@ class Login
      * username/password authentication.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Symfony\Component\HttpFoudnation\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function loginuserpass(Request $request): Response
     {

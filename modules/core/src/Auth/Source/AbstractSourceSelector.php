@@ -65,7 +65,7 @@ abstract class AbstractSourceSelector extends Auth\Source
         }
 
         $state['sourceSelector:selected'] = $source;
-        return parent::doAuthentication($request, $as, $state);
+        return static::doAuthentication($request, $as, $state);
     }
 
 
