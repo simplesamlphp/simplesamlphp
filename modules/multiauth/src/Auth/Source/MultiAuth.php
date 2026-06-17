@@ -92,7 +92,7 @@ class MultiAuth extends Auth\Source
      *
      * The authentication process is finished in the delegateAuthentication method.
      *
-     * @oaram \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param array &$state Information about the current authentication.
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -196,7 +196,7 @@ class MultiAuth extends Auth\Source
         try {
             $response = $as->authenticate($request, $state);
             if ($response instanceof Response) {
-                return $reponse;
+                return $response;
             }
         } catch (Error\Exception $e) {
             Auth\State::throwException($state, $e);

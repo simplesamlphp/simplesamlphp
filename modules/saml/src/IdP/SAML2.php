@@ -327,7 +327,7 @@ class SAML2
             /* IdP initiated authentication. */
 
             if ($request->query->has('cookieTime')) {
-                $cookieTime = intval($requqest->query->get('cookieTime'));
+                $cookieTime = intval($request->query->get('cookieTime'));
                 if ($cookieTime + 5 > time()) {
                     /*
                      * Less than five seconds has passed since we were

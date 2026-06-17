@@ -116,7 +116,7 @@ class Config
      * Display the main admin page.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
-     * @return \Symfony\Components\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function main(/** @scrutinizer ignore-unused */ Request $request): Response
     {
