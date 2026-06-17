@@ -97,8 +97,8 @@ class CronTest extends TestCase
         $this->assertInstanceOf(Template::class, $response);
         $this->assertTrue($response->isSuccessful());
         $expect = [
-            'exec_href' => 'http://localhost/simplesaml/module.php/cron/run/daily/verysecret',
-            'href' => 'http://localhost/simplesaml/module.php/cron/run/daily/verysecret/xhtml',
+            'exec_href' => 'http://localhost/simplesaml/module/cron/run/daily/verysecret',
+            'href' => 'http://localhost/simplesaml/module/cron/run/daily/verysecret/xhtml',
             'tag' => 'daily',
             'int' => '02 0 * * *',
         ];

@@ -122,13 +122,13 @@ class MetaDataStorageHandler implements ClearableState
         } elseif ($set == 'saml20-idp-hosted') {
             switch ($property) {
                 case 'SingleSignOnService':
-                    return $baseurl . 'module.php/saml/idp/singleSignOnService';
+                    return $baseurl . 'module/saml/idp/singleSignOnService';
 
                 case 'SingleSignOnServiceBinding':
                     return C::BINDING_HTTP_REDIRECT;
 
                 case 'SingleLogoutService':
-                    return $baseurl . 'module.php/saml/idp/singleLogout';
+                    return $baseurl . 'module/saml/idp/singleLogout';
 
                 case 'SingleLogoutServiceBinding':
                     return C::BINDING_HTTP_REDIRECT;

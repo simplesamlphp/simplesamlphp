@@ -3,10 +3,14 @@
 services:
   # default configuration for services in *this* file
   _defaults:
-    public: false
+    autowire: true
+    autoconfigure: true
 
   SimpleSAML\Command\SspCacheClearCommand:
     tags: ['console.command']
     arguments:
       $cacheClearer: '@cache_clearer'
       $filesystem: '@filesystem'
+
+  SimpleSAML\Command\AssetsPublishCommand:
+    tags: ['console.command']

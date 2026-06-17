@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
@@ -175,17 +174,6 @@ class Error extends Exception
 
 
     /**
-     * Set the HTTP return code for this error.
-     *
-     * This should be overridden by subclasses who want a different return code than 500 Internal Server Error.
-     */
-    protected function setHTTPCode(): void
-    {
-        http_response_code($this->httpCode);
-    }
-
-
-    /**
      * Save an error report.
      *
      * @return array  The array with the error report data.
@@ -228,14 +216,15 @@ class Error extends Exception
 
 
     /**
-     * Display this error.
+     * Render this error as a Template.
      *
-     * This method displays a standard SimpleSAMLphp error page and exits.
+     * This method builds a standard SimpleSAMLphp error page as a Template object.
      *
      * @param int $logLevel  The log-level for this exception
      * @param bool $suppressReport  Whether or not sending an error report is an option
+     * @return \SimpleSAML\XHTML\Template The template representing the error page.
      */
-    public function show(int $logLevel = Logger::ERR, bool $suppressReport = false): void
+    public function render(int $logLevel = Logger::ERR, bool $suppressReport = false): Template
     {
         // log the error message
         $this->log($logLevel);
@@ -277,26 +266,36 @@ class Error extends Exception
             }
         }
 
-        $show_function = $config->getOptionalArray('errors.show_function', null);
-        Assert::nullOrIsCallable($show_function);
-        if ($show_function !== null) {
-            $this->setHTTPCode();
-            $response = call_user_func($show_function, $config, $data);
-            $response->send();
-        } else {
-            $t = new Template($config, 'error.twig');
+        $t = new Template($config, 'error.twig');
 
-            // Include translations for the module that holds the included template
-            if ($this->includeTemplate !== null) {
-                $module = explode(':', $this->includeTemplate, 2);
-                if (count($module) === 2 && Module::isModuleEnabled($module[0])) {
-                    $t->getLocalization()->addModuleDomain($module[0]);
-                }
+        // Include translations for the module that holds the included template
+        if ($this->includeTemplate !== null) {
+            $module = explode(':', $this->includeTemplate, 2);
+            if (count($module) === 2 && Module::isModuleEnabled($module[0])) {
+                $t->getLocalization()->addModuleDomain($module[0]);
             }
-
-            $t->setStatusCode($this->httpCode);
-            $t->data = array_merge($t->data, $data);
-            $t->send();
         }
+
+        $t->setStatusCode($this->httpCode);
+        $t->data = array_merge($t->data, $data);
+        $t->setContent($t->getContents());
+
+        return $t;
+    }
+
+
+    /**
+     * Display this error.
+     *
+     * This method displays a standard SimpleSAMLphp error page and exits.
+     *
+     * @param int $logLevel  The log-level for this exception
+     * @param bool $suppressReport  Whether or not sending an error report is an option
+     */
+    public function show(int $logLevel = Logger::ERR, bool $suppressReport = false): void
+    {
+        $response = $this->render($logLevel, $suppressReport);
+        $response->send();
+        exit;
     }
 }

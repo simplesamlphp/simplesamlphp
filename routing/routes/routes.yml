@@ -1,28 +1,63 @@
 ---
 
-remove_trailing_slash:
-  path: /{module}/{url}
-  defaults: {
-    _controller: SimpleSAML\Module::removeTrailingSlash
-  }
-  requirements:
-    url: ".*/$"
+frontpage:
+  path: /
+  defaults:
+    _controller: 'SimpleSAML\Controller\FrontpageController::redirect'
   methods: [GET]
 
-add_trailing_slash:
-  path: /{url}
-  defaults: {
-    _controller: SimpleSAML\Module::addTrailingSlash
-  }
-  requirements:
-    url: "[a-zA-Z0-9_-]+[^/]$"
+frontpage-index:
+  path: /index.php
+  defaults:
+    _controller: 'SimpleSAML\Controller\FrontpageController::redirect'
   methods: [GET]
 
 admin-shortcut:
   path: /admin
-  defaults: {
-    _controller: 'SimpleSAML\Module\admin\Controller\Config::main',
-    path: /admin,
-    permanent: true
-  }
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+  defaults:
+    route: admin-main
   methods: [GET]
+
+obsolete-route-redirect-admin-index:
+  path: /admin/index.php
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+  defaults:
+    route: admin-main
+  methods: [GET]
+
+obsolete-route-gone-saml2-idp-ArtifactResolutionService:
+  path: /saml2/idp/ArtifactResolutionService.php
+  controller: SimpleSAML\Controller\ObsoleteRouteController
+  defaults:
+    message: 'The /saml2/idp entry points are no longer supported. Use the routed /module/saml endpoints instead.'
+
+obsolete-route-gone-saml2-idp-initSLO:
+  path: /saml2/idp/initSLO.php
+  controller: SimpleSAML\Controller\ObsoleteRouteController
+  defaults:
+    message: 'The /saml2/idp entry points are no longer supported. Use the routed /module/saml endpoints instead.'
+
+obsolete-route-gone-saml2-idp-metadata:
+  path: /saml2/idp/metadata.php
+  controller: SimpleSAML\Controller\ObsoleteRouteController
+  defaults:
+    message: 'The /saml2/idp entry points are no longer supported. Use the routed /module/saml endpoints instead.'
+
+obsolete-route-gone-saml2-idp-SingleLogoutService:
+  path: /saml2/idp/SingleLogoutService.php
+  controller: SimpleSAML\Controller\ObsoleteRouteController
+  defaults:
+    message: 'The /saml2/idp entry points are no longer supported. Use the routed /module/saml endpoints instead.'
+
+obsolete-route-gone-saml2-idp-SSOService:
+  path: /saml2/idp/SSOService.php
+  controller: SimpleSAML\Controller\ObsoleteRouteController
+  defaults:
+    message: 'The /saml2/idp entry points are no longer supported. Use the routed /module/saml endpoints instead.'
+
+obsolete-route-gone-module:
+  path: /module.php
+  controller: SimpleSAML\Controller\ObsoleteRouteController
+  defaults:
+    message: 'The module.php entry point is no longer supported.'

@@ -285,7 +285,7 @@ The URL returned by this function is static, and will not change.
 You can easily create your own links without using this function.
 The URL should be:
 
-`.../simplesaml/module.php/core/login/<authentication source>?ReturnTo=<return URL>`
+`.../simplesaml/module/saml/sp/login/<authentication source>?ReturnTo=<return URL>`
 
 ### getLogoutURL
 
@@ -315,4 +315,4 @@ The URL returned by this function is static, and will not change.
 You can easily create your own links without using this function.
 The URL should be:
 
-`.../simplesaml/module.php/core/logout/<authentication source>?ReturnTo=<return URL>`
+`.../simplesaml/module/core/logout/<authentication source>?ReturnTo=<return URL>`
