@@ -252,7 +252,7 @@ EOT;
                 ["type" => "serialize", "directory" => "/tmp"],
             ],
         ] + $extraconfig, '', 'simplesaml');
-        $metaHandler = new MetaDataStorageHandlerSerialize(['directory' => '/tmp']);
+        $metaHandler = new MetaDataStorageHandlerSerialize($config, ['directory' => '/tmp']);
 
         $metadata['entityid'] = 'urn:example:simplesaml:idp';
         $metadata['certificate'] = self::CERT_PUBLIC;

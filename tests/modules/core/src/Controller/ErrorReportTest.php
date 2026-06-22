@@ -8,6 +8,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
+use SimpleSAML\Module\core\Controller;
 use SimpleSAML\Session;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -63,7 +64,7 @@ class ErrorReportTest extends TestCase
 
         $response = $c->main($request);
 
-        $this->assertTrue($response->isSuccestul());
+        $this->assertTrue($response->isSuccesful());
         $this->assertEquals('core:errorreport.twig', $response->getTemplateName());
     }
 

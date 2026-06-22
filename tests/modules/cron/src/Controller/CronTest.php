@@ -14,6 +14,8 @@ use SimpleSAML\Module\cron\Controller;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Set of tests for the controllers in the "cron" module.
