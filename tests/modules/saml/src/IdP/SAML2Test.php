@@ -14,6 +14,8 @@ use SimpleSAML\Module\saml\IdP\SAML2;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  */
@@ -60,7 +62,7 @@ class SAML2Test extends ClearStateTestCase
 
         $this->assertStringStartsWith(
             // phpcs:ignore Generic.Files.LineLength.TooLong
-            'http://idp.examlple.com/module/saml/idp/singleSignOnService?spentityid=https%3A%2F%2Fsome-sp-entity-id&cookie',
+            'http://idp.example.com/module/saml/idp/singleSignOnService?spentityid=https%3A%2F%2Fsome-sp-entity-id&cookie',
             $state['\SimpleSAML\Auth\State.restartURL'],
         );
         unset($state['saml:AuthnRequestReceivedAt']); // timestamp can't be tested in equality assertion
@@ -91,7 +93,7 @@ class SAML2Test extends ClearStateTestCase
 
         //currently only spentityid and relay state are used in the restart url.
         $this->assertStringStartsWith(
-            'http://idp.examlple.com/module/saml/idp/singleSignOnService?'
+            'http://idp.example.com/module/saml/idp/singleSignOnService?'
             . 'spentityid=https%3A%2F%2Fsome-sp-entity-id&RelayState=http%3A%2F%2Frelay&cookieTime',
             $state['\SimpleSAML\Auth\State.restartURL'],
         );
@@ -121,7 +123,7 @@ class SAML2Test extends ClearStateTestCase
 
         $this->assertStringStartsWith(
             // phpcs:ignore Generic.Files.LineLength.TooLong
-            'http://idp.examlple.com/module/saml/idp/singleSignOnService?spentityid=https%3A%2F%2Fsome-sp-entity-id&cookie',
+            'http://idp.example.com/module/saml/idp/singleSignOnService?spentityid=https%3A%2F%2Fsome-sp-entity-id&cookie',
             $state['\SimpleSAML\Auth\State.restartURL'],
         );
         unset($state['saml:AuthnRequestReceivedAt']); // timestamp can't be tested in equality assertion
@@ -150,7 +152,7 @@ class SAML2Test extends ClearStateTestCase
 
         //currently only spentityid and relay state are used in the restart url.
         $this->assertStringStartsWith(
-            'http://idp.examlple.com/module/saml/idp/singleSignOnService?'
+            'http://idp.example.com/module/saml/idp/singleSignOnService?'
             . 'spentityid=https%3A%2F%2Fsome-sp-entity-id&RelayState=http%3A%2F%2Frelay&cookieTime',
             $state['\SimpleSAML\Auth\State.restartURL'],
         );
@@ -203,17 +205,10 @@ EOT;
             'metadata.sources' => [
                 ["type" => "xml", 'xml' => $spMetadataXml],
             ],
+            'enable.saml20-idp' => true,
         ], '', 'simplesaml');
 
-        // Since we aren't really running on a webserver some of the url calculations done, such as for restart url
-        // won't line up perfectly
-        $_REQUEST = $_REQUEST + $queryParams;
-        $_SERVER['HTTP_HOST'] = 'idp.examlple.com';
-        $_SERVER['REQUEST_URI'] = '/module/saml/idp/singleSignOnService?' . http_build_query($queryParams);
-
-
         $state = [];
-
         $idpStub->expects($this->once())
             ->method('handleAuthenticationRequest')
             ->with($this->callback(
@@ -225,10 +220,16 @@ EOT;
                     $state = $arg;
                     return true;
                 },
-            ));
+            ))
+            ->willReturn(new Response('', 200, ['Host' => 'idp.example.com']));
+
+        $request = Request::create('/singleSingOnService', 'GET', $queryParams, [], [], ['Host' => 'idp.example.com']);
+        $_REQUEST = $_REQUEST + $queryParams;
+        $_SERVER['HTTP_HOST'] = 'idp.example.com';
+        $_SERVER['REQUEST_URI'] = '/module.php/saml/idp/singleSignOnService?' . http_build_query($queryParams);
 
         /** @psalm-suppress InvalidArgument */
-        SAML2::receiveAuthnRequest($idpStub);
+        SAML2::receiveAuthnRequest($request, $idpStub);
 
         return $state;
     }
@@ -246,7 +247,7 @@ EOT;
      */
     private function idpMetadataHandlerHelper(array $metadata, array $extraconfig = []): array
     {
-        Configuration::loadFromArray([
+        $config = Configuration::loadFromArray([
             'metadata.sources' => [
                 ["type" => "serialize", "directory" => "/tmp"],
             ],
@@ -257,7 +258,7 @@ EOT;
         $metadata['certificate'] = self::CERT_PUBLIC;
         $metadata['privatekey'] = self::CERT_KEY;
 
-        $metaHandler->saveMetadata($metadata['entityid'], 'saml20-idp-hosted', $metadata);
+        $metaHandler->saveMetadata($config, $metadata['entityid'], 'saml20-idp-hosted', $metadata);
 
         $_SERVER['REQUEST_URI'] = '/dummy';
 

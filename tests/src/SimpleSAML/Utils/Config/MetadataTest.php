@@ -7,8 +7,8 @@ namespace SimpleSAML\Test\Utils\Config;
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SAML2\Constants;
-use SAML2\XML\md\ContactPerson;
+use SimpleSAML\SAML2\Constants;
+use SimpleSAML\SAML2\XML\md\ContactPerson;
 use SimpleSAML\Utils\Config\Metadata;
 use TypeError;
 
