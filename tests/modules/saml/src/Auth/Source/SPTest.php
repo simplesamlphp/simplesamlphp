@@ -18,6 +18,7 @@ use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\SAML2\Constants;
 use SimpleSAML\SAML2\Exception\Protocol\NoAvailableIDPException;
 use SimpleSAML\SAML2\Exception\Protocol\NoSupportedIDPException;
+use SimpleSAML\SAML2\Utils\XPath;
 use SimpleSAML\Test\Metadata\MetaDataStorageSourceTest;
 use SimpleSAML\Test\Utils\ExitTestException;
 use SimpleSAML\Test\Utils\SpTester;
@@ -212,7 +213,7 @@ class SPTest extends ClearStateTestCase
         $q = XPath::xpQuery(
             $xml,
             '/samlp:AuthnRequest/saml:Subject/saml:NameID/@Format',
-            $xpQuery,
+            $xpCache,
         );
 
         $this->assertEquals(
@@ -220,11 +221,10 @@ class SPTest extends ClearStateTestCase
             $q[0]->value,
         );
 
-        $xpCache = XPath::getXPath($xml);
         $q = XPath::xpQuery(
             $xml,
             '/samlp:AuthnRequest/saml:Subject/saml:NameID',
-            $xpQuery,
+            $xpCache,
         );
 
         $this->assertEquals(
@@ -1580,11 +1580,11 @@ class SPTest extends ClearStateTestCase
         $xml = $lr->toSignedXML();
 
         $xpCache = XPath::getXPath($xml);
-        $q = XPath::xpQuery($xml, '/samlp:LogoutRequest/saml:NameID', $xpQuery);
+        $q = XPath::xpQuery($xml, '/samlp:LogoutRequest/saml:NameID', $xpCache);
         $this->assertCount(1, $q);
         $this->assertEquals('someone@example.com', $q[0]->nodeValue);
 
-        $q = XPath::xpQuery($xml, '/samlp:LogoutRequest/samlp:Extensions', $xpQuery);
+        $q = XPath::xpQuery($xml, '/samlp:LogoutRequest/samlp:Extensions', $xpCache);
         $this->assertCount(1, $q);
         $this->assertCount(1, $q[0]->childNodes);
         $this->assertEquals('MyLogoutExtension', $q[0]->firstChild->localName);

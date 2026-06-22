@@ -196,7 +196,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
 
     public function testCanHaveMultipleHostedIdps(): void
     {
-        $this->handler->clearInternalState();
+        $this->getHandler()->clearInternalState();
 
         $c = [
             'metadata.sources' => [
@@ -205,11 +205,11 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         ];
 
         $config = Configuration::loadFromArray($c, '', 'simplesaml');
-        $this->handler = MetaDataStorageHandler::getMetadataHandler($config);
+        $handler = MetaDataStorageHandler::getMetadataHandler($config);
 
         $this->expectException(AssertionFailedException::class);
         $this->expectExceptionMessageMatches('/Please set a valid and unique entityID/');
-        $this->handler->getMetaDataCurrent('saml20-idp-hosted');
+        $handler->getMetaDataCurrent('saml20-idp-hosted');
     }
 
 
