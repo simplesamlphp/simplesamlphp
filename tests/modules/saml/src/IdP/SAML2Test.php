@@ -258,7 +258,7 @@ EOT;
         $metadata['certificate'] = self::CERT_PUBLIC;
         $metadata['privatekey'] = self::CERT_KEY;
 
-        $metaHandler->saveMetadata($config, $metadata['entityid'], 'saml20-idp-hosted', $metadata);
+        $metaHandler->saveMetadata($metadata['entityid'], 'saml20-idp-hosted', $metadata);
 
         $_SERVER['REQUEST_URI'] = '/dummy';
 
