@@ -43,7 +43,10 @@ class LogoutTest extends ClearStateTestCase
                 'baseurlpath' => 'https://example.org/simplesaml',
                 'module.enable' => ['exampleauth' => true],
                 'enable.saml20-idp' => true,
-                'trusted.url.domains' => [],
+                'trusted.url.domains' => ['example.org'],
+                'application' => [
+                    'baseURL' => 'https://example.org/simplesaml/',
+                ],
             ],
             '[ARRAY]',
             'simplesaml',
@@ -94,9 +97,8 @@ class LogoutTest extends ClearStateTestCase
         $request = Request::create(
             '/logout/example-authsource',
             'GET',
-            ['ReturnTo' => 'https://example.org/something'],
+            ['ReturnTo' => '/something'],
         );
-        $_SERVER['REQUEST_URI']  = 'https://example.com/simplesaml/module.php/core/logout/example-authsource';
 
         $c = new Controller\Logout($this->config);
 

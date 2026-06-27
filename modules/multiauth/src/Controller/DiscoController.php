@@ -104,7 +104,7 @@ class DiscoController
 
         // Get a preselected source either from the URL or the discovery page
         $urlSource = $request->query->get('source', null);
-        $discoSource = $request->query->get('sourceChoice', null);
+        $discoSource = $request->query->all('sourceChoice', null);
 
         $selectedSource = null;
         if ($urlSource !== null) {

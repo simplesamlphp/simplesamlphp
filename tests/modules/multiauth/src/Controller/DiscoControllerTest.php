@@ -269,7 +269,7 @@ class DiscoControllerTest extends TestCase
         $request = Request::create(
             '/discovery',
             'GET',
-            ['AuthState' => 'someState', 'sourceChoice[admin]' => 'something admin'],
+            ['AuthState' => 'someState', 'sourceChoice' => ['admin' => 'something admin']],
         );
 
         $c = new Controller\DiscoController($this->config, $this->session);

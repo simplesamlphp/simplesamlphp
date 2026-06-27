@@ -162,7 +162,7 @@ class IdPDisco
             $this->setIdPentityID = $request->query->get('IdPentityID');
         }
 
-        if ($request->query->get('IDPList')) {
+        if ($request->query->all('IDPList', [])) {
             $this->scopedIDPList = $request->query->filter(
                 'IDPList',
                 [],
