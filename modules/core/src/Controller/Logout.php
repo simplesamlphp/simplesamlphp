@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\core\Controller;
 
 use Exception as BuiltinException;
 use SAML2\Binding;
-use SAML2\Constants;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -15,6 +14,7 @@ use SimpleSAML\IdP;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Message;
+use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Stats;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
@@ -233,7 +233,7 @@ class Logout
             'idpEntityID' => $idpMetadata->getString('entityid'),
         ]);
 
-        $bindings = [Constants::BINDING_HTTP_POST];
+        $bindings = [C::BINDING_HTTP_POST];
 
         $dst = $spMetadata->getDefaultEndpoint('SingleLogoutService', $bindings);
         $binding = Binding::getBinding($dst['Binding']);

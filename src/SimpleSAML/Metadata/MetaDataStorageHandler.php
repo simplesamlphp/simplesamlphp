@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
-use SAML2\Constants;
+use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -111,7 +111,7 @@ class MetaDataStorageHandler implements ClearableState
 
         if ($set == 'saml20-sp-hosted') {
             if ($property === 'SingleLogoutServiceBinding') {
-                return Constants::BINDING_HTTP_REDIRECT;
+                return C::BINDING_HTTP_REDIRECT;
             }
         } elseif ($set == 'saml20-idp-hosted') {
             switch ($property) {
@@ -119,13 +119,13 @@ class MetaDataStorageHandler implements ClearableState
                     return $baseurl . 'module/saml/idp/singleSignOnService';
 
                 case 'SingleSignOnServiceBinding':
-                    return Constants::BINDING_HTTP_REDIRECT;
+                    return C::BINDING_HTTP_REDIRECT;
 
                 case 'SingleLogoutService':
                     return $baseurl . 'module/saml/idp/singleLogout';
 
                 case 'SingleLogoutServiceBinding':
-                    return Constants::BINDING_HTTP_REDIRECT;
+                    return C::BINDING_HTTP_REDIRECT;
             }
         }
 

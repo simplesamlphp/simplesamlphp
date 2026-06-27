@@ -10,7 +10,6 @@ use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\Assertion;
 use SAML2\AuthnRequest;
 use SAML2\Binding;
-use SAML2\Constants;
 use SAML2\EncryptedAssertion;
 use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SAML2\HTTPRedirect;
@@ -34,6 +33,7 @@ use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Module\saml\Message;
+use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Stats;
 use SimpleSAML\Utils;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -308,15 +308,15 @@ class SAML2
         $idpMetadata = $idp->getConfig();
         $httpUtils = new Utils\HTTP();
 
-        $supportedBindings = [Constants::BINDING_HTTP_POST];
+        $supportedBindings = [C::BINDING_HTTP_POST];
         if ($idpMetadata->getOptionalBoolean('saml20.sendartifact', false)) {
-            $supportedBindings[] = Constants::BINDING_HTTP_ARTIFACT;
+            $supportedBindings[] = C::BINDING_HTTP_ARTIFACT;
         }
         if ($idpMetadata->getOptionalBoolean('saml20.hok.assertion', false)) {
-            $supportedBindings[] = Constants::BINDING_HOK_SSO;
+            $supportedBindings[] = C::BINDING_HOK_SSO;
         }
         if ($idpMetadata->getOptionalBoolean('saml20.ecp', false)) {
-            $supportedBindings[] = Constants::BINDING_PAOS;
+            $supportedBindings[] = C::BINDING_PAOS;
         }
 
         $authnRequestSigned = false;
@@ -556,8 +556,8 @@ class SAML2
         $dst = $spMetadata->getEndpointPrioritizedByBinding(
             'SingleLogoutService',
             [
-                Constants::BINDING_HTTP_REDIRECT,
-                Constants::BINDING_HTTP_POST,
+                C::BINDING_HTTP_REDIRECT,
+                C::BINDING_HTTP_POST,
             ],
         );
         $binding = Binding::getBinding($dst['Binding']);
@@ -593,8 +593,8 @@ class SAML2
         if (isset($state['core:Failed']) && $state['core:Failed']) {
             $partial = true;
             $lr->setStatus([
-                'Code'    => Constants::STATUS_SUCCESS,
-                'SubCode' => Constants::STATUS_PARTIAL_LOGOUT,
+                'Code'    => C::STATUS_SUCCESS,
+                'SubCode' => C::STATUS_PARTIAL_LOGOUT,
             ]);
             Logger::info('Sending logout response for partial logout to SP ' . var_export($spEntityId, true));
         } else {
@@ -612,8 +612,8 @@ class SAML2
         $dst = $spMetadata->getEndpointPrioritizedByBinding(
             'SingleLogoutService',
             [
-                Constants::BINDING_HTTP_REDIRECT,
-                Constants::BINDING_HTTP_POST,
+                C::BINDING_HTTP_REDIRECT,
+                C::BINDING_HTTP_POST,
             ],
         );
         $binding = Binding::getBinding($dst['Binding']);
@@ -719,14 +719,14 @@ class SAML2
         $spMetadata = $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
 
         $bindings = [
-            Constants::BINDING_HTTP_REDIRECT,
-            Constants::BINDING_HTTP_POST,
+            C::BINDING_HTTP_REDIRECT,
+            C::BINDING_HTTP_POST,
         ];
 
         /** @var array $dst */
         $dst = $spMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', $bindings);
 
-        if ($dst['Binding'] === Constants::BINDING_HTTP_POST) {
+        if ($dst['Binding'] === C::BINDING_HTTP_POST) {
             $params = ['association' => $association['id'], 'idp' => $idp->getId()];
             if ($relayState !== null) {
                 $params['RelayState'] = $relayState;
@@ -825,7 +825,7 @@ class SAML2
             'entityid' => $entityid,
             'SingleSignOnService' => $sso,
             'SingleLogoutService' => $slo,
-            'NameIDFormat' => $config->getOptionalArrayizeString('NameIDFormat', [Constants::NAMEID_TRANSIENT]),
+            'NameIDFormat' => $config->getOptionalArrayizeString('NameIDFormat', [C::NAMEID_TRANSIENT]),
         ];
 
         // metadata signing
@@ -894,7 +894,7 @@ class SAML2
         if ($config->getOptionalBoolean('saml20.sendartifact', false)) {
             $metadata['ArtifactResolutionService'][] = [
                 'index' => 0,
-                'Binding' => Constants::BINDING_SOAP,
+                'Binding' => C::BINDING_SOAP,
                 'Location' => Module::getModuleURL('saml/idp/artifactResolutionService'),
             ];
         }
@@ -904,8 +904,8 @@ class SAML2
             array_unshift(
                 $metadata['SingleSignOnService'],
                 [
-                    'hoksso:ProtocolBinding' => Constants::BINDING_HTTP_REDIRECT,
-                    'Binding' => Constants::BINDING_HOK_SSO,
+                    'hoksso:ProtocolBinding' => C::BINDING_HTTP_REDIRECT,
+                    'Binding' => C::BINDING_HOK_SSO,
                     'Location' => Module::getModuleURL('saml/idp/singleSignOnService'),
                 ],
             );
@@ -915,7 +915,7 @@ class SAML2
         if ($config->getOptionalBoolean('saml20.ecp', false)) {
             $metadata['SingleSignOnService'][] = [
                 'index' => 0,
-                'Binding' => Constants::BINDING_SOAP,
+                'Binding' => C::BINDING_SOAP,
                 'Location' => Module::getModuleURL('saml/idp/singleSignOnService'),
             ];
         }
@@ -1110,7 +1110,7 @@ class SAML2
         }
 
         // default
-        return Constants::NAMEFORMAT_URI;
+        return C::NAMEFORMAT_URI;
     }
 
 
@@ -1150,7 +1150,7 @@ class SAML2
 
         $issuer = new Issuer();
         $issuer->setValue($state['IdPMetadata']['entityid']);
-        $issuer->setFormat(Constants::NAMEID_ENTITY);
+        $issuer->setFormat(C::NAMEID_ENTITY);
         $a->setIssuer($issuer);
 
         $audience = array_merge([$spMetadata->getString('entityid')], $spMetadata->getOptionalArray('audience', []));
@@ -1171,9 +1171,9 @@ class SAML2
             // AuthnContext has been set by the upper IdP in front of the proxy, pass it back to the SP behind the proxy
             $a->setAuthnContextClassRef($state['saml:sp:AuthnContext']);
         } elseif ($httpUtils->isHTTPS()) {
-            $a->setAuthnContextClassRef(Constants::AC_PASSWORD_PROTECTED_TRANSPORT);
+            $a->setAuthnContextClassRef(C::AC_PASSWORD_PROTECTED_TRANSPORT);
         } else {
-            $a->setAuthnContextClassRef(Constants::AC_PASSWORD);
+            $a->setAuthnContextClassRef(C::AC_PASSWORD);
         }
 
         $sessionStart = $now;
@@ -1197,7 +1197,7 @@ class SAML2
 
         // ProtcolBinding of SP's <AuthnRequest> overwrites IdP hosted metadata configuration
         $hokAssertion = null;
-        if ($state['saml:Binding'] === Constants::BINDING_HOK_SSO) {
+        if ($state['saml:Binding'] === C::BINDING_HOK_SSO) {
             $hokAssertion = true;
         }
         if ($hokAssertion === null) {
@@ -1206,7 +1206,7 @@ class SAML2
 
         if ($hokAssertion) {
             // Holder-of-Key
-            $sc->setMethod(Constants::CM_HOK);
+            $sc->setMethod(C::CM_HOK);
 
             if ($httpUtils->isHTTPS()) {
                 if (isset($_SERVER['SSL_CLIENT_CERT']) && !empty($_SERVER['SSL_CLIENT_CERT'])) {
@@ -1243,7 +1243,7 @@ class SAML2
             }
         } else {
             // Bearer
-            $sc->setMethod(Constants::CM_BEARER);
+            $sc->setMethod(C::CM_BEARER);
         }
         $sc->setSubjectConfirmationData($scd);
         $a->setSubjectConfirmation([$sc]);
@@ -1292,7 +1292,7 @@ class SAML2
             $nameIdFormat = current($spMetadata->getOptionalArrayizeString('NameIDFormat', []));
             if ($nameIdFormat === false) {
                 $nameIdFormat = current(
-                    $idpMetadata->getOptionalArrayizeString('NameIDFormat', [Constants::NAMEID_TRANSIENT]),
+                    $idpMetadata->getOptionalArrayizeString('NameIDFormat', [C::NAMEID_TRANSIENT]),
                 );
             }
         }
@@ -1303,12 +1303,12 @@ class SAML2
         }
 
         // We have nothing else to work with, so default to transient
-        if ($nameIdFormat !== Constants::NAMEID_TRANSIENT) {
+        if ($nameIdFormat !== C::NAMEID_TRANSIENT) {
             Logger::notice(sprintf(
                 'Requested NameID of format %s, but can only provide transient',
                 var_export($nameIdFormat, true),
             ));
-            $nameIdFormat = Constants::NAMEID_TRANSIENT;
+            $nameIdFormat = C::NAMEID_TRANSIENT;
         }
 
         $randomUtils = new Utils\Random();
@@ -1468,7 +1468,7 @@ class SAML2
         $r = new Response();
         $issuer = new Issuer();
         $issuer->setValue($idpMetadata->getString('entityid'));
-        $issuer->setFormat(Constants::NAMEID_ENTITY);
+        $issuer->setFormat(C::NAMEID_ENTITY);
         $r->setIssuer($issuer);
         $r->setDestination($consumerURL);
 

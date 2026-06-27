@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\admin\Controller;
 
 use Exception;
-use SAML2\Constants as C;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
@@ -20,6 +19,7 @@ use SimpleSAML\Module;
 use SimpleSAML\Module\adfs\IdP\ADFS as ADFS_IdP;
 use SimpleSAML\Module\admin\Event\FederationPageEvent;
 use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
+use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;

@@ -7,8 +7,8 @@ namespace SimpleSAML\Test\Utils\Config;
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use SAML2\Constants;
 use SAML2\XML\md\ContactPerson;
+use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Utils\Config\Metadata;
 use TypeError;
 
@@ -256,7 +256,7 @@ class MetadataTest extends TestCase
         // Test null or unset
         $nameIdPolicy = null;
         $this->assertEquals([
-            'Format' => Constants::NAMEID_TRANSIENT,
+            'Format' => C::NAMEID_TRANSIENT,
             'AllowCreate' => false,
         ], Metadata::parseNameIdPolicy($nameIdPolicy));
 
@@ -272,7 +272,7 @@ class MetadataTest extends TestCase
             'AllowCreate' => false,
         ];
         $this->assertEquals([
-            'Format' => Constants::NAMEID_TRANSIENT,
+            'Format' => C::NAMEID_TRANSIENT,
             'AllowCreate' => false,
         ], Metadata::parseNameIdPolicy($nameIdPolicy));
     }

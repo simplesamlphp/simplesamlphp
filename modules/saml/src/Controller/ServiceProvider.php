@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\saml\Controller;
 use Exception;
 use SAML2\Assertion;
 use SAML2\Binding;
-use SAML2\Constants;
 use SAML2\Exception\Protocol\UnsupportedBindingException;
 use SAML2\HTTPArtifact;
 use SAML2\HTTPPost;
@@ -26,6 +25,7 @@ use SimpleSAML\Logger;
 use SimpleSAML\Metadata;
 use SimpleSAML\Module;
 use SimpleSAML\Module\saml\Auth\Source\SP;
+use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Session;
 use SimpleSAML\Store\StoreFactory;
 use SimpleSAML\Utils;
@@ -671,8 +671,8 @@ class ServiceProvider
             $dst = $idpMetadata->getEndpointPrioritizedByBinding(
                 'SingleLogoutService',
                 [
-                    Constants::BINDING_HTTP_REDIRECT,
-                    Constants::BINDING_HTTP_POST,
+                    C::BINDING_HTTP_REDIRECT,
+                    C::BINDING_HTTP_POST,
                 ],
             );
 

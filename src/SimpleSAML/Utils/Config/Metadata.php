@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils\Config;
 
-use SAML2\Constants;
+use SimpleSAML\SAML2\Constants as C;
 use SAML2\XML\md\ContactPerson;
 use SimpleSAML\Configuration;
 
@@ -248,7 +248,7 @@ class Metadata
     {
         if ($nameIdPolicy === null) {
             // when NameIDPolicy is unset or set to null, default to transient
-            return ['Format' => Constants::NAMEID_TRANSIENT, 'AllowCreate' => false];
+            return ['Format' => C::NAMEID_TRANSIENT, 'AllowCreate' => false];
         }
 
         if ($nameIdPolicy === []) {
@@ -258,10 +258,10 @@ class Metadata
 
         // handle configurations specifying an array in the NameIDPolicy config option
         $nameIdPolicy_cf = Configuration::loadFromArray($nameIdPolicy);
-        $format = $nameIdPolicy_cf->getOptionalString('Format', Constants::NAMEID_TRANSIENT);
+        $format = $nameIdPolicy_cf->getOptionalString('Format', C::NAMEID_TRANSIENT);
         $allowCreate = $nameIdPolicy_cf->getOptionalBoolean('AllowCreate', true);
         //  SAML Version 2.0 Errata 05 lines 252-255 (pg 12)
-        if ($format === Constants::NAMEID_TRANSIENT) {
+        if ($format === C::NAMEID_TRANSIENT) {
             if ($allowCreate) {
                 $allowCreate = false;
             }

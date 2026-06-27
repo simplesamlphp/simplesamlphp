@@ -6,8 +6,8 @@ namespace SimpleSAML\Test\Metadata;
 
 use DOMDocument;
 use PHPUnit\Framework\Attributes\CoversClass;
-use SAML2\Constants;
 use SimpleSAML\Metadata\SAMLParser;
+use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Test\SigningTestCase;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\Signer;
@@ -26,7 +26,7 @@ class SAMLParserTest extends SigningTestCase
         $expected = [
             0 => [
                 'index' => 43,
-                'Binding' => Constants::NS_IDPDISC,
+                'Binding' => C::NS_IDPDISC,
                 'Location' => 'https://simplesamlphp.org/some/endpoint',
                 'isDefault' => false,
             ],
