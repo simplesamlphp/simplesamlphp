@@ -95,7 +95,10 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
             "Entity is in both sources, expired in src1 and available from src2",
         );
         $this->assertEquals('entityA SP from source1', $entities['entityA']['name']['en']);
-        $this->assertEquals('hostname SP from source1', $entities['https://simplesamlphp.org/simplesaml']['name']['en']);
+        $this->assertEquals(
+            'hostname SP from source1',
+            $entities['https://simplesamlphp.org/simplesaml']['name']['en'],
+        );
     }
 
 
