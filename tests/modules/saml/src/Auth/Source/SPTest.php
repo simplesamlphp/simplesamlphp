@@ -9,7 +9,6 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use SAML2\AuthnRequest;
 use SAML2\LogoutRequest;
-use SAML2\Utils;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
@@ -156,7 +155,7 @@ class SPTest extends ClearStateTestCase
         $as = new SpTester($info, $config);
 
         try {
-            $as->startSLO2($state);
+            $as->startSLO2($this->config, $state);
             $this->fail('Expected ExitTestException');
         } catch (ExitTestException $e) {
             $r = $e->getTestResult();
@@ -174,8 +173,8 @@ class SPTest extends ClearStateTestCase
 
         $xml = $ar->toSignedXML();
 
-        /** @var \DOMAttr[] $q */
         $xpCache = XPath::getXPath($xml);
+        /** @var \DOMAttr[] $q */
         $q = XPath::xpQuery($xml, '/samlp:AuthnRequest/@Destination', $xpCache);
         $this->assertEquals(
             $this->idpConfigArray['SingleSignOnService'][0]['Location'],

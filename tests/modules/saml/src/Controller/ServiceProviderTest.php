@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Metadata\MetadataStorageHandler;
+use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Auth\Source;
 use SimpleSAML\Module\saml\Controller;
 use SimpleSAML\Session;
@@ -581,7 +581,7 @@ class ServiceProviderTest extends TestCase
                 ],
             ],
             '[ARRAY]',
-            'simplesaml'
+            'simplesaml',
         );
         Configuration::setPreLoadedConfig($config, 'config.php');
 
@@ -623,7 +623,7 @@ class ServiceProviderTest extends TestCase
     {
         $request = Request::create(
             '/assertionConsumerService',
-            'GET'
+            'GET',
         );
 
         $c = new Controller\ServiceProvider($this->config, $this->session);
@@ -644,7 +644,7 @@ class ServiceProviderTest extends TestCase
     {
         $request = Request::create(
             '/assertionConsumerService',
-            'GET'
+            'GET',
         );
 
         $c = new Controller\ServiceProvider($this->config, $this->session);
@@ -719,7 +719,7 @@ class ServiceProviderTest extends TestCase
     {
         $request = Request::create(
             '/assertionConsumerService',
-            'GET'
+            'GET',
         );
 
         $c = new Controller\ServiceProvider($this->config, $this->session);
@@ -740,7 +740,7 @@ class ServiceProviderTest extends TestCase
     {
         $request = Request::create(
             '/assertionConsumerService',
-            'PUT'
+            'PUT',
         );
 
         $c = new Controller\ServiceProvider($this->config, $this->session);
@@ -759,7 +759,7 @@ class ServiceProviderTest extends TestCase
      */
     public function testSLOWithCorrectMessageUnknownEntity(): void
     {
-        /** Note:  should be replaced by loading an xml-file once we can load that from saml2v5 */
+        /** Note:  should be replaced by loading an xml-file once we can load that from saml2v6 */
         $x = <<<XML
 <samlp:LogoutRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Version="2.0" ID="_f987e7436c1103bcf89296303f780d853d7713a8ef" IssueInstant="2020-08-15T15:53:24Z">
   <saml:Issuer>TheIssuer</saml:Issuer>
@@ -950,17 +950,21 @@ XML;
 </samlp:Response>
 XML;
 
-        $_SERVER['REQUEST_METHOD'] = 'POST';
-        $_SERVER['QUERY_STRING'] = '';
-        $_POST = [
-            'SAMLResponse' => base64_encode($xml),
-        ];
+        $request = Request::create(
+            '/assertionConsumerService',
+            'POST',
+            [
+                'SAMLResponse' => base64_encode(gzdeflate($xml)),
+                'RelayState' => 'https://profile.surfconext.nl/',
+                'SAMLEncoding' => 'urn:oasis:names:tc:SAML:2.0:bindings:URL-Encoding:DEFLATE',
+            ],
+        );
 
         $c = new Controller\ServiceProvider($this->config, $this->session);
 
         $this->expectException(Error\Exception::class);
         $this->expectExceptionMessage('Issuer mismatch: expected');
 
-        $c->assertionConsumerService('phpunit');
+        $c->assertionConsumerService($request, 'phpunit');
     }
 }

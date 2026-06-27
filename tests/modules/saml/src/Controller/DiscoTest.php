@@ -65,6 +65,6 @@ class DiscoTest extends TestCase
 
         $result = $c->disco($request);
         $this->assertInstanceOf(RedirectResponse::class, $result);
-        $this->assertTrue($result->isRedirection);
+        $this->assertTrue($result->isRedirection());
     }
 }

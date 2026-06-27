@@ -48,12 +48,13 @@ class MetaDataStorageHandler implements ClearableState
      * The metadata handler will be instantiated if this is the first call
      * to this function.
      *
+     * @param \SimpleSAML\Configuration $config
      * @return \SimpleSAML\Metadata\MetaDataStorageHandler The current metadata handler instance.
      */
-    public static function getMetadataHandler(): MetaDataStorageHandler
+    public static function getMetadataHandler(Configuration $config): MetaDataStorageHandler
     {
         if (self::$metadataHandler === null) {
-            self::$metadataHandler = new MetaDataStorageHandler(Configuration::getInstance());
+            self::$metadataHandler = new MetaDataStorageHandler($config);
         }
 
         return self::$metadataHandler;

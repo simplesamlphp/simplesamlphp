@@ -5,19 +5,20 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Controller;
 
 use Exception as BuiltinException;
-use SAML2\Binding;
-use SAML2\Constants;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\IdP;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Message;
+use SimpleSAML\SAML2\Binding;
+use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\XML\samlp\LogoutRequest as LogoutRequestNew;
 use SimpleSAML\Stats;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
+use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -176,9 +177,9 @@ class Logout
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this logout operation.
-     * @return \SimpleSAML\HTTP\RunnableResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function logoutIframePost(Request $request): RunnableResponse
+    public function logoutIframePost(Request $request): Response
     {
         if (!$request->query->has('idp')) {
             throw new Error\BadRequest('Missing required parameter: idp');
@@ -229,14 +230,20 @@ class Logout
             'idpEntityID' => $idpMetadata->getString('entityid'),
         ]);
 
-        $bindings = [Constants::BINDING_HTTP_POST];
+        $bindings = [C::BINDING_HTTP_POST];
 
         $dst = $spMetadata->getDefaultEndpoint('SingleLogoutService', $bindings);
         $binding = Binding::getBinding($dst['Binding']);
         $lr->setDestination($dst['Location']);
         $lr->setRelayState($relayState);
 
-        return new RunnableResponse([$binding, 'send'], [$lr]);
+        // Convert legacy LogoutRequest to a new one  until we are fully converted to saml2v6
+        $newlr = LogoutRequestNew::fromXML($lr->toXML());
+        $newlr->setRelayState($relayState);
+
+        $psrResponse = $binding->send($newlr);
+        $httpFoundationFactory = new HttpFoundationFactory();
+        return $httpFoundationFactory->createResponse($psrResponse);
     }
 
 

@@ -123,7 +123,7 @@ class IdPDisco
     ) {
         // initialize standard classes
         $this->config = Configuration::getInstance();
-        $this->metadata = MetaDataStorageHandler::getMetadataHandler();
+        $this->metadata = MetaDataStorageHandler::getMetadataHandler($this->config);
         $this->session = Session::getSessionFromRequest();
 
         $this->log('Accessing discovery service.');

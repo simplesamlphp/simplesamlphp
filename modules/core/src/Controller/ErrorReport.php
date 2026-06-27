@@ -11,8 +11,8 @@ use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 use function dirname;
 use function php_uname;
@@ -44,9 +44,9 @@ class ErrorReport
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\SimpleSAML\XHTML\Template
      */
-    public function main(Request $request): Response
+    public function main(Request $request): RedirectResponse|Template
     {
         // this page will redirect to itself after processing a POST request and sending the email
         if ($request->server->get('REQUEST_METHOD') !== 'POST') {

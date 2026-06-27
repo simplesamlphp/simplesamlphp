@@ -88,7 +88,7 @@ class IdP
         $this->associationGroup = $id;
 
         $this->globalConfig = $config;
-        $metadata = MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler($config);
 
         if (substr($id, 0, 6) === 'saml2:') {
             if (!$this->globalConfig->getOptionalBoolean('enable.saml20-idp', false)) {
@@ -194,7 +194,7 @@ class IdP
     {
         $prefix = substr($assocId, 0, 4);
         $spEntityId = substr($assocId, strlen($prefix) + 1);
-        $metadata = MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler($this->config);
 
         if ($prefix === 'saml') {
             try {

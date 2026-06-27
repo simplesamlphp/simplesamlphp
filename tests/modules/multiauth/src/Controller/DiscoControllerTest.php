@@ -13,9 +13,8 @@ use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
 use SimpleSAML\Module\multiauth\Controller;
 use SimpleSAML\Session;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Set of tests for the controllers in the "multiauth" module.
@@ -78,6 +77,7 @@ class DiscoControllerTest extends TestCase
             {
                 // stub
             }
+
 
             public static function getById(string $authId, ?string $type = null): ?Source
             {
