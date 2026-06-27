@@ -145,7 +145,7 @@ class ExampleAuthTest extends TestCase
         $request = Request::create(
             '/authpage',
             'POST',
-            ['ReturnTo' => 'State=/', 'username' => 'student', 'password' => 'student'],
+            ['ReturnTo' => 'AuthState=/', 'username' => 'student', 'password' => 'student'],
         );
 
         $c = new Controller\ExampleAuth($this->config, $this->session);
@@ -173,7 +173,7 @@ class ExampleAuthTest extends TestCase
         $request = Request::create(
             '/authpage',
             'POST',
-            ['ReturnTo' => '/State=/', 'username' => 'user', 'password' => 'something stupid'],
+            ['ReturnTo' => '/AuthState=/', 'username' => 'user', 'password' => 'something stupid'],
         );
 
         $c = new Controller\ExampleAuth($this->config, $this->session);
@@ -195,10 +195,10 @@ class ExampleAuthTest extends TestCase
      */
     public function testResume(): void
     {
-        $_ESSION['uid'] = 'phpunit';
-        $_ESSION['name'] = 'John Doe';
-        $_ESSION['mail'] = 'JohnDoe@example.org';
-        $_ESSION['type'] = 'member';
+        $_SESSION['uid'] = 'phpunit';
+        $_SESSION['name'] = 'John Doe';
+        $_SESSION['mail'] = 'JohnDoe@example.org';
+        $_SESSION['type'] = 'member';
 
         $request = Request::create(
             '/resume',
@@ -220,11 +220,10 @@ class ExampleAuthTest extends TestCase
             }
         });
 
-        // @TODO Pass the session down the chain so this test can fully run
-        $this->expectException(Error\CannotSetCookie::class);
         $response = $c->resume($request);
-        //$this->assertTrue($response->isSuccessful());
-        //$this->assertInstanceOf(Response::class, $response);
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertInstanceOf(Response::class, $response);
     }
 
 

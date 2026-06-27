@@ -67,7 +67,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
                 'Entity is in both sources, expired in src1 and available from src2',
             );
             // Did not ask for this one, which is in source1
-            $this->assertArrayNotHasKey('http://localhost/simplesaml', $entities);
+            $this->assertArrayNotHasKey('https://simplesamlphp.org/simplesaml', $entities);
         } else {
             $this->assertCount(0, $entities);
         }
@@ -95,7 +95,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
             "Entity is in both sources, expired in src1 and available from src2",
         );
         $this->assertEquals('entityA SP from source1', $entities['entityA']['name']['en']);
-        $this->assertEquals('hostname SP from source1', $entities['http://localhost/simplesaml']['name']['en']);
+        $this->assertEquals('hostname SP from source1', $entities['https://simplesamlphp.org/simplesaml']['name']['en']);
     }
 
 

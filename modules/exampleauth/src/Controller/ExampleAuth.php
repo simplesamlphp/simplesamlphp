@@ -93,7 +93,7 @@ class ExampleAuth
          * What we do here is to extract the $state-array identifier, and check that it belongs to
          * the exampleauth:External process.
          */
-        if (!preg_match('@State=(.*)@', $returnTo, $matches)) {
+        if (!preg_match('@AuthState=(.*)@', $returnTo, $matches)) {
             throw new Error\Exception('Invalid ReturnTo URL for this example.');
         }
 
@@ -167,9 +167,9 @@ class ExampleAuth
         /**
          * Request handler for redirect filter test.
          */
-        $stateId = $request->query->get('StateId');
+        $stateId = $request->query->get('AuthState');
         if ($stateId === null) {
-            throw new Error\BadRequest('Missing required StateId query parameter.');
+            throw new Error\BadRequest('Missing required AuthState query parameter.');
         }
 
         $state = $this->authState::loadState($stateId, 'exampleauth:redirectfilter-test');

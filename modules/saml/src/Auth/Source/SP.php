@@ -1155,10 +1155,13 @@ class SP extends Auth\Source
         }
 
         // Convert legacy LogoutRequest to new one until we are fully migrated to saml2v6
-        $newlr = LogoutRequestNew::fromXML($lr->toXML());
-        $newlr->setRelayState($id);
+        $newlr = LogoutRequestNew::fromXML($lr->toUnsignedXML());
 
         $b = Binding::getBinding($endpoint['Binding']);
+        if ($b instanceof RelayStateInterface) {
+            $newlr->setRelayState($id);
+        }
+
         return $this->sendSAML2LogoutRequest($b, $newlr);
     }
 

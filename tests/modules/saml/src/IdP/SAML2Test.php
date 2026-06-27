@@ -62,7 +62,7 @@ class SAML2Test extends ClearStateTestCase
 
         $this->assertStringStartsWith(
             // phpcs:ignore Generic.Files.LineLength.TooLong
-            'http://idp.example.com/module/saml/idp/singleSignOnService?spentityid=https%3A%2F%2Fsome-sp-entity-id&cookie',
+            'https://idp.example.com/module/saml/idp/singleSignOnService?spentityid=https%3A%2F%2Fsome-sp-entity-id&cookie',
             $state['\SimpleSAML\Auth\State.restartURL'],
         );
         unset($state['saml:AuthnRequestReceivedAt']); // timestamp can't be tested in equality assertion
@@ -93,7 +93,7 @@ class SAML2Test extends ClearStateTestCase
 
         //currently only spentityid and relay state are used in the restart url.
         $this->assertStringStartsWith(
-            'http://idp.example.com/module/saml/idp/singleSignOnService?'
+            'https://idp.example.com/module/saml/idp/singleSignOnService?'
             . 'spentityid=https%3A%2F%2Fsome-sp-entity-id&RelayState=http%3A%2F%2Frelay&cookieTime',
             $state['\SimpleSAML\Auth\State.restartURL'],
         );
@@ -123,7 +123,7 @@ class SAML2Test extends ClearStateTestCase
 
         $this->assertStringStartsWith(
             // phpcs:ignore Generic.Files.LineLength.TooLong
-            'http://idp.example.com/module/saml/idp/singleSignOnService?spentityid=https%3A%2F%2Fsome-sp-entity-id&cookie',
+            'https://idp.example.com/module/saml/idp/singleSignOnService?spentityid=https%3A%2F%2Fsome-sp-entity-id&cookie',
             $state['\SimpleSAML\Auth\State.restartURL'],
         );
         unset($state['saml:AuthnRequestReceivedAt']); // timestamp can't be tested in equality assertion
@@ -152,7 +152,7 @@ class SAML2Test extends ClearStateTestCase
 
         //currently only spentityid and relay state are used in the restart url.
         $this->assertStringStartsWith(
-            'http://idp.example.com/module/saml/idp/singleSignOnService?'
+            'https://idp.example.com/module/saml/idp/singleSignOnService?'
             . 'spentityid=https%3A%2F%2Fsome-sp-entity-id&RelayState=http%3A%2F%2Frelay&cookieTime',
             $state['\SimpleSAML\Auth\State.restartURL'],
         );
@@ -226,7 +226,7 @@ EOT;
         $request = Request::create('/singleSingOnService', 'GET', $queryParams, [], [], ['Host' => 'idp.example.com']);
         $_REQUEST = $_REQUEST + $queryParams;
         $_SERVER['HTTP_HOST'] = 'idp.example.com';
-        $_SERVER['REQUEST_URI'] = '/module.php/saml/idp/singleSignOnService?' . http_build_query($queryParams);
+        $_SERVER['REQUEST_URI'] = '/module/saml/idp/singleSignOnService?' . http_build_query($queryParams);
 
         /** @psalm-suppress InvalidArgument */
         SAML2::receiveAuthnRequest($request, $idpStub);

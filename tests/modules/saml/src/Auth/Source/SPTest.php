@@ -239,7 +239,7 @@ class SPTest extends ClearStateTestCase
     public function testAuthnContextClassRef(): void
     {
         $state = [
-            'saml:AuthnContextClassRef' => 'http://example.com/myAuthnContextClassRef',
+            'saml:AuthnContextClassRef' => 'http://localhost/myAuthnContextClassRef',
         ];
 
         $ar = $this->createAuthnRequest($state);
@@ -303,7 +303,7 @@ class SPTest extends ClearStateTestCase
     {
         $this->expectException(NoSupportedIDPException::class);
         $state = [
-            'saml:IDPList' => ['noSuchIdp'],
+            'saml:IDPList' => ['urn:x-simplesamlphp:noSuchIdp'],
         ];
 
         $info = ['AuthId' => 'default-sp'];
@@ -330,7 +330,7 @@ class SPTest extends ClearStateTestCase
         ];
         Configuration::loadFromArray($c, '', 'simplesaml');
         $state = [
-            'saml:IDPList' => ['noSuchIdp', $entityId],
+            'saml:IDPList' => ['urn:x-simplesamlphp:noSuchIdp', $entityId],
         ];
 
         $info = ['AuthId' => 'default-sp'];
@@ -359,7 +359,7 @@ class SPTest extends ClearStateTestCase
         ];
         Configuration::loadFromArray($c, '', 'simplesaml');
         $state = [
-            'saml:IDPList' => ['noSuchIdp', $entityId],
+            'saml:IDPList' => ['urn:x-simplesamlphp:noSuchIdp', $entityId],
         ];
 
         $info = ['AuthId' => 'default-sp'];
@@ -406,7 +406,7 @@ class SPTest extends ClearStateTestCase
         ];
         Configuration::loadFromArray($c, '', 'simplesaml');
         $state = [
-            'saml:IDPList' => ['noSuchIdp', $entityId],
+            'saml:IDPList' => ['urn:x-simplesamlphp:noSuchIdp', $entityId],
         ];
 
         $info = ['AuthId' => 'default-sp'];
@@ -454,7 +454,7 @@ class SPTest extends ClearStateTestCase
 
         Configuration::loadFromArray($c, '', 'simplesaml');
         $state = [
-            'saml:IDPList' => ['noSuchIdp', $entityId, $entityId1],
+            'saml:IDPList' => ['urn:x-simplesamlphp:noSuchIdp', $entityId, $entityId1],
         ];
 
         $info = ['AuthId' => 'default-sp'];
@@ -608,34 +608,34 @@ class SPTest extends ClearStateTestCase
     {
         return [
             [
-                'stateIdpList' => ['https//scope1.example.com'],
-                'idpConfigArray' => ['https//scope2.example.com'],
-                'remoteMetadata' => ['https//scope3.example.com'],
-                'expectedScope' => 'https//scope1.example.com',
+                'stateIdpList' => ['https://scope1.example.com'],
+                'idpConfigArray' => ['https://scope2.example.com'],
+                'remoteMetadata' => ['https://scope3.example.com'],
+                'expectedScope' => 'https://scope1.example.com',
             ],
             [
                 'stateIdpList' => null,
-                'idpConfigArray' => ['https//scope2.example.com'],
-                'remoteMetadata' => ['https//scope3.example.com'],
-                'expectedScope' => 'https//scope3.example.com',
+                'idpConfigArray' => ['https://scope2.example.com'],
+                'remoteMetadata' => ['https://scope3.example.com'],
+                'expectedScope' => 'https://scope3.example.com',
             ],
             [
                 'stateIdpList' => null,
                 'idpConfigArray' => null,
-                'remoteMetadata' => ['https//scope3.example.com'],
-                'expectedScope' => 'https//scope3.example.com',
+                'remoteMetadata' => ['https://scope3.example.com'],
+                'expectedScope' => 'https://scope3.example.com',
             ],
             [
-                'stateIdpList' => ['https//scope1.example.com'],
+                'stateIdpList' => ['https://scope1.example.com'],
                 'idpConfigArray' => null,
-                'remoteMetadata' => ['https//scope3.example.com'],
-                'expectedScope' => 'https//scope1.example.com',
+                'remoteMetadata' => ['https://scope3.example.com'],
+                'expectedScope' => 'https://scope1.example.com',
             ],
             [
-                'stateIdpList' => ['https//scope1.example.com'],
-                'idpConfigArray' => ['https//scope2.example.com'],
+                'stateIdpList' => ['https://scope1.example.com'],
+                'idpConfigArray' => ['https://scope2.example.com'],
                 'remoteMetadata' => null,
-                'expectedScope' => 'https//scope1.example.com',
+                'expectedScope' => 'https://scope1.example.com',
             ],
         ];
     }

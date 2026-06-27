@@ -667,7 +667,7 @@ class ServiceProviderTest extends TestCase
             '/assertionConsumerService',
             'GET',
             [
-                'SAMLRequest' => 'pVJNb9swDP0rhu6O7XjeGiEJkDYoGqDbgibboZdCkahEgEx5Ir11/36y02FdD7n0JPDjPT4+cU6q9Z1c9XzCB/jRA3H23HokORYWoo8ogyJHElULJFnL3erzvZxOStnFwEEHL15BLiMUEUR2AUW2WS/EUw2NrXRp7NWshEPVzJqm+TQzVV1DddC21rUy1tq6norsO0RKyIVIRAlO1MMGiRVySpVVk1fTvKr25ZVsGvnh46PI1mkbh4pH1Im5I1kUgEeHMKE+Wh0QnnmCvlBpf0B2emwunOkKcnj0kJM7Yj7oXf2VfhOQ+hbiDuJPp+Hbw/0/8uSIdf4tO7m28zC4U7TB9KnendKAIabzO82VpjFrwKrec06dyLYv/l47NEnNZWsP5yaSd/v9Nt9+3e3Fcj5wy9GquHyPxhZYGcXqjcR58XrA/HxLX5K0zXobvNO/s9sQW8WXlQ8ZZ3I7tkqOCsmlz0iWex9+3URQDAvBsQdRLM8j/7/Y5R8=',
+                'SAMLRequest' => 'pVJNbxMxEP0rK983+0E3aq0kUmiEiFQgagIHLsixx4kl73jxjKH8e7ybIkoPuXAazcd78+ZpFqR6P8h14jM+wvcExMVT75Hk1FiKFFEGRY4kqh5Ispb79YcH2c5qOcTAQQcvXkCuIxQRRHYBRbHdLMU3c3sHpmmttZ2pjzrHN/bW2rm6aerWzOu2uZkfdW3royi+QKSMXIpMlOFECbZIrJBzqW66smnL+u7QNrJrZdd9FcUmX+NQ8YQ6Mw8kqwrw5BBmlKLVAeGJZ+grle8HZKen4cqZoSKHJw8luROWo971H+n3ASn1EPcQfzgNnx8f/pJnR6zzr9nJ9YOH0Z2qDybl/nDOC8acLrEtlaapasCq5LmkQRS7Z3/fOjRZzXVrj5chku8Ph125+7Q/iNVi5JaTVXH1Pxp7YGUUq1cSF9XLBYvLL33M0rabXfBO/yrehdgrvq58rDhT2mlUJqQBtLMOTDbd+/DzPoJiWAqOCUS1uiz992dXvwE=',
                 'RelayState' => 'https://profile.surfconext.nl/',
                 'SAMLEncoding' => 'urn:oasis:names:tc:SAML:2.0:bindings:URL-Encoding:DEFLATE',
             ],
@@ -762,7 +762,7 @@ class ServiceProviderTest extends TestCase
         /** Note:  should be replaced by loading an xml-file once we can load that from saml2v6 */
         $x = <<<XML
 <samlp:LogoutRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Version="2.0" ID="_f987e7436c1103bcf89296303f780d853d7713a8ef" IssueInstant="2020-08-15T15:53:24Z">
-  <saml:Issuer>TheIssuer</saml:Issuer>
+  <saml:Issuer>urn:x-simplesamlphp:issuer</saml:Issuer>
   <saml:EncryptedID>
     <xenc:EncryptedData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" Type="http://www.w3.org/2001/04/xmlenc#Element">
       <xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes128-cbc"/>
@@ -798,7 +798,7 @@ XML;
         $this->expectException(Error\MetadataNotFound::class);
         $exceptionMessage = [
             "errorCode" => "METADATANOTFOUND",
-            "%ENTITYID%" => "TheIssuer",
+            "%ENTITYID%" => "urn:x-simplesamlphp:issuer",
         ];
         $this->expectExceptionMessage(json_encode($exceptionMessage));
 
