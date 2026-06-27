@@ -6,15 +6,14 @@ namespace SimpleSAML\Module\saml\IdP;
 
 use DOMNodeList;
 use Exception;
+use Nyholm\Psr7\Factory\Psr17Factory;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\Assertion;
 use SAML2\AuthnRequest;
-use SAML2\Binding;
 use SAML2\EncryptedAssertion;
-use SAML2\HTTPRedirect;
 use SAML2\LogoutRequest;
 use SAML2\LogoutResponse;
-use SAML2\Response;
+use SAML2\Response as SAML2_Response;
 use SAML2\XML\ds\KeyInfo;
 use SAML2\XML\ds\X509Certificate;
 use SAML2\XML\ds\X509Data;
@@ -32,11 +31,19 @@ use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Module\saml\Message;
+use SimpleSAML\SAML2\Binding;
+use SimpleSAML\SAML2\Binding\HTTPRedirect;
 use SimpleSAML\SAML2\Constants as C;
-use SimpleSAML\SAML2\Exception\Protocol\UnsupportedBindingException;
+use SimpleSAML\SAML2\XML\samlp\LogoutRequest as LogoutRequestNew;
+use SimpleSAML\SAML2\XML\samlp\LogoutResponse as LogoutResponseNew;
+use SimpleSAML\SAML2\XML\samlp\Response as SAML2_ResponseNew;
 use SimpleSAML\Stats;
 use SimpleSAML\Utils;
 use SimpleSAML\XML\DOMDocumentFactory;
+use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
+use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * IdP implementation for SAML 2.0 protocol.
@@ -49,8 +56,9 @@ class SAML2
      * Send a response to the SP.
      *
      * @param array $state The authentication state.
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public static function sendResponse(array $state): void
+    public static function sendResponse(array $state): Response
     {
         Assert::keyExists($state, 'saml:RequestId'); // Can be NULL
         Assert::keyExists($state, 'saml:RelayState'); // Can be NULL.
@@ -114,20 +122,27 @@ class SAML2
         }
         Stats::log('saml:idp:Response', $statsData);
 
+        // Convert the old Response to a new one until we're fully migrated to saml2v6
+        $newresponse = SAML2_ResponseNew::fromXML($ar->toXML());
+        $newresponse->setRelayState($relayState);
+
         // send the response
         $binding = Binding::getBinding($protocolBinding);
-        $binding->send($ar);
+
+        $psrResponse = $binding->send($newResponse);
+        $httpFoundationFactory = new HttpFoundationFactory();
+        return $httpFoundationFactory->createResponse($psrResponse);
     }
 
 
     /**
      * Handle authentication error.
      *
-     * \SimpleSAML\Error\Exception $exception  The exception.
-     *
+     * @param \SimpleSAML\Error\Exception $exception  The exception.
      * @param array $state The error state.
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public static function handleAuthError(Error\Exception $exception, array $state): void
+    public static function handleAuthError(Error\Exception $exception, array $state): Response
     {
         Assert::keyExists($state, 'saml:RequestId'); // Can be NULL.
         Assert::keyExists($state, 'saml:RelayState'); // Can be NULL.
@@ -178,8 +193,14 @@ class SAML2
         }
         Stats::log('saml:idp:Response:error', $statsData);
 
+        // Convert old Response to a new one until we're fully migrated to saml2v6
+        $newresponse = SAML2_ResponseNew::fromXML($ar->toXML());
+        $newresponse->setRelayState($relayState);
+
         $binding = Binding::getBinding($protocolBinding);
-        $binding->send($ar);
+        $psrResponse = $binding->send($newresponse);
+        $httpFoundationFactory = new HttpFoundationFactory();
+        return $httpFoundationFactory->createResponse($psrResponse);
     }
 
 
@@ -301,9 +322,11 @@ class SAML2
      *
      * @param \Symfony\Component\HttpFoundation\Request  The current request
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs when trying to receive the request.
      */
-    public static function receiveAuthnRequest(Request $request, IdP $idp): void
+    public static function receiveAuthnRequest(Request $request, IdP $idp): Response
     {
         $metadata = MetaDataStorageHandler::getMetadataHandler(Configuration::getInstance());
         $idpMetadata = $idp->getConfig();
@@ -383,12 +406,14 @@ class SAML2
                 'SAML2.0 - IdP.SSOService: IdP initiated authentication: ' . var_export($spEntityId, true),
             );
         } else {
-            try {
-                $binding = Binding::getCurrentBinding();
-            } catch (UnsupportedBindingException $e) {
-                throw new Error\Error('SSOPARAMS', $e, 400);
-            }
-            $request = $binding->receive();
+            $psr17Factory = new Psr17Factory();
+            $psrHttpFactory = new PsrHttpFactory($psr17Factory, $psr17Factory, $psr17Factory, $psr17Factory);
+            $psrRequest = $psrHttpFactory->createRequest($request);
+            $binding = Binding::getCurrentBinding($psrRequest);
+            $oldrequest = $binding->receive($psrRequest);
+
+            // Convert new request to a legacy one until we're fully migrated to saml2v6
+            $request = new AuthnRequest($oldrequest->toXML());
 
             if (!($request instanceof AuthnRequest)) {
                 throw new Error\BadRequest(
@@ -396,12 +421,12 @@ class SAML2
                 );
             }
 
-            if (isset($_REQUEST['username'])) {
-                $username = (string) $_REQUEST['username'];
-            } elseif (isset($_REQUEST['login_hint'])) {
-                $username = (string) $_REQUEST['login_hint'];
-            } elseif (isset($_REQUEST['LoginHint'])) {
-                $username = (string) $_REQUEST['LoginHint'];
+            if ($request->query->has('username')) {
+                $username = $request->query->get('username');
+            } elseif ($request->query->has('login_hint')) {
+                $username = $request->query->get('login_hint');
+            } elseif ($request->query->has('LoginHint')) {
+                $username = $request->query->get('LoginHint');
             }
 
             $issuer = $request->getIssuer();
@@ -527,7 +552,7 @@ class SAML2
             $state['core:username'] = $username;
         }
 
-        $idp->handleAuthenticationRequest($state);
+        return $idp->handleAuthenticationRequest($state);
     }
 
 
@@ -537,8 +562,9 @@ class SAML2
      * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
      * @param array           $association The association that should be terminated.
      * @param string|null $relayState An id that should be carried across the logout.
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public static function sendLogoutRequest(IdP $idp, array $association, ?string $relayState = null): void
+    public static function sendLogoutRequest(IdP $idp, array $association, ?string $relayState = null): Response
     {
         Logger::info('Sending SAML 2.0 LogoutRequest to: ' . var_export($association['saml:entityID'], true));
 
@@ -564,17 +590,24 @@ class SAML2
         $lr = self::buildLogoutRequest($idpMetadata, $spMetadata, $association, $relayState);
         $lr->setDestination($dst['Location']);
 
-        $binding->send($lr);
+        // Convert an old LogoutRequest to a new one as long as we're not fully migrated to saml2v6
+        $newlr = LogoutRequestNew::fromXML($lr->toXML());
+
+        $psrResponse = $binding->send($newlr);
+        $httpFoundationFactory = new HttpFoundationFactory();
+        return $httpFoundationFactory->createResponse($psrResponse);
     }
 
 
     /**
      * Send a logout response.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
      * @param array           &$state The logout state array.
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public static function sendLogoutResponse(IdP $idp, array $state): void
+    public static function sendLogoutResponse(Request $request, IdP $idp, array $state): Response
     {
         Assert::keyExists($state, 'saml:RelayState'); // Can be NULL.
         Assert::notNull($state['saml:SPEntityId']);
@@ -624,20 +657,36 @@ class SAML2
         }
         $lr->setDestination($dst);
 
-        $binding->send($lr);
+        // Convert old LogoutResponse to a new one as long as we're not fully migrated to saml2v6
+        $newlr = LogoutResponseNew::fromXML($lr->toXML());
+        $newlr->setRelayState($state['saml:RelayState']);
+
+        $psrResponse = $binding->send($newlr);
+        $httpFoundationFactory = new HttpFoundationFactory();
+        return $httpFoundationFactory->createResponse($psrResponse);
     }
 
 
     /**
      * Receive a logout message.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs while trying to receive the logout message.
      */
-    public static function receiveLogoutMessage(IdP $idp): void
+    public static function receiveLogoutMessage(Request $request, IdP $idp): Response
     {
-        $binding = Binding::getCurrentBinding();
-        $message = $binding->receive();
+        $psr17Factory = new Psr17Factory();
+        $psrHttpFactory = new PsrHttpFactory($psr17Factory, $psr17Factory, $psr17Factory, $psr17Factory);
+        $psrRequest = $psrHttpFactory->createRequest($request);
+
+        $binding = Binding::getCurrentBinding($psrRequest);
+        $newmessage = $binding->receive($psrRequest);
+
+        // Convert new Logout message to an old one until we're fully migrated to saml2v6
+        $message = Message::fromXML($newmessage->toXML());
 
         $issuer = $message->getIssuer();
         if ($issuer === null) {
@@ -675,7 +724,7 @@ class SAML2
 
             $assocId = 'saml:' . $spEntityId;
 
-            $idp->handleLogoutResponse($assocId, $relayState, $logoutError);
+            return $idp->handleLogoutResponse($assocId, $relayState, $logoutError);
         } elseif ($message instanceof LogoutRequest) {
             Logger::info('Received SAML 2.0 LogoutRequest from: ' . var_export($spEntityId, true));
             Stats::log('saml:idp:LogoutRequest:recv', [
@@ -694,10 +743,10 @@ class SAML2
             ];
 
             $assocId = 'saml:' . $spEntityId;
-            $idp->handleLogoutRequest($state, $assocId);
-        } else {
-            throw new Error\BadRequest('Unknown message received on logout endpoint: ' . get_class($message));
+            return $idp->handleLogoutRequest($state, $assocId);
         }
+
+        throw new Error\BadRequest('Unknown message received on logout endpoint: ' . get_class($message));
     }
 
 
@@ -1459,7 +1508,7 @@ class SAML2
         Configuration $idpMetadata,
         Configuration $spMetadata,
         string $consumerURL,
-    ): Response {
+    ): SAML2_Response {
         $signResponse = $spMetadata->getOptionalBoolean('saml20.sign.response', null);
         if ($signResponse === null) {
             $signResponse = $idpMetadata->getOptionalBoolean('saml20.sign.response', true);

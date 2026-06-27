@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 class TestAuthSource extends Source
 {
     /**
-     * @param \Symfony\Component\HttpFoundation\Request  The current request
+     * @param \Symfony\Component\HttpFoundation\Request $request  The current request
      * @param array &$state
      * @return \Symfony\Component\HttpFoundation\Response|null
      */

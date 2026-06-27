@@ -67,10 +67,10 @@ class Cron
     /**
      * Show cron info.
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response|\Symfony\Component\HttpFoundation\RedirectResponse
      *   An HTML template or a redirection if we are not authenticated.
      */
-    public function info(): Template
+    public function info(): Template|RedirectResponse
     {
         $response = $this->authUtils->requireAdmin();
         if ($response instanceof Response) {

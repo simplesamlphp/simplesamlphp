@@ -13,6 +13,9 @@ use SimpleSAML\Utils;
 
 class SspContainer extends AbstractContainer
 {
+    /** @var \Psr\Clock\ClockInterface */
+    private ClockInterface $clock;
+
     /** @var \Psr\Log\LoggerInterface */
     protected LoggerInterface $logger;
 
@@ -64,10 +67,10 @@ class SspContainer extends AbstractContainer
      * @param string $url
      * @param array $data
      */
-    public function redirect(string $url, array $data = []): void
+    public function getPOSTRedirectURL(string $url, array $data = []): string
     {
         $httpUtils = new Utils\HTTP();
-        $httpUtils->redirectTrustedURL($url, $data);
+        return $httpUtils->getPOSTRedirectURL($url, $data);
     }
 
 

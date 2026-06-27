@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Metadata\MetadataStorageHandler;
+use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Controller;
 use SimpleSAML\Module\saml\Error\NoAvailableIDP;
 use SimpleSAML\XHTML\Template;

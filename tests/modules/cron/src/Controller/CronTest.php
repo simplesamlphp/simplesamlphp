@@ -87,14 +87,9 @@ class CronTest extends TestCase
      */
     public function testInfo(): void
     {
-        $request = Request::create(
-            '/info',
-            'GET',
-        );
-
         $c = new Controller\Cron($this->config, $this->session);
         $c->setAuthUtils($this->authUtils);
-        $response = $c->info($request);
+        $response = $c->info();
 
         $this->assertInstanceOf(Template::class, $response);
         $this->assertTrue($response->isSuccessful());

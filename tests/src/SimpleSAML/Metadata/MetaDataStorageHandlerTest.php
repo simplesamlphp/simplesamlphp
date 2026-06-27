@@ -23,6 +23,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
             ],
         ];
         $config = Configuration::loadFromArray($config, '', 'simplesaml');
+
         return MetaDataStorageHandler::getMetadataHandler($config);
     }
 

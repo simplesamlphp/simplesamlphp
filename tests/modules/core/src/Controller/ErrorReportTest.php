@@ -64,7 +64,7 @@ class ErrorReportTest extends TestCase
 
         $response = $c->main($request);
 
-        $this->assertTrue($response->isSuccesful());
+        $this->assertTrue($response->isSuccessful());
         $this->assertEquals('core:errorreport.twig', $response->getTemplateName());
     }
 

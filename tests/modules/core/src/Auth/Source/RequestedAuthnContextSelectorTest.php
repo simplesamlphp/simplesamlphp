@@ -173,7 +173,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
              * @param \Symfony\Component\HttpFoundation\Request $request  The currect request
              * @param \SimpleSAML\Auth\Source $as
              * @param array $state
-             * @param \Symfony\Component\HttpFoundation\Response|null
+             * @return \Symfony\Component\HttpFoundation\Response|null
              */
             public static function doAuthentication(Request $request, Auth\Source $as, array &$state): ?Response
             {

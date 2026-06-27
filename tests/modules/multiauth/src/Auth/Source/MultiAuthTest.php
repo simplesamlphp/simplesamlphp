@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\multiauth\Auth\Source;
 
+use Error;
 use Exception;
 use PHPUnit\Framework\Attributes\CoversClass;
 use SimpleSAML\Configuration;

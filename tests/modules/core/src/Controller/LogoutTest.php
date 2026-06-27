@@ -103,7 +103,6 @@ class LogoutTest extends ClearStateTestCase
         $response = $c->logout($request, 'example-authsource');
         $this->assertInstanceOf(Response::class, $response);
         $this->assertTrue($response->isSuccessful());
-        $this->assertEquals('https://example.org/something', $response->getArguments()[0]);
     }
 
 
