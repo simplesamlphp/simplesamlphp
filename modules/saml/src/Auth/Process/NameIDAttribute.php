@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth\ProcessingFilter;
 use SimpleSAML\Error;
+use SimpleSAML\SAML2\Constants as C;
 
 /**
  * Authentication processing filter to create an attribute from a NameID.

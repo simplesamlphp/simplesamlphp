@@ -821,7 +821,7 @@ class Message
 
                 $found = true;
                 break;
-            } catch (\SimpleSAML\Error\Exception $e) {
+            } catch (SSP_Error\Exception $e) {
                 $lastError = $e->getMessage();
                 continue;
             }

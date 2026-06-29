@@ -8,10 +8,11 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\core\Controller;
 use SimpleSAML\TestUtils\ClearStateTestCase;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Set of tests for the controllers in the "core" module.
@@ -42,7 +43,10 @@ class LogoutTest extends ClearStateTestCase
                 'baseurlpath' => 'https://example.org/simplesaml',
                 'module.enable' => ['exampleauth' => true],
                 'enable.saml20-idp' => true,
-                'trusted.url.domains' => [],
+                'trusted.url.domains' => ['example.org'],
+                'application' => [
+                    'baseURL' => 'https://example.org/simplesaml/',
+                ],
             ],
             '[ARRAY]',
             'simplesaml',
@@ -66,12 +70,8 @@ class LogoutTest extends ClearStateTestCase
 
         $response = $c->logout($request, 'example-authsource');
 
-        $this->assertInstanceOf(RunnableResponse::class, $response);
-        $this->assertTrue($response->isSuccessful());
-        /** @var callable $callable */
-        $callable = $response->getCallable();
-        $this->assertInstanceOf(Auth\Simple::class, $callable[0]);
-        $this->assertEquals('logout', $callable[1]);
+        $this->assertInstanceOf(RedirectResponse::class, $response);
+        $this->assertTrue($response->isRedirection());
     }
 
 
@@ -97,16 +97,14 @@ class LogoutTest extends ClearStateTestCase
         $request = Request::create(
             '/logout/example-authsource',
             'GET',
-            ['ReturnTo' => 'https://example.org/something'],
+            ['ReturnTo' => '/something'],
         );
-        $_SERVER['REQUEST_URI']  = 'https://example.com/simplesaml/module.php/core/logout/example-authsource';
 
         $c = new Controller\Logout($this->config);
 
         $response = $c->logout($request, 'example-authsource');
-        $this->assertInstanceOf(RunnableResponse::class, $response);
+        $this->assertInstanceOf(Response::class, $response);
         $this->assertTrue($response->isSuccessful());
-        $this->assertEquals('https://example.org/something', $response->getArguments()[0]);
     }
 
 

@@ -7,8 +7,9 @@ namespace SimpleSAML\Test\Module\saml\Controller;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\saml\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Set of tests for the controllers in the "saml" module.
@@ -41,27 +42,29 @@ class DiscoTest extends TestCase
 
 
     /**
-     * Test that accessing the disco-endpoint leads to a RunnableResponse
+     * Test that accessing the disco-endpoint leads to a RedirectResponse
      *
      * @return void
      */
     public function testDisco(): void
     {
-        $params = [
-            'entityID' => 'urn:entity:phpunit',
-            'return' => '/something',
-            'isPassive' => 'true',
-            'IdPentityID' => 'some:idp:phpunit',
-            'returnIDParam' => 'someParam',
-            'IDPList' => 'a,b,c',
-        ];
-
-        $_GET = array_merge($_GET, $params);
-        $_SERVER['REQUEST_URI'] = '/disco';
+        $request = Request::create(
+            '/disco',
+            'GET',
+            [
+                'entityID' => 'urn:entity:phpunit',
+                'return' => '/something',
+                'isPassive' => 'true',
+                'IdPentityID' => 'some:idp:phpunit',
+                'returnIDParam' => 'someParam',
+                'IDPList' => ['a', 'b', 'c'],
+            ],
+        );
 
         $c = new Controller\Disco($this->config);
 
-        $result = $c->disco();
-        $this->assertInstanceOf(RunnableResponse::class, $result);
+        $result = $c->disco($request);
+        $this->assertInstanceOf(RedirectResponse::class, $result);
+        $this->assertTrue($result->isRedirection());
     }
 }

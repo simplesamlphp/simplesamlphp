@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
-use SimpleSAML\SAML2\Constants;
+use SimpleSAML\SAML2\Constants as C;
 
 use function strtolower;
 
@@ -81,6 +81,6 @@ class PairwiseID extends SubjectID
         $value = strtolower($hash . '@' . $scope);
         $this->validateGeneratedIdentifier($value);
 
-        $state['Attributes'][Constants::ATTR_PAIRWISE_ID] = [$value];
+        $state['Attributes'][C::ATTR_PAIRWISE_ID] = [$value];
     }
 }
