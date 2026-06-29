@@ -275,7 +275,12 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
 
         // Can override property value in configuration for particular hosted IdP (second one).
         $this->assertSame(
-            'https://idp.example.org/ssos',
+            [
+                [
+                    'index' => 1,
+                    'Location' => 'https://idp.example.org/ssos',
+                ],
+            ],
             $handler->getGenerated(
                 'SingleSignOnService',
                 'saml20-idp-hosted',
