@@ -918,8 +918,6 @@ XML;
      * but whose issuer does not match state ExpectedIssuer, hard-fails.
      *
      * This covers the strict issuer/state binding added in ServiceProvider::assertionConsumerService().
-     *
-     * @return void
      */
     public function testACSExpectedIssuerMismatchHardFails(): void
     {
@@ -945,6 +943,9 @@ XML;
     <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"/>
   </samlp:Status>
   <saml:Assertion ID="_a1" Version="2.0" IssueInstant="2026-05-22T12:34:56Z">
+    <saml:Subject>
+     <saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">test@example.org</saml:NameID>
+    </saml:Subject>
     <saml:Issuer>{$actualIssuer}</saml:Issuer>
   </saml:Assertion>
 </samlp:Response>
