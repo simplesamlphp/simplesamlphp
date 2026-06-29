@@ -35,7 +35,6 @@ class SpTester extends SP
     {
         $reflector = new ReflectionObject($this);
         $method = $reflector->getMethod('startSSO2');
-        $method->setAccessible(true);
         $method->invoke($this, $idpMetadata, $state);
     }
 
