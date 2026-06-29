@@ -7,6 +7,7 @@ namespace SimpleSAML\Module\admin\Controller;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
+use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
@@ -98,15 +99,11 @@ class Test
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string|null $as
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
      */
     public function main(Request $request, ?string $as = null): Response
     {
-        $response = $this->authUtils->requireAdmin();
-        if ($response instanceof Response) {
-            return $response;
-        }
-
+        $this->authUtils->requireAdmin();
         if (is_null($as)) {
             $t = new Template($this->config, 'admin:authsource_list.twig');
             $t->data = [
@@ -117,7 +114,7 @@ class Test
             $authsource = new $this->authSimple($as);
 
             if (!is_null($request->query->get('logout'))) {
-                return $authsource->logout(Module::getModuleURL('admin/logout'));
+                return new RunnableResponse([$authsource, 'logout'], [Module::getModuleURL('admin/logout')]);
             } elseif (!is_null($request->query->get(Auth\State::EXCEPTION_PARAM))) {
                 // This is just a simple example of an error
                 /** @var array $state */
@@ -133,7 +130,7 @@ class Test
                     'ReturnTo' => $url,
                     Auth\State::RESTART => $url,
                 ];
-                return $authsource->login($params);
+                return new RunnableResponse([$authsource, 'login'], [$params]);
             }
 
             $attributes = $authsource->getAttributes();

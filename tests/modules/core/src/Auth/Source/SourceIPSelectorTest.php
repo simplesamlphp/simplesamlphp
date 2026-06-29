@@ -13,8 +13,6 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\Module\core\Auth\Source\AbstractSourceSelector;
 use SimpleSAML\Module\core\Auth\Source\SourceIPSelector;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  */
@@ -115,33 +113,28 @@ class SourceIPSelectorTest extends TestCase
 
         $selector = new class ($info, $config) extends SourceIPSelector {
             /**
-             * @param \Symfony\Component\HttpFoundation\Request $request
              * @param \SimpleSAML\Auth\Source $as
              * @param array $state
-             * @return \Symfony\Component\HttpFoundation\Response|null
+             * @return void
              */
-            public static function doAuthentication(Request $request, Auth\Source $as, array &$state): ?Response
+            public static function doAuthentication(Auth\Source $as, array &$state): void
             {
                 // Dummy
-                return null;
             }
 
 
             /**
-             * @param \Symfony\Component\HttpFoundation\Request $request
              * @param array &$state
-             * @return \Symfony\Component\HttpFoundation\Response|null
+             * @return void
              */
-            public function authenticate(Request $request, array &$state): ?Response
+            public function authenticate(array &$state): void
             {
                 $state['finished'] = true;
-                return null;
             }
         };
 
         $state = [];
-        $request = Request::createFromGlobals();
-        $selector->authenticate($request, $state);
+        $selector->authenticate($state);
         $this->assertTrue($state['finished']);
     }
 

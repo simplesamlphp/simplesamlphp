@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
-use SimpleSAML\Configuration;
 use SimpleSAML\Database;
 use SimpleSAML\Error;
 
@@ -58,17 +57,11 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      * - 'username':                Database user name
      * - 'password':                Password for the database user.
      *
-     * @param \SimpleSAML\Configuration $globalConfig The global config.
      * @param array $config An associative array with the configuration for this handler.
-     *
-     * @phpstan-ignore constructor.unusedParameter,constructor.unusedParameter
+     * @phpstan-ignore constructor.unusedParameter
      */
-    public function __construct(
-        /** @scrutinizer ignore-unused */ Configuration $globalConfig,
-        /** @scrutinizer ignore-unused */ array $config,
-    ) {
-        parent::__construct();
-
+    public function __construct(/** @scrutinizer ignore-unused */ array $config)
+    {
         $this->db = Database::getInstance();
     }
 

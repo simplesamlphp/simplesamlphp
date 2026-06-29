@@ -12,7 +12,6 @@ namespace SimpleSAML\XHTML;
 
 use Exception;
 use InvalidArgumentException;
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Locale\Localization;
@@ -690,7 +689,6 @@ class Template extends Response
 
         foreach ($tryLanguages as $language) {
             if (isset($data[$property][$language])) {
-                Assert::string($data[$property][$language]);
                 return $data[$property][$language];
             }
         }

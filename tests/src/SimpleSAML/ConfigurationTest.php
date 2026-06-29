@@ -6,10 +6,10 @@ namespace SimpleSAML\Test;
 
 use Exception;
 use PHPUnit\Framework\Attributes\CoversClass;
+use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 
 /**

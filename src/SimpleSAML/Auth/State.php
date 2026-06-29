@@ -11,7 +11,6 @@ use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
-use Symfony\Component\HttpFoundation\Response;
 
 use function filter_var;
 use function preg_match;
@@ -297,8 +296,7 @@ class State
                 throw new Error\NoState();
             }
 
-            $response = $httpUtils->redirectUntrustedURL($sid['url']);
-            $response->send();
+            $httpUtils->redirectUntrustedURL($sid['url']);
         }
 
         $state = unserialize($state);
@@ -322,8 +320,7 @@ class State
                 throw new Exception($msg);
             }
 
-            $response = $httpUtils->redirectUntrustedURL($sid['url']);
-            $response->send();
+            $httpUtils->redirectUntrustedURL($sid['url']);
         }
 
         return $state;
@@ -368,19 +365,17 @@ class State
             $id = self::saveState($state, self::EXCEPTION_STAGE);
 
             // Redirect to the exception handler
-            $response = $httpUtils->redirectTrustedURL(
+            $httpUtils->redirectTrustedURL(
                 $state[self::EXCEPTION_HANDLER_URL],
                 [self::EXCEPTION_PARAM => $id],
             );
-            $response->send();
         } elseif (array_key_exists(self::EXCEPTION_HANDLER_FUNC, $state)) {
             // Call the exception handler
             $func = $state[self::EXCEPTION_HANDLER_FUNC];
             Assert::isCallable($func);
 
-            $response = call_user_func($func, $exception, $state);
-            Assert::isInstanceOf($response, Response::class);
-            $response->send();
+            call_user_func($func, $exception, $state);
+            Assert::true(false);
         } else {
             /*
              * No exception handler is defined for the current state.

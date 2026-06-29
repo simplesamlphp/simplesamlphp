@@ -362,6 +362,7 @@ class MessageTest extends TestCase
         bool $isUnsolicited,
     ): ?string {
         $m = new ReflectionMethod(Message::class, 'validateSubjectConfirmation');
+        $m->setAccessible(true);
 
         try {
             $m->invoke(

@@ -101,7 +101,6 @@ class Login
      * username/password authentication.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function loginuserpass(Request $request): Response
     {
@@ -148,7 +147,6 @@ class Login
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \SimpleSAML\Module\core\Auth\UserPassBase|\SimpleSAML\Module\core\Auth\UserPassOrgBase $source
      * @param array $state
-     * @return \Symfony\Component\HttpFoundation\Response
      */
     private function handleLogin(Request $request, UserPassBase|UserPassOrgBase $source, array $state): Response
     {
@@ -240,9 +238,9 @@ class Login
 
                 try {
                     if ($source instanceof UserPassOrgBase) {
-                        return $source::handleLogin($authStateId, $username, $password, $organization);
+                        $source::handleLogin($authStateId, $username, $password, $organization);
                     } else {
-                        return $source::handleLogin($authStateId, $username, $password);
+                        $source::handleLogin($authStateId, $username, $password);
                     }
                 } catch (Error\Error $e) {
                     // Login failed. Extract error code and parameters, to display the error
@@ -364,7 +362,6 @@ class Login
      * username/password/organization authentication.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function loginuserpassorg(Request $request): Response
     {
@@ -509,9 +506,8 @@ class Login
      * This clears the user's IdP discovery choices.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this login operation.
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function cleardiscochoices(Request $request): RedirectResponse
+    public function cleardiscochoices(Request $request): void
     {
         $httpUtils = new Utils\HTTP();
 
@@ -531,6 +527,6 @@ class Login
         $returnTo = $this->getReturnPath($request);
 
         // Redirect to destination.
-        return $httpUtils->redirectTrustedURL($returnTo);
+        $httpUtils->redirectTrustedURL($returnTo);
     }
 }

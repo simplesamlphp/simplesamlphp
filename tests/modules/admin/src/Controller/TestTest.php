@@ -10,13 +10,12 @@ use SAML2\XML\saml\NameID;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
+use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\admin\Controller\Test as TestController;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Set of tests for the controllers in the "admin" module.
@@ -52,10 +51,9 @@ class TestTest extends TestCase
         );
 
         $this->authUtils = new class () extends Utils\Auth {
-            public function requireAdmin(): ?Response
+            public function requireAdmin(): void
             {
                 // stub
-                return null;
             }
         };
 
@@ -107,11 +105,17 @@ class TestTest extends TestCase
 
         $c = new TestController($this->config, $this->session);
         $c->setAuthUtils($this->authUtils);
+        $c->setAuthSimple(new class ('admin') extends Auth\Simple {
+            public function logout($params = null): void
+            {
+                // stub
+            }
+        });
 
         $response = $c->main($request, 'admin');
 
-        $this->assertInstanceOf(RedirectResponse::class, $response);
-        $this->assertTrue($response->isRedirection());
+        $this->assertInstanceOf(RunnableResponse::class, $response);
+        $this->assertTrue($response->isSuccessful());
     }
 
 
@@ -162,7 +166,6 @@ class TestTest extends TestCase
      */
     public function testMainWithAuthSourceNotAuthenticated(): void
     {
-        $_SERVER['REQUEST_METHOD'] = 'GET';
         $_SERVER['REQUEST_URI'] = '/module.php/admin/test';
         $request = Request::create(
             '/test',
@@ -177,12 +180,18 @@ class TestTest extends TestCase
             {
                 return false;
             }
+
+
+            public function login(array $params = []): void
+            {
+                // stub
+            }
         });
 
         $response = $c->main($request, 'admin');
 
-        $this->assertInstanceOf(RedirectResponse::class, $response);
-        $this->assertTrue($response->isRedirection());
+        $this->assertInstanceOf(RunnableResponse::class, $response);
+        $this->assertTrue($response->isSuccessful());
     }
 
 

@@ -13,7 +13,6 @@ use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -67,15 +66,12 @@ class Cron
     /**
      * Show cron info.
      *
-     * @return \Symfony\Component\HttpFoundation\Response|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \SimpleSAML\XHTML\Template
      *   An HTML template or a redirection if we are not authenticated.
      */
-    public function info(): Template|RedirectResponse
+    public function info(): Template
     {
-        $response = $this->authUtils->requireAdmin();
-        if ($response instanceof Response) {
-            return $response;
-        }
+        $this->authUtils->requireAdmin();
 
         $key = $this->cronconfig->getOptionalString('key', 'secret');
         $tags = $this->cronconfig->getOptionalArray('allowed_tags', []);
@@ -99,7 +95,6 @@ class Cron
 
         $t = new Template($this->config, 'cron:croninfo.twig');
         $t->data['urls'] = $urls;
-
         return $t;
     }
 
@@ -109,16 +104,16 @@ class Cron
      *
      * This controller will start a cron operation
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string $tag The tag
      * @param string $key The secret key
      * @param string $output The output format, defaulting to xhtml
      *
-     * @return \Symfony\Component\HttpFoundation\Response  An HTML template
+     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\Response
+     *   An HTML template, a redirect or a "runnable" response.
      *
      * @throws \SimpleSAML\Error\Exception
      */
-    public function run(Request $request, string $tag, string $key, string $output = 'xhtml'): Response
+    public function run(string $tag, string $key, string $output = 'xhtml'): Response
     {
         $configKey = $this->cronconfig->getString('key');
 
@@ -175,7 +170,6 @@ class Cron
             $t->data['summary'] = $summary;
             return $t;
         }
-
-        throw new Error\Exception('Unknown output type.');
+        return new Response();
     }
 }

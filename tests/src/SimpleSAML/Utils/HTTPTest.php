@@ -752,8 +752,7 @@ class HTTPTest extends ClearStateTestCase
         // Capture output
         ob_start();
         try {
-            $response = $httpUtils->submitPOSTData($destination, $post);
-            $response->send();
+            $httpUtils->submitPOSTData($destination, $post);
         } catch (\Throwable $e) {
         }
         $html = ob_get_clean();

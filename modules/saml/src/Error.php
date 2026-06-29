@@ -7,7 +7,7 @@ namespace SimpleSAML\Module\saml;
 use SimpleSAML\Error as SSPError;
 use SimpleSAML\Module\saml\Error as SAMLError;
 use SimpleSAML\Module\saml\Error\NoPassive;
-use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\Constants;
 use Throwable;
 
 /**
@@ -94,7 +94,7 @@ class Error extends SSPError\Exception
             return $e;
         } else {
             $e = new self(
-                C::STATUS_RESPONDER,
+                Constants::STATUS_RESPONDER,
                 null,
                 $e::class . ': ' . $e->getMessage(),
                 $e,
@@ -121,11 +121,11 @@ class Error extends SSPError\Exception
         $e = null;
 
         switch ($this->status) {
-            case C::STATUS_RESPONDER:
+            case Constants::STATUS_RESPONDER:
                 switch ($this->subStatus) {
-                    case C::STATUS_NO_PASSIVE:
+                    case Constants::STATUS_NO_PASSIVE:
                         $e = new NoPassive(
-                            C::STATUS_RESPONDER,
+                            Constants::STATUS_RESPONDER,
                             $this->statusMessage,
                         );
                         break;

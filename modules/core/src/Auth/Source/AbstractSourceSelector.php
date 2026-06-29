@@ -8,8 +8,6 @@ use Exception;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Authentication source which delegates authentication to secondary
@@ -53,10 +51,9 @@ abstract class AbstractSourceSelector extends Auth\Source
      * save the state, and at a later stage, load the state, update it with the authentication
      * information about the user, and call completeAuth with the state array.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request The current request
      * @param array &$state Information about the current authentication.
      */
-    public function authenticate(Request $request, array &$state): ?Response
+    public function authenticate(array &$state): void
     {
         $source = $this->selectAuthSource($state);
         $as = Auth\Source::getById($source);
@@ -65,23 +62,19 @@ abstract class AbstractSourceSelector extends Auth\Source
         }
 
         $state['sourceSelector:selected'] = $source;
-        return static::doAuthentication($request, $as, $state);
+        static::doAuthentication($as, $state);
     }
 
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \SimpleSAML\Auth\Source $as
      * @param array $state
-     * @return \Symfony\Component\HttpFoundation\Response|null
+     * @return void
      */
-    public static function doAuthentication(Request $request, Auth\Source $as, array &$state): ?Response
+    public static function doAuthentication(Auth\Source $as, array &$state): void
     {
         try {
-            $response = $as->authenticate($request, $state);
-            if ($response instanceof Response) {
-                return $response;
-            }
+            $as->authenticate($state);
         } catch (Error\Exception $e) {
             Auth\State::throwException($state, $e);
         } catch (Exception $e) {
@@ -89,7 +82,7 @@ abstract class AbstractSourceSelector extends Auth\Source
             Auth\State::throwException($state, $e);
         }
 
-        return static::completeAuth($state);
+        Auth\Source::completeAuth($state);
     }
 
 

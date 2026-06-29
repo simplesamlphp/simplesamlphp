@@ -77,7 +77,7 @@ class Federation
         protected Configuration $config,
     ) {
         $this->menu = new Menu();
-        $this->mdHandler = MetaDataStorageHandler::getMetadataHandler($config);
+        $this->mdHandler = MetaDataStorageHandler::getMetadataHandler();
         $this->authUtils = new Utils\Auth();
         $this->cryptoUtils = new Utils\Crypto();
     }
@@ -120,16 +120,13 @@ class Federation
      * Display the federation page.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \SimpleSAML\XHTML\Template
      * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\Exception
      */
-    public function main(/** @scrutinizer ignore-unused */ Request $request): Response
+    public function main(/** @scrutinizer ignore-unused */ Request $request): Template
     {
-        $response = $this->authUtils->requireAdmin();
-        if ($response instanceof Response) {
-            return $response;
-        }
+        $this->authUtils->requireAdmin();
 
         // initialize basic metadata array
         $hostedSPs = $this->getHostedSP();
@@ -510,14 +507,12 @@ class Federation
      * Download a certificate for a given entity.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
+     *
      * @return \Symfony\Component\HttpFoundation\Response PEM-encoded certificate.
      */
     public function downloadCert(Request $request): Response
     {
-        $response = $this->authUtils->requireAdmin();
-        if ($response instanceof Response) {
-            return $response;
-        }
+        $this->authUtils->requireAdmin();
 
         $set = $request->query->get('set');
         $prefix = $request->query->get('prefix', '');

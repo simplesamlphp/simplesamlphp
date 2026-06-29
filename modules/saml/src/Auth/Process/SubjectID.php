@@ -7,7 +7,7 @@ namespace SimpleSAML\Module\saml\Auth\Process;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Logger;
-use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\Constants;
 use SimpleSAML\SAML2\Exception\ProtocolViolationException;
 use SimpleSAML\Utils;
 
@@ -153,7 +153,7 @@ class SubjectID extends Auth\ProcessingFilter
 
         $this->validateGeneratedIdentifier($value);
 
-        $state['Attributes'][C::ATTR_SUBJECT_ID] = [$value];
+        $state['Attributes'][Constants::ATTR_SUBJECT_ID] = [$value];
     }
 
 
@@ -194,7 +194,7 @@ class SubjectID extends Auth\ProcessingFilter
      * @param array $state
      * @return string|null
      * @throws \SimpleSAML\Assert\AssertionFailedException if the scope is an empty string
-     * @throws \SimpleSAML\SAML2\Exception\ProtocolViolationException if the pre-conditions are not met
+     * @throws \SAML2\Exception\ProtocolViolationException if the pre-conditions are not met
      */
     protected function getScopeAttribute(array $state): ?string
     {
@@ -232,7 +232,7 @@ class SubjectID extends Auth\ProcessingFilter
      *
      * @param string $value
      * @return void
-     * @throws \SimpleSAML\SAML2\Exception\ProtocolViolationException if the post-conditions are not met
+     * @throws \SAML2\Exception\ProtocolViolationException if the post-conditions are not met
      */
     protected function validateGeneratedIdentifier(string $value): void
     {

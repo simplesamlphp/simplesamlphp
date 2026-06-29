@@ -32,7 +32,6 @@ class RedirectTest extends Auth\ProcessingFilter
         $url = Module::getModuleURL('exampleauth/redirecttest');
 
         $httpUtils = new Utils\HTTP();
-        $response = $httpUtils->redirectTrustedURL($url, ['StateId' => $id]);
-        $response->send();
+        $httpUtils->redirectTrustedURL($url, ['StateId' => $id]);
     }
 }

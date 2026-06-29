@@ -81,7 +81,7 @@ class DiscoController
      * delegateAuthentication method on it.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
      *   An HTML template or a redirection if we are not authenticated.
      */
     public function discovery(Request $request): Response
@@ -103,8 +103,8 @@ class DiscoController
         }
 
         // Get a preselected source either from the URL or the discovery page
-        $urlSource = $request->query->get('source', null);
-        $discoSource = $request->query->all('sourceChoice', null);
+        $urlSource = $request->get('source', null);
+        $discoSource = $request->get('sourceChoice', null);
 
         $selectedSource = null;
         if ($urlSource !== null) {
@@ -117,12 +117,12 @@ class DiscoController
             if ($as !== null) {
                 $as->setPreviousSource($selectedSource);
             }
-            return MultiAuth::delegateAuthentication($request, $selectedSource, $state);
+            return MultiAuth::delegateAuthentication($selectedSource, $state);
         }
 
         if (array_key_exists('multiauth:preselect', $state)) {
             $source = $state['multiauth:preselect'];
-            return MultiAuth::delegateAuthentication($request, $source, $state);
+            return MultiAuth::delegateAuthentication($source, $state);
         }
 
         $t = new Template($this->config, 'multiauth:selectsource.twig');
@@ -130,7 +130,6 @@ class DiscoController
         $t->data['authstate'] = $authStateId;
         $t->data['sources'] = $state[MultiAuth::SOURCESID];
         $t->data['preferred'] = is_null($as) ? null : $as->getPreviousSource();
-
         return $t;
     }
 }

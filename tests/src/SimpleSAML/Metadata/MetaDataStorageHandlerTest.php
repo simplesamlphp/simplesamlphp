@@ -22,9 +22,8 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
                 ['type' => 'serialize', 'directory' => __DIR__ . '/test-metadata/source2'],
             ],
         ];
-        $config = Configuration::loadFromArray($config, '', 'simplesaml');
-
-        return MetaDataStorageHandler::getMetadataHandler($config);
+        Configuration::loadFromArray($config, '', 'simplesaml');
+        return MetaDataStorageHandler::getMetadataHandler();
     }
 
 
@@ -67,7 +66,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
                 'Entity is in both sources, expired in src1 and available from src2',
             );
             // Did not ask for this one, which is in source1
-            $this->assertArrayNotHasKey('https://simplesamlphp.org/simplesaml', $entities);
+            $this->assertArrayNotHasKey('http://localhost/simplesaml', $entities);
         } else {
             $this->assertCount(0, $entities);
         }
@@ -95,10 +94,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
             "Entity is in both sources, expired in src1 and available from src2",
         );
         $this->assertEquals('entityA SP from source1', $entities['entityA']['name']['en']);
-        $this->assertEquals(
-            'hostname SP from source1',
-            $entities['https://simplesamlphp.org/simplesaml']['name']['en'],
-        );
+        $this->assertEquals('hostname SP from source1', $entities['http://localhost/simplesaml']['name']['en']);
     }
 
 
@@ -107,7 +103,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
      */
     public function testLoadMetadataSetEmpty(): void
     {
-        $entities = $this->getHandler()->getList('something stupid');
+        $entities = $this->getHandler()->getList('saml20-idp-remote');
 
         $this->assertCount(0, $entities);
     }
@@ -200,20 +196,16 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
 
     public function testCanHaveMultipleHostedIdps(): void
     {
-        $this->getHandler()->clearInternalState();
-
-        $c = [
+        $config = [
             'metadata.sources' => [
-                ['type' => 'flatfile', 'directory' => __DIR__ . '/test-metadata/source1'],
+                ['type' => 'flatfile', 'directory' => __DIR__ . '/test-metadata/source3'],
             ],
         ];
 
-        $config = Configuration::loadFromArray($c, '', 'simplesaml');
-        $handler = MetaDataStorageHandler::getMetadataHandler($config);
+        $handler = $this->getHandler($config);
+        $idps = $handler->getList('saml20-idp-hosted');
 
-        $this->expectException(AssertionFailedException::class);
-        $this->expectExceptionMessageMatches('/Please set a valid and unique entityID/');
-        $handler->getMetaDataCurrent('saml20-idp-hosted');
+        $this->assertCount(2, $idps);
     }
 
 

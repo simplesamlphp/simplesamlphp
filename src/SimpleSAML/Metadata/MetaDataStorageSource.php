@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
-use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
@@ -84,19 +83,18 @@ abstract class MetaDataStorageSource
             $type = 'flatfile';
         }
 
-        $config = Configuration::getInstance();
         switch ($type) {
             case 'flatfile':
-                return new MetaDataStorageHandlerFlatFile($config, $sourceConfig);
+                return new MetaDataStorageHandlerFlatFile($sourceConfig);
             case 'xml':
-                return new MetaDataStorageHandlerXML($config, $sourceConfig);
+                return new MetaDataStorageHandlerXML($sourceConfig);
             case 'serialize':
-                return new MetaDataStorageHandlerSerialize($config, $sourceConfig);
+                return new MetaDataStorageHandlerSerialize($sourceConfig);
             case 'mdx':
             case 'mdq':
-                return new Sources\MDQ($config, $sourceConfig);
+                return new Sources\MDQ($sourceConfig);
             case 'pdo':
-                return new MetaDataStorageHandlerPdo($config, $sourceConfig);
+                return new MetaDataStorageHandlerPdo($sourceConfig);
             case 'directory':
                 return new MetaDataStorageHandlerDirectory($sourceConfig);
             default:
@@ -115,7 +113,7 @@ abstract class MetaDataStorageSource
                 }
 
                 /** @var \SimpleSAML\Metadata\MetaDataStorageSource */
-                return new $className($config, $sourceConfig);
+                return new $className($sourceConfig);
         }
     }
 

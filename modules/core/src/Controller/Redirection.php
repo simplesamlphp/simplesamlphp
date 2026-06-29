@@ -47,7 +47,7 @@ class Redirection
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this login operation.
      * @throws \SimpleSAML\Error\BadRequest
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
      *   An HTML template or a redirection if we are not authenticated.
      */
     public function postredirect(Request $request): Response

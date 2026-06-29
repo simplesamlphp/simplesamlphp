@@ -15,7 +15,6 @@ use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 
@@ -80,14 +79,12 @@ class Config
      * Display basic diagnostic information on hostname, port and protocol.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
-     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @return \SimpleSAML\XHTML\Template
      */
-    public function diagnostics(Request $request): Response
+    public function diagnostics(Request $request): Template
     {
-        $response = $this->authUtils->requireAdmin();
-        if ($response instanceof Response) {
-            return $response;
-        }
+        $this->authUtils->requireAdmin();
 
         $t = new Template($this->config, 'admin:diagnostics.twig');
         $t->data = [
@@ -116,14 +113,12 @@ class Config
      * Display the main admin page.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
-     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @return \SimpleSAML\XHTML\Template
      */
-    public function main(/** @scrutinizer ignore-unused */ Request $request): Response
+    public function main(/** @scrutinizer ignore-unused */ Request $request): Template
     {
-        $response = $this->authUtils->requireAdmin();
-        if ($response instanceof Response) {
-            return $response;
-        }
+        $this->authUtils->requireAdmin();
 
         $t = new Template($this->config, 'admin:config.twig');
         $t->data = [
@@ -177,14 +172,12 @@ class Config
      * Display the output of phpinfo().
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The current request.
-     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
-    public function phpinfo(/** @scrutinizer ignore-unused */ Request $request): Response
+    public function phpinfo(/** @scrutinizer ignore-unused */ Request $request): StreamedResponse
     {
-        $response = $this->authUtils->requireAdmin();
-        if ($response instanceof Response) {
-            return $response;
-        }
+        $this->authUtils->requireAdmin();
 
         $response = new StreamedResponse('phpinfo');
         $response->headers->set(

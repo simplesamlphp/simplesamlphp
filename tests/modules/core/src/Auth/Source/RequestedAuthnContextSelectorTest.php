@@ -7,15 +7,13 @@ namespace SimpleSAML\Test\Module\core\Auth\Source;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
+use SAML2\Exception\Protocol\NoAuthnContextException;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\Module\core\Auth\Source\AbstractSourceSelector;
 use SimpleSAML\Module\core\Auth\Source\RequestedAuthnContextSelector;
-use SimpleSAML\SAML2\Exception\Protocol\NoAuthnContextException;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  */
@@ -90,10 +88,20 @@ class RequestedAuthnContextSelectorTest extends TestCase
         $info = ['AuthId' => 'selector'];
         $config = $this->sourceConfig->getArray('selector');
 
-        $selector = new RequestedAuthnContextSelector($info, $config);
+        $selector = new class ($info, $config) extends RequestedAuthnContextSelector {
+            /**
+             * @param \SimpleSAML\Auth\Source $as
+             * @param array $state
+             * @return void
+             */
+            public static function doAuthentication(Auth\Source $as, array &$state): void
+            {
+                // Dummy
+            }
+        };
+
         $state = ['saml:RequestedAuthnContext' => ['AuthnContextClassRef' => null]];
-        $request = Request::createFromGlobals();
-        $selector->authenticate($request, $state);
+        $selector->authenticate($state);
         $this->assertArrayNotHasKey('saml:AuthnContextClassRef', $state);
     }
 
@@ -106,10 +114,20 @@ class RequestedAuthnContextSelectorTest extends TestCase
         $info = ['AuthId' => 'selector'];
         $config = $this->sourceConfig->getArray('selector');
 
-        $selector = new RequestedAuthnContextSelector($info, $config);
+        $selector = new class ($info, $config) extends RequestedAuthnContextSelector {
+            /**
+             * @param \SimpleSAML\Auth\Source $as
+             * @param array $state
+             * @return void
+             */
+            public static function doAuthentication(Auth\Source $as, array &$state): void
+            {
+                // Dummy
+            }
+        };
+
         $state = ['saml:RequestedAuthnContext' => ['AuthnContextClassRef' => ['urn:x-simplesamlphp:loa1']]];
-        $request = Request::createFromGlobals();
-        $selector->authenticate($request, $state);
+        $selector->authenticate($state);
         $this->assertArrayHasKey('saml:AuthnContextClassRef', $state);
         $this->assertEquals('urn:x-simplesamlphp:loa1', $state['saml:AuthnContextClassRef']);
     }
@@ -123,15 +141,25 @@ class RequestedAuthnContextSelectorTest extends TestCase
         $info = ['AuthId' => 'selector'];
         $config = $this->sourceConfig->getArray('selector');
 
-        $selector = new RequestedAuthnContextSelector($info, $config);
+        $selector = new class ($info, $config) extends RequestedAuthnContextSelector {
+            /**
+             * @param \SimpleSAML\Auth\Source $as
+             * @param array $state
+             * @return void
+             */
+            public static function doAuthentication(Auth\Source $as, array &$state): void
+            {
+                // Dummy
+            }
+        };
+
         $state = [
             'saml:RequestedAuthnContext' => [
                 'AuthnContextClassRef' => ['urn:x-simplesamlphp:loa1'],
                 'Comparison' => 'exact',
             ],
         ];
-        $request = Request::createFromGlobals();
-        $selector->authenticate($request, $state);
+        $selector->authenticate($state);
         $this->assertArrayHasKey('saml:AuthnContextClassRef', $state);
         $this->assertEquals('urn:x-simplesamlphp:loa1', $state['saml:AuthnContextClassRef']);
     }
@@ -170,15 +198,13 @@ class RequestedAuthnContextSelectorTest extends TestCase
 
         $selector = new class ($info, $config) extends RequestedAuthnContextSelector {
             /**
-             * @param \Symfony\Component\HttpFoundation\Request $request  The currect request
              * @param \SimpleSAML\Auth\Source $as
              * @param array $state
-             * @return \Symfony\Component\HttpFoundation\Response|null
+             * @return void
              */
-            public static function doAuthentication(Request $request, Auth\Source $as, array &$state): ?Response
+            public static function doAuthentication(Auth\Source $as, array &$state): void
             {
                 // Dummy
-                return null;
             }
         };
 
@@ -189,8 +215,7 @@ class RequestedAuthnContextSelectorTest extends TestCase
             ],
         ];
 
-        $request = Request::createFromGlobals();
-        $selector->authenticate($request, $state);
+        $selector->authenticate($state);
         $this->assertArrayHasKey('saml:AuthnContextClassRef', $state);
         $this->assertEquals('urn:x-simplesamlphp:loa1', $state['saml:AuthnContextClassRef']);
     }

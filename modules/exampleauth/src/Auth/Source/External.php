@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
+use SimpleSAML\Assert\Assert;
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session as SymfonySession;
 
 /**
@@ -100,10 +100,9 @@ class External extends Auth\Source
     /**
      * Log in using an external authentication helper.
      *
-     * @param \Symfony\Component\HttpFoundation\Request  The current request
      * @param array &$state  Information about the current authentication.
      */
-    public function authenticate(Request $request, array &$state): ?Response
+    public function authenticate(array &$state): void
     {
         $attributes = $this->getUser();
         if ($attributes !== null) {
@@ -114,7 +113,7 @@ class External extends Auth\Source
              * to the authentication process.
              */
             $state['Attributes'] = $attributes;
-            return null;
+            return;
         }
 
         /*
@@ -149,7 +148,7 @@ class External extends Auth\Source
          * option to return the user to a specific page afterwards.
          */
         $returnTo = Module::getModuleURL('exampleauth/resume', [
-            'AuthState' => $stateId,
+            'State' => $stateId,
         ]);
 
         /*
@@ -168,9 +167,14 @@ class External extends Auth\Source
          * the real name of the parameter for the login page.
          */
         $httpUtils = new Utils\HTTP();
-        return $httpUtils->redirectTrustedURL($authPage, [
+        $httpUtils->redirectTrustedURL($authPage, [
             'ReturnTo' => $returnTo,
         ]);
+
+        /*
+         * The redirect function never returns, so we never get this far.
+         */
+        Assert::true(false);
     }
 
 
@@ -181,27 +185,25 @@ class External extends Auth\Source
      * entered his or her credentials.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \SimpleSAML\Auth\State $state
-     * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \SimpleSAML\Error\BadRequest
      * @throws \SimpleSAML\Error\Exception
      */
-    public static function resume(Request $request, Auth\State $authState): Response
+    public static function resume(Request $request): void
     {
         /*
          * First we need to restore the $state-array. We should have the identifier for
-         * it in the 'AuthState' request parameter.
+         * it in the 'State' request parameter.
          */
-        if (!$request->query->has('AuthState')) {
-            throw new Error\BadRequest('Missing "AuthState" parameter.');
+        if (!$request->query->has('State')) {
+            throw new Error\BadRequest('Missing "State" parameter.');
         }
 
         /*
          * Once again, note the second parameter to the loadState function. This must
          * match the string we used in the saveState-call above.
          */
-        $state = $authState::loadState($request->query->get('AuthState'), 'exampleauth:External');
+        $state = Auth\State::loadState($request->query->get('State'), 'exampleauth:External');
 
         /*
          * Now we have the $state-array, and can use it to locate the authentication
@@ -247,7 +249,12 @@ class External extends Auth\Source
          */
 
         $state['Attributes'] = $attributes;
-        return parent::completeAuth($state);
+        Auth\Source::completeAuth($state);
+
+        /*
+         * The completeAuth-function never returns, so we never get this far.
+         */
+        Assert::true(false);
     }
 
 
@@ -256,9 +263,8 @@ class External extends Auth\Source
      * by logging out of a SP that supports single logout.
      *
      * @param array &$state  The logout state array.
-     * @param \Symfony\Component\HttpFoundation\Response|null
      */
-    public function logout(array &$state): ?Response
+    public function logout(array &$state): void
     {
         $session = new SymfonySession();
         if (!$session->getId()) {
@@ -271,6 +277,5 @@ class External extends Auth\Source
          * If we need to do a redirect to a different page, we could do this
          * here, but in this example we don't need to do this.
          */
-        return null;
     }
 }

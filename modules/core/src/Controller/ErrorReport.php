@@ -7,12 +7,13 @@ namespace SimpleSAML\Module\core\Controller;
 use Exception as BuiltinException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
+use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function dirname;
 use function php_uname;
@@ -44,9 +45,9 @@ class ErrorReport
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\SimpleSAML\XHTML\Template
+     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
      */
-    public function main(Request $request): RedirectResponse|Template
+    public function main(Request $request): Response
     {
         // this page will redirect to itself after processing a POST request and sending the email
         if ($request->server->get('REQUEST_METHOD') !== 'POST') {
@@ -102,6 +103,6 @@ class ErrorReport
 
         // redirect the user back to this page to clear the POST request
         $httpUtils = new Utils\HTTP();
-        return $httpUtils->redirectTrustedURL($httpUtils->getSelfURLNoQuery());
+        return new RunnableResponse([$httpUtils, 'redirectTrustedURL'], [$httpUtils->getSelfURLNoQuery()]);
     }
 }

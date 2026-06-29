@@ -7,4 +7,4 @@ require_once($projectRoot . '/vendor/autoload.php');
 
 // set the SAML2 container
 $container = new \SimpleSAML\Compat\SspContainer();
-\SimpleSAML\SAML2\Compat\ContainerSingleton::setContainer($container);
+\SAML2\Compat\ContainerSingleton::setContainer($container);

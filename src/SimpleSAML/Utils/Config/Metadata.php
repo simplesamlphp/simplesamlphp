@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils\Config;
 
+use SimpleSAML\SAML2\Constants as C;
 use SAML2\XML\md\ContactPerson;
 use SimpleSAML\Configuration;
-use SimpleSAML\SAML2\Constants as C;
 
 /**
  * Class with utilities to fetch different configuration objects from metadata configuration arrays.

@@ -14,8 +14,6 @@ use SimpleSAML\Module\cron\Controller;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Set of tests for the controllers in the "cron" module.
@@ -55,10 +53,9 @@ class CronTest extends TestCase
         $this->session = Session::getSessionFromRequest();
 
         $this->authUtils = new class () extends Utils\Auth {
-            public function requireAdmin(): ?Response
+            public function requireAdmin(): void
             {
                 // stub
-                return null;
             }
         };
 
@@ -87,11 +84,12 @@ class CronTest extends TestCase
      */
     public function testInfo(): void
     {
+        $_SERVER['REQUEST_URI'] = '/module/cron/info';
+
         $c = new Controller\Cron($this->config, $this->session);
         $c->setAuthUtils($this->authUtils);
         $response = $c->info();
 
-        $this->assertInstanceOf(Template::class, $response);
         $this->assertTrue($response->isSuccessful());
         $expect = [
             'exec_href' => 'http://localhost/simplesaml/module/cron/run/daily/verysecret',
@@ -108,13 +106,10 @@ class CronTest extends TestCase
      */
     public function testRunCorrectKey(): void
     {
-        $request = Request::create(
-            '/run/daily/verysecret',
-            'GET',
-        );
+        $_SERVER['REQUEST_URI'] = '/module/cron/run/daily/verysecret';
 
         $c = new Controller\Cron($this->config, $this->session);
-        $response = $c->run($request, 'daily', 'verysecret');
+        $response = $c->run('daily', 'verysecret');
 
         $this->assertInstanceOf(Template::class, $response);
         $this->assertTrue($response->isSuccessful());
@@ -133,17 +128,14 @@ class CronTest extends TestCase
      */
     public function testRunWrongKey(): void
     {
-        $request = Request::create(
-            '/run/daily/verysecret',
-            'GET',
-        );
+        $_SERVER['REQUEST_URI'] = '/module/cron/run/daily/nodice';
 
         $c = new Controller\Cron($this->config, $this->session);
 
         $this->expectException(Error\Exception::class);
         $this->expectExceptionMessage('Cron: Wrong key "nodice" provided. Cron will not run.');
 
-        $c->run($request, 'daily', 'nodice');
+        $c->run('daily', 'nodice');
     }
 
 
@@ -152,17 +144,14 @@ class CronTest extends TestCase
     #[DataProvider('provideDefaultSecret')]
     public function testRunDefaultSecret(string $secret): void
     {
-        $request = Request::create(
-            '/run/daily/' . $secret,
-            'GET',
-        );
+        $_SERVER['REQUEST_URI'] = '/module/cron/run/daily/' . $secret;
 
         $c = new Controller\Cron($this->config, $this->session);
 
         $this->expectException(Error\ConfigurationError::class);
         $this->expectExceptionMessage('Cron: Possible malicious attempt to run cron tasks with default secret');
 
-        $c->run($request, 'daily', $secret);
+        $c->run('daily', $secret);
     }
 
 
@@ -185,17 +174,14 @@ class CronTest extends TestCase
             'simplesaml',
         );
 
-        $request = Request::create(
-            '/run/daily/verysecret',
-            'GET',
-        );
+        $_SERVER['REQUEST_URI'] = '/module/cron/run/daily/verysecret';
 
         $c = new Controller\Cron($this->config, $this->session);
 
         $this->expectException(Error\ConfigurationError::class);
         $this->expectExceptionMessage('Cron: no proper key has been configured.');
 
-        $c->run($request, 'daily', 'verysecret');
+        $c->run('daily', 'verysecret');
     }
 
 

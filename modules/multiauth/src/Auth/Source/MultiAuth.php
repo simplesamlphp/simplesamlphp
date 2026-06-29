@@ -5,15 +5,14 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\multiauth\Auth\Source;
 
 use Exception;
+use SAML2\Exception\Protocol\NoAuthnContextException;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
+use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module;
-use SimpleSAML\SAML2\Exception\Protocol\NoAuthnContextException;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Authentication source which let the user chooses among a list of
@@ -90,13 +89,12 @@ class MultiAuth extends Auth\Source
      * and redirects to a page where the user must select one of these
      * authentication sources.
      *
-     * The authentication process is finished in the delegateAuthentication method.
+     * This method never return. The authentication process is finished
+     * in the delegateAuthentication method.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param array &$state Information about the current authentication.
-     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function authenticate(Request $request, array &$state): Response
+    public function authenticate(array &$state): never
     {
         $state[self::AUTHID] = $this->authId;
         $state[self::SOURCESID] = $this->sources;
@@ -127,7 +125,7 @@ class MultiAuth extends Auth\Source
                     'No authentication sources exist for the requested AuthnContextClassRefs: ' . implode(', ', $refs),
                 );
             } elseif ($number_of_sources === 1) {
-                return MultiAuth::delegateAuthentication($request, array_key_first($new_sources), $state);
+                MultiAuth::delegateAuthentication(array_key_first($new_sources), $state);
             }
         }
 
@@ -141,12 +139,12 @@ class MultiAuth extends Auth\Source
         $params = ['AuthState' => $id];
 
         // Allows the user to specify the auth source to be used
-        if ($request->query->has('source')) {
-            $params['source'] = $request->query->get('source');
+        if (isset($_GET['source'])) {
+            $params['source'] = $_GET['source'];
         }
 
         $httpUtils = new Utils\HTTP();
-        return $httpUtils->redirectTrustedURL($url, $params);
+        $httpUtils->redirectTrustedURL($url, $params);
     }
 
 
@@ -158,14 +156,12 @@ class MultiAuth extends Auth\Source
      * to be able to logout properly. Then it calls the authenticate method
      * on such selected authentication source.
      *
-     * @param \Symfony\Component\HttpFoundation\Request  The current request
      * @param string $authId Selected authentication source
      * @param array $state Information about the current authentication.
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
+     * @return \SimpleSAML\HTTP\RunnableResponse
      * @throws \Exception
      */
-    public static function delegateAuthentication(Request $request, string $authId, array $state): Response
+    public static function delegateAuthentication(string $authId, array $state): RunnableResponse
     {
         $as = Auth\Source::getById($authId);
         if ($as === null || !array_key_exists($authId, $state[self::SOURCESID])) {
@@ -181,30 +177,26 @@ class MultiAuth extends Auth\Source
             Session::DATA_TIMEOUT_SESSION_END,
         );
 
-        return self::doAuthentication($request, $as, $state);
+        return new RunnableResponse([self::class, 'doAuthentication'], [$as, $state]);
     }
 
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request  The current request
      * @param \SimpleSAML\Auth\Source $as
      * @param array $state
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return void
      */
-    public static function doAuthentication(Request $request, Auth\Source $as, array $state): Response
+    public static function doAuthentication(Auth\Source $as, array $state): void
     {
         try {
-            $response = $as->authenticate($request, $state);
-            if ($response instanceof Response) {
-                return $response;
-            }
+            $as->authenticate($state);
         } catch (Error\Exception $e) {
             Auth\State::throwException($state, $e);
         } catch (Exception $e) {
             $e = new Error\UnserializableException($e);
             Auth\State::throwException($state, $e);
         }
-        return parent::completeAuth($state);
+        Auth\Source::completeAuth($state);
     }
 
 
@@ -215,9 +207,8 @@ class MultiAuth extends Auth\Source
      * session and then call the logout method on it.
      *
      * @param array &$state Information about the current logout operation.
-     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function logout(array &$state): ?Response
+    public function logout(array &$state): void
     {
         // Get the source that was used to authenticate
         $session = Session::getSessionFromRequest();
@@ -227,9 +218,8 @@ class MultiAuth extends Auth\Source
         if ($source === null) {
             throw new Exception('Invalid authentication source during logout: ' . $authId);
         }
-
         // Then, do the logout on it
-        return $source->logout($state);
+        $source->logout($state);
     }
 
 

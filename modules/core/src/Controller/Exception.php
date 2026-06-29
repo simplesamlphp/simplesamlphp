@@ -122,7 +122,8 @@ class Exception
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this login operation.
      * @throws \SimpleSAML\Error\BadRequest
-     * @return \SimpleSAML\XHTML\Template  An HTML template
+     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
+     *   An HTML template or a redirection if we are not authenticated.
      */
     public function cardinality(Request $request): Response
     {
@@ -154,7 +155,7 @@ class Exception
      * Show missing cookie error.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this login operation.
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
      *   An HTML template or a redirection if we are not authenticated.
      */
     public function nocookie(Request $request): Response
@@ -177,7 +178,12 @@ class Exception
      * doing it previously.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request The request that lead to this login operation.
-     * @return \Symfony\Component\HttpFoundation\Response  An HTML template, a redirect or a response.
+     *
+     * @return (
+     *   \SimpleSAML\XHTML\Template|
+     *   \SimpleSAML\HTTP\RunnableResponse|
+     *   \Symfony\Component\HttpFoundation\RedirectResponse
+     * ) An HTML template, a redirect or a "runnable" response.
      *
      * @throws \SimpleSAML\Error\BadRequest
      */
@@ -193,7 +199,7 @@ class Exception
         $continue = $request->query->get('continue', false);
         if ($continue !== false) {
             // The user has pressed the continue/retry-button
-            return Auth\ProcessingChain::resumeProcessing($state);
+            Auth\ProcessingChain::resumeProcessing($state);
         }
 
         $t = new Template($this->config, 'core:short_sso_interval.twig');

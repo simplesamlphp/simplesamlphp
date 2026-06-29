@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
+use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
-use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\Utils;
 use SimpleSAML\Utils\ClearableState;
 
@@ -20,11 +20,6 @@ use SimpleSAML\Utils\ClearableState;
 
 class MetaDataStorageHandler implements ClearableState
 {
-    /**
-     * The configuration
-     */
-    protected Configuration $globalConfig;
-
     /**
      * This static variable contains a reference to the current
      * instance of the metadata handler. This variable will be null if
@@ -48,13 +43,12 @@ class MetaDataStorageHandler implements ClearableState
      * The metadata handler will be instantiated if this is the first call
      * to this function.
      *
-     * @param \SimpleSAML\Configuration $config
      * @return \SimpleSAML\Metadata\MetaDataStorageHandler The current metadata handler instance.
      */
-    public static function getMetadataHandler(Configuration $config): MetaDataStorageHandler
+    public static function getMetadataHandler(): MetaDataStorageHandler
     {
         if (self::$metadataHandler === null) {
-            self::$metadataHandler = new MetaDataStorageHandler($config);
+            self::$metadataHandler = new MetaDataStorageHandler();
         }
 
         return self::$metadataHandler;
@@ -64,14 +58,12 @@ class MetaDataStorageHandler implements ClearableState
     /**
      * This constructor initializes this metadata storage handler. It will load and
      * parse the configuration, and initialize the metadata source list.
-     *
-     * @param \SimpleSAML\Configuration $globalConfig
      */
-    protected function __construct(Configuration $globalConfig)
+    protected function __construct()
     {
-        $this->globalConfig = $globalConfig;
+        $config = Configuration::getInstance();
 
-        $sourcesConfig = $this->globalConfig->getOptionalArray('metadata.sources', [['type' => 'flatfile']]);
+        $sourcesConfig = $config->getOptionalArray('metadata.sources', [['type' => 'flatfile']]);
 
         try {
             $this->sources = MetaDataStorageSource::parseSources($sourcesConfig);
@@ -110,8 +102,9 @@ class MetaDataStorageHandler implements ClearableState
         }
 
         // get the configuration
+        $config = Configuration::getInstance();
         $httpUtils = new Utils\HTTP();
-        $baseurl = $httpUtils->getSelfURLHost() . $this->globalConfig->getBasePath();
+        $baseurl = $httpUtils->getSelfURLHost() . $config->getBasePath();
         if ($overrideHost !== null) {
             $baseurl = str_replace('://' . $httpUtils->getSelfHost() . '/', '://' . $overrideHost . '/', $baseurl);
         }

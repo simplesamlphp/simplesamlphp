@@ -122,7 +122,7 @@ class XML
                 Logger::debug('Encrypted message:');
                 break;
             default:
-                throw new Exception(sprintf('Unknown message type;  %s', $type));
+                Assert::true(false);
         }
 
         $str = $this->formatXMLString($message);
