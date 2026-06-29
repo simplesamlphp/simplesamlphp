@@ -14,6 +14,7 @@ use SimpleSAML\Session;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session as SymfonySession;
 
 /**
  * Set of tests for the controllers in the "exampleauth" module.
@@ -37,13 +38,12 @@ class ExampleAuthTest extends TestCase
 
         $this->config = Configuration::loadFromArray(
             [
+                'baseurlpath' => 'https://example.org/simplesaml',
                 'module.enable' => ['exampleauth' => true],
             ],
             '[ARRAY]',
             'simplesaml',
         );
-
-        $this->session = Session::getSessionFromRequest();
 
         Configuration::setPreLoadedConfig($this->config, 'config.php');
 
@@ -195,10 +195,15 @@ class ExampleAuthTest extends TestCase
      */
     public function testResume(): void
     {
-        $_SESSION['uid'] = 'phpunit';
-        $_SESSION['name'] = 'John Doe';
-        $_SESSION['mail'] = 'JohnDoe@example.org';
-        $_SESSION['type'] = 'member';
+        $session = new SymfonySession();
+        if (!$session->getId()) {
+            $session->start();
+        }
+
+        $session->set('uid', 'phpunit');
+        $session->set('name', 'John Doe');
+        $session->set('mail', 'JohnDoe@example.org');
+        $session->set('type', 'member');
 
         $request = Request::create(
             '/resume',
@@ -221,7 +226,6 @@ class ExampleAuthTest extends TestCase
         });
 
         $response = $c->resume($request);
-
         $this->assertTrue($response->isSuccessful());
         $this->assertInstanceOf(Response::class, $response);
     }
