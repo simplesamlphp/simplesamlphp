@@ -10,6 +10,7 @@ use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -139,8 +140,9 @@ class Simple
             }
         }
 
-        if (is_string($returnTo) && $keepPost && $_SERVER['REQUEST_METHOD'] === 'POST') {
-            $returnTo = $httpUtils->getPOSTRedirectURL($returnTo, $_POST);
+        $request = Request::createFromGlobals();
+        if (is_string($returnTo) && $keepPost && $request->getMethod() === 'POST') {
+            $returnTo = $httpUtils->getPOSTRedirectURL($returnTo, $request->request->all());
         }
 
         if (array_key_exists('ErrorURL', $params)) {

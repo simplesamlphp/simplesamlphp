@@ -16,6 +16,7 @@ use SimpleSAML\XMLSecurity\Constants as C;
 use SimpleSAML\XMLSecurity\Key\SymmetricKey;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -76,14 +77,17 @@ class HTTP
      * Based on the Azure teams experience rolling out support and Chromium's advice
      * https://devblogs.microsoft.com/aspnet/upcoming-samesite-cookie-changes-in-asp-net-and-asp-net-core/
      * https://www.chromium.org/updates/same-site/incompatible-clients
+     *
      * @return bool true if user agent supports a None value for SameSite.
      */
     public function canSetSameSiteNone(): bool
     {
-        $useragent = $_SERVER['HTTP_USER_AGENT'] ?? null;
-        if (!$useragent) {
+        $request = Request::createFromGlobals();
+        if (!$request->headers->has('User-Agent')) {
             return true;
         }
+        $useragent = $request->headers->get('User-Agent');
+
         // All iOS 12 based browsers have no support
         if (strpos($useragent, "CPU iPhone OS 12") !== false || strpos($useragent, "iPad; CPU OS 12") !== false) {
             return false;
@@ -148,7 +152,7 @@ class HTTP
 
 
     /**
-     * Retrieve Host value from $_SERVER environment variables.
+     * Retrieve Host value from the request.
      *
      * @return string The current host name, including the port if needed. It will use localhost when unable to
      *     determine the current host.
@@ -156,11 +160,13 @@ class HTTP
      */
     private function getServerHost(): string
     {
+        $request = Request::createFromGlobals();
+
         $current = null;
-        if (array_key_exists('HTTP_HOST', $_SERVER)) {
-            $current = $_SERVER['HTTP_HOST'];
-        } elseif (array_key_exists('SERVER_NAME', $_SERVER)) {
-            $current = $_SERVER['SERVER_NAME'];
+        if ($request->server->has('HTTP_HOST')) {
+            $current = $request->server->get('HTTP_HOST');
+        } elseif ($request->server->has('SERVER_NAME')) {
+            $current = $request->server->get('SERVER_NAME');
         }
 
         if (is_null($current)) {
@@ -181,22 +187,25 @@ class HTTP
 
 
     /**
-     * Retrieve HTTPS status from $_SERVER environment variables.
+     * Retrieve HTTPS status from the request.
      *
      * @return boolean True if the request was performed through HTTPS, false otherwise.
      *
      */
     public function getServerHTTPS(): bool
     {
+        $request = Request::createFromGlobals();
+
         // When $_SERVER['HTTPS'] is set — by a web server that terminates
         // TLS itself — it is the authoritative signal. Preserve the
         // existing three-case interpretation exactly, so an admin's
         // explicit 'off' (IIS convention) still wins.
-        if (array_key_exists('HTTPS', $_SERVER)) {
-            if ($_SERVER['HTTPS'] === 'off') {
+        if ($request->server->has('HTTPS')) {
+            $https = $request->server->get('HTTPS');
+            if ($https === 'off') {
                 return false;
             }
-            return !empty($_SERVER['HTTPS']);
+            return !empty($https);
         }
 
         // $_SERVER['HTTPS'] is COMPLETELY ABSENT. This is the typical
@@ -265,8 +274,9 @@ class HTTP
      */
     public function getServerPort(): string
     {
+        $request = Request::createFromGlobals();
         $default_port = $this->getServerHTTPS() ? '443' : '80';
-        $port = isset($_SERVER['SERVER_PORT']) ? $_SERVER['SERVER_PORT'] : $default_port;
+        $port = $request->server->has('SERVER_PORT') ? $request->server->get('SERVER_PORT') : $default_port;
 
         // Take care of edge-case where SERVER_PORT is an integer
         $port = strval($port);
@@ -561,12 +571,13 @@ class HTTP
      */
     public function getAcceptLanguage(): array
     {
-        if (!array_key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER)) {
+        $request = Request::createFromGlobals();
+        if (!$request->headers->has('Accept-Language')) {
             // no Accept-Language header, return an empty set
             return [];
         }
 
-        $languages = explode(',', strtolower($_SERVER['HTTP_ACCEPT_LANGUAGE']));
+        $languages = explode(',', strtolower($request->headers->get('Accept-Language')));
 
         $ret = [];
 
@@ -625,19 +636,20 @@ class HTTP
      */
     public function guessBasePath(): string
     {
-        if (!array_key_exists('REQUEST_URI', $_SERVER) || !array_key_exists('SCRIPT_FILENAME', $_SERVER)) {
+        $request = Request::createFromGlobals();
+        if (!$request->server->has('REQUEST_URI') || !$request->server->has('SCRIPT_FILENAME')) {
             return '/';
         }
 
-        $requestPath = (string) parse_url((string) $_SERVER['REQUEST_URI'], PHP_URL_PATH);
-        $scriptName = (string) ($_SERVER['SCRIPT_NAME'] ?? '');
+        $requestPath = (string) parse_url($request->server->get('REQUEST_URI'), PHP_URL_PATH);
+        $scriptName = $request->server->has('SCRIPT_NAME') ? $request->server->get('SCRIPT_NAME') : '';
         if ($scriptName !== '' && basename($scriptName) === 'index.php') {
             $basePath = str_replace(DIRECTORY_SEPARATOR, '/', dirname($scriptName));
             return rtrim($basePath, '/') . '/';
         }
 
         // get the name of the current script
-        $path = explode(DIRECTORY_SEPARATOR, (string) $_SERVER['SCRIPT_FILENAME']);
+        $path = explode(DIRECTORY_SEPARATOR, $request->server->get('SCRIPT_FILENAME'));
         $script = array_pop($path);
 
         // get the portion of the URI up to the script, i.e.: /simplesaml/some/directory/script.php
@@ -645,7 +657,7 @@ class HTTP
             return '/';
         }
         $uri_s = explode('/', $matches[0]);
-        $file_s = explode(DIRECTORY_SEPARATOR, (string) $_SERVER['SCRIPT_FILENAME']);
+        $file_s = explode(DIRECTORY_SEPARATOR, $request->server->get('SCRIPT_FILENAME'));
 
         // compare both arrays from the end, popping elements matching out of them
         while ($uri_s[count($uri_s) - 1] === $file_s[count($file_s) - 1]) {
@@ -669,7 +681,6 @@ class HTTP
     {
         $globalConfig = Configuration::getInstance();
         $baseURL = $globalConfig->getOptionalString('baseurlpath', 'simplesaml/');
-
         if (preg_match('#^https?://.*/?$#D', $baseURL, $matches)) {
             // full URL in baseurlpath, override local server values
             return rtrim($baseURL, '/') . '/';
@@ -800,7 +811,8 @@ class HTTP
     {
         $cfg = Configuration::getInstance();
 
-        $requestUri = (string)($_SERVER['REQUEST_URI'] ?? '');
+        $request = Request::createFromGlobals();
+        $requestUri = $request->server->has('REQUEST_URI') ? $request->server->get('REQUEST_URI') : '';
         $requestPath = (string)parse_url($requestUri, PHP_URL_PATH);
         $requestQuery = (string)parse_url($requestUri, PHP_URL_QUERY);
         $requestFragment = (string)parse_url($requestUri, PHP_URL_FRAGMENT);
@@ -842,11 +854,12 @@ class HTTP
      */
     private function isSimpleSamlFrontControllerRequest(Configuration $cfg): bool
     {
-        if (!array_key_exists('SCRIPT_FILENAME', $_SERVER)) {
+        $request = Request::createFromGlobals();
+        if (!$request->server->has('SCRIPT_FILENAME')) {
             return false;
         }
 
-        $currentScript = realpath((string) $_SERVER['SCRIPT_FILENAME']);
+        $currentScript = realpath($request->server->get('SCRIPT_FILENAME'));
         $frontController = realpath($cfg->getBaseDir() . 'public' . DIRECTORY_SEPARATOR . 'index.php');
 
         return is_string($currentScript) && is_string($frontController) && $currentScript === $frontController;
