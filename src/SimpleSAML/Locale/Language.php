@@ -149,7 +149,20 @@ class Language
         private Configuration $configuration,
     ) {
         $this->availableLanguages = $this->getInstalledLanguages();
-        $this->defaultLanguage = $configuration->getOptionalString('language.default', self::FALLBACKLANGUAGE);
+
+        $defaultLanguage = $configuration->getOptionalString('language.default', self::FALLBACKLANGUAGE);
+        if (!in_array($defaultLanguage, $this->availableLanguages, true)) {
+            /* A default language which is not available can not be rendered for the user interface. */
+            Logger::warning(sprintf(
+                "The default language \"%s\" is not available. Falling back to \"%s\"."
+                . " Check language settings in your config.",
+                $defaultLanguage,
+                self::FALLBACKLANGUAGE,
+            ));
+            $defaultLanguage = self::FALLBACKLANGUAGE;
+        }
+        $this->defaultLanguage = $defaultLanguage;
+
         $this->languageParameterName = $configuration->getOptionalString('language.parameter.name', 'language');
         $this->customFunction = $configuration->getOptionalArray('language.get_language_function', null);
         $this->rtlLanguages = $configuration->getOptionalArray('language.rtl', []);
@@ -244,7 +257,9 @@ class Language
     /**
      * This method will return the language selected by the user, or the default language. It looks first for a cached
      * language code, then checks for a language cookie, then it tries to calculate the preferred language from HTTP
-     * headers.
+     * headers. Only languages that are actually available are ever returned, so that the user interface can
+     * be rendered in the returned language; sources that provide a language which is not available (custom
+     * language function, language cookie) are ignored.
      *
      * @return string The language selected by the user according to the processing rules specified, or the default
      * language in any other case.
@@ -260,13 +275,19 @@ class Language
         if (isset($this->customFunction) && is_callable($this->customFunction)) {
             $customLanguage = call_user_func($this->customFunction, $this);
             if ($customLanguage !== null && $customLanguage !== false) {
-                return $customLanguage;
+                if (is_string($customLanguage) && in_array($customLanguage, $this->availableLanguages, true)) {
+                    return $customLanguage;
+                }
+                /* A language which is not available can not be rendered for the user interface. */
+                Logger::warning(
+                    'The language returned by the custom language function is not available. Ignoring.',
+                );
             }
         }
 
         // language is provided in a stored cookie
         $languageCookie = self::getLanguageCookie();
-        if ($languageCookie !== null) {
+        if ($languageCookie !== null && in_array($languageCookie, $this->availableLanguages, true)) {
             $this->language = $languageCookie;
             return $languageCookie;
         }
@@ -356,7 +377,8 @@ class Language
     /**
      * Return the default language according to configuration.
      *
-     * @return string The default language that has been configured. Defaults to english if not configured.
+     * @return string The default language that has been configured, or the fallback language if the configured
+     * default language is not available. Defaults to english if not configured.
      */
     public function getDefaultLanguage(): string
     {

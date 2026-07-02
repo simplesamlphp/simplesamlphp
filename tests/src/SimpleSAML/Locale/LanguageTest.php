@@ -175,6 +175,92 @@ class LanguageTest extends TestCase
     }
 
 
+    /**
+     * Test that the language cookie is only honored for available languages
+     * (SimpleSAML\Locale\Language::getLanguage()).
+     */
+    public function testGetLanguageOnlyHonorsCookieForAvailableLanguage(): void
+    {
+        unset($_GET['language']);
+        $c = Configuration::loadFromArray([
+            'language.available' => ['en', 'es'],
+        ], '', 'simplesaml');
+
+        // test that an available language from the cookie is used
+        $_COOKIE['language'] = 'es';
+        $l = new Language($c);
+        $this->assertEquals('es', $l->getLanguage());
+
+        // test that a cookie language which is configured, but not known to the translation system
+        // (and so can not be rendered), is ignored
+        $c = Configuration::loadFromArray([
+            'language.available' => ['en', 'foo'],
+        ], '', 'simplesaml');
+        $_COOKIE['language'] = 'foo';
+        $l = new Language($c);
+        $this->assertEquals('en', $l->getLanguage());
+
+        unset($_COOKIE['language']);
+    }
+
+
+    /**
+     * Test that the custom language function result is only honored for available languages
+     * (SimpleSAML\Locale\Language::getLanguage()).
+     */
+    public function testGetLanguageOnlyHonorsCustomFunctionForAvailableLanguage(): void
+    {
+        unset($_GET['language']);
+        unset($_COOKIE['language']);
+
+        // test that an available language from the custom function is used
+        $c = Configuration::loadFromArray([
+            'language.available' => ['en', 'es'],
+            'language.get_language_function' => [self::class, 'getCustomLanguageEs'],
+        ], '', 'simplesaml');
+        $l = new Language($c);
+        $this->assertEquals('es', $l->getLanguage());
+
+        // test that an unavailable language from the custom function is ignored
+        $c = Configuration::loadFromArray([
+            'language.available' => ['en', 'es'],
+            'language.get_language_function' => [self::class, 'getCustomLanguageNn'],
+        ], '', 'simplesaml');
+        $l = new Language($c);
+        $this->assertEquals('en', $l->getLanguage());
+    }
+
+
+    public static function getCustomLanguageEs(Language $language): string
+    {
+        return 'es';
+    }
+
+
+    public static function getCustomLanguageNn(Language $language): string
+    {
+        return 'nn';
+    }
+
+
+    /**
+     * Test that an unavailable default language falls back to the fallback language
+     * (SimpleSAML\Locale\Language constructor).
+     */
+    public function testUnavailableDefaultLanguageFallsBackToFallbackLanguage(): void
+    {
+        unset($_GET['language']);
+        unset($_COOKIE['language']);
+        $c = Configuration::loadFromArray([
+            'language.available' => ['en', 'es'],
+            'language.default' => 'nn',
+        ], '', 'simplesaml');
+        $l = new Language($c);
+        $this->assertEquals('en', $l->getDefaultLanguage());
+        $this->assertEquals('en', $l->getLanguage());
+    }
+
+
     public function testGetPreferredLanguages(): void
     {
         // test defaults
