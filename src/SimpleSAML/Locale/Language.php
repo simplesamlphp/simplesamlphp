@@ -144,9 +144,13 @@ class Language
      * Constructor
      *
      * @param \SimpleSAML\Configuration $configuration Configuration object
+     * @param bool $handleLanguageRequestParameter Whether to handle the language request parameter, if present
+     * (switch the current language and possibly set the language cookie). Can be disabled by consumers which
+     * only need to query the instance, like the available languages, without triggering side effects.
      */
     public function __construct(
         private Configuration $configuration,
+        bool $handleLanguageRequestParameter = true,
     ) {
         $this->availableLanguages = $this->getInstalledLanguages();
 
@@ -168,7 +172,7 @@ class Language
         $this->languageParameterName = $configuration->getOptionalString('language.parameter.name', 'language');
         $this->customFunction = $configuration->getOptionalArray('language.get_language_function', null);
         $this->rtlLanguages = $configuration->getOptionalArray('language.rtl', []);
-        if (isset($_GET[$this->languageParameterName])) {
+        if ($handleLanguageRequestParameter && isset($_GET[$this->languageParameterName])) {
             $this->setLanguage(
                 $_GET[$this->languageParameterName],
                 $configuration->getOptionalBoolean('language.parameter.setcookie', true),
@@ -220,6 +224,19 @@ class Language
         }
 
         return $availableLanguages;
+    }
+
+
+    /**
+     * Return the languages that are both configured to be available (the `language.available` configuration
+     * option) and known to the translation system, i.e. the set of languages actually usable for the user
+     * interface.
+     *
+     * @return string[] The available languages.
+     */
+    public function getAvailableLanguages(): array
+    {
+        return $this->availableLanguages;
     }
 
 

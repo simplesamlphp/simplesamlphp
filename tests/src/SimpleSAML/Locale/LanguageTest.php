@@ -270,6 +270,55 @@ class LanguageTest extends TestCase
         $this->assertEquals('en', $l->getDefaultLanguage());
         $this->assertEquals('en', $l->getLanguage());
     }
+  
+    /**  
+     * Test SimpleSAML\Locale\Language::getAvailableLanguages().
+     */
+    public function testGetAvailableLanguages(): void
+    {
+        // test default
+        $c = Configuration::loadFromArray([], '', 'simplesaml');
+        $l = new Language($c);
+        $this->assertEquals(['en'], $l->getAvailableLanguages());
+
+        // test configured languages
+        $c = Configuration::loadFromArray([
+            'language.available' => ['en', 'nn', 'es'],
+        ], '', 'simplesaml');
+        $l = new Language($c);
+        $this->assertEquals(['en', 'nn', 'es'], $l->getAvailableLanguages());
+
+        // test that configured languages unknown to the translation system are excluded
+        $c = Configuration::loadFromArray([
+            'language.available' => ['en', 'foo'],
+        ], '', 'simplesaml');
+        $l = new Language($c);
+        $this->assertEquals(['en'], $l->getAvailableLanguages());
+    }
+
+
+    /**
+     * Test disabling the handling of the language request parameter (Language constructor).
+     */
+    public function testLanguageRequestParameterHandlingCanBeDisabled(): void
+    {
+        unset($_COOKIE['language']);
+        $c = Configuration::loadFromArray([
+            'language.available' => ['en', 'nn', 'es'],
+            'language.parameter.setcookie' => false,
+        ], '', 'simplesaml');
+        $_GET['language'] = 'es';
+
+        // by default, the language request parameter is handled
+        $l = new Language($c);
+        $this->assertEquals('es', $l->getLanguage());
+
+        // handling of the language request parameter can be disabled
+        $l = new Language($c, handleLanguageRequestParameter: false);
+        $this->assertEquals('en', $l->getLanguage());
+
+        unset($_GET['language']);
+    }
 
 
     public function testGetPreferredLanguages(): void
