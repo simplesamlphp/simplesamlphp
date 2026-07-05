@@ -270,8 +270,9 @@ class LanguageTest extends TestCase
         $this->assertEquals('en', $l->getDefaultLanguage());
         $this->assertEquals('en', $l->getLanguage());
     }
-  
-    /**  
+
+
+    /**
      * Test SimpleSAML\Locale\Language::getAvailableLanguages().
      */
     public function testGetAvailableLanguages(): void
