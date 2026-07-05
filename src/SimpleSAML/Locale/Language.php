@@ -153,7 +153,22 @@ class Language
         bool $handleLanguageRequestParameter = true,
     ) {
         $this->availableLanguages = $this->getInstalledLanguages();
-        $this->defaultLanguage = $configuration->getOptionalString('language.default', self::FALLBACKLANGUAGE);
+
+        $defaultLanguage = $configuration->getOptionalString('language.default', self::FALLBACKLANGUAGE);
+        // Default language might not be listed in 'language.available', but could still be supported by the
+        // translation system, so check translation system here only.
+        if (!Locales::exists($defaultLanguage)) {
+            // A default language unknown to the translation system can not be rendered for the user interface.
+            Logger::warning(sprintf(
+                "The default language \"%s\" is not known to the translation system. Falling back to \"%s\"."
+                . " Check language settings in your config.",
+                $defaultLanguage,
+                self::FALLBACKLANGUAGE,
+            ));
+            $defaultLanguage = self::FALLBACKLANGUAGE;
+        }
+        $this->defaultLanguage = $defaultLanguage;
+
         $this->languageParameterName = $configuration->getOptionalString('language.parameter.name', 'language');
         $this->customFunction = $configuration->getOptionalArray('language.get_language_function', null);
         $this->rtlLanguages = $configuration->getOptionalArray('language.rtl', []);
@@ -261,7 +276,10 @@ class Language
     /**
      * This method will return the language selected by the user, or the default language. It looks first for a cached
      * language code, then checks for a language cookie, then it tries to calculate the preferred language from HTTP
-     * headers.
+     * headers. Only languages known to the translation system are ever returned, so that the user interface
+     * can be rendered in the returned language: an unknown language from the custom language function is
+     * ignored, and the language cookie is only honored for one of the available languages (it restores
+     * a choice from the language menu).
      *
      * @return string The language selected by the user according to the processing rules specified, or the default
      * language in any other case.
@@ -277,13 +295,20 @@ class Language
         if (isset($this->customFunction) && is_callable($this->customFunction)) {
             $customLanguage = call_user_func($this->customFunction, $this);
             if ($customLanguage !== null && $customLanguage !== false) {
-                return $customLanguage;
+                if (is_string($customLanguage) && Locales::exists($customLanguage)) {
+                    return $customLanguage;
+                }
+                // A language unknown to the translation system can not be rendered for the user interface.
+                Logger::warning(
+                    'The language returned by the custom language function is not known to the translation system.'
+                    . ' Ignoring.',
+                );
             }
         }
 
         // language is provided in a stored cookie
         $languageCookie = self::getLanguageCookie();
-        if ($languageCookie !== null) {
+        if ($languageCookie !== null && in_array($languageCookie, $this->availableLanguages, true)) {
             $this->language = $languageCookie;
             return $languageCookie;
         }
@@ -373,7 +398,8 @@ class Language
     /**
      * Return the default language according to configuration.
      *
-     * @return string The default language that has been configured. Defaults to english if not configured.
+     * @return string The default language that has been configured, or the fallback language if the configured
+     * default language is not known to the translation system. Defaults to english if not configured.
      */
     public function getDefaultLanguage(): string
     {
