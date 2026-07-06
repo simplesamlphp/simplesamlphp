@@ -304,7 +304,7 @@ to an incorrect error message.
 
 ## Version 2.2.1
 
-Released 2014-03-17
+Released 2024-03-17
 
 * Fix regression in bin/initMDSPdo.php (was #1892)
 * Fix regression in translations, causing a fallback to English (#2009 + #2010)
