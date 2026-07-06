@@ -64,7 +64,7 @@
         "simplesamlphp/assert": "^1.1",
         "simplesamlphp/composer-module-installer": "^1.3",
         "simplesamlphp/saml2": "^5.0.0",
-        "simplesamlphp/saml2-legacy": "^4.18.1",
+        "simplesamlphp/saml2-legacy": "~4.19.0",
         "simplesamlphp/simplesamlphp-assets-base": "~2.4.0",
         "simplesamlphp/xml-common": "^1.24.2",
         "simplesamlphp/xml-security": "^1.7",
@@ -121,6 +121,9 @@
             "phpstan/extension-installer": true,
             "simplesamlphp/composer-module-installer": true,
             "simplesamlphp/composer-xmlprovider-installer": true
+        },
+        "audit": {
+            "block-insecure": false
         }
     },
     "extra": {
@@ -142,5 +145,5 @@
             "echo 'Post-install tasks completed!'"
         ]
     },
-    "version": "v2.4.7"
+    "version": "v2.4.8"
 }

@@ -5,9 +5,15 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.4.8
+## Version 2.4.9
 
 Released TBD
+
+## Version 2.4.8
+
+Released 2026-07-06
+
+* Fix upgrade path for the CVE's from v2.4.6
 
 ## Version 2.4.7
 
