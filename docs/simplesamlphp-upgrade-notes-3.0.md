@@ -5,6 +5,10 @@ global Symfony kernel and a front controller in `public/index.php`.
 The following changes are relevant for installers, operators, and
 module developers.
 
+## Software requirements
+
+- The minimum PHP version required is now PHP 8.5.
+
 ## Web entrypoints and routing
 
 SimpleSAMLphp now handles supported web requests through

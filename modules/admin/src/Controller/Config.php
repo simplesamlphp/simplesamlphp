@@ -210,11 +210,11 @@ class Config
                 'descr' => [
                     Translate::noop('PHP %minimum% or newer is needed. You are running: %current%'),
                     [
-                        '%minimum%' => '8.3',
+                        '%minimum%' => '8.5',
                         '%current%' => explode('-', phpversion())[0],
                     ],
                 ],
-                'enabled' => version_compare(phpversion(), '8.3', '>='),
+                'enabled' => version_compare(phpversion(), '8.5', '>='),
             ],
         ];
         $store = $this->config->getOptionalString('store.type', null);
