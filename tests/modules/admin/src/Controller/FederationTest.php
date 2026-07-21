@@ -14,6 +14,7 @@ use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Set of tests for the controllers in the "admin" module.
@@ -73,9 +74,10 @@ class FederationTest extends TestCase
         );
 
         $this->authUtils = new class () extends Utils\Auth {
-            public function requireAdmin(): void
+            public function requireAdmin(): ?Response
             {
                 // stub
+                return null;
             }
         };
 
@@ -143,9 +145,10 @@ class FederationTest extends TestCase
             }
 
 
-            public function authenticate(array &$state): void
+            public function authenticate(Request $request, array &$state): ?Response
             {
                 // stub
+                return null;
             }
 
 
@@ -204,6 +207,7 @@ class FederationTest extends TestCase
         $c->setAuthUtils($this->authUtils);
         $response = $c->metadataConverter($request);
 
+        $this->assertInstanceOf(Response::class, $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertNull($response->data['error']);
     }
@@ -223,6 +227,7 @@ class FederationTest extends TestCase
         $c->setAuthUtils($this->authUtils);
         $response = $c->metadataConverter($request);
 
+        $this->assertInstanceOf(Response::class, $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertNull($response->data['error']);
     }
@@ -242,6 +247,7 @@ class FederationTest extends TestCase
         $c->setAuthUtils($this->authUtils);
         $response = $c->metadataConverter($request);
 
+        $this->assertInstanceOf(Response::class, $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertStringNotContainsString("'expire' =>", $response->data['output']['saml20-idp-remote']);
     }
@@ -262,6 +268,7 @@ class FederationTest extends TestCase
 
         $response = $c->metadataConverter($request);
 
+        $this->assertInstanceOf(Response::class, $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertNotNull($response->data['error']);
     }
@@ -282,6 +289,7 @@ class FederationTest extends TestCase
 
         $response = $c->metadataConverter($request);
 
+        $this->assertInstanceOf(Response::class, $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertEquals([], $response->data['output']);
         $this->assertEquals('', $response->data['xmldata']);
@@ -310,9 +318,10 @@ class FederationTest extends TestCase
             }
 
 
-            public function authenticate(array &$state): void
+            public function authenticate(Request $request, array &$state): ?Response
             {
                 // stub
+                return null;
             }
 
 
@@ -336,6 +345,7 @@ class FederationTest extends TestCase
 
         $response = $c->downloadCert($request);
 
+        $this->assertInstanceOf(Response::class, $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertNotNull($response->headers->get('Content-Disposition'));
         $this->assertEquals('application/x-pem-file', $response->headers->get('Content-Type'));
@@ -376,6 +386,7 @@ class FederationTest extends TestCase
 
         $response = $c->downloadCert($request);
 
+        $this->assertInstanceOf(Response::class, $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertNotNull($response->headers->get('Content-Disposition'));
         $this->assertEquals('application/x-pem-file', $response->headers->get('Content-Type'));
@@ -409,6 +420,7 @@ class FederationTest extends TestCase
         $c->setMetaDataStorageHandler($mdh);
         $response = $c->showRemoteEntity($request);
 
+        $this->assertInstanceOf(Response::class, $response);
         $this->assertTrue($response->isSuccessful());
     }
 

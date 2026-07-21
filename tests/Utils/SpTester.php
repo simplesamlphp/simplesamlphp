@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Utils;
 
 use ReflectionObject;
-use SAML2\AuthnRequest;
-use SAML2\Binding;
-use SAML2\LogoutRequest;
+use SAML2\Message;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\saml\Auth\Source\SP;
+use SimpleSAML\SAML2\Binding;
+use SimpleSAML\SAML2\XML\samlp\AuthnRequest;
+use SimpleSAML\SAML2\XML\samlp\LogoutRequest;
 
 /**
  * Wrap the SSP \SimpleSAML\Module\saml\Auth\Source\SP class
@@ -34,7 +35,6 @@ class SpTester extends SP
     {
         $reflector = new ReflectionObject($this);
         $method = $reflector->getMethod('startSSO2');
-        $method->setAccessible(true);
         $method->invoke($this, $idpMetadata, $state);
     }
 
@@ -44,6 +44,8 @@ class SpTester extends SP
      */
     public function sendSAML2AuthnRequest(Binding $binding, AuthnRequest $ar): never
     {
+        $ar = Message::fromXML($ar->toXML());
+
         // Exit test. Continuing would mean running into a assert(FALSE)
         throw new ExitTestException(
             [
@@ -59,6 +61,8 @@ class SpTester extends SP
      */
     public function sendSAML2LogoutRequest(Binding $binding, LogoutRequest $lr): never
     {
+        $lr = Message::fromXML($lr->toXML());
+
         // Exit test. Continuing would mean running into a assert(FALSE)
         throw new ExitTestException(
             [

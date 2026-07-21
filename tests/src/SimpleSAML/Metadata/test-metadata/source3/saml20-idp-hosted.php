@@ -14,6 +14,15 @@ $metadata['urn:x-simplesamlphp:example-idp-1'] = [
 $metadata['urn:x-simplesamlphp:example-idp-2'] = [
     'host' => 'idp.example.org',
     'auth' => 'example-userpass',
-    'SingleSignOnService' => 'https://idp.example.org/ssos',
-    'SingleLogoutService' => 'https://idp.example.org/slos',
+    'SingleSignOnService' => [
+        [
+            'index' => 1,
+            'Location' => 'https://idp.example.org/ssos',
+        ],
+    ],
+    'SingleLogoutService' => [
+        [
+            'Location' => 'https://idp.example.org/slos',
+        ],
+    ],
 ];

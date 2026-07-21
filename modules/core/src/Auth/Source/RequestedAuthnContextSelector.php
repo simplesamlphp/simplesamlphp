@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Source;
 
-use SAML2\Exception\Protocol\NoAuthnContextException;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\Logger;
+use SimpleSAML\SAML2\Exception\Protocol\NoAuthnContextException;
 
 use function array_key_exists;
 use function sprintf;
