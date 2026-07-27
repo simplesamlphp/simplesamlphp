@@ -254,6 +254,96 @@ final class DatabaseTest extends TestCase
 
 
     /**
+     * Reads issued through readPrimary() must hit the primary, even when secondaries are configured.
+     */
+    public function testReadPrimary(): void
+    {
+        $config = [
+            'database.dsn'         => 'sqlite::memory:',
+            'database.username'    => null,
+            'database.password'    => null,
+            'database.prefix'      => 'phpunit_',
+            // Persistent connections are pooled per DSN, which would hand the primary and the secondary below
+            // the very same in-memory database and defeat the point of this test.
+            'database.persistent'  => false,
+            'database.secondaries' => [
+                [
+                    'dsn'      => 'sqlite::memory:',
+                    'username' => null,
+                    'password' => null,
+                ],
+            ],
+        ];
+
+        $sspConfiguration = new Configuration($config, "test/SimpleSAML/DatabaseTest.php");
+        $db = Database::getInstance($sspConfiguration);
+
+        $table = $db->applyPrefix("sspdbtprimary");
+        $db->write("DROP TABLE IF EXISTS $table");
+        $db->write("CREATE TABLE IF NOT EXISTS $table (ssp_key INT(16) NOT NULL, ssp_value TEXT NOT NULL)");
+
+        $ssp_key = time();
+        $ssp_value = md5(strval(rand(0, 10000)));
+        $db->write(
+            "INSERT INTO $table (ssp_key, ssp_value) VALUES (:ssp_key, :ssp_value)",
+            ['ssp_key' => [$ssp_key, PDO::PARAM_INT], 'ssp_value' => $ssp_value],
+        );
+
+        // The write went to the primary, so a primary read has to see it...
+        $query = $db->readPrimary("SELECT * FROM $table WHERE ssp_key = :ssp_key", ['ssp_key' => $ssp_key]);
+        $data = $query->fetch();
+        $this->assertEquals($ssp_value, $data['ssp_value'], "readPrimary did not query the primary database");
+        // Release the cursor, or sqlite will consider the table locked when we drop it below.
+        $query->closeCursor();
+
+        // ... while a regular read is served by the secondary, which never saw that table.
+        try {
+            $db->read("SELECT * FROM $table");
+            $this->fail("read should have been served by the secondary, which does not have table $table");
+        } catch (Exception $e) {
+            $this->assertStringContainsString('no such table', $e->getMessage());
+        }
+
+        $db->write("DROP TABLE IF EXISTS $table");
+    }
+
+
+    /**
+     * Without secondaries configured, readPrimary() behaves just like read().
+     */
+    public function testReadPrimaryWithoutSecondaries(): void
+    {
+        $table = $this->db->applyPrefix("sspdbt");
+        $this->db->write(
+            "CREATE TABLE IF NOT EXISTS $table (ssp_key INT(16) NOT NULL, ssp_value TEXT NOT NULL)",
+        );
+
+        $ssp_key = time();
+        $ssp_value = md5(strval(rand(0, 10000)));
+        $this->db->write(
+            "INSERT INTO $table (ssp_key, ssp_value) VALUES (:ssp_key, :ssp_value)",
+            ['ssp_key' => [$ssp_key, PDO::PARAM_INT], 'ssp_value' => $ssp_value],
+        );
+
+        $query = $this->db->readPrimary("SELECT * FROM $table WHERE ssp_key = :ssp_key", ['ssp_key' => $ssp_key]);
+        $data = $query->fetch();
+        $this->assertEquals($ssp_value, $data['ssp_value'], "Inserted data doesn't match what is in the database");
+    }
+
+
+    /**
+     */
+    public function testReadPrimaryFailure(): void
+    {
+        $this->expectException(Exception::class);
+        $table = $this->db->applyPrefix("sspdbt");
+        $this->assertEquals($this->config->getString('database.prefix') . "sspdbt", $table);
+
+        $this->db->readPrimary("SELECT * FROM $table");
+    }
+
+
+    /**
      */
     public function testReadFailure(): void
     {
