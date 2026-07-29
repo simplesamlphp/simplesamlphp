@@ -1196,7 +1196,7 @@ class SP extends Auth\Source
      *
      * @param string $idpEntityId  The entity ID of the IdP.
      */
-    public function handleLogout(string $idpEntityId): never
+    public function handleLogout(string $idpEntityId): void
     {
         /* Call the logout callback we registered in onProcessingCompleted(). */
         $this->callLogoutCallback($idpEntityId);
