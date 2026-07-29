@@ -9,6 +9,8 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+* Added `SimpleSAML\Database::readPrimary()`, for reads that must not be served by a possibly lagging secondary
+
 ## Version 2.5.2
 
 Released 2026-06-01
