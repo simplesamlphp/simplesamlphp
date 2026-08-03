@@ -46,11 +46,15 @@ class HTTP
         if ($proxy !== null) {
             $proxy = preg_replace('/^(tcp:\/\/)+/i', 'http://', $proxy);
             $proxyAuth = $config->getOptionalString('proxy.auth', null);
-            $scheme = parse_url($proxy, PHP_URL_SCHEME);
-
+            
             if ($proxyAuth !== null) {
+                $scheme = parse_url($proxy, PHP_URL_SCHEME);
                 $proxy = ['proxy' => str_replace($scheme . '://', $scheme . '://' . $proxyAuth . '@', $proxy)];
             }
+            else {
+                $proxy = ['proxy' => $proxy];
+            }
+            
             $options = array_merge($proxy, $options);
         }
 
