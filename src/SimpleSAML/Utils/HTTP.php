@@ -49,11 +49,10 @@ class HTTP
             
             if ($proxyAuth !== null) {
                 $scheme = parse_url($proxy, PHP_URL_SCHEME);
-                $proxy = ['proxy' => str_replace($scheme . '://', $scheme . '://' . $proxyAuth . '@', $proxy)];
+                $proxy = str_replace($scheme . '://', $scheme . '://' . $proxyAuth . '@', $proxy);
             }
-            else {
-                $proxy = ['proxy' => $proxy];
-            }
+
+            $proxy = ['proxy' => $proxy];
             
             $options = array_merge($proxy, $options);
         }
