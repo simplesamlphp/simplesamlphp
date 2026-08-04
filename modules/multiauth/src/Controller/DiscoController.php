@@ -120,7 +120,10 @@ class DiscoController
             return MultiAuth::delegateAuthentication($selectedSource, $state);
         }
 
-        if (array_key_exists('multiauth:preselect', $state) && array_key_exists($state['multiauth:preselect'], $state[MultiAuth::SOURCESID])) {
+        if (
+            array_key_exists('multiauth:preselect', $state)
+            && array_key_exists($state['multiauth:preselect'], $state[MultiAuth::SOURCESID])
+        ) {
             $source = $state['multiauth:preselect'];
             return MultiAuth::delegateAuthentication($source, $state);
         }
