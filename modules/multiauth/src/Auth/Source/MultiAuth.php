@@ -125,7 +125,8 @@ class MultiAuth extends Auth\Source
                     'No authentication sources exist for the requested AuthnContextClassRefs: ' . implode(', ', $refs),
                 );
             } elseif ($number_of_sources === 1) {
-                MultiAuth::delegateAuthentication(array_key_first($new_sources), $state);
+                MultiAuth::delegateAuthentication(array_key_first($new_sources), $state)->sendContent();
+                assert(false);
             }
         }
 
