@@ -9,6 +9,8 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+* Fix multiauth not delegating when num srcs is 1 (#2663)
+
 ## Version 2.4.8
 
 Released 2026-07-06
