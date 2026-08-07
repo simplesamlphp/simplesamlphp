@@ -49,6 +49,15 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
                 Assert::isArray($config['context']);
                 $context = $config['context'];
             }
+            $httpUtils = new Utils\HTTP();
+            $client = $httpUtils->createHttpClient($context);
+            $response = $client->request('GET', $src);
+
+            try {
+                $response->getHeaders();
+                $srcXml = $response->getContent();
+            } catch (ExceptionInterface $e) {
+            }
         } elseif (array_key_exists('xml', $config)) {
             $srcXml = $config['xml'];
         } else {
@@ -60,13 +69,12 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
         $IdP20 = [];
         $AAD = [];
 
-        if (isset($src)) {
-            $entities = SAMLParser::parseDescriptorsFile($src, $context);
-        } elseif (isset($srcXml)) {
-            $entities = SAMLParser::parseDescriptorsString($srcXml);
-        } else {
-            throw new \Exception("Neither source file path/URI nor string data provided");
+        // To prevent "type errors", check if we have a string to pass to SAMLParser at all.
+        if (!is_string($srcXml)) {
+            throw new Exception('Could not extract XML from metadata source.');
         }
+
+        $entities = SAMLParser::parseDescriptorsString($srcXml);
         foreach ($entities as $entityId => $entity) {
             $md = $entity->getMetadata20SP();
             if ($md !== null) {
