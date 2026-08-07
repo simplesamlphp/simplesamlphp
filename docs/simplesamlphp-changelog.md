@@ -14,6 +14,8 @@ Released TBD
 * Fix for setting a proxy (#2662)
 * Fix multiauth not delegating when num srcs is 1 (#2663)
 * Don't delegate to preselect on discovery if it is not saved in the state (#2658)
+* Fix variable name typo in `src/SimpleSAML/Metadata/MetaDataStorageHandlerXML.php` which
+caused raising PHP Type Error even when XML was successfully fetched from given URI.
 
 ## Version 2.5.2
 
