@@ -929,9 +929,30 @@ class Session implements Utils\ClearableState
 
         $this->dataStore[$type][$id] = $dataInfo;
 
+        $this->maintainDataStoreLimit($type);
+
         $this->markDirty();
     }
 
+    /**
+     * This ensures that the number of elements in a data store does not exceed configured limits
+     * and trims it until the limit is not exceeded, removing elements from the start of the array
+     */
+    private function maintainDataStoreLimit(string $type): void
+    {
+        $limit = self::$config->getOptionalInteger('session.datastore.limit', 0);
+        if ($limit <= 0) {
+            return;
+        }
+        if (!array_key_exists($type, $this->dataStore)) {
+           return;
+        }
+        $count = count($this->dataStore[$type]);
+        while ($count > $limit) {
+            array_shift($this->dataStore[$type]);
+            $count--;
+        }
+    }
 
     /**
      * This function removes expired data from the data store.
