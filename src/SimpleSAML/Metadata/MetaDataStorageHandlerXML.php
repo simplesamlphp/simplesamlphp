@@ -59,7 +59,7 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
 
             try {
                 $response->getHeaders();
-                $srcXML = $response->getContent();
+                $srcXml = $response->getContent();
             } catch (ExceptionInterface $e) {
             }
         } elseif (array_key_exists('xml', $config)) {
@@ -71,6 +71,11 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
         $SP20 = [];
         $IdP20 = [];
         $AAD = [];
+
+        // To prevent "type errors", check if we have a string to pass to SAMLParser at all.
+        if (!is_string($srcXml)) {
+            throw new Exception('Could not extract XML from metadata source.');
+        }
 
         $entities = SAMLParser::parseDescriptorsString($srcXml);
         foreach ($entities as $entityId => $entity) {
