@@ -7,6 +7,7 @@ namespace SimpleSAML\Test;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 
@@ -133,5 +134,31 @@ class SessionTest extends ClearStateTestCase
         } else {
             $this->assertNull($fetchedData);
         }
+    }
+
+    public function testDataStoreLimit()
+    {
+        $session = Session::getSessionFromRequest();
+
+        //for this test, we set a datastore limit
+        $config = Configuration::loadFromArray(['session.datastore.limit' => 3], '[ARRAY]', 'simplesaml');
+        $session->setConfiguration($config);
+
+        //set 3 values for a data type testType
+        $session->setData('testType', 'testKey1', 'data1');
+        $session->setData('testType', 'testKey2', 'data2');
+        $session->setData('testType', 'testKey3', 'data3');
+
+        //we still expect the first value to be present...
+        $this->assertEquals('data1', $this->session->getData('testType', 'testKey1'));
+
+        //but if we add one more, it should get removed
+        $session->setData('testType', 'testKey4', 'data4');
+        $this->assertNull($this->session->getData('testType', 'testKey1'));
+
+        //verify the other expected values remain
+        $this->assertEquals('data2', $this->session->getData('testType', 'testKey2'));
+        $this->assertEquals('data3', $this->session->getData('testType', 'testKey3'));
+        $this->assertEquals('data4', $this->session->getData('testType', 'testKey4'));
     }
 }
