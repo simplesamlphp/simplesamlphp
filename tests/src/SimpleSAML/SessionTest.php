@@ -7,7 +7,6 @@ namespace SimpleSAML\Test;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\TestUtils\ClearStateTestCase;
 
