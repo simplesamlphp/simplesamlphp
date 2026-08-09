@@ -5,9 +5,13 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.4.9
+## Version 2.4.10
 
 Released TBD
+
+## Version 2.4.9
+
+Released 2026-08-09
 
 * Added `SimpleSAML\Database::readPrimary()`, for reads that must not be served by a possibly lagging secondary
 * Fix method return-type that broke the Single Logout flow
