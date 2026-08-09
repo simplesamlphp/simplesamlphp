@@ -292,6 +292,24 @@ class Database
 
 
     /**
+     * This executes read queries directly on the primary, bypassing any configured secondaries.
+     *
+     * Secondaries may lag behind the primary, so use this instead of this::read() whenever a stale result is not
+     * acceptable: when reading back data written earlier in the same request, or when the result drives a
+     * security-relevant decision, such as whether a credential has been revoked.
+     *
+     * @param string $stmt Prepared SQL statement
+     * @param array  $params Parameters
+     *
+     * @return \PDOStatement object
+     */
+    public function readPrimary(string $stmt, array $params = []): PDOStatement
+    {
+        return $this->query($this->dbPrimary, $stmt, $params);
+    }
+
+
+    /**
      * Return an array with information about the last operation performed in the database.
      *
      * @return array The array with error information.

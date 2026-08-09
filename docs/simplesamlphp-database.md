@@ -37,7 +37,7 @@ $table would be set to "sp_saml20_idp_hosted"
 
 ## Querying The Database
 
-You can query the database through two public functions read() and write() which are fairly self-explanitory when it comes to determining which one to use when querying.
+You can query the database through the public functions read(), readPrimary() and write() which are fairly self-explanitory when it comes to determining which one to use when querying.
 
 ### Writing to The Database
 
@@ -99,3 +99,28 @@ $values = [
 
 $query = $db->read("SELECT * FROM $table WHERE id = :id", $values);
 ```
+
+### Reading From The Primary
+
+Secondaries are replicas, and replication takes time. A read served by a secondary can therefore return data that is
+out of date with respect to the primary. When that is not acceptable, use readPrimary() instead of read(): it takes
+the same parameters and returns the same PDOStatement, but always queries the primary and never a secondary.
+
+```php
+$table = $db->applyPrefix("test");
+$values = [
+    'id' => [20, PDO::PARAM_INT],
+];
+
+$query = $db->readPrimary("SELECT * FROM $table WHERE id = :id", $values);
+```
+
+Reach for it when:
+
+* you read back data that was written earlier in the same request, and replication lag would make it look like the
+  write never happened;
+* the result drives a security-relevant decision, such as whether a credential or a token has been revoked. Serving
+  such a decision from a lagging secondary can keep something alive that has already been revoked on the primary.
+
+Everything else should keep using read(), so that the secondaries keep absorbing the read load they were configured
+for.
