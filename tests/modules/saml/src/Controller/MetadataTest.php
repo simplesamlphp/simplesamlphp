@@ -269,7 +269,7 @@ class MetadataTest extends TestCase
 
 
     /**
-     * Test not specifying explict entityID falls back to a default
+     * Test not specifying explicit entityID falls back to a default
      */
     public function testMetadataDefaultIdPYieldsContent(): void
     {
