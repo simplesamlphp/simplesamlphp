@@ -412,6 +412,39 @@ class ServiceProvider
             );
         } catch (Module\saml\Error $e) {
             // the status of the response wasn't "success"
+
+            if (
+                $e->getStatus() === Constants::STATUS_RESPONDER
+                && $e->getSubStatus() === Constants::STATUS_NO_AUTHN_CONTEXT
+            ) {
+                if (
+                    isset($state['saml:AuthnContextClassRefFallback'])
+                    && is_array($state['saml:AuthnContextClassRefFallback'])
+                    && count($state['saml:AuthnContextClassRefFallback']) > 0
+                ) {
+                    $nextContext = array_shift($state['saml:AuthnContextClassRefFallback']);
+                    if (empty($nextContext)) {
+                        unset($state['saml:AuthnContextClassRef']);
+                    } else {
+                        $state['saml:AuthnContextClassRef'] = $nextContext;
+                    }
+
+                    if (!isset($state['saml:idp'])) {
+                        $state['saml:idp'] = $issuer;
+                    }
+
+                    /*
+                     * Unset the internal state ID. This forces the state manager to generate
+                     * a brand-new ID for the retry state. As a result, the subsequent SAML
+                     * AuthnRequest will also get a new, unique Request ID. This prevents strict
+                     * IdPs from rejecting the fallback request as a duplicate.
+                     */
+                    unset($state[\SimpleSAML\Auth\State::ID]);
+
+                    return new RunnableResponse([$source, 'authenticate'], [&$state]);
+                }
+            }
+
             $ex = $e->toException();
             $this->authState::throwException($state, $ex);
             throw $ex;

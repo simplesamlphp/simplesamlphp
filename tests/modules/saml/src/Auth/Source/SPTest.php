@@ -248,6 +248,46 @@ class SPTest extends ClearStateTestCase
 
 
     /**
+     * Test that SP properly initializes the fallback list for AuthnContextClassRef
+     * from IdP configuration into the state array.
+     */
+    public function testSPInitializesAuthnContextFallback(): void
+    {
+        $info = ['AuthId' => 'default-sp'];
+        $config = ['entityID' => 'urn:x-simplesamlphp:example-sp'];
+        $as = new SpTester($info, $config);
+
+        $idpConfig = $this->idpConfigArray;
+        $idpConfig['AuthnContextClassRefFallback'] = [
+            'https://refeds.org/profile/mfa',
+            '',
+        ];
+        $idpMetadata = new Configuration($idpConfig, 'test-idp');
+
+        $state = [
+            'saml:AuthnContextClassRef' => 'https://refeds.org/profile/mfa/phr',
+        ];
+
+        try {
+            $as->startSSO2Test($idpMetadata, $state);
+            $this->fail('Expected ExitTestException');
+        } catch (ExitTestException $e) {
+            $r = $e->getTestResult();
+            $ar = $r['ar'];
+
+            // Look up the state by the saved ID
+            $savedState = \SimpleSAML\Auth\State::loadState($ar->getId(), 'saml:sp:sso');
+
+            $this->assertArrayHasKey('saml:AuthnContextClassRefFallback', $savedState);
+            $this->assertEquals(
+                ['https://refeds.org/profile/mfa', ''],
+                $savedState['saml:AuthnContextClassRefFallback'],
+            );
+        }
+    }
+
+
+    /**
      * Test setting ForcedAuthn
      */
     public function testForcedAuthn(): void

@@ -926,4 +926,112 @@ XML;
 
         $c->assertionConsumerService('phpunit');
     }
+
+
+    /**
+     * Test that receiving a NoAuthnContext error with fallback configured
+     * modifies state and returns a RunnableResponse.
+     *
+     * @return void
+     */
+    public function testACSFallbackOnNoAuthnContext(): void
+    {
+        $issuer = 'https://idp.example.org/metadata';
+
+        $xml = \SimpleSAML\Test\Metadata\MetaDataStorageSourceTest::generateIdpMetadataXml($issuer);
+
+        $c = [
+            'metadata.sources' => [
+                [
+                    'type' => 'xml',
+                    'xml' => $xml,
+                ],
+            ],
+            'module.enable' => ['saml' => true],
+        ];
+
+        \SimpleSAML\Metadata\MetaDataStorageHandler::clearInternalState();
+        $config = Configuration::loadFromArray($c, '', 'simplesaml');
+        Configuration::setPreLoadedConfig($config, 'config.php');
+
+        $authsources = Configuration::loadFromArray(
+            [
+                'phpunit' => [
+                    \SimpleSAML\Test\Utils\SpTester::class,
+                    'entityID' => 'urn:x-simplesamlphp:example-sp',
+                ],
+            ],
+            '[ARRAY]',
+            'authsource',
+        );
+        Configuration::setPreLoadedConfig($authsources, 'authsources.php');
+
+        $state = [
+            'saml:sp:AuthId' => 'phpunit',
+            'ExpectedIssuer' => $issuer,
+            'saml:AuthnContextClassRef' => 'https://refeds.org/profile/mfa/phr',
+            'saml:AuthnContextClassRefFallback' => [
+                'https://refeds.org/profile/mfa',
+                '',
+            ],
+        ];
+
+        $stateId = Auth\State::saveState($state, 'saml:sp:sso', true);
+
+        $xml = <<<XML
+<samlp:Response xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
+               xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+               ID="_resp_1"
+               Version="2.0"
+               IssueInstant="2026-05-22T12:34:56Z"
+               InResponseTo="{$stateId}">
+  <saml:Issuer>{$issuer}</saml:Issuer>
+  <samlp:Status>
+    <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Responder">
+        <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:NoAuthnContext"/>
+    </samlp:StatusCode>
+    <samlp:StatusMessage>Could not satisfy requested AuthnContext</samlp:StatusMessage>
+  </samlp:Status>
+</samlp:Response>
+XML;
+
+        $_SERVER['REQUEST_METHOD'] = 'POST';
+        $_SERVER['QUERY_STRING'] = '';
+        $_POST = [
+            'SAMLResponse' => base64_encode($xml),
+        ];
+
+        $controller = new Controller\ServiceProvider($config, $this->session);
+        $result = $controller->assertionConsumerService('phpunit');
+
+        $this->assertInstanceOf(\SimpleSAML\HTTP\RunnableResponse::class, $result);
+
+        $callable = $result->getCallable();
+        $this->assertIsArray($callable);
+        $this->assertEquals('authenticate', $callable[1]);
+
+        $args = $result->getArguments();
+        $this->assertIsArray($args);
+
+        $updatedState = $args[0];
+        $this->assertEquals('https://refeds.org/profile/mfa', $updatedState['saml:AuthnContextClassRef']);
+        $this->assertEquals([''], $updatedState['saml:AuthnContextClassRefFallback']);
+        $this->assertArrayNotHasKey(\SimpleSAML\Auth\State::ID, $updatedState, 'The state ID must be unset to force a new Request ID for the fallback request.');
+
+        // Execute the RunnableResponse to trigger the fallback SAML AuthnRequest
+        try {
+            $result->sendContent();
+            $this->fail('Expected ExitTestException to be thrown by SpTester');
+        } catch (\SimpleSAML\Test\Utils\ExitTestException $e) {
+            $r = $e->getTestResult();
+            /** @var \SAML2\AuthnRequest $ar */
+            $ar = $r['ar'];
+
+            // Verify the generated fallback request contains the downgraded AuthnContext
+            $requestedContext = $ar->getRequestedAuthnContext();
+            $this->assertIsArray($requestedContext);
+            $this->assertArrayHasKey('AuthnContextClassRef', $requestedContext);
+            $this->assertEquals('https://refeds.org/profile/mfa', $requestedContext['AuthnContextClassRef'][0]);
+        }
+    }
 }

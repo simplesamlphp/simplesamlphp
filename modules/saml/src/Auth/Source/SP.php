@@ -509,6 +509,16 @@ class SP extends Auth\Source
             $accr = $arrayUtils->arrayize($state['saml:AuthnContextClassRef']);
         }
 
+        if (!array_key_exists('saml:AuthnContextClassRefFallback', $state)) {
+            $fallback = $idpMetadata->getOptionalArray('AuthnContextClassRefFallback', null);
+            if ($fallback === null) {
+                $fallback = $this->metadata->getOptionalArray('AuthnContextClassRefFallback', null);
+            }
+            if ($fallback !== null) {
+                $state['saml:AuthnContextClassRefFallback'] = $fallback;
+            }
+        }
+
         if ($accr !== null) {
             $comp = AuthnContextComparisonTypeEnum::Exact->value;
             if ($idpMetadata->getOptionalString('AuthnContextComparison', null) !== null) {

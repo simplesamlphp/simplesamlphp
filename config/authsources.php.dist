@@ -46,6 +46,27 @@ $config = [
         'proxymode.passAuthnContextClassRef' => false,
 
         /*
+         * The initially requested authentication context (e.g., for REFEDS MFA).
+         * If the IdP cannot fulfill this context, it will return a NoAuthnContext error.
+         */
+        //'AuthnContextClassRef' => 'https://refeds.org/profile/mfa/phr',
+
+        /*
+         * A prioritized list of fallback authentication contexts to use if the IdP
+         * responds with a NoAuthnContext error. This is particularly useful in a
+         * proxy scenario (e.g., requesting REFEDS MFA phishing-resistant, then
+         * falling back to standard MFA if the user doesn't have a hardware key).
+         * An empty string as the last element allows a final fallback to standard
+         * login without an explicit context.
+         */
+        /*
+        'AuthnContextClassRefFallback' => [
+            'https://refeds.org/profile/mfa',
+            '',
+        ],
+        */
+
+        /*
          * The attributes parameter must contain an array of desired attributes by the SP.
          * The attributes can be expressed as an array of names or as an associative array
          * in the form of 'friendlyName' => 'name'. This feature requires 'name' to be set.
