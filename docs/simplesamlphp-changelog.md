@@ -5,6 +5,12 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
+## Version 2.6.0
+
+Release TBD
+
+* Support for session.datastore.limit configuration setting (#2670)
+
 ## Version 2.5.3
 
 Released TBD
