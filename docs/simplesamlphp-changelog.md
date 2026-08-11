@@ -7,6 +7,8 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 ## Version 2.5.4
 
+Released TBD
+
 * Fix admin federation page calling a removed SAMLBuilder method
 
 ## Version 2.5.3
