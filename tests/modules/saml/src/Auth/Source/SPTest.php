@@ -259,8 +259,12 @@ class SPTest extends ClearStateTestCase
 
         $idpConfig = $this->idpConfigArray;
         $idpConfig['AuthnContextClassRefFallback'] = [
+            [
+                'https://refeds.org/profile/mfa',
+                'https://refeds.org/profile/sfa',
+            ],
             'https://refeds.org/profile/mfa',
-            '',
+            [],
         ];
         $idpMetadata = new Configuration($idpConfig, 'test-idp');
 
@@ -280,7 +284,14 @@ class SPTest extends ClearStateTestCase
 
             $this->assertArrayHasKey('saml:AuthnContextClassRefFallback', $savedState);
             $this->assertEquals(
-                ['https://refeds.org/profile/mfa', ''],
+                [
+                    [
+                        'https://refeds.org/profile/mfa',
+                        'https://refeds.org/profile/sfa',
+                    ],
+                    'https://refeds.org/profile/mfa',
+                    [],
+                ],
                 $savedState['saml:AuthnContextClassRefFallback'],
             );
         }

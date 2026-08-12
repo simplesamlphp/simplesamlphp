@@ -503,12 +503,20 @@ class SP extends Auth\Source
         $arrayUtils = new Utils\Arrays();
 
         $accr = null;
-        if ($idpMetadata->getOptionalString('AuthnContextClassRef', null) !== null) {
-            $accr = $arrayUtils->arrayize($idpMetadata->getString('AuthnContextClassRef'));
+        if ($idpMetadata->hasValue('AuthnContextClassRef')) {
+            $accr = $idpMetadata->getOptionalArrayizeString('AuthnContextClassRef', null);
         } elseif (isset($state['saml:AuthnContextClassRef'])) {
             $accr = $arrayUtils->arrayize($state['saml:AuthnContextClassRef']);
+        } elseif ($this->metadata->hasValue('AuthnContextClassRef')) {
+            $accr = $this->metadata->getOptionalArrayizeString('AuthnContextClassRef', null);
         }
 
+        /*
+         * Initialize the fallback array for AuthnContextClassRef if it hasn't been set.
+         * The configuration prioritizes the IdP metadata over the SP metadata.
+         * This allows the ServiceProvider controller to automatically retry authentication
+         * using sequentially different/weaker contexts if the IdP replies with a NoAuthnContext error.
+         */
         if (!array_key_exists('saml:AuthnContextClassRefFallback', $state)) {
             $fallback = $idpMetadata->getOptionalArray('AuthnContextClassRefFallback', null);
             if ($fallback === null) {

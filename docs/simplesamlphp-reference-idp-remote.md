@@ -30,8 +30,10 @@ $metadata['entity-id-2'] = [
     responds with a `NoAuthnContext` error. This is particularly useful in a
     proxy scenario (e.g., requesting REFEDS MFA phishing-resistant, then
     falling back to standard MFA if the user doesn't have a hardware key).
-    An empty string as the last element allows a final fallback to standard
-    login without an explicit context.
+    Each element in the array can be a single string (representing one context class)
+    or an array of strings (if requesting multiple classes simultaneously).
+    An empty string or an empty array as the last element allows a final fallback
+    to standard login without an explicit context.
 
 :   Note that this option also exists in the SP configuration. This
     entry in the IdP-remote metadata overrides the option in the

@@ -971,8 +971,12 @@ XML;
             'ExpectedIssuer' => $issuer,
             'saml:AuthnContextClassRef' => 'https://refeds.org/profile/mfa/phr',
             'saml:AuthnContextClassRefFallback' => [
+                [
+                    'https://refeds.org/profile/mfa',
+                    'https://refeds.org/profile/sfa',
+                ],
                 'https://refeds.org/profile/mfa',
-                '',
+                [],
             ],
         ];
 
@@ -1014,8 +1018,14 @@ XML;
         $this->assertIsArray($args);
 
         $updatedState = $args[0];
-        $this->assertEquals('https://refeds.org/profile/mfa', $updatedState['saml:AuthnContextClassRef']);
-        $this->assertEquals([''], $updatedState['saml:AuthnContextClassRefFallback']);
+        $this->assertEquals(
+            ['https://refeds.org/profile/mfa', 'https://refeds.org/profile/sfa'],
+            $updatedState['saml:AuthnContextClassRef']
+        );
+        $this->assertEquals(
+            ['https://refeds.org/profile/mfa', []],
+            $updatedState['saml:AuthnContextClassRefFallback']
+        );
         $this->assertArrayNotHasKey(\SimpleSAML\Auth\State::ID, $updatedState, 'The state ID must be unset to force a new Request ID for the fallback request.');
 
         // Execute the RunnableResponse to trigger the fallback SAML AuthnRequest
@@ -1031,7 +1041,10 @@ XML;
             $requestedContext = $ar->getRequestedAuthnContext();
             $this->assertIsArray($requestedContext);
             $this->assertArrayHasKey('AuthnContextClassRef', $requestedContext);
-            $this->assertEquals('https://refeds.org/profile/mfa', $requestedContext['AuthnContextClassRef'][0]);
+            $this->assertEquals(
+                ['https://refeds.org/profile/mfa', 'https://refeds.org/profile/sfa'],
+                $requestedContext['AuthnContextClassRef']
+            );
         }
     }
 }
