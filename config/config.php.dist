@@ -607,6 +607,15 @@ $config = [
     'session.datastore.timeout' => (4 * 60 * 60), // 4 hours
 
     /*
+     * The datastore within a session can contain an arbitrary number of login and logout requests, as well as
+     * error reports.  Historically, this is unlimited, which can result in very large sessions if a user agent makes
+     * repeated and frequent requests.
+     * Setting a limit here ensures older objects are discarded as new ones are added. A value of 25 is recommended as
+     * this should not cause any real inconvenience, but limits the maximum size of a session.
+     */
+    'session.datastore.limit' => 0, // no limit
+
+    /*
      * Sets the duration, in seconds, auth state should be stored.
      */
     'session.state.timeout' => (60 * 60), // 1 hour

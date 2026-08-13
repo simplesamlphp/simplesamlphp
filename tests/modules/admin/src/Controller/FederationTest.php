@@ -8,7 +8,9 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
+use SimpleSAML\Module;
 use SimpleSAML\Module\admin\Controller;
 use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\Utils;
@@ -90,6 +92,20 @@ class FederationTest extends TestCase
             'authsources.php',
             'simplesaml',
         );
+    }
+
+
+    /**
+     * Clean up after each test.
+     */
+    protected function tearDown(): void
+    {
+        // Both are process-wide statics; leaving them set would leak into the other tests.
+        unset(Module::$module_info['adfs']);
+        Logger::setCaptureLog(false);
+        Logger::clearCapturedLog();
+
+        parent::tearDown();
     }
 
 
@@ -177,6 +193,83 @@ class FederationTest extends TestCase
         $response = $c->main($request);
 
         $this->assertTrue($response->isSuccessful());
+    }
+
+
+    /**
+     * A failure inside the ADFS block must degrade that one panel, not take down the whole page.
+     *
+     * The adfs module is not installed in this test-suite, so referencing one of its classes raises
+     * an \Error rather than an \Exception. That is the exact failure mode of issue #2458: an \Error
+     * escaping a `catch (Exception)` and turning a missing panel into an HTTP 500.
+     */
+    public function testMainSurvivesFailingAdfsModule(): void
+    {
+        // Report the adfs module as enabled even though it is not installed. Module::isModuleEnabled()
+        // consults this cache before it checks whether the module directory exists.
+        Module::$module_info['adfs'] = ['enabled' => true];
+
+        $request = Request::create(
+            '/federation',
+            'GET',
+        );
+
+        $mdh = new class () extends MetaDataStorageHandler {
+            public function __construct()
+            {
+            }
+
+
+            public function getList(string $set = 'saml20-idp-remote', bool $showExpired = false): array
+            {
+                if ($set === 'adfs-idp-hosted') {
+                    // More than one entry, so that the ADFS block reaches the adfs module directly.
+                    return [
+                        'urn:x-simplesamlphp:example-adfs-idp' => [
+                            'entityid' => 'urn:x-simplesamlphp:example-adfs-idp',
+                        ],
+                        'urn:x-simplesamlphp:other-adfs-idp' => [
+                            'entityid' => 'urn:x-simplesamlphp:other-adfs-idp',
+                        ],
+                    ];
+                }
+                return [];
+            }
+        };
+
+        $authSource = new class () extends Auth\Source {
+            public function __construct()
+            {
+                // stub
+            }
+
+
+            public function authenticate(array &$state): void
+            {
+                // stub
+            }
+
+
+            public static function getSourcesOfType(string $type): array
+            {
+                return [];
+            }
+        };
+
+        $c = new Controller\Federation($this->config);
+        $c->setAuthUtils($this->authUtils);
+        $c->setAuthSource($authSource);
+        $c->setMetadataStorageHandler($mdh);
+
+        Logger::setCaptureLog();
+        $response = $c->main($request);
+        Logger::setCaptureLog(false);
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertNotEmpty(
+            preg_grep('/Federation: Error loading adfs-idp/', Logger::getCapturedLog()),
+            'The ADFS failure should have been logged.',
+        );
     }
 
 

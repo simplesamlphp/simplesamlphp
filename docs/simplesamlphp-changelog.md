@@ -5,9 +5,21 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.5.3
+## Version 2.6.0
+
+Release TBD
+
+* Support for session.datastore.limit configuration setting (#2670)
+
+## Version 2.5.4
 
 Released TBD
+
+* Fix admin federation page calling a removed SAMLBuilder method
+
+## Version 2.5.3
+
+Released 2026-08-09
 
 * Added `SimpleSAML\Database::readPrimary()`, for reads that must not be served by a possibly lagging secondary
 * Fix method return-type that broke the Single Logout flow
@@ -15,7 +27,8 @@ Released TBD
 * Fix multiauth not delegating when num srcs is 1 (#2663)
 * Don't delegate to preselect on discovery if it is not saved in the state (#2658)
 * Fix variable name typo in `src/SimpleSAML/Metadata/MetaDataStorageHandlerXML.php` which
-caused raising PHP Type Error even when XML was successfully fetched from given URI.
+  caused raising PHP Type Error even when XML was successfully fetched from given URI.
+* Incomplete fix for CVE-2024-52596
 
 ## Version 2.5.2
 
