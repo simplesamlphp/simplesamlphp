@@ -18,6 +18,7 @@ use SimpleSAML\Metadata\SAMLParser;
 use SimpleSAML\Metadata\Signer;
 use SimpleSAML\Module;
 use SimpleSAML\Module\adfs\IdP\ADFS as ADFS_IdP;
+use SimpleSAML\Module\adfs\IdP\MetadataBuilder as ADFS_MetadataBuilder;
 use SimpleSAML\Module\admin\Event\FederationPageEvent;
 use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
 use SimpleSAML\Utils;
@@ -26,6 +27,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\VarExporter\VarExporter;
+use Throwable;
 
 use function array_merge;
 use function array_pop;
@@ -294,23 +296,19 @@ class Federation
                         sprintf('The entityID cannot be longer than %d characters.', C::SAML2INT_ENTITYID_MAX_LENGTH),
                     );
 
-                    $builder = new SAMLBuilder($entity['entityid']);
-                    $builder->addSecurityTokenServiceType($entity['metadata_array']);
-                    $builder->addOrganizationInfo($entity['metadata_array']);
-                    if (isset($entity['metadata_array']['contacts'])) {
-                        foreach ($entity['metadata_array']['contacts'] as $contact) {
-                            $builder->addContact(Utils\Config\Metadata::getContact($contact));
-                        }
-                    }
+                    // The adfs module builds and signs its own WS-Federation metadata. This is the same
+                    // document that /module.php/adfs/idp/metadata serves.
+                    $idpmeta = $this->mdHandler->getMetaDataConfig($entity['metadata-index'], 'adfs-idp-hosted');
+                    $document = (new ADFS_MetadataBuilder($this->config, $idpmeta))->buildDocument()->toXML();
 
-                    $entity['metadata'] = Signer::sign(
-                        $builder->getEntityDescriptorText(),
-                        $entity['metadata_array'],
-                        'ADFS IdP',
-                    );
+                    // Serialize it exactly like the module's own endpoint does (no pretty-print)
+                    $document->ownerDocument->formatOutput = false;
+                    $document->ownerDocument->encoding = 'UTF-8';
+
+                    $entity['metadata'] = $document->ownerDocument->saveXML();
                     $entities[$index] = $entity;
                 }
-            } catch (Exception $e) {
+            } catch (Throwable $e) {
                 Logger::error('Federation: Error loading adfs-idp: ' . $e->getMessage());
             }
         }
