@@ -430,7 +430,8 @@ class ServiceProvider
                 ) {
                     $nextContext = array_shift($state['saml:AuthnContextClassRefFallback']);
 
-                    // An empty string or an empty array as the next context allows a final fallback to standard login without an explicit context.
+                    // An empty string or an empty array as the next context allows a final fallback
+                    // to standard login without an explicit context.
                     if (empty($nextContext)) {
                         unset($state['saml:AuthnContextClassRef']);
                     } else {

@@ -246,6 +246,7 @@ class SPTest extends ClearStateTestCase
         );
     }
 
+
     public function testAuthnContextClassRefMultiValue(): void
     {
         $state = [
@@ -370,7 +371,7 @@ class SPTest extends ClearStateTestCase
                     'http://example.com/myAuthnContextClassRef1',
                     'http://example.com/myAuthnContextClassRef2',
                 ],
-                $requestedContext['AuthnContextClassRef']
+                $requestedContext['AuthnContextClassRef'],
             );
 
             // Look up the state by the saved ID
@@ -388,6 +389,83 @@ class SPTest extends ClearStateTestCase
                 ],
                 $savedState['saml:AuthnContextClassRefFallback'],
             );
+        }
+    }
+
+
+    /**
+     * Test that SP ignores the IdP AuthnContextClassRef when in a fallback state.
+     */
+    public function testAuthnContextClassRefFallbackIgnoresIdPMetadata(): void
+    {
+        $info = ['AuthId' => 'default-sp'];
+        $config = ['entityID' => 'urn:x-simplesamlphp:example-sp'];
+        $as = new SpTester($info, $config);
+
+        $idpConfig = $this->idpConfigArray;
+        $idpConfig['AuthnContextClassRef'] = 'http://example.com/idpContext';
+        $idpMetadata = new Configuration($idpConfig, 'test-idp');
+
+        $state = [
+            'saml:AuthnContextClassRefFallback' => [
+                'http://example.com/fallbackContext2',
+                [],
+            ],
+            'saml:AuthnContextClassRef' => 'http://example.com/fallbackContext1',
+        ];
+
+        try {
+            $as->startSSO2Test($idpMetadata, $state);
+            $this->fail('Expected ExitTestException');
+        } catch (ExitTestException $e) {
+            $r = $e->getTestResult();
+            /** @var \SAML2\AuthnRequest $ar */
+            $ar = $r['ar'];
+
+            $requestedContext = $ar->getRequestedAuthnContext();
+            $this->assertIsArray($requestedContext);
+            $this->assertEquals(
+                ['http://example.com/fallbackContext1'],
+                $requestedContext['AuthnContextClassRef'],
+            );
+        }
+    }
+
+
+    /**
+     * Test that SP ignores proxy passAuthnContextClassRef on final no-context fallback.
+     */
+    public function testAuthnContextClassRefFallbackIgnoresProxyPassContext(): void
+    {
+        $info = ['AuthId' => 'default-sp'];
+        $config = [
+            'entityID' => 'urn:x-simplesamlphp:example-sp',
+            'proxymode.passAuthnContextClassRef' => true,
+        ];
+        $as = new SpTester($info, $config);
+
+        $idpConfig = $this->idpConfigArray;
+        $idpMetadata = new Configuration($idpConfig, 'test-idp');
+
+        $state = [
+            'saml:AuthnContextClassRefFallback' => [
+            ],
+            'saml:RequestedAuthnContext' => [
+                'AuthnContextClassRef' => ['http://example.com/originalSpContext'],
+                'Comparison' => 'exact',
+            ],
+        ];
+
+        try {
+            $as->startSSO2Test($idpMetadata, $state);
+            $this->fail('Expected ExitTestException');
+        } catch (ExitTestException $e) {
+            $r = $e->getTestResult();
+            /** @var \SAML2\AuthnRequest $ar */
+            $ar = $r['ar'];
+
+            $requestedContext = $ar->getRequestedAuthnContext();
+            $this->assertNull($requestedContext);
         }
     }
 

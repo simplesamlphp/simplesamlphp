@@ -1020,11 +1020,11 @@ XML;
         $updatedState = $args[0];
         $this->assertEquals(
             ['https://refeds.org/profile/mfa', 'https://refeds.org/profile/sfa'],
-            $updatedState['saml:AuthnContextClassRef']
+            $updatedState['saml:AuthnContextClassRef'],
         );
         $this->assertEquals(
             ['https://refeds.org/profile/mfa', []],
-            $updatedState['saml:AuthnContextClassRefFallback']
+            $updatedState['saml:AuthnContextClassRefFallback'],
         );
         $this->assertArrayNotHasKey(\SimpleSAML\Auth\State::ID, $updatedState, 'The state ID must be unset to force a new Request ID for the fallback request.');
 
@@ -1043,7 +1043,7 @@ XML;
             $this->assertArrayHasKey('AuthnContextClassRef', $requestedContext);
             $this->assertEquals(
                 ['https://refeds.org/profile/mfa', 'https://refeds.org/profile/sfa'],
-                $requestedContext['AuthnContextClassRef']
+                $requestedContext['AuthnContextClassRef'],
             );
         }
     }
