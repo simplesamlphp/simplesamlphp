@@ -395,6 +395,12 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test that SP ignores the IdP AuthnContextClassRef when in a fallback state.
+     *
+     * When a proxy makes multiple sequential fallback authentication attempts due to
+     * NoAuthnContext responses, the active fallback context (stored in the state array)
+     * must take precedence. If the IdP metadata contains a static AuthnContextClassRef,
+     * it should be ignored during a fallback loop so that it doesn't cause an infinite
+     * loop of the same context request.
      */
     public function testAuthnContextClassRefFallbackIgnoresIdPMetadata(): void
     {
@@ -434,6 +440,12 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test that SP ignores proxy passAuthnContextClassRef on final no-context fallback.
+     *
+     * In a proxy scenario, the 'proxymode.passAuthnContextClassRef' option normally
+     * passes the original Service Provider's context forward to the IdP. However, during
+     * a fallback sequence, if the proxy is attempting a "no context" request as its final
+     * fallback, the original SP context must be suppressed so that it doesn't override the
+     * intentional fallback behavior.
      */
     public function testAuthnContextClassRefFallbackIgnoresProxyPassContext(): void
     {
