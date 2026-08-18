@@ -153,25 +153,25 @@ The following attributes are available:
     by the value before the request is sent. The value can be a single string, an array of strings,
     or an empty string/array to drop the context entirely (falling back to standard login).
 
-    ```mermaid
-    sequenceDiagram
-        participant App as Original Application
-        participant Proxy as SimpleSAMLphp Proxy
-        participant IdP as Upstream IdP
+```mermaid
+sequenceDiagram
+    participant App as Original Application
+    participant Proxy as SimpleSAMLphp Proxy
+    participant IdP as Upstream IdP
 
-        App->>Proxy: 1. Login Request<br/>(e.g., asks for Phishing-Resistant MFA)
-        
-        rect rgb(240, 248, 255)
-            Note over Proxy: 2. Pre-flight Mapping Phase
-            Proxy->>Proxy: Check requested AuthnContext
-            Proxy->>Proxy: Apply AuthnContextClassRefMapping<br/>(Translates to standard MFA, or drops<br/>it to fallback to standard login)
-        end
-        
-        Proxy->>IdP: 3. Send ONE valid SAML AuthnRequest<br/>(using the mapped/supported context)
-        
-        IdP-->>Proxy: 4. Successful Authentication Response
-        Proxy-->>App: 5. Successful Login
-    ```
+    App->>Proxy: 1. Login Request<br/>(e.g., asks for Phishing-Resistant MFA)
+    
+    rect rgb(240, 248, 255)
+        Note over Proxy: 2. Pre-flight Mapping Phase
+        Proxy->>Proxy: Check requested AuthnContext
+        Proxy->>Proxy: Apply AuthnContextClassRefMapping<br/>(Translates to standard MFA, or drops<br/>it to fallback to standard login)
+    end
+    
+    Proxy->>IdP: 3. Send ONE valid SAML AuthnRequest<br/>(using the mapped/supported context)
+    
+    IdP-->>Proxy: 4. Successful Authentication Response
+    Proxy-->>App: 5. Successful Login
+```
 
 `AuthnContextComparison`
 :   The Comparison attribute of the AuthnContext that will be sent in the login request.
