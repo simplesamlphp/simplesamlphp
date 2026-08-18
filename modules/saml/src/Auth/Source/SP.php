@@ -503,10 +503,43 @@ class SP extends Auth\Source
         $arrayUtils = new Utils\Arrays();
 
         $accr = null;
-        if ($idpMetadata->getOptionalString('AuthnContextClassRef', null) !== null) {
-            $accr = $arrayUtils->arrayize($idpMetadata->getString('AuthnContextClassRef'));
+        if ($idpMetadata->hasValue('AuthnContextClassRef')) {
+            $accr = $idpMetadata->getOptionalArrayizeString('AuthnContextClassRef', null);
         } elseif (isset($state['saml:AuthnContextClassRef'])) {
             $accr = $arrayUtils->arrayize($state['saml:AuthnContextClassRef']);
+        } elseif ($this->metadata->hasValue('AuthnContextClassRef')) {
+            $accr = $this->metadata->getOptionalArrayizeString('AuthnContextClassRef', null);
+        }
+
+        // Apply AuthnContextClassRefMapping if available
+        if ($accr !== null) {
+            $mapping = $idpMetadata->getOptionalArray('AuthnContextClassRefMapping', null);
+            if ($mapping === null) {
+                $mapping = $this->metadata->getOptionalArray('AuthnContextClassRefMapping', null);
+            }
+
+            if ($mapping !== null) {
+                $mappedAccr = [];
+                foreach ($accr as $ref) {
+                    if (array_key_exists($ref, $mapping)) {
+                        $mappedValue = $mapping[$ref];
+                        if (is_array($mappedValue)) {
+                            $mappedAccr = array_merge($mappedAccr, $mappedValue);
+                        } elseif (is_string($mappedValue) && $mappedValue !== '') {
+                            $mappedAccr[] = $mappedValue;
+                        }
+                    } else {
+                        $mappedAccr[] = $ref;
+                    }
+                }
+
+                // An empty array implies a fallback to no context (don't set AuthnContextClassRef)
+                if (empty($mappedAccr) || (count($mappedAccr) === 1 && $mappedAccr[0] === '')) {
+                    $accr = null;
+                } else {
+                    $accr = array_values(array_unique($mappedAccr));
+                }
+            }
         }
 
         if ($accr !== null) {

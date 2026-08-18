@@ -248,6 +248,84 @@ class SPTest extends ClearStateTestCase
 
 
     /**
+     * Test mapping of AuthnContextClassRef
+     */
+    public function testAuthnContextClassRefMapping(): void
+    {
+        $info = ['AuthId' => 'default-sp'];
+        $config = ['entityID' => 'urn:x-simplesamlphp:example-sp'];
+        $as = new SpTester($info, $config);
+
+        $idpConfigArray = $this->idpConfigArray;
+        $idpConfigArray['AuthnContextClassRefMapping'] = [
+            'https://refeds.org/profile/mfa/phr' => 'https://refeds.org/profile/mfa',
+            'urn:oasis:names:tc:SAML:2.0:ac:classes:Password' => '',
+            'https://refeds.org/profile/sfa' => [
+                'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
+                'urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport',
+            ],
+        ];
+        $idpMetadata = new \SimpleSAML\Configuration($idpConfigArray, 'test-idp');
+
+        // Test single string mapping
+        $state = [
+            'saml:AuthnContextClassRef' => 'https://refeds.org/profile/mfa/phr',
+        ];
+
+        try {
+            $as->startSSO2Test($idpMetadata, $state);
+            $this->fail('Expected ExitTestException');
+        } catch (\SimpleSAML\Test\Utils\ExitTestException $e) {
+            $r = $e->getTestResult();
+            $ar = $r['ar'];
+        }
+
+        $a = $ar->getRequestedAuthnContext();
+        $this->assertEquals(
+            'https://refeds.org/profile/mfa',
+            $a['AuthnContextClassRef'][0],
+        );
+
+        // Test fallback to empty context
+        $state2 = [
+            'saml:AuthnContextClassRef' => 'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
+        ];
+
+        try {
+            $as->startSSO2Test($idpMetadata, $state2);
+            $this->fail('Expected ExitTestException');
+        } catch (\SimpleSAML\Test\Utils\ExitTestException $e) {
+            $r = $e->getTestResult();
+            $ar2 = $r['ar'];
+        }
+
+        $this->assertNull($ar2->getRequestedAuthnContext());
+
+        // Test mapping to array
+        $state3 = [
+            'saml:AuthnContextClassRef' => 'https://refeds.org/profile/sfa',
+        ];
+
+        try {
+            $as->startSSO2Test($idpMetadata, $state3);
+            $this->fail('Expected ExitTestException');
+        } catch (\SimpleSAML\Test\Utils\ExitTestException $e) {
+            $r = $e->getTestResult();
+            $ar3 = $r['ar'];
+        }
+
+        $a3 = $ar3->getRequestedAuthnContext();
+        $this->assertEquals(
+            [
+                'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
+                'urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport',
+            ],
+            $a3['AuthnContextClassRef'],
+        );
+    }
+
+
+    /**
      * Test setting ForcedAuthn
      */
     public function testForcedAuthn(): void
