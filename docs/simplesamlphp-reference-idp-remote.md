@@ -30,6 +30,7 @@ $metadata['entity-id-2'] = [
     If a requested context (e.g., from an SP behind a proxy) matches a key in this array, it is replaced
     by the value before the request is sent. The value can be a single string, an array of strings,
     or an empty string/array to drop the context entirely (falling back to standard login).
+    For a detailed flow diagram of how this mapping works, see the [SP configuration reference](./saml:sp).
 
 :   Note that this option also exists in the SP configuration. This
     entry in the IdP-remote metadata overrides the option in the
