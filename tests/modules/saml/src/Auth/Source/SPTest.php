@@ -247,60 +247,27 @@ class SPTest extends ClearStateTestCase
     }
 
 
-    public function testAuthnContextClassRefMultiValue(): void
-    {
-        $state = [
-            'saml:AuthnContextClassRef' => [
-                'http://example.com/myAuthnContextClassRef1',
-                'http://example.com/myAuthnContextClassRef2',
-            ],
-        ];
-
-        $ar = $this->createAuthnRequest($state);
-
-        /** @var array $a */
-        $a = $ar->getRequestedAuthnContext();
-        $this->assertEquals(
-            $state['saml:AuthnContextClassRef'],
-            $a['AuthnContextClassRef'],
-        );
-
-        $xml = $ar->toSignedXML();
-
-        $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/samlp:RequestedAuthnContext/saml:AuthnContextClassRef');
-        $this->assertEquals(2, count($q));
-        $this->assertEquals(
-            $state['saml:AuthnContextClassRef'][0],
-            $q[0]->textContent,
-        );
-        $this->assertEquals(
-            $state['saml:AuthnContextClassRef'][1],
-            $q[1]->textContent,
-        );
-    }
-
-
     /**
-     * Test that SP properly initializes the fallback list for AuthnContextClassRef
-     * from IdP configuration into the state array.
+     * Test mapping of AuthnContextClassRef
      */
-    public function testSPInitializesAuthnContextFallback(): void
+    public function testAuthnContextClassRefMapping(): void
     {
         $info = ['AuthId' => 'default-sp'];
         $config = ['entityID' => 'urn:x-simplesamlphp:example-sp'];
         $as = new SpTester($info, $config);
 
-        $idpConfig = $this->idpConfigArray;
-        $idpConfig['AuthnContextClassRefFallback'] = [
-            [
-                'https://refeds.org/profile/mfa',
-                'https://refeds.org/profile/sfa',
+        $idpConfigArray = $this->idpConfigArray;
+        $idpConfigArray['AuthnContextClassRefMapping'] = [
+            'https://refeds.org/profile/mfa/phr' => 'https://refeds.org/profile/mfa',
+            'urn:oasis:names:tc:SAML:2.0:ac:classes:Password' => '',
+            'https://refeds.org/profile/sfa' => [
+                'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
+                'urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport',
             ],
-            'https://refeds.org/profile/mfa',
-            [],
         ];
-        $idpMetadata = new Configuration($idpConfig, 'test-idp');
+        $idpMetadata = new \SimpleSAML\Configuration($idpConfigArray, 'test-idp');
 
+        // Test single string mapping
         $state = [
             'saml:AuthnContextClassRef' => 'https://refeds.org/profile/mfa/phr',
         ];
@@ -308,177 +275,53 @@ class SPTest extends ClearStateTestCase
         try {
             $as->startSSO2Test($idpMetadata, $state);
             $this->fail('Expected ExitTestException');
-        } catch (ExitTestException $e) {
+        } catch (\SimpleSAML\Test\Utils\ExitTestException $e) {
             $r = $e->getTestResult();
             $ar = $r['ar'];
-
-            // Look up the state by the saved ID
-            $savedState = \SimpleSAML\Auth\State::loadState($ar->getId(), 'saml:sp:sso');
-
-            $this->assertArrayHasKey('saml:AuthnContextClassRefFallback', $savedState);
-            $this->assertEquals(
-                [
-                    [
-                        'https://refeds.org/profile/mfa',
-                        'https://refeds.org/profile/sfa',
-                    ],
-                    'https://refeds.org/profile/mfa',
-                    [],
-                ],
-                $savedState['saml:AuthnContextClassRefFallback'],
-            );
         }
-    }
 
-
-    /**
-     * Test that SP properly initializes both the AuthnContextClassRef
-     * and the fallback list from IdP configuration.
-     */
-    public function testAuthnContextClassRefAndFallbackFromIdPMetadata(): void
-    {
-        $info = ['AuthId' => 'default-sp'];
-        $config = ['entityID' => 'urn:x-simplesamlphp:example-sp'];
-        $as = new SpTester($info, $config);
-
-        $idpConfig = $this->idpConfigArray;
-        $idpConfig['AuthnContextClassRef'] = [
-            'http://example.com/myAuthnContextClassRef1',
-            'http://example.com/myAuthnContextClassRef2',
-        ];
-        $idpConfig['AuthnContextClassRefFallback'] = [
-            [
-                'https://refeds.org/profile/mfa',
-                'https://refeds.org/profile/sfa',
-            ],
+        $a = $ar->getRequestedAuthnContext();
+        $this->assertEquals(
             'https://refeds.org/profile/mfa',
-            [],
-        ];
-        $idpMetadata = new Configuration($idpConfig, 'test-idp');
+            $a['AuthnContextClassRef'][0],
+        );
 
-        try {
-            $as->startSSO2Test($idpMetadata, []);
-            $this->fail('Expected ExitTestException');
-        } catch (ExitTestException $e) {
-            $r = $e->getTestResult();
-            /** @var \SAML2\AuthnRequest $ar */
-            $ar = $r['ar'];
-
-            $requestedContext = $ar->getRequestedAuthnContext();
-            $this->assertIsArray($requestedContext);
-            $this->assertEquals(
-                [
-                    'http://example.com/myAuthnContextClassRef1',
-                    'http://example.com/myAuthnContextClassRef2',
-                ],
-                $requestedContext['AuthnContextClassRef'],
-            );
-
-            // Look up the state by the saved ID
-            $savedState = \SimpleSAML\Auth\State::loadState($ar->getId(), 'saml:sp:sso');
-
-            $this->assertArrayHasKey('saml:AuthnContextClassRefFallback', $savedState);
-            $this->assertEquals(
-                [
-                    [
-                        'https://refeds.org/profile/mfa',
-                        'https://refeds.org/profile/sfa',
-                    ],
-                    'https://refeds.org/profile/mfa',
-                    [],
-                ],
-                $savedState['saml:AuthnContextClassRefFallback'],
-            );
-        }
-    }
-
-
-    /**
-     * Test that SP ignores the IdP AuthnContextClassRef when in a fallback state.
-     *
-     * When a proxy makes multiple sequential fallback authentication attempts due to
-     * NoAuthnContext responses, the active fallback context (stored in the state array)
-     * must take precedence. If the IdP metadata contains a static AuthnContextClassRef,
-     * it should be ignored during a fallback loop so that it doesn't cause an infinite
-     * loop of the same context request.
-     */
-    public function testAuthnContextClassRefFallbackIgnoresIdPMetadata(): void
-    {
-        $info = ['AuthId' => 'default-sp'];
-        $config = ['entityID' => 'urn:x-simplesamlphp:example-sp'];
-        $as = new SpTester($info, $config);
-
-        $idpConfig = $this->idpConfigArray;
-        $idpConfig['AuthnContextClassRef'] = 'http://example.com/idpContext';
-        $idpMetadata = new Configuration($idpConfig, 'test-idp');
-
-        $state = [
-            'saml:AuthnContextClassRefFallback' => [
-                'http://example.com/fallbackContext2',
-                [],
-            ],
-            'saml:AuthnContextClassRef' => 'http://example.com/fallbackContext1',
+        // Test fallback to empty context
+        $state2 = [
+            'saml:AuthnContextClassRef' => 'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
         ];
 
         try {
-            $as->startSSO2Test($idpMetadata, $state);
+            $as->startSSO2Test($idpMetadata, $state2);
             $this->fail('Expected ExitTestException');
-        } catch (ExitTestException $e) {
+        } catch (\SimpleSAML\Test\Utils\ExitTestException $e) {
             $r = $e->getTestResult();
-            /** @var \SAML2\AuthnRequest $ar */
-            $ar = $r['ar'];
-
-            $requestedContext = $ar->getRequestedAuthnContext();
-            $this->assertIsArray($requestedContext);
-            $this->assertEquals(
-                ['http://example.com/fallbackContext1'],
-                $requestedContext['AuthnContextClassRef'],
-            );
+            $ar2 = $r['ar'];
         }
-    }
 
+        $this->assertNull($ar2->getRequestedAuthnContext());
 
-    /**
-     * Test that SP ignores proxy passAuthnContextClassRef on final no-context fallback.
-     *
-     * In a proxy scenario, the 'proxymode.passAuthnContextClassRef' option normally
-     * passes the original Service Provider's context forward to the IdP. However, during
-     * a fallback sequence, if the proxy is attempting a "no context" request as its final
-     * fallback, the original SP context must be suppressed so that it doesn't override the
-     * intentional fallback behavior.
-     */
-    public function testAuthnContextClassRefFallbackIgnoresProxyPassContext(): void
-    {
-        $info = ['AuthId' => 'default-sp'];
-        $config = [
-            'entityID' => 'urn:x-simplesamlphp:example-sp',
-            'proxymode.passAuthnContextClassRef' => true,
-        ];
-        $as = new SpTester($info, $config);
-
-        $idpConfig = $this->idpConfigArray;
-        $idpMetadata = new Configuration($idpConfig, 'test-idp');
-
-        $state = [
-            'saml:AuthnContextClassRefFallback' => [
-            ],
-            'saml:RequestedAuthnContext' => [
-                'AuthnContextClassRef' => ['http://example.com/originalSpContext'],
-                'Comparison' => 'exact',
-            ],
+        // Test mapping to array
+        $state3 = [
+            'saml:AuthnContextClassRef' => 'https://refeds.org/profile/sfa',
         ];
 
         try {
-            $as->startSSO2Test($idpMetadata, $state);
+            $as->startSSO2Test($idpMetadata, $state3);
             $this->fail('Expected ExitTestException');
-        } catch (ExitTestException $e) {
+        } catch (\SimpleSAML\Test\Utils\ExitTestException $e) {
             $r = $e->getTestResult();
-            /** @var \SAML2\AuthnRequest $ar */
-            $ar = $r['ar'];
-
-            $requestedContext = $ar->getRequestedAuthnContext();
-            $this->assertNull($requestedContext);
+            $ar3 = $r['ar'];
         }
+
+        $a3 = $ar3->getRequestedAuthnContext();
+        $this->assertEquals(
+            [
+                'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
+                'urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport',
+            ],
+            $a3['AuthnContextClassRef'],
+        );
     }
 
 

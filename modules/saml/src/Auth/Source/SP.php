@@ -502,43 +502,43 @@ class SP extends Auth\Source
 
         $arrayUtils = new Utils\Arrays();
 
-        /*
-         * Determine if we are currently in an AuthnContextClassRef fallback loop by checking the state.
-         * If we are in a fallback loop, we ignore the static AuthnContextClassRef from IdP or SP metadata,
-         * and strictly use the context from the state array representing the current fallback attempt.
-         * Otherwise, we evaluate the context in standard priority order: IdP metadata, state, SP metadata.
-         */
-        $isFallback = array_key_exists('saml:AuthnContextClassRefFallback', $state);
-
         $accr = null;
-        if ($isFallback) {
-            if (isset($state['saml:AuthnContextClassRef'])) {
-                $accr = $arrayUtils->arrayize($state['saml:AuthnContextClassRef']);
-            }
-        } else {
-            if ($idpMetadata->hasValue('AuthnContextClassRef')) {
-                $accr = $idpMetadata->getOptionalArrayizeString('AuthnContextClassRef', null);
-            } elseif (isset($state['saml:AuthnContextClassRef'])) {
-                $accr = $arrayUtils->arrayize($state['saml:AuthnContextClassRef']);
-            } elseif ($this->metadata->hasValue('AuthnContextClassRef')) {
-                $accr = $this->metadata->getOptionalArrayizeString('AuthnContextClassRef', null);
-            }
+        if ($idpMetadata->hasValue('AuthnContextClassRef')) {
+            $accr = $idpMetadata->getOptionalArrayizeString('AuthnContextClassRef', null);
+        } elseif (isset($state['saml:AuthnContextClassRef'])) {
+            $accr = $arrayUtils->arrayize($state['saml:AuthnContextClassRef']);
+        } elseif ($this->metadata->hasValue('AuthnContextClassRef')) {
+            $accr = $this->metadata->getOptionalArrayizeString('AuthnContextClassRef', null);
         }
 
-        /*
-         * Initialize the fallback array for AuthnContextClassRef if we are not already
-         * in a fallback loop.
-         * The configuration prioritizes the IdP metadata over the SP metadata.
-         * This allows the ServiceProvider controller to automatically retry authentication
-         * using sequentially different/weaker contexts if the IdP replies with a NoAuthnContext error.
-         */
-        if (!$isFallback) {
-            $fallback = $idpMetadata->getOptionalArray('AuthnContextClassRefFallback', null);
-            if ($fallback === null) {
-                $fallback = $this->metadata->getOptionalArray('AuthnContextClassRefFallback', null);
+        // Apply AuthnContextClassRefMapping if available
+        if ($accr !== null) {
+            $mapping = $idpMetadata->getOptionalArray('AuthnContextClassRefMapping', null);
+            if ($mapping === null) {
+                $mapping = $this->metadata->getOptionalArray('AuthnContextClassRefMapping', null);
             }
-            if ($fallback !== null) {
-                $state['saml:AuthnContextClassRefFallback'] = $fallback;
+
+            if ($mapping !== null) {
+                $mappedAccr = [];
+                foreach ($accr as $ref) {
+                    if (array_key_exists($ref, $mapping)) {
+                        $mappedValue = $mapping[$ref];
+                        if (is_array($mappedValue)) {
+                            $mappedAccr = array_merge($mappedAccr, $mappedValue);
+                        } elseif (is_string($mappedValue) && $mappedValue !== '') {
+                            $mappedAccr[] = $mappedValue;
+                        }
+                    } else {
+                        $mappedAccr[] = $ref;
+                    }
+                }
+
+                // An empty array implies a fallback to no context (don't set AuthnContextClassRef)
+                if (empty($mappedAccr) || (count($mappedAccr) === 1 && $mappedAccr[0] === '')) {
+                    $accr = null;
+                } else {
+                    $accr = array_values(array_unique($mappedAccr));
+                }
             }
         }
 
@@ -558,13 +558,9 @@ class SP extends Auth\Source
             }
             $ar->setRequestedAuthnContext(['AuthnContextClassRef' => $accr, 'Comparison' => $comp]);
         } elseif (
-            /*
-             * When operating as a proxy, we pass the original requested context forward.
-             * However, if we are in a fallback loop, we suppress the proxied context to prevent
-             * it from overriding our intended fallback attempt (e.g., a "no context" request).
-             */
-            isset($state['saml:RequestedAuthnContext']['AuthnContextClassRef'])
-            && !$isFallback && $this->passAuthnContextClassRef
+            $this->passAuthnContextClassRef
+            && isset($state['saml:RequestedAuthnContext'])
+            && isset($state['saml:RequestedAuthnContext']['AuthnContextClassRef'])
         ) {
             if (
                 isset($state['saml:RequestedAuthnContext']['Comparison'])

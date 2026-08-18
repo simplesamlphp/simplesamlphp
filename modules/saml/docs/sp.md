@@ -147,19 +147,11 @@ The following attributes are available:
     One example of usage could be if the IdP supports both username/password authentication as well as software-PKI.
     Set this to a string for one class identifier or an array of requested class identifiers.
 
-`AuthnContextClassRefFallback`
-:   A prioritized array of fallback authentication contexts to use if the IdP
-    responds with a `NoAuthnContext` error. This is particularly useful in a
-    proxy scenario (e.g., requesting REFEDS MFA phishing-resistant, then
-    falling back to standard MFA if the user doesn't have a hardware key).
-    Each element in the array can be a single string (representing one context class)
-    or an array of strings (if requesting multiple classes simultaneously).
-    An empty string or an empty array as the last element allows a final fallback
-    to standard login without an explicit context.
-
-:   Note that this option also exists in the IdP-remote metadata, and
-    any value in the IdP-remote metadata overrides the one configured
-    in the SP configuration.
+`AuthnContextClassRefMapping`
+:   A mapping array to translate requested `AuthnContextClassRef` values to ones supported by the IdP.
+    If a requested context (e.g., from an SP behind a proxy) matches a key in this array, it is replaced
+    by the value before the request is sent. The value can be a single string, an array of strings,
+    or an empty string/array to drop the context entirely (falling back to standard login).
 
 `AuthnContextComparison`
 :   The Comparison attribute of the AuthnContext that will be sent in the login request.

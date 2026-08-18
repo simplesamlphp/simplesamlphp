@@ -46,25 +46,17 @@ $config = [
         'proxymode.passAuthnContextClassRef' => false,
 
         /*
-         * The initially requested authentication context (e.g., for REFEDS MFA).
-         * If the IdP cannot fulfill this context, it will return a NoAuthnContext error.
-         */
-        //'AuthnContextClassRef' => 'https://refeds.org/profile/mfa/phr',
-
-        /*
-         * A prioritized list of fallback authentication contexts to use if the IdP
-         * responds with a NoAuthnContext error. This is particularly useful in a
-         * proxy scenario (e.g., requesting REFEDS MFA phishing-resistant, then
-         * falling back to standard MFA if the user doesn't have a hardware key).
-         * Each element in the array can be a single string (representing one context class)
-         * or an array of strings (if requesting multiple classes simultaneously).
-         * An empty string or an empty array as the last element allows a final fallback
-         * to standard login without an explicit context.
+         * Map requested AuthnContextClassRef to contexts supported by the IdP.
+         * This allows replacing requested context classes (e.g. from an SP behind a proxy)
+         * with context classes that the upstream IdP actually supports, before the request
+         * is sent. If a requested context matches a key in this array, it will be replaced
+         * by the value. You can map to a single string, an array of strings, or an empty string/array
+         * to drop the requested context (fallback to standard login).
          */
         /*
-        'AuthnContextClassRefFallback' => [
-            'https://refeds.org/profile/mfa',
-            '',
+        'AuthnContextClassRefMapping' => [
+            'https://refeds.org/profile/mfa/phr' => 'https://refeds.org/profile/mfa',
+            'urn:oasis:names:tc:SAML:2.0:ac:classes:Password' => '',
         ],
         */
 
