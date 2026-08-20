@@ -11,6 +11,10 @@ Release TBD
 
 * Support for session.datastore.limit configuration setting (#2670)
 
+`consent`
+
+* Added support for Redis as backend for storing consent (v1.6.0)
+
 ## Version 2.5.4
 
 Released TBD
