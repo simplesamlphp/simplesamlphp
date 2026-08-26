@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
+use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
 /**
@@ -36,6 +37,7 @@ class AuthSource extends Error
                 '%REASON%' => $this->reason,
             ],
             $cause,
+            Response::HTTP_NOT_FOUND,
         );
 
         $this->message = "Error with authentication source '$authsource': $reason";

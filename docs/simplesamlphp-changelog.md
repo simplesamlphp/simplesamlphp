@@ -10,6 +10,7 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 Release TBD
 
 * Support for session.datastore.limit configuration setting (#2670)
+* Change the response-code for unknown authsource from 500 > 404
 
 `consent`
 
