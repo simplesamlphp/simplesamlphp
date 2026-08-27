@@ -4,7 +4,45 @@
 
 In SimpleSAMLphp every part that needs to interact with the user by using a web page, uses templates to present the HTML. SimpleSAMLphp comes with a default set of templates that presents an anonymous look.
 
-You may create your own theme, where you add one or more template files that will override the default ones. This document explains how to achieve that.
+If you like how the theme looks but would like to modify the colours to match your site this can be done by defining some CSS in an optional `_head.twig` file. For more in depth changes to the UI you may create your own theme, where you add one or more template files that will override the default ones. This document also explains how to achieve that.
+
+## Simple colour changes with _head.twig
+
+You can override the colours used by SimpleSAMLphp using the optional
+`templates/_head.twig` file. In the below example the background
+colour is altered and the header banner will be in a green colour.
+This can be a useful example to make sure that the changes are working
+before you hone in the colours to match your exact site style.
+
+Your `_head.twig` might contain the following:
+
+```html
+<link rel="stylesheet" href="{{ asset("css/custom-green.css") }}">
+```
+
+And the `custom-green.css` might start with this charming green theme
+in the file `public/assets/base/css/custom-green.css`.
+
+```css
+ :root {
+   --ssp-chrome-primary-background: #0e6d32;
+   --ssp-chrome-transition-background: #21a754;
+   --ssp-chrome-secondary-background: #0a5a28;
+   --ssp-chrome-text-shadow: #02260d;
+   --ssp-chrome-menu-active: #0e6d61;
+   --ssp-chrome-primary-backgroundv: #0e6d32;
+  }
+```
+
+### A word about inline and Content Security Policy (CSP)
+
+You could also inline the style directly in the `_head.twig` but the default Content Security Policy (CSP) settings will not allow that to work.
+You can relax this in your `config.php` under the `headers.security`
+configuration. If that is not set a default will be provided in
+[Configuration.php](https://github.com/simplesamlphp/simplesamlphp/blob/3d54d3a930d70dad3bed9e8fa297ced9862ed488/src/SimpleSAML/Configuration.php#L49).
+
+You may need to add `'unsafe-inline'` to the `style-src` element to allow such inline style use.
+It is probably best to retain the default CSP settings and use an extra level of indirection for changing the colours.
 
 ## How themes work
 
