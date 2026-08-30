@@ -6,6 +6,7 @@ namespace SimpleSAML\Metadata;
 
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
+use SimpleSAML\Utils;
 
 /**
  * This class implements a metadata source which loads metadata from XML files.
