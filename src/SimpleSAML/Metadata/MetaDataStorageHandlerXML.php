@@ -74,7 +74,7 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
 
         // To prevent "type errors", check if we have a string to pass to SAMLParser at all.
         if (!is_string($srcXml)) {
-            throw new \Exception('Could not extract XML from metadata source.');
+            throw new Exception('Could not extract XML from metadata source.');
         }
 
         $entities = SAMLParser::parseDescriptorsString($srcXml);
