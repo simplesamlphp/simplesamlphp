@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
+use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Utils;
@@ -44,6 +45,7 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
             // get the configuration
             $globalConfig = Configuration::getInstance();
             $src = $globalConfig->resolvePath($config['file']);
+            $srcXml = file_get_contents($src);
         } elseif (array_key_exists('url', $config)) {
             $src = $config['url'];
             if (array_key_exists('context', $config)) {
@@ -62,7 +64,7 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
         } elseif (array_key_exists('xml', $config)) {
             $srcXml = $config['xml'];
         } else {
-            throw new \Exception("Missing one of 'file', 'url' and 'xml' in XML metadata source configuration.");
+            throw new Exception("Missing one of 'file', 'url' and 'xml' in XML metadata source configuration.");
         }
 
 
