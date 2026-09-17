@@ -249,12 +249,14 @@ class Session implements Utils\ClearableState
 
 
     /**
-     * Retrieves the current session. Creates a new session if there's not one.
+     * Retrieves the current session.
      *
-     * @return \SimpleSAML\Session The current session.
+     * @param bool $canCreate Creates a new session if there's not one.
+     *
+     * @return ?\SimpleSAML\Session The current session.
      * @throws \Exception When session couldn't be initialized and the session fallback is disabled by configuration.
      */
-    public static function getSessionFromRequest(): Session
+    public static function getSessionFromRequest(bool $canCreate = true): ?Session
     {
         // check if we already have initialized the session
         /** @psalm-suppress RedundantCondition */
@@ -296,7 +298,7 @@ class Session implements Utils\ClearableState
          */
 
         /** @psalm-suppress TypeDoesNotContainType */
-        if (self::$instance !== null) {
+        if (!$canCreate || self::$instance !== null) {
             return self::$instance;
         }
 

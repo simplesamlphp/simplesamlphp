@@ -22,8 +22,8 @@ class Simple
     /** @var \SimpleSAML\Configuration */
     protected Configuration $app_config;
 
-    /** @var \SimpleSAML\Session */
-    protected Session $session;
+    /** @var ?\SimpleSAML\Session */
+    protected ?Session $session;
 
 
     /**
@@ -44,7 +44,7 @@ class Simple
         $this->app_config = $config->getOptionalConfigItem('application', []);
 
         if ($session === null) {
-            $session = Session::getSessionFromRequest();
+            $session = Session::getSessionFromRequest(canCreate: false);
         }
         $this->session = $session;
     }
@@ -77,7 +77,7 @@ class Simple
      */
     public function isAuthenticated(): bool
     {
-        return $this->session->isValid($this->authSource);
+        return $this->session != null && $this->session->isValid($this->authSource);
     }
 
 
@@ -96,7 +96,7 @@ class Simple
      */
     public function requireAuth(array $params = []): void
     {
-        if ($this->session->isValid($this->authSource)) {
+        if ($this->isAuthenticated()) {
             // Already authenticated
             return;
         }
@@ -202,13 +202,13 @@ class Simple
             Assert::true(isset($params['ReturnStateParam'], $params['ReturnStateStage']));
         }
 
-        if ($this->session->isValid($this->authSource)) {
-            $state = $this->session->getAuthData($this->authSource, 'LogoutState');
+        if ($this->isAuthenticated()) {
+            $state = $this->getSession()->getAuthData($this->authSource, 'LogoutState');
             if ($state !== null) {
                 $params = array_merge($state, $params);
             }
 
-            $this->session->doLogout($this->authSource);
+            $this->getSession()->doLogout($this->authSource);
 
             $params['LogoutCompletedHandler'] = [get_class($this), 'logoutCompleted'];
 
@@ -259,13 +259,7 @@ class Simple
      */
     public function getAttributes(): array
     {
-        if (!$this->isAuthenticated()) {
-            // Not authenticated
-            return [];
-        }
-
-        // Authenticated
-        return $this->session->getAuthData($this->authSource, 'Attributes');
+        return $this->getAuthData('Attributes');
     }
 
 
@@ -282,7 +276,7 @@ class Simple
             return null;
         }
 
-        return $this->session->getAuthData($this->authSource, $name);
+        return $this->getSession()->getAuthData($this->authSource, $name);
     }
 
 
@@ -297,7 +291,7 @@ class Simple
             return null;
         }
 
-        return $this->session->getAuthState($this->authSource);
+        return $this->getSession()->getAuthState($this->authSource);
     }
 
 
@@ -344,6 +338,21 @@ class Simple
         ]);
 
         return $logout;
+    }
+
+
+    /**
+     * Get the current session, create it if it doesn't exist yet.
+     *
+     * @return \SimpleSAML\Session
+     */
+    protected function getSession(): Session
+    {
+        if ($this->session === null) {
+            $this->session = Session::getSessionFromRequest(canCreate: true);
+        }
+
+        return $this->session;
     }
 
 
