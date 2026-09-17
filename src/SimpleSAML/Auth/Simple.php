@@ -44,7 +44,7 @@ class Simple
         $this->app_config = $config->getOptionalConfigItem('application', []);
 
         if ($session === null) {
-            $session = Session::getSessionFromRequest(canCreate: false);
+            $session = Session::getExistingSessionFromRequest();
         }
         $this->session = $session;
     }
@@ -349,7 +349,7 @@ class Simple
     protected function getSession(): Session
     {
         if ($this->session === null) {
-            $this->session = Session::getSessionFromRequest(canCreate: true);
+            $this->session = Session::getSessionFromRequest();
         }
 
         return $this->session;

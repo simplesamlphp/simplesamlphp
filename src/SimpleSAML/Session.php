@@ -249,14 +249,12 @@ class Session implements Utils\ClearableState
 
 
     /**
-     * Retrieves the current session.
-     *
-     * @param bool $canCreate Creates a new session if there's not one.
+     * Retrieves the current session. Returns null if there's not one.
      *
      * @return ?\SimpleSAML\Session The current session.
      * @throws \Exception When session couldn't be initialized and the session fallback is disabled by configuration.
      */
-    public static function getSessionFromRequest(bool $canCreate = true): ?Session
+    public static function getExistingSessionFromRequest(): ?Session
     {
         // check if we already have initialized the session
         /** @psalm-suppress RedundantCondition */
@@ -290,6 +288,23 @@ class Session implements Utils\ClearableState
             return self::load($session);
         }
 
+        return null;
+    }
+
+
+    /**
+     * Retrieves the current session. Creates a new session if there's not one.
+     *
+     * @return \SimpleSAML\Session The current session.
+     * @throws \Exception When session couldn't be initialized and the session fallback is disabled by configuration.
+     */
+    public static function getSessionFromRequest(): Session
+    {
+        $session = $this->getExistingSessionFromRequest();
+        if ($session !== null) {
+            return $session;
+        }
+
         /*
          * We didn't have a session loaded when we started, but we have it now. At this point, getSession() failed but
          * it must have triggered the creation of a session at some point during the process (e.g. while logging an
@@ -298,7 +313,7 @@ class Session implements Utils\ClearableState
          */
 
         /** @psalm-suppress TypeDoesNotContainType */
-        if (!$canCreate || self::$instance !== null) {
+        if (self::$instance !== null) {
             return self::$instance;
         }
 
