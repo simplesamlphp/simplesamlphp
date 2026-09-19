@@ -259,7 +259,7 @@ class Simple
      */
     public function getAttributes(): array
     {
-        return $this->getAuthData('Attributes');
+        return $this->getAuthData('Attributes') ?? [];
     }
 
 
