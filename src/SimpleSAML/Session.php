@@ -300,7 +300,7 @@ class Session implements Utils\ClearableState
      */
     public static function getSessionFromRequest(): Session
     {
-        $session = $this->getExistingSessionFromRequest();
+        $session = static::getExistingSessionFromRequest();
         if ($session !== null) {
             return $session;
         }
