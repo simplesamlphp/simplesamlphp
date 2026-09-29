@@ -156,6 +156,17 @@ and apply it before pushing documentation changes to github.
 
 ## Branches
 
+There is a slightly different approach for simplesamlphp itself and
+some of the things it depends on. If a project has a master branch it
+might follow the main process described for simplesamlphp.
+
+If it does not have a master (or the master is not in use) then
+updates should be committed to a branch such as release-2.6 in
+simplesamlphp-assets-base and cherry picked forward to later versions.
+
+Otherwise the following process is to be used. This is the process for
+the main simplesamlphp project.
+
 There will be a `master` branch, a `current-release-branch`, and a
 `next-release-branch`. As at March 2026 these might be `2.5` and `2.6`
 for current and next release.

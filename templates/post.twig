@@ -8,6 +8,7 @@
     <link rel="icon" href="{{ asset("icons/favicon.ico") }}">
     <title>{% trans %}Sending message{% endtrans %}</title>
     <link rel="stylesheet" href="{{ asset("css/postSubmit.css") }}">
+    {{ include('_head.twig', {includedFrom: 'post'}, ignore_missing = true) }}
     {% block preload %}{% endblock %}
 </head>
 <body>
