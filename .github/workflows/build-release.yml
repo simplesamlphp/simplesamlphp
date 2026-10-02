@@ -64,6 +64,21 @@ jobs:
             fi
           done
 
+      # Twig autoloads files that only declare deprecated global functions (twig_cycle() etc.).
+      # SimpleSAMLphp does not use them, and they cause "Cannot redeclare function" errors
+      # when an application embedding SimpleSAMLphp loads its own copy of Twig.
+      # See https://github.com/twigphp/Twig/issues/4180
+      - name: Remove deprecated Twig includes from the autoloader
+        run: |
+          sed -i '\#/twig/twig/src/Resources/#d' vendor/composer/autoload_static.php vendor/composer/autoload_files.php
+          if grep -q '/twig/twig/src/Resources/' vendor/composer/autoload_static.php vendor/composer/autoload_files.php
+          then
+            echo "::error::The autoloader still includes the deprecated Twig functions"
+            exit 1
+          fi
+          php -l vendor/composer/autoload_static.php
+          php -l vendor/composer/autoload_files.php
+
       - name: Add composer.phar to the release
         run: phive --no-progress install --trust-gpg-keys CBB3D576F2A0946F --copy --target ./bin composer
 
