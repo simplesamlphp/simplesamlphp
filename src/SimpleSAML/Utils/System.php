@@ -145,7 +145,12 @@ class System
         // check for absolute path
         if (substr($path, 0, 1) === '/') {
             // absolute path. */
-            $ret = '/';
+            if (substr($path, 0, 2) === '//') {
+                // UNC absolute path
+                $ret = '//';
+            } else {
+                $ret = '/';
+            }
         } elseif ($this->pathContainsDriveLetter($path)) {
             $ret = '';
         } else {
