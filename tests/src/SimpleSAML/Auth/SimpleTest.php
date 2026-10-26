@@ -22,7 +22,6 @@ class SimpleTest extends ClearStateTestCase
     {
         $class = new ReflectionClass(Auth\Simple::class);
         $method = $class->getMethod('getProcessedURL');
-        $method->setAccessible(true);
 
         // fool the routines to make them believe we are running in a web server
         $_SERVER['REQUEST_URI'] = '/';
