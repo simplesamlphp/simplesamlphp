@@ -10,6 +10,8 @@ use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Helper class for simple authentication applications.
@@ -93,15 +95,16 @@ class Simple
      * method for a description.
      *
      * @param array $params Various options to the authentication request. See the documentation.
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function requireAuth(array $params = []): void
+    public function requireAuth(array $params = []): ?Response
     {
         if ($this->session->isValid($this->authSource)) {
             // Already authenticated
-            return;
+            return null;
         }
 
-        $this->login($params);
+        return $this->login($params);
     }
 
 
@@ -115,11 +118,10 @@ class Simple
      *  - 'ReturnTo': The URL the user should be returned to after authentication.
      *  - 'ReturnCallback': The function we should call after the user has finished authentication.
      *
-     * Please note: this function never returns.
-     *
      * @param array $params Various options to the authentication request.
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function login(array $params = []): void
+    public function login(array $params = []): Response
     {
         if (array_key_exists('KeepPost', $params)) {
             $keepPost = (bool) $params['KeepPost'];
@@ -138,8 +140,9 @@ class Simple
             }
         }
 
-        if (is_string($returnTo) && $keepPost && $_SERVER['REQUEST_METHOD'] === 'POST') {
-            $returnTo = $httpUtils->getPOSTRedirectURL($returnTo, $_POST);
+        $request = Request::createFromGlobals();
+        if (is_string($returnTo) && $keepPost && $request->getMethod() === 'POST') {
+            $returnTo = $httpUtils->getPOSTRedirectURL($returnTo, $request->request->all());
         }
 
         if (array_key_exists('ErrorURL', $params)) {
@@ -162,8 +165,7 @@ class Simple
             $params[State::RESTART] = $restartURL;
         }
 
-        $as->initLogin($returnTo, $errorURL, $params);
-        Assert::true(false);
+        return $as->initLogin($returnTo, $errorURL, $params);
     }
 
 
@@ -180,9 +182,10 @@ class Simple
      *  - 'ReturnStateStage': The stage the state array should be saved with.
      *
      * @param string|array|null $params Either the URL the user should be redirected to after logging out, or an array
-     * with parameters for the logout. If this parameter is null, we will return to the current page.
+     *   with parameters for the logout. If this parameter is null, we will return to the current page.
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function logout(string|array|null $params = null): void
+    public function logout(string|array|null $params = null): Response
     {
         if ($params === null) {
             $httpUtils = new Utils\HTTP();
@@ -214,28 +217,29 @@ class Simple
 
             $as = Source::getById($this->authSource);
             if ($as !== null) {
-                $as->logout($params);
+                $response = $as->logout($params);
+                if ($response instanceof Response) {
+                    return $response;
+                }
             }
         }
 
-        self::logoutCompleted($params);
+        return self::logoutCompleted($params);
     }
 
 
     /**
      * Called when logout operation completes.
      *
-     * This function never returns.
-     *
      * @param array $state The state after the logout.
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public static function logoutCompleted(array $state): void
+    public static function logoutCompleted(array $state): Response
     {
         Assert::true(isset($state['ReturnTo']) || isset($state['ReturnCallback']));
 
         if (isset($state['ReturnCallback'])) {
-            call_user_func($state['ReturnCallback'], $state);
-            Assert::true(false);
+            $response = call_user_func($state['ReturnCallback'], $state);
         } else {
             $params = [];
             if (isset($state['ReturnStateParam']) || isset($state['ReturnStateStage'])) {
@@ -244,8 +248,10 @@ class Simple
                 $params[$state['ReturnStateParam']] = $stateID;
             }
             $httpUtils = new Utils\HTTP();
-            $httpUtils->redirectTrustedURL($state['ReturnTo'], $params);
+            $response = $httpUtils->redirectTrustedURL($state['ReturnTo'], $params);
         }
+
+        return $response;
     }
 
 

@@ -65,7 +65,10 @@ class RunnableResponse extends Response
      */
     public function sendContent(): static
     {
-        call_user_func_array($this->callable, $this->arguments);
+        $response = call_user_func_array($this->callable, $this->arguments);
+        if ($response instanceof Response) {
+            $response->send();
+        }
         return $this;
     }
 }

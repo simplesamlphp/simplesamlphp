@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\XML;
 
-use DOMDocument;
-use DOMElement;
+use Dom;
 use Exception;
 use PHPUnit\Framework\Attributes\CoversClass;
 use ReflectionClass;
@@ -82,11 +81,11 @@ NOWDOC;
     {
         $node = DOMDocumentFactory::fromString('<node>value</node>');
 
-        /** @psalm-var \DOMElement $element */
+        /** @psalm-var \Dom\Element $element */
         $element = $node->getElementsByTagName("node")->item(0);
 
-        $doc = new DOMDocument();
-        $insertInto = $doc->appendChild(new DOMElement('insert'));
+        $doc = DOMDocumentFactory::create();
+        $insertInto = $doc->appendChild(new Dom\Element('insert'));
 
         $signer = new Signer([]);
         $signer->loadPrivateKey($this->good_private_key_file, null, true);
@@ -121,11 +120,11 @@ NOWDOC;
     {
         $node = DOMDocumentFactory::fromString('<node>value</node>');
 
-        /** @psalm-var \DOMElement $element */
+        /** @psalm-var \Dom\Element $element */
         $element = $node->getElementsByTagName("node")->item(0);
 
-        $doc = new DOMDocument();
-        $insertInto = $doc->appendChild(new DOMElement('insert'));
+        $doc = DOMDocumentFactory::create();
+        $insertInto = $doc->appendChild(new Dom\Element('insert'));
 
         $signer = new Signer([]);
         $signer->loadPrivateKey($this->good_private_key_file, null, true);
@@ -149,11 +148,11 @@ NOWDOC;
 
         $node = DOMDocumentFactory::fromString('<node>value</node>');
 
-        /** @psalm-var \DOMElement $element */
+        /** @psalm-var \Dom\Element $element */
         $element = $node->getElementsByTagName("node")->item(0);
 
-        $doc = new DOMDocument();
-        $insertInto = $doc->appendChild(new DOMElement('insert'));
+        $doc = DOMDocumentFactory::create();
+        $insertInto = $doc->appendChild(new Dom\Element('insert'));
 
         $signer = new Signer([]);
         $signer->loadPrivateKey($this->good_private_key_file, null, true);
@@ -178,11 +177,11 @@ NOWDOC;
     {
         $node = DOMDocumentFactory::fromString('<node>value</node>');
 
-        /** @psalm-var \DOMElement $element */
+        /** @psalm-var \Dom\Element $element */
         $element = $node->getElementsByTagName("node")->item(0);
 
-        $doc = new DOMDocument();
-        $insertInto = $doc->appendChild(new DOMElement('insert'));
+        $doc = DOMDocumentFactory::create();
+        $insertInto = $doc->appendChild(new Dom\Element('insert'));
 
         $signer = new Signer([]);
 
@@ -200,8 +199,6 @@ NOWDOC;
     {
         $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');
-        $reflectedInstance->setAccessible(true);
         $reflectedInstance->setValue($service, $value);
-        $reflectedInstance->setAccessible(false);
     }
 }

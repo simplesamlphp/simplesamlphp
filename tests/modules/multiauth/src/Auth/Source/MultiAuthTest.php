@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\multiauth\Auth\Source;
 
+use Error;
 use Exception;
 use PHPUnit\Framework\Attributes\CoversClass;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
 use SimpleSAML\TestUtils\ClearStateTestCase;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  */
@@ -142,6 +144,7 @@ class MultiAuthTest extends ClearStateTestCase
 
 
     /**
+     */
     public function testPreselectIsOptional(): void
     {
         $sourceConfig = Configuration::loadFromArray([
@@ -182,50 +185,52 @@ class MultiAuthTest extends ClearStateTestCase
 
         $state = [];
         $source = new MultiAuth(['AuthId' => 'example-multi'], $sourceConfig->getArray('example-multi'));
+        $request = Request::createFromGlobals();
 
         try {
-            $source->authenticate($state);
+            $source->authenticate($request, $state);
         } catch (Error $e) {
         } catch (Exception $e) {
         }
 
         $this->assertArrayNotHasKey('multiauth:preselect', $state);
     }
-     */
 
 
     /**
+     */
     public function testPreselectCanBeConfigured(): void
     {
         $state = [];
 
+        $request = Request::createFromGlobals();
         $source = new MultiAuth(['AuthId' => 'example-multi'], $this->sourceConfig->getArray('example-multi'));
 
         try {
-            $source->authenticate($state);
+            $source->authenticate($request, $state);
         } catch (Exception $e) {
         }
 
         $this->assertArrayHasKey('multiauth:preselect', $state);
         $this->assertEquals('example-saml', $state['multiauth:preselect']);
     }
-     */
 
 
     /**
+     */
     public function testStatePreselectHasPriority(): void
     {
         $state = ['multiauth:preselect' => 'example-admin'];
 
+        $request = Request::createFromGlobals();
         $source = new MultiAuth(['AuthId' => 'example-multi'], $this->sourceConfig->getArray('example-multi'));
 
         try {
-            $source->authenticate($state);
+            $source->authenticate($request, $state);
         } catch (Exception $e) {
         }
 
         $this->assertArrayHasKey('multiauth:preselect', $state);
         $this->assertEquals('example-admin', $state['multiauth:preselect']);
     }
-     */
 }

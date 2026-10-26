@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
-use DOMElement;
+use Dom;
 use SAML2\XML\idpdisc\DiscoveryResponse;
 use SAML2\XML\md\AttributeAuthorityDescriptor;
 use SAML2\XML\md\AttributeConsumingService;
@@ -92,9 +92,9 @@ class SAMLBuilder
     /**
      * Retrieve the EntityDescriptor element which is generated for this entity.
      *
-     * @return \DOMElement The EntityDescriptor element of this entity.
+     * @return \Dom\Element The EntityDescriptor element of this entity.
      */
-    public function getEntityDescriptor(): DOMElement
+    public function getEntityDescriptor(): Dom\Element
     {
         $xml = $this->entityDescriptor->toXML();
         $xml->ownerDocument->appendChild($xml);

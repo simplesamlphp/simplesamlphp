@@ -237,7 +237,6 @@ NOWDOC;
     {
         $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');
-        $reflectedInstance->setAccessible(true);
         $reflectedInstance->setValue($service, $value);
         $reflectedInstance->setAccessible(false);
     }

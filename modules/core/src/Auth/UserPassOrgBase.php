@@ -10,6 +10,8 @@ use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Helper class for username/password/organization authentication.
@@ -206,9 +208,11 @@ abstract class UserPassOrgBase extends Auth\Source
      * This function saves the information about the login, and redirects to a
      * login page.
      *
+     * @param \Symfony\Component\HttpFoundation\Request  The current request
      * @param array &$state  Information about the current authentication.
+     * @param \Symfony\Component\HttpFoundation\Response|null
      */
-    public function authenticate(array &$state): void
+    public function authenticate(Request $request, array &$state): ?Response
     {
         // We are going to need the authId in order to retrieve this authentication source later
         $state[self::AUTHID] = $this->authId;
@@ -217,8 +221,9 @@ abstract class UserPassOrgBase extends Auth\Source
 
         $url = Module::getModuleURL('core/loginuserpassorg');
         $params = ['AuthState' => $id];
+
         $httpUtils = new Utils\HTTP();
-        $httpUtils->redirectTrustedURL($url, $params);
+        return $httpUtils->redirectTrustedURL($url, $params);
     }
 
 
@@ -259,17 +264,19 @@ abstract class UserPassOrgBase extends Auth\Source
      * enters a username and password. On success, it will not return. On wrong
      * username/password failure, and other errors, it will throw an exception.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request  The current request
      * @param string $authStateId  The identifier of the authentication state.
      * @param string $username  The username the user wrote.
      * @param string $password  The password the user wrote.
      * @param string $organization  The id of the organization the user chose.
      */
     public static function handleLogin(
+        Request $request,
         string $authStateId,
         string $username,
         string $password,
         string $organization,
-    ): void {
+    ): Response {
         /* Retrieve the authentication state. */
         $state = Auth\State::loadState($authStateId, self::STAGEID);
 
@@ -314,7 +321,7 @@ abstract class UserPassOrgBase extends Auth\Source
         $state['PersistentAuthData'][] = self::ORGID;
 
         $state['Attributes'] = $attributes;
-        Auth\Source::completeAuth($state);
+        return parent::completeAuth($state);
     }
 
 

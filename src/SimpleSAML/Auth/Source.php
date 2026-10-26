@@ -11,6 +11,8 @@ use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * This class defines a base class for authentication source.
@@ -103,9 +105,10 @@ abstract class Source
      * save the state, and at a later stage, load the state, update it with the authentication
      * information about the user, and call completeAuth with the state array.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request  The current request
      * @param array &$state Information about the current authentication.
      */
-    abstract public function authenticate(array &$state): void;
+    abstract public function authenticate(Request $request, array &$state): ?Response;
 
 
     /**
@@ -136,13 +139,13 @@ abstract class Source
     /**
      * Complete authentication.
      *
-     * This function should be called if authentication has completed. It will never return,
-     * except in the case of exceptions. Exceptions thrown from this page should not be caught,
+     * This function should be called if authentication has completed. It will return a Response,
+     * unless an exeption is thrown. Exceptions thrown from this page should not be caught,
      * but should instead be passed to the top-level exception handler.
      *
      * @param array &$state Information about the current authentication.
      */
-    public static function completeAuth(array &$state): void
+    public static function completeAuth(array &$state): Response
     {
         Assert::keyExists($state, 'LoginCompletedHandler');
 
@@ -151,25 +154,26 @@ abstract class Source
         $func = $state['LoginCompletedHandler'];
         Assert::isCallable($func);
 
-        call_user_func($func, $state);
-        Assert::true(false);
+        $response = call_user_func($func, $state);
+        Assert::isInstanceOf($response, Response::class);
+        return $response;
     }
 
 
     /**
      * Start authentication.
      *
-     * This method never returns.
-     *
      * @param string|array $return The URL or function we should direct the user to after authentication. If using a
-     * URL obtained from user input, please make sure to check it by calling \SimpleSAML\Utils\HTTP::checkURLAllowed().
+     *   URL obtained from user input, please make sure to check it by calling
+     *   \SimpleSAML\Utils\HTTP::checkURLAllowed().
      * @param string|null $errorURL The URL we should direct the user to after failed authentication. Can be null, in
-     * which case a standard error page will be shown. If using a URL obtained from user input, please make sure to
-     * check it by calling \SimpleSAML\Utils\HTTP::checkURLAllowed().
+     *   which case a standard error page will be shown. If using a URL obtained from user input, please make sure to
+     *   check it by calling \SimpleSAML\Utils\HTTP::checkURLAllowed().
      * @param array $params Extra information about the login. Different authentication requestors may provide different
-     * information. Optional, will default to an empty array.
+     *   information. Optional, will default to an empty array.
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function initLogin(string|array $return, ?string $errorURL = null, array $params = []): void
+    public function initLogin(string|array $return, ?string $errorURL = null, array $params = []): Response
     {
         $state = array_merge($params, [
             '\SimpleSAML\Auth\Source.id' => $this->authId,
@@ -190,26 +194,30 @@ abstract class Source
             $state[State::EXCEPTION_HANDLER_URL] = $errorURL;
         }
 
+        $request = Request::createFromGlobals();
         try {
-            $this->authenticate($state);
+            $response = $this->authenticate($request, $state);
+            if ($response instanceof Response) {
+                return $response;
+            }
         } catch (Error\Exception $e) {
             State::throwException($state, $e);
         } catch (\Exception $e) {
             $e = new Error\UnserializableException($e);
             State::throwException($state, $e);
         }
-        self::loginCompleted($state);
+
+        return self::loginCompleted($state);
     }
 
 
     /**
      * Called when a login operation has finished.
      *
-     * This method never returns.
-     *
      * @param array $state The state after the login has completed.
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public static function loginCompleted(array $state): void
+    public static function loginCompleted(array $state): Response
     {
         Assert::keyExists($state, '\SimpleSAML\Auth\Source.Return');
         Assert::keyExists($state, '\SimpleSAML\Auth\Source.id');
@@ -226,11 +234,13 @@ abstract class Source
         if (is_string($return)) {
             // redirect...
             $httpUtils = new Utils\HTTP();
-            $httpUtils->redirectTrustedURL($return);
+            $response = $httpUtils->redirectTrustedURL($return);
         } else {
-            call_user_func($return, $state);
+            $response = call_user_func($return, $state);
+            Assert::isInstanceOf($response, Response::class);
         }
-        Assert::true(false);
+
+        return $response;
     }
 
 
@@ -246,10 +256,12 @@ abstract class Source
      * showing the user a page, or redirecting, this function should return.
      *
      * @param array &$state Information about the current logout operation.
+     * @return \Symfony\Component\HttpFoundation\Response|null
      */
-    public function logout(array &$state): void
+    public function logout(array &$state): ?Response
     {
         // default logout handler which doesn't do anything
+        return null;
     }
 
 
@@ -261,8 +273,9 @@ abstract class Source
      * but should instead be passed to the top-level exception handler.
      *
      * @param array &$state Information about the current authentication.
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public static function completeLogout(array &$state): void
+    public static function completeLogout(array &$state): Response
     {
         Assert::keyExists($state, 'LogoutCompletedHandler');
 
@@ -271,8 +284,9 @@ abstract class Source
         $func = $state['LogoutCompletedHandler'];
         Assert::isCallable($func);
 
-        call_user_func($func, $state);
-        Assert::true(false);
+        $response = call_user_func($func, $state);
+        Assert::isInstanceOf($response, Response::class);
+        return $response;
     }
 
 
@@ -440,11 +454,10 @@ abstract class Source
      * This function calls a logout callback based on an association saved with
      * addLogoutCallback(...).
      *
-     * This function always returns.
-     *
      * @param string $assoc The logout association which should be called.
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    protected function callLogoutCallback(string $assoc): void
+    protected function callLogoutCallback(string $assoc): ?Response
     {
         $id = strlen($this->authId) . ':' . $this->authId . $assoc;
 
@@ -455,7 +468,7 @@ abstract class Source
             // FIXME: fix for IdP-first flow (issue 397) -> reevaluate logout callback infrastructure
             $session->doLogout($this->authId);
 
-            return;
+            return null;
         }
 
         Assert::isArray($data);
@@ -466,7 +479,9 @@ abstract class Source
         $callbackState = $data['state'];
 
         $session->deleteData('\SimpleSAML\Auth\Source.LogoutCallbacks', $id);
-        call_user_func($callback, $callbackState);
+        $response = call_user_func($callback, $callbackState);
+        Assert::isInstanceOf($response, Response::class);
+        return $response;
     }
 
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\XML;
 
-use DOMElement;
+use Dom;
 use Exception;
 use PHPUnit\Framework\Attributes\CoversClass;
 use SimpleSAML\Test\SigningTestCase;
@@ -35,10 +35,10 @@ class ValidatorTest extends SigningTestCase
     {
         $doc = DOMDocumentFactory::fromString('<node>value</node>');
 
-        /** @psalm-var \DOMElement $node */
+        /** @psalm-var \Dom\Element $node */
         $node = $doc->getElementsByTagName('node')->item(0);
 
-        $signature_parent = $doc->appendChild(new DOMElement('signature_parent'));
+        $signature_parent = $doc->appendChild(new Dom\Element('signature_parent'));
 
         $signer = new Signer([]);
         $signer->loadPrivateKey($this->good_private_key_file, null, true);
@@ -62,10 +62,10 @@ class ValidatorTest extends SigningTestCase
     {
         $doc = DOMDocumentFactory::fromString('<node>value</node>');
 
-        /** @psalm-var \DOMElement $node */
+        /** @psalm-var \Dom\Element $node */
         $node = $doc->getElementsByTagName('node')->item(0);
 
-        $signature_parent = $doc->appendChild(new DOMElement('signature_parent'));
+        $signature_parent = $doc->appendChild(new Dom\Element('signature_parent'));
 
         $signer = new Signer([]);
         $signer->loadPrivateKey($this->good_private_key_file, null, true);
@@ -89,13 +89,13 @@ class ValidatorTest extends SigningTestCase
     {
         $doc = DOMDocumentFactory::fromString('<parent><node1>value1</node1><node2>value2</node2></parent>');
 
-        /** @psalm-var \DOMElement $node1 */
+        /** @psalm-var \Dom\Element $node1 */
         $node1 = $doc->getElementsByTagName('node1')->item(0);
 
-        /** @psalm-var \DOMElement $node2 */
+        /** @psalm-var \Dom\Element $node2 */
         $node2 = $doc->getElementsByTagName('node2')->item(0);
 
-        $signature_parent = $doc->appendChild(new DOMElement('signature_parent'));
+        $signature_parent = $doc->appendChild(new Dom\Element('signature_parent'));
 
         $signer = new Signer([]);
         $signer->loadPrivateKey($this->good_private_key_file, null, true);

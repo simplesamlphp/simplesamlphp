@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
-use DOMDocument;
-use DOMElement;
+use Dom;
 use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\SignedElementHelper;
@@ -273,13 +272,13 @@ class SAMLParser
 
 
     /**
-     * This function parses a \DOMDocument which is assumed to contain a single EntityDescriptor element.
+     * This function parses a \Dom\XMLDocument which is assumed to contain a single EntityDescriptor element.
      *
-     * @param \DOMDocument $document The \DOMDocument which contains the EntityDescriptor element.
+     * @param \Dom\XMLDocument $document The \Dom\XMLDocument which contains the EntityDescriptor element.
      *
      * @return \SimpleSAML\Metadata\SAMLParser An instance of this class with the metadata loaded.
      */
-    public static function parseDocument(DOMDocument $document): SAMLParser
+    public static function parseDocument(Dom\XMLDocument $document): SAMLParser
     {
         $entityElement = self::findEntityDescriptor($document);
 
@@ -363,17 +362,17 @@ class SAMLParser
 
 
     /**
-     * This function parses a DOMElement which represents either an EntityDescriptor element or an
+     * This function parses a Dom\Element which represents either an EntityDescriptor element or an
      * EntitiesDescriptor element. It will return an associative array of SAMLParser instances in both cases.
      *
-     * @param \DOMElement|null $element The DOMElement which contains the EntityDescriptor element or the
+     * @param \Dom\Element|null $element The Dom\Element which contains the EntityDescriptor element or the
      *     EntitiesDescriptor element.
      *
      * @return \SimpleSAML\Metadata\SAMLParser[] An associative array of SAMLParser instances.
      *   The key of the array will be the entity id.
      * @throws \Exception if the document is empty or the root is an unexpected node.
      */
-    public static function parseDescriptorsElement(?DOMElement $element = null): array
+    public static function parseDescriptorsElement(?Dom\Element $element = null): array
     {
         if ($element === null) {
             throw new Exception('Document was empty.');
@@ -1273,19 +1272,19 @@ class SAMLParser
 
 
     /**
-     * This function locates the EntityDescriptor node in a DOMDocument. This node should
+     * This function locates the EntityDescriptor node in a Dom\XMLDocument. This node should
      * be the first (and only) node in the document.
      *
      * This function will throw an exception if it is unable to locate the node.
      *
-     * @param \DOMDocument $doc The \DOMDocument where we should find the EntityDescriptor node.
+     * @param \Dom\XMLDocument $doc The \Dom\XMLDocument where we should find the EntityDescriptor node.
      *
      * @return \SAML2\XML\md\EntityDescriptor The \DOMEntity which represents the EntityDescriptor.
      * @throws \Exception If the document is empty or the first element is not an EntityDescriptor element.
      */
-    private static function findEntityDescriptor(DOMDocument $doc): EntityDescriptor
+    private static function findEntityDescriptor(Dom\XMLDocument $doc): EntityDescriptor
     {
-        // find the EntityDescriptor DOMElement. This should be the first (and only) child of the DOMDocument
+        // find the EntityDescriptor Dom\Element. This should be the first (and only) child of the Dom\XMLDocument
         $ed = $doc->documentElement;
 
         $xmlUtils = new Utils\XML();

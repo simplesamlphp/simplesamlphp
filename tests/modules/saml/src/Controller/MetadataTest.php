@@ -9,7 +9,6 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\saml\Controller;
 use SimpleSAML\Utils;
@@ -38,7 +37,18 @@ class MetadataTest extends TestCase
     {
         parent::setUp();
 
-        $this->mdh = new class () extends MetaDataStorageHandler {
+        $this->config = Configuration::loadFromArray(
+            [
+                'module.enable' => ['saml' => true],
+                'enable.saml20-idp' => true,
+                'admin.protectmetadata' => false,
+            ],
+            '[ARRAY]',
+            'simplesaml',
+        );
+        Configuration::setPreLoadedConfig($this->config, 'config.php');
+
+        $this->mdh = new class ($this->config) extends MetaDataStorageHandler {
             private const string XMLSEC = '../vendor/simplesamlphp/xml-security/resources';
 
             public const string CERT_KEY = self::XMLSEC . '/certificates/selfsigned.simplesamlphp.org.key';
@@ -50,26 +60,27 @@ class MetadataTest extends TestCase
             private array $idps;
 
 
-            public function __construct()
+            public function __construct(Configuration $config)
             {
+                parent::__construct($config);
+
                 $this->idps = [
-                        'urn:example:simplesaml:idp' => [
-                            'name' => 'SimpleSAMLphp Hosted IDP',
-                            'descr' => 'The local IDP',
-                            'OrganizationDisplayName' => ['en' => 'My IDP', 'nl' => 'Mijn IDP'],
-                            'certificate' => self::CERT_PUBLIC,
-                            'privatekey' => self::CERT_KEY,
+                    'urn:example:simplesaml:idp' => [
+                        'name' => 'SimpleSAMLphp Hosted IDP',
+                        'descr' => 'The local IDP',
+                        'OrganizationDisplayName' => ['en' => 'My IDP', 'nl' => 'Mijn IDP'],
+                        'certificate' => self::CERT_PUBLIC,
+                        'privatekey' => self::CERT_KEY,
+                    ],
 
-                        ],
-                        'urn:example:simplesaml:another:idp' => [
-                            'name' => 'SimpleSAMLphp Hosted Another IDP',
-                            'descr' => 'Different IDP',
-                            'OrganizationDisplayName' => ['en' => 'Other IDP', 'nl' => 'Andere IDP'],
-                            'certificate' => self::CERT_PUBLIC,
-                            'privatekey' => self::CERT_KEY,
-
-                        ],
-                    ];
+                    'urn:example:simplesaml:another:idp' => [
+                        'name' => 'SimpleSAMLphp Hosted Another IDP',
+                        'descr' => 'Different IDP',
+                        'OrganizationDisplayName' => ['en' => 'Other IDP', 'nl' => 'Andere IDP'],
+                        'certificate' => self::CERT_PUBLIC,
+                        'privatekey' => self::CERT_KEY,
+                    ],
+                ];
             }
 
 
@@ -98,17 +109,6 @@ class MetadataTest extends TestCase
             }
         };
 
-        $this->config = Configuration::loadFromArray(
-            [
-                'module.enable' => ['saml' => true],
-                'enable.saml20-idp' => true,
-                'admin.protectmetadata' => false,
-            ],
-            '[ARRAY]',
-            'simplesaml',
-        );
-        Configuration::setPreLoadedConfig($this->config, 'config.php');
-
         Configuration::setPreLoadedConfig(
             Configuration::loadFromArray(
                 [
@@ -123,9 +123,10 @@ class MetadataTest extends TestCase
         );
 
         $this->authUtils = new class () extends Utils\Auth {
-            public function requireAdmin(): void
+            public function requireAdmin(): ?Response
             {
                 // stub
+                return null;
             }
         };
 
@@ -140,6 +141,8 @@ class MetadataTest extends TestCase
     #[DataProvider('provideMetadataAccess')]
     public function testMetadataAccess(bool $authenticated, bool $protected): void
     {
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+
         $config = Configuration::loadFromArray(
             [
                 'module.enable' => ['saml' => true],
@@ -159,21 +162,11 @@ class MetadataTest extends TestCase
         $c = new Controller\Metadata($config);
         $c->setMetadataStorageHandler($this->mdh);
 
-        if ($authenticated === true) {
-            // Bypass authentication - mock being authenticated
-            $c->setAuthUtils($this->authUtils);
-        }
+        // Bypass authentication - mock being authenticated
+        $c->setAuthUtils($this->authUtils);
 
         $result = $c->metadata($request);
-
-        if ($protected && !$authenticated) {
-            $this->assertInstanceOf(RunnableResponse::class, $result);
-            /** @var callable $callable */
-            $callable = $result->getCallable();
-            $this->assertEquals("requireAdmin", $callable[1]);
-        } else {
-            $this->assertInstanceOf(Response::class, $result);
-        }
+        $this->assertInstanceOf(Response::class, $result);
 
         if ($protected === true) {
             $this->assertEquals('no-cache, private', $result->headers->get('cache-control'));

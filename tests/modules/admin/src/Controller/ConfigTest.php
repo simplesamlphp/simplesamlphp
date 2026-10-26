@@ -12,6 +12,7 @@ use SimpleSAML\Module\admin\Controller;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Set of tests for the controllers in the "admin" module.
@@ -61,9 +62,10 @@ class ConfigTest extends TestCase
         );
 
         $this->authUtils = new class () extends Utils\Auth {
-            public function requireAdmin(): void
+            public function requireAdmin(): ?Response
             {
                 // stub
+                return null;
             }
         };
 

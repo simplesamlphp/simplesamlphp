@@ -12,9 +12,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\XML;
 
-use DOMComment;
-use DOMElement;
-use DOMText;
+use Dom;
 use Exception;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
@@ -239,21 +237,21 @@ class Signer
 
 
     /**
-     * Signs the given DOMElement and inserts the signature at the given position.
+     * Signs the given Dom\Element and inserts the signature at the given position.
      *
      * The private key must be set before calling this function.
      *
-     * @param \DOMElement $node  The DOMElement we should generate a signature for.
-     * @param \DOMElement $insertInto  The DOMElement we should insert the signature element into.
-     * @param \DOMElement|\DOMComment|\DOMText $insertBefore
+     * @param \Dom\Element $node  The Dom\Element we should generate a signature for.
+     * @param \Dom\Element $insertInto  The Dom\Element we should insert the signature element into.
+     * @param \Dom\Element|\Dom\Comment|\Dom\Text $insertBefore
      *  The element we should insert the signature element before. Defaults to NULL,
      *  in which case the signature will be appended to the element specified in $insertInto.
      * @throws \Exception
      */
     public function sign(
-        DOMElement $node,
-        DOMElement $insertInto,
-        DOMElement|DOMComment|DOMText|null $insertBefore = null,
+        Dom\Element $node,
+        Dom\Element $insertInto,
+        Dom\Element|Dom\Comment|Dom\Text|null $insertBefore = null,
     ): void {
         $privateKey = $this->privateKey;
         if ($privateKey === false) {

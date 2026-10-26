@@ -276,7 +276,7 @@ class Signer
         $objKey->loadKey($keyData, false);
 
         // get the EntityDescriptor node we should sign
-        /** @var \DOMElement $rootNode */
+        /** @var \Dom\Element $rootNode */
         $rootNode = $xml->firstChild;
         $rootNode->setAttribute('ID', '_' . hash('sha256', $metadataString));
 

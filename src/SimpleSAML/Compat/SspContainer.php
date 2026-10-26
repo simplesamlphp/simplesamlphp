@@ -13,6 +13,9 @@ use SimpleSAML\Utils;
 
 class SspContainer extends AbstractContainer
 {
+    /** @var \Psr\Clock\ClockInterface */
+    private ClockInterface $clock;
+
     /** @var \Psr\Log\LoggerInterface */
     protected LoggerInterface $logger;
 
@@ -64,10 +67,10 @@ class SspContainer extends AbstractContainer
      * @param string $url
      * @param array $data
      */
-    public function redirect(string $url, array $data = []): void
+    public function getPOSTRedirectURL(string $url, array $data = []): string
     {
         $httpUtils = new Utils\HTTP();
-        $httpUtils->redirectTrustedURL($url, $data);
+        return $httpUtils->getPOSTRedirectURL($url, $data);
     }
 
 
@@ -119,16 +122,5 @@ class SspContainer extends AbstractContainer
     public function getClock(): ClockInterface
     {
         return LocalizedClock::in(new DateTimeZone('Z'));
-    }
-
-
-    /**
-     * Trigger the user to perform a POST to the given URL with the given data.
-     *
-     * @param string $url
-     * @param array $data
-     */
-    public function getPOSTRedirectURL(string $url, array $data = []): string {
-        return $httpUtils->getPOSTRedirectURL($url, $data);
     }
 }
