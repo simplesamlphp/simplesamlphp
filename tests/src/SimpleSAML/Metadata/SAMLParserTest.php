@@ -272,7 +272,7 @@ XML,
 XML,
         );
 
-        /** @psalm-var \DOMElement $entities_root */
+        /** @psalm-var \Dom\Element $entities_root */
         $entities_root = $doc->getElementsByTagName('EntitiesDescriptor')->item(0);
         $signer = new Signer([]);
         $signer->loadPrivateKey($this->good_private_key_file, null, true);

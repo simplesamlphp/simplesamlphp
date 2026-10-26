@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\saml\IdP;
 
-use DOMNodeList;
+use Dom;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
@@ -1094,7 +1094,7 @@ class SAML2
                 }
 
                 $attrval = $value;
-                if ($value instanceof DOMNodeList) {
+                if ($value instanceof Dom\NodeList) {
                     /** @psalm-suppress PossiblyNullPropertyFetch */
                     $attrval = new AttributeValue($value->item(0)->parentNode);
                 }
@@ -1112,7 +1112,7 @@ class SAML2
                             /** @psalm-suppress PossiblyNullPropertyFetch */
                             $value = $doc->firstChild->childNodes;
                         }
-                        Assert::isInstanceOfAny($value, [DOMNodeList::class, NameID::class]);
+                        Assert::isInstanceOfAny($value, [Dom\NodeList::class, NameID::class]);
                         break;
                     default:
                         throw new Error\Exception('Invalid encoding for attribute ' .

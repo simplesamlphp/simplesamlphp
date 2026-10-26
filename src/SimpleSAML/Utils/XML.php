@@ -10,12 +10,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
-use DOMComment;
-use DOMDocument;
-use DOMElement;
+use Dom;
 use DOMException;
-use DOMNode;
-use DOMText;
 use Exception;
 use InvalidArgumentException;
 use SimpleSAML\Assert\Assert;
@@ -81,17 +77,17 @@ class XML
     /**
      * Helper function to log SAML messages that we send or receive.
      *
-     * @param string|\DOMElement $message The message, as an string containing the XML or an XML element.
-     * @param string             $type Whether this message is sent or received, encrypted or decrypted. The following
+     * @param string|\Dom\Element $message The message, as an string containing the XML or an XML element.
+     * @param string              $type Whether this message is sent or received, encrypted or decrypted. The following
      *     values are supported:
      *      - 'in': for messages received.
      *      - 'out': for outgoing messages.
      *      - 'decrypt': for decrypted messages.
      *      - 'encrypt': for encrypted messages.
      *
-     * @throws \InvalidArgumentException If $type is not a string or $message is neither a string nor a \DOMElement.
+     * @throws \InvalidArgumentException If $type is not a string or $message is neither a string nor a \Dom\Element.
      */
-    public function debugSAMLMessage(string|DOMElement $message, string $type): void
+    public function debugSAMLMessage(string|Dom\Element $message, string $type): void
     {
         // see if debugging is enabled for SAML messages
         $debug = Configuration::getInstance()->getOptionalArray('debug', ['saml' => false]);
@@ -104,7 +100,7 @@ class XML
             return;
         }
 
-        if ($message instanceof DOMElement) {
+        if ($message instanceof Dom\Element) {
             $message = $message->ownerDocument->saveXML($message);
         }
 
@@ -138,26 +134,25 @@ class XML
      * This function takes in a DOM element, and inserts whitespace to make it more readable. Note that whitespace
      * added previously will be removed.
      *
-     * @param \DOMNode $root The root element which should be formatted.
-     * @param string      $indentBase The indentation this element should be assumed to have. Defaults to an empty
-     *     string.
+     * @param \Dom\Node $root The root element which should be formatted.
+     * @param string $indentBase The indentation this element should be assumed to have. Defaults to an empty string
      *
-     * @throws \InvalidArgumentException If $root is not a DOMElement or $indentBase is not a string.
+     * @throws \InvalidArgumentException If $root is not a Dom\Element or $indentBase is not a string.
      */
-    public function formatDOMElement(DOMNode $root, string $indentBase = ''): void
+    public function formatDOMElement(Dom\Node $root, string $indentBase = ''): void
     {
         // check what this element contains
         $fullText = ''; // all text in this element
         $textNodes = []; // text nodes which should be deleted
         $childNodes = []; // other child nodes
         for ($i = 0; $i < $root->childNodes->length; $i++) {
-            /** @var \DOMNode $child */
+            /** @var \Dom\Node $child */
             $child = $root->childNodes->item($i);
 
-            if ($child instanceof DOMText) {
+            if ($child instanceof Dom\Text) {
                 $textNodes[] = $child;
                 $fullText .= $child->wholeText;
-            } elseif ($child instanceof DOMComment || $child instanceof DOMElement) {
+            } elseif ($child instanceof Dom\Comment || $child instanceof Dom\Element) {
                 $childNodes[] = $child;
             } else {
                 // unknown node type. We don't know how to format this
@@ -187,7 +182,7 @@ class XML
 
         if ($hasText) {
             // only text - add a single text node to the element with the full text
-            $root->appendChild(new DOMText($fullText));
+            $root->appendChild(new Dom\Text($fullText));
             return;
         }
 
@@ -202,16 +197,16 @@ class XML
         $childIndentation = $indentBase . '  ';
         foreach ($childNodes as $node) {
             // add indentation before node
-            $root->insertBefore(new DOMText("\n" . $childIndentation), $node);
+            $root->insertBefore(new Dom\Text("\n" . $childIndentation), $node);
 
             // format child elements
-            if ($node instanceof DOMElement) {
+            if ($node instanceof Dom\Element) {
                 $this->formatDOMElement($node, $childIndentation);
             }
         }
 
         // add indentation before closing tag
-        $root->appendChild(new DOMText("\n" . $indentBase));
+        $root->appendChild(new Dom\Text("\n" . $indentBase));
     }
 
 
@@ -254,14 +249,14 @@ class XML
      * - '@saml2':   'urn:oasis:names:tc:SAML:2.0:assertion'
      * - '@saml2p':  'urn:oasis:names:tc:SAML:2.0:protocol'
      *
-     * @param \DOMNode $element The element we should check.
-     * @param string   $name The local name the element should have.
-     * @param string   $nsURI The namespaceURI the element should have.
+     * @param \Dom\Node $element The element we should check.
+     * @param string    $name The local name the element should have.
+     * @param string    $nsURI The namespaceURI the element should have.
      *
      * @return boolean True if both namespace and local name matches, false otherwise.
      * @throws \InvalidArgumentException If the namespace shortcut is unknown.
      */
-    public function isDOMNodeOfType(DOMNode $element, string $name, string $nsURI): bool
+    public function isDOMNodeOfType(Dom\Node $element, string $name, string $nsURI): bool
     {
         if (strlen($nsURI) === 0) {
             // most likely a comment-node
@@ -303,24 +298,24 @@ class XML
      * Note that this function returns values that are evaluated as a logical true, both when validation works and when
      * it doesn't. Please use strict comparisons to check the values returned.
      *
-     * @param string|\DOMDocument $xml The XML string or document which should be validated.
-     * @param string              $schema The filename of the schema that should be used to validate the document.
+     * @param string|\Dom\XMLDocument $xml The XML string or document which should be validated.
+     * @param string                  $schema The filename of the schema that should be used to validate the document.
      *
      * @return bool|string Returns a string with errors found if validation fails. True if validation passes ok.
-     * @throws \InvalidArgumentException If $schema is not a string, or $xml is neither a string nor a \DOMDocument.
+     * @throws \InvalidArgumentException If $schema is not a string, or $xml is neither a string nor a \Dom\XMLDocument.
      */
-    public function isValid(string|DOMDocument $xml, string $schema): bool|string
+    public function isValid(string|Dom\XMLDocument $xml, string $schema): bool|string
     {
         Errors::begin();
 
-        if ($xml instanceof DOMDocument) {
+        if ($xml instanceof Dom\XMLDocument) {
             $dom = $xml;
             $res = true;
         } else {
             try {
                 $dom = DOMDocumentFactory::fromString($xml);
                 $res = true;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $res = false;
             }
         }

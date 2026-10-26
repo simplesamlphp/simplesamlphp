@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Utils;
 
-use DOMDocument;
-use DOMElement;
+use Dom;
 use DOMException;
-use DOMText;
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -31,7 +29,7 @@ class XMLTest extends TestCase
 
         $name = 'name';
         $namespace_uri = 'ns';
-        $element = new DOMElement($name, 'value', $namespace_uri);
+        $element = new Dom\Element($name, 'value', $namespace_uri);
 
         $res = $xmlUtils->isDOMNodeOfType($element, $name, $namespace_uri);
 
@@ -48,7 +46,7 @@ class XMLTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $name = 'name';
         $namespace_uri = '@missing';
-        $element = new DOMElement($name, 'value', $namespace_uri);
+        $element = new Dom\Element($name, 'value', $namespace_uri);
 
         $xmlUtils->isDOMNodeOfType($element, $name, $namespace_uri);
     }
@@ -62,7 +60,7 @@ class XMLTest extends TestCase
 
         $name = 'name';
         $namespace_uri = '';
-        $element = new DOMElement($name);
+        $element = new Dom\Element($name);
 
         $res = $xmlUtils->isDOMNodeOfType($element, $name, $namespace_uri);
 
@@ -79,7 +77,7 @@ class XMLTest extends TestCase
         $name = 'name';
         $namespace_uri = 'urn:oasis:names:tc:SAML:2.0:metadata';
         $short_namespace_uri = '@md';
-        $element = new DOMElement($name, 'value', $namespace_uri);
+        $element = new Dom\Element($name, 'value', $namespace_uri);
 
         $res = $xmlUtils->isDOMNodeOfType($element, $name, $short_namespace_uri);
 
@@ -96,7 +94,7 @@ class XMLTest extends TestCase
         $name = 'name';
         $bad_name = 'bad name';
         $namespace_uri = 'ns';
-        $element = new DOMElement($name, 'value', $namespace_uri);
+        $element = new Dom\Element($name, 'value', $namespace_uri);
 
         $res = $xmlUtils->isDOMNodeOfType($element, $bad_name, $namespace_uri);
 
@@ -113,7 +111,7 @@ class XMLTest extends TestCase
         $name = 'name';
         $namespace_uri = 'ns';
         $bad_namespace_uri = 'bad name';
-        $element = new DOMElement($name, 'value', $namespace_uri);
+        $element = new Dom\Element($name, 'value', $namespace_uri);
 
         $res = $xmlUtils->isDOMNodeOfType($element, $name, $bad_namespace_uri);
 
@@ -127,10 +125,10 @@ class XMLTest extends TestCase
     {
         $xmlUtils = new Utils\XML();
 
-        $dom = new DOMDocument();
-        $root = new DOMElement('root');
+        $dom = DOMDocumentFactory::create();
+        $root = new Dom\Element('root');
         $dom->appendChild($root);
-        $root->appendChild(new \DOMText('text'));
+        $root->appendChild(new Dom\Text('text'));
 
         $xmlUtils->formatDOMElement($root);
         $res = $dom->saveXML();
@@ -150,12 +148,12 @@ NOWDOC;
     {
         $xmlUtils = new Utils\XML();
 
-        $dom = new DOMDocument();
-        $root = new DOMElement('root');
-        $nested = new DOMElement('nested');
+        $dom = DOMDocumentFactory::create();
+        $root = new Dom\Element('root');
+        $nested = new Dom\Element('nested');
         $dom->appendChild($root);
         $root->appendChild($nested);
-        $nested->appendChild(new DOMText('text'));
+        $nested->appendChild(new Dom\Text('text'));
 
         $xmlUtils->formatDOMElement($root);
         $res = $dom->saveXML();
@@ -178,12 +176,12 @@ NOWDOC;
         $xmlUtils = new Utils\XML();
 
         $indent_base = 'base';
-        $dom = new DOMDocument();
-        $root = new DOMElement('root');
-        $nested = new DOMElement('nested');
+        $dom = DOMDocumentFactory::create();
+        $root = new Dom\Element('root');
+        $nested = new Dom\Element('nested');
         $dom->appendChild($root);
         $root->appendChild($nested);
-        $nested->appendChild(new DOMText('text'));
+        $nested->appendChild(new Dom\Text('text'));
 
         $xmlUtils->formatDOMElement($root, $indent_base);
         $res = $dom->saveXML();
@@ -205,11 +203,11 @@ HEREDOC;
     {
         $xmlUtils = new Utils\XML();
 
-        $dom = new DOMDocument();
-        $root = new DOMElement('root');
+        $dom = DOMDocumentFactory::create();
+        $root = new Dom\Element('root');
         $dom->appendChild($root);
-        $root->appendChild(new DOMText('text'));
-        $root->appendChild(new DOMElement('child'));
+        $root->appendChild(new Dom\Text('text'));
+        $root->appendChild(new Dom\Element('child'));
 
         $xmlUtils->formatDOMElement($root);
         $res = $dom->saveXML();
