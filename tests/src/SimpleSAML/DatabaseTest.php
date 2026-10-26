@@ -46,7 +46,6 @@ final class DatabaseTest extends TestCase
     {
         $class = new ReflectionClass(Database::class);
         $method = $class->getMethod($getMethod);
-        $method->setAccessible(true);
         return $method;
     }
 
@@ -161,11 +160,9 @@ final class DatabaseTest extends TestCase
     {
         $ref = new ReflectionClass($this->db);
         $dbPrimary = $ref->getProperty('dbPrimary');
-        $dbPrimary->setAccessible(true);
         $primary = spl_object_hash($dbPrimary->getValue($this->db));
 
         $getSecondary = $ref->getMethod('getSecondary');
-        $getSecondary->setAccessible(true);
         $secondary = spl_object_hash($getSecondary->invokeArgs($this->db, []));
 
         $this->assertTrue(($primary == $secondary), "getSecondary should have returned the primary database object");
@@ -190,11 +187,9 @@ final class DatabaseTest extends TestCase
 
         $ref = new ReflectionClass($msdb);
         $dbSecondaries = $ref->getProperty('dbSecondaries');
-        $dbSecondaries->setAccessible(true);
         $secondaries = $dbSecondaries->getValue($msdb);
 
         $getSecondary = $ref->getMethod('getSecondary');
-        $getSecondary->setAccessible(true);
         $gotSecondary = spl_object_hash($getSecondary->invokeArgs($msdb, []));
 
         $this->assertEquals(

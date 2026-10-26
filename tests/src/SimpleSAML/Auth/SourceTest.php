@@ -23,7 +23,6 @@ class SourceTest extends ClearStateTestCase
     {
         $class = new ReflectionClass(Auth\Source::class);
         $method = $class->getMethod('parseAuthSource');
-        $method->setAccessible(true);
 
         // test direct instantiation of the auth source object
         $authSource = $method->invokeArgs(null, ['test', [TestAuthSource::class]]);
