@@ -8,7 +8,7 @@ define('SIMPLESAMLPHP_START', hrtime(true));
 // initialize the autoloader
 require_once(dirname(__FILE__, 2) . '/src/_autoload.php');
 
-use SAML2\Compat\ContainerSingleton;
+use SimpleSAML\SAML2\Compat\ContainerSingleton;
 use SimpleSAML\Compat\SspContainer;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
