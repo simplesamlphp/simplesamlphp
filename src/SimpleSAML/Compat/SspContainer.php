@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Compat;
 
+use Beste\Clock\LocalizedClock;
+use DateTimeZone;
+use Psr\Clock\ClockInterface;
 use Psr\Log\LoggerInterface;
 use SimpleSAML\SAML2\Compat\AbstractContainer;
 use SimpleSAML\Utils;
@@ -105,5 +108,27 @@ class SspContainer extends AbstractContainer
             $mode = 0600;
         }
         $sysUtils->writeFile($filename, $data, $mode);
+    }
+
+
+    /**
+     * Get the system clock
+     *
+     * @return \Psr\Clock\ClockInterface
+     */
+    public function getClock(): ClockInterface
+    {
+        return LocalizedClock::in(new DateTimeZone('Z'));
+    }
+
+
+    /**
+     * Trigger the user to perform a POST to the given URL with the given data.
+     *
+     * @param string $url
+     * @param array $data
+     */
+    public function getPOSTRedirectURL(string $url, array $data = []): string {
+        return $httpUtils->getPOSTRedirectURL($url, $data);
     }
 }

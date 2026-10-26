@@ -61,6 +61,7 @@
         "ext-SPL": "*",
         "ext-zlib": "*",
 
+        "beste/clock": "~3.0",
         "composer-runtime-api": "^2.2",
         "gettext/gettext": "~5.7",
         "gettext/php-scanner": "^2.0",
