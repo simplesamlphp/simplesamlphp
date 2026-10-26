@@ -123,15 +123,4 @@ class SspContainer extends AbstractContainer
     {
         return LocalizedClock::in(new DateTimeZone('Z'));
     }
-
-
-    /**
-     * Trigger the user to perform a POST to the given URL with the given data.
-     *
-     * @param string $url
-     * @param array $data
-     */
-    public function getPOSTRedirectURL(string $url, array $data = []): string {
-        return $httpUtils->getPOSTRedirectURL($url, $data);
-    }
 }
