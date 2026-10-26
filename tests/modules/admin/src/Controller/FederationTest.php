@@ -247,7 +247,7 @@ class FederationTest extends TestCase
             }
 
 
-            public function authenticate(array &$state): ?Response
+            public function authenticate(Request $request, array &$state): ?Response
             {
                 // stub
             }
