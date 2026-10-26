@@ -352,7 +352,6 @@ class XML
                 },
             );
 
-            /** @phpstan-ignore variable.undefined */
             $res = $dom->schemaValidate($schemaFile);
             if ($res) {
                 Errors::end();
