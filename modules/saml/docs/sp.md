@@ -175,11 +175,11 @@ The following attributes are available:
         'contacts' => [
             [
                 'contactType'       => 'support',
-                'emailAddress'      => 'support@example.org',
-                'givenName'         => 'John',
-                'surName'           => 'Doe',
-                'telephoneNumber'   => '+31(0)12345678',
-                'company'           => 'Example Inc.',
+                'EmailAddress'      => 'support@example.org',
+                'GivenName'         => 'John',
+                'SurName'           => 'Doe',
+                'TelephoneNumber'   => '+31(0)12345678',
+                'Company'           => 'Example Inc.',
             ],
         ],
 
