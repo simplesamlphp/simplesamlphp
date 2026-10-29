@@ -6,27 +6,15 @@ namespace SimpleSAML\Test\Metadata;
 
 use DOMDocument;
 use PHPUnit\Framework\Attributes\CoversClass;
-use SimpleSAML\SAML2\Constants as C;
-use SAML2\Constants;
-use SimpleSAML\SAML2\Utilities\ArrayCollection;
 use SimpleSAML\Metadata\MetadataParser;
-use SimpleSAML\Metadata\SAMLParser;
+use SimpleSAML\SAML2\Constants as C;
+use SimpleSAML\SAML2\Utilities\ArrayCollection;
+use SimpleSAML\SAML2\XML\md\EntitiesDescriptor;
 use SimpleSAML\Test\SigningTestCase;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\Signer;
-use SimpleSAML\SAML2\Utilities\File;
-use SimpleSAML\XMLSecurity\Utils\Certificate;
-use SimpleSAML\SAML2\Certificate\X509;
 use SimpleSAML\XMLSecurity\Alg\Signature\SignatureAlgorithmFactory;
 use SimpleSAML\XMLSecurity\TestUtils\PEMCertificatesMock;
-
-use SimpleSAML\SAML2\XML\md\EntitiesDescriptor;
-use SimpleSAML\SAML2\XML\md\EntityDescriptor;
-use SimpleSAML\XMLSecurity\Key\X509Certificate;
-
-use SimpleSAML\XMLSecurity\CryptoEncoding\PEM;
-
-use SimpleSAML\XMLSecurity\Key\PrivateKey;
 use SimpleSAML\XMLSecurity\Key\PublicKey;
 
 /**
@@ -207,7 +195,7 @@ XML,
     {
         $expected = [
             'authority' => 'https://safire.ac.za',
-            'instant' => '2023-02-08T13:06:55Z'
+            'instant' => '2023-02-08T13:06:55Z',
         ];
 
         $document = DOMDocumentFactory::fromString(
@@ -515,7 +503,6 @@ XML,
     }
 
 
-
     public function testSignAndVerify(): void
     {
         $expected = "MIICxDCCAi2gAwIBAgIUZ9QDx+SBFHednUWDFGm9tyVKrgQwDQYJKoZIhvcNAQELBQAwczElMCMGA1UEAwwcc2VsZnNpZ25lZC5zaW1wbGVzYW1scGhwLm9yZzEZMBcGA1UECgwQU2ltcGxlU0FNTHBocCBIUTERMA8GA1UEBwwISG9ub2x1bHUxDzANBgNVBAgMBkhhd2FpaTELMAkGA1UEBhMCVVMwIBcNMjIxMjAzMTAzNTQwWhgPMjEyMjExMDkxMDM1NDBaMHMxJTAjBgNVBAMMHHNlbGZzaWduZWQuc2ltcGxlc2FtbHBocC5vcmcxGTAXBgNVBAoMEFNpbXBsZVNBTUxwaHAgSFExETAPBgNVBAcMCEhvbm9sdWx1MQ8wDQYDVQQIDAZIYXdhaWkxCzAJBgNVBAYTAlVTMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDessdFRVDTMQQW3Na81B1CjJV1tmY3nopoIhZrkbDxLa+pv7jGDRcYreyu1DoQxEs06V2nHLoyOPhqJXSFivqtUwVYhR6NYgbNI6RRSsIJCweH0YOdlHna7gULPcLX0Bfbi4odStaFwG9yzDySwSEPtsKxm5pENPjNVGh+jJ+H/QIDAQABo1MwUTAdBgNVHQ4EFgQUvV75t8EoQo2fVa0E9otdtIGK5X0wHwYDVR0jBBgwFoAUvV75t8EoQo2fVa0E9otdtIGK5X0wDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOBgQANQUeiwPJXkWMXuaDHToEBKcezYGqGEYnGUi9LMjeb+Kln7X8nn5iknlz4k77rWCbSwLPC/WDr0ySYQA+HagaeUaFpoiYFJKS6uFlK1HYWnM3W4PUiGHg1/xeZlMO44wTwybXVo0y9KMhchfB5XNbDdoJcqWYvi6xtmZZNRbxUyw==";
@@ -551,19 +538,19 @@ XML,
 </EntitiesDescriptor>
 XML
         ;
-        
-        $document = DOMDocumentFactory::fromString( $md );
-        $entities = MetadataParser::parseDescriptorsElement($document->documentElement);        
+
+        $document = DOMDocumentFactory::fromString($md);
+        $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
         $this->assertEquals(1, count($entities));
 
         $ed = EntitiesDescriptor::fromXML($document->documentElement);
-        
+
         $signer = (new SignatureAlgorithmFactory())->getAlgorithm(
             C::SIG_RSA_SHA256,
             PEMCertificatesMock::getPrivateKey("signed.simplesamlphp.org.key"),
         );
 
-        $ed->sign( $signer, C::C14N_EXCLUSIVE_WITHOUT_COMMENTS );
+        $ed->sign($signer, C::C14N_EXCLUSIVE_WITHOUT_COMMENTS);
 
         $signedmd = $ed->toXML()->ownerDocument->saveXML();
         echo "\n---------SIGNED XML BEGIN----------\n";
@@ -571,27 +558,20 @@ XML
         echo "\n---------SIGNED XML END----------\n";
 
 
-        
         //
-
-        $document = DOMDocumentFactory::fromString( $signedmd );
+        $document = DOMDocumentFactory::fromString($signedmd);
         $entities = MetadataParser::parseDescriptorsElement($document->documentElement);
 
         // setup keys to verify with
         $pemCandidates = new ArrayCollection();
         $certificate = PublicKey::fromFile(PEMCertificatesMock::buildKeysPath("signed.simplesamlphp.org.pub"));
         $pemCandidates->add($certificate);
-        
+
         $mdp = $entities['urn:x-simplesamlphp:example-sp'];
         $ok = $mdp->validateSignature($pemCandidates);
 
         $this->assertTrue($ok);
 
-        
         return;
     }
-
-
-    
-        
 }

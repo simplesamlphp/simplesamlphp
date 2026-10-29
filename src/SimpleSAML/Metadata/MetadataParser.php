@@ -16,33 +16,24 @@ namespace SimpleSAML\Metadata;
 use DOMDocument;
 use DOMElement;
 use Exception;
-use RobRichards\XMLSecLibs\XMLSecurityKey;
+use SimpleSAML\Assert\Assert;
+use SimpleSAML\Logger;
+use SimpleSAML\SAML2\Constants;
+use SimpleSAML\SAML2\Type\EntityIDValue;
 use SimpleSAML\SAML2\Utilities\ArrayCollection;
-use SimpleSAML\SAML2\Certificate\X509;
-use SimpleSAML\XMLSecurity\Key\PublicKey;
-use SimpleSAML\XMLSecurity\Key\X509Certificate;
-use SimpleSAML\XMLSecurity\Alg\Signature\SignatureAlgorithmFactory;
-use SimpleSAML\XMLSecurity\CryptoEncoding\PEM;
-//use SimpleSAML\XMLSecurity\XML\ds\X509Certificate;
-use SimpleSAML\XMLSecurity\XML\ds\X509Data;
-use SimpleSAML\XMLSecurity\XML\ds\KeyInfo;
 use SimpleSAML\SAML2\XML\idpdisc\DiscoveryResponse;
+use SimpleSAML\SAML2\XML\md\AbstractEndpointType;
+use SimpleSAML\SAML2\XML\md\AbstractMetadataDocument;
+use SimpleSAML\SAML2\XML\md\AbstractSSODescriptor;
 use SimpleSAML\SAML2\XML\md\AttributeAuthorityDescriptor;
 use SimpleSAML\SAML2\XML\md\AttributeConsumingService;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
-use SimpleSAML\SAML2\XML\md\AbstractEndpointType;
 use SimpleSAML\SAML2\XML\md\EntitiesDescriptor;
 use SimpleSAML\SAML2\XML\md\EntityDescriptor;
-use SimpleSAML\SAML2\Type\EntityIDValue;
 use SimpleSAML\SAML2\XML\md\IDPSSODescriptor;
 use SimpleSAML\SAML2\XML\md\KeyDescriptor;
 use SimpleSAML\SAML2\XML\md\Organization;
-use SimpleSAML\SAML2\XML\md\RoleDescriptor;
 use SimpleSAML\SAML2\XML\md\SPSSODescriptor;
-use SimpleSAML\SAML2\XML\md\AbstractSSODescriptor;
-use SimpleSAML\SAML2\XML\md\AbstractRoleDescriptorType;
-use SimpleSAML\SAML2\XML\md\AbstractMetadataDocument;
-use SimpleSAML\SAML2\XML\md\AbstractRoleDescriptor;
 use SimpleSAML\SAML2\XML\mdattr\EntityAttributes;
 use SimpleSAML\SAML2\XML\mdrpi\RegistrationInfo;
 use SimpleSAML\SAML2\XML\mdui\DiscoHints;
@@ -50,18 +41,13 @@ use SimpleSAML\SAML2\XML\mdui\Logo;
 use SimpleSAML\SAML2\XML\mdui\UIInfo;
 use SimpleSAML\SAML2\XML\saml\Attribute;
 use SimpleSAML\SAML2\XML\shibmd\Scope;
-use SimpleSAML\Assert\Assert;
-use SimpleSAML\SAML2\XML\saml\AttributeValue;
-use SimpleSAML\SAML2\Type\SAMLAnyURIValue;
-
-use SimpleSAML\Logger;
-use SimpleSAML\SAML2\Constants;
 use SimpleSAML\Utils;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XMLSecurity\Alg\Signature\SignatureAlgorithmFactory;
+use SimpleSAML\XMLSecurity\Key\X509Certificate;
+use SimpleSAML\XMLSecurity\XML\ds\X509Data;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
-
-use SimpleSAML\XMLSecurity\TestUtils\PEMCertificatesMock;
 
 /**
  * This is class for parsing of SAML 2.0 metadata.
@@ -74,7 +60,8 @@ class MetadataParser
      * This is the list with the SAML 2.0 protocol.
      *
      * @var string[]
-     */    private static array $SAML20Protocols = [
+     */
+    private static array $SAML20Protocols = [
         Constants::NS_SAMLP,
     ];
 
@@ -167,7 +154,7 @@ class MetadataParser
      * This is an array of elements that may be used to validate this element.
      *
      * FIXME: SignedElementHelper has disappeared saml2-legacy -> saml2
-     * 
+     *
      * @var \SAML2\SignedElementHelper[]
      */
     private array $validators = [];
@@ -391,9 +378,7 @@ class MetadataParser
 
         $xmlUtils = new Utils\XML();
         if ($xmlUtils->isDOMNodeOfType($element, 'EntityDescriptor', '@md') === true) {
-
             $entityDescriptor = EntityDescriptor::fromXML($element);
-            
             return self::processDescriptorsElement($entityDescriptor);
         } elseif ($xmlUtils->isDOMNodeOfType($element, 'EntitiesDescriptor', '@md') === true) {
             return self::processDescriptorsElement(EntitiesDescriptor::fromXML($element));
@@ -576,7 +561,7 @@ class MetadataParser
 
         // find SP information which supports the SAML 2.0 protocol
         $spd = $this->getSPDescriptors(self::$SAML20Protocols);
-        
+
         if (count($spd) === 0) {
             return null;
         }
@@ -605,13 +590,13 @@ class MetadataParser
 
         // add the list of attributes the SP should receive
         if (array_key_exists('attributes', $spd)) {
-            //            $ret['attributes'] = $spd['attributes'];
+            // $ret['attributes'] = $spd['attributes'];
             $a = [];
-            foreach($spd['attributes'] as $k => $d) {
-                if( is_array($d)) {
+            foreach ($spd['attributes'] as $k => $d) {
+                if (is_array($d)) {
                     $flat = [];
-                    foreach($d as $cc) {
-                        if( $cc instanceof \SimpleSAML\SAML2\XML\saml\AttributeValue) {
+                    foreach ($d as $cc) {
+                        if ($cc instanceof \SimpleSAML\SAML2\XML\saml\AttributeValue) {
                             $flat[] = $cc->getValue();
                         }
                     }
@@ -620,17 +605,17 @@ class MetadataParser
                 $a[$k] = $d;
             }
             $ret['attributes'] = $a;
-            
         }
+
         if (array_key_exists('attributes.required', $spd)) {
-            //            $ret['attributes.required'] = $spd['attributes.required'];
+            // $ret['attributes.required'] = $spd['attributes.required'];
 
             $a = [];
-            foreach($spd['attributes.required'] as $k => $d) {
-                if( is_array($d)) {
+            foreach ($spd['attributes.required'] as $k => $d) {
+                if (is_array($d)) {
                     $flat = [];
-                    foreach($d as $cc) {
-                        if( $cc instanceof \SimpleSAML\SAML2\XML\saml\AttributeValue) {
+                    foreach ($d as $cc) {
+                        if ($cc instanceof \SimpleSAML\SAML2\XML\saml\AttributeValue) {
                             $flat[] = $cc->getValue();
                         }
                     }
@@ -639,13 +624,10 @@ class MetadataParser
                 $a[$k] = $d;
             }
             $ret['attributes.required'] = $a;
-            
-        }
-        else
-        {
+        } else {
             $ret['attributes.required'] = [];
         }
-        
+
         if (array_key_exists('attributes.NameFormat', $spd)) {
             $ret['attributes.NameFormat'] = $spd['attributes.NameFormat'];
         }
@@ -659,15 +641,15 @@ class MetadataParser
         // add name & description
         if (array_key_exists('name', $spd)) {
             $a = [];
-            foreach($spd['name'] as $d) {
-                $a = array_merge($a,$d->toArray());
+            foreach ($spd['name'] as $d) {
+                $a = array_merge($a, $d->toArray());
             }
             $ret['name'] = $a;
         }
         if (array_key_exists('description', $spd)) {
             $a = [];
-            foreach($spd['description'] as $d) {
-                $a = array_merge($a,$d->toArray());
+            foreach ($spd['description'] as $d) {
+                $a = array_merge($a, $d->toArray());
             }
             $ret['description'] = $a;
         }
@@ -779,6 +761,7 @@ class MetadataParser
         return $this->attributeAuthorityDescriptors;
     }
 
+
     /**
      * Parse a RoleDescriptorType element.
      *
@@ -805,8 +788,9 @@ class MetadataParser
         }
 
         // convert SAMLAnyURIListValue items to string in array
-        $ret['protocols'] = array_map( fn($v): string => strval($v),
-                                       $element->getProtocolSupportEnumeration()->toArray()
+        $ret['protocols'] = array_map(
+            fn($v): string => strval($v),
+            $element->getProtocolSupportEnumeration()->toArray(),
         );
 
         // process KeyDescriptor elements
@@ -847,7 +831,7 @@ class MetadataParser
      */
     private static function parseSSODescriptor(AbstractSSODescriptor $element, ?int $expireTime): array
     {
-        $sd = self::parseRoleDescriptorType($element, $expireTime); 
+        $sd = self::parseRoleDescriptorType($element, $expireTime);
 
         // find all SingleLogoutService elements
         $sd['SingleLogoutService'] = self::extractEndpoints($element->getSingleLogoutService());
@@ -924,8 +908,8 @@ class MetadataParser
      * This function extracts metadata from a AttributeAuthorityDescriptor element.
      *
      * @param \SAML2\XML\md\AttributeAuthorityDescriptor $element The element which should be parsed.
-     * @param int|null                                  $expireTime The unix timestamp for when this element should
-     *     expire, or NULL if unknown.
+     * @param int|null $expireTime The unix timestamp for when this element should
+     *   expire, or NULL if unknown.
      */
     private function processAttributeAuthorityDescriptor(
         AttributeAuthorityDescriptor $element,
@@ -944,26 +928,27 @@ class MetadataParser
         $this->attributeAuthorityDescriptors[] = $aad;
     }
 
-    private static function flatten( $arr ): array
+
+    private static function flatten($arr): array
     {
         $a = [];
-        foreach($arr as $d) {
-            $a = array_merge($a,$d->toArray());
+        foreach ($arr as $d) {
+            $a = array_merge($a, $d->toArray());
         }
         return $a;
     }
 
 
-    private static function flatten_append_key( $arr, $k ): array
+    private static function flatten_append_key($arr, $k): array
     {
         $a = [];
-        foreach($arr as $d) {
+        foreach ($arr as $d) {
             $a[] = $d->toArray()[$k];
         }
         return $a;
     }
-    
-    
+
+
     /**
      * Parse an Extensions element. Extensions may appear in multiple elements and certain extension may get inherited
      * from a parent element.
@@ -994,7 +979,7 @@ class MetadataParser
         }
 
         $elist = $element->getExtensions()?->getElements();
-        if( !$elist ) {
+        if (!$elist) {
             $elist = [];
         }
         foreach ($elist as $e) {
@@ -1029,8 +1014,8 @@ class MetadataParser
                     $registrationPolicy = $e->getRegistrationPolicy();
                     if (!empty($registrationPolicy)) {
                         $policies = [];
-                        foreach($registrationPolicy as $rp) {
-                            $policies = array_merge($policies,$rp->toArray());
+                        foreach ($registrationPolicy as $rp) {
+                            $policies = array_merge($policies, $rp->toArray());
                         }
                         $ret['RegistrationInfo']['policies'] = $policies;
                     }
@@ -1084,7 +1069,6 @@ class MetadataParser
 
                     // this does the same thing as flatten() though I would say it was a bit messier code to repeat.
                     // $ret['UIInfo']['DisplayName'] = array_merge(...array_map( fn($v): array => $v->toArray(), $e->getDisplayName()));
-                    
                     foreach ($e->getKeywords() as $uiItem) {
                         $keywords = $uiItem->getKeywords();
                         $language = $uiItem->getLanguage();
@@ -1179,9 +1163,11 @@ class MetadataParser
         $format = null;
         $sp['attributes'] = [];
         $sp['attributes.required'] = [];
+
         foreach ($element->getRequestedAttribute() as $child) {
             $attrname = $child->getName()->getValue();
             $attrvalue = $child->getAttributeValues();
+
             if (empty($attrvalue)) {
                 $sp['attributes'][] = $attrname;
             } else {
@@ -1191,6 +1177,7 @@ class MetadataParser
             if ($child->getIsRequired()?->toBoolean() === true) {
                 $sp['attributes.required'][] = $attrname;
             }
+
             if ($child->getNameFormat() !== null) {
                 $attrformat = $child->getNameFormat();
             } else {
@@ -1250,8 +1237,6 @@ class MetadataParser
         return array_map([self::class, 'parseGenericEndpoint'], $endpoints);
     }
 
-
-    
 
     /**
      * This function parses a KeyDescriptor element. It currently only supports keys with a single
@@ -1336,6 +1321,7 @@ class MetadataParser
 
         foreach ($this->idpDescriptors as $idpd) {
             $sharedProtocols = array_intersect($protocols, $idpd['protocols']);
+
             if (count($sharedProtocols) > 0) {
                 $ret[] = $idpd;
             }
@@ -1369,6 +1355,7 @@ class MetadataParser
         return new EntityDescriptor($ed);
     }
 
+
     /**
      * If you are looking to treat unsigned metadata as an error you need to be able to see if
      * there are 1+ signautes in the metadata. Call here and throw an error if only signed
@@ -1378,15 +1365,16 @@ class MetadataParser
     {
         $signaturesFound = 0;
         foreach ($validators as $validator) {
-
             $element = $validator;
-            if($element->getSignature()) {
+
+            if ($element->getSignature()) {
                 $signaturesFound++;
             }
         }
         return $signaturesFound;
     }
-    
+
+
     /**
      * If this EntityDescriptor was signed this function use the public key to check the signature.
      *
@@ -1410,21 +1398,17 @@ class MetadataParser
         $validators = $this->validators;
 
         foreach ($pemCandidates as $index => $candidateKey) {
-
             foreach ($validators as $validator) {
-
                 $element = $validator;
 
-                if($element->getSignature()) {
-
+                if ($element->getSignature()) {
                     $signaturesFound++;
-                
+
                     $verifier = (new SignatureAlgorithmFactory([]))->getAlgorithm(
                         $element->getSignature()?->getSignedInfo()->getSignatureMethod()->getAlgorithm()->getValue(),
                         $candidateKey,
                     );
-                    
-                    
+
                     try {
                         /*
                          * Make sure that we have a valid signature on either the response or the assertion.
@@ -1432,7 +1416,7 @@ class MetadataParser
                         $sigValid = $element->verify($verifier);
                         if ($sigValid) {
                             printf('Validation with key "#%d" succeeded\n', $index);
-                            $signaturesVerified++; 
+                            $signaturesVerified++;
                         } else {
                             printf('Validation with key "#%d" failed without exception.\n', $index);
                         }
@@ -1451,18 +1435,16 @@ class MetadataParser
 
         echo "signaturesVerified $signaturesVerified\n";
         echo "   signaturesFound $signaturesFound\n";
-        
+
         if ($lastException !== null) {
             throw $lastException;
         } else {
-            if($signaturesFound > 0 ) {
-                if( $signaturesVerified === $signaturesFound ) {
+            if ($signaturesFound > 0) {
+                if ($signaturesVerified === $signaturesFound) {
                     return true;
                 }
             }
             return false;
         }
     }
-    
-};
-
+}

@@ -11,8 +11,6 @@ use SimpleSAML\Module\saml\Auth\Source\SP;
 use SimpleSAML\Module\saml\MetadataBuilder;
 use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\XML\md\EntityDescriptor;
-use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XMLSecurity\TestUtils\PEMCertificatesMock;
 
 use function array_filter;
@@ -27,8 +25,9 @@ use function in_array;
  */
 final class MetadataBuilderTest extends TestCase
 {
-    private const ENTITY_SP = 'urn:x-simplesamlphp:serviceprovider';
-    private const ENTITY_IDP = 'urn:x-simplesamlphp:identityprovider';
+    private const string ENTITY_SP = 'urn:x-simplesamlphp:serviceprovider';
+
+    private const string ENTITY_IDP = 'urn:x-simplesamlphp:identityprovider';
 
 
     /**
