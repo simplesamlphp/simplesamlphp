@@ -31,7 +31,7 @@ class MetadataParserTest extends SigningTestCase
         $expected = [
             0 => [
                 'index' => 43,
-                'Binding' => Constants::NS_IDPDISC,
+                'Binding' => C::NS_IDPDISC,
                 'Location' => 'https://simplesamlphp.org/some/endpoint',
                 'isDefault' => false,
             ],
