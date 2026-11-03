@@ -25,6 +25,7 @@ use SimpleSAML\SAML2\XML\idpdisc\DiscoveryResponse;
 use SimpleSAML\SAML2\XML\md\AbstractEndpointType;
 use SimpleSAML\SAML2\XML\md\AbstractMetadataDocument;
 use SimpleSAML\SAML2\XML\md\AbstractSSODescriptor;
+use SimpleSAML\SAML2\XML\md\AbstractRoleDescriptorType;
 use SimpleSAML\SAML2\XML\md\AttributeAuthorityDescriptor;
 use SimpleSAML\SAML2\XML\md\AttributeConsumingService;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
