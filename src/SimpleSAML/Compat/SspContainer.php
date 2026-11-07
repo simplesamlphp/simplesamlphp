@@ -105,4 +105,12 @@ class SspContainer extends AbstractContainer
         }
         $sysUtils->writeFile($filename, $data, $mode);
     }
+
+
+    /**
+     */
+    public function getInflateSizeLimit(): int
+    {
+        return 100 * 1024;
+    }
 }
