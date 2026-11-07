@@ -220,6 +220,77 @@ class SPTest extends ClearStateTestCase
 
 
     /**
+     * Test setting various Subject NameID attributes using a data provider.
+     */
+    #[DataProvider('provideNameIDAttributes')]
+    public function testNameIDAttributes(
+        string $attributeKey,
+        string $value,
+        string $getter,
+        string $xmlAttribute,
+    ): void {
+        $state = [
+            'saml:NameID' => [
+                'Value' => 'user@example.org',
+                $attributeKey => $value,
+            ],
+        ];
+
+        $ar = $this->createAuthnRequest($state);
+
+        /** @var \SAML2\XML\saml\NameID $nameID */
+        $nameID = $ar->getNameId();
+        $this->assertEquals('user@example.org', $nameID->getValue());
+        $this->assertEquals($value, $nameID->$getter());
+
+        $xml = $ar->toSignedXML();
+
+        /** @var \DOMAttr[] $q */
+        $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Subject/saml:NameID/@' . $xmlAttribute);
+        $this->assertEquals($value, $q[0]->value);
+
+        $q = Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Subject/saml:NameID');
+        $this->assertEquals('user@example.org', $q[0]->textContent);
+    }
+
+
+    /**
+     * Data provider for NameID attributes.
+     *
+     * @return array<string, array{attributeKey: string, value: string, getter: string, xmlAttribute: string}>
+     */
+    public static function provideNameIDAttributes(): array
+    {
+        return [
+            'NameQualifier' => [
+                'attributeKey' => 'NameQualifier',
+                'value' => 'nq-example-qualifier',
+                'getter' => 'getNameQualifier',
+                'xmlAttribute' => 'NameQualifier',
+            ],
+            'SPNameQualifier' => [
+                'attributeKey' => 'SPNameQualifier',
+                'value' => 'spnq-example-qualifier',
+                'getter' => 'getSPNameQualifier',
+                'xmlAttribute' => 'SPNameQualifier',
+            ],
+            'SPProvidedID' => [
+                'attributeKey' => 'SPProvidedID',
+                'value' => 'sp-provided-id-1234',
+                'getter' => 'getSPProvidedID',
+                'xmlAttribute' => 'SPProvidedID',
+            ],
+            'Format' => [
+                'attributeKey' => 'Format',
+                'value' => Constants::NAMEID_UNSPECIFIED,
+                'getter' => 'getFormat',
+                'xmlAttribute' => 'Format',
+            ],
+        ];
+    }
+
+
+    /**
      * Test setting an AuthnConextClassRef
      */
     public function testAuthnContextClassRef(): void

@@ -128,7 +128,16 @@ class SspContainer extends AbstractContainer
      * @param string $url
      * @param array $data
      */
-    public function getPOSTRedirectURL(string $url, array $data = []): string {
+    public function getPOSTRedirectURL(string $url, array $data = []): string
+    {
         return $httpUtils->getPOSTRedirectURL($url, $data);
+    }
+
+
+    /*
+     */
+    public function getInflateSizeLimit(): int
+    {
+        return 100 * 1024;
     }
 }
