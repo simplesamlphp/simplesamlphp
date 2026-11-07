@@ -6,6 +6,7 @@
     reportMixedIssues="false"
     hideExternalErrors="true"
     allowStringToStandInForClass="true"
+    loadLibraryPlugins="false"
 >
     <projectFiles>
         <directory name="config" />
