@@ -236,8 +236,8 @@ class SP extends Auth\Source
         $email = $globalConfig->getOptionalString('technicalcontact_email', 'na@example.org');
         if (!empty($email) && $email !== 'na@example.org') {
             $contact = [
-                'emailAddress' => $email,
-                'givenName' => $globalConfig->getOptionalString('technicalcontact_name', null),
+                'EmailAddress' => $email,
+                'GivenName' => $globalConfig->getOptionalString('technicalcontact_name', null),
                 'contactType' => 'technical',
             ];
             $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);

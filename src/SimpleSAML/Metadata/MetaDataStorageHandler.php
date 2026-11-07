@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
-use SAML2\Constants;
+use Exception;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
+use SimpleSAML\Module;
+use SimpleSAML\SAML2\Constants;
 use SimpleSAML\Utils;
 use SimpleSAML\Utils\ClearableState;
 
@@ -67,10 +69,11 @@ class MetaDataStorageHandler implements ClearableState
 
         try {
             $this->sources = MetaDataStorageSource::parseSources($sourcesConfig);
-        } catch (\Exception $e) {
-            throw new \Exception(
-                "Invalid configuration of the 'metadata.sources' configuration option: " . $e->getMessage(),
-            );
+        } catch (Exception $e) {
+            throw new Exception(sprintf(
+                "Invalid configuration of the 'metadata.sources' configuration option :%s",
+                $e->getMessage(),
+            ));
         }
     }
 
@@ -126,6 +129,18 @@ class MetaDataStorageHandler implements ClearableState
 
                 case 'SingleLogoutServiceBinding':
                     return Constants::BINDING_HTTP_REDIRECT;
+            }
+        } else {
+            $hookinfo = [
+                'set' => $set,
+                'property' => $property,
+                'info' => [],
+                'errors' => [],
+            ];
+
+            Module::callHooks('generate_metadata', $hookinfo);
+            if ($hookinfo['result']) {
+                return $hookinfo['result'];
             }
         }
 
