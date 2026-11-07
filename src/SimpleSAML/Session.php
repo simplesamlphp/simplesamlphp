@@ -934,6 +934,7 @@ class Session implements Utils\ClearableState
         $this->markDirty();
     }
 
+
     /**
      * This ensures that the number of elements in a data store does not exceed configured limits
      * and trims it until the limit is not exceeded, removing elements from the start of the array
@@ -945,7 +946,7 @@ class Session implements Utils\ClearableState
             return;
         }
         if (!array_key_exists($type, $this->dataStore)) {
-           return;
+            return;
         }
         $count = count($this->dataStore[$type]);
         while ($count > $limit) {
@@ -953,6 +954,7 @@ class Session implements Utils\ClearableState
             $count--;
         }
     }
+
 
     /**
      * This function removes expired data from the data store.
