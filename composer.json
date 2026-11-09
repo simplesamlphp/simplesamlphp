@@ -156,5 +156,5 @@
             "echo 'Post-install tasks completed!'"
         ]
     },
-    "version": "v2.5.3.1"
+    "version": "2.5.4"
 }
