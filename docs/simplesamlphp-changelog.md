@@ -21,6 +21,10 @@ Released 2026-11-09
 * Add container-method to limit gzinflate
 * Several chores, deprecation fixes and dependency bumps
 
+`saml2`
+
+* Fix a possible DoS in the HTTPRedirect-binding by limiting the input-size of payloads passed to gzinflate()
+
 ## Version 2.5.3
 
 Released 2026-08-09
