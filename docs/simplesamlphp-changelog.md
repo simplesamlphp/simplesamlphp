@@ -5,9 +5,25 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.4.10
+## Version 2.4.12
 
 Released TBD
+
+## Version 2.4.11
+
+* Fix file config for MetaDataStorageHandlerXML (#2682)
+
+Released 2026-11-09
+
+`saml2`
+
+* Fix a possible DoS in the HTTPRedirect-binding by limiting the input-size of payloads passed to gzinflate()
+
+## Version 2.4.10
+
+Released 2026-08-30
+
+* Fix missing namespace-declaration
 
 ## Version 2.4.9
 
