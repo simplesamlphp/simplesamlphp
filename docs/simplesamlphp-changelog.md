@@ -5,11 +5,25 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.5.4
+## Version 2.5.5
 
 Released TBD
 
-* Fix admin federation page calling a removed SAMLBuilder method
+## Version 2.5.4
+
+Released 2026-11-09
+
+* Fix typo in MetadataTest docblock (#2669)
+* Fix admin federation page calling a removed SAMLBuilder method (#2672)
+* Include _head.twig from post as well as base (#2676)
+* Several doc improvements (#2679, #2680)
+* Fix SPProvidedID array key casing typo when configuring Subject NameID in SP (#2686)
+* Add container-method to limit gzinflate
+* Several chores, deprecation fixes and dependency bumps
+
+`saml2`
+
+* Fix a possible DoS in the HTTPRedirect-binding by limiting the input-size of payloads passed to gzinflate()
 
 ## Version 2.5.3
 

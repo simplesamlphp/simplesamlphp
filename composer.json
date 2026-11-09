@@ -108,7 +108,7 @@
 
         "mikey179/vfsstream": "~1.6",
         "predis/predis": "~3.3",
-        "simplesamlphp/simplesamlphp-test-framework": "~1.11.6 || dev-master"
+        "simplesamlphp/simplesamlphp-test-framework": "~1.11.7 || dev-master"
     },
     "suggest": {
         "predis/predis": "Needed if a Redis server is used to store session information",
@@ -156,5 +156,5 @@
             "echo 'Post-install tasks completed!'"
         ]
     },
-    "version": "v2.5.3.1"
+    "version": "2.5.4"
 }
