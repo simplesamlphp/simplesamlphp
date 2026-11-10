@@ -277,6 +277,46 @@ session_set_save_handler($handler);
 session_start();
 ```
 
+### Applications that use Twig themselves
+
+SimpleSAMLphp uses [Twig](https://twig.symfony.com/) for its templates. Twig 3
+defines a few deprecated global functions in files that its Composer package
+always loads. If your application loads Twig itself and SimpleSAMLphp loads its
+own copy, those files can be included twice in the same PHP process, and PHP
+stops with an error like this, even when both copies are the same version:
+
+```text
+PHP Fatal error:  Cannot redeclare function twig_cycle()
+```
+
+Whether this happens depends on how your application loads Twig:
+
+- **Twig from Composer:** this works, whether SimpleSAMLphp comes from a release
+  archive or is installed with Composer. Composer records which of these files
+  it has already included, and both installations of Twig get the same record,
+  so the files are only loaded once.
+- **Twig from an operating system package** (for example
+  `/usr/share/php/Twig/autoload.php` on Debian): this fails however
+  SimpleSAMLphp is installed, because the package's autoloader does not share
+  Composer's record.
+
+SimpleSAMLphp does not use these deprecated functions. If your application
+cannot load Twig through Composer, mark the files as already included before
+loading SimpleSAMLphp's autoloader. Composer then skips them:
+
+```php
+// Tell Composer that Twig's deprecated function files are already loaded.
+$GLOBALS['__composer_autoload_files']['89efb1254ef2d1c5d80096acd12c4098'] = true; // twig/twig:src/Resources/core.php
+$GLOBALS['__composer_autoload_files']['ffecb95d45175fd40f75be8a23b34f90'] = true; // twig/twig:src/Resources/debug.php
+$GLOBALS['__composer_autoload_files']['c7baa00073ee9c61edf148c51917cfb4'] = true; // twig/twig:src/Resources/escaper.php
+$GLOBALS['__composer_autoload_files']['f844ccf1d25df8663951193c3fc307c8'] = true; // twig/twig:src/Resources/string_loader.php
+
+require_once('/path/to/simplesamlphp/src/_autoload.php');
+```
+
+Composer derives these keys from the package name and the file path, not the
+file contents, so they stay the same across Twig 3 releases.
+
 ## Support
 
 If you need help to make this work, or want to discuss SimpleSAMLphp with other
