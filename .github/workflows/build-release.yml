@@ -11,6 +11,7 @@ jobs:
   build:
     name: Build release
     runs-on: [ubuntu-latest]
+    permissions: {}
     strategy:
       fail-fast: false
       matrix:
@@ -96,6 +97,7 @@ jobs:
   website:
     name: Build website
     runs-on: [ubuntu-latest]
+    permissions: {}
     strategy:
       fail-fast: false
 
