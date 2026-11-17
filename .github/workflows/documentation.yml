@@ -16,6 +16,7 @@ on:  # yamllint disable-line rule:truthy
 jobs:
   quality:
     name: Quality checks
+    permissions: {}
     runs-on: [ubuntu-latest]
 
     steps:
@@ -37,6 +38,7 @@ jobs:
 
   build:
     name: Build documentation
+    permissions: {}
     needs: quality
     runs-on: [ubuntu-latest]
 
