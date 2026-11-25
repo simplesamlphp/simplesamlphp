@@ -33,11 +33,11 @@ use function unlink;
 #[CoversClass(MDQ::class)]
 final class MDQTest extends SigningTestCase
 {
-    private const string REQUESTED = 'https://idp-a.example.org';
+    private const REQUESTED = 'https://idp-a.example.org';
 
-    private const string OTHER = 'https://idp-b.example.org';
+    private const OTHER = 'https://idp-b.example.org';
 
-    private const string SET = 'saml20-idp-remote';
+    private const SET = 'saml20-idp-remote';
 
 
     private ?string $cacheDir = null;
