@@ -9,6 +9,8 @@ See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgr
 
 Released TBD
 
+* Prevent creating a new session until necessary (#2685)
+
 ## Version 2.5.5
 
 * Fix: MDQ metadata source does not bind the returned entity to the requested one (GHSA-f5r3-7fq4-pmfw)
