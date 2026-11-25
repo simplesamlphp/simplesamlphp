@@ -16,6 +16,7 @@ jobs:
 
   build:
     name: Setup and Build PO-files
+    permissions: {}
     runs-on: ['ubuntu-latest']
 
     outputs:
@@ -77,6 +78,7 @@ jobs:
 
   commit:
     name: Commit changes to assets
+    permissions: {}
     needs: build
     if: needs.build.outputs.files_changed == 'true'
     runs-on: [ubuntu-latest]
@@ -127,6 +129,7 @@ jobs:
 
   cleanup:
     name: Cleanup artifacts
+    permissions: {}
     needs: [build, commit]
     runs-on: [ubuntu-latest]
     if: |

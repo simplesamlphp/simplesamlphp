@@ -16,11 +16,36 @@ Release TBD
 
 * Added support for Redis as backend for storing consent (v1.6.0)
 
-## Version 2.5.4
+## Version 2.5.6
 
 Released TBD
 
-* Fix admin federation page calling a removed SAMLBuilder method
+* Prevent creating a new session until necessary (#2685)
+
+## Version 2.5.5
+
+* Fix: MDQ metadata source does not bind the returned entity to the requested one (GHSA-f5r3-7fq4-pmfw)
+* Bump dependencies (several twig-advisories)
+
+`saml2`
+
+* Fix defect error-handling on malformed XML-input (GHSA-48pv-rhh3-85qr)
+
+## Version 2.5.4
+
+Released 2026-11-09
+
+* Fix typo in MetadataTest docblock (#2669)
+* Fix admin federation page calling a removed SAMLBuilder method (#2672)
+* Include _head.twig from post as well as base (#2676)
+* Several doc improvements (#2679, #2680)
+* Fix SPProvidedID array key casing typo when configuring Subject NameID in SP (#2686)
+* Add container-method to limit gzinflate
+* Several chores, deprecation fixes and dependency bumps
+
+`saml2`
+
+* Fix a possible DoS in the HTTPRedirect-binding by limiting the input-size of payloads passed to gzinflate()
 
 ## Version 2.5.3
 

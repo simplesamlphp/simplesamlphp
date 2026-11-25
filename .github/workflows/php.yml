@@ -15,6 +15,7 @@ on:  # yamllint disable-line rule:truthy
 jobs:
   phplinter:
     name: 'PHP-Linter'
+    permissions: {}
     strategy:
       fail-fast: false
       matrix:
@@ -27,6 +28,7 @@ jobs:
 
   linter:
     name: 'Linter'
+    permissions: {}
     strategy:
       fail-fast: false
 
@@ -41,6 +43,7 @@ jobs:
   unit-tests-linux:
     name: "Syntax and unit tests, PHP ${{ matrix.php-versions }}, ${{ matrix.operating-system }}"
     runs-on: ${{ matrix.operating-system }}
+    permissions: {}
     needs: [phplinter, linter]
     strategy:
       fail-fast: false
@@ -118,6 +121,7 @@ jobs:
   unit-tests-windows:
     name: "Syntax and unit tests, PHP ${{ matrix.php-versions }}, ${{ matrix.operating-system }}"
     runs-on: ${{ matrix.operating-system }}
+    permissions: {}
     needs: [phplinter, linter]
     strategy:
       fail-fast: true
@@ -177,6 +181,7 @@ jobs:
 
   quality:
     name: Quality control
+    permissions: {}
     needs: [unit-tests-linux]
     runs-on: [ubuntu-latest]
 
@@ -236,6 +241,7 @@ jobs:
             --excludePackage=simplesamlphp/composer-module-installer \
             --excludePackage=simplesamlphp/simplesamlphp-assets-base \
             --excludePackage=symfony/expression-language \
+            --excludePackage=symfony/options-resolver \
             --excludePackage=symfony/polyfill-intl-icu \
             --excludePackage=symfony/yaml
 
@@ -254,6 +260,7 @@ jobs:
 
   security:
     name: Security checks
+    permissions: {}
     needs: [unit-tests-linux]
     runs-on: [ubuntu-latest]
     steps:
@@ -310,6 +317,7 @@ jobs:
 
   coverage:
     name: Code coverage
+    permissions: {}
     runs-on: [ubuntu-latest]
     needs: [unit-tests-linux]
     steps:
@@ -329,6 +337,7 @@ jobs:
 
   cleanup:
     name: Cleanup artifacts
+    permissions: {}
     needs: [unit-tests-linux, coverage]
     runs-on: [ubuntu-latest]
     if: |
