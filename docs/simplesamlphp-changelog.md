@@ -5,9 +5,18 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.5.5
+## Version 2.5.6
 
 Released TBD
+
+## Version 2.5.5
+
+* Fix: MDQ metadata source does not bind the returned entity to the requested one (GHSA-f5r3-7fq4-pmfw)
+* Bump dependencies (several twig-advisories)
+
+`saml2`
+
+* Fix defect error-handling on malformed XML-input (GHSA-48pv-rhh3-85qr)
 
 ## Version 2.5.4
 

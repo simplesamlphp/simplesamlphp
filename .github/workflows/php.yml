@@ -236,6 +236,7 @@ jobs:
             --excludePackage=simplesamlphp/composer-module-installer \
             --excludePackage=simplesamlphp/simplesamlphp-assets-base \
             --excludePackage=symfony/expression-language \
+            --excludePackage=symfony/options-resolver \
             --excludePackage=symfony/polyfill-intl-icu \
             --excludePackage=symfony/yaml
 
