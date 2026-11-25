@@ -62,6 +62,11 @@ class MDQ extends MetaDataStorageSource
      */
     private int $cacheLength;
 
+    /**
+     * @var \SimpleSAML\Utils\HTTP
+     */
+    protected Utils\HTTP $httpUtils;
+
 
     /**
      * This function initializes the dynamic XML metadata source.
@@ -82,6 +87,8 @@ class MDQ extends MetaDataStorageSource
     protected function __construct(array $config)
     {
         parent::__construct();
+
+        $this->httpUtils = new Utils\HTTP();
 
         if (!array_key_exists('server', $config)) {
             throw new Exception(__CLASS__ . ": the 'server' configuration option is not set.");
@@ -254,6 +261,17 @@ class MDQ extends MetaDataStorageSource
 
 
     /**
+     * Inject the \SimpleSAML\Utils\HTTP dependency.
+     *
+     * @param \SimpleSAML\Utils\HTTP $httpUtils
+     */
+    public function setHttpUtils(Utils\HTTP $httpUtils): void
+    {
+        $this->httpUtils = $httpUtils;
+    }
+
+
+    /**
      * Overriding this function from the superclass \SimpleSAML\Metadata\MetaDataStorageSource.
      *
      * This function retrieves metadata for the given entity id in the given set of metadata.
@@ -284,6 +302,18 @@ class MDQ extends MetaDataStorageSource
             $data = null;
         }
 
+        if (isset($data) && ($data['entityid'] ?? null) !== $entityId) {
+            // An entry recorded for a different entity, for example one cached before the entityID of the returned
+            // document was checked. Do not serve it; fetch the metadata again.
+            Logger::warning(sprintf(
+                '%s: ignoring cached metadata for "%s" that describes a different entity, "%s".',
+                __CLASS__,
+                $entityId,
+                strval($data['entityid'] ?? ''),
+            ));
+            $data = null;
+        }
+
         if (isset($data)) {
             if (array_key_exists('expire', $data) && $data['expire'] < time()) {
                 // metadata has expired
@@ -298,8 +328,7 @@ class MDQ extends MetaDataStorageSource
         // look at Metadata Query Protocol: https://github.com/iay/md-query/blob/master/draft-young-md-query.txt
         $mdq_url = $this->server . '/entities/' . urlencode($entityId);
 
-        $httpUtils = new Utils\HTTP();
-        $client = $httpUtils->createHttpClient([
+        $client = $this->httpUtils->createHttpClient([
             'headers' => ['Accept' => 'application/samlmetadata+xml'],
         ]);
 
@@ -327,6 +356,17 @@ class MDQ extends MetaDataStorageSource
             }
         } else {
             Logger::notice('Not verifying MDQ metadata signature because no certificates were configured.');
+        }
+
+        // A valid signature only shows the document is authentic, not that it is the one we asked for. Without
+        // this check any entity the federation has signed could be served, and cached, as any other entity.
+        if ($entity->getEntityId() !== $entityId) {
+            throw new Exception(sprintf(
+                '%s: the metadata returned for entity "%s" describes a different entity, "%s".',
+                __CLASS__,
+                $entityId,
+                $entity->getEntityId(),
+            ));
         }
 
         $data = self::getParsedSet($entity, $set);
