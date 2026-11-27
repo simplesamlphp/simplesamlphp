@@ -5,11 +5,19 @@
 This document lists the changes between versions of SimpleSAMLphp.
 See the [upgrade notes](https://simplesamlphp.org/docs/stable/simplesamlphp-upgrade-notes.html) for specific information about upgrading.
 
-## Version 2.4.13
+## Version 2.4.14
 
 Released TBD
 
+## Version 2.4.13
+
+Released 2026-11-26
+
 * Prevent creating a new session until necessary (#2685)
+
+`saml2`
+
+* Backport of `GHSA-5cjr-mxj5-wmrx`
 
 ## Version 2.4.12
 
