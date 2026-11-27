@@ -25,6 +25,17 @@ $metadata['entity-id-2'] = [
     entry in the IdP-remote metadata overrides the option in the
     [SP configuration](./saml:sp).
 
+`AuthnContextClassRefMapping`
+:   A mapping array to translate requested `AuthnContextClassRef` values to ones supported by the IdP.
+    If a requested context (e.g., from an SP behind a proxy) matches a key in this array, it is replaced
+    by the value before the request is sent. The value can be a single string, an array of strings,
+    or an empty string/array to drop the context entirely (falling back to standard login).
+    For a detailed flow diagram of how this mapping works, see the [SP configuration reference](./saml:sp).
+
+:   Note that this option also exists in the SP configuration. This
+    entry in the IdP-remote metadata overrides the option in the
+    [SP configuration](./saml:sp).
+
 `AuthnContextComparison`
 
 :   The Comparison attribute of the AuthnContext that will be sent in the login request. This parameter won't be used unless AuthnContextClassRef is set and contains one or more values. Possible values:

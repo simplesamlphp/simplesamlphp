@@ -160,6 +160,7 @@ class TemplateTranslationTest extends TestCase
 
         $files = Finder::create()
             ->name('*.twig')
+            ->exclude('vendor')
             ->in(
                 [
                     $root . '/templates',
